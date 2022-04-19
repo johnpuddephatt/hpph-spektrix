@@ -44,8 +44,11 @@ class Page extends Resource
                 ->pluck("id")
                 ->toArray()
         );
-        $query->getQuery()->orders = [];
-        return $query->orderByRaw("FIELD(id, $ids_ordered)");
+        if ($ids_ordered) {
+            $query->getQuery()->orders = [];
+            $query->orderByRaw("FIELD(id, $ids_ordered)");
+        }
+        return $query;
     }
 
     public static function relatableQuery(NovaRequest $request, $query)
