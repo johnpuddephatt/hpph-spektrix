@@ -1,0 +1,47 @@
+/* @tailwind base; */
+.static {
+    position: static
+}
+.my-16 {
+    margin-top: 4rem;
+    margin-bottom: 4rem
+}
+.mb-2 {
+    margin-bottom: 0.5rem
+}
+.block {
+    display: block
+}
+.table {
+    display: table
+}
+.contents {
+    display: contents
+}
+.border {
+    border-width: 1px
+}
+.bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity))
+}
+.p-4 {
+    padding: 1rem
+}
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem
+}
+.text-base {
+    font-size: 1rem;
+    line-height: 1.5rem
+}
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem
+}
+.focus-visible\:outline-none:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px
+}
+

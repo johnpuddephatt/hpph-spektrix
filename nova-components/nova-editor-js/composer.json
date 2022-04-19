@@ -1,0 +1,54 @@
+{
+    "name": "advoor/nova-editor-js",
+    "description": "A Laravel Nova field bringing EditorJs magic to Nova.",
+    "keywords": [
+        "laravel",
+        "nova",
+        "editor",
+        "editorjs",
+        "wysiwyg"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "ext-exif": "*",
+        "ext-json": "*",
+        "codex-team/editor.js": "*",
+        "laravel/nova": "^4.0",
+        "spatie/image": "^1.7"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Advoor\\NovaEditorJs\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Advoor\\NovaEditorJs\\FieldServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.1.3"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    ]
+}
