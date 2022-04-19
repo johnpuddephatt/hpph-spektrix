@@ -4,44 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c06c69b8ced4c41cf74bc564500b7b3",
+    "content-hash": "87ef35a1d65740eed8cbb82b3af46796",
     "packages": [
-        {
-            "name": "acme/test",
-            "version": "dev-main",
-            "dist": {
-                "type": "path",
-                "url": "./nova-components/Test",
-                "reference": "09aaa063777e973169b5e8c57e3a871d9e650729"
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Acme\\Test\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Acme\\Test\\": "src/"
-                }
-            },
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "transport-options": {
-                "relative": true
-            }
-        },
         {
             "name": "advoor/nova-editor-js",
             "version": "dev-main",

@@ -9,7 +9,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "acme/test": "*",
         "advoor/nova-editor-js": "*",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -49,14 +48,6 @@
         "0": {
             "type": "path",
             "url": "./nova-components/nova-editor-js"
-        },
-        "1": {
-            "type": "path",
-            "url": "./nova-components/Test"
-        },
-        "2": {
-            "type": "path",
-            "url": "./nova-components/Test"
         }
     },
     "scripts": {
