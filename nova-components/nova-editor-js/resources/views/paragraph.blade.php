@@ -1,5 +1,3 @@
-<div class="editor-js-block">
-    <p>
-        {{ $text }}
-    </p>
-</div>
+<p>
+    {{ $text }}
+</p>

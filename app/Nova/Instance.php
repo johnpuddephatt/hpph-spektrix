@@ -61,6 +61,7 @@ class Instance extends Resource
             Boolean::make("Short film with feature")->onlyOnDetail(),
             Boolean::make("Audio described"),
             BelongsTo::make("Season")->exceptOnForms(),
+            BelongsTo::make("Strand")->exceptOnForms(),
             Text::make("Target audience")->hideFromIndex(),
             Text::make("Target audience_2")->hideFromIndex(),
             Boolean::make("Signed BSL"),

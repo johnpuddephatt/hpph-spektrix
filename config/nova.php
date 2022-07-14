@@ -11,13 +11,8 @@ return [
     "storage_disk" => env("NOVA_STORAGE_DISK", "public"),
 
     "brand" => [
-        // ...
-
-        "colors" => [
-            "400" => "24, 182, 155, 0.5",
-            "500" => "24, 182, 155",
-            "600" => "24, 182, 155, 0.75",
-        ],
+        "logo" =>
+            "<svg viewBox='0 0 240 80' xmlns='http://www.w3.org/2000/svg'><text font-weight='bold' font-size='60' x='30' y='60'>HPPH</text></svg>",
     ],
 
     /*

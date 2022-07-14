@@ -35,53 +35,78 @@ class FetchEventData implements ShouldQueue
         $client = new Client();
         $res = $client->request(
             "GET",
-            // "https://system.spektrix.com/leedsheritagetheatres_run2_1/api/v3/events?startFrom={ date('Y-m-d') }&attribute_Website=Theatres"
-            "https://system.spektrix.com/leedsheritagetheatres_run2_1/api/v3/events?startFrom={ date('Y-m-d') }"
+            "https://system.spektrix.com/" .
+                nova_get_setting("spektrix_client_name") .
+                "/api/v3/events?instanceStart_from={ \Carbon\Carbon::now()->subDay()->format('Y-m-d') }&attribute_Website=HPPH"
         );
 
         $events = json_decode($res->getBody()->__toString());
+
         foreach ($events as $event) {
-            $event = \App\Models\Event::updateOrCreate(
-                ["spektrix_id" => $event->id],
+            $event = \App\Models\Event::withoutGlobalScopes()->updateOrCreate(
+                ["id" => $event->id],
                 [
-                    "duration" => $event->duration,
-                    "is_on_sale" => $event->isOnSale,
-                    "name" => $event->name,
-                    "instance_dates" => $event->instanceDates,
-                    "first_instance_date_time" => $event->firstInstanceDateTime,
-                    "last_instance_date_time" => $event->lastInstanceDateTime,
-                    "archive_film" => $event->attribute_ArchiveFilm,
-                    "audio_description" => $event->attribute_AudioDescription,
-                    "mubigo" => $event->attribute_MUBIGO,
+                    "description" => $event->description ?? null,
+                    "duration" => $event->duration ?? null,
+                    "is_on_sale" => $event->isOnSale ?? false,
+                    "name" => $event->name ?? null,
+                    "instance_dates" => $event->instanceDates ?? null,
+                    "first_instance_date_time" =>
+                        $event->firstInstanceDateTime ?? null,
+                    "last_instance_date_time" =>
+                        $event->lastInstanceDateTime ?? null,
+                    "alternative_content" =>
+                        $event->attribute_AlternativeContent ?? false,
+                    "archive_film" => $event->attribute_ArchiveFilm ?? false,
+                    "audio_description" =>
+                        $event->attribute_AudioDescription ?? false,
+                    "venue" => $event->attribute_Venue ?? null,
+                    "mubigo" => $event->attribute_MUBIGO ?? false,
                     "non_specialist_film" =>
-                        $event->attribute_NonSpecialistFilm,
-                    "website" => $event->attribute_Website,
-                    "country_of_origin" => $event->attribute_CountryOfOrigin,
-                    "director" => $event->attribute_Director,
-                    "distributor" => $event->attribute_Distributor,
-                    "f_rating" => $event->attribute_FRating,
-                    "language" => $event->attribute_Language,
+                        $event->attribute_NonSpecialistFilm ?? false,
+                    "country_of_origin" =>
+                        $event->attribute_CountryOfOrigin ?? null,
+                    "director" => $event->attribute_Director ?? null,
+                    "distributor" => $event->attribute_Distributor ?? null,
+                    "f_rating" => $event->attribute_FRating ?? null,
+                    "language" => $event->attribute_Language ?? null,
                     "original_language_title" =>
-                        $event->attribute_OriginalLanguageTitle,
-                    "strand_name" => $event->attribute_Strand ?: null,
-                    "year_of_production" => $event->attribute_YearOfProduction,
-                    "featuring_stars_1" => $event->attribute_FeaturingStars1,
-                    "featuring_stars_2" => $event->attribute_FeaturingStars2,
-                    "featuring_stars_3" => $event->attribute_FeaturingStars3,
-                    "genre_2" => $event->attribute_Genre2,
-                    "vibe_1" => $event->attribute_Vibe1,
-                    "vibe_2" => $event->attribute_Vibe2,
+                        $event->attribute_OriginalLanguageTitle ?? null,
+                    "strobe_light_warning" =>
+                        $event->attribute_StrobeLightWarning ?? false,
+                    "year_of_production" =>
+                        $event->attribute_YearOfProduction ?? null,
+                    "featuring_stars" => implode(
+                        ",",
+                        array_filter([
+                            $event->attribute_FeaturingStars1 ?? null,
+                            $event->attribute_FeaturingStars2 ?? null,
+                            $event->attribute_FeaturingStars3 ?? null,
+                        ])
+                    ),
+                    "genres" => implode(
+                        ",",
+                        array_filter([
+                            $event->attribute_Genre1 ?? null,
+                            $event->attribute_Genre2 ?? null,
+                            $event->attribute_Genre3 ?? null,
+                        ])
+                    ),
+                    "vibes" => implode(
+                        ",",
+                        array_filter([
+                            $event->attribute_Vibe1 ?? null,
+                            $event->attribute_Vibe2 ?? null,
+                        ])
+                    ),
+                    "members_offer_available" =>
+                        $event->attribute_MembersOfferAvailable ?? false,
+                    "live_or_film" => $event->attribute_LiveOrFilm ?? null,
+                    "certificate_age_guidance" =>
+                        $event->attribute_CertificateAgeGuidance ?? null,
+                    // "website" => $event->attribute_Website ?? null,
                 ]
             );
-        }
-
-        foreach (
-            array_unique(Arr::pluck($events, "attribute_Strand"))
-            as $strand
-        ) {
-            if ($strand) {
-                \App\Models\Strand::updateOrCreate(["name" => $strand]);
-            }
         }
     }
 }

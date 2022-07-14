@@ -1,25 +1,28 @@
 {
     "private": true,
     "scripts": {
-        "dev": "npm run development",
-        "development": "mix",
-        "watch": "mix watch",
-        "watch-poll": "mix watch -- --watch-options-poll=1000",
-        "hot": "mix watch --hot",
-        "prod": "npm run production",
-        "production": "mix --production",
-        "build-test": "cd nova-components/Test && npm run dev",
-        "build-test-prod": "cd nova-components/Test && npm run prod",
-        "build-FooTool": "cd nova-components/FooTool && npm run dev",
-        "build-FooTool-prod": "cd nova-components/FooTool && npm run prod"
+        "dev": "vite",
+        "build": "vite build",
+        "build-editorjs": "cd nova-components/nova-editor-js && npm run development",
+        "build-editorjs-prod": "cd nova-components/nova-editor-js && npm run production",
+        "build-template-fields": "cd nova-components/TemplateFields && npm run dev",
+        "build-template-fields-prod": "cd nova-components/TemplateFields && npm run prod"
     },
     "devDependencies": {
+        "@shufo/prettier-plugin-blade": "^1.4.15",
         "@tailwindcss/typography": "^0.5.2",
+        "@vitejs/plugin-vue": "^2.3.3",
         "autoprefixer": "^10.4.4",
         "axios": "^0.21",
-        "laravel-mix": "^6.0.6",
+        "laravel-vite-plugin": "^0.2.4",
         "lodash": "^4.17.19",
         "postcss": "^8.4.12",
-        "tailwindcss": "^3.0.23"
+        "prettier": "^2.7.1",
+        "tailwindcss": "^3.0.23",
+        "vite": "^2.9.13"
+    },
+    "dependencies": {
+        "alpinejs": "^3.10.2",
+        "date-fns": "^2.28.0"
     }
 }

@@ -1,0 +1,15 @@
+.prose p {
+    @apply mb-4;
+}
+
+.prose h2 {
+    @apply type-h2;
+}
+
+.prose h3 {
+    @apply type-h3;
+}
+
+.prose h4 {
+    @apply type-h4;
+}

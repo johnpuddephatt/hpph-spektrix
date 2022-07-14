@@ -18,157 +18,114 @@ Publish the config file
 php artisan vendor:publish --provider="Advoor\NovaEditorJs\FieldServiceProvider"
 ```
 
+## Version Compatibility
+
+Laravel Nova 4.x isn't backwards compatible with 3.x, so we had to make a version split.
+Please use the below table to find which versions are suitable for your installation.
+
+| Package version | Nova Version | Laravel Version | PHP version |
+|-----------------|--------------|-----------------|-------------|
+| `3.x`           | 4.x          | 8.x - 9.x       | 8.1+        |
+| `2.x`           | 2.x - 3.x    | 5.x - 8.x       | 5.6 - 7.4   |
+
+Note that we really pushed the PHP version up. If you're staying on
+new versions of Laravel and Nova, we're expecting your PHP version to match that behaviour.
+
 ## Upgrade
-If upgrading from v0.4.0, re-publish the config file!
 
-## Usage:
+See [the upgrade guide](./UPGRADING.md).
 
-Add this `use` statement to the top of the your nova resource file:
+## Usage
+
+To add EditorJS to your application, you'll need to modify your Nova resource.
+For ease-of-use we also recommend to update your models, but that's optional.
+
+### Updating your Nova resource
+
+This package exposes a `NovaEditorJsField` that takes care of displaying the HTML contents
+and providing the user with the EditorJS field.
+
+To use it, simply import the field,
 
 ```php
-use Advoor\NovaEditorJs\NovaEditorJs;
+use Advoor\NovaEditorJs\NovaEditorJsField;
 ```
 
-Use the field as below:
+use it in your fields array,
 
 ```php
-NovaEditorJs::make('FieldName');
+return [
+    // …
+    NovaEditorJsField::make('about'),
+];
 ```
 
-And boom!
+And boom, you've got yourself a fancy editor.
 
-You can configure what tools the Editor should use in the config 
-file along with some other settings so make sure to have a look :)
+### Updating your models (optional)
 
-You can use the built in function to generate the response for the frontend:
+For ease-of-use, we recommend you add the `NovaEditorJsCast` to the `$casts` on your models.
+This will map the value to a `NovaEditorJsData` model, which can be returned in Blade (rendering HTML), or sent
+via API calls (rendering JSON, unless you call `toHtml` on it or cast it to a string).
+
+```php
+use Advoor\NovaEditorJs\NovaEditorJsCast;
+
+class User extends Model {
+    protected $casts = [
+        'about' => NovaEditorJsCast::class,
+    ];
+}
+```
+
+Since the `NovaEditorJsData` model is an `Htmlable`, Blade will recognize it as
+safe HTML. This means you don't have to use Blade "unescaped statements".
+
+```blade
+<article>
+    <h1>About {{ $user->name }}</h1>
+    {{ $user->about }}
+</article>
+```
+
+### Rendering HTML without model changes
+
+You can also use the `NovaEditorJs` facade to render HTML from stored data.
 
 ```php
 NovaEditorJs::generateHtmlOutput($user->about);
 ```
 
-Each 'block' has it's own view which can be overwritten in `resources/views/vendor/nova-editor-js/`
+The return value of `generateHtmlOutput` is an `HtmlString`, which is treated as
+safe by Blade. This means you don't have to use Blade "unescaped statements".
 
-## Tools included
-* https://github.com/editor-js/header
-* https://github.com/editor-js/image
-* https://github.com/editor-js/code
-* https://github.com/editor-js/link
-* https://github.com/editor-js/list
-* https://github.com/editor-js/inline-code
-* https://github.com/editor-js/checklist
-* https://github.com/editor-js/marker
-* https://github.com/editor-js/embed
-* https://github.com/editor-js/delimiter
-* https://github.com/editor-js/table
-* https://github.com/editor-js/raw
-
-
-## Extending
-
-**For the purpose of this section, we will use `editor-js/warning` as an example of extensibility.**
-
-There are two steps to extending the editor. The first consists of creating a JavaScript file and passing it onto Nova.
-The second step allows you to create a blade view file and pass it to the field to allow your block to render in the Nova `show` page.
- 
-### Creating the Javascript file
-
-`resources/js/editor-js-plugins/warning.js`
-
-```js
-/*
- * The editorConfig variable is used by you to add your tools,
- * or any additional configuration you might want to add to the editor.
- *
- * The fieldConfig variable is the VueJS field exposed to you. You may
- * fetch any value that is contained in your laravel config file from there.
- */
-NovaEditorJS.booting(function (editorConfig, fieldConfig) {
-    if (fieldConfig.toolSettings.warning.activated === true) {
-        editorConfig.tools.warning = {
-            class: require('@editorjs/warning'),
-            shortcut: fieldConfig.toolSettings.warning.shortcut,
-            config: {
-                titlePlaceholder: fieldConfig.toolSettings.warning.titlePlaceholder,
-                messagePlaceholder: fieldConfig.toolSettings.warning.messagePlaceholder,
-            },
-        }
-    }
-});
+```blade
+<article>
+    <h1>About {{ $user->name }}</h1>
+    {{ NovaEditorJs::generateHtmlOutput($user->about) }}
+</article>
 ```
 
-`webpack.mix.js`
+## Customizing
 
-```js
-const mix = require('laravel-mix');
+You can configure what tools the Editor should use, by updating the `toolSettings` property in the config file.
+By default, the following components are enabled:
 
-mix.js('resources/js/editor-js-plugins/warning.js', 'public/js/editor-js-plugins/warning.js');
-```
+* [Header](https://github.com/editor-js/header)
+* [Image](https://github.com/editor-js/image)
+* [Link](https://github.com/editor-js/link)
+* [List](https://github.com/editor-js/list)
+* [Code block](https://github.com/editor-js/code)
+* [Inline code](https://github.com/editor-js/inline-code)
+* [Checklist](https://github.com/editor-js/checklist)
+* [Marker](https://github.com/editor-js/marker)
+* [Embeds](https://github.com/editor-js/embed)
+* [Delimiter](https://github.com/editor-js/delimiter)
+* [Table](https://github.com/editor-js/table)
+* [Raw](https://github.com/editor-js/raw)
 
-`app/Providers/NovaServiceProvider.php`
+You can customize the views for each component, by changing the view in `resources/views/vendor/nova-editor-js/`.
 
-```php
-// ...
-public function boot()
-{
-    parent::boot();
+### Registering custom components
 
-    Nova::serving(function () {
-        Nova::script('editor-js-warning', public_path('js/editor-js-plugins/warning.js'));
-    });
-}
-// ...
-```
-
-`config/nova-editor-js.php`
-
-```php
-return [
-    // ...
-    'toolSettings' => [
-        'warning' => [
-            'activated' => true,
-            'titlePlaceholder' => 'Title',
-            'messagePlaceholder' => 'Message',
-            'shortcut' => 'CMD+SHIFT+L'
-        ],
-    ]
-    // ...
-];
-```
-
-### Creating the blade view file
-
-`resources/views/editorjs/warning.blade.php`
-
-*CSS classes taken from [here](https://github.com/editor-js/warning/blob/master/src/index.css).*
-
-```html
-<div class="editor-js-block">
-    <div class="cdx-warning">
-        <h3 class="cdx-warning__title">{{ $title }}</h3>
-        <p class="cdx-warning__message">{{ $message }}</p>
-    </div>
-</div>
-```
-
-`app/Providers/NovaServiceProvider.php`
-
-```php
-use Advoor\NovaEditorJs\NovaEditorJs;
-
-// ...
-public function boot()
-{
-    parent::boot();
-
-    NovaEditorJs::addRender('warning', function($block) {
-        return view('editorjs.warning', $block['data'])->render();
-    });
-    
-    // ...
-}
-// ...
-```
-
-That's it for extending the Nova EditorJS package!
-
+Please refer to the [extending Nova EditorJS](./EXTENDING.md) guide on instructions on how to register custom components.

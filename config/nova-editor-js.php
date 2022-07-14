@@ -135,6 +135,9 @@ return [
                 "body" => [
                     "type" => "string",
                 ],
+                "foo" => [
+                    "type" => "string",
+                ],
             ],
             "header" => [
                 "text" => [

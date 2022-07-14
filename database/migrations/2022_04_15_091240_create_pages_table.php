@@ -18,6 +18,9 @@ class CreatePagesTable extends Migration
             $table->timestamps();
             $table->string("slug");
             $table->string("title");
+            $table->string("header_type");
+            $table->string("header_position");
+            $table->string("type");
             $table->text("content")->nullable();
             $table
                 ->bigInteger("parent_page_id")

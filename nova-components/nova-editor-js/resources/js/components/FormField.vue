@@ -1,20 +1,5 @@
 <template>
-    <!-- <div> -->
-    <default-field
-        @keydown.stop
-        :field="field"
-        :errors="errors"
-        :fullWidthContent="true"
-        class="editor-js-wrapper"
-    >
-        <template #field>
-            <div
-                :id="'editor-js-' + this.field.attribute"
-                class="editor-js text-base"
-            ></div>
-        </template>
-    </default-field>
-    <!-- </div> -->
+    <div :id="`editor-js-${field.attribute}`" ref="input" class="editor-js" />
 </template>
 
 <script>
@@ -32,17 +17,19 @@ export default {
         setInitialValue() {
             this.value = this.field.value;
 
-            let self = this;
-            let currentContent = self.field.value
-                ? JSON.parse(self.field.value)
-                : self.field.value;
+            const self = this;
+
+            const currentContent =
+                typeof self.field.value === "object"
+                    ? self.field.value
+                    : JSON.parse(self.field.value);
 
             const editor = NovaEditorJS.getInstance(
                 {
                     /**
                      * Wrapper of Editor
                      */
-                    holderId: "editor-js-" + self.field.attribute,
+                    holderId: `editor-js-${self.field.attribute}`,
 
                     /**
                      * This Tool will be used as default
@@ -69,8 +56,8 @@ export default {
                      */
                     minHeight: 35,
 
-                    onReady: function () {},
-                    onChange: function () {
+                    onReady() {},
+                    onChange() {
                         editor.save().then((savedData) => {
                             self.handleChange(savedData);
                         });
@@ -96,30 +83,3 @@ export default {
     },
 };
 </script>
-
-<style>
-.editor-js-wrapper {
-    /* width: 60%; */
-    /* background-color: #f9fafb; */
-    /* padding: 2rem; */
-    /* padding-left: calc(20% + 2rem); */
-    /* color: #7c858e; */
-}
-
-.editor-js {
-    width: calc(100% + 15px) !important;
-}
-
-.ce-block__content,
-.ce-toolbar__content {
-    max-width: 720px !important;
-    margin: 0 !important;
-}
-.cdx-block {
-    max-width: 100% !important;
-}
-
-.ce-paragraph {
-    line-height: 2em !important;
-}
-</style>

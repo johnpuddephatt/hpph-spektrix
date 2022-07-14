@@ -1,7 +1,7 @@
-@extends('app') @section('content')
+@extends('layouts.default', ['header_colour' => $page->header_type, 'header_position' => $page->header_position, 'edit_link' => route('nova.pages.edit', ['resource' => 'pages', 'resourceId' => $page->id])]) @section('content')
 
-<div class="container py-24 prose prose-lg">
-    <h1>{{ $page->title }}</h1>
-
-    {!! $page->renderedContent !!} @endsection
-</div>
+@section('content')
+    @foreach ($page->content as $block)
+        @includeIf('blocks.' . $block->name(), $block->fields())
+    @endforeach
+@endsection

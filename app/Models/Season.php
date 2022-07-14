@@ -15,10 +15,6 @@ class Season extends Model
 
     public function instances()
     {
-        return $this->hasMany(
-            \App\Models\Instance::class,
-            "season_name",
-            "name"
-        );
+        return $this->hasMany(Instance::class, "season_name", "name");
     }
 }

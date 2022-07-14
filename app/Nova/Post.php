@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Image;
 use Advoor\NovaEditorJs\NovaEditorJs;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class Post extends Resource
 {
@@ -44,15 +45,21 @@ class Post extends Resource
     {
         return [
             ID::make(__("ID"), "id")->sortable(),
+
             Text::make("Title")
-                ->required()
                 ->withMeta([
                     "extraAttributes" => [
                         "class" => "text-xl p-4 h-auto",
                     ],
-                ]),
+                ])
+                ->rules("required"),
 
-            NovaEditorJs::make("Content")->hideFromIndex(),
+            Images::make("Main image", "main")
+                // ->conversionOnIndexView("thumb")
+                ->rules("required"),
+            // NovaEditorJs::make("Content")
+            //     ->hideFromIndex()
+            //     ->rules("required"),
         ];
     }
 

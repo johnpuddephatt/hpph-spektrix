@@ -7,11 +7,9 @@ use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use App\Nova\Dashboards\Main;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Panel;
+use Spatie\MediaLibraryPro\Models\TemporaryUpload;
+use Spatie\MediaLibrary\Conversions\Conversion;
+use Spatie\Image\Manipulations;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -22,42 +20,24 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function boot()
     {
-        \OptimistDigital\NovaSettings\NovaSettings::addSettingsFields(
-            [
-                Text::make("Google analytics"),
-                Text::make("Spektrix domain"),
-                Text::make("Newsletter signup"),
-            ],
-            [],
-            "Services"
-        );
-        \OptimistDigital\NovaSettings\NovaSettings::addSettingsFields(
-            [
-                Text::make("Phone"),
-                Textarea::make("Address"),
-                Textarea::make("Email"),
-                Panel::make("Social media", [
-                    Text::make("Facebook"),
-                    Text::make("Twitter"),
-                    Text::make("Instagram"),
-                ]),
-            ],
-            [],
-            "Contact Details"
-        );
-
-        \OptimistDigital\NovaSettings\NovaSettings::addSettingsFields(
-            [
-                Text::make("Message"),
-                Text::make("Link"),
-                Boolean::make("Enabled?"),
-                DateTime::make("Display until"),
-            ],
-            [],
-            "Alert"
-        );
+        foreach (config("nova-settings-config") as $settings) {
+            \OptimistDigital\NovaSettings\NovaSettings::addSettingsFields(
+                $settings["fields"] ?? [],
+                $settings["casts"] ?? [],
+                $settings["page"] ?? null
+            );
+        }
 
         parent::boot();
+
+        Nova::footer(function ($request) {
+            return "<style>div.lg\:top-\[56px\] { padding-bottom: 6rem; min-height: 100%; background: rgb(0,0,40);} #nova { position: relative;} header {box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px}</style>";
+        });
+
+        // in a service provider
+        TemporaryUpload::previewManipulation(function (Conversion $conversion) {
+            $conversion->fit(Manipulations::FIT_CROP, 1200, 900);
+        });
     }
 
     /**
@@ -116,8 +96,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             // new \Acme\Test\Test(),
+            \Outl1ne\MenuBuilder\MenuBuilder::make(),
             new \OptimistDigital\NovaSettings\NovaSettings(),
             new \Spatie\BackupTool\BackupTool(),
+            new \Stepanenko3\LogsTool\LogsTool(),
         ];
     }
 

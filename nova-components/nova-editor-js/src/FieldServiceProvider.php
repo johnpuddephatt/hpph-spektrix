@@ -20,29 +20,19 @@ class FieldServiceProvider extends ServiceProvider
             $this->routes();
         });
 
-        $this->publishes(
-            [
-                __DIR__ . "/config/nova-editor-js.php" => base_path(
-                    "config/nova-editor-js.php"
-                ),
-            ],
-            "editorjs-config"
-        );
+        $this->publishes([
+            __DIR__ . '/config/nova-editor-js.php' => base_path('config/nova-editor-js.php'),
+        ], 'editorjs-config');
 
-        $this->publishes(
-            [
-                __DIR__ . "/../resources/views" => resource_path(
-                    "views/vendor/nova-editor-js"
-                ),
-            ],
-            "views"
-        );
+        $this->publishes([
+            __DIR__ . '/../resources/views' => resource_path('views/vendor/nova-editor-js'),
+        ], 'views');
 
-        $this->loadViewsFrom(__DIR__ . "/../resources/views", "nova-editor-js");
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'nova-editor-js');
 
         Nova::serving(function (ServingNova $event) {
-            Nova::script("nova-editor-js", __DIR__ . "/../dist/js/field.js");
-            Nova::style("nova-editor-js", __DIR__ . "/../dist/css/field.css");
+            Nova::script('nova-editor-js', __DIR__ . '/../dist/js/field.js');
+            Nova::style('nova-editor-js', __DIR__ . '/../dist/css/field.css');
         });
     }
 
@@ -57,9 +47,9 @@ class FieldServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::middleware(["nova"])
-            ->prefix("nova-vendor/editor-js-field")
-            ->group(__DIR__ . "/../routes/api.php");
+        Route::middleware(['nova'])
+            ->prefix('nova-vendor/editor-js-field')
+            ->group(__DIR__ . '/../routes/api.php');
     }
 
     /**
@@ -69,6 +59,8 @@ class FieldServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Register the converter
+        $this->app->singleton(NovaEditorJsConverter::class);
+        $this->app->alias(NovaEditorJsConverter::class, 'nova-editor-js');
     }
 }

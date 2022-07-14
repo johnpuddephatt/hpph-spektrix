@@ -1,7 +1,7 @@
-@extends('app') @section('content')
+@extends('layouts.default') @section('content')
+    <div class="container prose prose-lg py-24">
+        <h1>{{ $post->title }}</h1>
 
-<div class="container prose prose-lg py-24">
-    <h1>{{ $post->title }}</h1>
-
-    {!! $post->renderedContent !!} @endsection
+        {!! $post->renderedContent !!}
+    @endsection
 </div>

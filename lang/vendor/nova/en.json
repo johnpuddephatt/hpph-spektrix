@@ -46,6 +46,7 @@
   "Are you sure you want to run this action?": "Are you sure you want to run this action?",
   "Attach": "Attach",
   "Attach & Attach Another": "Attach & Attach Another",
+  "Close": "Close",
   "Cancel": "Cancel",
   "Choose": "Choose",
   "Choose File": "Choose File",
@@ -409,6 +410,7 @@
   "Show All Fields": "Show All Fields",
   "There was a problem submitting the form.": "There was a problem submitting the form.",
   "There was a problem executing the action.": "There was a problem executing the action.",
+  "There was a problem fetching the resource.": "There was a problem fetching the resource.",
   "Do you really want to leave? You have unsaved changes.": "Do you really want to leave? You have unsaved changes.",
   "*": "*",
   "—": "—",
@@ -432,7 +434,7 @@
   "Previewing": "Previewing",
   "Replicate": "Replicate",
   "Are you sure you want to log out?": "Are you sure you want to log out?",
-  "There are no new notifications": "There are no new notifications",
+  "There are no new notifications.": "There are no new notifications.",
   "Resource Row Dropdown": "Resource Row Dropdown",
   "This copy of Nova is unlicensed.": "This copy of Nova is unlicensed.",
   "Impersonate": "Impersonate",
@@ -441,6 +443,8 @@
   "Light": "Light",
   "Dark": "Dark",
   "System": "System",
-  "Are you sure you want to stop impersonating?": "Are you sure you want to stop impersonating?",
-  "There are no fields to display.": "There are no fields to display."
+  "There are no fields to display.": "There are no fields to display.",
+  "Notifications": "Notifications",
+  "Mark all as Read": "Mark all as Read",
+  "Copy to clipboard": "Copy to clipboard"
 }

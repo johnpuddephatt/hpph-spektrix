@@ -5,12 +5,18 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Panel;
-use Advoor\NovaEditorJs\NovaEditorJs;
+
+use Advoor\NovaEditorJs\NovaEditorJsField;
+
+use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class Event extends Resource
 {
@@ -37,6 +43,11 @@ class Event extends Resource
      */
     public static $search = ["name"];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScopes();
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -46,23 +57,59 @@ class Event extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()
+            ID::make("Id")
                 ->asBigInt()
-                ->sortable()
-                ->onlyOnIndex(),
+                ->hideFromIndex(),
 
-            Text::make("Name")->showOnPreview(),
-            NovaEditorJs::make("Content")->hideFromIndex(),
+            Boolean::make("Published")
+                ->showOnPreview()
+                ->filterable(),
+
+            Text::make("Name")
+                ->sortable()
+                ->hideWhenUpdating(),
+
+            NovaEditorJsField::make("Long description")->hideFromIndex(),
+
+            Images::make("Main image", "main"),
+            // ->conversionOnIndexView("thumb")
+
+            Images::make("Image gallery", "gallery")
+
+                // ->conversionOnPreview("medium-size")
+                // ->conversionOnDetailView("thumb")
+                // ->conversionOnIndexView("thumb")
+                // ->conversionOnForm("thumb")
+                // ->fullSize()
+                // ->rules("required", "size:3")
+                ->singleImageRules("dimensions:min_width=100")
+                ->customPropertiesFields([
+                    Boolean::make("Active"),
+                    Markdown::make("Description"),
+                ]),
+
+            SimpleRepeatable::make("Reviews", "reviews", [
+                Text::make("Rating"),
+                Textarea::make("Quote"),
+                Text::make("Publication name"),
+                Text::make("URL"),
+            ])->addRowLabel("Add a review"),
+
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
             new Panel("Dates", $this->dateFields()),
             (new Panel("Details", $this->additionalFields()))->limit(4),
+            Text::make("Instances", function ($model) {
+                return $model->instances->count();
+            })->onlyOnIndex(),
         ];
     }
 
     protected function dateFields()
     {
         return [
-            Text::make("Dates", "instance_dates")->hideWhenUpdating(),
+            Text::make("Dates", function ($model) {
+                return $model->dateRange;
+            })->hideWhenUpdating(),
             Text::make("Duration (minutes)", "duration")->onlyOnDetail(),
             Text::make("First instance date time")->onlyOnDetail(),
             Text::make("Last instance date time")->onlyOnDetail(),
@@ -77,21 +124,15 @@ class Event extends Resource
             Boolean::make("Non-specialist film")->onlyOnDetail(),
             Text::make("Country of origin")->onlyOnDetail(),
             Text::make("Director")->onlyOnDetail(),
-            Text::make("Distributor")->onlyOnDetail(),
             Text::make("F-Rating")->onlyOnDetail(),
             Text::make("Distributor")->onlyOnDetail(),
+            Text::make("Genres")->onlyOnDetail(),
+            Text::make("Vibes")->onlyOnDetail(),
+
             Text::make("Language")->onlyOnDetail(),
-            Text::make("Distributor")->onlyOnDetail(),
             Text::make("Original language title")->onlyOnDetail(),
-            BelongsTo::make("Strand")->exceptOnForms(),
             Text::make("Year of production")->onlyOnDetail(),
-            Text::make("Featuring", function ($model) {
-                $featuring = [];
-                $featuring[] = $model->featuring_stars_1 ?? null;
-                $featuring[] = $model->featuring_stars_2 ?? null;
-                $featuring[] = $model->featuring_stars_3 ?? null;
-                return implode(", ", $featuring);
-            })->onlyOnDetail(),
+            Text::make("Featuring stars")->onlyOnDetail(),
         ];
     }
 
@@ -136,6 +177,9 @@ class Event extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [Actions\FetchData::make()->standalone()];
+        return [
+            Actions\FetchData::make()->standalone(),
+            Actions\PublishEvents::make(),
+        ];
     }
 }

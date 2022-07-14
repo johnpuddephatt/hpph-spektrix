@@ -1,0 +1,70 @@
+name: "Run unit tests"
+
+on:
+  - push
+
+jobs:
+  test:
+    name: Test on PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental == true }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php:
+          - '8.1'
+          - 'nightly'
+
+        include:
+          # Release flags
+          - php: '8.1'
+            stable: true
+          - php: 'nightly'
+            experimental: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@master
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: exif,json,mbstring
+          coverage: pcov
+
+      - name: Setup problem matchers
+        run: |
+          echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+      - name: Remove platform from Composer file
+        run: composer config --unset platform
+
+      - name: Add GitHub Actions printer for PHPUnit
+        run: composer require --dev --no-update mheap/phpunit-github-actions-printer
+
+      - name: Configure local Laravel Nova dummy package
+        run: composer config repositories.0 path ./tests/Fixtures/nova
+
+      - name: Install Composer dependencies
+        uses: ramsey/composer-install@v1
+        with:
+          composer-options: "--ignore-platform-req=php"
+          dependency-versions: highest # No lockfile is present, so locked (the default) isn't possible
+
+      - name: Run unit tests
+        run:
+          vendor/bin/phpunit
+            --printer mheap\\GithubActionsReporter\\Printer
+            --coverage-clover=./coverage.xml
+
+      - name: Determine coverage
+        uses: slavcodev/coverage-monitor-action@1.1.0
+        if: github.event_name == 'pull_request' && matrix.stable
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          clover_file: ./coverage.xml
+          threshold_alert: 75
+          threshold_warning: 95

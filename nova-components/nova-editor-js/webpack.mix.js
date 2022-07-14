@@ -1,18 +1,9 @@
-let mix = require("laravel-mix");
+const mix = require('laravel-mix');
 
-mix.setPublicPath("dist")
-    .js("resources/js/index.js", "js/field.js")
-    .postCss("resources/css/app.css", "css/field.css", [require("tailwindcss")])
+require('./nova.mix')
+
+mix.setPublicPath('dist')
+    .js('resources/js/index.js', 'js/field.js')
     .vue({ version: 3 })
-    // .sass('resources/sass/field.scss', 'css')
-    .webpackConfig({
-        module: {
-            exprContextCritical: false,
-        },
-        externals: {
-            vue: "Vue",
-        },
-        output: {
-            uniqueName: "advoor/nova-editor-js",
-        },
-    });
+    .css('resources/css/field.css', 'css/field.css')
+    .nova('advoor/nova-editor-js');

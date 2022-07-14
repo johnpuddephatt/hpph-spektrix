@@ -13,16 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get("/", function () {
-    return view("welcome");
+Route::get("/", [\App\Http\Controllers\PageController::class, "home"]);
+
+Route::get("brand", function () {
+    return view("brand");
 });
 
-Route::get("/posts/{post:slug}", [
+Route::get("/journal/{post:slug}", [
     \App\Http\Controllers\PostController::class,
     "show",
 ]);
 
-Route::get("/{page_1}/{page_2?}/{page_3?}/{page_4?}", [
+Route::get("whats-on", \App\Http\Controllers\ProgrammeController::class)->name(
+    "programme"
+);
+
+Route::get("/films/{event:slug}", [
+    \App\Http\Controllers\EventController::class,
+    "show",
+])->name("event.show");
+
+Route::get("/{page1}/{page2?}/{page3?}", [
     \App\Http\Controllers\PageController::class,
     "show",
 ])->where("page_1", "^(?!nova).*");
+
+Route::middleware("auth")->group(function () {
+    Route::mediaLibrary();
+});

@@ -13,8 +13,8 @@ class Strand extends Model
 
     protected $fillable = ["name", "description"];
 
-    public function events()
+    public function instances()
     {
-        return $this->hasMany(\App\Models\Event::class, "strand_name", "name");
+        return $this->hasMany(Instance::class, "strand_name", "name");
     }
 }
