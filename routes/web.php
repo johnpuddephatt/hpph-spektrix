@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", [\App\Http\Controllers\PageController::class, "home"]);
 
+Route::get("spektrix", function () {
+    return null;
+});
+
 Route::get("brand", function () {
     return view("brand");
 });

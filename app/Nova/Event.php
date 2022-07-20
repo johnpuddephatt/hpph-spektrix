@@ -17,9 +17,14 @@ use Advoor\NovaEditorJs\NovaEditorJsField;
 
 use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Eminiarts\Tabs\Traits\HasTabs;
+use Eminiarts\Tabs\Tabs;
+use Eminiarts\Tabs\Tab;
 
 class Event extends Resource
 {
+    use HasTabs;
+
     public static $group = "Programme";
 
     /**
@@ -59,82 +64,100 @@ class Event extends Resource
         return [
             ID::make("Id")
                 ->asBigInt()
-                ->hideFromIndex(),
+                ->hide(),
 
+            Text::make("Name")
+                ->sortable()
+                ->onlyOnIndex(),
             Boolean::make("Published")
                 ->showOnPreview()
                 ->filterable(),
 
-            Text::make("Name")
-                ->sortable()
-                ->hideWhenUpdating(),
+            Tabs::make(
+                "Tabs",
+                [
+                    Tab::make("Overview", [
+                        NovaEditorJsField::make(
+                            "Long description"
+                        )->hideFromIndex(),
+                        SimpleRepeatable::make("Reviews", "reviews", [
+                            Text::make("Rating"),
+                            Textarea::make("Quote"),
+                            Text::make("Publication name"),
+                            Text::make("URL"),
+                        ])->addRowLabel("Add a review"),
+                    ]),
+                    Tab::make("Images", [
+                        Images::make("Main image", "main"),
+                        Images::make("Secondary image", "secondary"),
+                        Images::make("Image gallery", "gallery")
+                            ->singleImageRules("dimensions:min_width=100")
+                            ->customPropertiesFields([
+                                Markdown::make("Description"),
+                            ])
+                            ->hideFromIndex(),
+                        // ->conversionOnPreview("medium-size")
+                        // ->conversionOnDetailView("thumb")
+                        // ->conversionOnIndexView("thumb")
+                        // ->conversionOnForm("thumb")
+                        // ->fullSize()
+                        // ->rules("required", "size:3")
+                    ]),
+                    Tab::make("Screenings", [
+                        HasMany::make(
+                            "Screenings",
+                            "instances",
+                            "\App\Nova\Instance"
+                        ),
+                    ]),
+                    Tab::make("Details", [
+                        Text::make("Dates", function ($model) {
+                            return $model->dateRange;
+                        })->hideWhenUpdating(),
+                        Text::make("First instance date time")->onlyOnDetail(),
+                        Text::make("Last instance date time")->onlyOnDetail(),
+                        Boolean::make("Archive film")->onlyOnDetail(),
+                        Boolean::make("Audio description")->onlyOnDetail(),
+                        Boolean::make("MUBIGO")->onlyOnDetail(),
+                        Boolean::make("Non-specialist film")->onlyOnDetail(),
+                        Text::make("Country of origin")->onlyOnDetail(),
+                        Text::make("Director")->onlyOnDetail(),
+                        Text::make("F-Rating")->onlyOnDetail(),
+                        Text::make("Distributor")->onlyOnDetail(),
+                        Text::make("Genres")->onlyOnDetail(),
+                        Text::make("Vibes")->onlyOnDetail(),
+                        Text::make(
+                            "Duration (minutes)",
+                            "duration"
+                        )->onlyOnDetail(),
+                        Text::make("Language")->onlyOnDetail(),
+                        Text::make("Original language title")->onlyOnDetail(),
+                        Text::make("Year of production")->onlyOnDetail(),
+                        Text::make("Featuring stars")->onlyOnDetail(),
+                    ]),
+                ],
+                false
+            ),
 
-            NovaEditorJsField::make("Long description")->hideFromIndex(),
+            // new Panel("Dates", $this->dateFields()),
+            // (new Panel("Details", $this->additionalFields()))->limit(4),
 
-            Images::make("Main image", "main"),
-            // ->conversionOnIndexView("thumb")
-
-            Images::make("Image gallery", "gallery")
-
-                // ->conversionOnPreview("medium-size")
-                // ->conversionOnDetailView("thumb")
-                // ->conversionOnIndexView("thumb")
-                // ->conversionOnForm("thumb")
-                // ->fullSize()
-                // ->rules("required", "size:3")
-                ->singleImageRules("dimensions:min_width=100")
-                ->customPropertiesFields([
-                    Boolean::make("Active"),
-                    Markdown::make("Description"),
-                ]),
-
-            SimpleRepeatable::make("Reviews", "reviews", [
-                Text::make("Rating"),
-                Textarea::make("Quote"),
-                Text::make("Publication name"),
-                Text::make("URL"),
-            ])->addRowLabel("Add a review"),
-
-            HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
-            new Panel("Dates", $this->dateFields()),
-            (new Panel("Details", $this->additionalFields()))->limit(4),
             Text::make("Instances", function ($model) {
                 return $model->instances->count();
             })->onlyOnIndex(),
         ];
     }
 
-    protected function dateFields()
-    {
-        return [
-            Text::make("Dates", function ($model) {
-                return $model->dateRange;
-            })->hideWhenUpdating(),
-            Text::make("Duration (minutes)", "duration")->onlyOnDetail(),
-            Text::make("First instance date time")->onlyOnDetail(),
-            Text::make("Last instance date time")->onlyOnDetail(),
-        ];
-    }
-    protected function additionalFields()
-    {
-        return [
-            Boolean::make("Archive film")->onlyOnDetail(),
-            Boolean::make("Audio description")->onlyOnDetail(),
-            Boolean::make("MUBIGO")->onlyOnDetail(),
-            Boolean::make("Non-specialist film")->onlyOnDetail(),
-            Text::make("Country of origin")->onlyOnDetail(),
-            Text::make("Director")->onlyOnDetail(),
-            Text::make("F-Rating")->onlyOnDetail(),
-            Text::make("Distributor")->onlyOnDetail(),
-            Text::make("Genres")->onlyOnDetail(),
-            Text::make("Vibes")->onlyOnDetail(),
+    // protected function dateFields()
+    // {
+    //     return
+    // }
+    // protected function additionalFields()
+    // {
+    //     return [
 
-            Text::make("Language")->onlyOnDetail(),
-            Text::make("Original language title")->onlyOnDetail(),
-            Text::make("Year of production")->onlyOnDetail(),
-            Text::make("Featuring stars")->onlyOnDetail(),
-        ];
-    }
+    //     ];
+    // }
 
     /**
      * Get the cards available for the request.

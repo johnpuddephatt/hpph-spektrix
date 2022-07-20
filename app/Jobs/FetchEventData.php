@@ -37,7 +37,11 @@ class FetchEventData implements ShouldQueue
             "GET",
             "https://system.spektrix.com/" .
                 nova_get_setting("spektrix_client_name") .
-                "/api/v3/events?instanceStart_from={ \Carbon\Carbon::now()->subDay()->format('Y-m-d') }&attribute_Website=HPPH"
+                "/api/v3/events?instanceStart_from=" .
+                \Carbon\Carbon::now()
+                    ->subDay()
+                    ->format("Y-m-d") .
+                "&attribute_Website=HPPH"
         );
 
         $events = json_decode($res->getBody()->__toString());
@@ -101,9 +105,9 @@ class FetchEventData implements ShouldQueue
                     ),
                     "members_offer_available" =>
                         $event->attribute_MembersOfferAvailable ?? false,
-                    "live_or_film" => $event->attribute_LiveOrFilm ?? null,
                     "certificate_age_guidance" =>
                         $event->attribute_CertificateAgeGuidance ?? null,
+                    "live_or_film" => $event->attribute_LiveOrFilm ?? null,
                     // "website" => $event->attribute_Website ?? null,
                 ]
             );

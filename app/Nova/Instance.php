@@ -8,12 +8,18 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\DateTime;
 
 class Instance extends Resource
 {
     public static $group = "Programme";
 
     public static $displayInNavigation = false;
+
+    public static function searchable()
+    {
+        return false;
+    }
 
     public static function label()
     {
@@ -52,19 +58,19 @@ class Instance extends Resource
             ID::make()
                 ->sortable()
                 ->hideFromIndex(),
-            Text::make("Start"),
-            Boolean::make("Is on sale"),
+            DateTime::make("Start"),
+            Boolean::make("On sale", "is_on_sale"),
             Boolean::make("Cancelled"),
             Text::make("Analogue"),
             Boolean::make("Captioned"),
-            Text::make("Special event"),
+            Text::make("Special", "special_event"),
             Boolean::make("Short film with feature")->onlyOnDetail(),
-            Boolean::make("Audio described"),
+            Boolean::make("AD", "audio_described"),
             BelongsTo::make("Season")->exceptOnForms(),
             BelongsTo::make("Strand")->exceptOnForms(),
             Text::make("Target audience")->hideFromIndex(),
             Text::make("Target audience_2")->hideFromIndex(),
-            Boolean::make("Signed BSL"),
+            Boolean::make("BSL", "signed_bsl"),
             Boolean::make("Relaxed", "relaxed_performance"),
         ];
     }

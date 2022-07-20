@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build && npm run spektrixcss",
+        "spektrixcss": "find ./public/build/assets -name 'spektrix.*.css' -execdir mv {} spektrix.css \\;",
         "build-editorjs": "cd nova-components/nova-editor-js && npm run development",
         "build-editorjs-prod": "cd nova-components/nova-editor-js && npm run production",
         "build-template-fields": "cd nova-components/TemplateFields && npm run dev",
@@ -22,7 +23,9 @@
         "vite": "^2.9.13"
     },
     "dependencies": {
+        "@alpinejs/intersect": "^3.10.2",
         "alpinejs": "^3.10.2",
-        "date-fns": "^2.28.0"
+        "date-fns": "^2.28.0",
+        "tailwind-scrollbar-hide": "^1.1.7"
     }
 }

@@ -51,9 +51,9 @@ class CreateEventsTable extends Migration
             $table->string("genres")->nullable(); // attribute_Genre1 attribute_Genre2 attribute_Genre3
             $table->string("vibes")->nullable(); // attribute_Vibe1 attribute_Vibe2
             $table->boolean("members_offer_available")->default(false); //attribute_MembersOfferAvailable
-            $table->string("live_or_film")->nullable(); // attribute_LiveOrFilm
             $table->string("certificate_age_guidance")->nullable(); // attribute_CertificateAgeGuidance
 
+            // $table->string("live_or_film")->nullable(); // attribute_LiveOrFilm
             // $table->string("image_url")->nullable(); // imageUrl
             // $table->text("description")->nullable(); // description
             // $table->text("html_description")->nullable(); // htmlDescription

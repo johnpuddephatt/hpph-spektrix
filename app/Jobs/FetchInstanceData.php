@@ -40,7 +40,10 @@ class FetchInstanceData implements ShouldQueue
             "GET",
             "https://system.spektrix.com/" .
                 nova_get_setting("spektrix_client_name") .
-                "/api/v3/instances?startFrom={ \Carbon\Carbon::now()->subDay()->format('Y-m-d') }"
+                "/api/v3/instances?startFrom=" .
+                \Carbon\Carbon::now()
+                    ->subDay()
+                    ->format("Y-m-d")
         );
 
         $instances = json_decode($res->getBody()->__toString());

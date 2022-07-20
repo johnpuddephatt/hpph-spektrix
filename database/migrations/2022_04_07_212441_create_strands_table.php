@@ -16,6 +16,7 @@ class CreateStrandsTable extends Migration
         Schema::create("strands", function (Blueprint $table) {
             $table->id();
             $table->string("name")->unique();
+            $table->string("slug")->unique();
             $table->text("description")->nullable();
         });
     }

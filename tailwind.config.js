@@ -6,6 +6,7 @@ module.exports = {
         "./resources/**/*.js",
         "./resources/**/*.vue",
     ],
+    plugins: [require("tailwind-scrollbar-hide")],
     theme: {
         container: {
             screens: { mobile: "1440px", tablet: "1440px", desktop: "1440px" },
@@ -19,6 +20,9 @@ module.exports = {
             ],
         },
         colors: {
+            transparent: {
+                DEFAULT: "#FFFFFF00",
+            },
             white: {
                 DEFAULT: "#FFFFFF",
             },

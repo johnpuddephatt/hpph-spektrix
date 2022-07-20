@@ -61,7 +61,6 @@ class Event extends Model implements HasMedia, CachableAttributes
         "genres",
         "vibes",
         "members_offer_available",
-        "live_or_film",
         "certificate_age_guidance",
     ];
 
@@ -89,7 +88,7 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->crop("crop-center", 1360, 1600)
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections("main", "secondary");
 
         $this->addMediaConversion("wide")
             ->quality(80)
@@ -97,12 +96,13 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->format("webp")
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections("main", "secondary");
     }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection("main")->singleFile();
+        $this->addMediaCollection("secondary")->singleFile();
         $this->addMediaCollection("gallery");
     }
 
@@ -112,6 +112,15 @@ class Event extends Model implements HasMedia, CachableAttributes
             "collection_name",
             "=",
             "main"
+        );
+    }
+
+    public function secondaryImage(): MorphOne
+    {
+        return $this->morphOne(Media::class, "model")->where(
+            "collection_name",
+            "=",
+            "secondary"
         );
     }
 
@@ -202,6 +211,11 @@ class Event extends Model implements HasMedia, CachableAttributes
     //         : null;
     // }
 
+    public function getLanguageAttribute($value): array
+    {
+        return $value ? explode(",", $value) : [];
+    }
+
     public function getGenresAttribute($value): array
     {
         return $value ? explode(",", $value) : [];
@@ -213,6 +227,11 @@ class Event extends Model implements HasMedia, CachableAttributes
     }
 
     public function getFeaturingStarsAttribute($value): array
+    {
+        return $value ? explode(",", $value) : [];
+    }
+
+    public function getCountryOfOriginAttribute($value): array
     {
         return $value ? explode(",", $value) : [];
     }

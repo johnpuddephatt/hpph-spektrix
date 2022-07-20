@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Advoor\NovaEditorJs\NovaEditorJs;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class Strand extends Resource
 {
@@ -44,9 +45,10 @@ class Strand extends Resource
     {
         return [
             ID::make()->exceptOnForms(),
-            Text::make("name"),
+            Text::make("Name"),
+            Images::make("Main image", "main"),
             NovaEditorJs::make("Description")->hideFromIndex(),
-            HasMany::make("Events", "events", "\App\Nova\Event"),
+            HasMany::make("Instances", "instances", "\App\Nova\Instance"),
         ];
     }
 

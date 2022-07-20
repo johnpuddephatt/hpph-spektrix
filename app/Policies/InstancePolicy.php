@@ -27,7 +27,7 @@ class InstancePolicy
 
     public function update(User $user)
     {
-        return true;
+        return false;
     }
 
     public function delete(User $user)
@@ -41,11 +41,6 @@ class InstancePolicy
     }
 
     public function forceDelete(User $user)
-    {
-        return false;
-    }
-
-    public function addInstance(User $user, Event $event)
     {
         return false;
     }

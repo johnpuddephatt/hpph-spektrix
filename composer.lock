@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "72995f8c6a29ae638ffb455c6db43520",
+    "content-hash": "fcd9209e50406939d85784d59b0cd6d2",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
-            "version": "v3.0.2",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/advoor/nova-editor-js.git",
-                "reference": "b6f5dfa52f8f57526afc8b3484ad828d776ae677"
+                "reference": "847187cad7807dae0eb3a310968ec8e0ca3210e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/advoor/nova-editor-js/zipball/b6f5dfa52f8f57526afc8b3484ad828d776ae677",
-                "reference": "b6f5dfa52f8f57526afc8b3484ad828d776ae677",
+                "url": "https://api.github.com/repos/advoor/nova-editor-js/zipball/847187cad7807dae0eb3a310968ec8e0ca3210e3",
+                "reference": "847187cad7807dae0eb3a310968ec8e0ca3210e3",
                 "shasum": ""
             },
             "require": {
@@ -59,9 +59,9 @@
             ],
             "support": {
                 "issues": "https://github.com/advoor/nova-editor-js/issues",
-                "source": "https://github.com/advoor/nova-editor-js/tree/v3.0.2"
+                "source": "https://github.com/advoor/nova-editor-js/tree/v3.0.4"
             },
-            "time": "2022-07-07T08:21:48+00:00"
+            "time": "2022-07-17T15:33:40+00:00"
         },
         {
             "name": "asm89/stack-cors",
