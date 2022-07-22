@@ -88,7 +88,7 @@
                 <div class="container relative py-16 pl-32" x-show="stage == 1">
                     <h2
                         class="type-label absolute right-full origin-right translate-x-8 -rotate-90 transform whitespace-nowrap">
-                        Booking options</h2>
+                        Upcoming screenings</h2>
                     <div class="type-h4">Select a showtime</div>
                     <div class="mt-2"><strong>Venue</strong> Venue name @todo</div>
 
@@ -114,8 +114,7 @@
                 <div class="container relative py-16 pl-32" x-show="stage == 2">
                     <h2
                         class="type-label absolute right-full origin-right translate-x-8 -rotate-90 transform whitespace-nowrap">
-                        Stage 1 / 4</h2>
-                    <div class="type-h4">Choose tickets</div>
+                        Make your booking</h2>
                     <template x-if="stage == 2">
                         <div>
                             <iframe class="w-full" id="SpektrixIFrame" name="SpektrixIFrame"
@@ -141,7 +140,6 @@
 
                     @include('spektrix-components.memberships')
 
-                    <br><br><br><br><br><br><br><br><br><br>
 
                 </div>
 

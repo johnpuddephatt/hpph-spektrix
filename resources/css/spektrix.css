@@ -10,10 +10,17 @@ body {
 }
 
 h1 {
-    @apply type-h4;
+    @apply type-h3;
 }
 
 h2 {
+    @apply type-h4;
+}
+
+h3,
+h4,
+h5,
+h6 {
     @apply type-subtitle;
 }
 
