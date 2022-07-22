@@ -5,19 +5,21 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Panel;
+use Laravel\Nova\Fields\MultiSelect;
 
 return [
     [
+        "page" => "Services",
         "fields" => [
             Text::make("Google analytics"),
             Text::make("Spektrix custom domain"),
             Text::make("Spektrix client name"),
         ],
         "casts" => [],
-        "page" => "Services",
     ],
 
     [
+        "page" => "Contact Details",
         "fields" => [
             Text::make("Phone"),
             Textarea::make("Address"),
@@ -29,10 +31,10 @@ return [
             ]),
         ],
         "casts" => [],
-        "page" => "Contact Details",
     ],
 
     [
+        "page" => "Alert",
         "fields" => [
             Text::make("Message"),
             Text::make("Link"),
@@ -40,6 +42,5 @@ return [
             DateTime::make("Display until"),
         ],
         "casts" => [],
-        "page" => "Alert",
     ],
 ];

@@ -21,14 +21,12 @@
         @include('components.header-menu')
         <livewire:search />
 
-        @production
-            @include('spektrix-components.login-status')
-            @include('spektrix-components.basket')
-        @endproduction
+        @include('spektrix-components.login-status')
+        @include('spektrix-components.basket')
 
         @if (isset($header_colour) && $header_colour == 'light')
             <div
-                class="t-0 to-transparent pointer-events-none absolute left-0 right-0 -z-10 h-72 bg-gradient-to-b from-black">
+                class="t-0 pointer-events-none absolute left-0 right-0 -z-10 h-72 bg-gradient-to-b from-black to-transparent">
             </div>
         @endif
 

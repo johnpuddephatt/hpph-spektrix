@@ -18,6 +18,17 @@ Artisan::command("inspire", function () {
     $this->comment(Inspiring::quote());
 })->purpose("Display an inspiring quote");
 
+Artisan::command("fetch", function () {
+    dispatch(new \App\Jobs\FetchEventData());
+    dispatch(new \App\Jobs\FetchInstanceData());
+    dispatch(new \App\Jobs\FetchMembershipData());
+    // @todo clear caches.
+})->purpose("Fetches all data from Spektrix");
+
+Artisan::command("fetch:memberships", function () {
+    dispatch(new \App\Jobs\FetchMembershipData());
+})->purpose("Fetches membership data from Spektrix");
+
 Artisan::command("fetch:events", function () {
     dispatch(new \App\Jobs\FetchEventData());
 })->purpose("Fetches event data from Spektrix");

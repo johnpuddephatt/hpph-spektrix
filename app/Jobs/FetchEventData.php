@@ -47,7 +47,7 @@ class FetchEventData implements ShouldQueue
         $events = json_decode($res->getBody()->__toString());
 
         foreach ($events as $event) {
-            $event = \App\Models\Event::withoutGlobalScopes()->updateOrCreate(
+            \App\Models\Event::withoutGlobalScopes()->updateOrCreate(
                 ["id" => $event->id],
                 [
                     "description" => $event->description ?? null,

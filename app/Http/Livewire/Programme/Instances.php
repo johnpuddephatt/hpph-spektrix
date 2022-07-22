@@ -30,7 +30,8 @@ class Instances extends Component
                 ->whereHas("event")
                 ->with(
                     "event:id,slug,name,description,venue,certificate_age_guidance,year_of_production,duration,genres,vibes",
-                    "event.featuredImage"
+                    "event.featuredImage",
+                    "strand:slug,name,color"
                 )
 
                 ->select(
@@ -39,6 +40,7 @@ class Instances extends Component
                     "start",
                     "captioned",
                     "signed_bsl",
+                    "strand_name",
                     "audio_described"
                 )
                 ->get(),

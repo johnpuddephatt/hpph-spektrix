@@ -9,6 +9,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Advoor\NovaEditorJs\NovaEditorJs;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Laravel\Nova\Fields\Color;
 
 class Strand extends Resource
 {
@@ -46,9 +47,10 @@ class Strand extends Resource
         return [
             ID::make()->exceptOnForms(),
             Text::make("Name"),
+            Color::make("Color"),
             Images::make("Main image", "main"),
             NovaEditorJs::make("Description")->hideFromIndex(),
-            HasMany::make("Instances", "instances", "\App\Nova\Instance"),
+            HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];
     }
 

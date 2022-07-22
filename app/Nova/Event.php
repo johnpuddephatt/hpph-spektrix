@@ -11,11 +11,13 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Panel;
 
 use Advoor\NovaEditorJs\NovaEditorJsField;
 
-use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
+use Whitecube\NovaFlexibleContent\Flexible;
+
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Traits\HasTabs;
 use Eminiarts\Tabs\Tabs;
@@ -69,6 +71,9 @@ class Event extends Resource
             Text::make("Name")
                 ->sortable()
                 ->onlyOnIndex(),
+
+            Text::make("Instance dates")->hideWhenUpdating(),
+
             Boolean::make("Published")
                 ->showOnPreview()
                 ->filterable(),
@@ -80,14 +85,26 @@ class Event extends Resource
                         NovaEditorJsField::make(
                             "Long description"
                         )->hideFromIndex(),
-                        SimpleRepeatable::make("Reviews", "reviews", [
-                            Text::make("Rating"),
-                            Textarea::make("Quote"),
-                            Text::make("Publication name"),
-                            Text::make("URL"),
-                        ])->addRowLabel("Add a review"),
+
+                        // SimpleRepeatable::make("Reviews", "reviews", [
+                        //     Text::make("Rating"),
+                        //     Textarea::make("Quote"),
+                        //     Text::make("Publication name"),
+                        //     Text::make("URL"),
+                        // ])
+                        //     ->addRowLabel("Add a review")
+                        //     ->stacked(),
                     ]),
-                    Tab::make("Images", [
+                    Tab::make("Reviews", [
+                        Flexible::make("Reviews")
+                            ->addLayout("Review", "review", [
+                                Textarea::make("Quote"),
+                                Text::make("Publication name"),
+                            ])
+                            ->button("Add a review")
+                            ->stacked(),
+                    ]),
+                    Tab::make("Media", [
                         Images::make("Main image", "main"),
                         Images::make("Secondary image", "secondary"),
                         Images::make("Image gallery", "gallery")
@@ -111,11 +128,8 @@ class Event extends Resource
                         ),
                     ]),
                     Tab::make("Details", [
-                        Text::make("Dates", function ($model) {
-                            return $model->dateRange;
-                        })->hideWhenUpdating(),
-                        Text::make("First instance date time")->onlyOnDetail(),
-                        Text::make("Last instance date time")->onlyOnDetail(),
+                        // Text::make("First instance date time")->onlyOnDetail(),
+                        // Text::make("Last instance date time")->onlyOnDetail(),
                         Boolean::make("Archive film")->onlyOnDetail(),
                         Boolean::make("Audio description")->onlyOnDetail(),
                         Boolean::make("MUBIGO")->onlyOnDetail(),

@@ -51,7 +51,7 @@ class AppServiceProvider extends ServiceProvider
                     ->replace('\'', "")
                     ->replace(" ", "");
             } else {
-                return "";
+                return "empty";
             }
         });
 

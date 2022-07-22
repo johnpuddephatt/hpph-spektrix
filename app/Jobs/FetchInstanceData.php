@@ -48,8 +48,6 @@ class FetchInstanceData implements ShouldQueue
 
         $instances = json_decode($res->getBody()->__toString());
 
-        logger(count($instances) . " instances");
-
         // Only bring in instances that belong to a cinema event
         $instances = array_filter($instances, function ($instance) {
             return in_array(
@@ -59,13 +57,6 @@ class FetchInstanceData implements ShouldQueue
                     ->toArray()
             );
         });
-
-        logger(
-            "event ids: " .
-                \App\Models\Event::withoutGlobalScopes()
-                    ->pluck("id")
-                    ->toJson()
-        );
 
         foreach (
             array_unique(Arr::pluck($instances, "attribute_Season"))
@@ -84,7 +75,6 @@ class FetchInstanceData implements ShouldQueue
                 \App\Models\Strand::updateOrCreate(["name" => $strand]);
             }
         }
-
         foreach ($instances as $instance) {
             \App\Models\Instance::withoutGlobalScopes()->updateOrCreate(
                 ["id" => $instance->id],
@@ -113,7 +103,7 @@ class FetchInstanceData implements ShouldQueue
                         $instance->attribute_SpecialEventIntoQAPanel ?? null,
                     "partnership" => $instance->attribute_Partnership ?? null,
 
-                    "season_name" => $instance->attribute_Season ?: null,
+                    // "season_name" => $instance->attribute_Season ?: null,
                     "strand_name" => $instance->attribute_Strand ?: null,
                 ]
             );

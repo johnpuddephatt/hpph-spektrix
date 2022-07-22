@@ -1,11 +1,10 @@
 <div class="relative mt-[calc(100vh-1rem)]"></div>
 
 <div class="fixed inset-0 -z-20 h-[calc(100vh-1rem)] w-full overflow-hidden bg-black">
-
     <x-home-slider :events="$block->events" />
     <x-home-journal-slider :posts="$block->posts" />
 
-    <div class="to-transparent pointer-events-none absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-black">
+    <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-black to-transparent">
     </div>
 
     <div

@@ -9,5 +9,13 @@ body {
     @apply font-sans;
 }
 
+h1 {
+    @apply type-h4;
+}
+
+h1 {
+    @apply type-subtitle;
+}
+
 @layer base {
 }

@@ -21,8 +21,9 @@
                     </h4>
                 </div>
 
-                <div class="">
+                <div class="flex flex-row items-center gap-2">
                     <x-certificate :certificate="$instance->event->certificate_age_guidance" />
+                    <x-strand :strand="$instance->strand" />
 
                     @if ($instance->event->certificate_age_guidance && ($instance->captioned || $instance->signed_bsl || $instance->audio_described))
                         <span class="mx-1 inline-block h-1 w-1 rounded-full bg-white"></span>
@@ -51,7 +52,7 @@
                             x-show="{{ ($instance->event->year_of_production && $instance->event->duration) == 1 ? 'true' : 'false' }}">|</span>
                         {{ $instance->event->duration }}</div>
 
-                    <x-vibes :vibes="$instance->event->vibes" />
+                    <x-genres-vibes :values="$instance->event->genres_and_vibes" />
 
                     <p class="mt-auto overflow-hidden pt-4">
                         {{ Illuminate\Support\Str::limit($instance->event->description, 120) }}</p>

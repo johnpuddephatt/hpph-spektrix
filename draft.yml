@@ -1,0 +1,10 @@
+models:
+  Membership:
+    published: boolean default:false
+    show_by_booking_path: boolean default:false
+    id: string:255
+    name: string:150
+    description: string:400
+    long_description: longtext nullable
+    price: string:30
+    renewal_price: string:30 nullable

@@ -44,9 +44,9 @@ class Season extends Resource
     {
         return [
             ID::make()->exceptOnForms(),
-            Text::make("name"),
+            Text::make("Name"),
             NovaEditorJs::make("Description")->hideFromIndex(),
-            HasMany::make("Instances", "instances", "\App\Nova\Instance"),
+            HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];
     }
 

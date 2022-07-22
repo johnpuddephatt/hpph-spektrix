@@ -30,7 +30,7 @@
                         <p class="mb-auto overflow-hidden pb-4">
                             {{ Illuminate\Support\Str::limit($event->description, 120) }}</p>
                     @endif
-                    <x-vibes class="mt-auto" :vibes="$event->vibes" />
+                    <x-genres-vibes class="mt-auto" :values="$event->genres_and_vibes" />
                 </div>
                 <div class="flex-grow divide-y divide-gray">
 

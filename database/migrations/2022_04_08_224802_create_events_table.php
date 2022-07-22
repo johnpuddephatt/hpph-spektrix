@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Query\Expression;
 
 class CreateEventsTable extends Migration
 {
@@ -19,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->string("slug")->nullable();
             $table->text("description")->nullable();
             $table->text("long_description")->nullable();
-            $table->json("reviews")->nullable();
+            $table->json("reviews")->default(new Expression("(JSON_ARRAY())"));
             $table->string("trailer")->nullable();
 
             $table->boolean("published")->default(false); // id
@@ -53,7 +54,7 @@ class CreateEventsTable extends Migration
             $table->boolean("members_offer_available")->default(false); //attribute_MembersOfferAvailable
             $table->string("certificate_age_guidance")->nullable(); // attribute_CertificateAgeGuidance
 
-            // $table->string("live_or_film")->nullable(); // attribute_LiveOrFilm
+            $table->string("live_or_film")->nullable(); // attribute_LiveOrFilm
             // $table->string("image_url")->nullable(); // imageUrl
             // $table->text("description")->nullable(); // description
             // $table->text("html_description")->nullable(); // htmlDescription

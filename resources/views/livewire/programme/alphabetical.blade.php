@@ -19,7 +19,7 @@
                         <span class="mx-1 inline-block h-1 w-1 rounded-full bg-gray-dark"></span>
                     @endif
                     <x-accessibilities :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl" :audiodescribed="$event->has_audio_described" />
-                    <x-vibes class="ml-2" :vibes="$event->vibes" />
+                    <x-genres-vibes class="ml-2" :values="$event->genres_and_vibes" />
                 </div>
             </div>
             <div class="flex w-1/4 flex-grow flex-col">

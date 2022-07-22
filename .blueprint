@@ -1,0 +1,13 @@
+created:
+    - database/factories/MembershipFactory.php
+    - database/migrations/2022_07_21_162449_create_memberships_table.php
+    - app/Models/Membership.php
+models:
+    Event: { id: string, slug: 'string nullable', description: 'text nullable', long_description: 'text nullable', reviews: 'json nullable', trailer: 'string nullable', published: 'boolean default:0', duration: 'integer nullable', is_on_sale: 'boolean default:0', name: 'string nullable', instance_dates: 'string nullable', first_instance_date_time: 'datetime nullable', last_instance_date_time: 'datetime nullable', alternative_content: 'boolean default:0', archive_film: 'boolean nullable default:0', audio_description: 'boolean default:0', venue: 'string nullable', mubigo: 'boolean default:0', non_specialist_film: 'boolean default:0', country_of_origin: 'string nullable', director: 'string nullable', distributor: 'string nullable', f_rating: 'string nullable', language: 'string nullable', original_language_title: 'string nullable', strobe_light_warning: 'boolean default:0', year_of_production: 'string nullable', featuring_stars: 'string nullable', genres: 'string nullable', vibes: 'string nullable', members_offer_available: 'boolean default:0', certificate_age_guidance: 'string nullable' }
+    Instance: { id: string, is_on_sale: 'boolean default:0', event_id: string, start: datetime, start_selling_at_web: datetime, stop_selling_at_web: datetime, cancelled: 'boolean default:0', audio_described: 'boolean default:0', captioned: 'boolean default:0', signed_bsl: 'boolean default:0', special_event: 'string nullable', accessibility: 'string nullable', analogue: 'string nullable', door_time: 'string nullable', short_playing_with_feature: 'string nullable', special_event_into_qa_panel: 'string nullable', partnership: 'string nullable', season_name: 'string nullable', strand_name: 'string nullable' }
+    Page: { slug: string, title: string, header_type: string, header_position: string, content: 'text nullable', parent_page_id: 'biginteger unsigned nullable' }
+    Post: { slug: string, title: string, content: text }
+    Season: { name: string, description: 'text nullable' }
+    Strand: { name: string, slug: string, description: 'text nullable' }
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string:100 nullable' }
+    Membership: { published: 'boolean default:false', show_by_booking_path: 'boolean default:false', id: 'string:255', name: 'string:150', description: 'string:400', long_description: 'longtext nullable', price: 'string:30', renewal_price: 'string:30 nullable' }

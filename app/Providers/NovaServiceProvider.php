@@ -10,6 +10,10 @@ use App\Nova\Dashboards\Main;
 use Spatie\MediaLibraryPro\Models\TemporaryUpload;
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\Image\Manipulations;
+use Laravel\Nova\Menu\MenuSection;
+use Illuminate\Http\Request;
+use Laravel\Nova\Menu\Menu;
+use Laravel\Nova\Menu\MenuItem;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -33,6 +37,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::footer(function ($request) {
             return "<style>div.lg\:top-\[56px\] { padding-bottom: 6rem; min-height: 100%; background: rgb(0,0,40);} #nova { position: relative;} header {box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px}</style>";
         });
+
+        // Nova::mainMenu(function (Request $request, Menu $menu) {
+        //     return $menu->append(MenuSection::resource(\App\Nova\User::class));
+        // });
 
         // in a service provider
         TemporaryUpload::previewManipulation(function (Conversion $conversion) {

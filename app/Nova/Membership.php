@@ -5,46 +5,38 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\DateTime;
 
-class Instance extends Resource
+class Membership extends Resource
 {
-    public static $group = "Programme";
-
-    public static $displayInNavigation = false;
-
-    public static function searchable()
-    {
-        return false;
-    }
-
-    public static function label()
-    {
-        return "Screenings";
-    }
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\Instance::class;
+    public static $model = \App\Models\Membership::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = "start";
+    public static $title = "name";
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = ["start"];
+    public static $search = ["id", "name"];
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScopes();
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -55,24 +47,12 @@ class Instance extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            BelongsTo::make("Event"),
-            ID::make()
-                ->sortable()
-                ->hideFromIndex(),
-            DateTime::make("Start"),
-            Boolean::make("On sale", "is_on_sale"),
-            Boolean::make("Cancelled"),
-            Text::make("Analogue"),
-            Boolean::make("Captioned"),
-            Text::make("Special", "special_event"),
-            Boolean::make("Short film with feature")->onlyOnDetail(),
-            Boolean::make("AD", "audio_described"),
-            BelongsTo::make("Season")->exceptOnForms(),
-            BelongsTo::make("Strand")->exceptOnForms(),
-            Text::make("Target audience")->hideFromIndex(),
-            Text::make("Target audience_2")->hideFromIndex(),
-            Boolean::make("BSL", "signed_bsl"),
-            Boolean::make("Relaxed", "relaxed_performance"),
+            Boolean::make("Published")->filterable(),
+            Boolean::make("Show when booking", "show_by_booking_path"),
+            ID::make()->hideFromIndex(),
+            Text::make("Name"),
+            Textarea::make("Description"),
+            Trix::make("Long description"),
         ];
     }
 

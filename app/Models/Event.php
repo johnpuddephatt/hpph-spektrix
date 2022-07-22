@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Advoor\NovaEditorJs\NovaEditorJsCast;
+use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 
 class Event extends Model implements HasMedia, CachableAttributes
 {
@@ -30,6 +31,7 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     protected $casts = [
         "long_description" => NovaEditorJsCast::class,
+        "reviews" => FlexibleCast::class,
     ];
 
     protected $fillable = [
@@ -64,7 +66,11 @@ class Event extends Model implements HasMedia, CachableAttributes
         "certificate_age_guidance",
     ];
 
-    protected $appends = ["has_captioned", "has_audio_described"];
+    protected $appends = [
+        "has_captioned",
+        "has_audio_described",
+        "genres_and_vibes",
+    ];
 
     protected $cachableAttributes = [
         "has_captioned",
@@ -135,7 +141,7 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function instances()
     {
-        return $this->hasMany(\App\Models\Instance::class, "event_id", "id");
+        return $this->hasMany(\App\Models\Instance::class);
     }
 
     /**
@@ -216,15 +222,23 @@ class Event extends Model implements HasMedia, CachableAttributes
         return $value ? explode(",", $value) : [];
     }
 
-    public function getGenresAttribute($value): array
+    public function getGenresAndVibesAttribute(): array
     {
-        return $value ? explode(",", $value) : [];
+        $genres = $this->genres ? explode(",", $this->genres) : [];
+        $vibes = $this->vibes ? explode(",", $this->vibes) : [];
+
+        return array_merge(array_slice($genres, 0, 1), $vibes);
     }
 
-    public function getVibesAttribute($value): array
-    {
-        return $value ? explode(",", $value) : [];
-    }
+    // public function getGenresAttribute($value): array
+    // {
+    //     return $value ? explode(",", $value) : [];
+    // }
+
+    // public function getVibesAttribute($value): array
+    // {
+    //     return $value ? explode(",", $value) : [];
+    // }
 
     public function getFeaturingStarsAttribute($value): array
     {
@@ -255,18 +269,5 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function tomorrowInstances()
     {
         return $this->instances()->tomorrow();
-    }
-
-    protected function dateRange(): Attribute
-    {
-        return Attribute::make(
-            get: function ($value, $attributes) {
-                $dates = explode("-", $attributes["instance_dates"]);
-                if (count($dates) == 2 && $dates[0] == $dates[1]) {
-                    return $dates[0];
-                }
-                return $attributes["instance_dates"];
-            }
-        );
     }
 }
