@@ -33,6 +33,7 @@ class CreateInstancesTable extends Migration
             // $table->string('web_instance_id'); // webInstanceId
             $table->boolean("cancelled")->default(false); // cancelled
             // $table->boolean('has_best_available_overlay'); // hasBestAvailableOverlay
+            $table->string("venue")->nullable(); // attribute_Venue
             $table->boolean("audio_described")->default(false); // attribute_AudioDescribed
             $table->boolean("captioned")->default(false); // attribute_Captioned
             $table->boolean("signed_bsl")->default(false); // attribute_SignedBSL

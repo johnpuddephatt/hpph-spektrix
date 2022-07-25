@@ -35,7 +35,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         parent::boot();
 
         Nova::footer(function ($request) {
-            return "<style>div.lg\:top-\[56px\] { padding-bottom: 6rem; min-height: 100%; background: rgb(0,0,40);} #nova { position: relative;} header {box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px}</style>";
+            return "<style>div.lg\:top-\[56px\] { padding-bottom: 6rem; min-height: 100%; background-color: rgba(var(--colors-gray-900),var(--tw-bg-opacity));} #nova { position: relative;} header {box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px}</style>";
         });
 
         // Nova::mainMenu(function (Request $request, Menu $menu) {
@@ -73,16 +73,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Gate::define("viewNova", function ($user) {
             return true;
         });
-    }
-
-    /**
-     * Get the cards that should be displayed on the default Nova dashboard.
-     *
-     * @return array
-     */
-    protected function cards()
-    {
-        return [new Help()];
     }
 
     /**

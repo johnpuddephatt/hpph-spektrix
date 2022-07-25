@@ -11,7 +11,7 @@
                     <div class="flex flex-row gap-2">
                         <span class="type-label">{{ $instance->start->format('H:i') }}</span>
 
-                        <x-location color="text-gray-medium" :location="$instance->event->venue" />
+                        <x-location color="text-gray-medium" :location="$instance->venue" />
                     </div>
                 </div>
 
@@ -24,11 +24,6 @@
                 <div class="flex flex-row items-center gap-2">
                     <x-certificate :certificate="$instance->event->certificate_age_guidance" />
                     <x-strand :strand="$instance->strand" />
-
-                    @if ($instance->event->certificate_age_guidance && ($instance->captioned || $instance->signed_bsl || $instance->audio_described))
-                        <span class="mx-1 inline-block h-1 w-1 rounded-full bg-white"></span>
-                    @endif
-
                     <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->audio_described" />
                 </div>
 

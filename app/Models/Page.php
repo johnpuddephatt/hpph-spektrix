@@ -10,18 +10,26 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
 use App\Casts\PageCast;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Page extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
     use HasFlexible;
+    use LogsActivity;
 
     protected $fillable = ["title", "content", "slug", "parent_page_id"];
 
     protected $casts = [
         "content" => PageCast::class,
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logOnly(["title"]);
+    }
 
     public function getRouteKeyName()
     {

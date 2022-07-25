@@ -1,6 +1,6 @@
 <div class="relative mt-[calc(100vh-1rem)]"></div>
 
-<div class="fixed inset-0 -z-20 h-[calc(100vh-1rem)] w-full overflow-hidden bg-black">
+<div class="fixed inset-0 -z-10 h-[calc(100vh-1rem)] w-full overflow-hidden bg-black">
     <x-home-slider :events="$block->events" />
     <x-home-journal-slider :posts="$block->posts" />
 

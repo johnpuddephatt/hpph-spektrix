@@ -26,3 +26,16 @@ h6 {
 
 @layer base {
 }
+
+/*
+Booking Path
+*/
+
+.SeatingSelector {
+    margin: 2em 0;
+}
+
+#ctl00_SpektrixFooter,
+.InstanceCalendar {
+    display: none;
+}

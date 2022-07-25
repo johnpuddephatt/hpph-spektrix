@@ -3,6 +3,7 @@
 namespace App\Nova\Flexible\Layouts;
 
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
+use Carbon\Carbon;
 
 class HomeInstancesLayout extends Layout
 {
@@ -27,16 +28,27 @@ class HomeInstancesLayout extends Layout
      */
     public function fields()
     {
-        if ($this->attributes["display"] == "day") {
+        if (
+            $this->attributes["display"] == "day" &&
+            \App\Models\Instance::today()->count()
+        ) {
             $options = [
                 ["label" => "Today", "offset" => 0, "duration" => 1],
                 ["label" => "Tomorrow", "offset" => 1, "duration" => 1],
             ];
-        }
-        if ($this->attributes["display"] == "week") {
+        } else {
+            logger(7 - Carbon::now()->dayOfWeek);
             $options = [
-                ["label" => "This week", "offset" => 0, "duration" => 7],
-                ["label" => "Next week", "offset" => 7, "duration" => 7],
+                [
+                    "label" => "This week",
+                    "offset" => 0,
+                    "duration" => 7 - Carbon::now()->dayOfWeek,
+                ],
+                [
+                    "label" => "Next week",
+                    "offset" => 7 - Carbon::now()->dayOfWeek,
+                    "duration" => 7,
+                ],
             ];
         }
         return compact("options");

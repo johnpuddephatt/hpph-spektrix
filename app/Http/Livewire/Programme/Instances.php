@@ -29,13 +29,14 @@ class Instances extends Component
             ])
                 ->whereHas("event")
                 ->with(
-                    "event:id,slug,name,description,venue,certificate_age_guidance,year_of_production,duration,genres,vibes",
+                    "event:id,slug,name,description,certificate_age_guidance,year_of_production,duration,genres,vibes",
                     "event.featuredImage",
                     "strand:slug,name,color"
                 )
 
                 ->select(
                     "id",
+                    "venue",
                     "event_id",
                     "start",
                     "captioned",

@@ -37,7 +37,6 @@ class CreateEventsTable extends Migration
                 ->default(false)
                 ->nullable(); // attribute_ArchiveFilm
             $table->boolean("audio_description")->default(false); // attribute_AudioDescription
-            $table->string("venue")->nullable(); // attribute_Venue
             $table->boolean("mubigo")->default(false); // attribute_MUBIGO
             $table->boolean("non_specialist_film")->default(false); // attribute_NonSpecialistFilm
             $table->string("country_of_origin")->nullable(); // attribute_CountryOfOrigin

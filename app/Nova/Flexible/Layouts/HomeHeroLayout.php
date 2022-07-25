@@ -37,26 +37,16 @@ class HomeHeroLayout extends Layout
     public function getEventsAttribute()
     {
         return Cache::remember("home_events", 3600, function () {
-            return \App\Models\Event::with(
-                "featuredImage",
-                "instances.strand",
-                "instances.season"
-            )
+            return \App\Models\Event::with("featuredImage")
+
                 ->take(4)
                 ->get()
-                ->map(function ($event) {
-                    $event->strands = $event->instances
-                        ->pluck("strand")
-                        ->unique()
-                        ->flatten()
-                        ->filter();
-                    $event->seasons = $event->instances
-                        ->pluck("season")
-                        ->unique()
-                        ->flatten()
-                        ->filter();
-                    return $event;
-                });
+                ->each->append("strands");
+            // ->map(function ($event) {
+            //     $event->strands ;
+
+            //     return $event;
+            // })
         });
     }
 

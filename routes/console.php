@@ -20,7 +20,7 @@ Artisan::command("inspire", function () {
 
 Artisan::command("fetch", function () {
     dispatch(new \App\Jobs\FetchEventData());
-    dispatch(new \App\Jobs\FetchInstanceData());
+    // dispatch(new \App\Jobs\FetchInstanceData());
     dispatch(new \App\Jobs\FetchMembershipData());
     // @todo clear caches.
 })->purpose("Fetches all data from Spektrix");
@@ -33,6 +33,6 @@ Artisan::command("fetch:events", function () {
     dispatch(new \App\Jobs\FetchEventData());
 })->purpose("Fetches event data from Spektrix");
 
-Artisan::command("fetch:instances", function () {
-    dispatch(new \App\Jobs\FetchInstanceData());
-})->purpose("Fetches instance data from Spektrix");
+// Artisan::command("fetch:instances", function () {
+//     dispatch(new \App\Jobs\FetchInstanceData());
+// })->purpose("Fetches instance data from Spektrix");

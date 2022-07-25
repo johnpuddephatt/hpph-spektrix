@@ -17,6 +17,8 @@ use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Advoor\NovaEditorJs\NovaEditorJsCast;
 use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Event extends Model implements HasMedia, CachableAttributes
 {
@@ -24,6 +26,7 @@ class Event extends Model implements HasMedia, CachableAttributes
     use Sluggable;
     use InteractsWithMedia;
     use CachesAttributes;
+    use LogsActivity;
 
     public $timestamps = false;
     public $incrementing = false;
@@ -33,6 +36,11 @@ class Event extends Model implements HasMedia, CachableAttributes
         "long_description" => NovaEditorJsCast::class,
         "reviews" => FlexibleCast::class,
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logOnly(["name"]);
+    }
 
     protected $fillable = [
         "published",
@@ -48,7 +56,6 @@ class Event extends Model implements HasMedia, CachableAttributes
         "alternative_content",
         "archive_film",
         "audio_description",
-        "venue",
         "mubigo",
         "non_specialist_film",
         "country_of_origin",
@@ -193,6 +200,17 @@ class Event extends Model implements HasMedia, CachableAttributes
         } else {
             return str_replace("-", " – ", $value);
         }
+    }
+
+    public function getStrandsAttribute($value)
+    {
+        return $this->remember("strand", 3600, function () {
+            return $this->instances
+                ->pluck("strand")
+                ->unique()
+                ->flatten()
+                ->filter();
+        });
     }
 
     // public function getImageAttribute(): array

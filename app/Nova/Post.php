@@ -57,9 +57,9 @@ class Post extends Resource
             Images::make("Main image", "main")
                 // ->conversionOnIndexView("thumb")
                 ->rules("required"),
-            // NovaEditorJs::make("Content")
-            //     ->hideFromIndex()
-            //     ->rules("required"),
+            NovaEditorJs::make("Content")
+                ->hideFromIndex()
+                ->rules("required"),
         ];
     }
 

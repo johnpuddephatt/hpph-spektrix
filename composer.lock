@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e795e593b28a29de40dd616111ecb8fb",
+    "content-hash": "024cda8b34a889df3000ceb5016aaedd",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -2512,17 +2512,17 @@
         },
         {
             "name": "laravel/nova",
-            "version": "4.11.1",
+            "version": "4.12.12",
             "source": {
                 "type": "git",
                 "url": "git@github.com:laravel/nova.git",
-                "reference": "fb662b6a9100f0cd2a490fd09d627dc719b68d90"
+                "reference": "31be6c6d7b1cc47ca85a1a693d0ed201236e84d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-fb662b6a9100f0cd2a490fd09d627dc719b68d90-zip-927456.zip",
-                "reference": "fb662b6a9100f0cd2a490fd09d627dc719b68d90",
-                "shasum": "1c483517592690bbf39bb5708b6e904cf7da6af1"
+                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-31be6c6d7b1cc47ca85a1a693d0ed201236e84d6-zip-780595.zip",
+                "reference": "31be6c6d7b1cc47ca85a1a693d0ed201236e84d6",
+                "shasum": "10b687b3ca048c3c04ff2a5edb52682f1780c771"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -2616,9 +2616,9 @@
                 "laravel"
             ],
             "support": {
-                "source": "https://github.com/laravel/nova/tree/v4.11.1"
+                "source": "https://github.com/laravel/nova/tree/v4.12.12"
             },
-            "time": "2022-06-29T19:17:37+00:00"
+            "time": "2022-07-21T21:14:05+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -5250,6 +5250,97 @@
             "time": "2021-12-21T10:08:05+00:00"
         },
         {
+            "name": "spatie/laravel-activitylog",
+            "version": "4.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-activitylog.git",
+                "reference": "feb1a37d649b03711e546807688fbea53469dfc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/feb1a37d649b03711e546807688fbea53469dfc3",
+                "reference": "feb1a37d649b03711e546807688fbea53469dfc3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "^8.0 || ^9.0",
+                "illuminate/database": "^8.53 || ^9.0",
+                "illuminate/support": "^8.0 || ^9.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.6.3"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "orchestra/testbench": "^6.23 || ^7.0",
+                "pestphp/pest": "^1.20"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Activitylog\\ActivitylogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Spatie\\Activitylog\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Tom Witkowski",
+                    "email": "dev.gummibeer@gmail.com",
+                    "homepage": "https://gummibeer.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A very simple activity logger to monitor the users of your website or application",
+            "homepage": "https://github.com/spatie/activitylog",
+            "keywords": [
+                "activity",
+                "laravel",
+                "log",
+                "spatie",
+                "user"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-activitylog/issues",
+                "source": "https://github.com/spatie/laravel-activitylog/tree/4.5.3"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-05-31T10:01:05+00:00"
+        },
+        {
             "name": "spatie/laravel-backup",
             "version": "8.1.2",
             "source": {
@@ -5924,16 +6015,16 @@
         },
         {
             "name": "stepanenko3/nova-logs-tool",
-            "version": "v1.2.4",
+            "version": "v1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stepanenko3/nova-logs-tool.git",
-                "reference": "255adf04f439ef15b75947bd81502fef1c0fefa4"
+                "reference": "c540ae0a2bf2ec21c8b18b8fd93a0d86f0c85c58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stepanenko3/nova-logs-tool/zipball/255adf04f439ef15b75947bd81502fef1c0fefa4",
-                "reference": "255adf04f439ef15b75947bd81502fef1c0fefa4",
+                "url": "https://api.github.com/repos/stepanenko3/nova-logs-tool/zipball/c540ae0a2bf2ec21c8b18b8fd93a0d86f0c85c58",
+                "reference": "c540ae0a2bf2ec21c8b18b8fd93a0d86f0c85c58",
                 "shasum": ""
             },
             "require": {
@@ -5977,9 +6068,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stepanenko3/nova-logs-tool/issues",
-                "source": "https://github.com/stepanenko3/nova-logs-tool/tree/v1.2.4"
+                "source": "https://github.com/stepanenko3/nova-logs-tool/tree/v1.2.5"
             },
-            "time": "2022-06-15T11:31:31+00:00"
+            "time": "2022-07-25T05:59:41+00:00"
         },
         {
             "name": "symfony/console",

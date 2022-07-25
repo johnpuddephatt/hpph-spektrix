@@ -13,11 +13,11 @@
                 <h2 class="type-h4 mb-4">{{ $event->name }}</h2>
                 <x-location color="text-yellow" :location="$event->venue" />
 
-                <div class="mt-auto flex flex-row items-center gap-1 pt-2">
+                <div class="mt-auto flex flex-row items-center gap-2 pt-2">
                     <x-certificate :certificate="$event->certificate_age_guidance" />
-                    @if ($event->certificate_age_guidance && ($event->has_captioned || $event->has_signed_bsl || $event->has_audio_described))
-                        <span class="mx-1 inline-block h-1 w-1 rounded-full bg-gray-dark"></span>
-                    @endif
+                    @foreach ($event->strands as $strand)
+                        <x-strand :strand="$strand" />
+                    @endforeach
                     <x-accessibilities :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl" :audiodescribed="$event->has_audio_described" />
                     <x-genres-vibes class="ml-2" :values="$event->genres_and_vibes" />
                 </div>

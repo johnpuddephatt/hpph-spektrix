@@ -27,28 +27,17 @@
                                 x-transition:enter-end="max-w-[10em]"
                                 x-transition:leave="transition-all ease-in duration-300"
                                 x-transition:leave-start="max-w-[10em]" x-transition:leave-end="max-w-[0] opacity-0"
-                                class="type-annotation border-current mr-2 inline-block whitespace-nowrap rounded border pt-1 pb-1 pl-2 pr-2">
+                                class="type-annotation mr-2 inline-block whitespace-nowrap rounded border border-current pt-1 pb-1 pl-2 pr-2">
                                 <span
-                                    class="bg-current relative -mt-0.5 mr-1 inline-block h-2 w-2 rounded-full"></span><span
+                                    class="relative -mt-0.5 mr-1 inline-block h-2 w-2 rounded-full bg-current"></span><span
                                     x-text="strand.name"></span>
                             </div>
                         </template>
-                        <template x-for="season in slides[activeSlide].seasons">
-                            <div x-cloak x-transition:enter="transition-all ease-out duration-300"
-                                x-transition:enter-start="max-w-[0] opacity-0" x-transition:enter-end="max-w-[10em]"
-                                x-transition:leave="transition-all ease-in duration-300"
-                                x-transition:leave-start="max-w-[10em]" x-transition:leave-end="max-w-[0] opacity-0"
-                                class="type-annotation mr-2 inline-block whitespace-nowrap rounded border border-white pt-1 pb-1 pl-2 pr-2 text-white">
-                                <span
-                                    class="relative -mt-0.5 mr-1 inline-block h-2 w-2 rounded-full bg-white"></span><span
-                                    x-text="season.name"></span>
-                            </div>
-                        </template>
+
                     </div>
                 </div>
 
                 <span class="mr-2 h-1 w-1 rounded-full bg-white"></span>
-
 
             </div>
 

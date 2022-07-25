@@ -28,9 +28,9 @@
     @stack('head')
 </head>
 
-<body class="leading-[125%] tracking-[-0.015em]" :class="{ 'overflow-hidden': strands_open }" x-data="{ strands_open: false }"
-    @strandmenutoggled.window="strands_open = $event.detail">
-    @yield('content')
+<body class="leading-[125%] tracking-[-0.015em]" :class="{ 'overflow-hidden': menu_open }" x-data="{ menu_open: false }"
+    @menutoggled.window="menu_open = $event.detail">
+    @yield('templatecontent')
     @stack('footer')
     @livewireScripts
 </body>

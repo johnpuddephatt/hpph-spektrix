@@ -135,9 +135,10 @@ class Page extends Resource
                 ->addLayout("Basic Header", "basic_header", [
                     BasicHeaderField::make("basic_header"),
                 ])
-
+                ->addLayout(
+                    \App\Nova\Flexible\Layouts\ImageCarouselLayout::class
+                )
                 ->addLayout(\App\Nova\Flexible\Layouts\HomeHeroLayout::class)
-
                 ->addLayout("Statement text", "statement_text", [
                     Textarea::make("Title"),
                 ])
@@ -145,14 +146,12 @@ class Page extends Resource
                     Text::make("Title"),
                     Text::make("Subtitle"),
                 ])
-
                 ->addLayout("Home instances", "home_instances", [
                     Select::make("Display")->options([
                         "day" => "Today/tommorrow",
                         "week" => "This week/next week",
                     ]),
                 ])
-
                 ->addLayout("Heading", "heading", [
                     HeadingField::make("Heading"),
                 ])

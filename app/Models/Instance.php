@@ -29,6 +29,7 @@ class Instance extends Model
         "is_on_sale",
         "event_id",
         "start",
+        "venue",
         "start_selling_at_web",
         "stop_selling_at_web",
         "cancelled",

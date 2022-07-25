@@ -1,17 +1,17 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.c7b0d04d.js",
+    "file": "assets/app.c3b8f9ec.js",
     "src": "resources/js/app.js",
     "isEntry": true
   },
-  "resources/css/spektrix.css": {
-    "file": "assets/spektrix.bf3ad77c.css",
-    "src": "resources/css/spektrix.css",
+  "resources/css/app.css": {
+    "file": "assets/app.74d2bcdb.css",
+    "src": "resources/css/app.css",
     "isEntry": true
   },
-  "resources/css/app.css": {
-    "file": "assets/app.376e0058.css",
-    "src": "resources/css/app.css",
+  "resources/css/spektrix.css": {
+    "file": "assets/spektrix.e30a6282.css",
+    "src": "resources/css/spektrix.css",
     "isEntry": true
   }
 }

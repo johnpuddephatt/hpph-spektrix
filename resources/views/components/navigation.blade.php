@@ -1,9 +1,10 @@
-<header x-cloak x-data="{ strands_open: false, header_position: '{{ $header_position ?? 'fixed' }}', header_colour: '{{ $header_colour ?? 'light' }}' }" @strandmenutoggled.window="strands_open = $event.detail"
+<header x-cloak x-data="{ menu_open: false, header_position: '{{ $header_position ?? 'fixed' }}', header_colour: '{{ $header_colour ?? 'light' }}' }" @menutoggled.window="menu_open = $event.detail"
     :class="{
-        'fixed -z-10 left-0 right-0 top-0': header_position == 'fixed',
-        'relative z-20': header_position !== 'fixed',
-        'transition  duration-200 text-white': header_colour == 'light' || strands_open,
-        'transition  duration-200 text-black': header_colour !== 'light' && !strands_open
+        'fixed left-0 right-0 top-0': header_position == 'fixed',
+        'relative z-10': header_position !== 'fixed',
+        'transition  duration-200 text-white': header_colour == 'light' || menu_open,
+        'transition  duration-200 text-black': header_colour !== 'light' && !menu_open,
+        'z-10': menu_open
     
     }">
 
@@ -13,7 +14,7 @@
             href="/">HPPH</a>
 
         <a class="relative z-20 rounded py-1 px-2"
-            :class="{{ Request::routeIs('programme') ? 'true' : 'false' }} && !strands_open ? 'bg-yellow text-black' : ''"
+            :class="{{ Request::routeIs('programme') ? 'true' : 'false' }} && !menu_open ? 'bg-yellow text-black' : ''"
             href="{{ route('programme') }}">What’s on</a>
 
         <x-strand-menu>Strands &amp; Seasons</x-strand-menu>

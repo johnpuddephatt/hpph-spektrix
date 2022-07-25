@@ -1,8 +1,7 @@
 <div x-data="{ open: false }">
 
-    <div @click.self="open = ! open; $dispatch('strandmenutoggled', open)" x-show="open"
-        x-transition:enter-start="opacity-0" x-transition:leave-end="opacity-0"
-        class="fixed inset-0 z-10 bg-black bg-opacity-80 duration-500">
+    <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open" x-transition:enter-start="opacity-0"
+        x-transition:leave-end="opacity-0" class="fixed inset-0 z-10 bg-black bg-opacity-80 duration-500">
     </div>
 
     <div class="container fixed inset-0 right-auto z-10 h-screen w-full max-w-lg transform space-y-16 overflow-y-auto border-t-[7em] border-black bg-black pb-24 text-white transition-all delay-100 duration-200"
@@ -27,6 +26,6 @@
     </div>
 
     <button class="relative rounded py-1 px-2" :class="open ? 'bg-yellow text-black z-40' : 'z-20'"
-        @click="open = ! open; $dispatch('strandmenutoggled', open)">{{ $slot }}</button>
+        @click="open = ! open; $dispatch('menutoggled', open)">{{ $slot }}</button>
 
 </div>

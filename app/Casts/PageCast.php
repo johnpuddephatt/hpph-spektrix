@@ -12,8 +12,9 @@ class PageCast extends FlexibleCast
             \App\Nova\Flexible\Layouts\HomeInstancesLayout::class,
         "statement_text" =>
             \App\Nova\Flexible\Layouts\StatementTextLayout::class,
-
         "banner_with_text" =>
             \App\Nova\Flexible\Layouts\BannerWithTextLayout::class,
+        "image_carousel" =>
+            \App\Nova\Flexible\Layouts\ImageCarouselLayout::class,
     ];
 }

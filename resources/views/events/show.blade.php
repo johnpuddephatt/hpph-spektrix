@@ -9,8 +9,14 @@
         <div class="absolute bottom-full left-0 right-0 z-[1] mt-auto" id="event-content">
             <div class="container pt-48 pb-12 text-white">
                 <h1 class="mb-4 text-6xl font-bold">{{ $event->name }}</h1>
-                <div class="flex flex-row items-center gap-4">
+                <div class="flex flex-row items-center gap-2">
                     <x-certificate :certificate="$event->certificate_age_guidance" />
+                    @foreach ($event->strands as $strand)
+                        <x-strand-badge :strand="$strand" />
+                    @endforeach
+                    @if (count($event->genres_and_vibes))
+                        &bullet;
+                    @endif
                     <x-genres-vibes :values="$event->genres_and_vibes" />
                 </div>
             </div>
@@ -84,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-1/2 bg-sand" x-data="{ stage: 1, selectedScreening: null }">
+            <div class="w-1/2 bg-sand" x-data="{ stage: 1, selectedScreening: null, iFrameLoading: true }">
                 <div class="container relative py-16 pl-32" x-show="stage == 1">
                     <h2
                         class="type-label absolute right-full origin-right translate-x-8 -rotate-90 transform whitespace-nowrap">
@@ -98,10 +104,11 @@
                                 {{ $instance->start->format('l d F') }}</h3>
                         @endif
 
-                        <div class="flex flex-row border-t border-gray-light py-2">
+                        <div class="flex flex-row items-center gap-2 border-t border-gray-light py-2">
                             <div class="type-annotation rounded bg-black py-1.5 px-2.5 text-white">
                                 {{ $instance->start->format('H:i') }}
                             </div>
+                            <x-strand :strand="$instance->strand" />
                             <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->audio_described" />
                             <button
                                 x-on:click="stage = 2; selectedScreening = '{{ filter_var($instance->id, FILTER_SANITIZE_NUMBER_INT) }}'"
@@ -117,13 +124,17 @@
                         Make your booking</h2>
                     <template x-if="stage == 2">
                         <div>
-                            <iframe class="w-full" id="SpektrixIFrame" name="SpektrixIFrame"
+                            <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
+                                <h3 class="text">Loading...</h3>
+                            </div>
+                            <iframe x-on:load="iFrameLoading = false" class="w-full" id="SpektrixIFrame"
+                                name="SpektrixIFrame"
                                 :src="`https://{{ nova_get_setting('spektrix_custom_domain') }}/{{ nova_get_setting('spektrix_client_name') }}/website/ChooseSeats.aspx?EventInstanceId=${ selectedScreening }&resize=true`"></iframe>
-                            <script>
+                            <!-- <script>
                                 document.getElementById('SpektrixIFrame').addEventListener('load', (e) => {
                                     console.log(e, e.eventPhase);
                                 });
-                            </script>
+                            </script> -->
                         </div>
                     </template>
                 </div>
@@ -151,7 +162,7 @@
     </div>
 
 
-    @if ($event->reviews)
+    @if ($event->reviews->count())
         <div class="relative bg-yellow text-center" x-data="{ click: false, activeSlide: 0 }"
             x-effect="if(click) { $refs[activeSlide].parentNode.scrollLeft = $refs[activeSlide].offsetLeft}; click = false;">
             <div
