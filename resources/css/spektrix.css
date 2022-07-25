@@ -28,7 +28,7 @@ h6 {
 }
 
 .Button {
-    @apply ml-auto rounded bg-gray px-16 py-1 font-bold hover:bg-yellow;
+    @apply ml-auto rounded bg-gray px-12 py-1 font-bold hover:bg-yellow;
 }
 
 /*
@@ -92,4 +92,20 @@ Booking Path
 
 .Ticket_Types_Selection .TicketType label.left {
     @apply mr-auto;
+}
+
+/*
+ * Snacks
+ */
+
+#SimpleSeatingDiv {
+    @apply divide-y divide-gray-light;
+}
+
+#SimpleSeatingDiv .TicketType {
+    @apply py-2 flex flex-row items-center;
+}
+
+#SimpleSeatingDiv .TicketType input[type="tel"] {
+    @apply ml-auto w-12 text-center rounded-full border border-gray px-2;
 }
