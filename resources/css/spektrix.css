@@ -9,10 +9,7 @@ body {
     @apply font-sans;
 }
 
-h1 {
-    @apply type-h3;
-}
-
+h1,
 h2 {
     @apply type-h4;
 }
@@ -27,7 +24,8 @@ h6 {
 @layer base {
 }
 
-.Button {
+.Button,
+.LinkButton {
     @apply rounded bg-gray px-12 py-1 font-bold hover:bg-yellow;
 }
 
@@ -59,7 +57,7 @@ Booking Path
 
 #ctl00_ContentPlaceHolder_EventDetails .EventName::after {
     content: "•";
-    @apply inline-block mx-2;
+    @apply inline-block ml-2 mr-1;
 }
 
 .SeatingAreaInstructions {
@@ -98,8 +96,12 @@ Booking Path
  * Snacks
  */
 
+.SupplementaryEventDiv .Event_Dates.Event_Detail {
+    @apply hidden;
+}
+
 #SimpleSeatingDiv {
-    @apply divide-y divide-gray-light;
+    @apply mt-8 divide-y divide-gray-light;
 }
 
 #SimpleSeatingDiv .TicketType {
@@ -110,6 +112,68 @@ Booking Path
     @apply font-bold ml-auto;
 }
 
+#ctl00_ContentPlaceHolder_EventsRepeater_ctl00_Label2 {
+    display: none;
+}
+
 #SimpleSeatingDiv .TicketType input[type="tel"] {
     @apply w-12 text-center rounded-full border border-gray px-2;
+}
+
+.InfoMessage {
+    @apply my-8 font-bold;
+}
+
+#ctl00_ContentPlaceHolder_ContinueToBasketButton {
+    @apply mt-8;
+}
+
+/*
+ * Basket
+ */
+#ctl00_ContentPlaceHolder_BasketUpdate {
+    @apply flex flex-col;
+}
+
+.Savings {
+    order: 999;
+    @apply my-8 rounded p-2 border border-gray-light;
+}
+.Savings h2 {
+    @apply type-subtitle mb-1;
+}
+
+#ctl00_ContentPlaceHolder_RelatedOffersControl_LoginForDiscounts {
+    @apply mb-4;
+}
+
+.Savings .Input_Text {
+    @apply rounded bg-transparent p-1 border border-gray-light;
+}
+.PromoCode label {
+    @apply block w-full;
+}
+
+.Basket2 dt.Item.Instance {
+    @apply font-bold pt-4 mt-4 border-t border-gray-light;
+}
+
+.Basket2 .Buttons {
+    @apply mt-4;
+}
+
+dt.Footer {
+    @apply hidden;
+}
+
+dd.Footer {
+    @apply pt-4 mt-4 border-t border-gray-light;
+}
+
+.Value.Money {
+    @apply font-bold;
+}
+
+.Basket2 .Header {
+    display: none;
 }
