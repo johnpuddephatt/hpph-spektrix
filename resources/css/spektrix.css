@@ -135,11 +135,11 @@ Booking Path
     @apply flex flex-col;
 }
 
-.Savings {
+#ctl00_ContentPlaceHolder_DiscountsPanel {
     order: 999;
     @apply my-8 rounded p-2 border border-gray-light;
 }
-.Savings h2 {
+#ctl00_ContentPlaceHolder_DiscountsPanel h2 {
     @apply type-subtitle mb-1;
 }
 
@@ -147,9 +147,23 @@ Booking Path
     @apply mb-4;
 }
 
-.Savings .Input_Text {
+#ctl00_ContentPlaceHolder_DiscountsPanel .Input_Text {
     @apply rounded bg-transparent p-1 border border-gray-light;
 }
+
+#ctl00_ContentPlaceHolder_DiscountsPanel h2,
+#ctl00_ContentPlaceHolder_RelatedOffersControl_Container {
+    @apply hidden;
+}
+
+#ctl00_ContentPlaceHolder_PromoCodeBox_PromoCodeTextBox {
+    width: 74%;
+}
+
+#ctl00_ContentPlaceHolder_PromoCodeBox_PromoCodeButton {
+    @apply rounded bg-transparent border border-gray-light px-0 w-1/4;
+}
+
 .PromoCode label {
     @apply block w-full;
 }
