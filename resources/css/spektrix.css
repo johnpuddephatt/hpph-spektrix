@@ -53,13 +53,21 @@ Booking Path
     @apply text-black;
 }
 
+#ctl00_ContentPlaceHolder_EventDetails .EventName {
+    @apply font-bold;
+}
+
 #ctl00_ContentPlaceHolder_EventDetails .EventName::after {
     content: "•";
-    @apply inline-block mx-4;
+    @apply inline-block mx-2;
 }
 
 .SeatingAreaInstructions {
-    @apply font-bold mt-8;
+    @apply font-bold mt-8 py-2 border-b border-gray-light;
+}
+
+.ChooseSeatsHeading {
+    @apply mb-8;
 }
 
 .Ticket_Types_Selection {
@@ -70,6 +78,18 @@ Booking Path
     @apply py-2 flex flex-row items-center;
 }
 
-.Ticket_Types_Selection .TicketType .label {
+.Ticket_Types_Selection .TicketType .Input_Text {
+    @apply w-12 text-center rounded-full border border-gray px-2;
+}
+
+.Ticket_Types_Selection .TicketType .Price {
+    @apply w-24;
+}
+
+#ctl00_ContentPlaceHolder_UpdateBasketButton {
+    @apply mt-4;
+}
+
+.Ticket_Types_Selection .TicketType label.left {
     @apply mr-auto;
 }
