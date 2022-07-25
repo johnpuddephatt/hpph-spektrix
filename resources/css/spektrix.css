@@ -27,15 +27,49 @@ h6 {
 @layer base {
 }
 
+.Button {
+    @apply ml-auto rounded bg-gray px-16 py-1 font-bold hover:bg-yellow;
+}
+
 /*
 Booking Path
 */
 
 .SeatingSelector {
-    margin: 2em 0;
+    @apply mb-8;
 }
 
 #ctl00_SpektrixFooter,
-.InstanceCalendar {
+.InstanceCalendar,
+#ctl00_ContentPlaceHolder_RelatedOffersControl1_LoginForDiscounts {
     display: none;
+}
+
+#ctl00_ContentPlaceHolder_EventDetails {
+    @apply text-transparent;
+}
+
+#ctl00_ContentPlaceHolder_EventDetails span {
+    @apply text-black;
+}
+
+#ctl00_ContentPlaceHolder_EventDetails .EventName::after {
+    content: "•";
+    @apply inline-block mx-4;
+}
+
+.SeatingAreaInstructions {
+    @apply font-bold mt-8;
+}
+
+.Ticket_Types_Selection {
+    @apply divide-y divide-gray-light;
+}
+
+.Ticket_Types_Selection .TicketType {
+    @apply py-2 flex flex-row items-center;
+}
+
+.Ticket_Types_Selection .TicketType .label {
+    @apply mr-auto;
 }
