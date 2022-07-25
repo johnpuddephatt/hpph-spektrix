@@ -28,7 +28,7 @@ h6 {
 }
 
 .Button {
-    @apply ml-auto rounded bg-gray px-12 py-1 font-bold hover:bg-yellow;
+    @apply rounded bg-gray px-12 py-1 font-bold hover:bg-yellow;
 }
 
 /*
@@ -103,9 +103,13 @@ Booking Path
 }
 
 #SimpleSeatingDiv .TicketType {
-    @apply py-2 flex flex-row items-center;
+    @apply py-2 flex flex-row items-center gap-2;
+}
+
+#SimpleSeatingDiv .TicketType span + span {
+    @apply font-bold ml-auto;
 }
 
 #SimpleSeatingDiv .TicketType input[type="tel"] {
-    @apply ml-auto w-12 text-center rounded-full border border-gray px-2;
+    @apply w-12 text-center rounded-full border border-gray px-2;
 }
