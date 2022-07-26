@@ -5,7 +5,7 @@
     <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open" x-transition:enter-start="opacity-0"
         x-transition:leave-end="opacity-0" class="fixed inset-0 z-20 bg-black bg-opacity-80 duration-300">
     </div>
-    <div class="container fixed inset-0 left-auto z-20 flex h-screen w-full max-w-md transform flex-col border-t-[5em] border-black bg-black text-white transition-all delay-100 duration-200"
+    <div class="container fixed inset-0 left-auto z-20 flex h-screen w-full max-w-lg transform flex-col border-t-[5em] border-black bg-black text-white transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">
 
         <input x-ref="searchInput"

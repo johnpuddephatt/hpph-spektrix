@@ -137,7 +137,7 @@ Booking Path
 
 #ctl00_ContentPlaceHolder_DiscountsPanel {
     order: 999;
-    @apply my-8 rounded p-2 border border-gray-light;
+    @apply my-8;
 }
 #ctl00_ContentPlaceHolder_DiscountsPanel h2 {
     @apply type-subtitle mb-1;

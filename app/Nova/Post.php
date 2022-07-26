@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Image;
 use Advoor\NovaEditorJs\NovaEditorJs;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use NovaAttachMany\AttachMany;
 
 class Post extends Resource
 {
@@ -45,7 +46,6 @@ class Post extends Resource
     {
         return [
             ID::make(__("ID"), "id")->sortable(),
-
             Text::make("Title")
                 ->withMeta([
                     "extraAttributes" => [
@@ -53,10 +53,10 @@ class Post extends Resource
                     ],
                 ])
                 ->rules("required"),
-
-            Images::make("Main image", "main")
-                // ->conversionOnIndexView("thumb")
-                ->rules("required"),
+            AttachMany::make("Events")
+                ->height("150px")
+                ->showPreview(),
+            Images::make("Main image", "main")->rules("required"),
             NovaEditorJs::make("Content")
                 ->hideFromIndex()
                 ->rules("required"),

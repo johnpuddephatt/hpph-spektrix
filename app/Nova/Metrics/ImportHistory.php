@@ -5,7 +5,7 @@ namespace App\Nova\Metrics;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Metrics\MetricTableRow;
 use Laravel\Nova\Metrics\Table;
-use LogsService;
+use Stepanenko3\LogsTool\LogsService;
 
 class ImportHistory extends Table
 {

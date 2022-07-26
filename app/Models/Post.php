@@ -9,6 +9,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 
@@ -70,5 +71,10 @@ class Post extends Model implements HasMedia
             "=",
             "main"
         );
+    }
+
+    public function events(): BelongsToMany
+    {
+        return $this->belongsToMany(\App\Models\Event::class);
     }
 }

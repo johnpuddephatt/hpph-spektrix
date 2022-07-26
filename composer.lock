@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "024cda8b34a889df3000ceb5016aaedd",
+    "content-hash": "7b42127f236159fa8c542324ff212174",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -62,6 +62,53 @@
                 "source": "https://github.com/advoor/nova-editor-js/tree/v3.0.4"
             },
             "time": "2022-07-17T15:33:40+00:00"
+        },
+        {
+            "name": "armincms/many-to-many",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/armincms/many-to-many.git",
+                "reference": "b3ad4d5218c81d578bd6965e5a1680a4e2ef67f7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/armincms/many-to-many/zipball/b3ad4d5218c81d578bd6965e5a1680a4e2ef67f7",
+                "reference": "b3ad4d5218c81d578bd6965e5a1680a4e2ef67f7",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Armincms\\Fields\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Armincms\\Fields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "armincms",
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/armincms/many-to-many/issues",
+                "source": "https://github.com/armincms/many-to-many/tree/v1.0.2"
+            },
+            "time": "2022-07-16T03:44:14+00:00"
         },
         {
             "name": "asm89/stack-cors",
@@ -741,6 +788,53 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.1"
             },
             "time": "2021-08-13T13:06:58+00:00"
+        },
+        {
+            "name": "dillingham/nova-attach-many",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dillingham/nova-attach-many.git",
+                "reference": "c06cf6b9b25e4fafe07d9f39cb48ac33c6f5884c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dillingham/nova-attach-many/zipball/c06cf6b9b25e4fafe07d9f39cb48ac33c6f5884c",
+                "reference": "c06cf6b9b25e4fafe07d9f39cb48ac33c6f5884c",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.0|^9.0",
+                "laravel/nova": "^4",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NovaAttachMany\\Providers\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NovaAttachMany\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Attach Many Nova field",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/dillingham/nova-attach-many/issues",
+                "source": "https://github.com/dillingham/nova-attach-many/tree/2.0.0"
+            },
+            "time": "2022-07-25T23:56:44+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -4046,6 +4140,51 @@
                 "source": "https://github.com/optimistdigital/nova-translations-loader/tree/4.0.1"
             },
             "time": "2022-04-08T12:18:14+00:00"
+        },
+        {
+            "name": "ostheneo/nova-fields",
+            "version": "1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/OsTheNeo/NovaFields.git",
+                "reference": "7be3585b84148febfe7ecd7e93658eb168c54954"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/OsTheNeo/NovaFields/zipball/7be3585b84148febfe7ecd7e93658eb168c54954",
+                "reference": "7be3585b84148febfe7ecd7e93658eb168c54954",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "OsTheNeo\\NovaFields\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OsTheNeo\\NovaFields\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/OsTheNeo/NovaFields/issues",
+                "source": "https://github.com/OsTheNeo/NovaFields/tree/1.1"
+            },
+            "time": "2022-05-06T10:03:54+00:00"
         },
         {
             "name": "outl1ne/nova-menu-builder",

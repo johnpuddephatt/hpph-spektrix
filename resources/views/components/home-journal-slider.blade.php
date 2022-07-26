@@ -20,7 +20,10 @@
     <div class="w-full border-l-[0.5px] border-gray-light pl-4">
         <div class="relative z-10 -mt-1 text-white">
             @foreach ($posts as $post)
-                <div x-show="{{ $loop->index }} == activeSlide" class="">
+                <div x-show="{{ $loop->index }} == activeSlide" class="transform transition"
+                    x-transition:enter="delay-200 duration-500" x-transition:enter-start="opacity-0 translate-y-4"
+                    x-transition:leave="duration-500 absolute w-full top-0"
+                    x-transition:leave-end="opacity-0 -translate-y-4 ">
                     <div class="type-label mb-6">Journal • {{ $post->created_at->format('d M') }}</div>
                     <h3 class="type-subtitle">{{ $post->title }}</h3>
                     <x-image class="mt-12 rounded" :src="$post->featuredImage->getUrl('landscape')" :srcset="$post->featuredImage->getSrcset('landscape')" />
