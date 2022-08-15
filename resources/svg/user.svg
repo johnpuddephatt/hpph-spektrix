@@ -1,5 +1,6 @@
- <svg aria-label="My account" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+<svg data-name="Group 30" xmlns="http://www.w3.org/2000/svg" width="14.095" height="15.172" viewBox="0 0 14.095 15.172">
+    <g vector-effect="non-scaling-stroke" fill="none" stroke="currentColor" stroke-linecap="round">
+        <path d="M.593 14.574a6.455 6.455 0 1112.909 0"/>
+        <path d="M9.008 5.325a2.773 2.773 0 110-3.921 2.772 2.772 0 010 3.921z"/>
+    </g>
+</svg>

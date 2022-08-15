@@ -2,9 +2,5 @@
     "novaSettings.navigationItemTitle": "Settings",
     "novaSettings.saveButtonText": "Save settings",
     "novaSettings.noSettingsFieldsText": "No settings fields have been defined.",
-    "novaSettings.settingsSuccessToast": "Settings successfully updated!",
-    "novaSettings.general": "General",
-    "novaSettings.contact-details": "Contact details",
-    "novaSettings.alert": "Notification banner",
-    "novaSettings.services": "Services"
+    "novaSettings.settingsSuccessToast": "Settings successfully updated!"
 }

@@ -6,7 +6,7 @@ use Laravel\Nova\Cards\Help;
 use App\Nova\Metrics\ImportHistory;
 use App\Nova\Metrics\SpektrixOverview;
 use App\Nova\Metrics\ActivityOverview;
-
+use Illuminate\Http\Request;
 use Laravel\Nova\Dashboards\Main as Dashboard;
 
 class Main extends Dashboard
@@ -15,6 +15,7 @@ class Main extends Dashboard
     {
         return "Overview";
     }
+
     /**
      * Get the cards for the dashboard.
      *

@@ -157,11 +157,11 @@ Booking Path
 }
 
 #ctl00_ContentPlaceHolder_PromoCodeBox_PromoCodeTextBox {
-    width: 74%;
+    width: 65%;
 }
 
 #ctl00_ContentPlaceHolder_PromoCodeBox_PromoCodeButton {
-    @apply rounded bg-transparent border border-gray-light px-0 w-1/4;
+    @apply rounded bg-transparent border border-gray-light px-0 w-1/3;
 }
 
 .PromoCode label {

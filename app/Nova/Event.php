@@ -5,6 +5,8 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -52,7 +54,7 @@ class Event extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScopes();
+        return $query->withoutGlobalScope("published");
     }
 
     /**
@@ -100,13 +102,23 @@ class Event extends Resource
                             ->addLayout("Review", "review", [
                                 Textarea::make("Quote"),
                                 Text::make("Publication name"),
+                                Select::make("Rating")->options([
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                ]),
                             ])
                             ->button("Add a review")
                             ->stacked(),
                     ]),
                     Tab::make("Media", [
                         Images::make("Main image", "main"),
-                        Images::make("Secondary image", "secondary"),
+                        Images::make(
+                            "Secondary image",
+                            "secondary"
+                        )->hideFromIndex(),
                         Images::make("Image gallery", "gallery")
                             ->singleImageRules("dimensions:min_width=100")
                             ->customPropertiesFields([
@@ -159,6 +171,11 @@ class Event extends Resource
             Text::make("Instances", function ($model) {
                 return $model->instances->count();
             })->onlyOnIndex(),
+
+            URL::make(
+                "URL",
+                fn() => $this->slug ? $this->url : "#"
+            )->displayUsing(fn() => $this->slug ? "View" : "–"),
         ];
     }
 

@@ -1,6 +1,8 @@
-<div class="ml-auto" x-data="{ open: false }">
-    <button class="relative rounded py-1 px-2" :class="open ? 'bg-yellow text-black z-40' : ''"
-        @click="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">Search</button>
+<div class="ml-6" x-data="{ open: false }">
+    <button aria-label="Search for a film" title="Search for a film" class="relative rounded"
+        :class="open ? 'bg-yellow text-black z-40' : ''"
+        @click="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
+        @svg('search', 'h-6 w-6 p-1 pt-1.5 pb-0.5 ')</button>
 
     <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open" x-transition:enter-start="opacity-0"
         x-transition:leave-end="opacity-0" class="fixed inset-0 z-20 bg-black bg-opacity-80 duration-300">

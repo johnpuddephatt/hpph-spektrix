@@ -58,7 +58,7 @@ class Instance extends Resource
             BelongsTo::make("Event"),
             ID::make()
                 ->sortable()
-                ->hideFromIndex(),
+                ->hide(),
             DateTime::make("Start"),
             Boolean::make("On sale", "is_on_sale"),
             Boolean::make("Cancelled"),

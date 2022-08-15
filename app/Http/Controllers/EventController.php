@@ -50,7 +50,8 @@ class EventController extends Controller
             "event" => $event->load(
                 "featuredImage",
                 "secondaryImage",
-                "gallery"
+                "gallery",
+                "posts"
             ),
         ]);
     }

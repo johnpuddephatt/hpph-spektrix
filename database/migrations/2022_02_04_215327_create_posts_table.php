@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->string("slug");
+            $table->string("introduction", 150)->nullable();
             $table->string("title");
             $table->text("content");
         });

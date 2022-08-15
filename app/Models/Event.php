@@ -13,12 +13,16 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Advoor\NovaEditorJs\NovaEditorJsCast;
 use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model implements HasMedia, CachableAttributes
 {
@@ -27,6 +31,7 @@ class Event extends Model implements HasMedia, CachableAttributes
     use InteractsWithMedia;
     use CachesAttributes;
     use LogsActivity;
+    use SoftDeletes;
 
     public $timestamps = false;
     public $incrementing = false;
@@ -37,9 +42,11 @@ class Event extends Model implements HasMedia, CachableAttributes
         "reviews" => FlexibleCast::class,
     ];
 
-    public function getActivitylogOptions(): LogOptions
+    protected static function booted()
     {
-        return LogOptions::defaults()->logOnly(["name"]);
+        static::addGlobalScope("published", function (Builder $builder) {
+            $builder->where("published", true);
+        });
     }
 
     protected $fillable = [
@@ -85,11 +92,16 @@ class Event extends Model implements HasMedia, CachableAttributes
         "has_audio_described",
     ];
 
-    protected static function booted()
+    public function scopeUnpublished($query)
     {
-        static::addGlobalScope("published", function (Builder $builder) {
-            $builder->where("published", true);
-        });
+        return $query
+            ->withoutGlobalScope("published")
+            ->where("published", false);
+    }
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logOnly(["name"]);
     }
 
     public function registerMediaConversions(Media $media = null): void
@@ -146,9 +158,14 @@ class Event extends Model implements HasMedia, CachableAttributes
         );
     }
 
-    public function instances()
+    public function posts(): BelongsToMany
     {
-        return $this->hasMany(\App\Models\Instance::class);
+        return $this->belongsToMany(Post::class);
+    }
+
+    public function instances(): HasMany
+    {
+        return $this->hasMany(Instance::class);
     }
 
     /**
@@ -213,27 +230,23 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
-    // public function getImageAttribute(): array
-    // {
-    //     return [
-    //         "src" => $this->hasMedia("main")
-    //             ? $this->getFirstMedia("main")->getUrl("square")
-    //             : null,
-    //         "srcset" => $this->hasMedia("main")
-    //             ? $this->getFirstMedia("main")->getSrcset("square")
-    //             : null,
-    //     ];
-    // }
+    public function getUrlAttribute()
+    {
+        return route("event.show", ["event" => $this->slug]);
+    }
 
-    // public function getThumbnailAttribute(): ?\Spatie\MediaLibrary\MediaCollections\HtmlableMedia
-    // {
-    //     return $this->getFirstMedia("main")
-    //         ? $this->getFirstMedia("main")("thumb", [
-    //             "class" => "",
-    //             "loading" => "lazy",
-    //         ])
-    //         : null;
-    // }
+    public function getVenueAttribute()
+    {
+        if (!$this->instances->count()) {
+            return null;
+        }
+        return $this->instances
+            ->pluck("venue")
+            ->unique()
+            ->count() > 1
+            ? "Multiple venues"
+            : $this->instances->first()->venue;
+    }
 
     public function getLanguageAttribute($value): array
     {

@@ -1,4 +1,4 @@
-<div x-data="{ open: false }">
+<div class="mr-auto" x-data="{ open: false }">
 
     <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open" x-transition:enter-start="opacity-0"
         x-transition:leave-end="opacity-0" class="fixed inset-0 z-10 bg-black bg-opacity-80 duration-500">

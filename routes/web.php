@@ -26,7 +26,7 @@ Route::get("brand", function () {
 Route::get("/journal/{post:slug}", [
     \App\Http\Controllers\PostController::class,
     "show",
-]);
+])->name("post.show");
 
 Route::get("whats-on", \App\Http\Controllers\ProgrammeController::class)->name(
     "programme"
@@ -40,7 +40,7 @@ Route::get("/films/{event:slug}", [
 Route::get("/{page1}/{page2?}/{page3?}", [
     \App\Http\Controllers\PageController::class,
     "show",
-])->where("page_1", "^(?!nova).*");
+])->where("page1", "^(?!nova).*");
 
 Route::middleware("auth")->group(function () {
     Route::mediaLibrary();

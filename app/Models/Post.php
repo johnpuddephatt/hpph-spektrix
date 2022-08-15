@@ -12,17 +12,19 @@ use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Spatie\Tags\HasTags;
 
 class Post extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
     use LogsActivity;
+    use HasTags;
 
-    protected $fillable = ["title", "content", "slug"];
+    protected $fillable = ["title", "introduction", "content", "slug"];
 
     protected $casts = [
-        "created_at" => "date:d M",
+        "created_at" => "date",
     ];
 
     public function getActivitylogOptions(): LogOptions
@@ -76,5 +78,19 @@ class Post extends Model implements HasMedia
     public function events(): BelongsToMany
     {
         return $this->belongsToMany(\App\Models\Event::class);
+    }
+
+    public function getIntroductionAttribute($value)
+    {
+        return $value ?:
+            substr(
+                strip_tags(
+                    \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput(
+                        $this->content
+                    )
+                ),
+                0,
+                100
+            );
     }
 }

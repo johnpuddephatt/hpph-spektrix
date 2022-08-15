@@ -2,6 +2,7 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use Laravel\Nova\Fields\Textarea;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class StatementTextLayout extends Layout
@@ -11,14 +12,14 @@ class StatementTextLayout extends Layout
      *
      * @var string
      */
-    protected $name = "statementtextlayout";
+    protected $name = "statement_text";
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "StatementTextLayout";
+    protected $title = "Statement text";
 
     /**
      * Get the fields displayed by the layout.
@@ -27,8 +28,6 @@ class StatementTextLayout extends Layout
      */
     public function fields()
     {
-        return [
-            "title" => $this->attributes["title"],
-        ];
+        return [Textarea::make("Title")];
     }
 }

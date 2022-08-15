@@ -12,8 +12,8 @@
 
         <div class="pointer-events-none absolute top-0 bottom-0 right-0 w-96 bg-gradient-to-l from-black to-transparent">
         </div>
-        <div class="container relative z-10 text-white"">
-            <div class="type-label mb-4">Showing today</div>
+        <a :href="`/films/${slides[activeSlide].slug }`" class="relative z-10 block px-4 text-white 2xl:px-6"">
+            <div class="type-label mb-4">Showing today (@todo)</div>
             <h3 class="type-h2" x-text="slides[activeSlide].name"></h3>
             <div class="mt-4 flex flex-row items-center">
                 <div class="mr-2 inline-block rounded bg-gray-dark py-1 px-2 font-mono text-white"
@@ -37,13 +37,14 @@
                     </div>
                 </div>
 
-                <span class="mr-2 h-1 w-1 rounded-full bg-white"></span>
-
+                <!-- <span class="mr-2 h-1 w-1 rounded-full bg-white"></span> -->
             </div>
+        </a>
 
 
-            <!-- Buttons -->
-            <div class="relative z-10 mt-8 flex gap-8">
+        <!-- Buttons -->
+        @if (count($events) > 1)
+            <div class="relative z-10 mt-8 flex gap-8 px-5 2xl:px-6">
                 <template x-for="(slide, index) in slides" :key="slide.id">
                     <button
                         class="h-2.5 w-2.5 overflow-hidden rounded-full border border-white transition-colors duration-200 ease-out hover:bg-white hover:shadow-lg"
@@ -54,5 +55,5 @@
                         x-on:click="activeSlide = index"></button>
                 </template>
             </div>
-        </div>
+        @endif
     </div>

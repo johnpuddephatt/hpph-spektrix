@@ -23,12 +23,7 @@ class SpektrixOverview extends Table
                 ->iconClass("text-sky-500")
                 ->title(\App\Models\Event::count() . " events")
                 ->actions(function () {
-                    return [
-                        MenuItem::externalLink(
-                            "View all",
-                            route("nova.pages.index", ["resource" => "events"])
-                        ),
-                    ];
+                    return [MenuItem::resource(\App\Nova\Event::class)];
                 }),
             // ->subtitle('In every part of the globe it is the same!'),
             MetricTableRow::make()

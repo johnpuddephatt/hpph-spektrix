@@ -27,6 +27,8 @@ class ActivityOverview extends Table
             $rows[] = MetricTableRow::make()
                 ->icon(
                     match ($activity->description) {
+                        "restored" => "refresh",
+                        "deleted" => "trash",
                         "created" => "star",
                         "updated" => "pencil-alt",
                         default => "info",

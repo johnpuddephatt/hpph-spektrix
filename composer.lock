@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b42127f236159fa8c542324ff212174",
+    "content-hash": "b47aa903ac9ebbcc3ff8b6c37c44b53a",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -791,17 +791,11 @@
         },
         {
             "name": "dillingham/nova-attach-many",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dillingham/nova-attach-many.git",
-                "reference": "c06cf6b9b25e4fafe07d9f39cb48ac33c6f5884c"
-            },
+            "version": "dev-main",
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dillingham/nova-attach-many/zipball/c06cf6b9b25e4fafe07d9f39cb48ac33c6f5884c",
-                "reference": "c06cf6b9b25e4fafe07d9f39cb48ac33c6f5884c",
-                "shasum": ""
+                "type": "path",
+                "url": "./nova-components/nova-attach-many",
+                "reference": "e846794b3ab9427fa98982d3ef4b3acd91718004"
             },
             "require": {
                 "laravel/framework": "^8.0|^9.0",
@@ -821,7 +815,6 @@
                     "NovaAttachMany\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -830,11 +823,9 @@
                 "laravel",
                 "nova"
             ],
-            "support": {
-                "issues": "https://github.com/dillingham/nova-attach-many/issues",
-                "source": "https://github.com/dillingham/nova-attach-many/tree/2.0.0"
-            },
-            "time": "2022-07-25T23:56:44+00:00"
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "doctrine/cache",
@@ -2427,16 +2418,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.19.0",
+            "version": "v9.22.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "bbce25bd823133f6a5a724f2d62680b711f1d0df"
+                "reference": "b3b3dd43b9899f23df6d1d3e5390bd4662947a46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bbce25bd823133f6a5a724f2d62680b711f1d0df",
-                "reference": "bbce25bd823133f6a5a724f2d62680b711f1d0df",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/b3b3dd43b9899f23df6d1d3e5390bd4662947a46",
+                "reference": "b3b3dd43b9899f23df6d1d3e5390bd4662947a46",
                 "shasum": ""
             },
             "require": {
@@ -2451,6 +2442,7 @@
                 "league/flysystem": "^3.0.16",
                 "monolog/monolog": "^2.0",
                 "nesbot/carbon": "^2.53.1",
+                "nunomaduro/termwind": "^1.13",
                 "php": "^8.0.2",
                 "psr/container": "^1.1.1|^2.0.1",
                 "psr/log": "^1.0|^2.0|^3.0",
@@ -2602,21 +2594,21 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-06-28T14:33:19+00:00"
+            "time": "2022-07-26T16:16:33+00:00"
         },
         {
             "name": "laravel/nova",
-            "version": "4.12.12",
+            "version": "4.12.13",
             "source": {
                 "type": "git",
                 "url": "git@github.com:laravel/nova.git",
-                "reference": "31be6c6d7b1cc47ca85a1a693d0ed201236e84d6"
+                "reference": "b0466833b338006758e43caeb65566004e07abd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-31be6c6d7b1cc47ca85a1a693d0ed201236e84d6-zip-780595.zip",
-                "reference": "31be6c6d7b1cc47ca85a1a693d0ed201236e84d6",
-                "shasum": "10b687b3ca048c3c04ff2a5edb52682f1780c771"
+                "url": "https://nova.laravel.com/dist/laravel/nova/laravel-nova-b0466833b338006758e43caeb65566004e07abd4-zip-7c5d14.zip",
+                "reference": "b0466833b338006758e43caeb65566004e07abd4",
+                "shasum": "b7d8e1de05bf4dcb3ee2311c6311bf0dd9070b38"
             },
             "require": {
                 "brick/money": "^0.5.0",
@@ -2635,13 +2627,13 @@
             },
             "require-dev": {
                 "laravel/nova-dusk-suite": "8.4.x-dev|9.4.x-dev",
-                "laravel/pint": "^0.1.0",
+                "laravel/pint": "^1.0",
                 "laravel/scout": "^9.4",
                 "mockery/mockery": "^1.4.4",
                 "nunomaduro/larastan": "^1.0.1|^2.0",
                 "orchestra/testbench-dusk": "^6.24|^7.0",
                 "phpunit/phpunit": "^9.5.10",
-                "predis/predis": "^1.1.9"
+                "predis/predis": "^1.1.9|^2.0"
             },
             "suggest": {
                 "ext-intl": "Required to format Currency field"
@@ -2710,9 +2702,9 @@
                 "laravel"
             ],
             "support": {
-                "source": "https://github.com/laravel/nova/tree/v4.12.12"
+                "source": "https://github.com/laravel/nova/tree/v4.12.13"
             },
-            "time": "2022-07-21T21:14:05+00:00"
+            "time": "2022-07-27T15:36:23+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -2969,16 +2961,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.3.3",
+            "version": "2.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "0da1dca5781dd3cfddbe328224d9a7a62571addc"
+                "reference": "155ec1c95626b16fda0889cf15904d24890a60d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/0da1dca5781dd3cfddbe328224d9a7a62571addc",
-                "reference": "0da1dca5781dd3cfddbe328224d9a7a62571addc",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/155ec1c95626b16fda0889cf15904d24890a60d5",
+                "reference": "155ec1c95626b16fda0889cf15904d24890a60d5",
                 "shasum": ""
             },
             "require": {
@@ -3071,7 +3063,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-07T21:28:26+00:00"
+            "time": "2022-07-17T16:25:47+00:00"
         },
         {
             "name": "league/config",
@@ -3157,16 +3149,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.1.0",
+            "version": "3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "34a68067b7ae3b836ea5e57e1fc432478372a4f5"
+                "reference": "ed0ecc7f9b5c2f4a9872185846974a808a3b052a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/34a68067b7ae3b836ea5e57e1fc432478372a4f5",
-                "reference": "34a68067b7ae3b836ea5e57e1fc432478372a4f5",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/ed0ecc7f9b5c2f4a9872185846974a808a3b052a",
+                "reference": "ed0ecc7f9b5c2f4a9872185846974a808a3b052a",
                 "shasum": ""
             },
             "require": {
@@ -3227,7 +3219,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.1.0"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.2.0"
             },
             "funding": [
                 {
@@ -3243,7 +3235,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-29T17:29:54+00:00"
+            "time": "2022-07-26T07:26:36+00:00"
         },
         {
             "name": "league/glide",
@@ -3564,16 +3556,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "2.7.0",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "5579edf28aee1190a798bfa5be8bc16c563bd524"
+                "reference": "720488632c590286b88b80e62aa3d3d551ad4a50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5579edf28aee1190a798bfa5be8bc16c563bd524",
-                "reference": "5579edf28aee1190a798bfa5be8bc16c563bd524",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/720488632c590286b88b80e62aa3d3d551ad4a50",
+                "reference": "720488632c590286b88b80e62aa3d3d551ad4a50",
                 "shasum": ""
             },
             "require": {
@@ -3593,11 +3585,10 @@
                 "guzzlehttp/psr7": "^2.2",
                 "mongodb/mongodb": "^1.8",
                 "php-amqplib/php-amqplib": "~2.4 || ^3",
-                "php-console/php-console": "^3.1.3",
                 "phpspec/prophecy": "^1.15",
                 "phpstan/phpstan": "^0.12.91",
                 "phpunit/phpunit": "^8.5.14",
-                "predis/predis": "^1.1",
+                "predis/predis": "^1.1 || ^2.0",
                 "rollbar/rollbar": "^1.3 || ^2 || ^3",
                 "ruflin/elastica": "^7",
                 "swiftmailer/swiftmailer": "^5.3|^6.0",
@@ -3617,7 +3608,6 @@
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
                 "mongodb/mongodb": "Allow sending log messages to a MongoDB server (via library)",
                 "php-amqplib/php-amqplib": "Allow sending log messages to an AMQP server using php-amqplib",
-                "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
@@ -3652,7 +3642,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/2.7.0"
+                "source": "https://github.com/Seldaek/monolog/tree/2.8.0"
             },
             "funding": [
                 {
@@ -3664,7 +3654,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-09T08:59:12+00:00"
+            "time": "2022-07-24T11:55:47+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -4032,172 +4022,103 @@
             "time": "2022-05-31T20:59:12+00:00"
         },
         {
-            "name": "optimistdigital/nova-settings",
-            "version": "4.0.4",
+            "name": "nunomaduro/termwind",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/outl1ne/nova-settings.git",
-                "reference": "b682efcf453c65e4699bd0200543b1973ea26f4b"
+                "url": "https://github.com/nunomaduro/termwind.git",
+                "reference": "132a24bd3e8c559e7f14fa14ba1b83772a0f97f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/outl1ne/nova-settings/zipball/b682efcf453c65e4699bd0200543b1973ea26f4b",
-                "reference": "b682efcf453c65e4699bd0200543b1973ea26f4b",
+                "url": "https://api.github.com/repos/nunomaduro/termwind/zipball/132a24bd3e8c559e7f14fa14ba1b83772a0f97f8",
+                "reference": "132a24bd3e8c559e7f14fa14ba1b83772a0f97f8",
                 "shasum": ""
             },
             "require": {
-                "laravel/nova": "^4.0",
-                "optimistdigital/nova-translations-loader": "^4.0",
-                "php": ">=8.0"
+                "ext-mbstring": "*",
+                "php": "^8.0",
+                "symfony/console": "^5.3.0|^6.0.0"
             },
             "require-dev": {
-                "laravel/nova-dusk-suite": "^9.3-dev",
-                "orchestra/testbench": "^7.0",
-                "orchestra/testbench-dusk": "^7.0",
-                "phpunit/phpunit": "^9.0"
+                "ergebnis/phpstan-rules": "^1.0.",
+                "illuminate/console": "^8.0|^9.0",
+                "illuminate/support": "^8.0|^9.0",
+                "laravel/pint": "^0.2.0",
+                "pestphp/pest": "^1.21.0",
+                "pestphp/pest-plugin-mock": "^1.0",
+                "phpstan/phpstan": "^1.4.6",
+                "phpstan/phpstan-strict-rules": "^1.1.0",
+                "symfony/var-dumper": "^5.2.7|^6.0.0",
+                "thecodingmachine/phpstan-strict-rules": "^1.0.0"
             },
             "type": "library",
             "extra": {
                 "laravel": {
                     "providers": [
-                        "OptimistDigital\\NovaSettings\\NovaSettingsServiceProvider"
+                        "Termwind\\Laravel\\TermwindServiceProvider"
                     ]
                 }
             },
             "autoload": {
                 "files": [
-                    "./src/helpers.php"
+                    "src/Functions.php"
                 ],
                 "psr-4": {
-                    "OptimistDigital\\NovaSettings\\": "src/"
+                    "Termwind\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "description": "A Laravel Nova tool for editing custom settings using native Nova fields.",
+            "authors": [
+                {
+                    "name": "Nuno Maduro",
+                    "email": "enunomaduro@gmail.com"
+                }
+            ],
+            "description": "Its like Tailwind CSS, but for the console.",
             "keywords": [
-                "laravel",
-                "nova"
+                "cli",
+                "console",
+                "css",
+                "package",
+                "php",
+                "style"
             ],
             "support": {
-                "issues": "https://github.com/outl1ne/nova-settings/issues",
-                "source": "https://github.com/outl1ne/nova-settings/tree/4.0.4"
+                "issues": "https://github.com/nunomaduro/termwind/issues",
+                "source": "https://github.com/nunomaduro/termwind/tree/v1.13.0"
             },
             "funding": [
                 {
-                    "url": "https://github.com/optimistdigital",
+                    "url": "https://www.paypal.com/paypalme/enunomaduro",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/nunomaduro",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/xiCO2k",
                     "type": "github"
                 }
             ],
-            "time": "2022-04-29T13:54:16+00:00"
-        },
-        {
-            "name": "optimistdigital/nova-translations-loader",
-            "version": "4.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/optimistdigital/nova-translations-loader.git",
-                "reference": "24764f516c4803df22c43221fa3418d235022574"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/optimistdigital/nova-translations-loader/zipball/24764f516c4803df22c43221fa3418d235022574",
-                "reference": "24764f516c4803df22c43221fa3418d235022574",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^9.0",
-                "laravel/nova": "^4.0",
-                "php": ">=8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [],
-                    "aliases": []
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "OptimistDigital\\NovaTranslationsLoader\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "This Laravel Nova package helps developers load translations into their packages.",
-            "keywords": [
-                "laravel",
-                "nova",
-                "optimistdigital",
-                "translations"
-            ],
-            "support": {
-                "issues": "https://github.com/optimistdigital/nova-translations-loader/issues",
-                "source": "https://github.com/optimistdigital/nova-translations-loader/tree/4.0.1"
-            },
-            "time": "2022-04-08T12:18:14+00:00"
-        },
-        {
-            "name": "ostheneo/nova-fields",
-            "version": "1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/OsTheNeo/NovaFields.git",
-                "reference": "7be3585b84148febfe7ecd7e93658eb168c54954"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/OsTheNeo/NovaFields/zipball/7be3585b84148febfe7ecd7e93658eb168c54954",
-                "reference": "7be3585b84148febfe7ecd7e93658eb168c54954",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.3|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "OsTheNeo\\NovaFields\\FieldServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "OsTheNeo\\NovaFields\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova field.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "support": {
-                "issues": "https://github.com/OsTheNeo/NovaFields/issues",
-                "source": "https://github.com/OsTheNeo/NovaFields/tree/1.1"
-            },
-            "time": "2022-05-06T10:03:54+00:00"
+            "time": "2022-07-01T15:06:55+00:00"
         },
         {
             "name": "outl1ne/nova-menu-builder",
-            "version": "7.0.6",
+            "version": "7.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/outl1ne/nova-menu-builder.git",
-                "reference": "37532de4786d2b69cf502bb566559ed77deadb68"
+                "reference": "1347db4d4bcaaaa60787f1d6ce3d57856f8af05e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/outl1ne/nova-menu-builder/zipball/37532de4786d2b69cf502bb566559ed77deadb68",
-                "reference": "37532de4786d2b69cf502bb566559ed77deadb68",
+                "url": "https://api.github.com/repos/outl1ne/nova-menu-builder/zipball/1347db4d4bcaaaa60787f1d6ce3d57856f8af05e",
+                "reference": "1347db4d4bcaaaa60787f1d6ce3d57856f8af05e",
                 "shasum": ""
             },
             "require": {
@@ -4251,7 +4172,7 @@
             ],
             "support": {
                 "issues": "https://github.com/outl1ne/nova-menu-builder/issues",
-                "source": "https://github.com/outl1ne/nova-menu-builder/tree/7.0.6"
+                "source": "https://github.com/outl1ne/nova-menu-builder/tree/7.0.10"
             },
             "funding": [
                 {
@@ -4259,7 +4180,136 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-05-17T07:27:22+00:00"
+            "time": "2022-08-09T08:31:41+00:00"
+        },
+        {
+            "name": "outl1ne/nova-multiselect-field",
+            "version": "4.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/outl1ne/nova-multiselect-field.git",
+                "reference": "70df0e7e24792522abaa95710114fba30d746b4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/outl1ne/nova-multiselect-field/zipball/70df0e7e24792522abaa95710114fba30d746b4b",
+                "reference": "70df0e7e24792522abaa95710114fba30d746b4b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.1",
+                "outl1ne/nova-translations-loader": "^5.0",
+                "php": ">=8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Outl1ne\\MultiselectField\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Outl1ne\\MultiselectField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tarvo Reinpalu",
+                    "email": "tarvoreinpalu@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Optimist Digital",
+                    "email": "info@optimistdigital.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "A multiple select field for Laravel Nova.",
+            "keywords": [
+                "laravel",
+                "multiselect",
+                "nova",
+                "select"
+            ],
+            "support": {
+                "issues": "https://github.com/outl1ne/nova-multiselect-field/issues",
+                "source": "https://github.com/outl1ne/nova-multiselect-field/tree/4.0.9"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/outl1ne",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-07-27T14:49:49+00:00"
+        },
+        {
+            "name": "outl1ne/nova-settings",
+            "version": "5.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/outl1ne/nova-settings.git",
+                "reference": "c0e2ce84a24007de2b12b7e02d4d99c411f4b4a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/outl1ne/nova-settings/zipball/c0e2ce84a24007de2b12b7e02d4d99c411f4b4a6",
+                "reference": "c0e2ce84a24007de2b12b7e02d4d99c411f4b4a6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "outl1ne/nova-translations-loader": "^5.0",
+                "php": ">=8.0"
+            },
+            "require-dev": {
+                "laravel/nova-dusk-suite": "^9.3-dev",
+                "orchestra/testbench": "^7.0",
+                "orchestra/testbench-dusk": "^7.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Outl1ne\\NovaSettings\\NovaSettingsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "./src/helpers.php"
+                ],
+                "psr-4": {
+                    "Outl1ne\\NovaSettings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool for editing custom settings using native Nova fields.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/outl1ne/nova-settings/issues",
+                "source": "https://github.com/outl1ne/nova-settings/tree/5.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/outl1ne",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-07-19T12:02:05+00:00"
         },
         {
             "name": "outl1ne/nova-simple-repeatable",
@@ -4848,16 +4898,16 @@
         },
         {
             "name": "psy/psysh",
-            "version": "v0.11.6",
+            "version": "v0.11.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "3f5b5f8aaa979fbd0d1783173f4c82ad529fe621"
+                "reference": "77fc7270031fbc28f9a7bea31385da5c4855cb7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/3f5b5f8aaa979fbd0d1783173f4c82ad529fe621",
-                "reference": "3f5b5f8aaa979fbd0d1783173f4c82ad529fe621",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/77fc7270031fbc28f9a7bea31385da5c4855cb7a",
+                "reference": "77fc7270031fbc28f9a7bea31385da5c4855cb7a",
                 "shasum": ""
             },
             "require": {
@@ -4918,9 +4968,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/v0.11.6"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.11.7"
             },
-            "time": "2022-07-03T16:40:23+00:00"
+            "time": "2022-07-07T13:49:11+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -5266,6 +5316,79 @@
             "time": "2022-06-15T13:27:17+00:00"
         },
         {
+            "name": "spatie/eloquent-sortable",
+            "version": "4.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/eloquent-sortable.git",
+                "reference": "64a3365c0d5a7b4a1837b2f29d01ee4c578c416a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/64a3365c0d5a7b4a1837b2f29d01ee4c578c416a",
+                "reference": "64a3365c0d5a7b4a1837b2f29d01ee4c578c416a",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.0|^9.0",
+                "illuminate/support": "^8.0|^9.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0|^7.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\EloquentSortable\\EloquentSortableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\EloquentSortable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be"
+                }
+            ],
+            "description": "Sortable behaviour for eloquent models",
+            "homepage": "https://github.com/spatie/eloquent-sortable",
+            "keywords": [
+                "behaviour",
+                "eloquent",
+                "laravel",
+                "model",
+                "sort",
+                "sortable"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/eloquent-sortable/issues",
+                "source": "https://github.com/spatie/eloquent-sortable/tree/4.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-01-21T08:32:41+00:00"
+        },
+        {
             "name": "spatie/image",
             "version": "2.2.3",
             "source": {
@@ -5576,16 +5699,16 @@
         },
         {
             "name": "spatie/laravel-login-link",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-login-link.git",
-                "reference": "eef5ecae089aec22018ed5d88e4225babbceb6b2"
+                "reference": "440f7efc147cc70d25016840aa124956af6a66c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-login-link/zipball/eef5ecae089aec22018ed5d88e4225babbceb6b2",
-                "reference": "eef5ecae089aec22018ed5d88e4225babbceb6b2",
+                "url": "https://api.github.com/repos/spatie/laravel-login-link/zipball/440f7efc147cc70d25016840aa124956af6a66c1",
+                "reference": "440f7efc147cc70d25016840aa124956af6a66c1",
                 "shasum": ""
             },
             "require": {
@@ -5636,9 +5759,9 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-login-link/tree/1.1.0"
+                "source": "https://github.com/spatie/laravel-login-link/tree/1.1.1"
             },
-            "time": "2022-06-01T09:56:09+00:00"
+            "time": "2022-07-14T21:00:31+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
@@ -5750,17 +5873,17 @@
         },
         {
             "name": "spatie/laravel-medialibrary-pro",
-            "version": "2.5.1",
+            "version": "2.5.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:spatie/laravel-medialibrary-pro.git",
-                "reference": "817902f20d920d278fb1422b6f51f8bca98b5c88"
+                "reference": "596e89bb295fff356c47c962683b15b7abd69ee7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://satis.spatie.be/dist/spatie/laravel-medialibrary-pro/spatie-laravel-medialibrary-pro-817902f20d920d278fb1422b6f51f8bca98b5c88-zip-d1ba1c.zip",
-                "reference": "817902f20d920d278fb1422b6f51f8bca98b5c88",
-                "shasum": "32e40d94003d557af152111f9ce64353d8f117ae"
+                "url": "https://satis.spatie.be/dist/spatie/laravel-medialibrary-pro/spatie-laravel-medialibrary-pro-596e89bb295fff356c47c962683b15b7abd69ee7-zip-0eace2.zip",
+                "reference": "596e89bb295fff356c47c962683b15b7abd69ee7",
+                "shasum": "602b9203cbc73261ade30dc7ddda249f80db33e9"
             },
             "require": {
                 "ext-json": "*",
@@ -5824,10 +5947,10 @@
                 "spatie"
             ],
             "support": {
-                "source": "https://github.com/spatie/laravel-medialibrary-pro/tree/2.5.1",
+                "source": "https://github.com/spatie/laravel-medialibrary-pro/tree/2.5.2",
                 "issues": "https://github.com/spatie/laravel-medialibrary-pro/issues"
             },
-            "time": "2022-05-25T13:09:03+00:00"
+            "time": "2022-07-04T13:35:20+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
@@ -5962,6 +6085,155 @@
             "time": "2022-01-12T19:42:44+00:00"
         },
         {
+            "name": "spatie/laravel-tags",
+            "version": "4.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-tags.git",
+                "reference": "e0838c261b7ee0a6b234f5d61b7cf767936d7b45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/e0838c261b7ee0a6b234f5d61b7cf767936d7b45",
+                "reference": "e0838c261b7ee0a6b234f5d61b7cf767936d7b45",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^8.67|^9.0",
+                "php": "^8.0",
+                "spatie/eloquent-sortable": "^3.10|^4.0",
+                "spatie/laravel-package-tools": "^1.4",
+                "spatie/laravel-translatable": "^4.6|^5.0|^6.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.13|^7.0",
+                "phpunit/phpunit": "^9.5.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Tags\\TagsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Tags\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Add tags and taggable behaviour to your Laravel app",
+            "homepage": "https://github.com/spatie/laravel-tags",
+            "keywords": [
+                "laravel-tags",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-tags/issues",
+                "source": "https://github.com/spatie/laravel-tags/tree/4.3.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-04T02:58:35+00:00"
+        },
+        {
+            "name": "spatie/laravel-translatable",
+            "version": "6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-translatable.git",
+                "reference": "c4c2bef702738f26562b6dc37b66bdac545610e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-translatable/zipball/c4c2bef702738f26562b6dc37b66bdac545610e1",
+                "reference": "c4c2bef702738f26562b6dc37b66bdac545610e1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9.0",
+                "illuminate/support": "^9.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.11"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Translatable\\TranslatableServiceProvider"
+                    ]
+                },
+                "aliases": {
+                    "Translatable": "Spatie\\Translatable\\Facades\\Translatable"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Translatable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Sebastian De Deyne",
+                    "email": "sebastian@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A trait to make an Eloquent model hold translations",
+            "homepage": "https://github.com/spatie/laravel-translatable",
+            "keywords": [
+                "eloquent",
+                "i8n",
+                "laravel-translatable",
+                "model",
+                "multilingual",
+                "spatie",
+                "translate"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-translatable/issues",
+                "source": "https://github.com/spatie/laravel-translatable/tree/6.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-03-07T13:50:51+00:00"
+        },
+        {
             "name": "spatie/nova-backup-tool",
             "version": "5.0.1",
             "source": {
@@ -6028,6 +6300,72 @@
                 }
             ],
             "time": "2022-04-12T20:41:21+00:00"
+        },
+        {
+            "name": "spatie/nova-tags-field",
+            "version": "4.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/nova-tags-field.git",
+                "reference": "8e766beb3de9bbe76b59de921d91af9da3a6485b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/nova-tags-field/zipball/8e766beb3de9bbe76b59de921d91af9da3a6485b",
+                "reference": "8e766beb3de9bbe76b59de921d91af9da3a6485b",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^8.0",
+                "spatie/laravel-tags": "^4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^9.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\TagsField\\TagsFieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\TagsField\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A tags field for Nova apps",
+            "homepage": "https://github.com/spatie/nova-tags-field",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/nova-tags-field/issues",
+                "source": "https://github.com/spatie/nova-tags-field/tree/4.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-04-13T08:01:16+00:00"
         },
         {
             "name": "spatie/once",
@@ -8666,16 +9004,16 @@
         },
         {
             "name": "whitecube/nova-flexible-content",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/whitecube/nova-flexible-content.git",
-                "reference": "99eccf903fb3cbc4e7dc4df20f305f5af5f5e764"
+                "reference": "3eae3123d5f52be04270b03eecbcefb78bfee3c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/whitecube/nova-flexible-content/zipball/99eccf903fb3cbc4e7dc4df20f305f5af5f5e764",
-                "reference": "99eccf903fb3cbc4e7dc4df20f305f5af5f5e764",
+                "url": "https://api.github.com/repos/whitecube/nova-flexible-content/zipball/3eae3123d5f52be04270b03eecbcefb78bfee3c0",
+                "reference": "3eae3123d5f52be04270b03eecbcefb78bfee3c0",
                 "shasum": ""
             },
             "require": {
@@ -8721,7 +9059,7 @@
             ],
             "support": {
                 "issues": "https://github.com/whitecube/nova-flexible-content/issues",
-                "source": "https://github.com/whitecube/nova-flexible-content/tree/v1.0.0"
+                "source": "https://github.com/whitecube/nova-flexible-content/tree/v1.0.1"
             },
             "funding": [
                 {
@@ -8729,7 +9067,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-04-21T20:28:40+00:00"
+            "time": "2022-07-26T13:33:57+00:00"
         }
     ],
     "packages-dev": [
@@ -8858,16 +9196,16 @@
         },
         {
             "name": "fakerphp/faker",
-            "version": "v1.19.0",
+            "version": "v1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FakerPHP/Faker.git",
-                "reference": "d7f08a622b3346766325488aa32ddc93ccdecc75"
+                "reference": "37f751c67a5372d4e26353bd9384bc03744ec77b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/d7f08a622b3346766325488aa32ddc93ccdecc75",
-                "reference": "d7f08a622b3346766325488aa32ddc93ccdecc75",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/37f751c67a5372d4e26353bd9384bc03744ec77b",
+                "reference": "37f751c67a5372d4e26353bd9384bc03744ec77b",
                 "shasum": ""
             },
             "require": {
@@ -8894,7 +9232,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "v1.19-dev"
+                    "dev-main": "v1.20-dev"
                 }
             },
             "autoload": {
@@ -8919,9 +9257,9 @@
             ],
             "support": {
                 "issues": "https://github.com/FakerPHP/Faker/issues",
-                "source": "https://github.com/FakerPHP/Faker/tree/v1.19.0"
+                "source": "https://github.com/FakerPHP/Faker/tree/v1.20.0"
             },
-            "time": "2022-02-02T17:38:57+00:00"
+            "time": "2022-07-20T13:12:54+00:00"
         },
         {
             "name": "filp/whoops",
@@ -9145,16 +9483,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v0.2.2",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "eba9393bc51ac4ab6ab78ab91a658784119f7b51"
+                "reference": "45c9fe899abfeeb7794c5a8c4074c140250a84c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/eba9393bc51ac4ab6ab78ab91a658784119f7b51",
-                "reference": "eba9393bc51ac4ab6ab78ab91a658784119f7b51",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/45c9fe899abfeeb7794c5a8c4074c140250a84c2",
+                "reference": "45c9fe899abfeeb7794c5a8c4074c140250a84c2",
                 "shasum": ""
             },
             "require": {
@@ -9207,20 +9545,20 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2022-07-01T17:44:52+00:00"
+            "time": "2022-07-13T17:57:52+00:00"
         },
         {
             "name": "laravel/sail",
-            "version": "v1.15.0",
+            "version": "v1.15.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "676e1ff33c1b8af657779f62f57360c376cba666"
+                "reference": "2fe64c0b45a3af56cac0af638c8020a8adc860d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/676e1ff33c1b8af657779f62f57360c376cba666",
-                "reference": "676e1ff33c1b8af657779f62f57360c376cba666",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/2fe64c0b45a3af56cac0af638c8020a8adc860d7",
+                "reference": "2fe64c0b45a3af56cac0af638c8020a8adc860d7",
                 "shasum": ""
             },
             "require": {
@@ -9267,7 +9605,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2022-06-24T13:56:11+00:00"
+            "time": "2022-07-21T14:33:56+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -11633,7 +11971,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "dillingham/nova-attach-many": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

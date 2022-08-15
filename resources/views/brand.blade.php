@@ -1,7 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 @section('content')
     <div class="container">
+        @svg('loading', 'w-64')
         <h1 class="type-h1 mt-32 mb-32">Colour</h1>
 
 

@@ -1,6 +1,6 @@
 @if ($header_menu)
-    <nav class="ml-auto">
-        <ul class="flex flex-row gap-4">
+    <nav>
+        <ul class="flex flex-row gap-6">
             @foreach ($header_menu as $menu_item)
                 <li>
                     <a href="{{ $menu_item['value'] }}">{{ $menu_item['name'] }}</a>

@@ -4,6 +4,7 @@ namespace App\Nova\Flexible\Layouts;
 
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Carbon\Carbon;
+use Laravel\Nova\Fields\Select;
 
 class HomeInstancesLayout extends Layout
 {
@@ -12,14 +13,16 @@ class HomeInstancesLayout extends Layout
      *
      * @var string
      */
-    protected $name = "homeinstanceslayout";
+    protected $name = "home_instances";
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "HomeInstancesLayout";
+    protected $title = "Home Instances";
+
+    protected $appends = ["options"];
 
     /**
      * Get the fields displayed by the layout.
@@ -28,29 +31,40 @@ class HomeInstancesLayout extends Layout
      */
     public function fields()
     {
+        // return [
+        //     Select::make("Display")->options([
+        //         "day" => "Today/tommorrow",
+        //         "week" => "This week/next week",
+        //     ]),
+        // ];
+    }
+
+    public function getOptionsAttribute()
+    {
         if (
-            $this->attributes["display"] == "day" &&
-            \App\Models\Instance::today()->count()
+            \App\Models\Instance::today()->count() &&
+            \App\Models\Instance::tomorrow()->count()
         ) {
             $options = [
                 ["label" => "Today", "offset" => 0, "duration" => 1],
                 ["label" => "Tomorrow", "offset" => 1, "duration" => 1],
             ];
+        } elseif (\App\Models\Instance::today()->count()) {
+            $options = [["label" => "Today", "offset" => 0, "duration" => 1]];
+        } elseif (\App\Models\Instance::tomorrow()->count()) {
+            $options = [
+                ["label" => "Tomorrow", "offset" => 1, "duration" => 1],
+            ];
         } else {
-            logger(7 - Carbon::now()->dayOfWeek);
             $options = [
                 [
-                    "label" => "This week",
+                    "label" => "Soon",
                     "offset" => 0,
-                    "duration" => 7 - Carbon::now()->dayOfWeek,
-                ],
-                [
-                    "label" => "Next week",
-                    "offset" => 7 - Carbon::now()->dayOfWeek,
-                    "duration" => 7,
+                    "duration" => 28,
+                    "limit" => 6,
                 ],
             ];
         }
-        return compact("options");
+        return $options;
     }
 }

@@ -2,6 +2,6 @@
 
 @section('content')
     @foreach ($page->content as $block)
-        @includeIf('blocks.' . $block->name(), $block->fields())
+        @includeIf('components.' . $block->name(), compact('block'))
     @endforeach
 @endsection

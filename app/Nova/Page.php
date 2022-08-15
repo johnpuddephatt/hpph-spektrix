@@ -78,7 +78,7 @@ class Page extends Resource
         return [
             ID::make()
                 ->sortable()
-                ->hideFromIndex(),
+                ->hide(),
 
             Text::make("Title")
                 ->hideFromIndex()
@@ -139,19 +139,18 @@ class Page extends Resource
                     \App\Nova\Flexible\Layouts\ImageCarouselLayout::class
                 )
                 ->addLayout(\App\Nova\Flexible\Layouts\HomeHeroLayout::class)
-                ->addLayout("Statement text", "statement_text", [
-                    Textarea::make("Title"),
-                ])
-                ->addLayout("Banner with text", "banner_with_text", [
-                    Text::make("Title"),
-                    Text::make("Subtitle"),
-                ])
-                ->addLayout("Home instances", "home_instances", [
-                    Select::make("Display")->options([
-                        "day" => "Today/tommorrow",
-                        "week" => "This week/next week",
-                    ]),
-                ])
+                ->addLayout(
+                    \App\Nova\Flexible\Layouts\JournalPostsLayout::class
+                )
+                ->addLayout(
+                    \App\Nova\Flexible\Layouts\StatementTextLayout::class
+                )
+                ->addLayout(
+                    \App\Nova\Flexible\Layouts\BannerWithTextLayout::class
+                )
+                ->addLayout(
+                    \App\Nova\Flexible\Layouts\HomeInstancesLayout::class
+                )
                 ->addLayout("Heading", "heading", [
                     HeadingField::make("Heading"),
                 ])

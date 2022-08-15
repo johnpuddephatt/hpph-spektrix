@@ -3,10 +3,13 @@
 
 import Alpine from "alpinejs";
 import intersect from "@alpinejs/intersect";
+import carousel from "./carousel.js";
 
 Alpine.plugin(intersect);
 
 window.Alpine = Alpine;
+Alpine.data("carousel", carousel);
+
 Alpine.start();
 
 import { format, compareAsc } from "date-fns";

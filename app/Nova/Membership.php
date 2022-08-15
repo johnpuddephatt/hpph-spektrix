@@ -49,7 +49,7 @@ class Membership extends Resource
         return [
             Boolean::make("Published")->filterable(),
             Boolean::make("Show when booking", "show_by_booking_path"),
-            ID::make()->hideFromIndex(),
+            ID::make()->hide(),
             Text::make("Name"),
             Textarea::make("Description"),
             Trix::make("Long description"),

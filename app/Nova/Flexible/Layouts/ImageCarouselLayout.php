@@ -3,9 +3,15 @@
 namespace App\Nova\Flexible\Layouts;
 
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Whitecube\NovaFlexibleContent\Concerns\HasMediaLibrary;
 
-class ImageCarouselLayout extends Layout
+class ImageCarouselLayout extends Layout implements HasMedia
 {
+    use HasMediaLibrary;
+
     /**
      * The layout's unique identifier
      *
@@ -20,6 +26,8 @@ class ImageCarouselLayout extends Layout
      */
     protected $title = "Image Carousel";
 
+    protected $with = ["gallery"];
+
     /**
      * Get the fields displayed by the layout.
      *
@@ -27,8 +35,13 @@ class ImageCarouselLayout extends Layout
      */
     public function fields()
     {
-        return [
-                // "title" => $this->attributes["title"],
-            ];
+        return [Images::make("Image gallery", "gallery")];
+    }
+
+    public function getGalleryAttribute()
+    {
+        return $this->getMedia("gallery")
+            ->shuffle()
+            ->take(5);
     }
 }

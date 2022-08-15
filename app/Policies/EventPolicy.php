@@ -32,12 +32,12 @@ class EventPolicy
 
     public function delete(User $user)
     {
-        return false;
+        return true;
     }
 
     public function restore(User $user)
     {
-        return false;
+        return true;
     }
 
     public function forceDelete(User $user)

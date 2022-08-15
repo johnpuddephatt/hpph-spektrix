@@ -16,5 +16,6 @@ class PageCast extends FlexibleCast
             \App\Nova\Flexible\Layouts\BannerWithTextLayout::class,
         "image_carousel" =>
             \App\Nova\Flexible\Layouts\ImageCarouselLayout::class,
+        "journal-posts" => \App\Nova\Flexible\Layouts\JournalPostsLayout::class,
     ];
 }

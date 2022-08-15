@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
 use App\Casts\PageCast;
@@ -43,6 +45,33 @@ class Page extends Model implements HasMedia
                 $post->slug = Str::slug($post->title, "-");
             }
         });
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        if ($media && Str::startsWith($media->collection_name, "gallery_")) {
+            $this->addMediaConversion("portrait")
+                ->quality(80)
+                ->sharpen(10)
+                ->crop("crop-center", 1360, 1600)
+                ->withResponsiveImages()
+                ->performOnCollections($media->collection_name);
+        }
+
+        if ($media && Str::startsWith($media->collection_name, "banner_")) {
+            $this->addMediaConversion("landscape")
+                ->quality(80)
+                ->sharpen(10)
+                ->crop("crop-center", 1600, 1360)
+                ->withResponsiveImages()
+                ->performOnCollections($media->collection_name);
+        }
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection("gallery");
+        $this->addMediaCollection("banner")->singleFile();
     }
 
     public function getURLAttribute()

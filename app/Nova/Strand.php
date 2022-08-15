@@ -45,7 +45,7 @@ class Strand extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->exceptOnForms(),
+            ID::make()->hide(),
             Text::make("Name"),
             Color::make("Color"),
             Images::make("Main image", "main"),

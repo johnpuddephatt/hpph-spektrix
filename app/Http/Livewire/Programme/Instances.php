@@ -44,6 +44,7 @@ class Instances extends Component
                     "strand_name",
                     "audio_described"
                 )
+                ->take($this->options[$this->selected_option]["limit"] ?? -1)
                 ->get(),
         ]);
     }

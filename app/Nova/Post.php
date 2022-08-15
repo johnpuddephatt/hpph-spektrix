@@ -5,11 +5,13 @@ namespace App\Nova;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Image;
-use Advoor\NovaEditorJs\NovaEditorJs;
+use Advoor\NovaEditorJs\NovaEditorJsField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use NovaAttachMany\AttachMany;
+use Spatie\TagsField\Tags;
 
 class Post extends Resource
 {
@@ -45,7 +47,9 @@ class Post extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make(__("ID"), "id")->sortable(),
+            ID::make(__("ID"), "id")
+                ->sortable()
+                ->hide(),
             Text::make("Title")
                 ->withMeta([
                     "extraAttributes" => [
@@ -53,11 +57,21 @@ class Post extends Resource
                     ],
                 ])
                 ->rules("required"),
+            Tags::make("Tags"),
+            Textarea::make("Introduction")
+                ->rows(2)
+                ->withMeta([
+                    "extraAttributes" => [
+                        "maxlength" => 150,
+                    ],
+                ])
+                ->rules("required", "max:150"),
+
             AttachMany::make("Events")
                 ->height("150px")
                 ->showPreview(),
             Images::make("Main image", "main")->rules("required"),
-            NovaEditorJs::make("Content")
+            NovaEditorJsField::make("Content")
                 ->hideFromIndex()
                 ->rules("required"),
         ];

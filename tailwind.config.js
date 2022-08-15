@@ -5,6 +5,7 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
+        "tailwind.safelist.txt",
     ],
     plugins: [require("tailwind-scrollbar-hide")],
     theme: {
@@ -40,7 +41,7 @@ module.exports = {
             },
 
             yellow: {
-                DEFAULT: "#ffe622",
+                DEFAULT: "#ffe621",
             },
 
             sand: {

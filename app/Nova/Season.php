@@ -43,7 +43,7 @@ class Season extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            ID::make()->exceptOnForms(),
+            ID::make()->hide(),
             Text::make("Name"),
             NovaEditorJs::make("Description")->hideFromIndex(),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),

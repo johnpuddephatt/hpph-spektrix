@@ -1,13 +1,15 @@
 <div x-data="{ open: null }" class="mb-16">
     @forelse ($instances as $instance)
-        @if ($options[$selected_option]['duration'] > 1 && ($loop->index == 0 || $instances->get($loop->index - 1)->start->format('l d F, Y') !== $instance->start->format('l d F, Y')))
+        @if ($options[$selected_option]['duration'] > 1 &&
+            ($loop->index == 0 ||
+                $instances->get($loop->index - 1)->start->format('l d F, Y') !== $instance->start->format('l d F, Y')))
             <h3 class="border-t border-gray-light py-6 font-bold">{{ $instance->start->format('l d F, Y') }}</h3>
         @endif
         <div x-on:click="open = (open == {{ $loop->index }}) ? null : {{ $loop->index }}"
             class="cursor-default border-t-[0.5px] border-gray-medium py-4 transition duration-500"
             x-bind:class="open == {{ $loop->index }} ? '' : 'hover:bg-gray-dark hover:bg-opacity-50'">
             <div class="flex flex-row items-center gap-6">
-                <div class="flex w-1/4 flex-col">
+                <div class="flex w-1/4 max-w-sm flex-col">
                     <div class="flex flex-row gap-2">
                         <span class="type-label">{{ $instance->start->format('H:i') }}</span>
 
@@ -15,7 +17,7 @@
                     </div>
                 </div>
 
-                <div class="flex w-1/3 flex-col">
+                <div class="flex w-1/3 max-w-md flex-col">
                     <h4 class="type-subtitle overflow-hidden text-ellipsis !leading-none">
                         {{ $instance->event->name }}
                     </h4>
@@ -31,7 +33,9 @@
                     class="type-subtitle -mt-1.5 ml-auto mb-auto rounded border-2 border-yellow px-6 py-1 text-yellow hover:bg-yellow hover:text-black">
                     Info &amp; Tickets</a>
 
-                <button class="-mt-1.5 h-9 w-9 rounded-lg bg-gray text-6xl leading-none"></button>
+                <button aria-label="Toggle details" class="-mt-1.5 h-9 w-9 rounded-lg text-6xl leading-none">
+                    @svg('plus', 'h-6 w-6')
+                </button>
             </div>
 
             <div class="flex flex-row gap-6" x-cloak class="mt-auto overflow-hidden pt-4"

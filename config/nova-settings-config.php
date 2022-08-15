@@ -4,6 +4,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\MultiSelect;
 
@@ -21,7 +22,7 @@ return [
     [
         "page" => "Contact Details",
         "fields" => [
-            Text::make("Phone"),
+            Text::make("Phone")->help("foo"),
             Textarea::make("Address"),
             Textarea::make("Email"),
             Panel::make("Social media", [
@@ -29,6 +30,16 @@ return [
                 Text::make("Twitter"),
                 Text::make("Instagram"),
             ]),
+        ],
+        "casts" => [],
+    ],
+
+    [
+        "page" => "Messages",
+        "fields" => [
+            Trix::make("No scheduled screenings")->help(
+                "Displayed on the film page when there are no scheduled screenings."
+            ),
         ],
         "casts" => [],
     ],

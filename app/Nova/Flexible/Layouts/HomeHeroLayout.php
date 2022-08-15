@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Cache;
 
 class HomeHeroLayout extends Layout
 {
-    // protected $appends = ["posts", "events"];
-
     /**
      * The layout's unique identifier
      *
@@ -38,15 +36,9 @@ class HomeHeroLayout extends Layout
     {
         return Cache::remember("home_events", 3600, function () {
             return \App\Models\Event::with("featuredImage")
-
                 ->take(4)
                 ->get()
                 ->each->append("strands");
-            // ->map(function ($event) {
-            //     $event->strands ;
-
-            //     return $event;
-            // })
         });
     }
 

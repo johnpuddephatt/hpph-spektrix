@@ -8,16 +8,16 @@
     
     }">
 
-    <div class="container flex flex-row items-center gap-3 py-4">
+    <div class="flex flex-row items-center gap-3 px-5 py-3 2xl:py-6">
 
-        <a class="relative z-20 rounded-full bg-yellow px-2 pt-0.5 text-lg font-bold tracking-tighter text-black"
+        <a class="relative z-20 rounded-full bg-yellow px-2 pt-1.5 pb-1 text-lg font-bold tracking-tighter text-black"
             href="/">HPPH</a>
 
         <a class="relative z-20 rounded py-1 px-2"
             :class="{{ Request::routeIs('programme') ? 'true' : 'false' }} && !menu_open ? 'bg-yellow text-black' : ''"
             href="{{ route('programme') }}">What’s on</a>
 
-        <x-strand-menu>Strands &amp; Seasons</x-strand-menu>
+        <x-strand-menu>Strands &amp; seasons</x-strand-menu>
 
         @include('components.header-menu')
         <livewire:search />
@@ -31,7 +31,7 @@
             </div>
         @endif
 
-        <div class="flex flex-row gap-2">
+        <div class="flex flex-row gap-1">
 
             @if ($edit_link ?? null)
                 <a class="rounded bg-white bg-opacity-25 px-4 py-2" href="{{ $edit_link }}">Edit</a>

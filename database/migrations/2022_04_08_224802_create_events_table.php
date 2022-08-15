@@ -16,6 +16,7 @@ class CreateEventsTable extends Migration
     {
         Schema::create("events", function (Blueprint $table) {
             $table->string("id")->primary(); // id
+            $table->softDeletes();
 
             $table->string("slug")->nullable();
             $table->text("description")->nullable();

@@ -14,6 +14,8 @@ class FetchData extends Action
 {
     use InteractsWithQueue, Queueable;
 
+    public $name = "Fetch events from Spektrix";
+
     /**
      * Perform the action on the given models.
      *
@@ -24,9 +26,7 @@ class FetchData extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         dispatch(new \App\Jobs\FetchEventData());
-        dispatch(new \App\Jobs\FetchInstanceData());
-
-        return Action::message("Data successfully retrieved from Spektrix");
+        return Action::message("Event fetch initiated");
     }
 
     /**
