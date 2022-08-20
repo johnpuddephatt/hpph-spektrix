@@ -18,7 +18,7 @@ Artisan::command("inspire", function () {
     $this->comment(Inspiring::quote());
 })->purpose("Display an inspiring quote");
 
-Artisan::command("fetch", function () {
+Artisan::command("fetch:all", function () {
     dispatch(new \App\Jobs\FetchEventData());
     // dispatch(new \App\Jobs\FetchInstanceData());
     dispatch(new \App\Jobs\FetchMembershipData());
