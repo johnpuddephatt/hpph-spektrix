@@ -2,11 +2,13 @@
 
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
+use OptimistDigital\NovaTableField\Table;
+
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Panel;
-use Laravel\Nova\Fields\MultiSelect;
+use Laravel\Nova\Fields\KeyValue;
 
 return [
     [
@@ -20,18 +22,36 @@ return [
     ],
 
     [
-        "page" => "Contact Details",
+        "page" => "Cinema Details",
         "fields" => [
             Text::make("Phone")->help("foo"),
-            Textarea::make("Address"),
-            Textarea::make("Email"),
+            Text::make("Address"),
+            KeyValue::make("Email addresses")
+                ->keyLabel("Name")
+                ->valueLabel("Email address")
+                ->actionText("Add address")
+                ->rules("json"),
+            Text::make("Charity number"),
+            Panel::make("Opening hours", [
+                KeyValue::make("Opening hours")
+                    ->keyLabel("Day(s)")
+                    ->valueLabel("Hours")
+                    ->actionText("Add row")
+                    ->rules("json"),
+            ]),
             Panel::make("Social media", [
                 Text::make("Facebook"),
                 Text::make("Twitter"),
                 Text::make("Instagram"),
+                Text::make("LinkedIn"),
+                Text::make("Vimeo"),
+                Text::make("YouTube"),
             ]),
         ],
-        "casts" => [],
+        "casts" => [
+            "email_addresses" => "array",
+            "opening_hours" => "array",
+        ],
     ],
 
     [

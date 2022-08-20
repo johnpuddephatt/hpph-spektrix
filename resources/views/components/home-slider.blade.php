@@ -1,4 +1,5 @@
-    <div id="slider-wrapper" class="absolute inset-0 flex flex-col justify-end pb-8 lg:right-[55%]"
+    <div id="slider-wrapper"
+        class="relative inset-0 mt-[50vh] flex h-screen flex-col justify-end pb-8 lg:absolute lg:right-[55%] lg:mt-0"
         x-data='{ activeSlide: 0, slides: {{ $events }} }' x-init="$refs.seasonWrapper.style.width = $refs.seasonWrapper.firstElementChild.clientWidth + 'px';
         $watch('activeSlide', value => $nextTick(() => {
             $refs.seasonWrapper.style.width = $refs.seasonWrapper.firstElementChild.clientWidth + 'px';
@@ -6,15 +7,16 @@
         @foreach ($events as $event)
             @if ($event->featuredImage)
                 <x-image x-show="{{ $loop->index }} == activeSlide" :src="$event->featuredImage->getUrl('square')" :srcset="$event->featuredImage->getSrcset('square')"
-                    class="absolute inset-0 -z-10 h-full w-full object-cover object-center" />
+                    class="absolute inset-0 h-full w-full object-cover object-center lg:-z-10" />
             @endif
         @endforeach
 
-        <div class="pointer-events-none absolute top-0 bottom-0 right-0 w-96 bg-gradient-to-l from-black to-transparent">
+        <div
+            class="pointer-events-none absolute left-0 top-0 right-0 h-64 w-full bg-gradient-to-b from-black to-transparent lg:left-auto lg:bottom-0 lg:h-full lg:w-96 lg:bg-gradient-to-l">
         </div>
         <a :href="`/films/${slides[activeSlide].slug }`" class="relative z-10 block px-4 text-white 2xl:px-6"">
             <div class="type-label mb-4">Showing today (@todo)</div>
-            <h3 class="type-h2" x-text="slides[activeSlide].name"></h3>
+            <h3 class="type-h3 lg:type-h2" x-text="slides[activeSlide].name"></h3>
             <div class="mt-4 flex flex-row items-center">
                 <div class="mr-2 inline-block rounded bg-gray-dark py-1 px-2 font-mono text-white"
                     x-text="slides[activeSlide].certificate_age_guidance"></div>

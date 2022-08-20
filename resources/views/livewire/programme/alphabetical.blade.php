@@ -10,7 +10,7 @@
             <div class="flex w-1/2 flex-col">
 
                 <div class="mb-3">{{ $event->instance_dates }}</div>
-                <h2 class="type-h4 mb-4">{{ $event->name }}</h2>
+                <h2 class="type-h5 mb-4">{{ $event->name }}</h2>
                 <x-location color="text-yellow" :location="$event->venue" />
 
                 <div class="mt-auto flex flex-row items-center gap-2 pt-2">
@@ -19,7 +19,7 @@
                         <x-strand :strand="$strand" />
                     @endforeach
                     <x-accessibilities :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl" :audiodescribed="$event->has_audio_described" />
-                    <x-genres-vibes class="ml-2" :values="$event->genres_and_vibes" />
+                    <x-genres-vibes-badge class="ml-2" :values="$event->genres_and_vibes" />
                 </div>
             </div>
             <div class="flex w-1/4 flex-grow flex-col">
@@ -27,7 +27,7 @@
                     <p class="mb-auto overflow-hidden pb-4">
                         {{ Illuminate\Support\Str::limit($event->description, 120) }}</p>
                 @endif
-                <a class="type-subtitle mt-auto block rounded bg-gray py-2 px-4 text-center hover:bg-black hover:text-yellow"
+                <a class="type-subtitle mt-auto block rounded bg-gray py-2 px-4 text-center hover:bg-yellow hover:text-black"
                     href="{{ route('event.show', ['event' => $event->slug]) }}">More information &amp; tickets</a>
             </div>
 

@@ -7,20 +7,20 @@ use Illuminate\Support\Facades\Cache;
 class MenuObserver
 {
     /**
+     * Forget menus method
+     */
+    public function forgetMenus()
+    {
+        Cache::forget("headerMenu");
+    }
+
+    /**
      * Handle the MenuItem "created" event.
      * @return void
      */
     public function created()
     {
         $this->forgetMenus();
-    }
-
-    /**
-     * Forget menus method
-     */
-    public function forgetMenus()
-    {
-        Cache::forget("headerMenu");
     }
 
     /**

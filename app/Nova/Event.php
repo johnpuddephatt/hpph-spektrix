@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\URL;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
@@ -52,6 +53,8 @@ class Event extends Resource
      */
     public static $search = ["name"];
 
+    public static $orderBy = ["first_instance_date_time" => "desc"];
+
     public static function indexQuery(NovaRequest $request, $query)
     {
         return $query->withoutGlobalScope("published");
@@ -69,6 +72,8 @@ class Event extends Resource
             ID::make("Id")
                 ->asBigInt()
                 ->hide(),
+
+            // Datetime::make("First Instance Date Time")->hide(),
 
             Text::make("Name")
                 ->sortable()
@@ -100,8 +105,6 @@ class Event extends Resource
                     Tab::make("Reviews", [
                         Flexible::make("Reviews")
                             ->addLayout("Review", "review", [
-                                Textarea::make("Quote"),
-                                Text::make("Publication name"),
                                 Select::make("Rating")->options([
                                     1,
                                     2,
@@ -109,6 +112,9 @@ class Event extends Resource
                                     4,
                                     5,
                                 ]),
+                                Textarea::make("Quote"),
+                                Text::make("Publication name"),
+                                URL::make("URL"),
                             ])
                             ->button("Add a review")
                             ->stacked(),
@@ -234,6 +240,7 @@ class Event extends Resource
         return [
             Actions\FetchData::make()->standalone(),
             Actions\PublishEvents::make(),
+            Actions\PublishEvents::make()->showInline(),
         ];
     }
 }

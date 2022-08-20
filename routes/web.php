@@ -37,6 +37,11 @@ Route::get("/films/{event:slug}", [
     "show",
 ])->name("event.show");
 
+Route::get("/strands/{strand:slug}", [
+    \App\Http\Controllers\StrandController::class,
+    "show",
+])->name("strand.show");
+
 Route::get("/{page1}/{page2?}/{page3?}", [
     \App\Http\Controllers\PageController::class,
     "show",

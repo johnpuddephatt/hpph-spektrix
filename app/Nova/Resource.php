@@ -7,6 +7,16 @@ use Laravel\Nova\Resource as NovaResource;
 
 abstract class Resource extends NovaResource
 {
+    protected static function applyOrderings($query, array $orderings)
+    {
+        if (empty($orderings) && property_exists(static::class, "orderBy")) {
+            $query->reorder();
+            $orderings = static::$orderBy;
+        }
+
+        return parent::applyOrderings($query, $orderings);
+    }
+
     /**
      * Build an "index" query for the given resource.
      *

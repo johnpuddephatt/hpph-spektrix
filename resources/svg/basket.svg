@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18.35" height="17.199" viewBox="0 0 18.35 17.199">
+<g stroke="currentColor" fill="none" vector-effect="non-scaling-stroke" >
+  <line y1="2.816" transform="translate(9.056 0.593)"  stroke-linecap="round" stroke-width="1"/>
+  <line  x2="17.164" transform="translate(0.593 6.521)"   stroke-linecap="round" stroke-width="1"/>
+  <path d="M1.966,5.546,3.651,15.574H8.691" transform="translate(0.366 1.031)"  stroke-linecap="round" stroke-width="1"/>
+  <path  d="M14.461,5.546,12.775,15.574H7.736" transform="translate(1.439 1.031)"  stroke-linecap="round" stroke-width="1"/>
+  <line  x2="0.585" y2="2.82" transform="translate(6.75 10.182)"  stroke-linecap="round" stroke-width="1"/>
+  <line x1="0.585" y2="2.82" transform="translate(10.779 10.182)"  stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>

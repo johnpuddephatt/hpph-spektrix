@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440.838" height="291.156" viewBox="0 0 440.838 291.156">
+<style>
+.oscillate {
+    animation: oscillate 2s infinite ease-in-out;
+    transform-origin: center;
+}
+.oscillate-delayed {
+    animation-delay: 1s;
+}
+
+@keyframes oscillate {
+    
+    50% {
+        transform: translateX(25px);
+    }
+}
+</style>
+    <g  fill="currentColor">
+        
+        <path class="oscillate" d="M242.329 254.022h-85.564a127.011 127.011 0 010-254.022h85.564a127.011 127.011 0 010 254.022M156.765 8.477a118.534 118.534 0 000 237.068h85.564a118.534 118.534 0 000-237.068z"/>
+        <path class="oscillate oscillate-delayed"  d="M242.329 254.022h-85.564a127.011 127.011 0 010-254.022h85.564a127.011 127.011 0 010 254.022M156.765 8.477a118.534 118.534 0 000 237.068h85.564a118.534 118.534 0 000-237.068z"/>
+
+    </g>
+</svg>

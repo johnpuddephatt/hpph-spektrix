@@ -48,6 +48,12 @@ return [
             "max_depth" => 10,
             "menu_item_types" => [],
         ],
+        "footer" => [
+            "name" => "Footer",
+            "unique" => true,
+            "max_depth" => 1,
+            "menu_item_types" => [],
+        ],
     ],
 
     /*

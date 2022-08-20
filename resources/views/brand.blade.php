@@ -55,7 +55,7 @@
                 </div>
 
                 <div>
-                    <div class="type-h4 bg-gray py-4">
+                    <div class="type-h5 bg-gray py-4">
                         Guardians
                         of
                         the <br> Galaxy Vol. 3

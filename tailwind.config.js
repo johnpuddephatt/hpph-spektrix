@@ -20,6 +20,9 @@ module.exports = {
                 ...defaultTheme.fontFamily.sans,
             ],
         },
+        letterSpacing: {
+            normal: "-0.015em",
+        },
         colors: {
             current: "currentColor",
 
@@ -42,6 +45,7 @@ module.exports = {
 
             yellow: {
                 DEFAULT: "#ffe621",
+                dark: "#f9da5d",
             },
 
             sand: {

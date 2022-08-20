@@ -11,5 +11,5 @@
 }
 
 .prose h4 {
-    @apply type-h4;
+    @apply type-h5;
 }

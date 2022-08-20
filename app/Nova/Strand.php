@@ -7,9 +7,11 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\Textarea;
 use Advoor\NovaEditorJs\NovaEditorJs;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Laravel\Nova\Fields\Color;
+use Hpph\Svg\Svg;
 
 class Strand extends Resource
 {
@@ -48,8 +50,14 @@ class Strand extends Resource
             ID::make()->hide(),
             Text::make("Name"),
             Color::make("Color"),
+            Svg::make("Logo"),
             Images::make("Main image", "main"),
-            NovaEditorJs::make("Description")->hideFromIndex(),
+            Textarea::make("Short description")
+                ->rows(2)
+                ->hideFromIndex(),
+            Textarea::make("Description")
+                ->rows(3)
+                ->hideFromIndex(),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];
     }

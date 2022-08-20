@@ -14,6 +14,8 @@ class PublishEvents extends Action
 {
     use InteractsWithQueue, Queueable;
 
+    public $name = "Publish";
+
     /**
      * Perform the action on the given models.
      *

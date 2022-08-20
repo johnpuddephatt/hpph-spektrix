@@ -26,13 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Outl1ne\MenuBuilder\Models\MenuItem::observe(
-            \App\Observers\MenuItemObserver::class
-        );
-        \Outl1ne\MenuBuilder\Models\Menu::observe(
-            \App\Observers\MenuObserver::class
-        );
-
         Blade::directive("webComponent", function ($component) {
             if (!isset($spektrix_web_components)) {
                 $spektrix_web_components = [];
@@ -61,6 +54,14 @@ class AppServiceProvider extends ServiceProvider
                 \Cache::rememberForever("headerMenu", function () {
                     return nova_get_menu_by_slug("header")
                         ? nova_get_menu_by_slug("header")["menuItems"]
+                        : [];
+                })
+            );
+            $view->with(
+                "footer_menu",
+                \Cache::rememberForever("footerMenu", function () {
+                    return nova_get_menu_by_slug("footer")
+                        ? nova_get_menu_by_slug("footer")["menuItems"]
                         : [];
                 })
             );

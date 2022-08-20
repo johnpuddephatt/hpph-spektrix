@@ -1,4 +1,5 @@
 @extends('layouts.default')
+@section('title', 'What’s on')
 
 @section('content')
     <div class="px-4 2xl:px-6">

@@ -11,7 +11,7 @@ body {
 
 h1,
 h2 {
-    @apply type-h4;
+    @apply type-h5;
 }
 
 h3,

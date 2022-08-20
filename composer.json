@@ -41,7 +41,8 @@
         "spatie/nova-backup-tool": "^5.0",
         "spatie/nova-tags-field": "^4.0",
         "stepanenko3/nova-logs-tool": "^1.1",
-        "whitecube/nova-flexible-content": "^1.0"
+        "whitecube/nova-flexible-content": "^1.0",
+        "hpph/svg": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -81,6 +82,10 @@
         "2": {
             "type": "path",
             "url": "./nova-components/nova-attach-many"
+        },
+        "3": {
+            "type": "path",
+            "url": "./nova-components/Svg"
         }
     },
     "scripts": {

@@ -1,4 +1,6 @@
-@extends('layouts.default', ['header_colour' => 'light', 'header_position' => 'default', 'edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])]) @section('content')
+@extends('layouts.default', ['header_colour' => 'light', 'header_position' => 'default', 'edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
+@section('title', $event->name)
+@section('content')
     <div class="fixed inset-0 -z-10 h-[calc(100vh-1rem)] w-full overflow-hidden">
         @if ($event->featuredImage)
             {!! $event->featuredImage->img('wide', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() !!}
@@ -10,14 +12,14 @@
             <div class="px-4 pt-48 pb-12 text-white 2xl:px-6">
                 <h1 class="mb-4 text-6xl font-bold">{{ $event->name }}</h1>
                 <div class="flex flex-row items-center gap-2">
-                    <x-certificate :certificate="$event->certificate_age_guidance" />
+                    <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
                     @foreach ($event->strands as $strand)
                         <x-strand-badge :strand="$strand" />
                     @endforeach
                     @if (count($event->genres_and_vibes))
                         &bullet;
                     @endif
-                    <x-genres-vibes :values="$event->genres_and_vibes" />
+                    <x-genres-vibes-badge :values="$event->genres_and_vibes" />
                 </div>
             </div>
         </div>
@@ -33,9 +35,9 @@
 
     <div class="relative mt-[calc(100vh-4.25rem-1rem)] bg-white">
 
-        <div class="flex flex-row">
+        <div class="flex-row lg:flex">
 
-            <div class="container relative z-30 w-1/2 py-16 pr-32">
+            <div class="container relative z-30 py-16 lg:w-1/2 lg:pr-32">
                 <div class="type-large prose mb-24">
                     {{ $event->long_description }}
                 </div>
@@ -78,12 +80,12 @@
                     <x-details-row label="Country of origin" :value="implode(' &bullet; ', $event->country_of_origin)" />
                 </div>
             </div>
-            <div class="min-h-[150vh] w-1/2 bg-sand" x-data="{ stage: 1, selectedScreening: null, iFrameLoading: true }">
-                <div class="container relative py-16 pl-32" x-show="stage == 1">
+            <div class="bg-sand lg:min-h-screen lg:w-1/2" x-data="{ stage: 1, selectedScreening: null, iFrameLoading: true }">
+                <div class="container relative py-16 pl-24 lg:pl-32" x-show="stage == 1">
                     <h2
                         class="type-label absolute right-full origin-right translate-x-8 -rotate-90 transform whitespace-nowrap">
                         Upcoming screenings</h2>
-                    <div class="type-h4">Select a showtime</div>
+                    <div class="type-h5">Select a showtime</div>
 
                     @if ($event->instances->count())
                         <div class="mt-2"><strong>Venue</strong> {{ $event->venue }}</div>
@@ -139,7 +141,7 @@
 
                 @if ($event->instances->count())
                     <div class="container bg-yellow py-6 pl-32">
-                        <h2 class="type-h4 max-w-[8em]">Want to see this film for free?</h2>
+                        <h2 class="type-h5 max-w-[8em]">Want to see this film for free?</h2>
                     </div>
 
                     <div class="container relative py-8 pl-32">
@@ -156,16 +158,19 @@
         </div>
     </div>
 
+    @foreach ($event->strands as $strand)
+        <x-strand-card :strand="$strand" />
+    @endforeach
+
     <x-reviews :reviews="$event->reviews" />
 
     @if ($event->secondaryImage)
         <div class="sticky top-[100vh] -z-10 h-0">
-            {!! $event->secondaryImage->img('wide', ['class' => 'w-full transform -translate-y-full'])->toHtml() !!}
+            {!! $event->secondaryImage->img('wide', ['class' => 'w-full h-screen object-cover transform -translate-y-full'])->toHtml() !!}
         </div>
         <div class="h-screen"></div>
     @endif
 
     <x-journal-posts :block="$event" />
 
-    <div class="h-[150vh] bg-gray"></div>
 @endsection

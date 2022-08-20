@@ -15,7 +15,9 @@ class CreateSeasonsTable extends Migration
     {
         Schema::create("seasons", function (Blueprint $table) {
             $table->id();
+            $table->string("slug")->nullable();
             $table->string("name")->unique();
+            $table->string("short_description")->nullable();
             $table->text("description")->nullable();
         });
     }

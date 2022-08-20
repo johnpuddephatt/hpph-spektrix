@@ -9,6 +9,7 @@ use Carbon\Carbon;
 class Instances extends Component
 {
     public $options;
+    public $dark = false;
     public $show_header = true;
     public $show_load_more = false;
     public $selected_option = 0;

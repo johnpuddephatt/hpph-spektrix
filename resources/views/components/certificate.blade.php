@@ -1,2 +1,6 @@
-<div class="inline-block rounded bg-gray-dark py-0.5 px-2 font-mono text-white">
-    {{ $certificate }}</div>
+@props(['dark' => false, 'certificate'])
+
+<div
+    {{ $attributes->class(['inline-block rounded  py-0.5 px-2 font-mono', 'bg-gray-dark text-white' => $dark, 'bg-gray' => !$dark]) }}>
+    {{ $certificate }}
+</div>

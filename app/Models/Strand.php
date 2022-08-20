@@ -24,7 +24,13 @@ class Strand extends Model implements HasMedia, CachableAttributes
 
     public $timestamps = false;
 
-    protected $fillable = ["name", "slug", "description"];
+    protected $fillable = [
+        "name",
+        "slug",
+        "short_description",
+        "description",
+        "logo",
+    ];
 
     public function sluggable(): array
     {
@@ -37,7 +43,7 @@ class Strand extends Model implements HasMedia, CachableAttributes
 
     public function registerMediaConversions(Media $media = null): void
     {
-        $this->addMediaConversion("wide")
+        $this->addMediaConversion("landscape")
             ->quality(80)
             ->crop("crop-center", 2000, 1200)
             ->sharpen(10)

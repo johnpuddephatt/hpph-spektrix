@@ -28,8 +28,8 @@
     @stack('head')
 </head>
 
-<body class="leading-[125%] tracking-[-0.015em]" :class="{ 'overflow-hidden': menu_open }" x-data="{ menu_open: false }"
-    @menutoggled.window="menu_open = $event.detail">
+<body class="leading-[125%] tracking-normal" :class="{ 'overflow-hidden': menu_open || nav_open }" x-data="{ menu_open: false, nav_open: false }"
+    @menutoggled.window="menu_open = $event.detail" @navtoggled.window="nav_open = $event.detail">
     @yield('templatecontent')
     @stack('footer')
     @livewireScripts

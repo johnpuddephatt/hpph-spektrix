@@ -1,7 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="12.983" height="7.167" viewBox="0 0 12.983 7.167">
-    
-        
-            <path transform="rotate(90 6.492 6.492)" vector-effect="non-scaling-stroke" d="M.478.478l6.013 6.013-6.013 6.013" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="0.75" />
-        
-    
+<svg xmlns="http://www.w3.org/2000/svg" width="12.983" height="7.167" viewBox="0 0 12.983 7.167">    
+    <path transform="rotate(90 6.492 6.492)" vector-effect="non-scaling-stroke" d="M.478.478l6.013 6.013-6.013 6.013" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="0.75" />
 </svg>

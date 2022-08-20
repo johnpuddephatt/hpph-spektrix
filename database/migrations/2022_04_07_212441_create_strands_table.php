@@ -17,10 +17,11 @@ class CreateStrandsTable extends Migration
             $table->id();
             $table->string("name")->unique();
             $table->string("slug")->unique();
+            $table->string("short_description")->nullable();
             $table->string("description")->nullable();
             $table->string("color", "7")->nullable();
             $table->text("content")->nullable();
-            $table->string("logo_path")->nullable();
+            $table->text("logo")->nullable();
             $table->string("logo_text")->nullable();
         });
     }

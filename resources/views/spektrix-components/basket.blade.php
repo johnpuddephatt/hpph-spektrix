@@ -1,32 +1,31 @@
 @webComponent('spektrix-basket-summary')
 
-
-
-
-<div class="" x-data="{ open: false, iFrameLoading: true }" x-effect="if(open == false) { iFrameLoading = true; }">
-
-    <spektrix-basket-summary id="spektrixBasketSummary" client-name="{{ nova_get_setting('spektrix_client_name') }}"
-        custom-domain="{{ nova_get_setting('spektrix_custom_domain') }}">
-        <a href="/basket/" :class="open ? 'bg-yellow text-black z-40' : ''"
-            @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
-            @svg('basket', 'h-6 w-6 pt-0 p-0.5 pb-1')
-            <span class="mobile-basket-count" data-basket-item-count></span>
-        </a>
-        <script>
-            // Add 'hidden' attribute to <spektrix-basket-summary> to enable hidding empty basket.
-            let showBasketIfNotEmpty = function() {
-                var spektrixBasketSummary = document.getElementById(
-                    'spektrixBasketSummary'
-                );
-                if (spektrixBasketSummary.getAttribute('count') > 0) {
-                    spektrixBasketSummary.removeAttribute('hidden');
-                }
-            };
-            setInterval(() => {
-                showBasketIfNotEmpty();
-            }, 1000);
-        </script>
-    </spektrix-basket-summary>
+<spektrix-basket-summary hidden id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
+    x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ nova_get_setting('spektrix_client_name') }}"
+    custom-domain="{{ nova_get_setting('spektrix_custom_domain') }}">
+    <a href="/basket/" class="relative block" :class="open ? 'bg-yellow text-black z-40' : ''"
+        @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
+        @svg('basket', 'h-10 w-10 lg:h-6 lg:w-6 pb-1 ')
+        <span
+            class="mobile-basket-count absolute top-0 right-0 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow px-0.5 text-[0.65rem] leading-tight text-black"
+            data-basket-item-count></span>
+    </a>
+    <script>
+        // Add 'hidden' attribute to <spektrix-basket-summary> to enable hidding empty basket.
+        let showBasketIfNotEmpty = function() {
+            var spektrixBasketSummary = document.getElementById(
+                'spektrixBasketSummary'
+            );
+            if (spektrixBasketSummary.getAttribute('count') > 0) {
+                spektrixBasketSummary.removeAttribute('hidden');
+                spektrixBasketSummary.classList.add('block');
+            }
+        };
+        showBasketIfNotEmpty();
+        setInterval(() => {
+            showBasketIfNotEmpty();
+        }, 1000);
+    </script>
 
     <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open" x-transition:enter-start="opacity-0"
         x-transition:leave-end="opacity-0" class="fixed inset-0 z-20 bg-black bg-opacity-80 duration-300">
@@ -36,7 +35,7 @@
         <template x-if="open">
             <div>
                 <div x-show="iFrameLoading" x-transition class="absolute inset-0 p-16">
-                    @svg('loading', 'w-32 mx-auto block pt-36 text-black')
+                    @svg('loading', 'w-32 mx-auto block pt-24 text-gray-medium')
                 </div>
                 <iframe x-on:load="iFrameLoading = false" class="w-full transition-all"
                     :class="{ 'opacity-0': iFrameLoading }" id="SpektrixIFrame" name="SpektrixIFrame"
@@ -45,4 +44,6 @@
         </template>
 
     </div>
-</div>
+</spektrix-basket-summary>
+
+<!-- </div> -->

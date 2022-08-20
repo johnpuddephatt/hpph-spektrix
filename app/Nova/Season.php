@@ -5,6 +5,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Advoor\NovaEditorJs\NovaEditorJs;
@@ -45,7 +46,12 @@ class Season extends Resource
         return [
             ID::make()->hide(),
             Text::make("Name"),
-            NovaEditorJs::make("Description")->hideFromIndex(),
+            Textarea::make("Short description")
+                ->rows(2)
+                ->hideFromIndex(),
+            Textarea::make("Description")
+                ->rows(3)
+                ->hideFromIndex(),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];
     }
