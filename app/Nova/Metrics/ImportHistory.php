@@ -18,20 +18,30 @@ class ImportHistory extends Table
     public function calculate(NovaRequest $request)
     {
         $logs = array_slice(LogsService::all("laravel-spektrix.log"), 0, 3);
-        foreach ($logs as $log) {
+        if ($logs) {
+            foreach ($logs as $log) {
+                $rows[] = MetricTableRow::make()
+                    ->icon(
+                        $log["level"] == "info"
+                            ? "check-circle"
+                            : $log["level_img"]
+                    )
+                    ->iconClass(
+                        $log["level"] == "info"
+                            ? "text-green-500"
+                            : $log["level_class"]
+                    )
+                    ->title($log["text"])
+                    ->subtitle(
+                        \Carbon\Carbon::create($log["date"])->diffForHumans()
+                    );
+            }
+        } else {
             $rows[] = MetricTableRow::make()
-                ->icon(
-                    $log["level"] == "info" ? "check-circle" : $log["level_img"]
-                )
-                ->iconClass(
-                    $log["level"] == "info"
-                        ? "text-green-500"
-                        : $log["level_class"]
-                )
-                ->title($log["text"])
-                ->subtitle(
-                    \Carbon\Carbon::create($log["date"])->diffForHumans()
-                );
+                ->icon("information-circle")
+                ->iconClass("text-primary-500")
+                ->title("Log empty")
+                ->subtitle("No log entries were found.");
         }
 
         return $rows;
