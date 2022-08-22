@@ -77,6 +77,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 MenuSection::resource(\App\Nova\User::class)->icon("user"),
                 (new \Spatie\BackupTool\BackupTool())->menu($request),
+
+                MenuSection::make("Logs")->path("/logs"),
             ];
         });
         // in a service provider
