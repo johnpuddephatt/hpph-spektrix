@@ -1,5 +1,5 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ nova_get_setting('google_analytics') }}"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ settings['google_analytics'] }}"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -8,5 +8,5 @@
     }
     gtag('js', new Date());
 
-    gtag('config', "{{ nova_get_setting('google_analytics') }}");
+    gtag('config', "{{ settings['google_analytics'] }}");
 </script>

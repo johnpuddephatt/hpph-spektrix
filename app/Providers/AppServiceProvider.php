@@ -50,6 +50,12 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer("*", function ($view) {
             $view->with(
+                "settings",
+                \Cache::rememberForever("settings", function () {
+                    return nova_get_settings();
+                })
+            );
+            $view->with(
                 "header_menu",
                 \Cache::rememberForever("headerMenu", function () {
                     return nova_get_menu_by_slug("header")

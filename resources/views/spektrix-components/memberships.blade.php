@@ -1,9 +1,9 @@
 @webComponent('spektrix-memberships')
 
 @foreach (\App\Models\Membership::showByBookingPath()->get() as $membership)
-    <spektrix-memberships id="spektrixMemberships" client-name="{{ nova_get_setting('spektrix_client_name') }}"
-        custom-domain="{{ nova_get_setting('spektrix_custom_domain') }}"
-        membership-id="801ARDQDDMGGJKKRTNTJBMCCMMBCPQKCR" class="mt-8 block">
+    <spektrix-memberships id="spektrixMemberships" client-name="{{ $settings['spektrix_client_name'] }}"
+        custom-domain="{{ $settings['spektrix_custom_domain'] }}" membership-id="801ARDQDDMGGJKKRTNTJBMCCMMBCPQKCR"
+        class="mt-8 block">
         <details>
             <summary class="flex cursor-default flex-row items-center gap-2">
                 @svg('plus', 'h-6 w-6 p-1')

@@ -3,20 +3,20 @@
         <div class="container items-center justify-between gap-24 lg:flex">
             <div class="flex flex-row justify-center gap-4 py-1 lg:w-1/2 lg:justify-start xl:items-start">
                 @foreach (['facebook', 'twitter', 'youtube', 'instagram', 'linkedin', 'vimeo'] as $account)
-                    @if (nova_get_setting($account))
+                    @if (isset($settings[$account]))
                         <a title="Visit our {{ $account }} account"
                             class="inline-block rounded-full bg-black p-2 text-yellow" target="_blank"
-                            href="{{ nova_get_setting($account) }}">@svg($account, 'h-5 w-5')</a>
+                            href="{{ $settings[$account] }}">@svg($account, 'h-5 w-5')</a>
                     @endif
                 @endforeach
             </div>
 
-            @if (nova_get_setting('opening_hours'))
+            @if (isset($settings['opening_hours']))
                 <div class="flex-row gap-12 lg:flex lg:w-1/2">
                     <h3 class="mx-auto mt-4 mb-2 text-center font-bold lg:mx-0 lg:mt-0 lg:mb-0 lg:w-1/2 lg:text-left">
                         Opening hours</h3>
                     <div class="mx-auto max-w-xs lg:mx-0 lg:w-1/2">
-                        @foreach (nova_get_setting('opening_hours') as $day => $hours)
+                        @foreach ($settings['opening_hours'] as $day => $hours)
                             <div class="flex flex-row gap-12 lg:gap-4">
                                 <div class="w-1/2 lg:w-1/3">{{ $day }}:</div>
                                 <div class="w-1/2 lg:w-2/3">{{ $hours }}</div>
@@ -32,26 +32,26 @@
     <div class="bg-black py-12 text-gray-light">
         <div class="container grid grid-cols-2 gap-x-4 gap-y-16 lg:grid-cols-4 lg:gap-x-24 xl:gap-y-16">
             <div class="flex flex-col gap-6">
-                @if (nova_get_setting('phone'))
+                @if (isset($settings['phone']))
                     <div>
                         <h3 class="font-bold text-white">Box office</h3>
                         <p>
-                            <a href="tel:{{ nova_get_setting('phone') }}">{{ nova_get_setting('phone') }}</a>
+                            <a href="tel:{{ $settings['phone'] }}">{{ $settings['phone'] }}</a>
                         </p>
                     </div>
                 @endif
 
-                @if (nova_get_setting('address'))
+                @if (isset($settings['address']))
                     <div>
                         <h3 class="font-bold text-white">Address</h3>
-                        <p>{{ nova_get_setting('address') }}</p>
+                        <p>{{ $settings['address'] }}</p>
                     </div>
                 @endif
 
-                @if (nova_get_setting('email_addresses'))
+                @if (isset($settings['email_addresses']))
                     <div>
                         <h3 class="font-bold text-white">Email us</h3>
-                        @foreach (nova_get_setting('email_addresses') as $name => $email)
+                        @foreach ($settings['email_addresses'] as $name => $email)
                             <p><a href="mailto:{{ $email }}">{{ $name }}</a></p>
                         @endforeach
                     </div>
@@ -123,8 +123,8 @@
             </div>
             <div class="self-center">
                 <p class="text-xs">Part of Leeds Heritage Theatres</p>
-                @if (nova_get_setting('charity_number'))
-                    <p class="text-xs">Registered Charity No.{{ nova_get_setting('charity_number') }}</p>
+                @if (isset($settings['charity_number']))
+                    <p class="text-xs">Registered Charity No.{{ $settings['charity_number'] }}</p>
                 @endif
             </div>
             <div class="col-span-2 self-center">

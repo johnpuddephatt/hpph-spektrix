@@ -1,8 +1,8 @@
 @webComponent('spektrix-basket-summary')
 
 <spektrix-basket-summary hidden id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
-    x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ nova_get_setting('spektrix_client_name') }}"
-    custom-domain="{{ nova_get_setting('spektrix_custom_domain') }}">
+    x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ $settings['spektrix_client_name'] }}"
+    custom-domain="{{ $settings['spektrix_custom_domain'] }}">
     <a href="/basket/" class="relative block" :class="open ? 'bg-yellow text-black z-40' : ''"
         @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
         @svg('basket', 'h-10 w-10 lg:h-6 lg:w-6 pb-1 ')
@@ -39,7 +39,7 @@
                 </div>
                 <iframe x-on:load="iFrameLoading = false" class="w-full transition-all"
                     :class="{ 'opacity-0': iFrameLoading }" id="SpektrixIFrame" name="SpektrixIFrame"
-                    :src="`https://{{ nova_get_setting('spektrix_custom_domain') }}/{{ nova_get_setting('spektrix_client_name') }}/website/Basket2.aspx?resize=true`"></iframe>
+                    :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/Basket2.aspx?resize=true`"></iframe>
             </div>
         </template>
 

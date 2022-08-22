@@ -110,7 +110,7 @@
                         @endforeach
                     @else
                         <div class="mt-12 max-w-md rounded bg-gray py-16 text-center">
-                            {!! nova_get_setting('no_scheduled_screenings', 'No scheduled screenings') !!}
+                            {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
                         </div>
                     @endif
 
@@ -134,7 +134,7 @@
                             </div>
                             <iframe x-on:load="iFrameLoading = false" class="h-96 w-full transition-all" id="SpektrixIFrame"
                                 name="SpektrixIFrame"
-                                :src="`https://{{ nova_get_setting('spektrix_custom_domain') }}/{{ nova_get_setting('spektrix_client_name') }}/website/ChooseSeats.aspx?EventInstanceId=${ selectedScreening }&resize=true`"></iframe>
+                                :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ selectedScreening }&resize=true`"></iframe>
                         </div>
                     </template>
                 </div>

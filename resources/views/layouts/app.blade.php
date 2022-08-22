@@ -4,7 +4,7 @@
 <head>
 
     @production
-        @includeWhen(nova_get_setting('google_analytics'), 'analytics')
+        @includeWhen(isset($settings['google_analytics']), 'analytics')
     @endproduction
 
     <title>
@@ -17,7 +17,7 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script
-        src="https://{{ nova_get_setting('spektrix_custom_domain') }}/{{ nova_get_setting('spektrix_client_name') }}/website/scripts/integrate.js">
+        src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/scripts/integrate.js">
     </script>
     <script src="https://webcomponents.spektrix.com/stable/webcomponents-loader.js"></script>
     <script src="https://webcomponents.spektrix.com/stable/spektrix-component-loader.js" data-components="@getWebComponents()"

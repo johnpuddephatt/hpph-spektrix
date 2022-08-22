@@ -26,11 +26,18 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function boot()
     {
-        foreach (config("nova-settings-config") as $settings) {
+        $settings = [
+            new \App\Nova\Settings\Alert(),
+            new \App\Nova\Settings\Cinema(),
+            new \App\Nova\Settings\Messages(),
+            new \App\Nova\Settings\Services(),
+        ];
+
+        foreach ($settings as $setting) {
             \Outl1ne\NovaSettings\NovaSettings::addSettingsFields(
-                $settings["fields"] ?? [],
-                $settings["casts"] ?? [],
-                $settings["page"] ?? null
+                $setting->fields() ?? [],
+                $setting->casts() ?? [],
+                $setting->page ?? null
             );
         }
 
