@@ -20,12 +20,6 @@ class Kernel extends ConsoleKernel
             ->command("media-library:delete-old-temporary-uploads")
             ->daily();
 
-        $schedule
-            ->call(function () {
-                logger("every minute!");
-            })
-            ->everyMinute();
-
         $schedule->command("fetch:all")->hourly();
     }
 
