@@ -44,9 +44,10 @@ class FetchEventData implements ShouldQueue
         $instances = $this->getInstances($events);
         $this->getInstancesVenues($instances);
         $this->updateOrCreateEvents($events);
-        $this->updateOrCreateInstances($instances);
         $this->updateOrCreateSeasons($instances);
         $this->updateOrCreateStrands($instances);
+        $this->updateOrCreateInstances($instances);
+
         Log::channel("spektrix")->info(
             "Imported " .
                 count($events) .
