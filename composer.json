@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1.0",
-        "advoor/nova-editor-js": "3.0.4",
+        "advoor/nova-editor-js": "^3.0",
         "armincms/many-to-many": "^1.0",
         "astrotomic/laravel-cachable-attributes": "^0.4.0",
         "blade-ui-kit/blade-icons": "^1.3",

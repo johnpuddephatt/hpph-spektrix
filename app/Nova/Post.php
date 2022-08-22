@@ -57,7 +57,9 @@ class Post extends Resource
                     ],
                 ])
                 ->rules("required"),
-            Tags::make("Tags"),
+            Tags::make("Tags")
+                ->limit(2)
+                ->help("Select a maximum of two tags"),
             Textarea::make("Introduction")
                 ->rows(2)
                 ->withMeta([
@@ -73,6 +75,7 @@ class Post extends Resource
             Images::make("Main image", "main")->rules("required"),
             NovaEditorJsField::make("Content")
                 ->hideFromIndex()
+                ->stacked()
                 ->rules("required"),
         ];
     }

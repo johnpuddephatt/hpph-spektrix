@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Tags\HasTags;
+use Advoor\NovaEditorJs\NovaEditorJsCast;
 
 class Post extends Model implements HasMedia
 {
@@ -25,6 +26,7 @@ class Post extends Model implements HasMedia
 
     protected $casts = [
         "created_at" => "date",
+        "content" => NovaEditorJsCast::class,
     ];
 
     public function getActivitylogOptions(): LogOptions
