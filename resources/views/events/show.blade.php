@@ -171,6 +171,6 @@
         <div class="h-screen"></div>
     @endif
 
-    <x-journal-posts :block="$event" />
+    <x-journal-posts :posts="$event->posts" />
 
 @endsection

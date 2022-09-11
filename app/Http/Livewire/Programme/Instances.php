@@ -20,11 +20,11 @@ class Instances extends Component
         return view("livewire.programme.instances", [
             "instances" => \App\Models\Instance::whereBetween("start", [
                 Carbon::today()->addDays(
-                    $this->options[$this->selected_option]["offset"]
+                    $this->options[$this->selected_option]->offset
                 ),
                 Carbon::today()->addDays(
-                    $this->options[$this->selected_option]["offset"] +
-                        $this->options[$this->selected_option]["duration"] *
+                    $this->options[$this->selected_option]->offset +
+                        $this->options[$this->selected_option]->duration *
                             $this->page
                 ),
             ])
@@ -45,7 +45,7 @@ class Instances extends Component
                     "strand_name",
                     "audio_described"
                 )
-                ->take($this->options[$this->selected_option]["limit"] ?? -1)
+                ->take($this->options[$this->selected_option]->limit ?? -1)
                 ->get(),
         ]);
     }

@@ -6,7 +6,7 @@ return [
      */
     "editorSettings" => [
         "placeholder" => "Start typing something...",
-        "initialBlock" => "paragraph",
+        "defaultBlock" => "paragraph",
         "autofocus" => false,
     ],
 
@@ -14,9 +14,8 @@ return [
      * Configure tools
      */
     "toolSettings" => [
-        "test" => [
+        "blockWidthTune" => [
             "activated" => true,
-            "inlineToolbar" => true,
         ],
         "header" => [
             "package" => "@editorjs/header",
@@ -30,8 +29,26 @@ return [
             "inlineToolbar" => true,
             "shortcut" => "CMD+SHIFT+L",
         ],
-        "code" => [
+        "detailssummary" => [
             "activated" => true,
+            "inlineToolbar" => true,
+            "shortcut" => "CMD+SHIFT+>",
+        ],
+        "carousel" => [
+            "activated" => true,
+            "shortcut" => "CMD+SHIFT+C",
+        ],
+        "toggle" => [
+            "activated" => false,
+            "inlineToolbar" => true,
+        ],
+        "quote" => [
+            "activated" => true,
+            "inlineToolbar" => true,
+            "shortcut" => "CMD+SHIFT+Q",
+        ],
+        "code" => [
+            "activated" => false,
             "placeholder" => "",
             "shortcut" => "CMD+SHIFT+C",
         ],
@@ -40,7 +57,7 @@ return [
             "shortcut" => "CMD+SHIFT+L",
         ],
         "image" => [
-            "activated" => true,
+            "activated" => false,
             "shortcut" => "CMD+SHIFT+I",
             "path" => "public/images",
             "disk" => "local",
@@ -87,20 +104,20 @@ return [
             ],
         ],
         "inlineCode" => [
-            "activated" => true,
+            "activated" => false,
             "shortcut" => "CMD+SHIFT+A",
         ],
         "checklist" => [
-            "activated" => true,
+            "activated" => false,
             "inlineToolbar" => true,
             "shortcut" => "CMD+SHIFT+J",
         ],
         "marker" => [
-            "activated" => true,
+            "activated" => false,
             "shortcut" => "CMD+SHIFT+M",
         ],
         "delimiter" => [
-            "activated" => true,
+            "activated" => false,
         ],
         "table" => [
             "activated" => true,
@@ -128,14 +145,11 @@ return [
      */
     "validationSettings" => [
         "tools" => [
-            "test" => [
+            "carousel" => [
                 "title" => [
                     "type" => "string",
                 ],
                 "body" => [
-                    "type" => "string",
-                ],
-                "foo" => [
                     "type" => "string",
                 ],
             ],
@@ -146,6 +160,16 @@ return [
                 "level" => [
                     "type" => "int",
                     "canBeOnly" => [1, 2, 3, 4, 5],
+                ],
+            ],
+            "detailssummary" => [
+                "summary" => [
+                    "type" => "string",
+                    "allowedTags" => "i,b,u,a[href]",
+                ],
+                "details" => [
+                    "type" => "string",
+                    "allowedTags" => "i,b,u,a[href]",
                 ],
             ],
             "paragraph" => [
@@ -206,6 +230,18 @@ return [
             ],
             "code" => [
                 "code" => [
+                    "type" => "string",
+                ],
+            ],
+            "quote" => [
+                "text" => [
+                    "type" => "string",
+                ],
+                "caption" => [
+                    "type" => "string",
+                    "allowedTags" => "br",
+                ],
+                "alignment" => [
                     "type" => "string",
                 ],
             ],

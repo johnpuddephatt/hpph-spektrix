@@ -1,3 +1,13 @@
-<div class="container prose">
-    {{ Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput($editorjs) }}
+@if (isset($block))
+    @php $content = $block->editorjs @endphp
+@endif
+
+<div class="{{ $align ?? null == 'right' ? 'ml-[50%] max-w-xl' : '' }} py-20">
+    @foreach ($content->blocks as $block)
+        @if ($block->type == 'carousel')
+            @php $block->data = ['images' => $block->data] @endphp
+        @endif
+        @include('vendor.nova-editor-js.' . $block->type,
+            array_merge((array) $block->data, ['tunes' => $block->tunes ?? []]))
+    @endforeach
 </div>

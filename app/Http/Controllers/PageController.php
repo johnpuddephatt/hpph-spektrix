@@ -9,20 +9,32 @@ class PageController extends Controller
 {
     public function home()
     {
-        return view("pages.show", [
-            "page" => Page::where("slug", "/")->firstOrFail(),
+        $page = Page::where("template", "home-page")->first();
+
+        return view("pages." . $page["template"], [
+            "page" => $page->resolveContent(),
         ]);
     }
-    public function show(Page $page1, Page $page2 = null, Page $page3 = null)
+
+    // public function show(Page $page1, Page $page2 = null, Page $page3 = null)
+    public function show($slug)
     {
-        $page = $page3 ?? ($page2 ?? $page1);
+        $slug_parts = explode("/", $slug);
+        $page = Page::where("slug", end($slug_parts))->first();
 
-        // $page->renderedContent = \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput(
-        //     $page->content
-        // );
+        if (!$page) {
+            abort(404);
+        }
 
-        return view("pages.show", [
-            "page" => $page,
+        if (
+            count($slug_parts) > 1 &&
+            $page->parent->slug != $slug_parts[count($slug_parts) - 2]
+        ) {
+            abort(404);
+        }
+
+        return view("pages." . $page->template, [
+            "page" => $page->resolveContent(),
         ]);
     }
 }

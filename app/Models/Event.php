@@ -126,8 +126,8 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection("main")->singleFile();
-        $this->addMediaCollection("secondary")->singleFile();
+        $this->addMediaCollection("main")->singleFile(); // used on page hero
+        $this->addMediaCollection("secondary")->singleFile(); // used as thumbnail and lower down on page
         $this->addMediaCollection("gallery");
     }
 

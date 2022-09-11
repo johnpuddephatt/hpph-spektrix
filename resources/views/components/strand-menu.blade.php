@@ -12,7 +12,7 @@
             <div class="text-center">
 
                 @if ($strand->featuredImage)
-                    {!! $strand->featuredImage->img('landscape', ['class' => 'block rounded w-full'])->toHtml() !!}
+                    <x-image class="block w-full" :width="512" :src="$strand->featuredImage->getUrl('landscape')" :srcset="$strand->featuredImage->getSrcset('landscape')" />
                 @else
                     <div class="h-36 rounded bg-white opacity-50"></div>
                 @endif

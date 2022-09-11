@@ -16,6 +16,7 @@ export default defineConfig({
             "resources/css/app.css",
             "resources/css/spektrix.css",
             "resources/js/app.js",
+            "resources/js/editorjs-plugins.js",
         ]),
         {
             name: "blade",

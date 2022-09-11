@@ -4,13 +4,18 @@
     "src": "resources/js/app.js",
     "isEntry": true
   },
+  "resources/js/editorjs-plugins.js": {
+    "file": "assets/editorjs-plugins.fb452b4f.js",
+    "src": "resources/js/editorjs-plugins.js",
+    "isEntry": true
+  },
   "resources/css/app.css": {
-    "file": "assets/app.37f36848.css",
+    "file": "assets/app.dacb00e8.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/spektrix.css": {
-    "file": "assets/spektrix.c3f4276d.css",
+    "file": "assets/spektrix.671d1db7.css",
     "src": "resources/css/spektrix.css",
     "isEntry": true
   }

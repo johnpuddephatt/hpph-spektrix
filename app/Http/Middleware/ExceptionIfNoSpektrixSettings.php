@@ -20,7 +20,11 @@ class ExceptionIfNoSpektrixSettings
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
+        \Cache::rememberForever("settings", function () {
+            return nova_get_settings();
+        });
         if (
+            !\Cache::get("settings") ||
             !\Cache::get("settings")["spektrix_custom_domain"] ||
             !\Cache::get("settings")["spektrix_client_name"]
         ) {

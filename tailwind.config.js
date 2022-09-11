@@ -10,7 +10,7 @@ module.exports = {
     plugins: [require("tailwind-scrollbar-hide")],
     theme: {
         container: {
-            screens: { mobile: "1440px", tablet: "1440px", desktop: "1440px" },
+            screens: { mobile: "2560px", tablet: "2560px", desktop: "2560px" },
         },
         fontFamily: {
             sans: ['"Basis Grotesque"', ...defaultTheme.fontFamily.sans],

@@ -37,7 +37,7 @@ class ActivityOverview extends Table
                 ->iconClass("text-sky-500")
                 ->title(
                     Blade::render(
-                        '{{$activity->causer->name}} {{$activity->description}} {!!$activity->getExtraProperty("attributes.title") ?? $activity->getExtraProperty("attributes.name")!!}',
+                        '{{$activity->causer->name}} {{$activity->description}} {!! ($activity->getExtraProperty("attributes.title") ?? $activity->getExtraProperty("attributes.name")) ?? ($activity->getExtraProperty("old.title") ?? $activity->getExtraProperty("old.name")) !!}',
                         compact("activity")
                     )
                 )

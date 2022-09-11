@@ -5,7 +5,7 @@
             @foreach ($options as $option)
                 <button
                     class="type-subtitle lg:type-h5 {{ $selected_option == $loop->index && count($options) > 1 ? 'text-yellow underline' : '' }} font-bold lowercase"
-                    wire:click="$set('selected_option', {{ $loop->index }})">{{ $option['label'] }}</button>
+                    wire:click="$set('selected_option', {{ $loop->index }})">{{ $option->label }}</button>
                 @if (!$loop->last)
                     /
                 @endif

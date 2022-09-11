@@ -24,10 +24,20 @@ Route::middleware(["spektrix"])->group(function () {
         return view("brand");
     });
 
+    Route::get("journal", [
+        \App\Http\Controllers\PostController::class,
+        "index",
+    ])->name("post.index");
+
     Route::get("/journal/{post:slug}", [
         \App\Http\Controllers\PostController::class,
         "show",
     ])->name("post.show");
+
+    Route::get("/opportunities/{opportunity:slug}", [
+        \App\Http\Controllers\OpportunityController::class,
+        "show",
+    ])->name("opportunity.show");
 
     Route::get(
         "whats-on",
@@ -44,7 +54,7 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("strand.show");
 
-    Route::get("/{page1}/{page2?}/{page3?}", [
+    Route::get("{page1}", [
         \App\Http\Controllers\PageController::class,
         "show",
     ])->where("page1", "^(?!nova).*");

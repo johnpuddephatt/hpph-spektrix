@@ -8,7 +8,7 @@
     @endproduction
 
     <title>
-        {{ config('app.name') }} — @yield('title', config('app.description'))
+        @yield('title', config('app.description')) | {{ config('app.name') }}
     </title>
     <meta name="description" content="@yield('description', config('app.description'))" />
     <meta charset="utf-8" />
@@ -28,8 +28,9 @@
     @stack('head')
 </head>
 
-<body class="leading-[125%] tracking-normal" :class="{ 'overflow-hidden': menu_open || nav_open }" x-data="{ menu_open: false, nav_open: false }"
-    @menutoggled.window="menu_open = $event.detail" @navtoggled.window="nav_open = $event.detail">
+<body class="leading-[137.5%] tracking-normal" :class="{ 'overflow-hidden': menu_open || nav_open }"
+    x-data="{ menu_open: false, nav_open: false }" @menutoggled.window="menu_open = $event.detail"
+    @navtoggled.window="nav_open = $event.detail">
     @yield('templatecontent')
     @stack('footer')
     @livewireScripts

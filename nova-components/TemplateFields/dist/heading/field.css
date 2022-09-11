@@ -62,6 +62,9 @@
 .hpph-field .p-4 {
     padding: 1rem
 }
+.hpph-field .p-0 {
+    padding: 0px
+}
 .hpph-field .py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem
@@ -73,6 +76,9 @@
 .hpph-field .py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem
+}
+.hpph-field .pt-4 {
+    padding-top: 1rem
 }
 .hpph-field .text-xs {
     font-size: 0.75rem;
@@ -111,6 +117,10 @@
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
 }
 .hpph-field .outline-none {
+    outline: 2px solid transparent;
+    outline-offset: 2px
+}
+.hpph-field .focus-within\:outline-none:focus-within {
     outline: 2px solid transparent;
     outline-offset: 2px
 }

@@ -10,7 +10,7 @@ class Membership extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    public $timestamps = true;
     public $incrementing = false;
     protected $keyType = "string";
 

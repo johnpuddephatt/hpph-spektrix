@@ -35,5 +35,6 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\MenuObserver::class
         );
         \App\Models\Strand::observe(\App\Observers\StrandObserver::class);
+        \App\Models\Page::observe(\App\Observers\PageObserver::class);
     }
 }

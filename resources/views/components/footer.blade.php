@@ -1,6 +1,6 @@
 <footer class="relative">
     <div class="bg-yellow py-6">
-        <div class="container items-center justify-between gap-24 lg:flex">
+        <div class="container items-center gap-16 lg:flex">
             <div class="flex flex-row justify-center gap-4 py-1 lg:w-1/2 lg:justify-start xl:items-start">
                 @foreach (['facebook', 'twitter', 'youtube', 'instagram', 'linkedin', 'vimeo'] as $account)
                     @if (isset($settings[$account]))
@@ -12,16 +12,19 @@
             </div>
 
             @if (isset($settings['opening_hours']))
-                <div class="flex-row gap-12 lg:flex lg:w-1/2">
-                    <h3 class="mx-auto mt-4 mb-2 text-center font-bold lg:mx-0 lg:mt-0 lg:mb-0 lg:w-1/2 lg:text-left">
-                        Opening hours</h3>
-                    <div class="mx-auto max-w-xs lg:mx-0 lg:w-1/2">
-                        @foreach ($settings['opening_hours'] as $day => $hours)
-                            <div class="flex flex-row gap-12 lg:gap-4">
-                                <div class="w-1/2 lg:w-1/3">{{ $day }}:</div>
-                                <div class="w-1/2 lg:w-2/3">{{ $hours }}</div>
-                            </div>
-                        @endforeach
+                <div class="lg:w-1/2">
+                    <div class="flex-row gap-12 lg:flex lg:max-w-2xl">
+                        <h3
+                            class="mx-auto mt-4 mb-2 text-center font-bold lg:mx-0 lg:mt-0 lg:mb-0 lg:w-1/2 lg:text-left">
+                            Opening hours</h3>
+                        <div class="mx-auto max-w-xs lg:mx-0 lg:w-1/2">
+                            @foreach ($settings['opening_hours'] as $day => $hours)
+                                <div class="flex flex-row gap-12 lg:gap-4">
+                                    <div class="w-1/2 lg:w-1/3">{{ $day }}:</div>
+                                    <div class="w-1/2 lg:w-2/3">{{ $hours }}</div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             @endif
@@ -30,7 +33,7 @@
     </div>
 
     <div class="bg-black py-12 text-gray-light">
-        <div class="container grid grid-cols-2 gap-x-4 gap-y-16 lg:grid-cols-4 lg:gap-x-24 xl:gap-y-16">
+        <div class="container grid grid-cols-2 gap-x-4 gap-y-16 lg:grid-cols-4 lg:gap-x-16 xl:gap-y-16">
             <div class="flex flex-col gap-6">
                 @if (isset($settings['phone']))
                     <div>
@@ -73,7 +76,7 @@
                 @endif
 
             </div>
-            <div class="-order-1 col-span-2 row-span-2 lg:-order-none">
+            <div class="-order-1 col-span-2 row-span-2 lg:-order-none lg:max-w-xl">
                 <h3 class="font-bold text-white">Sign up to our newsletter</h3>
 
                 <form class="mt-16 grid grid-cols-2 border-t">
@@ -133,6 +136,5 @@
             </div>
         </div>
     </div>
-
 
 </footer>

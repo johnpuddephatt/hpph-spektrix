@@ -20,6 +20,7 @@ class BasicHeaderField extends Field
         $model,
         $attribute
     ) {
+        dd($request);
         if ($request->exists($requestAttribute)) {
             \Laravel\Nova\Http\Requests\NovaRequest::createFrom($request)
                 ->findModelQuery()

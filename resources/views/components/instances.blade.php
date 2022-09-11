@@ -2,7 +2,7 @@
 
 <div x-data="{ open: null }" class="mb-16">
     @forelse ($instances as $instance)
-        @if ($options[$selected_option]['duration'] > 1 &&
+        @if ($options[$selected_option]->duration > 1 &&
             ($loop->index == 0 ||
                 $instances->get($loop->index - 1)->start->format('l d F, Y') !== $instance->start->format('l d F, Y')))
             <h3 class="border-t border-gray-light py-6 font-bold">{{ $instance->start->format('l d F, Y') }}</h3>

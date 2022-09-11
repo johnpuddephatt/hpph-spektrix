@@ -14,7 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $featured_post = \App\Models\Post::latest()
+            ->where("featured", true)
+            ->first();
+        return view("posts.index", compact("featured_post"));
     }
 
     /**
@@ -46,9 +49,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post->renderedContent = \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput(
-            $post->content
-        );
+        $post->content = json_decode($post->content);
         return view("posts.show", compact("post"));
     }
 

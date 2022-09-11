@@ -8,14 +8,18 @@
         <div
             class="bg-stone-200 text-black py-8 px-4 flex flex-col md:flex-row gap-8 md:gap-16"
         >
-            <h1 class="font-bold text-5xl w-2/5">
-                {{ title }}
-            </h1>
+            <input
+                type="text"
+                placeholder="Page title"
+                readonly
+                class="focus-within:outline-none font-bold bg-transparent p-0 text-5xl w-2/5"
+                v-model="title"
+            />
             <textarea
                 @input="updateHeight($event.target)"
                 ref="introductionTextarea"
-                class="resize-none border-none outline-none bg-transparent flex-1 font-bold text-2xl"
-                placeholder="placeholder"
+                class="pt-4 resize-none border-none outline-none bg-transparent flex-1 font-bold text-2xl"
+                placeholder="An introduction to this page can go here."
                 v-model="introduction"
             >
             </textarea>
@@ -40,8 +44,7 @@ export default {
 
     data: {
         title: null,
-        introduction:
-            "What does Lorem ipsum dolor sit amet consectetuer adipiscing elit sed diam nonummy nibh euismod tincidunt ut laoreet dolore mean in English?",
+        introduction: null,
     },
 
     methods: {
@@ -55,7 +58,7 @@ export default {
 
         updateHeight(element) {
             element.style.height = "auto";
-            element.scrollHeight + "px";
+            element.style.height = element.scrollHeight + "px";
         },
     },
 

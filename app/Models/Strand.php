@@ -11,6 +11,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
@@ -69,5 +70,16 @@ class Strand extends Model implements HasMedia, CachableAttributes
     public function instances()
     {
         return $this->hasMany(Instance::class, "strand_name", "name");
+    }
+
+    public function logo(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => str_replace(
+                "<svg",
+                '<svg class="w-full h-auto"',
+                $value
+            )
+        );
     }
 }

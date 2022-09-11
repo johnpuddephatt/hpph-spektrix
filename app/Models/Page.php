@@ -8,12 +8,17 @@ use Illuminate\Support\Str;
 use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Arr;
 
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
 use App\Casts\PageCast;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
+use Illuminate\Support\Facades\Cache;
 
 class Page extends Model implements HasMedia
 {
@@ -21,16 +26,17 @@ class Page extends Model implements HasMedia
     use InteractsWithMedia;
     use HasFlexible;
     use LogsActivity;
+    use Sluggable;
 
-    protected $fillable = ["title", "content", "slug", "parent_page_id"];
+    protected $fillable = ["name", "template", "content", "parent_id", "slug", "introduction"];
 
     protected $casts = [
-        "content" => PageCast::class,
+        "content" => "object",
     ];
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(["title"]);
+        return LogOptions::defaults()->logOnly(["name"]);
     }
 
     public function getRouteKeyName()
@@ -38,31 +44,56 @@ class Page extends Model implements HasMedia
         return "slug";
     }
 
-    protected static function booted()
+    public function sluggable(): array
     {
-        static::creating(function ($post) {
-            if ($post->title !== "Home" && !isset($post->slug)) {
-                $post->slug = Str::slug($post->title, "-");
-            }
-        });
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 
     public function registerMediaConversions(Media $media = null): void
     {
-        if ($media && Str::startsWith($media->collection_name, "gallery_")) {
-            $this->addMediaConversion("portrait")
-                ->quality(80)
-                ->sharpen(10)
-                ->crop("crop-center", 1360, 1600)
-                ->withResponsiveImages()
-                ->performOnCollections($media->collection_name);
-        }
+        $this->addMediaConversion("wide")
+            ->quality(80)
+            // ->width(1920)
+            // ->height(1080)
+            ->sharpen(10)
+            ->crop("crop-center", 1500, 627)
+            ->withResponsiveImages()
+            ->performOnCollections("main", "secondary");
+
+        $this->addMediaConversion("landscape")
+            ->quality(80)
+            // ->width(1920)
+            // ->height(1080)
+            ->sharpen(10)
+            ->crop("crop-center", 1200, 800)
+            ->withResponsiveImages()
+            ->performOnCollections("main", "banner", "gallery", "secondary");
+
+        $this->addMediaConversion("portrait")
+            ->quality(80)
+            ->sharpen(10)
+            ->crop("crop-center", 1360, 1600)
+            ->withResponsiveImages()
+            ->performOnCollections("gallery");
+
+        // if ($media && Str::startsWith($media->collection_name, "gallery_")) {
+        //     $this->addMediaConversion("portrait")
+        //         ->quality(80)
+        //         ->sharpen(10)
+        //         ->crop("crop-center", 1360, 1600)
+        //         ->withResponsiveImages()
+        //         ->performOnCollections($media->collection_name);
+        // }
 
         if ($media && Str::startsWith($media->collection_name, "banner_")) {
             $this->addMediaConversion("landscape")
                 ->quality(80)
                 ->sharpen(10)
-                ->crop("crop-center", 1600, 1360)
+                ->crop("crop-center", 1600, 900)
                 ->withResponsiveImages()
                 ->performOnCollections($media->collection_name);
         }
@@ -70,15 +101,37 @@ class Page extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
+        $this->addMediaCollection("main")->singleFile();
+        $this->addMediaCollection("secondary")->singleFile();
         $this->addMediaCollection("gallery");
-        $this->addMediaCollection("banner")->singleFile();
+
+        $this->addMediaCollection("banner")->singleFile(); // a block with an image background and overlaid text
+        
+    }
+
+    public function mainImage(): MorphOne
+    {
+        return $this->morphOne(Media::class, "model")->where(
+            "collection_name",
+            "=",
+            "main"
+        );
+    }
+
+        public function secondaryImage(): MorphOne
+    {
+        return $this->morphOne(Media::class, "model")->where(
+            "collection_name",
+            "=",
+            "secondary"
+        );
     }
 
     public function getURLAttribute()
     {
         $path = "";
-        if ($this->parent_page) {
-            $path .= $this->parent_page->URL;
+        if ($this->parent) {
+            $path .= $this->parent->URL;
         }
         if ($this->slug !== "/") {
             $path .= "/";
@@ -86,26 +139,26 @@ class Page extends Model implements HasMedia
         return $path .= $this->slug;
     }
 
-    public function parent_page()
+    public function parent()
     {
-        return $this->belongsTo(\App\Models\Page::class, "parent_page_id");
+        return $this->belongsTo(\App\Models\Page::class, "parent_id");
     }
 
-    public function child_pages()
+    public function children()
     {
-        return $this->hasMany(\App\Models\Page::class, "parent_page_id");
+        return $this->hasMany(\App\Models\Page::class, "parent_id");
     }
 
-    public function indented_title()
+    public function indented_name()
     {
-        if ($this->parent_page) {
-            if ($this->parent_page->parent_page) {
-                return "&nbsp;&mdash;&mdash;&mdash;&mdash;&nbsp;&nbsp;&nbsp;{$this->title}";
+        if ($this->parent) {
+            if ($this->parent->parent) {
+                return "&nbsp;&mdash;&mdash;&mdash;&mdash;&nbsp;&nbsp;&nbsp;{$this->name}";
             } else {
-                return "&nbsp;&mdash;&mdash;&nbsp;&nbsp;&nbsp;{$this->title}";
+                return "&nbsp;&mdash;&mdash;&nbsp;&nbsp;&nbsp;{$this->name}";
             }
         } else {
-            return $this->title;
+            return $this->name;
         }
     }
 
@@ -123,5 +176,36 @@ class Page extends Model implements HasMedia
             $query->orderByRaw("FIELD(id, $ids_ordered)");
         }
         return $query;
+    }
+
+    public static function getAvailableTemplates() {
+        return Arr::map(
+            array_filter(config("page-templates"), function($item, $key) {
+                return !$item['unique'] || !\App\Models\Page::where('template', $key)->count();
+            }, ARRAY_FILTER_USE_BOTH),
+            function($value) {
+                return (new $value['class'])->name();
+            }
+        );
+    }
+
+    public function resolveContent() {
+
+        $this->content = (new (config("page-templates")[$this->template][
+                    "class"
+                ]
+                ))->resolve($this);
+
+        return $this;
+    }
+
+    public function getHomeJournalPostsAttribute()
+    {
+        return Cache::remember("home_posts", 3600, function () {
+            return \App\Models\Post::with("mainImage")
+                ->latest()
+                ->take(3)
+                ->get();
+        });
     }
 }

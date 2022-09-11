@@ -27,7 +27,7 @@
                 </div>
                 <div
                     v-if="showDropdown"
-                    class="divide divide-gray-100 shadow-lg rounded absolute bg-white bottom-full left-0 right-0 border border-gray-100 dark:border-gray-700 overflow-scroll"
+                    class="divide divide-gray-100 shadow-lg rounded z-20 absolute bg-white bottom-full left-0 right-0 border border-gray-100 dark:border-gray-700 overflow-scroll"
                     :style="{ height: currentField.height }"
                 >
                     <div

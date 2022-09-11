@@ -12,13 +12,9 @@ mix.setPublicPath("dist")
     .postCss("resources/heading/css/field.css", "heading/field.css", [
         require("tailwindcss"),
     ])
-    .postCss("resources/home-hero/css/field.css", "home-hero/field.css", [
-        require("tailwindcss"),
-    ])
     .js("resources/banner/js/field.js", "banner")
     .js("resources/basic-header/js/field.js", "basic-header")
     .js("resources/heading/js/field.js", "heading")
-    .js("resources/home-hero/js/field.js", "home-hero")
     .vue({ version: 3 })
     .nova("hpph/test-field")
     .override((webpackConfig) => {

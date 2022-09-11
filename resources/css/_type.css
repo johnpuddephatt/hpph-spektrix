@@ -32,7 +32,7 @@
     }
 
     .type-label {
-        @apply font-mono text-[0.75rem] uppercase leading-[117%] tracking-[0.030em];
+        @apply font-mono text-[0.75rem] uppercase leading-[117%] tracking-[0.030em] font-normal;
     }
 
     .type-annotation {

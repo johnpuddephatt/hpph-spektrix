@@ -27,9 +27,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::directive("webComponent", function ($component) {
-            if (!isset($spektrix_web_components)) {
-                $spektrix_web_components = [];
-            }
             $web_components = config("spektrix_web_components") ?? [];
             array_push($web_components, ...explode(",", $component));
 
@@ -39,13 +36,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::directive("getWebComponents", function () {
-            if (config("spektrix_web_components")) {
-                return Str::of(implode(",", config("spektrix_web_components")))
-                    ->replace('\'', "")
-                    ->replace(" ", "");
-            } else {
-                return "empty";
-            }
+            // if (config("spektrix_web_components")) {
+            return Str::of(implode(",", config("spektrix_web_components")))
+                ->replace('\'', "")
+                ->replace(" ", "");
+            // } else {
+            //     return "wow";
+            // }
         });
 
         View::composer("*", function ($view) {

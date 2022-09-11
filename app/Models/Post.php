@@ -10,10 +10,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Tags\HasTags;
 use Advoor\NovaEditorJs\NovaEditorJsCast;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model implements HasMedia
 {
@@ -21,13 +23,32 @@ class Post extends Model implements HasMedia
     use InteractsWithMedia;
     use LogsActivity;
     use HasTags;
+    use Sluggable;
 
-    protected $fillable = ["title", "introduction", "content", "slug"];
+    protected $fillable = [
+        "title",
+        "introduction",
+        "featured",
+        "published",
+        "content",
+        "slug",
+    ];
 
     protected $casts = [
         "created_at" => "date",
-        "content" => NovaEditorJsCast::class,
+        "featured" => "boolean",
+        "published" => "boolean",
+        // "content" => NovaEditorJsCast::class,
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            "slug" => [
+                "source" => "title",
+            ],
+        ];
+    }
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -36,12 +57,12 @@ class Post extends Model implements HasMedia
 
     // protected $appends = ["image"];
 
-    protected static function booted()
-    {
-        static::creating(function ($post) {
-            $post->slug = Str::slug($post->title, "-");
-        });
-    }
+    // protected static function booted()
+    // {
+    //     static::creating(function ($post) {
+    //         $post->slug = Str::slug($post->title, "-");
+    //     });
+    // }
 
     public function registerMediaCollections(): void
     {
@@ -58,6 +79,11 @@ class Post extends Model implements HasMedia
             ->crop("crop-center", 1200, 800)
             ->withResponsiveImages()
             ->performOnCollections("main");
+    }
+
+    public function getUrlAttribute()
+    {
+        return route("post.show", ["post" => $this->slug]);
     }
 
     // public function getImageAttribute(): array
@@ -80,6 +106,11 @@ class Post extends Model implements HasMedia
     public function events(): BelongsToMany
     {
         return $this->belongsToMany(\App\Models\Event::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(\App\Models\User::class);
     }
 
     public function getIntroductionAttribute($value)

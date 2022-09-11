@@ -4,14 +4,20 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
-use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Resource
 {
+    public static function label()
+    {
+        return "Staff";
+    }
     /**
      * The model the resource corresponds to.
      *
@@ -46,7 +52,22 @@ class User extends Resource
                 ->sortable()
                 ->hide(),
 
-            Gravatar::make()->maxWidth(50),
+            Avatar::make("Avatar")
+                ->maxWidth(50)
+                ->disableDownload()
+                ->store(function (Request $request, $model) {
+                    $image = Image::make($request->avatar)
+                        ->fit(200, 200)
+                        ->encode("jpg", 80);
+
+                    Storage::disk("public")->put(
+                        "/avatar/" . $request->avatar->getClientOriginalName(),
+                        $image
+                    );
+
+                    return "/avatar/" .
+                        $request->avatar->getClientOriginalName();
+                }),
 
             Text::make("Name")
                 ->sortable()
