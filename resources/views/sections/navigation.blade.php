@@ -32,11 +32,9 @@
                 @endif
             </div>
 
-
-
         </nav>
         <div class="lg:hidden">
-            @include('components.footer')
+            @include('sections.footer')
         </div>
     </div>
 

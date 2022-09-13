@@ -1,20 +1,14 @@
-<div class="flex flex-row gap-8 bg-white">
-    <div class="sticky top-0 max-h-screen min-h-[30rem] w-1/2 bg-gray p-8">
-        <h3 class="type-subtitle" style="color: {{ $strand->color }}">Information &amp; FAQs</h3>
-    </div>
-    <div class="container flex w-1/2 items-center py-8">
-        <div class="prose max-w-lg">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum, optio ipsa hic aut repellat officia
-                expedita
-                eos illum debitis obcaecati, vero aperiam magni eveniet facere excepturi, asperiores perferendis ut
-                voluptatibus.</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum, optio ipsa hic aut repellat officia
-                expedita
-                eos illum debitis obcaecati, vero aperiam magni eveniet facere excepturi, asperiores perferendis ut
-                voluptatibus.</p>
+@if ($more_information->enabled ?? false)
+    <div class="flex-row gap-8 bg-white lg:flex">
+        <div class="relative bg-gray lg:sticky lg:top-0 lg:max-h-screen lg:min-h-[30rem] lg:w-1/2">
+            <h3 class="type-subtitle absolute left-4 top-4 lg:left-8 lg:top-8" style="color: {{ $strand->color }}">
+                {{ $more_information->title }}</h3>
+            {!! $strand->getMedia('content->more_information->image')->first()->img('square', ['class' => 'h-full object-cover object-center w-full'])->toHtml() !!}
         </div>
-
-
+        <div class="-mt-12 flex items-center lg:container lg:mt-0 lg:w-1/2 lg:py-8">
+            <div class="prose max-w-xl">
+                @include('components.editorjs', ['content' => json_decode($more_information->content)])
+            </div>
+        </div>
     </div>
-
-</div>
+@endif

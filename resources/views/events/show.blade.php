@@ -1,4 +1,4 @@
-@extends('layouts.default', ['header_colour' => 'light', 'header_position' => 'default', 'edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
+@extends('layouts.default', ['header_position' => 'absolute', 'edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
 @section('title', $event->name)
 @section('content')
     <div class="fixed inset-0 -z-10 h-[calc(100vh-1rem)] w-full overflow-hidden">
@@ -27,7 +27,6 @@
         <div class="pointer-events-none absolute bottom-full left-0 right-0 h-96 bg-gradient-to-t from-black to-transparent">
         </div>
 
-
         <a href="#event-content"
             class="fixed left-1/2 top-[calc(100vh-4rem-1rem)] z-10 -translate-x-1/2 transform text-5xl text-white">@svg('down-chevron', 'h-16 w-16')</a>
 
@@ -35,9 +34,9 @@
 
     <div class="relative mt-[calc(100vh-4.25rem-1rem)] bg-white">
 
-        <div class="flex-row lg:flex">
+        <div class="flex-row justify-between lg:flex">
 
-            <div class="container relative z-30 py-16 lg:w-1/2 lg:pr-32">
+            <div class="container relative z-30 ml-0 max-w-4xl py-16 lg:w-1/2 lg:pr-32">
                 <div class="type-large prose mb-24">
                     {{ $event->long_description }}
                 </div>
@@ -70,7 +69,6 @@
                     </div>
                 </div>
 
-
                 <h3 class="type-label">Film details</h3>
 
                 <div class="mt-4 divide-y divide-gray border-t border-gray">
@@ -97,7 +95,7 @@
                                     {{ $instance->start->format('l d F') }}</h3>
                             @endif
 
-                            <div class="flex flex-row items-center gap-2 border-t border-gray-light py-2">
+                            <div class="flex max-w-xl flex-row items-center gap-2 border-t border-gray-light py-2">
                                 <div class="type-annotation rounded bg-black py-1.5 px-2.5 text-white">
                                     {{ $instance->start->format('H:i') }}
                                 </div>
@@ -121,16 +119,10 @@
                         class="type-label absolute right-full origin-right translate-x-8 -rotate-90 transform whitespace-nowrap">
                         Make your booking</h2>
                     <template x-if="stage == 2">
-                        <div>
+                        <div class="max-w-xl">
                             <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
-                                <svg class="mt-16 ml-[35%] h-12 w-12 origin-center animate-spin text-white"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10"
-                                        stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                    </path>
-                                </svg>
+                                @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
+
                             </div>
                             <iframe x-on:load="iFrameLoading = false" class="h-96 w-full transition-all" id="SpektrixIFrame"
                                 name="SpektrixIFrame"

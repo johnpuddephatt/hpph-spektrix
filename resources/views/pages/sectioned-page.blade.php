@@ -4,7 +4,7 @@
 @section('description', $page->introduction)
 
 @section('content')
-    @include('components.pageheader-default')
+    @include('sections.pageheader-default')
 
     <div class="flex flex-row">
         @foreach ($page->getMedia('gallery')->shuffle()->take(5) as $image)

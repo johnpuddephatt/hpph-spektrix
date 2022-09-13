@@ -19,7 +19,7 @@
             @svg('eye', 'inline-block w-6 h-6 pb-0.5')
             What’s on</a>
 
-        @include('components.header-menu')
+        @include('sections.navigation')
 
         @if ($header_position == 'absolute' || $header_position == 'fixed')
             <div

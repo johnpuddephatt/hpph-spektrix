@@ -9,9 +9,13 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Textarea;
 use Advoor\NovaEditorJs\NovaEditorJs;
+use Advoor\NovaEditorJs\NovaEditorJsField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Laravel\Nova\Fields\Color;
 use Hpph\Svg\Svg;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\FormData;
+use Laravel\Nova\Panel;
 
 class Strand extends Resource
 {
@@ -48,16 +52,60 @@ class Strand extends Resource
     {
         return [
             ID::make()->hide(),
-            Text::make("Name"),
+            Text::make("Name")->withMeta([
+                "extraAttributes" => [
+                    "class" => "text-xl p-4 h-auto",
+                    "maxlength" => 50,
+                ],
+            ]),
             Color::make("Color"),
             Svg::make("Logo"),
             Images::make("Main image", "main"),
+            Images::make("Secondary image", "secondary"),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex(),
             Textarea::make("Description")
                 ->rows(3)
                 ->hideFromIndex(),
+            Panel::make("Members’ voices", [
+                Boolean::make(
+                    "Enabled?",
+                    "content->members_voices->enabled"
+                )->hideFromIndex(),
+                Textarea::make("Quote", "content->members_voices->quote")->rows(
+                    3
+                ),
+                Text::make(
+                    "Member name",
+                    "content->members_voices->name"
+                )->hideFromIndex(),
+                Text::make(
+                    "Member role/description",
+                    "content->members_voices->role"
+                )->hideFromIndex(),
+                Images::make(
+                    "Image",
+                    "content->members_voices->image"
+                )->hideFromIndex(),
+            ]),
+            Panel::make("More information", [
+                Boolean::make(
+                    "Enabled?",
+                    "content->more_information->enabled"
+                )->hideFromIndex(),
+                Text::make("Title", "content->more_information->title")
+                    ->default("Information & FAQs")
+                    ->hideFromIndex(),
+                Images::make(
+                    "Image",
+                    "content->more_information->image"
+                )->hideFromIndex(),
+                NovaEditorJsField::make(
+                    "Content",
+                    "content->more_information->content"
+                )->hideFromIndex(),
+            ]),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];
     }
@@ -104,5 +152,15 @@ class Strand extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+
+    public function showWhenMembersVoicesEnabled(
+        $field,
+        NovaRequest $request,
+        FormData $formData
+    ) {
+        if ($formData["content->members_voices->enable"] ?? false) {
+            $field->show();
+        }
     }
 }

@@ -45,7 +45,12 @@ class Season extends Resource
     {
         return [
             ID::make()->hide(),
-            Text::make("Name"),
+            Text::make("Name")->withMeta([
+                "extraAttributes" => [
+                    "class" => "text-xl p-4 h-auto",
+                    "maxlength" => 50,
+                ],
+            ]),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex(),

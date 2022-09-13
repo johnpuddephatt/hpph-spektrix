@@ -105,7 +105,7 @@ class Page extends Resource
    
             Select::make("Template")
                     ->options(
-                        \App\Models\Page::getAvailableTemplates()
+                        \App\Models\Page::getAvailableTemplates($request->resourceId)
                     )
                     ->displayUsingLabels()->readonly(function ($request) {
                 return $request->isUpdateOrUpdateAttachedRequest();

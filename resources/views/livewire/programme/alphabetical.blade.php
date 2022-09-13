@@ -1,13 +1,13 @@
 <div class="mb-32 divide-y divide-gray-light border-t border-gray-light">
     @foreach ($events as $event)
         <div class="flex flex-row gap-6 py-8">
-
-            <div class="mb-auto aspect-video w-1/4 overflow-hidden rounded-lg bg-gray">
+            <a href="{{ route('event.show', ['event' => $event->slug]) }}"
+                class="mb-auto aspect-video w-1/4 overflow-hidden rounded-lg bg-gray">
                 @if ($event->featuredImage)
                     <x-image loading="lazy" class="block w-full" :src="$event->featuredImage->getUrl('wide')" :srcset="$event->featuredImage->getSrcset('wide')" />
                 @endif
-            </div>
-            <div class="flex w-1/2 flex-col">
+            </a>
+            <a href="{{ route('event.show', ['event' => $event->slug]) }}" class="flex w-1/2 flex-col">
 
                 <div class="mb-3">{{ $event->instance_dates }}</div>
                 <h2 class="type-h5 mb-4">{{ $event->name }}</h2>
@@ -21,7 +21,7 @@
                     <x-accessibilities :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl" :audiodescribed="$event->has_audio_described" />
                     <x-genres-vibes-badge class="ml-2" :values="$event->genres_and_vibes" />
                 </div>
-            </div>
+            </a>
             <div class="flex w-1/4 flex-grow flex-col">
                 @if ($event->description)
                     <p class="mb-auto overflow-hidden pb-4">

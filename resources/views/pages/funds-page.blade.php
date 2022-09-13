@@ -3,9 +3,11 @@
 @section('title', $page->name)
 @section('description', $page->introduction)
 
+@webComponent('spektrix-donate')
+@push('webComponents', '#spektrix-donate')
+
 @section('content')
-    @webComponent('spektrix-donate')
-    @include('components.pageheader-default')
+    @include('sections.pageheader-default')
 
     <div class="mb-16">
         @foreach ($page->content as $group)
@@ -15,22 +17,27 @@
                 </h2>
             </div>
 
-            <div>
+            <div class="container grid grid-cols-2 gap-4">
+
                 @foreach ($group->attributes->funds as $fund)
-                    @php $fund = \App\Models\Fund::find($fund) @endphp
-                    <h3>{{ $fund->name }}</h3>
-                    <spektrix-donate client-name="{{ $settings['spektrix_client_name'] }}"
-                        custom-domain="{{ $settings['spektrix_custom_domain'] }}" fund-id="{{ $fund->id }}">
-                        <span>Amount you are donating: £</span><span data-display-donation-amount></span>
-                        <button data-donate-amount="10">£10</button>
-                        <button data-donate-amount="20">£20</button>
-                        <button data-donate-amount="30">£30</button>
-                        <button data-donate-amount="0.001">0.001</button>
-                        <button data-submit-donation>Donate</button>
-                        <button data-clear-donation>Clear Donation</button>
-                        <div data-success-container style="display: none;">Insert success content/markup here</div>
-                        <div data-fail-container style="display: none;">Insert failure content/markup here</div>
-                    </spektrix-donate>
+                    <div>
+                        @php $fund = \App\Models\Fund::find($fund) @endphp
+
+                        @if ($fund->getMedia('main')->first())
+                            {!! $fund->getMedia('main')->first()->img('landscape', ['class' => 'rounded mb-4'])->toHtml() !!}
+                        @endif
+                        <h3 class="type-h5 mb-4">{{ $fund->name }}</h3>
+                        <div class="mb-4 max-w-xl">{{ $fund->description }}</div>
+                        <spektrix-donate client-name="{{ $settings['spektrix_client_name'] }}"
+                            custom-domain="{{ $settings['spektrix_custom_domain'] }}" fund-id="{{ $fund->id }}">
+                            <input value="20" class="inline-block rounded border border-black py-2 px-4" type="text"
+                                data-custom-donation-input>
+                            <button class="type-subtitle rounded bg-yellow py-2 px-8" data-submit-donation>Add to
+                                basket</button>
+                            <div data-success-container style="display: none;">Donation added to basket</div>
+                            <div data-fail-container style="display: none;">Donation could not be added to basket</div>
+                        </spektrix-donate>
+                    </div>
                 @endforeach
             </div>
     </div>

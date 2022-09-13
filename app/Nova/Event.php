@@ -120,7 +120,7 @@ class Event extends Resource
                             ->stacked(),
                     ]),
                     Tab::make("Media", [
-                        Images::make("Main image", "main"),
+                        Images::make("Main image", "main")->required(),
                         Images::make(
                             "Secondary image",
                             "secondary"

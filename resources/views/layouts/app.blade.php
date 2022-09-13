@@ -20,11 +20,11 @@
         src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/scripts/integrate.js">
     </script>
     <script src="https://webcomponents.spektrix.com/stable/webcomponents-loader.js"></script>
-    <script src="https://webcomponents.spektrix.com/stable/spektrix-component-loader.js" data-components="@getWebComponents()"
-        async></script>
+    <script src="https://webcomponents.spektrix.com/stable/spektrix-component-loader.js"
+        data-components="{{ trim(implode(',', explode('#', $__env->yieldPushContent('webComponents'))), ',') }}" async>
+    </script>
 
     @livewireStyles
-
     @stack('head')
 </head>
 

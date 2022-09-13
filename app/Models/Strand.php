@@ -31,6 +31,11 @@ class Strand extends Model implements HasMedia, CachableAttributes
         "short_description",
         "description",
         "logo",
+        "content",
+    ];
+
+    protected $casts = [
+        "content" => "object",
     ];
 
     public function sluggable(): array
@@ -48,14 +53,39 @@ class Strand extends Model implements HasMedia, CachableAttributes
             ->quality(80)
             ->crop("crop-center", 2000, 1200)
             ->sharpen(10)
-            ->format("webp")
+            ->format("jpg")
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections(
+                "main",
+                "content->more_information->image",
+                "content->members_voices->image"
+            );
+        $this->addMediaConversion("wide")
+            ->quality(80)
+            ->crop("crop-center", 1500, 627)
+            ->sharpen(10)
+            ->format("jpg")
+            ->withResponsiveImages()
+            ->performOnCollections("secondary");
+        $this->addMediaConversion("square")
+            ->quality(80)
+            ->crop("crop-center", 1200, 1200)
+            ->sharpen(10)
+            ->format("jpg")
+            ->withResponsiveImages()
+            ->performOnCollections("content->more_information->image");
     }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection("main")->singleFile();
+        $this->addMediaCollection("secondary")->singleFile();
+        $this->addMediaCollection(
+            "content->members_voices->image"
+        )->singleFile();
+        $this->addMediaCollection(
+            "content->more_information->image"
+        )->singleFile();
     }
 
     public function featuredImage(): MorphOne
@@ -64,6 +94,15 @@ class Strand extends Model implements HasMedia, CachableAttributes
             "collection_name",
             "=",
             "main"
+        );
+    }
+
+    public function secondaryImage(): MorphOne
+    {
+        return $this->morphOne(Media::class, "model")->where(
+            "collection_name",
+            "=",
+            "secondary"
         );
     }
 

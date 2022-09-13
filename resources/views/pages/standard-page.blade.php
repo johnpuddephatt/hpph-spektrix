@@ -4,7 +4,7 @@
 @section('description', $page->introduction)
 
 @section('content')
-    @include('components.pageheader-default')
+    @include('sections.pageheader-default')
 
     @if ($page->content)
         <div class="my-16">

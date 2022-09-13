@@ -26,25 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Blade::directive("webComponent", function ($component) {
-            $web_components = config("spektrix_web_components") ?? [];
-            array_push($web_components, ...explode(",", $component));
-
-            config([
-                "spektrix_web_components" => $web_components,
-            ]);
-        });
-
-        Blade::directive("getWebComponents", function () {
-            // if (config("spektrix_web_components")) {
-            return Str::of(implode(",", config("spektrix_web_components")))
-                ->replace('\'', "")
-                ->replace(" ", "");
-            // } else {
-            //     return "wow";
-            // }
-        });
-
         View::composer("*", function ($view) {
             $view->with(
                 "settings",

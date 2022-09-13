@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="440.838" height="291.156" viewBox="0 0 440.838 291.156">
 <style>
 .oscillate {
-    animation: oscillate 2s infinite ease-in-out;
+    animation: oscillate 1.5s infinite ease;
     transform-origin: center;
 }
 .oscillate-delayed {
-    animation-delay: 1s;
+    animation-delay: 0.75s;
 }
 
 @keyframes oscillate {

@@ -1,4 +1,4 @@
-@webComponent('spektrix-basket-summary')
+@push('webComponents', '#spektrix-basket-summary')
 
 <spektrix-basket-summary hidden id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
     x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ $settings['spektrix_client_name'] }}"
@@ -7,7 +7,7 @@
         @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
         @svg('basket', 'h-10 w-10 lg:h-6 lg:w-6 pb-1 ')
         <span
-            class="mobile-basket-count absolute top-0 right-0 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow px-0.5 text-[0.65rem] leading-tight text-black"
+            class="mobile-basket-count absolute top-0 right-0 h-3 w-3 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow px-0.5 pt-0.5 text-center text-[0.65rem] leading-tight text-black"
             data-basket-item-count></span>
     </a>
     <script>
@@ -35,7 +35,7 @@
         <template x-if="open">
             <div>
                 <div x-show="iFrameLoading" x-transition class="absolute inset-0 p-16">
-                    @svg('loading', 'w-32 mx-auto block pt-24 text-gray-medium')
+                    @svg('loading', 'w-32 mx-auto block pt-24 text-sand-dark')
                 </div>
                 <iframe x-on:load="iFrameLoading = false" class="w-full transition-all"
                     :class="{ 'opacity-0': iFrameLoading }" id="SpektrixIFrame" name="SpektrixIFrame"
@@ -45,5 +45,3 @@
 
     </div>
 </spektrix-basket-summary>
-
-<!-- </div> -->

@@ -28,22 +28,26 @@
         <div class="type-h4 container max-w-6xl py-16 text-center">{{ $strand->description }}</div>
     </div>
 
-    <div class="bg-black text-white">
-        <div class="py-12">
-            <h2 class="type-h5 container mb-12">What’s on</h2>
+    @if ($strand->instances->count())
+        <div class="bg-black text-white">
+            <div class="py-12">
+                <h2 class="type-h5 container mb-12">What’s on</h2>
 
-            <div class="overflow-x-auto pb-12 scrollbar-hide">
-                <div class="container flex flex-row gap-4">
-                    @foreach ($strand->instances as $instance)
-                        @include('components.instance-card')
-                    @endforeach
+                <div class="overflow-x-auto pb-12 scrollbar-hide">
+                    <div class="container flex flex-row gap-4">
+                        @foreach ($strand->instances as $instance)
+                            @include('components.instance-card')
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
+    @endif
 
-    </div>
+    @include('components.quote', ['members_voices' => $strand->content->members_voices])
+    @include('components.faq', ['more_information' => $strand->content->more_information])
 
-    @include('components.quote', ['quote' => $strand->quote])
-    @include('components.faq', ['quote' => $strand->quote])
-
+    @if ($strand->secondaryImage)
+        {!! $strand->secondaryImage->img('wide', ['class' => 'w-full h-auto'])->toHtml() !!}
+    @endif
 @endsection

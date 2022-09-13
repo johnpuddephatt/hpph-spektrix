@@ -1,4 +1,4 @@
-@webComponent('spektrix-memberships')
+@push('webComponents', '#spektrix-memberships')
 
 @foreach (\App\Models\Membership::showByBookingPath()->get() as $membership)
     <spektrix-memberships id="spektrixMemberships" client-name="{{ $settings['spektrix_client_name'] }}"

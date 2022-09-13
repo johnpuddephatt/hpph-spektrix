@@ -15,7 +15,7 @@
     @endif
 
     @if ($type == 'schedule')
-        <livewire:programme.instances :show_header="false" :show_load_more="true" :options="[['label' => 'Today', 'offset' => 0, 'duration' => 14]]" />
+        <livewire:programme.instances :show_header="false" :show_load_more="true" :options="[(object) ['label' => 'Today', 'offset' => 0, 'duration' => 14]]" />
     @endif
 
 </div>

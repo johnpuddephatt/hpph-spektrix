@@ -50,6 +50,7 @@ module.exports = {
 
             sand: {
                 DEFAULT: "#e6e4dd",
+                dark: "#d6d4cd",
             },
 
             orange: {

@@ -1,15 +1,16 @@
 <div class="mb-32 grid grid-cols-1 gap-y-16 gap-x-6 lg:grid-cols-2 2xl:grid-cols-3">
     @foreach ($events as $event)
         <div class="flex flex-col">
+            <a href="{{ route('event.show', ['event' => $event->slug]) }}">
+                <div class="mb-4 aspect-video overflow-hidden rounded-lg bg-gray">
+                    @if ($event->featuredImage)
+                        <x-image class="block w-full" :src="$event->featuredImage->getUrl('wide')" :srcset="$event->featuredImage->getSrcset('wide')" />
+                    @endif
+                </div>
 
-            <div class="mb-4 aspect-video overflow-hidden rounded-lg bg-gray">
-                @if ($event->featuredImage)
-                    <x-image class="block w-full" :src="$event->featuredImage->getUrl('wide')" :srcset="$event->featuredImage->getSrcset('wide')" />
-                @endif
-            </div>
-
-            <div class="mb-3">{{ $event->instance_dates }}</div>
-            <h2 class="type-h3 mb-12">{{ $event->name }}</h2>
+                <div class="mb-3">{{ $event->instance_dates }}</div>
+                <h2 class="type-h3 mb-12">{{ $event->name }}</h2>
+            </a>
 
             <div class="space-between flex flex-row items-center gap-16 border-y border-gray py-2">
 

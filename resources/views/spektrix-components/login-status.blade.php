@@ -1,4 +1,4 @@
-@webComponent('spektrix-login-status')
+@push('webComponents', '#spektrix-login-status')
 
 <spektrix-login-status class="block" client-name="{{ $settings['spektrix_client_name'] }}"
     custom-domain="{{ $settings['spektrix_custom_domain'] }}" id="login-status">

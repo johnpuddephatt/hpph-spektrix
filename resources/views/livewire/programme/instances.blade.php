@@ -1,4 +1,4 @@
-<div>
+<div class="pb-24">
     @if ($show_header && count($options ?? []))
         <h2 class="type-subtitle lg:type-h5 mb-16 font-bold">Showing
 
