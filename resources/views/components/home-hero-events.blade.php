@@ -43,19 +43,18 @@
             </div>
         </a>
 
-
         <!-- Buttons -->
         @if (count($events) > 1)
             <div class="relative z-10 mt-8 flex gap-8 px-5 2xl:px-6">
-                <template x-for="(slide, index) in slides" :key="slide.id">
+                @foreach ($events as $event)
                     <button
                         class="h-2.5 w-2.5 overflow-hidden rounded-full border border-white transition-colors duration-200 ease-out hover:bg-white hover:shadow-lg"
                         :class="{
-                            'bg-white': activeSlide === index,
-                            'bg-transparent': activeSlide !== index
+                            'bg-white': activeSlide === {{ $loop->index }},
+                            'bg-transparent': activeSlide !== {{ $loop->index }}
                         }"
-                        x-on:click="activeSlide = index"></button>
-                </template>
+                        x-on:click="activeSlide = {{ $loop->index }}"></button>
+                @endforeach
             </div>
         @endif
     </div>
