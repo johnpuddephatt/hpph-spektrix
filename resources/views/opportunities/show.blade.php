@@ -20,10 +20,10 @@
         <div class="container pt-24 lg:w-1/2">
             <div class="type-h5 mb-16 max-w-xl">{{ $opportunity->summary }}</div>
 
-            <table class="max-w-xl table-fixed border-b border-gray-light">
+            <table class="w-full max-w-xl table-fixed border-b border-gray-light">
                 @if ($opportunity->salary)
                     <tr>
-                        <td class="w-2/5 py-4 align-top font-bold">Pay</td>
+                        <td class="w-2/5 py-4 pr-4 align-top font-bold">Pay</td>
                         <td class="py-4 align-top">{{ $opportunity->salary }}
                         </td>
                     </tr>
@@ -31,7 +31,7 @@
 
                 @if ($opportunity->hours)
                     <tr>
-                        <td class="w-2/5 py-4 align-top font-bold">Hours</td>
+                        <td class="w-2/5 py-4 pr-4 align-top font-bold">Hours</td>
                         <td class="py-4 align-top">{{ $opportunity->hours }}
                         </td>
                     </tr>
@@ -39,7 +39,7 @@
 
                 @if ($opportunity->responsible_to)
                     <tr>
-                        <td class="w-2/5 py-4 align-top font-bold">Responsible to</td>
+                        <td class="w-2/5 py-4 pr-4 align-top font-bold">Responsible to</td>
                         <td class="py-4 align-top">{{ $opportunity->responsible_to }}
                         </td>
                     </tr>
@@ -47,7 +47,7 @@
 
                 @if ($opportunity->probation_period)
                     <tr>
-                        <td class="w-2/5 py-4 align-top font-bold">Probation period</td>
+                        <td class="w-2/5 py-4 pr-4 align-top font-bold">Probation period</td>
                         <td class="py-4 align-top">{{ $opportunity->probation_period }}
                         </td>
                     </tr>
@@ -55,7 +55,7 @@
 
                 @if ($opportunity->notice_period)
                     <tr>
-                        <td class="w-2/5 py-4 align-top font-bold">Notice period</td>
+                        <td class="w-2/5 py-4 pr-4 align-top font-bold">Notice period</td>
                         <td class="py-4 align-top">{{ $opportunity->notice_period }}
                         </td>
                     </tr>
@@ -63,7 +63,7 @@
 
                 @if ($opportunity->holidays)
                     <tr>
-                        <td class="w-2/5 py-4 pb-12 align-top font-bold">Holidays</td>
+                        <td class="w-2/5 py-4 pb-12 pr-4 align-top font-bold">Holidays</td>
                         <td class="py-4 pb-12 align-top">{{ $opportunity->holidays }}
                         </td>
                     </tr>
