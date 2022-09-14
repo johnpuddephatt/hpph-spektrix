@@ -8,6 +8,6 @@
             @php $block->data = ['images' => $block->data] @endphp
         @endif
         @include('vendor.nova-editor-js.' . $block->type,
-            array_merge((array) $block->data, ['tunes' => $block->tunes ?? []]))
+            array_merge((array) $block->data, ['_tunes' => $block->tunes ?? []]))
     @endforeach
 </div>
