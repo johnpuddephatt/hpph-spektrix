@@ -43,26 +43,9 @@ class SectionLayout extends Layout implements HasMedia
                     "activated" => false,
                 ],
                 "attaches" => [
-                    "title" => [
-                        "type" => "string",
-                    ],
-                    "file" => [
-                        "type" => "array",
-                        "data" => [
-                            "title" => [
-                                "type" => "string",
-                            ],
-                            "url" => [
-                                "type" => "string",
-                            ],
-                            "name" => [
-                                "type" => "string",
-                            ],
-                            "size" => [
-                                "type" => "integer",
-                            ],
-                        ],
-                    ],
+                    "activated" => true,
+                    "shortcut" => "CMD+SHIFT+A",
+                    "uploadFileEndpoint" => "/file-upload",
                 ],
                 "header" => [
                     "package" => "@editorjs/header",
