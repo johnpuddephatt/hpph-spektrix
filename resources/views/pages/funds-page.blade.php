@@ -3,7 +3,6 @@
 @section('title', $page->name)
 @section('description', $page->introduction)
 
-@webComponent('spektrix-donate')
 @push('webComponents', '#spektrix-donate')
 
 @section('content')
