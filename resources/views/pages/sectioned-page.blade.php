@@ -38,16 +38,18 @@
             </nav>
         </div>
 
-        <div class="container min-h-screen py-8 lg:w-1/2">
+        <div class="min-h-screen py-8 lg:w-1/2">
 
             @foreach ($page->content->flexible as $section)
                 <section
                     x-intersect:enter.half="activeSection = '{{ Illuminate\Support\Str::of($section->attributes->title)->kebab() }}'"
                     id="{{ Illuminate\Support\Str::of($section->attributes->title)->kebab() }}">
 
-                    {!! $page->getMedia('banner_' . $section->key)->first()->img('landscape', ['class' => 'rounded-md mb-6'])->toHtml() !!}
+                    <div class="container">
+                        {!! $page->getMedia('banner_' . $section->key)->first()->img('landscape', ['class' => 'rounded-md mb-6'])->toHtml() !!}
+                    </div>
 
-                    <h2 class="type-h3">
+                    <h2 class="type-h3 container">
                         {{ $section->attributes->title }}</h2>
 
                     @include('components.editorjs', [
