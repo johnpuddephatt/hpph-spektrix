@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Advoor\NovaEditorJs\NovaEditorJs;
+use Laravel\Nova\Fields\Boolean;
 
 class Season extends Resource
 {
@@ -35,6 +36,11 @@ class Season extends Resource
      */
     public static $search = ["id"];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScopes(["published", "enabled"]);
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -51,6 +57,8 @@ class Season extends Resource
                     "maxlength" => 50,
                 ],
             ]),
+            Boolean::make("Published"),
+            Boolean::make("Enabled"),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex(),

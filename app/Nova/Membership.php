@@ -35,7 +35,7 @@ class Membership extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScopes();
+        return $query->withoutGlobalScope("enabled");
     }
 
     /**
@@ -47,7 +47,7 @@ class Membership extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            Boolean::make("Published")->filterable(),
+            Boolean::make("Enabled")->filterable(),
             Boolean::make("Show when booking", "show_by_booking_path"),
             ID::make()->hide(),
             Text::make("Name")->readonly(),

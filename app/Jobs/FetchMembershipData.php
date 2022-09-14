@@ -42,10 +42,13 @@ class FetchMembershipData implements ShouldQueue
 
         $memberships = json_decode($res->getBody()->__toString());
 
+        \App\Models\Membership::query()->update(["enabled" => false]);
+
         foreach ($memberships as $membership) {
             \App\Models\Membership::withoutGlobalScopes()->updateOrCreate(
                 ["id" => $membership->id],
                 [
+                    "enabled" => true,
                     "name" => $membership->name ?? null,
                     "description" => $membership->description ?? null,
                     "long_description" => $membership->htmlDescription ?? false,

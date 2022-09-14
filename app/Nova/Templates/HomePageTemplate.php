@@ -36,11 +36,14 @@ class HomePageTemplate
             new Panel("Banner", [
                 Text::make("Title", "content->banner->title"),
                 Text::make("Subtitle", "content->banner->subtitle"),
-                Select::make("Height", "content->banner->height")->options([
-                    null => "Auto",
-                    "min-h-[66vh]" => "Two-thirds",
-                    "min-h-screen" => "Full",
-                ]),
+                Text::make("URL", "content->banner->url"),
+                Select::make("Height", "content->banner->height")
+                    ->options([
+                        null => "Auto",
+                        "min-h-[66vh]" => "Two-thirds",
+                        "min-h-screen" => "Full",
+                    ])
+                    ->displayUsingLabels(),
                 Images::make("Image", "banner"),
                 Boolean::make("Overlay", "content->banner->overlay"),
                 Select::make("Text colour", "content->banner->text_color")
@@ -141,6 +144,7 @@ class HomePageTemplate
                 "title" => $page->content->banner->title,
                 "subtitle" => $page->content->banner->subtitle,
                 "height" => $page->content->banner->height,
+                "url" => $page->content->banner->url,
                 "src" => $page->getMedia("banner")->count()
                     ? $page->getMedia("banner")[0]->getUrl("landscape")
                     : "",

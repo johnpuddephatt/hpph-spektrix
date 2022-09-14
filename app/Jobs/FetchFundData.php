@@ -42,10 +42,13 @@ class FetchFundData implements ShouldQueue
 
         $funds = json_decode($res->getBody()->__toString());
 
+        \App\Models\Fund::query()->update(["enabled" => false]);
+
         foreach ($funds as $fund) {
             \App\Models\Fund::withoutGlobalScopes()->updateOrCreate(
                 ["id" => $fund->id],
                 [
+                    "enabled" => true,
                     "name" => $fund->name ?? null,
                     "description" => $fund->description ?? null,
                     "code" => $fund->code ?? false,

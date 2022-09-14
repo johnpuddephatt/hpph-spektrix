@@ -16,6 +16,8 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
 use App\Casts\PageCast;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Cache;
@@ -27,12 +29,20 @@ class Page extends Model implements HasMedia
     use HasFlexible;
     use LogsActivity;
     use Sluggable;
+    use SoftDeletes;
 
     protected $fillable = ["name", "template", "content", "parent_id", "slug", "introduction"];
 
     protected $casts = [
         "content" => "object",
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope("published", function (Builder $builder) {
+            $builder->where("published", true);
+        });
+    }
 
     public function getActivitylogOptions(): LogOptions
     {

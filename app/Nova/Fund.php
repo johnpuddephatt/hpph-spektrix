@@ -35,7 +35,7 @@ class Fund extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScopes();
+        return $query->withoutGlobalScope("enabled");
     }
 
     /**
@@ -49,7 +49,9 @@ class Fund extends Resource
         return [
             ID::make()->hide(),
             Text::make("Name"),
-            Boolean::make("Published"),
+            Boolean::make("Enabled")
+                ->showOnPreview()
+                ->filterable(),
             Textarea::make("Description")->readonly(),
             Images::make("Image", "main"),
         ];

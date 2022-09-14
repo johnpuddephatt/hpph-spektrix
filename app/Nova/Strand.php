@@ -42,6 +42,11 @@ class Strand extends Resource
      */
     public static $search = ["id"];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScopes(["published", "enabled"]);
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -58,6 +63,8 @@ class Strand extends Resource
                     "maxlength" => 50,
                 ],
             ]),
+            Boolean::make("Published"),
+            Boolean::make("Enabled"),
             Color::make("Color"),
             Svg::make("Logo"),
             Images::make("Main image", "main"),

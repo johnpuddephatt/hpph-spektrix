@@ -15,8 +15,11 @@ class CreateStrandsTable extends Migration
     {
         Schema::create("strands", function (Blueprint $table) {
             $table->id();
+            $table->softDeletes();
             $table->string("name", 50)->unique();
             $table->string("slug")->unique();
+            $table->boolean("published")->default(false);
+            $table->boolean("enabled")->default(false);
             $table->string("short_description")->nullable();
             $table->string("description")->nullable();
             $table->string("color", 7)->nullable();

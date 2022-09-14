@@ -10,24 +10,26 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Fund extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
+    use SoftDeletes;
 
     public $incrementing = false;
     protected $keyType = "string";
 
     protected static function booted()
     {
-        static::addGlobalScope("published", function (Builder $builder) {
-            $builder->where("published", true);
+        static::addGlobalScope("enabled", function (Builder $builder) {
+            $builder->where("enabled", true);
         });
     }
 
     protected $fillable = [
-        "published",
+        "enabled",
         "id",
         "description",
         "name",

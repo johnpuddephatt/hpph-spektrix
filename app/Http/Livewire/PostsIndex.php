@@ -10,6 +10,7 @@ class PostsIndex extends Component
     use WithPagination;
 
     public $selected_tag;
+    public $featured_post;
 
     protected $queryString = [
         "selected_tag" => ["except" => "", "as" => "tag"],
@@ -37,10 +38,13 @@ class PostsIndex extends Component
                 ->get()
                 ->where("posts_count"),
             "posts" => $this->selected_tag
-                ? \App\Models\Post::withAnyTags([
-                    $this->selected_tag,
-                ])->paginate(12)
-                : \App\Models\Post::paginate(12),
+                ? \App\Models\Post::whereNot("id", $this->featured_post)
+                    ->withAnyTags([$this->selected_tag])
+                    ->paginate(12)
+                : \App\Models\Post::whereNot(
+                    "id",
+                    $this->featured_post
+                )->paginate(12),
         ]);
     }
 }

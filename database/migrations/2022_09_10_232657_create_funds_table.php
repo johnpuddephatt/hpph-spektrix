@@ -13,9 +13,10 @@ return new class extends Migration {
     public function up()
     {
         Schema::create("funds", function (Blueprint $table) {
+            $table->softDeletes();
             $table->string("id")->primary(); // id
             $table->timestamps();
-            $table->boolean("published")->default(false);
+            $table->boolean("enabled")->default(false);
             $table->string("name");
             $table->text("description")->nullable();
             $table->string("code")->nullable();

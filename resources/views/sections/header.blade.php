@@ -27,10 +27,6 @@
             </div>
         @endif
 
-        @env('local')
-        <x-login-link class="fixed bottom-4 right-4 rounded bg-gray-light bg-opacity-25 px-4 py-2"
-            email="john@letsdance.agency" label="Login" redirect-url="{{ route('nova.pages.home') }}" />
-        @endenv
     </div>
 
 </header>

@@ -38,6 +38,8 @@ class Event extends Model implements HasMedia, CachableAttributes
     protected $keyType = "string";
 
     protected $casts = [
+        "enabled" => "boolean",
+        "published" => "boolean",
         "long_description" => NovaEditorJsCast::class,
         "reviews" => FlexibleCast::class,
     ];
@@ -47,10 +49,15 @@ class Event extends Model implements HasMedia, CachableAttributes
         static::addGlobalScope("published", function (Builder $builder) {
             $builder->where("published", true);
         });
+
+        static::addGlobalScope("enabled", function (Builder $builder) {
+            $builder->where("enabled", true);
+        });
     }
 
     protected $fillable = [
         "published",
+        "enabled",
         "id",
         "description",
         "long_description",

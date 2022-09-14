@@ -3,7 +3,7 @@
 <spektrix-basket-summary hidden id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
     x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ $settings['spektrix_client_name'] }}"
     custom-domain="{{ $settings['spektrix_custom_domain'] }}">
-    <a href="/basket/" class="relative block" :class="open ? 'bg-yellow text-black z-40' : ''"
+    <a href="/basket/" class="relative block" :class="open ? 'bg-yellow text-black' : ''"
         @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
         @svg('basket', 'h-10 w-10 lg:h-6 lg:w-6 pb-1 ')
         <span
@@ -33,7 +33,10 @@
     <div class="container fixed inset-0 left-auto z-20 flex h-screen w-full max-w-lg transform flex-col bg-sand p-12 transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">
         <template x-if="open">
-            <div>
+            <div class="relative">
+                <button class="absolute right-0 top-0 z-10 ml-auto"
+                    @click="open = ! open; $dispatch('menutoggled', open)"
+                    aria-label="Close basket menu">@svg('plus', 'h-8 w-8 transform rotate-45 origin-center text-gray-medium')</button>
                 <div x-show="iFrameLoading" x-transition class="absolute inset-0 p-16">
                     @svg('loading', 'w-32 mx-auto block pt-24 text-sand-dark')
                 </div>

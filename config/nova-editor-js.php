@@ -38,6 +38,11 @@ return [
             "activated" => true,
             "shortcut" => "CMD+SHIFT+C",
         ],
+        "attaches" => [
+            "activated" => true,
+            "shortcut" => "CMD+SHIFT+A",
+            "uploadFileEndpoint" => "/file-upload",
+        ],
         "toggle" => [
             "activated" => false,
             "inlineToolbar" => true,
@@ -67,18 +72,6 @@ return [
                     "height" => false, // integer
                 ],
                 "optimize" => true, // true or false
-                "adjustments" => [
-                    "brightness" => false, // -100 to 100
-                    "contrast" => false, // -100 to 100
-                    "gamma" => false, // 0.1 to 9.99
-                ],
-                "effects" => [
-                    "blur" => false, // 0 to 100
-                    "pixelate" => false, // 0 to 100
-                    "greyscale" => false, // true or false
-                    "sepia" => false, // true or false
-                    "sharpen" => false, // 0 to 100
-                ],
             ],
             "thumbnails" => [
                 // Specify as many thumbnails as required. Key is used as the name.
@@ -88,18 +81,6 @@ return [
                         "height" => 250, // integer
                     ],
                     "optimize" => true, // true or false
-                    "adjustments" => [
-                        "brightness" => false, // -100 to 100
-                        "contrast" => false, // -100 to 100
-                        "gamma" => false, // 0.1 to 9.99
-                    ],
-                    "effects" => [
-                        "blur" => false, // 0 to 100
-                        "pixelate" => false, // 0 to 100
-                        "greyscale" => false, // true or false
-                        "sepia" => false, // true or false
-                        "sharpen" => false, // 0 to 100
-                    ],
                 ],
             ],
         ],
@@ -145,12 +126,37 @@ return [
      */
     "validationSettings" => [
         "tools" => [
-            "carousel" => [
+            "attaches" => [
                 "title" => [
                     "type" => "string",
                 ],
-                "body" => [
-                    "type" => "string",
+                "file" => [
+                    "type" => "array",
+                    "data" => [
+                        "title" => [
+                            "type" => "string",
+                        ],
+                        "url" => [
+                            "type" => "string",
+                        ],
+                        "name" => [
+                            "type" => "string",
+                        ],
+                        "size" => [
+                            "type" => "integer",
+                        ],
+                    ],
+                ],
+            ],
+            "carousel" => [
+                "type" => "array",
+                "data" => [
+                    "url" => [
+                        "type" => "string",
+                    ],
+                    "caption" => [
+                        "type" => "string",
+                    ],
                 ],
             ],
             "header" => [

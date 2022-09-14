@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@alpinejs/intersect": "^3.10.2",
+        "@editorjs/attaches": "^1.2.3",
         "@editorjs/image": "^2.6.2",
         "@vtchinh/gallery-editorjs": "^1.2.3",
         "alpinejs": "^3.10.3",

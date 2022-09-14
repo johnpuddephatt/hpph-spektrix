@@ -5,6 +5,7 @@ import Quote from "@editorjs/quote";
 import ToggleBlock from "editorjs-toggle-block";
 import DetailsSummaryBlock from "editorjs-detailssummary";
 import ImageTool from "@editorjs/image";
+import AttachesBlock from "@editorjs/attaches";
 
 NovaEditorJS.booting(function (editorConfig, fieldConfig) {
     // REMOVE THIS
@@ -23,7 +24,21 @@ NovaEditorJS.booting(function (editorConfig, fieldConfig) {
             },
         },
     };
-
+    if (fieldConfig.toolSettings.attaches.activated === true) {
+        editorConfig.tools.attaches = {
+            class: AttachesBlock,
+            inlineToolbar: fieldConfig.toolSettings.attaches.inlineToolbar,
+            shortcut: fieldConfig.toolSettings.attaches.shortcut,
+            config: {
+                endpoint: fieldConfig.toolSettings.attaches.uploadFileEndpoint,
+                additionalRequestHeaders: {
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+            },
+        };
+    }
     if (fieldConfig.toolSettings.detailssummary.activated === true) {
         editorConfig.tools.detailssummary = {
             class: DetailsSummaryBlock,

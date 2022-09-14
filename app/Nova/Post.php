@@ -41,6 +41,11 @@ class Post extends Resource
      */
     public static $search = ["title"];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScope("published");
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

@@ -57,7 +57,7 @@ class Event extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScope("published");
+        return $query->withoutGlobalScopes(["published", "enabled"]);
     }
 
     /**
@@ -82,6 +82,10 @@ class Event extends Resource
             Text::make("Instance dates")->hideWhenUpdating(),
 
             Boolean::make("Published")
+                ->showOnPreview()
+                ->filterable(),
+
+            Boolean::make("Enabled")
                 ->showOnPreview()
                 ->filterable(),
 

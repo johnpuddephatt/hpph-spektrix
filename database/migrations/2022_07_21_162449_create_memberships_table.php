@@ -13,15 +13,16 @@ class CreateMembershipsTable extends Migration
      */
     public function up()
     {
-        Schema::create('memberships', function (Blueprint $table) {
-            $table->boolean('published')->default(false);
-            $table->boolean('show_by_booking_path')->default(false);
-            $table->string('id', 255);
-            $table->string('name', 150);
-            $table->string('description', 400);
-            $table->longText('long_description')->nullable();
-            $table->string('price', 30);
-            $table->string('renewal_price', 30)->nullable();
+        Schema::create("memberships", function (Blueprint $table) {
+            $table->softDeletes();
+            $table->boolean("enabled")->default(false);
+            $table->boolean("show_by_booking_path")->default(false);
+            $table->string("id", 255);
+            $table->string("name", 150);
+            $table->string("description", 400);
+            $table->longText("long_description")->nullable();
+            $table->string("price", 30);
+            $table->string("renewal_price", 30)->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateMembershipsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('memberships');
+        Schema::dropIfExists("memberships");
     }
 }

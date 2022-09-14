@@ -14,9 +14,11 @@ return new class extends Migration {
     {
         Schema::create("pages", function (Blueprint $table) {
             $table->id();
+            $table->softDeletes();
             $table->timestamps();
             $table->string("name");
             $table->string("slug");
+            $table->boolean("published")->default(false);
             $table->string("introduction", 400)->nullable();
             $table->string("template");
             $table->json("content")->nullable();

@@ -91,11 +91,14 @@ class FetchEventData implements ShouldQueue
 
     public function updateOrCreateEvents($events)
     {
+        \App\Models\Event::query()->update(["enabled" => false]);
+
         foreach ($events as $event) {
             \App\Models\Event::withoutEvents(function () use ($event) {
                 \App\Models\Event::withoutGlobalScopes()->updateOrCreate(
                     ["id" => $event->id],
                     [
+                        "enabled" => true,
                         "description" => $event->description ?? null,
                         "duration" => $event->duration ?? null,
                         "is_on_sale" => $event->isOnSale ?? false,
@@ -187,24 +190,34 @@ class FetchEventData implements ShouldQueue
 
     public function updateOrCreateStrands($instances)
     {
+        \App\Models\Strand::query()->update(["enabled" => false]);
+
         foreach (
             array_unique(Arr::pluck($instances, "attribute_Strand"))
             as $strand
         ) {
             if ($strand) {
-                \App\Models\Strand::updateOrCreate(["name" => $strand]);
+                \App\Models\Strand::updateOrCreate([
+                    "name" => $strand,
+                    "enabled" => true,
+                ]);
             }
         }
     }
 
     public function updateOrCreateSeasons($instances)
     {
+        \App\Models\Season::query()->update(["enabled" => false]);
+
         foreach (
             array_unique(Arr::pluck($instances, "attribute_Season"))
             as $season
         ) {
             if ($season) {
-                \App\Models\Season::updateOrCreate(["name" => $season]);
+                \App\Models\Season::updateOrCreate([
+                    "name" => $season,
+                    "enabled" => true,
+                ]);
             }
         }
     }

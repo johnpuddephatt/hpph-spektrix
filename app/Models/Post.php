@@ -16,6 +16,8 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Tags\HasTags;
 use Advoor\NovaEditorJs\NovaEditorJsCast;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model implements HasMedia
 {
@@ -24,6 +26,7 @@ class Post extends Model implements HasMedia
     use LogsActivity;
     use HasTags;
     use Sluggable;
+    use SoftDeletes;
 
     protected $fillable = [
         "title",
@@ -40,6 +43,13 @@ class Post extends Model implements HasMedia
         "published" => "boolean",
         // "content" => NovaEditorJsCast::class,
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope("published", function (Builder $builder) {
+            $builder->where("published", true);
+        });
+    }
 
     public function sluggable(): array
     {
@@ -84,6 +94,28 @@ class Post extends Model implements HasMedia
     public function getUrlAttribute()
     {
         return route("post.show", ["post" => $this->slug]);
+    }
+
+    public function relatedPosts($number)
+    {
+        $related = Post::withAnyTags($this->tags)
+            ->latest()
+            ->whereNot("id", $this->id)
+            ->take($number)
+            ->get();
+        if ($related->count() < $number) {
+            return $related->merge(
+                Post::latest()
+                    ->whereNotIn(
+                        "id",
+                        $related->pluck("id")->toArray() + [$this->id]
+                    )
+                    ->take($number - $related->count())
+                    ->get()
+            );
+        } else {
+            return $related;
+        }
     }
 
     // public function getImageAttribute(): array

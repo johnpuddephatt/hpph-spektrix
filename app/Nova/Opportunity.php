@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Advoor\NovaEditorJs\NovaEditorJsField;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -34,6 +35,11 @@ class Opportunity extends Resource
      */
     public static $search = ["id"];
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScope("published");
+    }
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -54,6 +60,7 @@ class Opportunity extends Resource
                     ],
                 ])
                 ->rules("required", "max:40"),
+            Boolean::make("Published"),
             Textarea::make("Summary")
                 ->withMeta([
                     "extraAttributes" => [

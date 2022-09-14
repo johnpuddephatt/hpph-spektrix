@@ -62,8 +62,8 @@
 
             </div>
             <div class="col-span-1">
-                <h3 class="mb-4 font-bold text-white">Learn more</h3>
                 @if ($footer_menu)
+                    <h3 class="mb-4 font-bold text-white">Learn more</h3>
                     <nav>
                         <ul class="">
                             @foreach ($footer_menu as $menu_item)
@@ -133,7 +133,12 @@
             <div class="col-span-2 self-center">
                 <p class="text-xs">Copyright Hyde Park Picture House 2022</p>
                 <p class="text-xs">Site design by Rabbithole&#174;, Build by Let’s Dance</p>
+
             </div>
+            @env('local')
+            <x-login-link class="rounded bg-white bg-opacity-25 px-4 py-2" email="john@letsdance.agency" label="Login"
+                redirect-url="{{ route('nova.pages.home') }}" />
+            @endenv
         </div>
     </div>
 

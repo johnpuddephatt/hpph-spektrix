@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Membership extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     public $timestamps = true;
     public $incrementing = false;
@@ -21,7 +23,7 @@ class Membership extends Model
      */
     protected $fillable = [
         "id",
-        "published",
+        "enabled",
         "show_by_booking_path",
         "name",
         "description",
@@ -36,14 +38,14 @@ class Membership extends Model
      * @var array
      */
     protected $casts = [
-        "published" => "boolean",
+        "enabled" => "boolean",
         "show_by_booking_path" => "boolean",
     ];
 
     protected static function booted()
     {
-        static::addGlobalScope("published", function (Builder $builder) {
-            $builder->where("published", true);
+        static::addGlobalScope("enabled", function (Builder $builder) {
+            $builder->where("enabled", true);
         });
     }
 

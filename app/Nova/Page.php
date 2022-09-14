@@ -6,6 +6,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 
 use Laravel\Nova\Fields\Text;
@@ -44,7 +45,7 @@ class Page extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->orderPagesByUrl();
+        return $query->withoutGlobalScope('published')->orderPagesByUrl();
     }
 
     public static function relatableQuery(NovaRequest $request, $query)
@@ -87,10 +88,13 @@ class Page extends Resource
                 ->hideFromIndex(function (ResourceIndexRequest $request) {
                     return $request->viaRelationship();
                 }),
+
             Slug::make("Slug")
                 ->hideFromIndex()
                 ->placeholder("Leave blank to generate automatically")
                 ->rules("max:100"),
+            Boolean::make("Published")->showOnPreview()
+                ->filterable(),
             Images::make("Image", "main"),
             Textarea::make("Introduction")
                 ->rows(3)

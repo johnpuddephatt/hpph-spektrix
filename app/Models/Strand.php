@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Strand extends Model implements HasMedia, CachableAttributes
 {
@@ -22,6 +23,7 @@ class Strand extends Model implements HasMedia, CachableAttributes
     use Sluggable;
     use InteractsWithMedia;
     use CachesAttributes;
+    use SoftDeletes;
 
     public $timestamps = false;
 
@@ -32,10 +34,14 @@ class Strand extends Model implements HasMedia, CachableAttributes
         "description",
         "logo",
         "content",
+        "enabled",
+        "published",
     ];
 
     protected $casts = [
         "content" => "object",
+        "enabled" => "boolean",
+        "published" => "boolean",
     ];
 
     public function sluggable(): array
@@ -45,6 +51,17 @@ class Strand extends Model implements HasMedia, CachableAttributes
                 "source" => "name",
             ],
         ];
+    }
+
+    protected static function booted()
+    {
+        static::addGlobalScope("published", function (Builder $builder) {
+            $builder->where("published", true);
+        });
+
+        static::addGlobalScope("enabled", function (Builder $builder) {
+            $builder->where("enabled", true);
+        });
     }
 
     public function registerMediaConversions(Media $media = null): void

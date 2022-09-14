@@ -24,7 +24,8 @@ class CreateEventsTable extends Migration
             $table->json("reviews")->default(new Expression("(JSON_ARRAY())"));
             $table->string("trailer")->nullable();
 
-            $table->boolean("published")->default(false); // id
+            $table->boolean("enabled")->default(false);
+            $table->boolean("published")->default(false);
 
             $table->integer("duration")->nullable(); // duration
             $table->boolean("is_on_sale")->default(false); //isOnSale
