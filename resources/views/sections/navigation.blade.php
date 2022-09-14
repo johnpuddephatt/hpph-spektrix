@@ -12,7 +12,7 @@
                     @foreach ($header_menu as $menu_item)
                         <li>
                             <a href="{{ $menu_item['value'] }}"
-                                class="@if (Str::of('/' . Request::path())->startsWith($menu_item['value'])) bg-yellow @endif rounded px-2 lg:py-1">{{ $menu_item['name'] }}</a>
+                                class="@if (Str::of('/' . Request::path())->startsWith($menu_item['value'])) bg-yellow text-black @endif rounded px-2 lg:py-1">{{ $menu_item['name'] }}</a>
                         </li>
                         <!-- @foreach ($menu_item['children'] as $child_menu_item)
 <li>
