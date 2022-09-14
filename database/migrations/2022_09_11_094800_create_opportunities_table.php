@@ -14,6 +14,7 @@ return new class extends Migration {
     {
         Schema::create("opportunities", function (Blueprint $table) {
             $table->id();
+            $table->softDeletes();
             $table->timestamps();
             $table->boolean("published")->default(false);
             $table->string("title", 40);
