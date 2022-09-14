@@ -42,6 +42,28 @@ class SectionLayout extends Layout implements HasMedia
                 "blockWidthTune" => [
                     "activated" => false,
                 ],
+                "attaches" => [
+                    "title" => [
+                        "type" => "string",
+                    ],
+                    "file" => [
+                        "type" => "array",
+                        "data" => [
+                            "title" => [
+                                "type" => "string",
+                            ],
+                            "url" => [
+                                "type" => "string",
+                            ],
+                            "name" => [
+                                "type" => "string",
+                            ],
+                            "size" => [
+                                "type" => "integer",
+                            ],
+                        ],
+                    ],
+                ],
                 "header" => [
                     "package" => "@editorjs/header",
                     "activated" => true,
