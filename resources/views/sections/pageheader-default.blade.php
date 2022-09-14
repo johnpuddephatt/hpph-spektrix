@@ -1,4 +1,4 @@
- @if ($page->mainImage && !($hide_image ?? false)
+ @if ($page->mainImage && !($hide_image ?? false))
      {!! $page->mainImage->img('wide', ['class' => 'w-full'])->toHtml() !!}
  @endif
  <div class="bg-sand pt-16 pb-24">
