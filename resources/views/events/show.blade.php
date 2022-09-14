@@ -36,17 +36,17 @@
 
         <div class="flex-row justify-between lg:flex">
 
-            <div class="container relative z-30 ml-0 max-w-4xl py-16 lg:w-1/2 lg:pr-32">
+            <div class="relative z-30 ml-0 max-w-4xl py-16 lg:w-1/2 lg:pr-32">
                 <div class="type-large prose mb-24">
                     {{ $event->long_description }}
                 </div>
-                <div class="flex gap-4">
-                    @foreach ($event->gallery as $galleryItem)
-                        {{ $galleryItem->img('wide', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() }}
-                    @endforeach
-                </div>
+                <!-- <div class="flex gap-4">
+                        @foreach ($event->gallery as $galleryItem)
+    {{ $galleryItem->img('wide', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() }}
+    @endforeach
+                    </div> -->
 
-                <div class="mb-24">
+                <div class="container mb-24">
                     <h3 class="type-label">Why watch?</h3>
                     <div class="mt-4 flex flex-row items-start gap-8 border-t border-gray pt-4 xl:gap-36">
                         <div class="aspect-square w-24 flex-none rounded bg-gray-light"></div>
@@ -69,13 +69,15 @@
                     </div>
                 </div>
 
-                <h3 class="type-label">Film details</h3>
+                <div class="container">
+                    <h3 class="type-label">Film details</h3>
 
-                <div class="mt-4 divide-y divide-gray border-t border-gray">
-                    <x-details-row label="Director" :value="$event->director" />
-                    <x-details-row label="Featuring" :value="implode(' &bullet; ', $event->featuring_stars)" />
-                    <x-details-row label="Language" :value="implode(' &bullet; ', $event->language)" />
-                    <x-details-row label="Country of origin" :value="implode(' &bullet; ', $event->country_of_origin)" />
+                    <div class="mt-4 divide-y divide-gray border-t border-gray">
+                        <x-details-row label="Director" :value="$event->director" />
+                        <x-details-row label="Featuring" :value="implode(' &bullet; ', $event->featuring_stars)" />
+                        <x-details-row label="Language" :value="implode(' &bullet; ', $event->language)" />
+                        <x-details-row label="Country of origin" :value="implode(' &bullet; ', $event->country_of_origin)" />
+                    </div>
                 </div>
             </div>
             <div class="bg-sand lg:min-h-screen lg:w-1/2" x-data="{ stage: 1, selectedScreening: null, iFrameLoading: true }">
@@ -136,7 +138,7 @@
                         <h2 class="type-h5 max-w-[8em]">Want to see this film for free?</h2>
                     </div>
 
-                    <div class="container relative py-8 pl-32">
+                    <div class="container relative max-w-xl py-8 pl-32">
                         <div class="type-label absolute right-full origin-right translate-x-8 -rotate-90 transform">
                             Memberships</div>
                         <div class="max-w-xs">Become a HPPH member and receive free tickets plus loads of exclusive
