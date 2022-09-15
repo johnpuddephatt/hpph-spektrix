@@ -197,10 +197,14 @@ class FetchEventData implements ShouldQueue
             as $strand
         ) {
             if ($strand) {
-                \App\Models\Strand::updateOrCreate([
-                    "name" => $strand,
-                    "enabled" => true,
-                ]);
+                \App\Models\Strand::updateOrCreate(
+                    [
+                        "name" => $strand,
+                    ],
+                    [
+                        "enabled" => true,
+                    ]
+                );
             }
         }
     }
@@ -214,10 +218,14 @@ class FetchEventData implements ShouldQueue
             as $season
         ) {
             if ($season) {
-                \App\Models\Season::updateOrCreate([
-                    "name" => $season,
-                    "enabled" => true,
-                ]);
+                \App\Models\Season::updateOrCreate(
+                    [
+                        "name" => $season,
+                    ],
+                    [
+                        "enabled" => true,
+                    ]
+                );
             }
         }
     }

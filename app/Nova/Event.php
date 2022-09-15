@@ -25,6 +25,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Eminiarts\Tabs\Traits\HasTabs;
 use Eminiarts\Tabs\Tabs;
 use Eminiarts\Tabs\Tab;
+use Illuminate\Support\Str;
 
 class Event extends Resource
 {
@@ -77,6 +78,9 @@ class Event extends Resource
 
             Text::make("Name")
                 ->sortable()
+                ->displayUsing(function ($name) {
+                    return Str::limit($name, 26);
+                })
                 ->onlyOnIndex(),
 
             Text::make("Instance dates")->hideWhenUpdating(),
@@ -85,7 +89,7 @@ class Event extends Resource
                 ->showOnPreview()
                 ->filterable(),
 
-            Boolean::make("Enabled")
+            Boolean::make("Enabled", "enabled")
                 ->showOnPreview()
                 ->filterable(),
 

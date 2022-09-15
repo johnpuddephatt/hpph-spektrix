@@ -45,7 +45,8 @@
                 x-transition:enter-start="opacity-0 translate-y-2">
                 <div class="flex w-10/12 flex-col pt-6 lg:w-1/4">
                     @if ($instance->event->featuredImage)
-                        <x-image :src="$instance->event->featuredImage->getUrl('wide')" :srcset="$instance->event->featuredImage->getSrcset('wide')" class="w-48 overflow-hidden rounded-lg" />
+                        <x-image :width="'12rem'" :src="$instance->event->featuredImage->getUrl('wide')" :srcset="$instance->event->featuredImage->getSrcset('wide')"
+                            class="w-48 overflow-hidden rounded-lg" />
                     @endif
                 </div>
                 <div class="flex w-10/12 flex-col lg:w-1/3">
