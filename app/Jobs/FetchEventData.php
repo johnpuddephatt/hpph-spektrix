@@ -192,12 +192,12 @@ class FetchEventData implements ShouldQueue
     {
         \App\Models\Strand::query()->update(["enabled" => false]);
 
-        logger($instances);
-
         foreach (
             array_unique(Arr::pluck($instances, "attribute_Strand"))
             as $strand
         ) {
+            logger($strand);
+
             if ($strand) {
                 \App\Models\Strand::withoutEvents(function () use ($strand) {
                     \App\Models\Strand::updateOrCreate(
