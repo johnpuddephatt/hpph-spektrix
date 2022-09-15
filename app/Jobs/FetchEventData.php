@@ -40,7 +40,6 @@ class FetchEventData implements ShouldQueue
      */
     public function handle()
     {
-        logger("fetching events data...");
         $events = $this->getEvents();
         $instances = $this->getInstances($events);
         $this->getInstancesVenues($instances);
@@ -197,19 +196,18 @@ class FetchEventData implements ShouldQueue
             array_unique(Arr::pluck($instances, "attribute_Strand"))
             as $strand
         ) {
-            logger($strand);
-
-            if ($strand) {
-                \App\Models\Strand::withoutEvents(function () use ($strand) {
-                    \App\Models\Strand::updateOrCreate(
-                        [
-                            "name" => $strand,
-                        ],
-                        [
-                            "enabled" => true,
-                        ]
-                    );
-                });
+            if (
+                $strand &&
+                !\App\Models\Strand::where("name", $strand)->count()
+            ) {
+                \App\Models\Strand::updateOrCreate(
+                    [
+                        "name" => $strand,
+                    ],
+                    [
+                        "enabled" => true,
+                    ]
+                );
             }
         }
     }
@@ -222,7 +220,10 @@ class FetchEventData implements ShouldQueue
             array_unique(Arr::pluck($instances, "attribute_Season"))
             as $season
         ) {
-            if ($season) {
+            if (
+                $season &&
+                !\App\Models\Season::where("name", $season)->count()
+            ) {
                 \App\Models\Season::updateOrCreate(
                     [
                         "name" => $season,
