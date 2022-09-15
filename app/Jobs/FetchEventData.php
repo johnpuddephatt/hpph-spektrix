@@ -40,6 +40,7 @@ class FetchEventData implements ShouldQueue
      */
     public function handle()
     {
+        logger("fetching events data...");
         $events = $this->getEvents();
         $instances = $this->getInstances($events);
         $this->getInstancesVenues($instances);
