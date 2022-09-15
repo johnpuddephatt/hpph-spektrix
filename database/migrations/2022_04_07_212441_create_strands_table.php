@@ -17,7 +17,10 @@ class CreateStrandsTable extends Migration
             $table->id();
             $table->softDeletes();
             $table->string("name", 50)->unique();
-            $table->string("slug")->unique();
+            $table
+                ->string("slug")
+                ->unique()
+                ->nullable();
             $table->boolean("published")->default(false);
             $table->boolean("enabled")->default(false);
             $table->string("short_description")->nullable();

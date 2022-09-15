@@ -197,7 +197,7 @@ class FetchEventData implements ShouldQueue
             as $strand
         ) {
             if ($strand) {
-                \App\Models\Event::withoutEvents(function () use ($strand) {
+                \App\Models\Strand::withoutEvents(function () use ($strand) {
                     \App\Models\Strand::updateOrCreate(
                         [
                             "name" => $strand,
