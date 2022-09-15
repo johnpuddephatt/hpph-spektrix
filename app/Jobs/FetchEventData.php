@@ -200,6 +200,11 @@ class FetchEventData implements ShouldQueue
                 $strand &&
                 !\App\Models\Strand::where("name", $strand)->count()
             ) {
+                logger(
+                    $strand .
+                        ": " .
+                        \App\Models\Strand::where("name", $strand)->count()
+                );
                 \App\Models\Strand::create([
                     "name" => $strand,
                     "enabled" => true,
