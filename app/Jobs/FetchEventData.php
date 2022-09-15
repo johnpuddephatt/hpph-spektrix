@@ -197,14 +197,16 @@ class FetchEventData implements ShouldQueue
             as $strand
         ) {
             if ($strand) {
-                \App\Models\Strand::updateOrCreate(
-                    [
-                        "name" => $strand,
-                    ],
-                    [
-                        "enabled" => true,
-                    ]
-                );
+                \App\Models\Event::withoutEvents(function () use ($strand) {
+                    \App\Models\Strand::updateOrCreate(
+                        [
+                            "name" => $strand,
+                        ],
+                        [
+                            "enabled" => true,
+                        ]
+                    );
+                });
             }
         }
     }
