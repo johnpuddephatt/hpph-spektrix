@@ -32,11 +32,11 @@
                     <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->audio_described" />
                 </div>
 
-                @include('spektrix-components.booking', ['EventInstanceId' => $instance->id])
-
                 <a @click.stop href="{{ route('event.show', ['event' => $instance->event->slug]) }}"
                     {{ $attributes->class(['absolute lg:static bottom-0 right-0 type-subtitle  ml-auto mb-auto rounded lg:px-6 lg:py-1 ', '-mt-1.5 border-2 border-yellow text-yellow hover:bg-yellow hover:text-black' => $dark, 'bg-gray hover:bg-yellow' => !$dark]) }}>
                     @svg('right-chevron', 'h-10 w-10 lg:hidden')<span class="hidden lg:inline">Info &amp; Tickets</span></a>
+                @include('spektrix-components.booking', ['EventInstanceId' => $instance->id])
+
                 <button aria-label="Toggle details"
                     class="absolute top-0 right-0 -mt-1.5 h-9 w-9 rounded-lg text-6xl leading-none lg:static">
                     @svg('plus', 'h-6 w-6')
@@ -61,6 +61,7 @@
 
                     <p class="mt-auto overflow-hidden pt-4">
                         {{ Illuminate\Support\Str::limit($instance->event->description, 120) }}</p>
+
                 </div>
 
             </div>

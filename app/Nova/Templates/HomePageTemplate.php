@@ -101,6 +101,7 @@ class HomePageTemplate
         if (!$page->content) {
             abort(404);
         }
+
         return [
             "values_statement" => $page->content->values_statement,
             "values_images" => $page
@@ -137,34 +138,33 @@ class HomePageTemplate
             "events" => Cache::remember("home_events", 3600, function () use (
                 $page
             ) {
-                return \App\Models\Event::whereIn(
-                    "id",
-                    $page->content->featured_films
-                )
-                    ->orderByRaw(
-                        "FIELD(id,'" .
-                            implode("','", $page->content->featured_films) .
-                            "')"
+                return count($page->content->featured_films)
+                    ? \App\Models\Event::whereIn(
+                        "id",
+                        $page->content->featured_films
                     )
-                    ->with("featuredImage")
-                    ->get()
-                    ->each->append("strands")
-                    ->map(function ($item, $key) {
-                        return [
-                            "status" => $item->status,
-                            "name" => $item->name,
-                            "slug" => $item->slug,
-                            "certificate_age_guidance" =>
-                                $item->certificate_age_guidance,
-                            "src" => $item->featuredImage
-                                ? $item->featuredImage->getUrl("square")
-                                : null,
-                            "srcset" => $item->featuredImage
-                                ? $item->featuredImage->getSrcset("square")
-                                : null,
-                            "strands" => $item->strands,
-                        ];
-                    });
+                        ->orderByRaw(
+                            "FIELD(id,'" .
+                                implode("','", $page->content->featured_films) .
+                                "')"
+                        )
+                        ->with("featuredImage")
+                        ->get()
+                        ->each->append("strands")
+                        ->map(function ($item, $key) {
+                            return $item->formatForHomepage();
+                        })
+                    : \App\Models\Event::orderBy(
+                        "first_instance_date_time",
+                        "DESC"
+                    )
+                        ->take(3)
+                        ->with("featuredImage")
+                        ->get()
+                        ->each->append("strands")
+                        ->map(function ($item, $key) {
+                            return $item->formatForHomepage();
+                        });
             }),
             "banner" => [
                 "title" => $page->content->banner->title,

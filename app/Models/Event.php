@@ -326,4 +326,23 @@ class Event extends Model implements HasMedia, CachableAttributes
     {
         return $this->instances()->thisWeek();
     }
+
+    public function formatForHomepage()
+    {
+        // return $this->map($item, $key) {
+        return [
+            "status" => $this->status,
+            "name" => $this->name,
+            "slug" => $this->slug,
+            "certificate_age_guidance" => $this->certificate_age_guidance,
+            "src" => $this->featuredImage
+                ? $this->featuredImage->getUrl("square")
+                : null,
+            "srcset" => $this->featuredImage
+                ? $this->featuredImage->getSrcset("square")
+                : null,
+            "strands" => $this->strands,
+        ];
+        // });
+    }
 }
