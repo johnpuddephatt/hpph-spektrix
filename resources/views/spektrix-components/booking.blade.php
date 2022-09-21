@@ -1,4 +1,4 @@
-<div x-data="{ booking: false, iFrameLoading: true }" x-effect="if(booking == false) { iFrameLoading = true; }">
+<div class="mb-auto" x-data="{ booking: false, iFrameLoading: true }" x-effect="if(booking == false) { iFrameLoading = true; }">
     <a href="/basket/"
         class="type-subtitle relative -mt-1.5 inline-block rounded border-2 border-white py-1 px-8 text-white"
         :class="booking ? 'bg-yellow text-black' : ''"
