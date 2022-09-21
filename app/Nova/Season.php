@@ -58,7 +58,10 @@ class Season extends Resource
                 ],
             ]),
             Boolean::make("Published"),
-            Boolean::make("Enabled"),
+            Boolean::make("Synced", "enabled")
+                ->readonly()
+                ->showOnPreview()
+                ->filterable(),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex(),

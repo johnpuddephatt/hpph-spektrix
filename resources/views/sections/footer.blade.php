@@ -77,7 +77,8 @@
 
             </div>
             <div class="-order-1 col-span-2 row-span-2 lg:-order-none lg:max-w-xl">
-                <h3 class="font-bold text-white">Sign up to our newsletter</h3>
+                <h3 class="font-bold text-white">Be the first to hear about the latest news, screenings and special live
+                    events</h3>
 
                 <form class="mt-16 grid grid-cols-2 border-t">
                     <div class="border-b">

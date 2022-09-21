@@ -49,7 +49,8 @@ class Fund extends Resource
         return [
             ID::make()->hide(),
             Text::make("Name"),
-            Boolean::make("Enabled")
+            Boolean::make("Synced", "enabled")
+                ->readonly()
                 ->showOnPreview()
                 ->filterable(),
             Textarea::make("Description")->readonly(),

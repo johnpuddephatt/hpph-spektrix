@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        $page = Page::where("template", "home-page")->first();
+        $page = Page::where("template", "home-page")->firstOrFail();
 
         return view("pages." . $page["template"], [
             "page" => $page->resolveContent(),

@@ -2,6 +2,7 @@
 
 namespace App\Nova\Templates;
 
+use App\Nova\Event;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 
@@ -27,6 +28,16 @@ class HomePageTemplate
     public function fields(Request $request): array
     {
         return [
+            new Panel("Featured films", [
+                Multiselect::make("Films", "content->featured_films")
+                    ->max(5)
+                    ->reorderable()
+                    ->asyncResource(Event::class)
+                    ->saveAsJSON()
+                    ->help(
+                        "<style>.multiselect__tag { display: block; padding: 10px 20px 10px 5px !important; margin-bottom: 5px !important} .multiselect__tag-icon { line-height: 32px; } .multiselect__tag-icon:after { font-size: 20px;}</style>"
+                    ),
+            ]),
             new Panel("Our values", [
                 Images::make("Image gallery", "gallery"),
                 // ->customPropertiesFields([Text::make("Label")]),
@@ -87,6 +98,9 @@ class HomePageTemplate
     // Resolve data for serialization
     public function resolve($page): array
     {
+        if (!$page->content) {
+            abort(404);
+        }
         return [
             "values_statement" => $page->content->values_statement,
             "values_images" => $page
@@ -101,9 +115,10 @@ class HomePageTemplate
                 }),
             "instance_options" => $this->getInstanceOptions(),
             "posts" => Cache::remember("home_posts", 3600, function () {
-                return \App\Models\Post::with("featuredImage")
-                    ->latest()
-                    ->take(3)
+                return \App\Models\Post::latest()
+                    ->where("featured", true)
+                    ->take(4)
+                    ->with("featuredImage")
                     ->get()
                     ->map(function ($item) {
                         return [
@@ -119,13 +134,24 @@ class HomePageTemplate
                         ];
                     });
             }),
-            "events" => Cache::remember("home_events", 3600, function () {
-                return \App\Models\Event::with("featuredImage")
-                    ->take(4)
+            "events" => Cache::remember("home_events", 3600, function () use (
+                $page
+            ) {
+                return \App\Models\Event::whereIn(
+                    "id",
+                    $page->content->featured_films
+                )
+                    ->orderByRaw(
+                        "FIELD(id,'" .
+                            implode("','", $page->content->featured_films) .
+                            "')"
+                    )
+                    ->with("featuredImage")
                     ->get()
                     ->each->append("strands")
                     ->map(function ($item, $key) {
                         return [
+                            "status" => $item->status,
                             "name" => $item->name,
                             "slug" => $item->slug,
                             "certificate_age_guidance" =>

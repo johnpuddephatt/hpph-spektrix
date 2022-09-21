@@ -24,6 +24,10 @@ Route::middleware(["spektrix"])->group(function () {
         return view("brand");
     });
 
+    Route::get("checkout", function () {
+        return view("checkout");
+    });
+
     Route::post(
         "file-upload",
         \App\Http\Controllers\UploadController::class

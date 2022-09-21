@@ -6,7 +6,7 @@
 @section('content')
     @include('components.home-hero')
     @include('components.home-carousel')
-    @include('components.banner', ['banner' => $page->content->banner])
+    @includeWhen(isset($page->content->banner), 'components.banner', ['banner' => $page->content->banner])
     @include('components.home_instances')
     @include('components.journal-posts', ['posts' => $page->content->featured_posts])
 @endsection

@@ -108,12 +108,12 @@ class Page extends Resource
                 ->rules("required", "max:350"),
    
             Select::make("Template")
-                    ->options(
-                        \App\Models\Page::getAvailableTemplates($request->resourceId)
-                    )
-                    ->displayUsingLabels()->readonly(function ($request) {
-                return $request->isUpdateOrUpdateAttachedRequest();
-            })->help('The template value cannot be changed after page creation to prevent data loss. Some templates can only be used once.')->required(),
+                ->options(
+                    \App\Models\Page::getAvailableTemplates($request->resourceId || $request->isResourceIndexRequest())
+                )
+                ->displayUsingLabels()->readonly(function ($request) {
+                    return $request->isUpdateOrUpdateAttachedRequest();
+                })->help('The template value cannot be changed after page creation to prevent data loss. Some templates can only be used once.')->required(),
 
             Text::make("URL", function () {
                 return "<a onclick='event.stopPropagation()' class='underline text-primary-500' target='_blank' href='{$this->URL}'>{$this->URL}<svg xmlns='http://www.w3.org/2000/svg' class='inline-block w-4 h-4 ml-1' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>

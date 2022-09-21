@@ -78,6 +78,14 @@ class Instance extends Model
         return $query->whereDate("start", Carbon::today()->addDay());
     }
 
+    public function scopeThisWeek($query)
+    {
+        return $query->whereBetween("start", [
+            Carbon::today(),
+            Carbon::now()->endOfWeek(),
+        ]);
+    }
+
     public function scopeCaptioned($query)
     {
         return $query->where("captioned", true);

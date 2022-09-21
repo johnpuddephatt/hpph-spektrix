@@ -2,7 +2,8 @@
 
 <div x-data="{ open: null }" class="mb-16">
     @forelse ($instances as $instance)
-        @if ($options[$selected_option]->duration > 1 &&
+        @if ((!isset(((array) $options[$selected_option])['duration']) ||
+            ((array) $options[$selected_option])['duration'] > 1) &&
             ($loop->index == 0 ||
                 $instances->get($loop->index - 1)->start->format('l d F, Y') !== $instance->start->format('l d F, Y')))
             <h3 class="border-t border-gray-light py-6 font-bold">{{ $instance->start->format('l d F, Y') }}</h3>
@@ -30,6 +31,8 @@
                     <x-strand :strand="$instance->strand" />
                     <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->audio_described" />
                 </div>
+
+                @include('spektrix-components.booking', ['EventInstanceId' => $instance->id])
 
                 <a @click.stop href="{{ route('event.show', ['event' => $instance->event->slug]) }}"
                     {{ $attributes->class(['absolute lg:static bottom-0 right-0 type-subtitle  ml-auto mb-auto rounded lg:px-6 lg:py-1 ', '-mt-1.5 border-2 border-yellow text-yellow hover:bg-yellow hover:text-black' => $dark, 'bg-gray hover:bg-yellow' => !$dark]) }}>

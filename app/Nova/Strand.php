@@ -64,7 +64,10 @@ class Strand extends Resource
                 ],
             ]),
             Boolean::make("Published"),
-            Boolean::make("Enabled"),
+            Boolean::make("Synced", "enabled")
+                ->readonly()
+                ->showOnPreview()
+                ->filterable(),
             Color::make("Color"),
             Svg::make("Logo"),
             Images::make("Main image", "main"),

@@ -47,9 +47,13 @@ class Membership extends Resource
     public function fields(NovaRequest $request)
     {
         return [
-            Boolean::make("Enabled")->filterable(),
+            Boolean::make("Synced", "enabled")
+                ->readonly()
+                ->showOnPreview()
+                ->filterable(),
             Boolean::make("Show when booking", "show_by_booking_path"),
             ID::make()->hide(),
+
             Text::make("Name")->readonly(),
             Textarea::make("Description")->readonly(),
             Trix::make("Long description")->readonly(),

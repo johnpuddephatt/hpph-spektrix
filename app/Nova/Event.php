@@ -89,7 +89,8 @@ class Event extends Resource
                 ->showOnPreview()
                 ->filterable(),
 
-            Boolean::make("Enabled", "enabled")
+            Boolean::make("Synced", "enabled")
+                ->readonly()
                 ->showOnPreview()
                 ->filterable(),
 
@@ -128,7 +129,9 @@ class Event extends Resource
                             ->stacked(),
                     ]),
                     Tab::make("Media", [
-                        Images::make("Main image", "main")->required(),
+                        Images::make("Main image", "main")
+                            ->required()
+                            ->rules("required"),
                         Images::make(
                             "Secondary image",
                             "secondary"
@@ -146,38 +149,33 @@ class Event extends Resource
                         // ->fullSize()
                         // ->rules("required", "size:3")
                     ]),
-                    Tab::make("Screenings", [
-                        HasMany::make(
-                            "Screenings",
-                            "instances",
-                            "\App\Nova\Instance"
-                        ),
-                    ]),
-                    Tab::make("Details", [
-                        // Text::make("First instance date time")->onlyOnDetail(),
-                        // Text::make("Last instance date time")->onlyOnDetail(),
-                        Boolean::make("Archive film")->onlyOnDetail(),
-                        Boolean::make("Audio description")->onlyOnDetail(),
-                        Boolean::make("MUBIGO")->onlyOnDetail(),
-                        Boolean::make("Non-specialist film")->onlyOnDetail(),
-                        Text::make("Country of origin")->onlyOnDetail(),
-                        Text::make("Director")->onlyOnDetail(),
-                        Text::make("F-Rating")->onlyOnDetail(),
-                        Text::make("Distributor")->onlyOnDetail(),
-                        Text::make("Genres")->onlyOnDetail(),
-                        Text::make("Vibes")->onlyOnDetail(),
-                        Text::make(
-                            "Duration (minutes)",
-                            "duration"
-                        )->onlyOnDetail(),
-                        Text::make("Language")->onlyOnDetail(),
-                        Text::make("Original language title")->onlyOnDetail(),
-                        Text::make("Year of production")->onlyOnDetail(),
-                        Text::make("Featuring stars")->onlyOnDetail(),
-                    ]),
                 ],
                 false
             ),
+
+            Panel::make("Screenings", [
+                HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
+            ]),
+
+            Panel::make("Details", [
+                // Text::make("First instance date time")->onlyOnDetail(),
+                // Text::make("Last instance date time")->onlyOnDetail(),
+                Boolean::make("Archive film")->onlyOnDetail(),
+                Boolean::make("Audio description")->onlyOnDetail(),
+                Boolean::make("MUBIGO")->onlyOnDetail(),
+                Boolean::make("Non-specialist film")->onlyOnDetail(),
+                Text::make("Country of origin")->onlyOnDetail(),
+                Text::make("Director")->onlyOnDetail(),
+                Text::make("F-Rating")->onlyOnDetail(),
+                Text::make("Distributor")->onlyOnDetail(),
+                Text::make("Genres")->onlyOnDetail(),
+                Text::make("Vibes")->onlyOnDetail(),
+                Text::make("Duration (minutes)", "duration")->onlyOnDetail(),
+                Text::make("Language")->onlyOnDetail(),
+                Text::make("Original language title")->onlyOnDetail(),
+                Text::make("Year of production")->onlyOnDetail(),
+                Text::make("Featuring stars")->onlyOnDetail(),
+            ]),
 
             // new Panel("Dates", $this->dateFields()),
             // (new Panel("Details", $this->additionalFields()))->limit(4),
@@ -247,7 +245,6 @@ class Event extends Resource
     {
         return [
             Actions\FetchData::make()->standalone(),
-            Actions\PublishEvents::make(),
             Actions\PublishEvents::make()->showInline(),
         ];
     }

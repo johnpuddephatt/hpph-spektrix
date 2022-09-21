@@ -188,9 +188,9 @@ class Page extends Model implements HasMedia
         return $query;
     }
 
-    public static function getAvailableTemplates($resource_id) {
+    public static function getAvailableTemplates($show_all) {
         return Arr::map(
-            $resource_id ? config("page-templates") : array_filter(config("page-templates"), function($item, $key) {
+            $show_all ? config("page-templates") : array_filter(config("page-templates"), function($item, $key) {
                 return !$item['unique'] || !\App\Models\Page::where('template', $key)->count();
             }, ARRAY_FILTER_USE_BOTH),
             function($value) {

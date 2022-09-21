@@ -237,6 +237,19 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
+    public function getStatusAttribute()
+    {
+        if ($this->todayInstances()->count()) {
+            return "Showing today";
+        } elseif ($this->tomorrowInstances()->count()) {
+            return "Showing tomorrow";
+        } elseif ($this->thisWeekInstances()->count()) {
+            return "Showing this week";
+        } else {
+            return "Coming soon";
+        }
+    }
+
     public function getUrlAttribute()
     {
         return route("event.show", ["event" => $this->slug]);
@@ -307,5 +320,10 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function tomorrowInstances()
     {
         return $this->instances()->tomorrow();
+    }
+
+    public function thisWeekInstances()
+    {
+        return $this->instances()->thisWeek();
     }
 }

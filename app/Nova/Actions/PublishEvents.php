@@ -25,8 +25,24 @@ class PublishEvents extends Action
      */
     public function handle(ActionFields $fields, Collection $models)
     {
+        $success = 0;
+        $failure = 0;
+
         foreach ($models as $model) {
-            $model->update(["published" => true]);
+            if ($model->featuredImage) {
+                $success++;
+                $model->update(["published" => true]);
+            } else {
+                $failure++;
+            }
+        }
+
+        if ($failure) {
+            return Action::danger(
+                "$failure event(s) were not published due to missing images."
+            );
+        } else {
+            return Action::message("$success event(s) published");
         }
     }
 
