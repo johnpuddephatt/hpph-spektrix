@@ -235,6 +235,8 @@ class HomePageTemplate
             return [["label" => "Today", "offset" => 0, "duration" => 1]];
         } elseif (\App\Models\Instance::tomorrow()->count()) {
             return [["label" => "Tomorrow", "offset" => 1, "duration" => 1]];
+        } elseif (\App\Models\Instance::thisWeek()->count()) {
+            return [["label" => "This week", "offset" => 0, "duration" => 14]];
         } else {
             return [
                 [

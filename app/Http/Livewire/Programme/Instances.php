@@ -33,13 +33,7 @@ class Instances extends Component
                 "signed_bsl",
                 "strand_name",
                 "audio_described"
-            )
-            ->take(
-                (((array) $this->options[$this->selected_option])["limit"] ??
-                    -1) *
-                    $this->page
-            )
-            ->get();
+            );
 
         if (isset(((array) $this->options[$this->selected_option])["offset"])) {
             $instances->whereBetween("start", [
@@ -56,8 +50,15 @@ class Instances extends Component
             ]);
         }
 
+        if (isset(((array) $this->options[$this->selected_option])["limit"])) {
+            $instances->take(
+                ((array) $this->options[$this->selected_option])["limit"] *
+                    $this->page
+            );
+        }
+
         return view("livewire.programme.instances", [
-            "instances" => $instances,
+            "instances" => $instances->get(),
         ]);
     }
 }
