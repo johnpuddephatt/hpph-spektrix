@@ -14,7 +14,7 @@
                  <div class="text-center">
 
                      @if ($strand->featuredImage)
-                         <x-image class="block w-full rounded" :width="30rem" :src="$strand->featuredImage->getUrl('wide')" :srcset="$strand->featuredImage->getSrcset('wide')" />
+                         <x-image class="block w-full rounded" width="30rem" :src="$strand->featuredImage->getUrl('wide')" :srcset="$strand->featuredImage->getSrcset('wide')" />
                      @else
                          <div class="h-36 rounded bg-white opacity-50"></div>
                      @endif
