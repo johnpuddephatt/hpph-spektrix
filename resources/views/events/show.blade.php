@@ -1,7 +1,7 @@
 @extends('layouts.default', ['header_position' => 'absolute', 'edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
 @section('title', $event->name)
 @section('content')
-    <div class="fixed inset-0 -z-10 h-[calc(100vh-1rem)] w-full overflow-hidden">
+    <div class="fixed inset-0 z-[-1] -z-10 h-[calc(100vh-1rem)] w-full overflow-hidden">
         @if ($event->featuredImage)
             {!! $event->featuredImage->img('wide', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() !!}
         @endif
@@ -35,18 +35,18 @@
 
             <div class="flex-row justify-between lg:flex">
 
-                <div class="relative z-30 ml-0 max-w-4xl py-16 lg:w-1/2 lg:pr-32">
+                <div class="relative z-30 ml-0 max-w-4xl py-16 lg:w-1/2 lg:pr-16 xl:pr-32">
                     <div class="type-large prose mb-24">
                         {{ $event->long_description }}
                     </div>
                     <!-- <div class="flex gap-4">
-                                                            @foreach ($event->gallery as $galleryItem)
+                                                                        @foreach ($event->gallery as $galleryItem)
     {{ $galleryItem->img('wide', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() }}
     @endforeach
-                                                        </div> -->
+                                                                    </div> -->
 
                     <div class="container mb-24">
-                        <h3 class="type-label">Why watch?</h3>
+                        <h3 class="type-label">Why watch? @todo</h3>
                         <div class="mt-4 flex flex-row items-start gap-8 border-t border-gray pt-4 xl:gap-36">
                             <div class="aspect-square w-24 flex-none rounded bg-gray-light"></div>
                             <div>

@@ -243,8 +243,8 @@ class Event extends Model implements HasMedia, CachableAttributes
             return "Showing today";
         } elseif ($this->tomorrowInstances()->count()) {
             return "Showing tomorrow";
-        } elseif ($this->thisWeekInstances()->count()) {
-            return "Showing this week";
+        } elseif ($this->instance_dates) {
+            return $this->instance_dates;
         } else {
             return "Coming soon";
         }

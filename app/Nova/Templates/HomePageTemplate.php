@@ -39,8 +39,17 @@ class HomePageTemplate
                     ),
             ]),
             new Panel("Our values", [
-                Images::make("Image gallery", "gallery"),
-                // ->customPropertiesFields([Text::make("Label")]),
+                Images::make(
+                    "Image gallery",
+                    "gallery"
+                )->customPropertiesFields([
+                    Select::make("Category")->options([
+                        "Building",
+                        "History",
+                        "People",
+                        "Redevelopment",
+                    ]),
+                ]),
                 Text::make("Values statement", "content->values_statement"),
             ]),
 
@@ -236,7 +245,7 @@ class HomePageTemplate
         } elseif (\App\Models\Instance::tomorrow()->count()) {
             return [["label" => "Tomorrow", "offset" => 1, "duration" => 1]];
         } elseif (\App\Models\Instance::thisWeek()->count()) {
-            return [["label" => "This week", "offset" => 0, "duration" => 14]];
+            return [["label" => "This week", "offset" => 0, "duration" => 7]];
         } else {
             return [
                 [
