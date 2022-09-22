@@ -257,15 +257,33 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getVenueAttribute()
     {
-        if (!$this->instances->count()) {
-            return null;
-        }
-        return $this->instances
-            ->pluck("venue")
-            ->unique()
-            ->count() > 1
-            ? "Multiple venues"
-            : $this->instances->first()->venue;
+        return $this->remember("venue", 3600, function () {
+            if (!$this->instances->count()) {
+                return null;
+            }
+            return $this->instances
+                ->pluck("venue")
+                ->unique()
+                ->count() > 1
+                ? "Multiple venues"
+                : $this->instances->first()->venue;
+        });
+    }
+
+    public function getFormatAttribute()
+    {
+        return $this->remember("format", 3600, function () {
+            if (!$this->instances->count()) {
+                return "np instances";
+            }
+            return $this->instances
+                ->pluck("analogue")
+                ->unique()
+                ->count() > 1
+                ? "Showing in multiple formats"
+                : ($this->instances->first()->analogue ?:
+                    "Digital");
+        });
     }
 
     public function getLanguageAttribute($value): array

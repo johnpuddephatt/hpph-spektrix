@@ -40,10 +40,10 @@
                         {{ $event->long_description }}
                     </div>
                     <!-- <div class="flex gap-4">
-                                                                        @foreach ($event->gallery as $galleryItem)
+                                                                                        @foreach ($event->gallery as $galleryItem)
     {{ $galleryItem->img('wide', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() }}
     @endforeach
-                                                                    </div> -->
+                                                                                    </div> -->
 
                     <div class="container mb-24">
                         <h3 class="type-label">Why watch? @todo</h3>
@@ -72,8 +72,10 @@
                         <h3 class="type-label">Film details</h3>
 
                         <div class="mt-4 divide-y divide-gray border-t border-gray">
+                            <x-details-row label="Duration" :value="$event->duration" />
                             <x-details-row label="Director" :value="$event->director" />
                             <x-details-row label="Featuring" :value="implode(' &bullet; ', $event->featuring_stars)" />
+                            <x-details-row label="Format" :value="$event->format" />
                             <x-details-row label="Language" :value="implode(' &bullet; ', $event->language)" />
                             <x-details-row label="Country of origin" :value="implode(' &bullet; ', $event->country_of_origin)" />
                         </div>
@@ -137,7 +139,7 @@
                             <h2 class="type-h5 max-w-[8em]">Want to see this film for free?</h2>
                         </div>
 
-                        <div class="container relative max-w-xl py-8 pl-32">
+                        <div class="container relative py-8 pl-32">
                             <div class="type-label absolute right-full origin-right translate-x-8 -rotate-90 transform">
                                 Memberships</div>
                             <div class="max-w-xs">Become a HPPH member and receive free tickets plus loads of exclusive

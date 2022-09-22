@@ -3,9 +3,9 @@
 @foreach (\App\Models\Membership::showByBookingPath()->get() as $membership)
     <spektrix-memberships id="spektrixMemberships" client-name="{{ $settings['spektrix_client_name'] }}"
         custom-domain="{{ $settings['spektrix_custom_domain'] }}" membership-id="801ARDQDDMGGJKKRTNTJBMCCMMBCPQKCR"
-        class="mt-8 block">
+        class="mt-8 block max-w-xl">
         <details>
-            <summary class="flex cursor-default flex-row items-center gap-2">
+            <summary class="flex cursor-default flex-row items-center gap-2 focus-within:outline-none">
                 @svg('plus', 'h-6 w-6 p-1')
                 <h3 class="type-subtitle">{{ $membership->name }}</h3>
                 <span class="type-label rounded bg-yellow px-2 py-1">{{ $membership->price }}</span>

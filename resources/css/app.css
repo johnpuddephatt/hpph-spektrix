@@ -8,6 +8,11 @@
 @tailwind utilities;
 
 @layer base {
+    details > summary::marker,
+    details > summary::-webkit-details-marker {
+        display: none;
+    }
+
     .container {
         @apply max-w-none mx-auto px-4 sm:px-6 md:px-8;
     }

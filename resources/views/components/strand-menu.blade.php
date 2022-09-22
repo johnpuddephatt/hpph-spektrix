@@ -20,12 +20,17 @@
                      @endif
 
                      <div class="fade-to-top relative z-10 -mt-20 -mb-16 h-24"></div>
-                     <h3
-                         class="tracking-tight relative z-20 inline-block break-all rounded-full border-2 border-yellow py-8 px-8 text-xl font-bold uppercase leading-none text-yellow">
-                         {{ $strand->name }}</h3>
+                     @if ($strand->logo)
+                         <x-svg class="relative z-10 mx-auto w-64 max-w-full px-8">{!! $strand->logo !!}</x-svg>
+                     @else
+                         <h3 class="tracking-tight relative z-20 inline-block break-all rounded-full border-2 border-yellow py-8 px-8 text-xl font-bold uppercase leading-none text-yellow"
+                             style="border-color: {{ $strand->color }}; color: {{ $strand->color }}">
+                             {{ $strand->name }}</h3>
+                     @endif
                      <p class="mx-auto mt-8 max-w-xs">{{ $strand->short_description }}</p>
-                     <hr class="my-8 border-t-2 border-yellow" />
+                     <hr class="my-8 border-t-2 border-yellow" style="border-color: {{ $strand->color }};" />
                      <a class="type-label rounded bg-yellow py-2 px-12 text-black"
+                         style="background-color: {{ $strand->color }};"
                          href="{{ route('strand.show', ['strand' => $strand->slug]) }}">Explore</a>
                  </div>
              @endforeach
