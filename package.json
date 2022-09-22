@@ -36,6 +36,7 @@
         "editorjs-block-width-tune": "^1.0.0",
         "editorjs-carousel": "^1.0.7",
         "editorjs-detailssummary": "^1.0.0",
+        "postcss-easing-gradients": "^3.0.1",
         "tailwind-scrollbar-hide": "^1.1.7"
     }
 }

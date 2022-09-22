@@ -83,7 +83,7 @@ class Strand extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->format("jpg")
             ->withResponsiveImages()
-            ->performOnCollections("secondary");
+            ->performOnCollections("main", "secondary");
         $this->addMediaConversion("square")
             ->quality(80)
             ->crop("crop-center", 1200, 1200)

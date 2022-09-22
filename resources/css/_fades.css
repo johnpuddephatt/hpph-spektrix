@@ -1,0 +1,35 @@
+.fade-to-top {
+    background: linear-gradient(
+        to top,
+        black,
+        cubic-bezier(0.48, 0.3, 0.64, 1),
+        transparent
+    );
+}
+
+.fade-to-bottom {
+    background: linear-gradient(
+        to bottom,
+        black,
+        cubic-bezier(0.48, 0.3, 0.64, 1),
+        transparent
+    );
+}
+
+.fade-to-right {
+    background: linear-gradient(
+        to right,
+        black,
+        cubic-bezier(0.48, 0.3, 0.64, 1),
+        transparent
+    );
+}
+
+.fade-to-left {
+    background: linear-gradient(
+        to left,
+        black,
+        cubic-bezier(0.48, 0.3, 0.64, 1),
+        transparent
+    );
+}

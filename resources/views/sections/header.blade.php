@@ -22,8 +22,7 @@
         @include('sections.navigation')
 
         @if ($header_position == 'absolute' || $header_position == 'fixed')
-            <div
-                class="t-0 pointer-events-none absolute left-0 right-0 z-[-1] h-72 bg-gradient-to-b from-black to-transparent">
+            <div class="t-0 fade-to-bottom pointer-events-none absolute left-0 right-0 z-[-1] h-72">
             </div>
         @endif
 

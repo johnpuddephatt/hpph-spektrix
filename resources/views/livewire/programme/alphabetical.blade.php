@@ -1,4 +1,4 @@
-<div class="mb-32 divide-y divide-gray-light border-t border-gray-light">
+<div class="divide-y divide-gray-light border-t border-gray-light">
     @foreach ($events as $event)
         <div class="flex flex-row gap-6 py-8">
             <a href="{{ route('event.show', ['event' => $event->slug]) }}"

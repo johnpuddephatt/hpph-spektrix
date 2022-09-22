@@ -22,6 +22,10 @@ class Instance extends Model
                 ->orderBy("start", "asc")
                 ->where("start", ">", Carbon::today());
         });
+
+        static::addGlobalScope("has_event", function (Builder $builder) {
+            $builder->whereHas("event");
+        });
     }
 
     protected $fillable = [

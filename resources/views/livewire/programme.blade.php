@@ -1,4 +1,4 @@
-<div>
+<div class="pb-32">
     <div class="flex flex-row justify-between border-t border-gray-light py-8">
         <div class="flex flex-row items-center gap-2">
             <div class="type-label">View by:</div>

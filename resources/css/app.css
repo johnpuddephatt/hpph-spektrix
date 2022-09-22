@@ -1,6 +1,7 @@
 @import "_fonts";
 @import "_type";
 @import "_prose";
+@import "_fades";
 
 @tailwind base;
 @tailwind components;
