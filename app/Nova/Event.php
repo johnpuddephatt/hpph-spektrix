@@ -26,6 +26,7 @@ use Eminiarts\Tabs\Traits\HasTabs;
 use Eminiarts\Tabs\Tabs;
 use Eminiarts\Tabs\Tab;
 use Illuminate\Support\Str;
+use Laravel\Nova\Fields\Trix;
 
 class Event extends Resource
 {
@@ -98,6 +99,9 @@ class Event extends Resource
                 "Tabs",
                 [
                     Tab::make("Overview", [
+                        Trix::make("Description")
+                            ->required()
+                            ->rules("required"),
                         NovaEditorJsField::make(
                             "Long description"
                         )->hideFromIndex(),

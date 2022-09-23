@@ -28,6 +28,29 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer("*", function ($view) {
             $view->with(
+                "strands_and_seasons",
+                \Cache::rememberForever("strands_and_seasons", function () {
+                    return \App\Models\Strand::select(
+                        "id",
+                        "name",
+                        "slug",
+                        "short_description",
+                        "color",
+                        "logo",
+                        "logo_text"
+                    )
+                        ->get()
+                        ->merge(
+                            \App\Models\Season::select(
+                                "id",
+                                "name",
+                                "slug",
+                                "short_description"
+                            )->get()
+                        );
+                })
+            );
+            $view->with(
                 "settings",
                 \Cache::rememberForever("settings", function () {
                     return nova_get_settings();

@@ -29,7 +29,7 @@
                 <div class="flex flex-row items-center gap-2">
                     <x-certificate :dark="$dark" :certificate="$instance->event->certificate_age_guidance" />
                     <x-strand :strand="$instance->strand" />
-                    <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->audio_described" />
+                    <x-accessibilities :dark="$dark" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->audio_described" />
                 </div>
 
                 <a @click.stop href="{{ route('event.show', ['event' => $instance->event->slug]) }}"

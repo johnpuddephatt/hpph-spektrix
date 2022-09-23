@@ -10,7 +10,7 @@
              x-show="open" x-transition:enter-start="-translate-x-16 opacity-0"
              x-transition:leave-end="-translate-x-16 opacity-0">
 
-             @foreach (\App\Models\Strand::all() as $strand)
+             @foreach ($strands_and_seasons as $strand)
                  <div class="text-center">
 
                      @if ($strand->featuredImage)

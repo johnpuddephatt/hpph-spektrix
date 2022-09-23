@@ -15,6 +15,7 @@ use Outl1ne\MultiselectField\Multiselect;
 // use Whitecube\NovaFlexibleContent\Flexible;
 
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Illuminate\Support\Facades\DB;
 
 class HomePageTemplate
 {
@@ -111,12 +112,18 @@ class HomePageTemplate
             abort(404);
         }
 
+        $shuffled_images = $page
+            ->getMedia("gallery")
+            ->shuffle()
+            ->groupBy("custom_properties.category");
+
         return [
             "values_statement" => $page->content->values_statement,
-            "values_images" => $page
-                ->getMedia("gallery")
-                ->shuffle()
-                ->take(5)
+            "values_images" => $shuffled_images
+                ->map(function ($values) {
+                    return $values->first();
+                })
+                ->push($shuffled_images->first()[1])
                 ->map(function ($item) {
                     return [
                         "src" => $item->getUrl("portrait"),

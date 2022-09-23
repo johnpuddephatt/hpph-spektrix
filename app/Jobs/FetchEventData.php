@@ -102,7 +102,7 @@ class FetchEventData implements ShouldQueue
                 ["id" => $event->id],
                 [
                     "enabled" => true,
-                    "description" => $event->description ?? null,
+                    // "description" => $event->description ?? null, // we don't want to use the Spektrix description
                     "duration" => $event->duration ?? null,
                     "is_on_sale" => $event->isOnSale ?? false,
                     "name" => $event->name ?? null,
