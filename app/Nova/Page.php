@@ -94,7 +94,7 @@ class Page extends Resource
                 ->placeholder("Leave blank to generate automatically")
                 ->rules("max:100"),
             Boolean::make("Published")->showOnPreview()
-                ->filterable(),
+                ->filterable()->hideWhenCreating(),
             Images::make("Image", "main"),
             Textarea::make("Introduction")
                 ->rows(3)

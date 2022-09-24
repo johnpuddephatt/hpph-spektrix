@@ -38,24 +38,28 @@ class Programme extends Component
     {
         $this->type = "schedule";
         $this->strand = $value;
+        $this->emit("updateStrand2", $this->strand);
     }
 
     public function setSeason($value)
     {
         $this->type = "schedule";
         $this->season = $value;
+        $this->emit("updateSeason2", $this->season);
     }
 
     public function setAccessibility($value)
     {
         $this->type = "schedule";
         $this->accessibility = $value;
+        $this->emit("updateAccessibility2", $this->accessibility);
     }
 
     public function setDate($value)
     {
         $this->type = "schedule";
         $this->date = $value;
+        $this->emit("updateDate2", $this->date);
     }
 
     public function render()

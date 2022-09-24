@@ -58,6 +58,7 @@ class JobsPageTemplate
             new Panel("Banner", [
                 Text::make("Title", "content->banner->title"),
                 Text::make("Subtitle", "content->banner->subtitle"),
+                Text::make("URL", "content->banner->url"),
                 Select::make("Height", "content->banner->height")->options([
                     null => "Auto",
                     "min-h-[66vh]" => "Two-thirds",
@@ -82,11 +83,51 @@ class JobsPageTemplate
         ];
     }
 
-    // Resolve data for serialization
-    public function resolve($page, $params): array
+    public function resolve($page): array
     {
-        // Modify data as you please (ie turn ID-s into models)
-        return $page->data;
+        if (!$page->content) {
+            abort(404);
+        }
+
+        return array_merge((array) $page->content, [
+            "opportunities" => \App\Models\Opportunity::latest()->get(),
+            "header_images" => $page
+                ->getMedia("gallery")
+                ->map(function ($item) {
+                    return [
+                        "src" => $item->getUrl("landscape"),
+                        "srcset" => $item->getSrcset("landscape"),
+                    ];
+                }),
+            "child_pages" => \App\Models\Page::with("mainImage")
+                ->find($page->content->child_pages)
+                ->map(function ($item) {
+                    // dd($item);
+                    return [
+                        "slug" => $item->slug,
+                        "name" => $item->name,
+                        "introduction" => $item->introduction,
+                        "src" => $item->mainImage->getUrl("landscape"),
+                        "srcset" => $item->mainImage->getSrcset("landscape"),
+                    ];
+                }),
+
+            "banner" => [
+                "title" => $page->content->banner->title,
+                "subtitle" => $page->content->banner->subtitle,
+                "height" => $page->content->banner->height,
+                "url" => $page->content->banner->url ?? null,
+                "src" => $page->getMedia("banner")->count()
+                    ? $page->getMedia("banner")[0]->getUrl("landscape")
+                    : "",
+                "srcset" => $page->getMedia("banner")->count()
+                    ? $page->getMedia("banner")[0]->getSrcset("landscape")
+                    : "",
+                "overlay" => $page->content->banner->overlay,
+                "bg_color" => $page->content->banner->bg_color,
+                "text_color" => $page->content->banner->text_color,
+            ],
+        ]);
     }
 
     // Optional suffix to the route (ie {blogPostName})

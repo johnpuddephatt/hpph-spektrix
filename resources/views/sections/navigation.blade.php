@@ -5,7 +5,7 @@
         <nav
             class="lg:text-inherit type-h5 flex min-h-screen flex-col items-center justify-center gap-3 font-bold lg:min-h-0 lg:flex-row lg:text-base lg:font-normal lg:tracking-normal">
 
-            <x-strand-menu>Strands &amp; seasons</x-strand-menu>
+            <x-strand-menu>Strands &amp; seasons @svg('down-chevron', 'inline-block ml-0.5 w-2 h-2')</x-strand-menu>
 
             @if ($header_menu)
                 <ul class="flex flex-col gap-3 text-center lg:flex-row lg:gap-2 lg:text-left">

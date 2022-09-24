@@ -24,10 +24,10 @@ class Instances extends Component
     protected $queryString = ["season", "accessibility", "strand", "date"];
 
     protected $listeners = [
-        "updateStrand" => "setStrand",
-        "updateSeason" => "setSeason",
-        "updateAccessibility" => "setAccessibility",
-        "updateDate" => "setDate",
+        "updateStrand2" => "setStrand",
+        "updateSeason2" => "setSeason",
+        "updateAccessibility2" => "setAccessibility",
+        "updateDate2" => "setDate",
     ];
 
     public function clearFilters()

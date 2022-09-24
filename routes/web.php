@@ -67,10 +67,9 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("strand.show");
 
-    Route::get("{page1}", [
-        \App\Http\Controllers\PageController::class,
-        "show",
-    ])->where("page1", "^(?!nova).*");
+    Route::get("{page}", [\App\Http\Controllers\PageController::class, "show"])
+        ->where("page", "^(?!nova).*")
+        ->name("page.show");
 });
 
 Route::middleware("auth")->group(function () {
