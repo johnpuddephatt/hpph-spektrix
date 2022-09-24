@@ -347,7 +347,6 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function formatForHomepage()
     {
-        // return $this->map($item, $key) {
         return [
             "status" => $this->status,
             "name" => $this->name,
@@ -361,6 +360,5 @@ class Event extends Model implements HasMedia, CachableAttributes
                 : null,
             "strands" => $this->strands,
         ];
-        // });
     }
 }

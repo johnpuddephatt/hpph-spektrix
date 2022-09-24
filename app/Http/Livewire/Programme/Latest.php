@@ -10,8 +10,7 @@ class Latest extends Component
     {
         return view("livewire.programme.latest", [
             "events" => \App\Models\Event::with(
-                "todayInstances",
-                "tomorrowInstances",
+                "instances",
                 "featuredImage"
             )->get(),
         ]);
