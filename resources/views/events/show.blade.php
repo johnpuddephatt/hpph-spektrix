@@ -9,7 +9,7 @@
 
     <div class="relative mt-[calc(100vh-4.25rem-1rem)]">
         <div class="absolute bottom-full left-0 right-0 z-[1] mt-auto" id="event-content">
-            <div class="px-4 pt-48 pb-12 text-white 2xl:px-6">
+            <div class="container pt-48 pb-12 text-white 2xl:px-6">
                 <h1 class="mb-4 text-6xl font-bold">{{ $event->name }}</h1>
                 <div class="flex flex-row items-center gap-2">
                     <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
@@ -40,10 +40,10 @@
                         {{ $event->long_description }}
                     </div>
                     <!-- <div class="flex gap-4">
-                                                                                        @foreach ($event->gallery as $galleryItem)
+                                                                                            @foreach ($event->gallery as $galleryItem)
     {{ $galleryItem->img('wide', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() }}
     @endforeach
-                                                                                    </div> -->
+                                                                                        </div> -->
 
                     <div class="container mb-24">
                         <h3 class="type-label">Why watch? @todo</h3>

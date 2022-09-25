@@ -31,17 +31,19 @@
                   </div>
               @endforeach
           </div>
-          <div class="absolute bottom-8 left-1/2 -translate-x-1/2 transform space-x-4">
-              @foreach ($reviews as $review)
-                  <button
-                      class="h-2.5 w-2.5 overflow-hidden rounded-full border border-black indent-[-9999px] transition-colors duration-200 ease-out hover:bg-black hover:shadow-lg"
-                      :class="{
-                          'bg-black': activeSlide === {{ $loop->index }},
-                          'bg-transparent': activeSlide !== {{ $loop->index }}
-                      }"
-                      x-on:click="click = true; activeSlide = {{ $loop->index }}">Show quote
-                      {{ $loop->index + 1 }}</button>
-              @endforeach
-          </div>
+          @if ($reviews->count > 1)
+              <div class="absolute bottom-8 left-1/2 -translate-x-1/2 transform space-x-4">
+                  @foreach ($reviews as $review)
+                      <button
+                          class="h-2.5 w-2.5 overflow-hidden rounded-full border border-black indent-[-9999px] transition-colors duration-200 ease-out hover:bg-black hover:shadow-lg"
+                          :class="{
+                              'bg-black': activeSlide === {{ $loop->index }},
+                              'bg-transparent': activeSlide !== {{ $loop->index }}
+                          }"
+                          x-on:click="click = true; activeSlide = {{ $loop->index }}">Show quote
+                          {{ $loop->index + 1 }}</button>
+                  @endforeach
+              </div>
+          @endif
       </div>
   @endif
