@@ -9,7 +9,7 @@
     }"
     class="{{ $header_background ?? null }}">
 
-    <div class="flex flex-row items-center px-5 py-3 2xl:py-6">
+    <div class="container flex flex-row items-center py-3 2xl:py-6">
         <a title="HPPH Home" aria-label="HPPH Home" class="relative z-20 mr-4 text-black" href="/">
             @svg('logo-compact', 'h-10 w-auto')</a>
 

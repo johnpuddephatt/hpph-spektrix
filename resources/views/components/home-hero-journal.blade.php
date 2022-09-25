@@ -1,6 +1,6 @@
 @if (count($posts))
     <div id="journal-wrapper" x-cloak
-        class="absolute bottom-0 right-0 z-10 mb-8 hidden w-[calc(25%+2em)] flex-row px-5 !pl-0 lg:flex 2xl:px-6"
+        class="container absolute bottom-0 right-0 z-10 mb-8 hidden w-[calc(25%+2em)] flex-row !pl-0 lg:flex"
         x-data="{ activeSlide: 0 }">
 
         <div :class="{ 'invisible': {{ count($posts) == 1 ? 'true' : 'false' }} }"

@@ -13,7 +13,7 @@
         <div
             class="pointer-events-none absolute left-0 top-0 right-0 h-64 w-full bg-gradient-to-b from-black to-transparent lg:left-auto lg:bottom-0 lg:h-full lg:w-96 lg:bg-gradient-to-l">
         </div>
-        <a :href="`/films/${slides[activeSlide].slug }`" class="relative z-10 block px-4 text-white 2xl:px-6"">
+        <a :href="`/films/${slides[activeSlide].slug }`" class="container relative z-10 block text-white"">
             <div class="type-label mb-4" x-text="slides[activeSlide].status"></div>
             <h3 class="type-h3 lg:type-h2" x-text="slides[activeSlide].name"></h3>
             <div class="mt-4 flex flex-row items-center">
