@@ -28,8 +28,8 @@
             <div class="mb-4 flex flex-grow flex-row gap-16">
                 <div class="flex w-1/2 flex-col justify-end py-4">
                     @if ($event->description)
-                        <p class="mb-auto overflow-hidden pb-4">
-                            {!! $event->description !!}</p>
+                        <div class="mb-auto overflow-hidden pb-4">
+                            {!! $event->description !!}</div>
                     @endif
                     <x-genres-vibes-badge class="mt-auto" :values="$event->genres_and_vibes" />
                 </div>
