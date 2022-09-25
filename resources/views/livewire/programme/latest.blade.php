@@ -29,7 +29,7 @@
                 <div class="flex w-1/2 flex-col justify-end py-4">
                     @if ($event->description)
                         <p class="mb-auto overflow-hidden pb-4">
-                            {{ Illuminate\Support\Str::limit($event->description, 120) }}</p>
+                            {!! $event->description !!}</p>
                     @endif
                     <x-genres-vibes-badge class="mt-auto" :values="$event->genres_and_vibes" />
                 </div>

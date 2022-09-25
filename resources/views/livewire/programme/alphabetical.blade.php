@@ -24,8 +24,8 @@
             </a>
             <div class="flex w-1/4 flex-grow flex-col">
                 @if ($event->description)
-                    <p class="mb-auto overflow-hidden pb-4">
-                        {{ Illuminate\Support\Str::limit($event->description, 120) }}</p>
+                    <div class="mb-auto overflow-hidden pb-4">
+                        {!! $event->description !!}</div>
                 @endif
                 <a class="type-subtitle mt-auto block rounded bg-gray py-2 px-4 text-center hover:bg-yellow hover:text-black"
                     href="{{ route('event.show', ['event' => $event->slug]) }}">More information &amp; tickets</a>
