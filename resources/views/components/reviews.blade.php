@@ -31,7 +31,7 @@
                   </div>
               @endforeach
           </div>
-          @if ($reviews->count > 1)
+          @if ($reviews->count() > 1)
               <div class="absolute bottom-8 left-1/2 -translate-x-1/2 transform space-x-4">
                   @foreach ($reviews as $review)
                       <button
