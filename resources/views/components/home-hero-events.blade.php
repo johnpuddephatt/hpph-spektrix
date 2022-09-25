@@ -1,5 +1,5 @@
     <div id="slider-wrapper"
-        class="relative inset-0 mt-[50vh] flex h-screen flex-col justify-end pb-8 lg:absolute lg:right-[55%] lg:mt-0"
+        class="relative inset-0 mt-[50vh] flex h-screen flex-col justify-end pb-8 lg:absolute lg:right-[55%] lg:mt-0 lg:h-auto"
         x-data='{ activeSlide: 0, slides: {{ json_encode($events) }} }' x-init="$watch('activeSlide', value => $nextTick(() => {
             $refs.seasonWrapper.style.width = $refs.seasonWrapper.firstElementChild.clientWidth + 'px';
         }))">
