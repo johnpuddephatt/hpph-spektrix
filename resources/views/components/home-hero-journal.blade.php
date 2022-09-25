@@ -3,7 +3,7 @@
         class="absolute bottom-0 right-0 z-10 mb-8 hidden w-[calc(25%+2em)] flex-row px-5 !pl-0 lg:flex 2xl:px-6"
         x-data="{ activeSlide: 0 }">
 
-        <div :class="{ 'invisible': {{ count($posts) == 1 }} }"
+        <div :class="{ 'invisible': {{ count($posts) == 1 ? 'true' : 'false' }} }"
             class="relative z-10 flex w-10 flex-col items-center justify-center gap-4 2xl:w-12">
             @foreach ($posts as $post)
                 <button
