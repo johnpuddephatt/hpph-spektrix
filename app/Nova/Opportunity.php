@@ -5,6 +5,7 @@ namespace App\Nova;
 use Advoor\NovaEditorJs\NovaEditorJsField;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -71,6 +72,7 @@ class Opportunity extends Resource
                 ])
                 ->hideFromIndex()
                 ->rules("max:300", "required"),
+            Heading::make("Specifics"),
             Select::make("Type")
                 ->options([
                     "Full-time" => "Full-time",
@@ -132,6 +134,7 @@ class Opportunity extends Resource
                 ])
                 ->hideFromIndex()
                 ->rules("max:40"),
+            Heading::make("Description"),
             NovaEditorJsField::make("Content")
                 ->rules("required")
                 ->hideFromIndex()

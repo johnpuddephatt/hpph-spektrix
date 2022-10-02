@@ -21,7 +21,6 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "hpph/svg": "*",
-        "hpph/template-fields": "*",
         "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^9.0",
         "laravel/nova": "^4.0",

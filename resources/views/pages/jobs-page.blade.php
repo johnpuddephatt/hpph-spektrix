@@ -6,10 +6,12 @@
 @section('content')
     <div class="relative h-[calc(100vh-1rem)] w-full overflow-hidden bg-black">
         <div class="relative">
-            <div x-data="{}" x-init="console.log($el.scrollLeft);
-            $el.firstElementChild.children[1].scrollIntoView({ behavior: 'auto', block: 'center', inline: 'center' });
-            console.log($el.scrollLeft);"
-                class="relative snap-x snap-mandatory overflow-x-auto scrollbar-hide">
+            <div x-data="{}" x-init="setTimeout(function() {
+                console.log(($el.scrollWidth - document.body.clientWidth) / 2);
+                $el.scrollLeft = ($el.scrollWidth - document.body.clientWidth) / 2;
+                $el.classList.remove('opacity-0');
+            }, 500);"
+                class="relative snap-x snap-mandatory overflow-x-auto opacity-0 transition scrollbar-hide">
                 <div class="relative flex flex-row gap-8">
                     <div class="w-8 flex-none"></div>
                     @foreach ($page->content->header_images as $header_image)
