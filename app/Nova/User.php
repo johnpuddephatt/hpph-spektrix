@@ -11,6 +11,11 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Heading;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Panel;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 class User extends Resource
 {
@@ -83,6 +88,34 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules("required", Rules\Password::defaults())
                 ->updateRules("nullable", Rules\Password::defaults()),
+
+            Panel::make("Settings", [
+                Boolean::make("Show in directory"),
+                Boolean::make("Enable login"),
+            ]),
+
+            Panel::make("Role", [
+                Text::make("Role title"),
+                Textarea::make("Role description"),
+            ]),
+
+            Panel::make("Favourite films", [
+                // Image::make("Favourite film image"),
+                Flexible::make("Favourite films", "extras->favourite_films")
+                    ->addLayout("Favourite films", "favourite_films", [
+                        Text::make("Film name"),
+                    ])
+                    ->button("Add a film"),
+            ]),
+
+            Panel::make("Quote", [Textarea::make("Quote")]),
+            Panel::make("Favourite film quote", [
+                // Image::make("Film quote image"),
+                Textarea::make("Quote"),
+                Text::make("Author"),
+                Text::make("Film"),
+                Text::make("Year"),
+            ]),
         ];
     }
 

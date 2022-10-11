@@ -172,7 +172,7 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function instances(): HasMany
     {
-        return $this->hasMany(Instance::class);
+        return $this->hasMany(Instance::class)->withoutGlobalScope("has_event");
     }
 
     /**

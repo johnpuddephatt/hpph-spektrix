@@ -16,7 +16,7 @@
                 </h2>
             </div>
 
-            <div class="container grid grid-cols-2 gap-4">
+            <div class="container my-12 grid grid-cols-2 gap-4">
 
                 @foreach ($group->attributes->funds as $fund)
                     <div>
