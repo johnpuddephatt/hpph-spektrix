@@ -8,7 +8,7 @@
 
     <div class="type-large my-16">
         <div class="container max-w-6xl">
-            <p class="type-h5 mb-8 max-w-2xl">{{ $page->introduction }}</p>
+            <p class="type-medium mb-8 max-w-2xl">{{ $page->introduction }}</p>
         </div>
 
         @foreach ($page->content->blocks as $block)

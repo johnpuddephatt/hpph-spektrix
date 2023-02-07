@@ -1,0 +1,6 @@
+@import "../../vendor/laravel/nova/resources/css/app.css";
+@config "../../tailwind.nova-config.js";
+
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */

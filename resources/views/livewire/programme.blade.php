@@ -1,103 +1,106 @@
-<div class="pb-32">
-    <div class="flex flex-row justify-between border-t border-gray-light py-8">
-        <div class="flex flex-row items-center gap-2">
-            <div class="type-label">View by:</div>
-            <x-programme-button :selected="$type" type="latest">Latest</x-programme-button>
-            <x-programme-button :selected="$type" type="alphabetical">A&ndash;Z</x-programme-button>
-            <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
-        </div>
-        <div class="flex flex-row items-center gap-2">
-            <div class="type-label">Filter by:</div>
+<div class="bg-sand px-4 2xl:px-6 pt-24 pb-8 flex flex-row items-end justify-between">
+    @if (isset($count))
+        <h1 class="type-medium lg:type-large">Results <span class="font-normal">[{{ $count }}]</span></h1>
+    @else
+        <h1 class="type-medium lg:type-large">What’s on</h1>
+    @endif
+</div>
 
+<div class="flex flex-col-reverse lg:block">
+    <div
+        class="bg-sand-light z-10 sticky bottom-0 lg:static lg:bottom-auto lg:container lg:flex flex-row justify-between border-b border-sand lg:py-2">
+        <div class="grid grid-cols-2 lg:flex flex-row items-center lg:gap-2">
+            <div class="type-xs-mono hidden lg:block">View:</div>
+            <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
+
+            <x-programme-button :selected="$type" type="alphabetical">A&ndash;Z</x-programme-button>
+        </div>
+        <div class="grid grid-cols-3 px-4 py-3 lg:flex flex-row items-center gap-4 lg:gap-2">
+            <div class="type-xs-mono hidden lg:block">Filter:</div>
             @if ($strand)
                 <button
-                    class="relative z-10 rounded-full border border-gray-light py-1.5 px-4 group-hover:border-yellow group-hover:bg-yellow"
+                    class="type-xs-mono cursor-default rounded bg-yellow hover:bg-yellow-dark relative z-10 pt-2 py-1.5 px-3"
                     wire:click="$emit('updateStrand', null)">
                     {{ $strands_with_showings[$strand] }}
-                    @svg('plus', 'rotate-45 inline-block ml-1 w-4 h-4')</button>
-            @elseif ($season)
-                <button
-                    class="relative z-10 rounded-full border border-gray-light py-1.5 px-4 group-hover:border-yellow group-hover:bg-yellow"
-                    wire:click="$emit('updateSeason', null)">
-                    {{ $seasons_with_showings[$season] }}
-                    @svg('plus', 'rotate-45 inline-block ml-1 w-4 h-4')</button>
+                    @svg('plus', 'rotate-45 align-top inline-block ml-1 w-3 h-3')</button>
+                @svg('plus', 'rotate-45 align-top inline-block ml-1 w-3 h-3')</button>
             @else
-                @if (count($seasons_with_showings) || count($strands_with_showings))
-                    <div class="group relative hover:z-20">
-                        <div
-                            class="relative z-10 rounded-full border border-gray-light py-1.5 px-4 group-hover:border-yellow group-hover:bg-yellow">
-                            Strands
-                            &amp; seasons
-                            @svg('down-chevron', 'group-hover:rotate-180 transform transition inline-block ml-1 w-4 h-4')</div>
-                        <div
-                            class="absolute top-0 left-0 hidden min-w-full rounded-tl-3xl bg-yellow pt-12 pb-4 hover:block group-hover:block">
+                @if (count($strands_with_showings))
+
+                    <button x-on:click="$refs.stranddialog.showModal()"
+                        class="type-xs-mono cursor-default rounded bg-sand hover:bg-sand-dark relative z-10 pt-2 py-1.5 px-3">
+                        Strands
+                        @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
+                    <dialog x-ref="stranddialog"
+                        class="opacity-0 open:opacity-100 transition max-w-md rounded fixed top-1/2 m-0 w-full left-1/2 bg-sand p-12 z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
+                        <form method="dialog">
                             @foreach ($strands_with_showings as $slug => $strand_label)
                                 <button wire:click="$emit('updateStrand', '{{ $slug }}' )"
                                     class="px-4 py-1 before:mr-1 before:mb-0.5 before:inline-block before:h-2 before:w-2 before:rounded-full before:border before:border-black hover:before:bg-black">{{ $strand_label }}</button>
                             @endforeach
-                            @foreach ($seasons_with_showings as $slug => $season_label)
-                                <button wire:click="$emit('updateSeason', '{{ $slug }}' )"
-                                    class="px-4 py-1 before:mr-1 before:mb-0.5 before:inline-block before:h-2 before:w-2 before:rounded-full before:border before:border-black hover:before:bg-black">{{ $season_label }}</button>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
-
-                @if (count($accessibilities_with_showings))
-                    <div class="group relative hover:z-20">
-                        <div
-                            class="relative z-10 rounded-full border border-gray-light py-1.5 px-4 group-hover:border-yellow group-hover:bg-yellow">
-                            Accessibility
-                            @svg('down-chevron', 'group-hover:rotate-180 transform transition inline-block ml-1 w-4 h-4')</div>
-                        <div
-                            class="absolute top-0 left-0 hidden min-w-full rounded-tl-3xl bg-yellow pt-12 pb-4 hover:block group-hover:block">
-                            @foreach ($accessibilities_with_showings as $slug => $accessibility_label)
-                                <button wire:click="$emit('updateAccessibility', '{{ $slug }}' )"
-                                    class="whitespace-nowrap px-4 py-1 before:mr-1 before:mb-0.5 before:inline-block before:h-2 before:w-2 before:rounded-full before:border before:border-black hover:before:bg-black">{{ $accessibility_label }}</button>
-                            @endforeach
-
-                        </div>
-                    </div>
+                            <button value="cancel">Cancel</button>
+                        </form>
+                    </dialog>
 
                 @endif
+            @endif
+
+            @if (count($accessibilities_with_showings))
+
+                @if ($accessibility)
+                    <button
+                        class="type-xs-mono cursor-default rounded bg-yellow hover:bg-yellow-dark relative z-10 pt-2 py-1.5 px-3"
+                        wire:click="$emit('updateAccessibility', null)">
+                        {{ $accessibilities_with_showings[$accessibility] }}
+                        @svg('plus', 'rotate-45 align-top inline-block ml-1 w-3 h-3')</button>
+                @else
+                    <button x-on:click="$refs.accessdialog.showModal()"
+                        class="type-xs-mono cursor-default rounded bg-sand hover:bg-sand-dark relative z-10 pt-2 py-1.5 px-3">
+                        Access
+                        @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
+                @endif
+                <dialog x-ref="accessdialog"
+                    class="max-w-md rounded fixed top-1/2 m-0 w-full left-1/2 bg-sand p-12 z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
+                    <form method="dialog">
+                        @foreach ($accessibilities_with_showings as $slug => $accessibility_label)
+                            <button wire:click="$emit('updateAccessibility', '{{ $slug }}' )"
+                                class="whitespace-nowrap px-4 py-1 before:mr-1 before:mb-0.5 before:inline-block before:h-2 before:w-2 before:rounded-full before:border before:border-black hover:before:bg-black">{{ $accessibility_label }}</button>
+                        @endforeach
+                        <button value="cancel">Cancel</button>
+                    </form>
+                </dialog>
+
             @endif
 
             @if ($date)
                 <button
-                    class="relative z-10 rounded-full border border-gray-light py-1.5 px-4 group-hover:border-yellow group-hover:bg-yellow"
+                    class="type-xs-mono cursor-default rounded bg-yellow hover:bg-yellow-dark relative z-10 pt-2 py-1.5 px-3"
                     wire:click="$emit('updateDate', null)">
 
                     {{ date('d M', strtotime($date)) }}
 
-                    @svg('plus', 'rotate-45 inline-block ml-1 w-4 h-4')</button>
-            @endif
-            <div class="group {{ $date ? 'hidden' : '' }} relative hover:z-20">
-                <div
-                    class="relative z-10 rounded-full border border-gray-light py-1.5 px-4 group-hover:border-yellow group-hover:bg-yellow">
+                    @svg('plus', 'rotate-45 inline-block ml-1 align-top w-3 h-3')</button>
+            @else
+                <button x-on:click="$refs.datedialog.showModal()"
+                    class="type-xs-mono cursor-default rounded bg-sand hover:bg-sand-dark relative z-10 pt-2 py-1.5 px-3">
                     Date
-                    @svg('down-chevron', 'group-hover:rotate-180 transform transition inline-block ml-1 w-4 h-4')</div>
-                <div
-                    class="absolute top-0 right-0 hidden min-w-full rounded-tr-3xl bg-yellow pt-12 hover:block group-hover:block">
-                    <x-datepicker />
-
-                </div>
-            </div>
-
+                    @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
+                <dialog x-ref="datedialog"
+                    class="max-w-md rounded fixed top-1/2 m-0 w-full left-1/2 bg-sand p-12 z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
+                    <form method="dialog">
+                        <x-datepicker />
+                        <button value="cancel">Cancel</button>
+                    </form>
+                </dialog>
+            @endif
         </div>
     </div>
 
-    @if ($type == 'latest')
-        <livewire:programme.latest />
-    @endif
-
-    @if ($type == 'alphabetical')
-        <livewire:programme.alphabetical />
-    @endif
-
-    @if ($type == 'schedule')
-        <livewire:programme.instances :show_header="false" :show_load_more="true" :options="[(array) ['limit' => 10]]" />
-
-        <!-- x  x:strand="$strand" :season="$season" :date="$date" :accessibility="$accessibility" -->
-    @endif
-
+    <div class="bg-sand">
+        @if ($type == 'alphabetical')
+            <livewire:programme.alphabetical />
+        @elseif ($type == 'schedule')
+            <livewire:programme.instances :show_header="false" :show_load_more="true" :options="[(array) ['limit' => 10]]" />
+        @endif
+    </div>
 </div>

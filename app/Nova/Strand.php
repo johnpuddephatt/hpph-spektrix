@@ -10,12 +10,18 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Textarea;
 use Advoor\NovaEditorJs\NovaEditorJs;
 use Advoor\NovaEditorJs\NovaEditorJsField;
+use Alexwenzel\DependencyContainer\DependencyContainer;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
+
 use Laravel\Nova\Fields\Color;
-use Hpph\Svg\Svg;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\FormData;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Tag;
 use Laravel\Nova\Panel;
+use Trin4ik\NovaSwitcher\NovaSwitcher;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 class Strand extends Resource
 {
@@ -40,7 +46,7 @@ class Strand extends Resource
      *
      * @var array
      */
-    public static $search = ["id"];
+    public static $search = ["name"];
 
     public static function indexQuery(NovaRequest $request, $query)
     {
@@ -69,52 +75,62 @@ class Strand extends Resource
                 ->showOnPreview()
                 ->filterable(),
             Color::make("Color"),
-            Svg::make("Logo"),
+            Image::make("Logo")
+                ->acceptedTypes(".svg")
+                ->disableDownload(),
+            Media::make("Video")
+                ->conversionOnForm("thumb")
+                ->conversionOnDetailView("thumb")
+                ->conversionOnIndexView("thumb"),
             Images::make("Main image", "main"),
-            Images::make("Secondary image", "secondary"),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex(),
             Textarea::make("Description")
                 ->rows(3)
                 ->hideFromIndex(),
+            Tag::make("Posts")->displayAsList(),
             Panel::make("Members’ voices", [
-                Boolean::make(
+                NovaSwitcher::make(
                     "Enabled?",
                     "content->members_voices->enabled"
                 )->hideFromIndex(),
-                Textarea::make("Quote", "content->members_voices->quote")->rows(
-                    3
-                ),
-                Text::make(
-                    "Member name",
-                    "content->members_voices->name"
-                )->hideFromIndex(),
-                Text::make(
-                    "Member role/description",
-                    "content->members_voices->role"
-                )->hideFromIndex(),
-                Images::make(
-                    "Image",
-                    "content->members_voices->image"
-                )->hideFromIndex(),
+                DependencyContainer::make([
+                    Textarea::make(
+                        "Quote",
+                        "content->members_voices->quote"
+                    )->rows(3),
+                    Text::make(
+                        "Member name",
+                        "content->members_voices->name"
+                    )->hideFromIndex(),
+                    Images::make(
+                        "Image",
+                        "content->members_voices->image"
+                    )->hideFromIndex(),
+                    Text::make(
+                        "Member role/description",
+                        "content->members_voices->role"
+                    )->hideFromIndex(),
+                ])->dependsOn("content->members_voices->enabled", 1),
             ]),
             Panel::make("More information", [
-                Boolean::make(
+                NovaSwitcher::make(
                     "Enabled?",
                     "content->more_information->enabled"
                 )->hideFromIndex(),
-                Text::make("Title", "content->more_information->title")
-                    ->default("Information & FAQs")
-                    ->hideFromIndex(),
-                Images::make(
-                    "Image",
-                    "content->more_information->image"
-                )->hideFromIndex(),
-                NovaEditorJsField::make(
-                    "Content",
-                    "content->more_information->content"
-                )->hideFromIndex(),
+                DependencyContainer::make([
+                    Text::make("Title", "content->more_information->title")
+                        ->default("Information & FAQs")
+                        ->hideFromIndex(),
+
+                    Flexible::make("FAQs", "content->more_information->faqs")
+                        ->addLayout("Question", "question", [
+                            Text::make("Question"),
+                            NovaEditorJsField::make("Answer"),
+                        ])
+                        ->button("Add a question"),
+                ])->dependsOn("content->more_information->enabled", 1),
             ]),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];

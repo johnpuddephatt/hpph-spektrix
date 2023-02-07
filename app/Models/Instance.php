@@ -17,39 +17,38 @@ class Instance extends Model
 
     protected static function booted()
     {
-        static::addGlobalScope("order", function (Builder $builder) {
-            $builder
-                ->orderBy("start", "asc")
-                ->where("start", ">", Carbon::today());
-        });
+        // static::addGlobalScope("order", function (Builder $builder) {
+        //     $builder
+        //         ->orderBy("start", "asc")
+        //         ->where("start", ">", Carbon::today());
+        // });
 
         static::addGlobalScope("has_event", function (Builder $builder) {
             $builder->whereHas("event");
         });
 
-         static::addGlobalScope("is_on_sale", function (Builder $builder) {
-            $builder->where("is_on_sale", true);
-        });
+        //  static::addGlobalScope("is_on_sale", function (Builder $builder) {
+        //     $builder->where("is_on_sale", true);
+        // });
     }
 
     protected $fillable = [
         "id",
         "is_on_sale",
         "event_id",
-        "start",
         "venue",
+        "start",
         "start_selling_at_web",
         "stop_selling_at_web",
         "cancelled",
         "audio_described",
         "captioned",
+        "relaxed",
         "signed_bsl",
         "special_event",
-        "accessibility",
+
         "analogue",
         "door_time",
-        "short_playing_with_feature",
-        "special_event_into_qa_panel",
         "partnership",
 
         "season_name",
@@ -60,6 +59,8 @@ class Instance extends Model
         "start" => "datetime",
         "captioned" => "boolean",
     ];
+
+    protected $appends = ["start_date", "start_time", "url"];
 
     public function event()
     {
@@ -74,6 +75,21 @@ class Instance extends Model
     public function strand()
     {
         return $this->belongsTo(Strand::class, "strand_name", "name");
+    }
+
+    public function getUrlAttribute()
+    {
+        return $this->event->url . "#" . $this->start->timestamp;
+    }
+
+    public function getStartDateAttribute()
+    {
+        return $this->start->format("D d M");
+    }
+
+    public function getStartTimeAttribute()
+    {
+        return $this->start->format("H:i");
     }
 
     public function scopeToday($query)

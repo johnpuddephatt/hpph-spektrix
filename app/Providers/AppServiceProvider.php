@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
@@ -28,8 +29,8 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer("*", function ($view) {
             $view->with(
-                "strands_and_seasons",
-                \Cache::rememberForever("strands_and_seasons", function () {
+                "strands",
+                \Cache::rememberForever("strands", function () {
                     return \App\Models\Strand::select(
                         "id",
                         "name",
@@ -38,18 +39,21 @@ class AppServiceProvider extends ServiceProvider
                         "color",
                         "logo",
                         "logo_text"
-                    )
-                        ->get()
-                        ->merge(
-                            \App\Models\Season::select(
-                                "id",
-                                "name",
-                                "slug",
-                                "short_description"
-                            )->get()
-                        );
+                    )->get();
                 })
             );
+
+            $view->with(
+                "seasons",
+                \Cache::rememberForever("seasons", function () {
+                    return \App\Models\Season::select(
+                        "id",
+                        "name",
+                        "slug"
+                    )->get();
+                })
+            );
+
             $view->with(
                 "settings",
                 \Cache::rememberForever("settings", function () {
@@ -57,21 +61,44 @@ class AppServiceProvider extends ServiceProvider
                 })
             );
             $view->with(
-                "header_menu",
-                \Cache::rememberForever("headerMenu", function () {
-                    return nova_get_menu_by_slug("header")
-                        ? nova_get_menu_by_slug("header")["menuItems"]
+                "primary_menu",
+                \Cache::rememberForever("primaryMenu", function () {
+                    return nova_get_menu_by_slug("primary")
+                        ? nova_get_menu_by_slug("primary")["menuItems"]
                         : [];
                 })
             );
             $view->with(
-                "footer_menu",
-                \Cache::rememberForever("footerMenu", function () {
-                    return nova_get_menu_by_slug("footer")
-                        ? nova_get_menu_by_slug("footer")["menuItems"]
+                "secondary_menu",
+                \Cache::rememberForever("secondaryMenu", function () {
+                    return nova_get_menu_by_slug("secondary")
+                        ? nova_get_menu_by_slug("secondary")["menuItems"]
                         : [];
                 })
             );
+
+            $view->with(
+                "tertiary_menu",
+                \Cache::rememberForever("tertiaryMenu", function () {
+                    return nova_get_menu_by_slug("tertiary")
+                        ? nova_get_menu_by_slug("tertiary")["menuItems"]
+                        : [];
+                })
+            );
+        });
+
+        \Blade::directive("icon", function ($arguments) {
+            // Funky madness to accept multiple arguments into the directive
+            list($path, $class) = array_pad(
+                explode(",", trim($arguments, "() ")),
+                2,
+                ""
+            );
+
+            $path = trim($path, "' ");
+            $class = trim($class, "' ");
+
+            return "{!! str_replace('<svg ', '<svg class=\"hiya {$class}\" ', \Storage::disk('public')->get({$path}) ) !!}";
         });
     }
 }

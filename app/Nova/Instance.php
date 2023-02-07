@@ -62,17 +62,22 @@ class Instance extends Resource
             DateTime::make("Start"),
             Boolean::make("On sale", "is_on_sale"),
             Boolean::make("Cancelled"),
-            Text::make("Analogue"),
-            Boolean::make("Captioned"),
-            Text::make("Special", "special_event"),
-            Boolean::make("Short film with feature")->onlyOnDetail(),
+
+            // Boolean::make("Short film with feature")->onlyOnDetail(),
+
             Boolean::make("AD", "audio_described"),
+            Boolean::make("Captioned"),
+            Boolean::make("Relaxed", "relaxed"),
+            Boolean::make("BSL", "signed_bsl"),
+
+            Text::make("Special", "special_event"),
+
+            Text::make("Analogue")->onlyOnDetail(),
+            Text::make("Door time")->onlyOnDetail(),
+            Text::make("Partnership")->onlyOnDetail(),
+
             BelongsTo::make("Season")->exceptOnForms(),
             BelongsTo::make("Strand")->exceptOnForms(),
-            Text::make("Target audience")->hideFromIndex(),
-            Text::make("Target audience_2")->hideFromIndex(),
-            Boolean::make("BSL", "signed_bsl"),
-            Boolean::make("Relaxed", "relaxed_performance"),
         ];
     }
 

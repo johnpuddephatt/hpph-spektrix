@@ -5,7 +5,7 @@
         <div class="fixed top-0 left-0 -z-10 h-24 w-full bg-sand lg:w-1/2"></div>
         <div class="container flex min-h-screen flex-col items-start bg-sand pt-24 lg:w-1/2">
 
-            <h1 class="type-h1 max-w-md">{{ $opportunity->title }}</h1>
+            <h1 class="type-large max-w-md">{{ $opportunity->title }}</h1>
             <div class="mt-2">{{ $opportunity->type }}
                 @if ($opportunity->application_deadline)
                     &middot;
@@ -14,11 +14,11 @@
             </div>
 
             <a class="sticky bottom-4 mt-auto mb-4 inline-block rounded border border-black py-1 pl-0 pr-2 uppercase"
-                href="#">@svg('right-chevron', ' align-bottom h-6 w-6 inline-block transform rotate-180 origin-center')
+                href="#">@svg('chevron-right', ' align-bottom h-6 w-6 inline-block transform rotate-180 origin-center')
                 Back</a>
         </div>
         <div class="container pt-24 lg:w-1/2">
-            <div class="type-h5 mb-16 max-w-xl">{{ $opportunity->summary }}</div>
+            <div class="type-medium mb-16 max-w-xl">{{ $opportunity->summary }}</div>
 
             <table class="w-full max-w-xl table-fixed border-b border-gray-light">
                 @if ($opportunity->salary)

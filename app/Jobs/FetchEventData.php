@@ -247,23 +247,22 @@ class FetchEventData implements ShouldQueue
                     "stop_selling_at_web" =>
                         $instance->stopSellingAtWeb ?? null,
                     "cancelled" => $instance->cancelled ?? null,
+
                     "audio_described" =>
                         $instance->attribute_AudioDescribed ?? null,
                     "captioned" => $instance->attribute_Captioned ?? null,
+                    "relaxed" =>
+                        $instance->attribute_RelaxedPerformance ?? null,
                     "signed_bsl" => $instance->attribute_SignedBSL ?? null,
+
                     "special_event" =>
-                        $instance->attribute_SpecialEvent ?? null,
-                    "accessibility" =>
-                        $instance->attribute_Accessiblity ?? null,
+                        $instance->attribute_CinemaSpecialEvent ?? null,
+
                     "analogue" => $instance->attribute_Analogue ?? null,
                     "door_time" => $instance->attribute_DoorTime ?? null,
-                    "short_playing_with_feature" =>
-                        $instance->attribute_ShortPlayingWithFeature ?? null,
-                    "special_event_into_qa_panel" =>
-                        $instance->attribute_SpecialEventIntoQAPanel ?? null,
                     "partnership" => $instance->attribute_Partnership ?? null,
 
-                    // "season_name" => $instance->attribute_Season ?: null,
+                    "season_name" => $instance->attribute_Season ?: null,
                     "strand_name" => $instance->attribute_Strand ?: null,
                 ]
             );

@@ -28,9 +28,10 @@
     @stack('head')
 </head>
 
-<body class="leading-[137.5%] tracking-normal" :class="{ 'overflow-hidden': menu_open || nav_open }"
-    x-data="{ menu_open: false, nav_open: false }" @menutoggled.window="menu_open = $event.detail"
-    @navtoggled.window="nav_open = $event.detail">
+<body class="text-[0.875rem] lg:text-[1rem] leading-[157.1%] lg:leading-[162.5%] tracking-normal"
+    :class="{ 'overflow-hidden': menu_open || nav_open }" x-data="{ scrolled: false, menu_open: false, nav_open: false }"
+    @menutoggled.window="menu_open = $event.detail" @navtoggled.window="nav_open = $event.detail"
+    @scrolled.window="scrolled =  $event.detail;">
     @yield('templatecontent')
     @stack('footer')
     @livewireScripts

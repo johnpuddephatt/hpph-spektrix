@@ -1,46 +1,49 @@
- @if (\App\Models\Strand::count())
-     <div class="lg:mr-auto" x-data="{ open: false }">
+ @if ($strands->count())
+     <div class="sticky bottom-0 lg:static lg:w-5/12" x-data="{ open: false }">
 
-         <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open"
-             x-transition:enter-start="opacity-0" x-transition:leave-end="opacity-0"
-             class="fixed inset-0 z-10 bg-black bg-opacity-80 duration-500">
-         </div>
+         <div class="bg-black lg:pt-0 lg:!block fixed lg:static inset-0 right-auto z-10 h-screen w-full transform overflow-y-auto text-base text-white transition-all delay-100 duration-200"
+             x-show="open" x-transition:enter-start="max-lg:-translate-x-16 max-lg:opacity-0"
+             x-transition:leave-end="max-lg:-translate-x-16 max-lg:opacity-0">
 
-         <div class="container fixed inset-0 right-auto z-10 h-screen w-full max-w-lg transform space-y-16 overflow-y-auto border-t-[7em] border-black bg-black pb-24 text-base text-white transition-all delay-100 duration-200"
-             x-show="open" x-transition:enter-start="-translate-x-16 opacity-0"
-             x-transition:leave-end="-translate-x-16 opacity-0">
+             <button class="lg:hidden m-4" @click="open = false"
+                 aria-label="Close programme strands menu">@svg('arrow-right', 'transform rotate-180 w-10 h-10 rounded-full bg-black-light p-2.5')</button>
 
-             @foreach ($strands_and_seasons as $strand)
-                 <div class="text-center">
+             @foreach ($strands as $strand)
+                 <a style="color: {{ $strand->color }} !important;"
+                     href="{{ route('strand.show', ['strand' => $strand->slug]) }}"
+                     class="group pt-[100%] lg:pt-[75%] block relative text-center">
 
                      @if ($strand->featuredImage)
-                         <x-image class="block w-full rounded" width="30rem" :src="$strand->featuredImage->getUrl('wide')" :srcset="$strand->featuredImage->getSrcset('wide')" />
+                         <x-image
+                             class="absolute h-full inset-0 object-cover object-center block w-full opacity-70 lg:group-hover:opacity-40 transition"
+                             width="30rem" :src="$strand->featuredImage->getUrl('wide')" :srcset="$strand->featuredImage->getSrcset('wide')" />
                      @else
-                         <div class="h-36 rounded bg-white opacity-50"></div>
+                         <div
+                             class="absolute h-full inset-0 bg-white object-cover object-center block w-full opacity-10 lg:group-hover:opacity-0 transition">
+                         </div>
                      @endif
 
-                     <div class="fade-to-top relative z-10 -mt-20 -mb-16 h-24"></div>
                      @if ($strand->logo)
-                         <x-svg class="relative z-10 mx-auto w-64 max-w-full px-8">{!! $strand->logo !!}</x-svg>
+                         @icon($strand->logo, ' group-hover:delay-[0ms] delay-100 lg:group-hover:opacity-0 lg:group-hover:-translate-y-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 mx-auto w-72 max-w-full px-8')
                      @else
-                         <h3 class="tracking-tight relative z-20 inline-block break-all rounded-full border-2 border-yellow py-8 px-8 text-xl font-bold uppercase leading-none text-yellow"
-                             style="border-color: {{ $strand->color }}; color: {{ $strand->color }}">
+                         <h3
+                             class="type-h4 lg:group-hover:opacity-0 lg:group-hover:-translate-y-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 mx-auto w-72 max-w-full px-8">
                              {{ $strand->name }}</h3>
                      @endif
-                     <p class="mx-auto mt-8 max-w-xs">{{ $strand->short_description }}</p>
-                     <hr class="my-8 border-t-2 border-yellow" style="border-color: {{ $strand->color }};" />
-                     <a class="type-label rounded bg-yellow py-2 px-12 text-black"
-                         style="background-color: {{ $strand->color }};"
-                         href="{{ route('strand.show', ['strand' => $strand->slug]) }}">Explore</a>
-                 </div>
+                     <p
+                         class="type-xs-mono w-full px-4 lg:px-0 lg:group-hover:opacity-100 lg:opacity-0 transition lg:group-hover:translate-y-1/2 left-1/2 transform -translate-x-1/2 absolute bottom-4 lg:bottom-1/2 mx-auto lg:w-64">
+                         {{ $strand->short_description }}</p>
+
+                     @svg('arrow-right', ' group-hover:delay-50 hidden lg:inline-block absolute bottom-8 -translate-x-1/2 left-1/2 transition w-9 h-9 p-2 rounded-full text-transparent group-hover:text-black bg-yellow transform -rotate-45 origin-center group-hover:scale-100 scale-[0.4]', ['style' => 'background-color: ' . $strand->color])
+
+                 </a>
              @endforeach
          </div>
 
-         <button class="type-h5 relative rounded px-2 lg:py-1 lg:text-base lg:font-normal lg:tracking-normal"
-             :class="open ? 'bg-yellow text-black z-40' : 'z-20'"
+         <button class="type-regular items-center w-full flex lg:hidden relative px-6 py-4 text-black bg-yellow"
              @click="open = ! open; $dispatch('menutoggled', open)">{{ $slot }}</button>
 
      </div>
  @else
-     <div class="mr-auto"></div>
+     <div class="w-5/12"></div>
  @endif

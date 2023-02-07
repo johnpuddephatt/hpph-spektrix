@@ -7,6 +7,7 @@ module.exports = {
         "./resources/**/*.vue",
         "tailwind.safelist.txt",
     ],
+
     plugins: [require("tailwind-scrollbar-hide")],
     theme: {
         container: {
@@ -20,6 +21,11 @@ module.exports = {
                 ...defaultTheme.fontFamily.sans,
             ],
         },
+        borderRadius: {
+            none: "0",
+            DEFAULT: "5px",
+            full: "9999px",
+        },
         letterSpacing: {
             normal: "-0.015em",
         },
@@ -29,13 +35,16 @@ module.exports = {
             transparent: {
                 DEFAULT: "#00000000",
             },
+
             white: {
                 DEFAULT: "#FFFFFF",
             },
 
             black: {
+                light: "#141414",
                 DEFAULT: "#000000",
             },
+
             gray: {
                 DEFAULT: "#ededed",
                 light: "#b5b5b5",
@@ -44,11 +53,12 @@ module.exports = {
             },
 
             yellow: {
-                DEFAULT: "#ffe621",
-                dark: "#f9da5d",
+                DEFAULT: "#f5db4f",
+                dark: "#f4cf48",
             },
 
             sand: {
+                light: "#F8F7EF",
                 DEFAULT: "#e6e4dd",
                 dark: "#d6d4cd",
             },

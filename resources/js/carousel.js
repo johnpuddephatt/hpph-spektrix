@@ -2,7 +2,11 @@ export default () => ({
     initialised: false,
 
     init() {
+        if (!this.config.images.length) {
+            return false;
+        }
         this.resizeContainer();
+
         this.config.images[0].addEventListener("load", () => {
             this.resizeContainer();
         });
@@ -27,6 +31,7 @@ export default () => ({
     },
 
     resizeContainer() {
+        if (!this.config.images.length) return null;
         this.config.scrollContainer.style.height =
             parseInt(getComputedStyle(this.config.images[0]).width, 10) *
                 (this.config.images[0].naturalHeight /

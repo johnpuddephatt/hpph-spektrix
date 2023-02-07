@@ -10,6 +10,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Advoor\NovaEditorJs\NovaEditorJs;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Tag;
 
 class Season extends Resource
 {
@@ -34,7 +35,7 @@ class Season extends Resource
      *
      * @var array
      */
-    public static $search = ["id"];
+    public static $search = ["name"];
 
     public static function indexQuery(NovaRequest $request, $query)
     {
@@ -62,12 +63,14 @@ class Season extends Resource
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
+            Tag::make("Posts")->displayAsList(),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex(),
             Textarea::make("Description")
                 ->rows(3)
                 ->hideFromIndex(),
+
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];
     }

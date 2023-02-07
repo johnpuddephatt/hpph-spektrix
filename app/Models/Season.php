@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Season extends Model
@@ -38,6 +39,10 @@ class Season extends Model
         static::addGlobalScope("enabled", function (Builder $builder) {
             $builder->where("enabled", true);
         });
+
+        static::addGlobalScope("orderByLatest", function (Builder $builder) {
+            $builder->orderBy("id", "DESC");
+        });
     }
 
     public function instances()
@@ -52,5 +57,17 @@ class Season extends Model
                 "source" => "name",
             ],
         ];
+    }
+
+    public function latest_post()
+    {
+        return $this->posts()
+            ->latest()
+            ->limit(1);
+    }
+
+    public function posts(): BelongsToMany
+    {
+        return $this->belongsToMany(Post::class);
     }
 }

@@ -7,13 +7,13 @@
                 <span>
                     @if ($paginator->onFirstPage())
                         <span
-                            class="relative inline-flex cursor-default select-none items-center rounded-md border border-gray-light bg-white px-2 py-1 font-medium text-gray-light">
+                            class="relative inline-flex cursor-default select-none items-center rounded border border-gray-light bg-white px-2 py-1 font-medium text-gray-light">
                             {!! __('pagination.previous') !!}
                         </span>
                     @else
                         <button wire:click="previousPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled"
                             dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.before"
-                            class="text-gray-700 border-gray-300 hover:text-gray-500 focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 relative inline-flex items-center rounded-md border border-gray-light bg-white px-2 py-1 font-medium transition duration-150 ease-in-out focus:outline-none">
+                            class="text-gray-700 border-gray-300 hover:text-gray-500 focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 relative inline-flex items-center rounded border border-gray-light bg-white px-2 py-1 font-medium transition duration-150 ease-in-out focus:outline-none">
                             {!! __('pagination.previous') !!}
                         </button>
                     @endif
@@ -23,12 +23,12 @@
                     @if ($paginator->hasMorePages())
                         <button wire:click="nextPage('{{ $paginator->getPageName() }}')" wire:loading.attr="disabled"
                             dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.before"
-                            class="text-gray-700 border-gray-300 hover:text-gray-500 focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 relative ml-3 inline-flex items-center rounded-md border border-gray-light bg-white px-2 py-1 font-medium transition duration-150 ease-in-out focus:outline-none">
+                            class="text-gray-700 border-gray-300 hover:text-gray-500 focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 relative ml-3 inline-flex items-center rounded border border-gray-light bg-white px-2 py-1 font-medium transition duration-150 ease-in-out focus:outline-none">
                             {!! __('pagination.next') !!}
                         </button>
                     @else
                         <span
-                            class="relative ml-3 inline-flex cursor-default select-none items-center rounded-md border border-gray-light bg-white px-2 py-1 font-medium text-gray-light">
+                            class="relative ml-3 inline-flex cursor-default select-none items-center rounded border border-gray-light bg-white px-2 py-1 font-medium text-gray-light">
                             {!! __('pagination.next') !!}
                         </span>
                     @endif
@@ -36,7 +36,6 @@
             </div>
 
             <div class="hidden sm:block">
-
 
                 <div>
                     <span class="relative z-0 inline-flex gap-2">
@@ -47,7 +46,7 @@
                                     <span
                                         class="relative inline-flex h-12 w-12 cursor-default items-center justify-center rounded-full border border-gray border-gray-light bg-white font-medium text-gray"
                                         aria-hidden="true">
-                                        @svg('right-chevron', 'w-5 h-5 rotate-180 origin-center')
+                                        @svg('chevron-right', 'w-5 h-5 rotate-180 origin-center')
                                     </span>
                                 </span>
                             @else
@@ -56,7 +55,7 @@
                                     rel="prev"
                                     class="text-gray-500 border-gray-300 hover:text-gray-400 focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-gray-light bg-white font-medium transition duration-150 ease-in-out focus:z-10 focus:outline-none"
                                     aria-label="{{ __('pagination.previous') }}">
-                                    @svg('right-chevron', 'w-5 h-5 rotate-180 origin-center')
+                                    @svg('chevron-right', 'w-5 h-5 rotate-180 origin-center')
                                 </button>
                             @endif
                         </span>
@@ -102,14 +101,14 @@
                                     rel="next"
                                     class="text-gray-500 border-gray-300 hover:text-gray-400 focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-gray-light bg-white text-center font-medium transition duration-150 ease-in-out focus:z-10 focus:outline-none"
                                     aria-label="{{ __('pagination.next') }}">
-                                    @svg('right-chevron', 'w-5 h-5')
+                                    @svg('chevron-right', 'w-5 h-5')
                                 </button>
                             @else
                                 <span aria-disabled="true" aria-label="{{ __('pagination.next') }}">
                                     <span
                                         class="relative inline-flex h-12 w-12 cursor-default items-center justify-center rounded-full border border-gray bg-white font-medium text-gray"
                                         aria-hidden="true">
-                                        @svg('right-chevron', 'w-5 h-5')
+                                        @svg('chevron-right', 'w-5 h-5')
                                     </span>
                                 </span>
                             @endif

@@ -9,12 +9,13 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Tag;
 use Laravel\Nova\Fields\URL;
 use Advoor\NovaEditorJs\NovaEditorJsField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use NovaAttachMany\AttachMany;
 use Spatie\TagsField\Tags;
 use Laravel\Nova\Fields\BelongsTo;
+use Trin4ik\NovaSwitcher\NovaSwitcher;
 
 class Post extends Resource
 {
@@ -32,7 +33,7 @@ class Post extends Resource
      *
      * @var string
      */
-    public static $title = "id";
+    public static $title = "title";
 
     /**
      * The columns that should be searched.
@@ -73,9 +74,10 @@ class Post extends Resource
                 ->showOnPreview()
                 ->filterable(),
             BelongsTo::make("User")->searchable(),
-            Tags::make("Tags")
-                ->limit(2)
-                ->help("Select a maximum of two tags"),
+            Tag::make("Tags"),
+            // Tags::make("Tags")
+            //     ->limit(2)
+            //     ->help("Select a maximum of two tags"),
             Textarea::make("Introduction")
                 ->rows(3)
                 ->withMeta([
@@ -85,9 +87,9 @@ class Post extends Resource
                 ])
                 ->alwaysShow()
                 ->rules("required", "max:300"),
-            AttachMany::make("Events")
-                ->height("150px")
-                ->showPreview(),
+            Tag::make("Events")->displayAsList(),
+            Tag::make("Seasons")->displayAsList(),
+            Tag::make("Strands")->displayAsList(),
             Images::make("Featured image", "main")->rules("required"),
             NovaEditorJsField::make("Content")
                 ->hideFromIndex()

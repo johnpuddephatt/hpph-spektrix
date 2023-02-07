@@ -108,13 +108,13 @@ class User extends Resource
                     ->button("Add a film"),
             ]),
 
-            Panel::make("Quote", [Textarea::make("Quote")]),
+            Panel::make("Quote", [Textarea::make("Quote", "extras->quote")]),
             Panel::make("Favourite film quote", [
                 // Image::make("Film quote image"),
-                Textarea::make("Quote"),
-                Text::make("Author"),
-                Text::make("Film"),
-                Text::make("Year"),
+                Textarea::make("Quote", "extras->film_quote->quote"),
+                Text::make("Author", "extras->film_quote->author"),
+                Text::make("Film", "extras->film_quote->film"),
+                Text::make("Year", "extras->film_quote->year"),
             ]),
         ];
     }

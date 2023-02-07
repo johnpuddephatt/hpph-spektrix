@@ -7,8 +7,8 @@
         <details>
             <summary class="flex cursor-default flex-row items-center gap-2 focus-within:outline-none">
                 @svg('plus', 'h-6 w-6 p-1')
-                <h3 class="type-subtitle">{{ $membership->name }}</h3>
-                <span class="type-label rounded bg-yellow px-2 py-1">{{ $membership->price }}</span>
+                <h3 class="type-regular">{{ $membership->name }}</h3>
+                <span class="type-xs-mono rounded bg-yellow px-2 py-1">{{ $membership->price }}</span>
             </summary>
             <div class="pt-4">
                 <div class="mb-4">

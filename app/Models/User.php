@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +30,15 @@ class User extends Authenticatable
         "role_description",
         "extras",
     ];
+
+    public function sluggable(): array
+    {
+        return [
+            "slug" => [
+                "source" => "name",
+            ],
+        ];
+    }
 
     /**
      * The attributes that should be hidden for serialization.

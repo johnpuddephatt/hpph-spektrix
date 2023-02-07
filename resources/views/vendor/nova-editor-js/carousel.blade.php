@@ -8,9 +8,9 @@ $width = isset($_tunes) ? ($_tunes->blockWidthTune ?: 'normal') : 'normal';
         class="ml-[calc((100vw-100%)/-2)] flex w-screen flex-row gap-5 overflow-x-auto px-[calc((100vw-100%)/2)] pb-6 scrollbar-hide">
         @foreach ($images as $image)
             <figure class="flex-none">
-                <img src="{{ $image->url }}" class="block h-[32em] w-auto rounded-md">
+                <img src="{{ $image->url }}" class="block h-[32em] w-auto rounded">
 
-                <figcaption class="type-label py-3">
+                <figcaption class="type-xs-mono py-3">
                     @if (count($images) > 1)
                         <strong>{{ $loop->iteration }}/{{ count($images) }}</strong>
                     @endif

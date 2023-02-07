@@ -7,7 +7,6 @@ use Laravel\Nova\Fields\Text;
 use Advoor\NovaEditorJs\NovaEditorJsField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Spatie\MediaLibrary\HasMedia;
-
 use Whitecube\NovaFlexibleContent\Concerns\HasMediaLibrary;
 
 class SectionLayout extends Layout implements HasMedia
@@ -26,7 +25,7 @@ class SectionLayout extends Layout implements HasMedia
      *
      * @var string
      */
-    protected $title = "SectionLayout";
+    protected $title = "Section";
 
     /**
      * Get the fields displayed by the layout.
@@ -36,7 +35,7 @@ class SectionLayout extends Layout implements HasMedia
     public function fields()
     {
         return [
-            Images::make("Banner"),
+            Images::make("Banner")->fullSize(),
             Text::make("Title"),
             NovaEditorJsField::make("Content", "section_content"),
         ];

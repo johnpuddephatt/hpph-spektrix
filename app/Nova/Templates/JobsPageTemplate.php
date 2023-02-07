@@ -47,8 +47,10 @@ class JobsPageTemplate
                 Multiselect::make("Pages", "content->child_pages")
                     ->options(
                         \App\Models\Page::find($request->resourceId)
-                            ->children()
-                            ->pluck("name", "id")
+                            ? \App\Models\Page::find($request->resourceId)
+                                ->children()
+                                ->pluck("name", "id")
+                            : []
                     )
                     ->max(2)
                     ->saveAsJSON()

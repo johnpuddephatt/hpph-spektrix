@@ -1,8 +1,8 @@
-<div class="divide-y divide-gray-light border-t border-gray-light">
+<div class="divide-y divide-gray-light px-4 2xl:px-6">
     @foreach ($events as $event)
         <div class="flex flex-row gap-6 py-8">
             <a href="{{ route('event.show', ['event' => $event->slug]) }}"
-                class="mb-auto aspect-video w-1/4 overflow-hidden rounded-lg bg-gray">
+                class="mb-auto aspect-video w-1/4 overflow-hidden rounded bg-gray">
                 @if ($event->featuredImage)
                     <x-image loading="lazy" class="block w-full" :src="$event->featuredImage->getUrl('wide')" :srcset="$event->featuredImage->getSrcset('wide')" />
                 @endif
@@ -10,7 +10,7 @@
             <a href="{{ route('event.show', ['event' => $event->slug]) }}" class="flex w-1/2 flex-col">
 
                 <div class="mb-3">{{ $event->instance_dates }}</div>
-                <h2 class="type-h5 mb-4">{{ $event->name }}</h2>
+                <h2 class="type-medium mb-4">{{ $event->name }}</h2>
                 <x-location color="text-yellow" :location="$event->venue" />
 
                 <div class="mt-auto flex flex-row items-center gap-2 pt-2">
@@ -27,7 +27,7 @@
                     <div class="mb-auto overflow-hidden pb-4">
                         {!! $event->description !!}</div>
                 @endif
-                <a class="type-subtitle mt-auto block rounded bg-gray py-2 px-4 text-center hover:bg-yellow hover:text-black"
+                <a class="type-regular mt-auto block rounded bg-gray py-2 px-4 text-center hover:bg-yellow hover:text-black"
                     href="{{ route('event.show', ['event' => $event->slug]) }}">More information &amp; tickets</a>
             </div>
 

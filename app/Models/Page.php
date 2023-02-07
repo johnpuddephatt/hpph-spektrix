@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 class Page extends Model implements HasMedia
 {
@@ -83,21 +84,19 @@ class Page extends Model implements HasMedia
             ->withResponsiveImages()
             ->performOnCollections("main", "banner", "gallery", "secondary");
 
-        $this->addMediaConversion("portrait")
+        // $this->addMediaConversion("portrait")
+        //     ->quality(80)
+        //     ->sharpen(10)
+        //     ->crop("crop-center", 1360, 1600)
+        //     ->withResponsiveImages()
+        //     ->performOnCollections("gallery");
+
+        $this->addMediaConversion("square")
             ->quality(80)
             ->sharpen(10)
-            ->crop("crop-center", 1360, 1600)
+            ->crop("crop-center", 1600, 1600)
             ->withResponsiveImages()
             ->performOnCollections("gallery");
-
-        // if ($media && Str::startsWith($media->collection_name, "gallery_")) {
-        //     $this->addMediaConversion("portrait")
-        //         ->quality(80)
-        //         ->sharpen(10)
-        //         ->crop("crop-center", 1360, 1600)
-        //         ->withResponsiveImages()
-        //         ->performOnCollections($media->collection_name);
-        // }
 
         if ($media && Str::startsWith($media->collection_name, "banner_")) {
             $this->addMediaConversion("landscape")
@@ -174,9 +173,10 @@ class Page extends Model implements HasMedia
 
     public function scopeOrderPagesByUrl($query)
     {
+       
         $ids_ordered = implode(
             ",",
-            \App\Models\Page::all()
+            \App\Models\Page::withoutGlobalScopes()->select("id","name","parent_id", "slug")->get()
                 ->sortBy("URL")
                 ->pluck("id")
                 ->toArray()
@@ -205,7 +205,6 @@ class Page extends Model implements HasMedia
                     "class"
                 ]
                 ))->resolve($this);
-
         return $this;
     }
 

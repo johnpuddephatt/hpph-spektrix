@@ -1,43 +1,85 @@
-<div x-data="{}" class="lg:flex-grow">
-
-    <div class="fixed inset-0 z-40 h-screen transform overflow-y-auto bg-yellow text-black transition-transform lg:static lg:h-auto lg:translate-x-0 lg:transform-none lg:bg-transparent lg:text-current"
-        :class="nav_open ? 'translate-x-0' : 'translate-x-full'">
-        <nav
-            class="lg:text-inherit type-h5 flex min-h-screen flex-col items-center justify-center gap-3 font-bold lg:min-h-0 lg:flex-row lg:text-base lg:font-normal lg:tracking-normal">
-
-            <x-strand-menu>Strands &amp; seasons @svg('down-chevron', 'inline-block ml-0.5 w-2 h-2')</x-strand-menu>
-
-            @if ($header_menu)
-                <ul class="flex flex-col gap-3 text-center lg:flex-row lg:gap-2 lg:text-left">
-                    @foreach ($header_menu as $menu_item)
-                        <li>
-                            <a href="{{ $menu_item['value'] }}"
-                                class="@if (Str::of('/' . Request::path())->startsWith($menu_item['value'])) bg-yellow text-black @endif rounded px-2 lg:py-1">{{ $menu_item['name'] }}</a>
-                        </li>
-                        <!-- @foreach ($menu_item['children'] as $child_menu_item)
-<li>
-                        <a href="{{ $child_menu_item['value'] }}">
-                            ––– {{ $child_menu_item['name'] }}
+<div class="flex flex-col lg:flex-row fixed inset-0 z-30 h-screen transform overflow-y-auto bg-black text-white transition-transform"
+    :class="nav_open ? 'translate-x-0' : 'translate-x-full'" @keyup.escape.window="nav_open = false">
+    <div class="lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
+        @if ($primary_menu)
+            <nav class="mb-24">
+                <ul class="text-[3.75rem] font-bold leading-[108%] tracking-[-0.050em] text-white">
+                    <li>
+                        <a href="/" class="relative block py-0.5 hover:text-yellow transition">
+                            @if (Request::is('/'))
+                                <span
+                                    class="-left-4 absolute top-1/2 transform -translate-y-full block w-3 h-3 rounded-full bg-yellow"></span>
+                            @endif
+                            Home
                         </a>
                     </li>
-@endforeach -->
+                    @foreach ($primary_menu as $menu_item)
+                        <li>
+                            <a href="{{ $menu_item['value'] }}"
+                                class="relative block py-0.5 hover:text-yellow transition">
+                                @if (Str::of($menu_item['value'])->startsWith('/' . Request::path()))
+                                    <span
+                                        class="-left-4 absolute top-1/2 transform -translate-y-full block w-3 h-3 rounded-full bg-yellow"></span>
+                                @endif
+                                {{ $menu_item['name'] }}
+
+                            </a>
                         </li>
                     @endforeach
                 </ul>
-            @endif
-            <div class="mt-8 flex flex-row items-center gap-6 lg:mt-0 lg:gap-3">
-                <livewire:search />
-                @include('spektrix-components.basket')
-                @include('spektrix-components.login-status')
-                @if ($edit_link ?? null)
-                    <a title="Edit page" class="inline-block" href="{{ $edit_link }}">@svg('edit', 'h-10 w-10 lg:h-6 lg:w-6 p-0.5 pb-0.5')</a>
-                @endif
-            </div>
+            </nav>
+        @endif
 
-        </nav>
-        <div class="lg:hidden">
-            @include('sections.footer')
+        @foreach ($seasons as $season)
+            <div class="float-left mr-auto clear-both border border-yellow rounded py-1.5 pl-1 pr-2">
+                @if ($loop->first)
+                    <span
+                        class="type-xs-mono !leading-none bg-yellow text-black py-1.5 pb-1 rounded-full px-2 inline-block align-top mr-1">New!</span>
+                @endif
+                <span class="font-bold text-yellow uppercase">{{ $season->name }}</span>
+            </div>
+        @endforeach
+
+        <div class="hidden lg:flex mt-auto mb-8 flex-row gap-3 py-1 lg:w-1/2 justify-start xl:items-start">
+            @foreach (['facebook', 'twitter', 'youtube', 'instagram', 'linkedin', 'vimeo'] as $account)
+                <x-social-icon :account="$account" />
+            @endforeach
         </div>
+
+        <x-credits class="hidden lg:block" />
+
     </div>
+
+    <div class="flex flex-col py-8 px-6 lg:px-12 lg:w-3/12">
+
+        @if ($secondary_menu)
+            <nav>
+                <ul class="">
+                    @foreach ($secondary_menu as $menu_item)
+                        <li>
+                            <a class="type-xs-mono antialiased text-gray-medium hover:text-white transition"
+                                href="{{ $menu_item['value'] }}">{{ $menu_item['name'] }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </nav>
+        @endif
+
+        <div class="lg:hidden flex mt-auto mb-8 flex-row gap-3 py-1">
+            @foreach (['facebook', 'twitter', 'youtube', 'instagram', 'linkedin', 'vimeo'] as $account)
+                <x-social-icon :account="$account" />
+            @endforeach
+        </div>
+
+        <x-tertiary-menu class="mt-auto hidden lg:block" />
+
+    </div>
+
+    <div class="px-6 py-8 lg:hidden grid grid-cols-2 gap-4">
+        <x-tertiary-menu />
+        <x-credits />
+    </div>
+
+    <x-strand-menu>Programme strands @svg('arrow-right', 'inline-block ml-auto w-10 h-10 p-2.5 bg-black rounded-full text-yellow')</x-strand-menu>
 
 </div>

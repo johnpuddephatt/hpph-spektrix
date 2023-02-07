@@ -3,13 +3,13 @@
 }
 
 .prose h2 {
-    @apply type-h2;
+    @apply type-medium;
 }
 
 .prose h3 {
-    @apply type-h3;
+    @apply type-regular;
 }
 
 .prose h4 {
-    @apply type-h5;
+    @apply type-medium;
 }

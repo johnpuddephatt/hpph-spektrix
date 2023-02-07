@@ -25,4 +25,8 @@ return [
         "class" => "\App\Nova\Templates\FundsPageTemplate",
         "unique" => false, // Whether more than one page can be created with this template
     ],
+    "team-page" => [
+        "class" => "\App\Nova\Templates\TeamPageTemplate",
+        "unique" => true, // Whether more than one page can be created with this template
+    ],
 ];

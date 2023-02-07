@@ -1,5 +1,4 @@
 <button
-    class="{{ $selected == $type ? 'bg-yellow border-yellow' : 'border-gray-light' }} type-annotation rounded border p-1 pt-1.5"
+    class="{{ $selected == $type ? 'bg-yellow' : 'bg-black text-white lg:text-black hover:bg-black-light lg:bg-sand lg:hover:bg-sand-dark' }} type-xs-mono lg:rounded px-3 py-4 lg:py-1.5"
     wire:click="$set('type', '{{ $type }}')">
-    <span
-        class="{{ $selected == $type ? 'bg-black' : 'bg-gray-light' }} mr-1 inline-block h-2.5 w-2.5 rounded-full align-baseline"></span>{{ $slot }}</button>
+    {{ $slot }}</button>

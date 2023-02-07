@@ -1,1 +1,1 @@
-<div class="type-annotation inline-block rounded bg-gray p-2">{{ $time }}</div>
+<div class="type-xs-mono inline-block rounded bg-gray p-2">{{ $time }}</div>

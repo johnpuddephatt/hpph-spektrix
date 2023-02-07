@@ -17,9 +17,13 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Http\Requests\ResourceIndexRequest;
 
+use Alexwenzel\DependencyContainer\HasDependencies;
 
 class Page extends Resource
 {
+
+    use HasDependencies;
+    
     public static $group = "Content";
 
     /**
@@ -140,9 +144,6 @@ class Page extends Resource
                 ))->fields($request)
             );
         }
-
-        
-
 
         if ($this->template !== 'home-page') {
             $fields = array_merge($fields, [

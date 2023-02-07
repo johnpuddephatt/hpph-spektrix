@@ -11,7 +11,7 @@ class MenuObserver
      */
     public function forgetMenus()
     {
-        Cache::forget("headerMenu");
+        Cache::flush();
     }
 
     /**

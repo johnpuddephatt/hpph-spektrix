@@ -6,7 +6,7 @@
 
             <div class="mx-auto max-w-6xl">
 
-                <h2 class="type-h1 mb-16">Journal</h2>
+                <h2 class="type-large mb-16">Journal</h2>
 
                 @if ($featured_post)
                     <a href="{{ route('post.show', ['post' => $featured_post->slug]) }}"
@@ -16,7 +16,7 @@
                         @endif
                         <div class="mx-auto flex w-full flex-col justify-between lg:max-w-md">
                             <p
-                                class="type-label mb-8 xl:absolute xl:bottom-0 xl:left-0 xl:mb-0 xl:origin-left xl:-rotate-90 xl:transform">
+                                class="type-xs-mono mb-8 xl:absolute xl:bottom-0 xl:left-0 xl:mb-0 xl:origin-left xl:-rotate-90 xl:transform">
                                 {{ $featured_post->created_at->format('j F Y') }}
                                 @if ($featured_post->tags->count())
                                     &bullet;
@@ -24,9 +24,9 @@
                                 @endif
                             </p>
                             <div class="pb-8">
-                                <p class="type-label whitespace-nowrap">Written by<br> {{ $featured_post->user->name }}</p>
+                                <p class="type-xs-mono whitespace-nowrap">Written by<br> {{ $featured_post->user->name }}</p>
                             </div>
-                            <h1 class="type-h3 pb-8">{{ $featured_post->title }}</h1>
+                            <h1 class="type-regular pb-8">{{ $featured_post->title }}</h1>
                             <div class="type-large max-w-2xl">{{ $featured_post->introduction }}</div>
                         </div>
                     </a>

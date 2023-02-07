@@ -42,14 +42,20 @@ return [
     */
 
     "menus" => [
-        "header" => [
-            "name" => "Header",
+        "primary" => [
+            "name" => "Primary",
             "unique" => true,
-            "max_depth" => 10,
+            "max_depth" => 1,
             "menu_item_types" => [],
         ],
-        "footer" => [
-            "name" => "Footer",
+        "secondary" => [
+            "name" => "Secondary",
+            "unique" => true,
+            "max_depth" => 1,
+            "menu_item_types" => [],
+        ],
+        "tertiary" => [
+            "name" => "Tertiary",
             "unique" => true,
             "max_depth" => 1,
             "menu_item_types" => [],

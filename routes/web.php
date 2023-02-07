@@ -67,11 +67,12 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("strand.show");
 
+    Route::get("team/{user:slug}", [
+        \App\Http\Controllers\UserController::class,
+        "show",
+    ])->name("user.show");
+
     Route::get("{page}", [\App\Http\Controllers\PageController::class, "show"])
         ->where("page", "^(?!nova).*")
         ->name("page.show");
-});
-
-Route::middleware("auth")->group(function () {
-    Route::mediaLibrary();
 });

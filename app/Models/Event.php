@@ -23,6 +23,7 @@ use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cohensive\OEmbed\Facades\OEmbed;
 
 class Event extends Model implements HasMedia, CachableAttributes
 {
@@ -85,6 +86,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "vibes",
         "members_offer_available",
         "certificate_age_guidance",
+        "trailer",
     ];
 
     protected $appends = [
@@ -113,6 +115,12 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function registerMediaConversions(Media $media = null): void
     {
+        $this->addMediaConversion("thumb")
+            ->width(1920)
+            ->height(1080)
+            ->extractVideoFrameAtSecond(0);
+        // ->performOnCollections("video");
+
         $this->addMediaConversion("square")
             ->quality(80)
             ->width(1360)
@@ -120,7 +128,7 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->crop("crop-center", 1360, 1600)
             ->withResponsiveImages()
-            ->performOnCollections("main", "secondary");
+            ->performOnCollections("main");
 
         $this->addMediaConversion("wide")
             ->quality(80)
@@ -128,13 +136,13 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->format("webp")
             ->withResponsiveImages()
-            ->performOnCollections("main", "secondary");
+            ->performOnCollections("main");
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection("main")->singleFile(); // used on page hero
-        $this->addMediaCollection("secondary")->singleFile(); // used as thumbnail and lower down on page
+        $this->addMediaCollection("video")->singleFile();
+        $this->addMediaCollection("main")->singleFile();
         $this->addMediaCollection("gallery");
     }
 
@@ -147,12 +155,12 @@ class Event extends Model implements HasMedia, CachableAttributes
         );
     }
 
-    public function secondaryImage(): MorphOne
+    public function featuredVideo(): MorphOne
     {
         return $this->morphOne(Media::class, "model")->where(
             "collection_name",
             "=",
-            "secondary"
+            "video"
         );
     }
 
@@ -163,6 +171,13 @@ class Event extends Model implements HasMedia, CachableAttributes
             "=",
             "gallery"
         );
+    }
+
+    public function latest_post()
+    {
+        return $this->posts()
+            ->latest()
+            ->limit(1);
     }
 
     public function posts(): BelongsToMany
@@ -213,6 +228,28 @@ class Event extends Model implements HasMedia, CachableAttributes
             return !!$this->instances()
                 ->signedBsl()
                 ->count();
+        });
+    }
+
+    public function getTrailerEmbedAttribute(): array
+    {
+        return $this->remember("trailer", 3600, function (): array {
+            if ($this->trailer) {
+                $trailerEmbed = OEmbed::get($this->trailer);
+                if ($trailerEmbed) {
+                    return [
+                        "html" => $trailerEmbed->html([
+                            "class" => "absolute inset-0 w-full h-full",
+                            "autoplay" => 1,
+                        ]),
+                        "ratio" => isset($trailerEmbed->data()["height"])
+                            ? ($trailerEmbed->data()["height"] /
+                                    $trailerEmbed->data()["width"]) *
+                                100
+                            : 56.25,
+                    ];
+                }
+            }
         });
     }
 
@@ -348,17 +385,29 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function formatForHomepage()
     {
         return [
+            "url" => $this->url,
             "status" => $this->status,
             "name" => $this->name,
             "slug" => $this->slug,
             "certificate_age_guidance" => $this->certificate_age_guidance,
             "src" => $this->featuredImage
-                ? $this->featuredImage->getUrl("square")
+                ? $this->featuredImage->getUrl("wide")
                 : null,
             "srcset" => $this->featuredImage
-                ? $this->featuredImage->getSrcset("square")
+                ? $this->featuredImage->getSrcset("wide")
                 : null,
             "strands" => $this->strands,
+            "video_thumbnail" => $this->featuredVideo
+                ? $this->featuredVideo
+                    ->img("thumb", [
+                        "class" =>
+                            "-z-10 w-full absolute h-full inset-0 object-cover",
+                    ])
+                    ->toHtml()
+                : null,
+            "video_conversions" => $this->featuredVideo
+                ? json_decode($this->featuredVideo->video_conversions)
+                : null,
         ];
     }
 }

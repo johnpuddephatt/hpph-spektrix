@@ -12,10 +12,8 @@ class StrandController extends Controller
         return view("strands.show", [
             "strand" => $strand->load(
                 "featuredImage",
-                "instances.event"
-                // "secondaryImage",
-                // "gallery",
-                // "posts"
+                "instances.event",
+                "posts.tagsTranslated"
             ),
         ]);
     }

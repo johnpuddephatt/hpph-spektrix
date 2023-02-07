@@ -65,7 +65,7 @@ class Post extends Model implements HasMedia
         return LogOptions::defaults()->logOnly(["title"]);
     }
 
-    // protected $appends = ["image"];
+    // protected $appends = ["tags"];
 
     // protected static function booted()
     // {
@@ -81,6 +81,15 @@ class Post extends Model implements HasMedia
 
     public function registerMediaConversions(Media $media = null): void
     {
+        $this->addMediaConversion("wide")
+            ->quality(80)
+            // ->width(1920)
+            // ->height(1080)
+            ->sharpen(10)
+            ->crop("crop-center", 1500, 627)
+            ->withResponsiveImages()
+            ->performOnCollections("main");
+
         $this->addMediaConversion("landscape")
             ->quality(80)
             // ->width(1920)
@@ -138,6 +147,16 @@ class Post extends Model implements HasMedia
     public function events(): BelongsToMany
     {
         return $this->belongsToMany(\App\Models\Event::class);
+    }
+
+    public function strands(): BelongsToMany
+    {
+        return $this->belongsToMany(\App\Models\Strand::class);
+    }
+
+    public function seasons(): BelongsToMany
+    {
+        return $this->belongsToMany(\App\Models\Season::class);
     }
 
     public function user(): BelongsTo

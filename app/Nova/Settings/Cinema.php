@@ -20,13 +20,13 @@ class Cinema
                 ->actionText("Add address")
                 ->rules("json"),
             Text::make("Charity number"),
-            Panel::make("Opening hours", [
-                KeyValue::make("Opening hours")
-                    ->keyLabel("Day(s)")
-                    ->valueLabel("Hours")
-                    ->actionText("Add row")
-                    ->rules("json"),
-            ]),
+            // Panel::make("Opening hours", [
+            //     KeyValue::make("Opening hours")
+            //         ->keyLabel("Day(s)")
+            //         ->valueLabel("Hours")
+            //         ->actionText("Add row")
+            //         ->rules("json"),
+            // ]),
             Panel::make("Social media", [
                 Text::make("Facebook"),
                 Text::make("Twitter"),
@@ -42,7 +42,7 @@ class Cinema
     {
         return [
             "email_addresses" => "array",
-            "opening_hours" => "array",
+            // "opening_hours" => "array",
         ];
     }
 }

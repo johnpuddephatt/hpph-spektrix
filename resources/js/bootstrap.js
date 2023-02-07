@@ -5,6 +5,10 @@ import Alpine from "alpinejs";
 import intersect from "@alpinejs/intersect";
 import carousel from "./carousel.js";
 
+import Swiper from "swiper";
+import "swiper/css";
+window.Swiper = Swiper;
+
 Alpine.plugin(intersect);
 
 window.Alpine = Alpine;

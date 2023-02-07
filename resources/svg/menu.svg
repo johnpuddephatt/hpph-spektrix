@@ -1,7 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox="0 0 39 39">
-    <g fill="none" stroke="currentColor">
-        <path  d="M12 13.945h15"/>
-        <path d="M12 19.5h15"/>
-        <path  d="M12 25.056h15"/>
-    </g>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="15.162077"
+   height="15.162077"
+   viewBox="0 0 15.162077 15.162077"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="menu.svg"
+   inkscape:version="1.2.1 (9c6d41e, 2022-07-14)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="24.205128"
+     inkscape:cx="-3.9661017"
+     inkscape:cy="9.1096398"
+     inkscape:window-width="1372"
+     inkscape:window-height="975"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg10" />
+  <g
+     fill="none"
+     stroke="currentColor"
+     id="g8"
+     transform="translate(-11.898304,-11.939618)">
+    <path
+       d="M 12,13.945 H 27"
+       id="path2" />
+    <path
+       d="M 12,19.5 H 27"
+       id="path4" />
+    <path
+       d="M 12,25.056 H 27"
+       id="path6" />
+  </g>
 </svg>

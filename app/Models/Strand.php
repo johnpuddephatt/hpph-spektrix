@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Strand extends Model implements HasMedia, CachableAttributes
@@ -72,36 +73,30 @@ class Strand extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->format("jpg")
             ->withResponsiveImages()
-            ->performOnCollections(
-                "main",
-                "content->more_information->image",
-                "content->members_voices->image"
-            );
+            ->performOnCollections("main", "content->members_voices->image");
+
+        $this->addMediaConversion("thumb")
+            ->width(800)
+            ->height(600)
+            ->extractVideoFrameAtSecond(1)
+            ->performOnCollections("video");
+
         $this->addMediaConversion("wide")
             ->quality(80)
             ->crop("crop-center", 1500, 627)
             ->sharpen(10)
             ->format("jpg")
             ->withResponsiveImages()
-            ->performOnCollections("main", "secondary");
-        $this->addMediaConversion("square")
-            ->quality(80)
-            ->crop("crop-center", 1200, 1200)
-            ->sharpen(10)
-            ->format("jpg")
-            ->withResponsiveImages()
-            ->performOnCollections("content->more_information->image");
+            ->performOnCollections("main");
     }
 
     public function registerMediaCollections(): void
     {
+        $this->addMediaCollection("video")->singleFile();
         $this->addMediaCollection("main")->singleFile();
-        $this->addMediaCollection("secondary")->singleFile();
+
         $this->addMediaCollection(
             "content->members_voices->image"
-        )->singleFile();
-        $this->addMediaCollection(
-            "content->more_information->image"
         )->singleFile();
     }
 
@@ -114,12 +109,12 @@ class Strand extends Model implements HasMedia, CachableAttributes
         );
     }
 
-    public function secondaryImage(): MorphOne
+    public function featuredVideo(): MorphOne
     {
         return $this->morphOne(Media::class, "model")->where(
             "collection_name",
             "=",
-            "secondary"
+            "video"
         );
     }
 
@@ -128,14 +123,15 @@ class Strand extends Model implements HasMedia, CachableAttributes
         return $this->hasMany(Instance::class, "strand_name", "name");
     }
 
-    public function logo(): Attribute
+    // public function latest_post()
+    // {
+    //     return $this->posts()
+    //         ->latest()
+    //         ->first();
+    // }
+
+    public function posts(): BelongsToMany
     {
-        return Attribute::make(
-            get: fn($value) => str_replace(
-                "<svg",
-                '<svg class="w-full h-auto"',
-                $value
-            )
-        );
+        return $this->belongsToMany(Post::class);
     }
 }

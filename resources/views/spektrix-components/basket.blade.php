@@ -3,11 +3,12 @@
 <spektrix-basket-summary hidden id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
     x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ $settings['spektrix_client_name'] }}"
     custom-domain="{{ $settings['spektrix_custom_domain'] }}">
-    <a href="/basket/" class="relative block" :class="open ? 'bg-yellow text-black' : ''"
+    <a aria-label="View basket" ref="/basket/" class="relative block"
+        :class="{ 'bg-yellow-dark text-black': open, 'max-lg:hidden': scrolled }"
         @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
-        @svg('basket', 'h-10 w-10 lg:h-6 lg:w-6 pb-1 ')
+        @svg('basket', 'h-8 w-8 pb-1 ')
         <span
-            class="mobile-basket-count absolute top-0 right-0 h-4 w-4 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow px-0.5 pt-0.5 text-center text-[0.65rem] leading-tight text-black"
+            class="mobile-basket-count absolute top-0 right-0 h-4 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow-dark px-1.5 pt-0.5 text-center text-[0.65rem] leading-tight text-black"
             data-basket-item-count></span>
     </a>
     <script>

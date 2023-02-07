@@ -48,10 +48,10 @@ class EventController extends Controller
     {
         return view("events.show", [
             "event" => $event->load(
+                "featuredVideo",
                 "featuredImage",
-                "secondaryImage",
                 "gallery",
-                "posts"
+                "latest_post.tags"
             ),
         ]);
     }

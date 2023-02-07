@@ -9,6 +9,7 @@ use Advoor\NovaEditorJs\NovaEditorJsField;
 use Laravel\Nova\Panel;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Whitecube\NovaFlexibleContent\Flexible;
+use Illuminate\Support\Facades\Vite;
 
 class SectionedPageTemplate
 {
@@ -23,12 +24,20 @@ class SectionedPageTemplate
     {
         return [
             new Panel("Page content", [
-                Images::make("Image gallery", "gallery"),
-                Images::make("Footer image", "secondary")->hideFromIndex(),
-                Text::make("Banner text", "content->banner_text"),
+                Text::make("Banner text", "content->banner_text")
+                    ->maxlength(20)
+                    ->enforceMaxlength(),
                 Flexible::make("Content", "content->flexible")
-                    ->addLayout(\App\Nova\Flexible\Layouts\SectionLayout::class)
-                    ->button("Add a section"),
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\Test\HeroLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\Test\BlogLayout::class
+                    )
+                    ->button("Add a section")
+                    ->stacked()
+                    ->enablePreview()
+                    ->previewStylesheet(Vite::asset("resources/css/app.css")),
             ]),
         ];
     }

@@ -13,6 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::table("users", function (Blueprint $table) {
+            $table->string("slug");
             $table->boolean("show_in_directory")->default(false);
             $table->boolean("enable_login")->default(false);
             $table->string("role_title")->nullable();

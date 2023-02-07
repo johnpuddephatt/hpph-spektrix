@@ -4,12 +4,8 @@
         "dev": "vite",
         "build": "vite build && npm run spektrixcss",
         "spektrixcss": "find ./public/build/assets -name 'spektrix.*.css' -execdir mv {} spektrix.css \\;",
-        "build-editorjs": "cd nova-components/nova-editor-js && npm run development",
-        "build-editorjs-prod": "cd nova-components/nova-editor-js && npm run production",
-        "build-template-fields": "cd nova-components/TemplateFields && npm run dev",
-        "build-template-fields-prod": "cd nova-components/TemplateFields && npm run prod",
-        "build-svg": "cd nova-components/Svg && npm run dev",
-        "build-svg-prod": "cd nova-components/Svg && npm run prod"
+        "build-preview": "cd nova-components/Preview && npm run dev",
+        "build-preview-prod": "cd nova-components/Preview && npm run prod"
     },
     "devDependencies": {
         "@editorjs/quote": "^2.4.0",
@@ -23,7 +19,7 @@
         "lodash": "^4.17.19",
         "postcss": "^8.4.12",
         "prettier": "^2.7.1",
-        "tailwindcss": "^3.0.23",
+        "tailwindcss": "^3.2",
         "vite": "^2.9.13"
     },
     "dependencies": {
@@ -37,6 +33,7 @@
         "editorjs-carousel": "^1.0.7",
         "editorjs-detailssummary": "^1.0.0",
         "postcss-easing-gradients": "^3.0.1",
+        "swiper": "^8.4.6",
         "tailwind-scrollbar-hide": "^1.1.7"
     }
 }

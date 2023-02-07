@@ -5,7 +5,7 @@
             <tr>
                 @foreach ($row as $cell)
                     @if ($withHeadings && $is_header_row)
-                        <th class="type-label border-b border-gray p-4 pl-0 text-left">
+                        <th class="type-xs-mono border-b border-gray p-4 pl-0 text-left">
                         @else
                         <td class="border-b border-gray p-4 pl-0">
                     @endif

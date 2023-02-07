@@ -11,14 +11,14 @@ body {
 
 h1,
 h2 {
-    @apply type-h5;
+    @apply type-medium;
 }
 
 h3,
 h4,
 h5,
 h6 {
-    @apply type-subtitle;
+    @apply type-regular;
 }
 
 @layer base {
@@ -140,7 +140,7 @@ Booking Path
     @apply my-8;
 }
 #ctl00_ContentPlaceHolder_DiscountsPanel h2 {
-    @apply type-subtitle mb-1;
+    @apply type-regular mb-1;
 }
 
 #ctl00_ContentPlaceHolder_RelatedOffersControl_LoginForDiscounts {

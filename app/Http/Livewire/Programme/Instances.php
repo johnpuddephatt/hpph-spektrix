@@ -13,50 +13,13 @@ class Instances extends Component
     public $dark = false;
     public $show_header = true;
     public $show_load_more = false;
-    public $selected_option = 0;
     public $page = 1;
 
     public $strand = null;
-    public $season = null;
     public $accessibility = null;
     public $date = null;
 
-    protected $queryString = ["season", "accessibility", "strand", "date"];
-
-    protected $listeners = [
-        "updateStrand2" => "setStrand",
-        "updateSeason2" => "setSeason",
-        "updateAccessibility2" => "setAccessibility",
-        "updateDate2" => "setDate",
-    ];
-
-    public function clearFilters()
-    {
-        $this->season = null;
-        $this->strand = null;
-        $this->accessibility = null;
-        // $this->date = null;
-    }
-
-    public function setStrand($value)
-    {
-        $this->clearFilters();
-        $this->strand = $value;
-    }
-
-    public function setAccessibility($value)
-    {
-        $this->clearFilters();
-        $this->accessibility = $value;
-    }
-
-    public function setDate($value)
-    {
-        // $this->clearFilters();
-        $this->date = $value;
-    }
-
-    public function render()
+    public function instances()
     {
         $instances = \App\Models\Instance::whereHas("event")
             ->with(
@@ -64,7 +27,6 @@ class Instances extends Component
                 "event.featuredImage",
                 "strand:slug,name,color"
             )
-
             ->select(
                 "id",
                 "venue",
@@ -86,38 +48,55 @@ class Instances extends Component
         }
 
         if ($this->accessibility) {
-            // dd($this->accessibility);
             $instances->{Str::camel($this->accessibility)}();
         }
 
         if ($this->date) {
             $instances->whereDate("start", $this->date);
-        } elseif (
-            isset(((array) $this->options[$this->selected_option])["offset"])
-        ) {
-            $instances->whereBetween("start", [
-                Carbon::today()->addDays(
-                    ((array) $this->options[$this->selected_option])["offset"]
-                ),
-                Carbon::today()->addDays(
-                    ((array) $this->options[$this->selected_option])["offset"] +
-                        ((array) $this->options[$this->selected_option])[
-                            "duration"
-                        ] *
-                            $this->page
-                ),
-            ]);
         }
 
-        if (isset(((array) $this->options[$this->selected_option])["limit"])) {
-            $instances->take(
-                ((array) $this->options[$this->selected_option])["limit"] *
-                    $this->page
-            );
-        }
+        return $instances;
+    }
 
+    protected $queryString = ["accessibility", "strand", "date"];
+
+    protected $listeners = [
+        "updateStrand2" => "setStrand",
+        "updateAccessibility2" => "setAccessibility",
+        "updateDate2" => "setDate",
+    ];
+
+    public function clearFilters()
+    {
+        $this->strand = null;
+        $this->accessibility = null;
+        $this->date = null;
+    }
+
+    public function setStrand($value)
+    {
+        $this->clearFilters();
+        $this->strand = $value;
+    }
+
+    public function setAccessibility($value)
+    {
+        $this->clearFilters();
+        $this->accessibility = $value;
+    }
+
+    public function setDate($value)
+    {
+        $this->clearFilters();
+        $this->date = $value;
+    }
+
+    public function render()
+    {
+        $this->emit("updateCount", $this->instances()->count());
         return view("livewire.programme.instances", [
-            "instances" => $instances->get(),
+            "instances" => $this->instances()->get(),
+            "page_title" => "wow",
         ]);
     }
 }

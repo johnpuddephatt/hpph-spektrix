@@ -2,6 +2,7 @@
 @import "_type";
 @import "_prose";
 @import "_fades";
+@import "_details-summary";
 
 @tailwind base;
 @tailwind components;
@@ -27,5 +28,22 @@ form {
 }
 
 cite:first-line {
-    @apply type-subtitle;
+    @apply type-regular;
+}
+
+.marquee {
+    animation: marquee 40s linear infinite;
+}
+
+.marquee:hover {
+    animation-play-state: paused;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }

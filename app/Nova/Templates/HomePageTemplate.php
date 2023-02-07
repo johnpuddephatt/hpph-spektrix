@@ -13,9 +13,15 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Number;
 use Outl1ne\MultiselectField\Multiselect;
 // use Whitecube\NovaFlexibleContent\Flexible;
+use Trin4ik\NovaSwitcher\NovaSwitcher;
+use Alexwenzel\DependencyContainer\DependencyContainer;
+
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\FormData;
 
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Support\Facades\DB;
+use Laravel\Nova\Fields\URL;
 
 class HomePageTemplate
 {
@@ -51,62 +57,42 @@ class HomePageTemplate
                         "Redevelopment",
                     ]),
                 ]),
-                Text::make("Values statement", "content->values_statement"),
+                Text::make("Values statement", "content->values->statement"),
+                Text::make("Values link text", "content->values->link_text"),
+                URL::make("Values link URL", "content->values->link_url"),
             ]),
 
-            new Panel("Banner", [
-                Text::make("Title", "content->banner->title"),
-                Text::make("Subtitle", "content->banner->subtitle"),
-                Text::make("URL", "content->banner->url"),
-                Select::make("Height", "content->banner->height")
-                    ->options([
-                        null => "Auto",
-                        "min-h-[66vh]" => "Two-thirds",
-                        "min-h-screen" => "Full",
-                    ])
-                    ->displayUsingLabels(),
-                Images::make("Image", "banner"),
-                Boolean::make("Overlay", "content->banner->overlay"),
-                Select::make("Text colour", "content->banner->text_color")
-                    ->options([
-                        "text-black" => "Black",
-                        "text-white" => "White",
-                    ])
-                    ->displayUsingLabels(),
-                Select::make("Background colour", "content->banner->bg_color")
-                    ->options([
-                        "bg-black" => "Black",
-                        "bg-white" => "White",
-                        "bg-yellow" => "Yellow",
-                    ])
-                    ->displayUsingLabels(),
-            ]),
+            // new Panel("Banner", [
+            //     NovaSwitcher::make("Enabled", "content->banner->enabled"),
+            //     DependencyContainer::make([
+            //         Text::make("Title", "content->banner->title"),
+            //         Text::make("Subtitle", "content->banner->subtitle"),
+            //         Text::make("URL", "content->banner->url"),
+            //         Images::make("Image", "banner"),
+            //     ])->dependsOn("content->banner->enabled", 1),
+            // ]),
 
-            new Panel("Featured blog posts", [
-                Number::make(
-                    "Number of posts",
-                    "content->featured_post_number_of_posts"
-                ),
-                Multiselect::make(
-                    "Tags to include",
-                    "content->featured_post_tags_to_include"
-                )
-                    ->saveAsJSON()
-                    ->options(
-                        array_combine(
-                            \Spatie\Tags\Tag::pluck("name")->toArray(),
-                            \Spatie\Tags\Tag::pluck("name")->toArray()
-                        )
-                    )
-                    ->help(
-                        "Posts with any of the selected tags will be shown."
-                    ),
-            ]),
+            // new Panel("Featured blog post", [
+            //     Multiselect::make(
+            //         "Tags to include",
+            //         "content->featured_post_tags_to_include"
+            //     )
+            //         ->saveAsJSON()
+            //         ->options(
+            //             array_combine(
+            //                 \Spatie\Tags\Tag::pluck("name")->toArray(),
+            //                 \Spatie\Tags\Tag::pluck("name")->toArray()
+            //             )
+            //         )
+            //         ->help(
+            //             "Posts with any of the selected tags will be shown."
+            //         ),
+            // ]),
         ];
     }
 
     // Resolve data for serialization
-    public function resolve($page): array
+    public function resolve($page)
     {
         if (!$page->content) {
             abort(404);
@@ -118,35 +104,54 @@ class HomePageTemplate
             ->groupBy("custom_properties.category");
 
         return [
-            "values_statement" => $page->content->values_statement,
-            "values_images" => $shuffled_images
-                ->map(function ($values) {
-                    return $values->first();
-                })
-                ->push($shuffled_images->first()[1])
-                ->map(function ($item) {
-                    return [
-                        "src" => $item->getUrl("portrait"),
-                        "srcset" => $item->getSrcset("portrait"),
-                    ];
-                }),
-            "instance_options" => $this->getInstanceOptions(),
-            "posts" => Cache::remember("home_posts", 3600, function () {
-                return \App\Models\Post::latest()
-                    ->where("featured", true)
-                    ->take(4)
-                    ->with("featuredImage")
+            "values" => [
+                "statement" => $page->content->values->statement,
+                "images" => count($shuffled_images)
+                    ? $shuffled_images
+                        ->map(function ($values) {
+                            return $values->first();
+                        })
+                        ->push($shuffled_images->first()[1])
+                        ->map(function ($item) {
+                            return [
+                                "src" => $item->getUrl("square"),
+                                "srcset" => $item->getSrcset("square"),
+                            ];
+                        })
+                    : null,
+                "link_text" => $page->content->values->link_text,
+                "link_url" => $page->content->values->link_url,
+            ],
+
+            "instances" => Cache::remember("home_instances", 3600, function () {
+                return \App\Models\Instance::take(8)
+                    ->with("event.featuredImage", "strand")
                     ->get()
                     ->map(function ($item) {
                         return [
-                            "slug" => $item->slug,
-                            "title" => $item->title,
-                            "created_at" => $item->created_at->format("d M"),
-                            "src" => $item->featuredImage
-                                ? $item->featuredImage->getUrl("landscape")
+                            "id" => $item->id,
+                            "url" => $item->url,
+                            "event" => [
+                                "name" => $item->event->name,
+                                "id" => $item->event->id,
+                                "certificate_age_guidance" =>
+                                    $item->event->certificate_age_guidance,
+                            ],
+
+                            "venue" => $item->venue,
+                            "start_date" => $item->start_date,
+                            "start_time" => $item->start_time,
+                            "strand" => $item->strand,
+                            "captioned" => $item->captioned,
+                            "audio_described" => $item->audio_described,
+                            "signed_bsl" => $item->signed_bsl,
+                            "special_event" => $item->special_event,
+
+                            "src" => $item->event->featuredImage
+                                ? $item->event->featuredImage->getUrl("wide")
                                 : null,
-                            "srcset" => $item->featuredImage
-                                ? $item->featuredImage->getSrcset("landscape")
+                            "srcset" => $item->event->featuredImage
+                                ? $item->event->featuredImage->getSrcset("wide")
                                 : null,
                         ];
                     });
@@ -154,73 +159,64 @@ class HomePageTemplate
             "events" => Cache::remember("home_events", 3600, function () use (
                 $page
             ) {
-                return count($page->content->featured_films)
+                return (count($page->content->featured_films)
                     ? \App\Models\Event::whereIn(
                         "id",
                         $page->content->featured_films
+                    )->orderByRaw(
+                        "FIELD(id,'" .
+                            implode("','", $page->content->featured_films) .
+                            "')"
                     )
-                        ->orderByRaw(
-                            "FIELD(id,'" .
-                                implode("','", $page->content->featured_films) .
-                                "')"
-                        )
-                        ->with("featuredImage")
-                        ->get()
-                        ->each->append("strands")
-                        ->map(function ($item, $key) {
-                            return $item->formatForHomepage();
-                        })
                     : \App\Models\Event::orderBy(
                         "first_instance_date_time",
                         "DESC"
-                    )
-                        ->take(3)
-                        ->with("featuredImage")
-                        ->get()
-                        ->each->append("strands")
-                        ->map(function ($item, $key) {
-                            return $item->formatForHomepage();
-                        });
+                    )->take(3)
+                )
+                    ->with(["featuredImage", "featuredVideo"])
+                    ->get()
+                    ->each->append(["strands"])
+                    ->map(function ($item, $key) {
+                        return $item->formatForHomepage();
+                    });
             }),
-            "banner" => [
-                "title" => $page->content->banner->title,
-                "subtitle" => $page->content->banner->subtitle,
-                "height" => $page->content->banner->height,
-                "url" => $page->content->banner->url,
-                "src" => $page->getMedia("banner")->count()
-                    ? $page->getMedia("banner")[0]->getUrl("landscape")
-                    : "",
-                "srcset" => $page->getMedia("banner")->count()
-                    ? $page->getMedia("banner")[0]->getSrcset("landscape")
-                    : "",
-                "overlay" => $page->content->banner->overlay,
-                "bg_color" => $page->content->banner->bg_color,
-                "text_color" => $page->content->banner->text_color,
-            ],
+
+            // "banner" => [
+            //     "enabled" => $page->content->banner->enabled,
+            //     "title" => $page->content->banner->title,
+            //     "subtitle" => $page->content->banner->subtitle,
+            //     "url" => $page->content->banner->url,
+            //     "src" => $page->getMedia("banner")->count()
+            //         ? $page->getMedia("banner")[0]->getUrl("landscape")
+            //         : "",
+            //     "srcset" => $page->getMedia("banner")->count()
+            //         ? $page->getMedia("banner")[0]->getSrcset("landscape")
+            //         : "",
+            // ],
             "featured_posts" => Cache::remember(
                 "home_featured_posts",
                 3600,
                 function () use ($page) {
                     return \App\Models\Post::latest()
-                        ->withAnyTags(
-                            $page->content->featured_post_tags_to_include ?? []
-                        )
-                        ->take(
-                            $page->content->featured_post_number_of_posts ?? 1
-                        )
+                        ->where("featured", true)
+                        ->with("featuredImage")
+                        ->take(1)
                         ->get()
                         ->map(function ($item) {
                             return [
+                                "url" => $item->url,
+                                "id" => $item->id,
                                 "slug" => $item->slug,
                                 "title" => $item->title,
                                 "introduction" => $item->introduction,
+                                "tagsTranslated" => $item->tagsTranslated,
                                 "created_at" => $item->created_at->format(
                                     "d M"
                                 ),
                                 "image" => $item->featuredImage
                                     ? $item->featuredImage
-                                        ->img("landscape", [
-                                            "class" => "w-3/4 lg:w-1/2 rounded",
+                                        ->img("wide", [
+                                            "class" => "lg:w-1/2 rounded",
                                         ])
                                         ->toHtml()
                                     : null,
@@ -228,6 +224,36 @@ class HomePageTemplate
                         });
                 }
             ),
+
+            "posts" => Cache::remember("home_posts", 3600, function () {
+                return \App\Models\Post::latest()
+                    ->with("featuredImage")
+                    ->take(3)
+                    ->whereNotIn(
+                        "id",
+                        Cache::get("home_featured_posts")
+                            ? [Cache::get("home_featured_posts")[0]["id"]]
+                            : null
+                    )
+                    ->get()
+                    ->map(function ($item) {
+                        return [
+                            "url" => $item->url,
+                            "slug" => $item->slug,
+                            "title" => $item->title,
+                            "tagsTranslated" => $item->tagsTranslated,
+
+                            "created_at" => $item->created_at->format("d M"),
+                            "image" => $item->featuredImage
+                                ? $item->featuredImage
+                                    ->img("landscape", [
+                                        "class" => "rounded",
+                                    ])
+                                    ->toHtml()
+                                : null,
+                        ];
+                    });
+            }),
         ];
     }
 
@@ -235,33 +261,5 @@ class HomePageTemplate
     public function pathSuffix(): string|null
     {
         return null;
-    }
-
-    public function getInstanceOptions()
-    {
-        if (
-            \App\Models\Instance::today()->count() &&
-            \App\Models\Instance::tomorrow()->count()
-        ) {
-            return [
-                ["label" => "Today", "offset" => 0, "duration" => 1],
-                ["label" => "Tomorrow", "offset" => 1, "duration" => 1],
-            ];
-        } elseif (\App\Models\Instance::today()->count()) {
-            return [["label" => "Today", "offset" => 0, "duration" => 1]];
-        } elseif (\App\Models\Instance::tomorrow()->count()) {
-            return [["label" => "Tomorrow", "offset" => 1, "duration" => 1]];
-        } elseif (\App\Models\Instance::thisWeek()->count()) {
-            return [["label" => "This week", "offset" => 0, "duration" => 7]];
-        } else {
-            return [
-                [
-                    "label" => "Soon",
-                    "offset" => 0,
-                    "duration" => 28,
-                    "limit" => 6,
-                ],
-            ];
-        }
     }
 }

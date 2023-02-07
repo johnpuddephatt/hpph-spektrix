@@ -35,7 +35,7 @@ class PageType extends MenuItemSelectType
     {
         return \App\Models\Page::orderPagesByUrl()
             ->get()
-            ->pluck("title", "id")
+            ->pluck("name", "id")
             ->toArray();
     }
 
@@ -49,7 +49,7 @@ class PageType extends MenuItemSelectType
      */
     public static function getDisplayValue($value, ?array $data, $locale)
     {
-        return "Page: " . \App\Models\Page::find($value)->title;
+        return "Page: " . \App\Models\Page::find($value)->name;
     }
 
     /**
@@ -93,5 +93,10 @@ class PageType extends MenuItemSelectType
         return [
                 // "value" => "required",
             ];
+    }
+
+    public static function getData($data = null)
+    {
+        return $data;
     }
 }

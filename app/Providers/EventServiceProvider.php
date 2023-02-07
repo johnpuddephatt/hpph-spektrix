@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         Registered::class => [SendEmailVerificationNotification::class],
+        \Spatie\MediaLibrary\Conversions\Events\ConversionHasBeenCompleted::class => [
+            \App\Listeners\MediaConversionComplete::class,
+        ],
     ];
 
     /**
@@ -29,13 +32,19 @@ class EventServiceProvider extends ServiceProvider
             \App\Observers\SettingsObserver::class
         );
         \Outl1ne\MenuBuilder\Models\MenuItem::observe(
-            \App\Observers\MenuItemObserver::class
+            \App\Observers\MenuObserver::class
         );
         \Outl1ne\MenuBuilder\Models\Menu::observe(
             \App\Observers\MenuObserver::class
         );
-        \App\Models\Strand::observe(\App\Observers\StrandObserver::class);
-        \App\Models\Page::observe(\App\Observers\PageObserver::class);
-        \App\Models\Event::observe(\App\Observers\EventObserver::class);
+        \Spatie\MediaLibrary\MediaCollections\Models\Media::observe(
+            \App\Observers\MediaObserver::class
+        );
+
+        \App\Models\Strand::observe(\App\Observers\ModelObserver::class);
+        \App\Models\Season::observe(\App\Observers\ModelObserver::class);
+        \App\Models\Page::observe(\App\Observers\ModelObserver::class);
+        \App\Models\Event::observe(\App\Observers\ModelObserver::class);
+        \App\Models\Post::observe(\App\Observers\ModelObserver::class);
     }
 }

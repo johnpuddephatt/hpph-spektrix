@@ -7,7 +7,6 @@ use Laravel\Nova\Cards\Help;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
 use App\Nova\Dashboards\Main;
-use Spatie\MediaLibraryPro\Models\TemporaryUpload;
 use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\Image\Manipulations;
 use Illuminate\Http\Request;
@@ -29,6 +28,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         $settings = [
             new \App\Nova\Settings\Alert(),
+            new \App\Nova\Settings\Banner(),
             new \App\Nova\Settings\Cinema(),
             new \App\Nova\Settings\Messages(),
             new \App\Nova\Settings\Services(),
@@ -207,7 +207,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(\App\Nova\Season::class),
                     MenuGroup::make("Programme", []),
 
-                    MenuGroup::make("—————", [
+                    MenuGroup::make("", [
                         MenuItem::resource(\App\Nova\Membership::class),
                         MenuItem::resource(\App\Nova\Fund::class),
                     ]),
@@ -216,7 +216,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     "document-text"
                 ),
 
-                MenuSection::resource(\App\Nova\Post::class)->icon("book-open"),
+                MenuSection::make("Journal", [
+                    MenuItem::resource(\App\Nova\Post::class),
+                    MenuItem::resource(\App\Nova\Tag::class),
+                ])->icon("pencil"),
+
+                // MenuSection::resource(\App\Nova\Post::class)->icon("pencil"),
 
                 MenuSection::resource(\App\Nova\Opportunity::class)->icon(
                     "briefcase"
@@ -226,17 +231,19 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 MenuSection::make(__("novaMenuBuilder.sidebarTitle"))
                     ->path("/menus")
                     ->icon("collection"),
+
                 (new \Outl1ne\NovaSettings\NovaSettings())
                     ->menu($request)
                     ->icon("cog"),
-                MenuSection::resource(\App\Nova\User::class)->icon("user"),
+
+                MenuSection::resource(\App\Nova\User::class)->icon(
+                    "user-group"
+                ),
+
                 (new \Spatie\BackupTool\BackupTool())->menu($request),
+
                 MenuSection::make("Logs")->path("/logs"),
             ];
-        });
-
-        TemporaryUpload::previewManipulation(function (Conversion $conversion) {
-            $conversion->fit(Manipulations::FIT_CROP, 1200, 900);
         });
     }
 
