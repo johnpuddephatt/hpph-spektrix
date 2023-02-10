@@ -14,10 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $featured_post = \App\Models\Post::latest()
-            ->where("featured", true)
-            ->first();
-        return view("posts.index", compact("featured_post"));
+        // $featured_post = \App\Models\Post::latest()
+        //     ->where("featured", true)
+        //     ->first();
+        // return view("posts.index", compact("featured_post"));
     }
 
     /**

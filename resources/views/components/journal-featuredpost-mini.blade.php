@@ -5,7 +5,7 @@
         <div class="">
 
             @if ($post->image)
-                {!! $post->image !!}
+                <x-image :src="$post->image->src" :srcset="$post->image->srcset" />
             @else
                 <div class="w-64 aspect-video rounded bg-gray-light"></div>
             @endif
@@ -13,7 +13,7 @@
             <div class="">
                 <h2 class="type-regular my-4">{{ $post->title }}</h2>
                 <div class="type-xs-mono">
-                    {{ $post->created_at->format('d M Y') }},
+                    {{ $post->date }},
 
                     @foreach ($post->tags as $tag)
                         <span>{{ $tag->name }}</span>

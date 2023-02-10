@@ -28,6 +28,8 @@ class Post extends Model implements HasMedia
     use Sluggable;
     use SoftDeletes;
 
+    protected $dateOutputFormat = "d M Y";
+
     protected $fillable = [
         "title",
         "introduction",
@@ -43,6 +45,8 @@ class Post extends Model implements HasMedia
         "published" => "boolean",
         // "content" => NovaEditorJsCast::class,
     ];
+
+    protected $appends = ["url", "date"];
 
     protected static function booted()
     {
@@ -66,13 +70,6 @@ class Post extends Model implements HasMedia
     }
 
     // protected $appends = ["tags"];
-
-    // protected static function booted()
-    // {
-    //     static::creating(function ($post) {
-    //         $post->slug = Str::slug($post->title, "-");
-    //     });
-    // }
 
     public function registerMediaCollections(): void
     {
@@ -98,6 +95,11 @@ class Post extends Model implements HasMedia
             ->crop("crop-center", 1200, 800)
             ->withResponsiveImages()
             ->performOnCollections("main");
+    }
+
+    public function getDateAttribute()
+    {
+        return $this->created_at->format($this->dateOutputFormat);
     }
 
     public function getUrlAttribute()
@@ -127,13 +129,18 @@ class Post extends Model implements HasMedia
         }
     }
 
-    // public function getImageAttribute(): array
-    // {
-    //     return [
-    //         "src" => $this->getFirstMedia("main")->getUrl("landscape"),
-    //         "srcset" => $this->getFirstMedia("main")->getSrcset("landscape"),
-    //     ];
-    // }
+    public function getImageAttribute(): object
+    {
+        return (object) [
+            "src" => $this->featuredImage->getUrl("landscape"),
+            "srcset" => $this->featuredImage->getSrcset("landscape"),
+        ];
+    }
+
+    public function getTagsTranslatedAttribute()
+    {
+        return $this->tagsTranslated()->get();
+    }
 
     public function featuredImage(): MorphOne
     {

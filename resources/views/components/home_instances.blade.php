@@ -36,9 +36,10 @@
                     slidesPerView: 6
                 },
             },
-        })" class="mt-24 relative max-w-none mx-auto">
+        })" class="mt-12 lg:mt-24 relative max-w-none mx-auto">
 
-            <div class="swiper-container border-t border-gray-dark pt-16 w-full overflow-hidden" x-ref="container">
+            <div class="swiper-container border-t border-gray-dark pt-10 lg:pt-16 w-full overflow-hidden"
+                x-ref="container">
                 <div class="swiper-wrapper w-full">
                     @foreach ($page->content->instances as $instance)
                         <x-instance-card layout="home" class="swiper-slide" :instance="$instance" />
@@ -46,15 +47,15 @@
                 </div>
             </div>
 
-            <div class="mt-24 justify-center flex flex-row gap-4 border-t border-gray-dark text-white">
-                <div x-show="showControls" class="-mt-7 bg-gray-dark border border-gray-light rounded-full">
+            <div class="mt-20 lg:mt-24 justify-center flex flex-row gap-4 border-t border-gray-dark text-white">
+                <div x-show="showControls" class="-mt-7 bg-black border border-gray-dark rounded-full">
                     <button :class="{ 'opacity-25': !showPreviousControl }" :disabled="!showPreviousControl"
-                        @click="swiper.slidePrev()" class="p-2">
-                        @svg('chevron-right', 'rotate-180')
+                        @click="swiper.slidePrev()" class="py-1 pl-6 pr-2">
+                        @svg('chevron-right', 'rotate-180 h-8 w-8')
                     </button>
                     <button :class="{ 'opacity-25': !showNextControl }" :disabled="!showNextControl"
-                        @click="swiper.slideNext()" class="p-2">
-                        @svg('chevron-right')
+                        @click="swiper.slideNext()" class="py-1 pl-2 pr-6">
+                        @svg('chevron-right', 'h-8 w-8')
                     </button>
                 </div>
             </div>

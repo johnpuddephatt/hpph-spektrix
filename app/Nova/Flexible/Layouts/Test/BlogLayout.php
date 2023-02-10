@@ -80,7 +80,6 @@ class BlogLayout extends Layout implements HasMedia
             ])
                 ->take($parameters["number_of_posts"] ?? 3)
                 ->get(),
-            "foo" => "bar",
         ];
     }
 }

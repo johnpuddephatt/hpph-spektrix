@@ -1,5 +1,5 @@
 @if ($page->content->values->statement)
-    <div class="bg-yellow py-16">
+    <div class="bg-yellow pt-10 pb-16">
         <div class="container max-w-7xl text-center">
             <p class="type-xs-mono mb-12">Hello</p>
             <h2 class="type-regular md:type-large">{{ $page->content->values->statement }} </h2>

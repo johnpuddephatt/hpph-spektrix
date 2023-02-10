@@ -7,6 +7,6 @@
     @include('components.home-hero')
     @include('components.home-carousel')
     @include('components.home_instances')
-    @include('components.featured-post', ['featured_post' => $page->content->featured_posts[0]])
+    @include('components.journal-featuredpost', ['featured_post' => $page->content->featured_posts[0]])
     @include('components.journal-posts', ['posts' => $page->content->posts])
 @endsection

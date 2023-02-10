@@ -1,36 +1,44 @@
-<div class="divide-y divide-gray-light px-4 2xl:px-6">
-    @foreach ($events as $event)
-        <div class="flex flex-row gap-6 py-8">
-            <a href="{{ route('event.show', ['event' => $event->slug]) }}"
-                class="mb-auto aspect-video w-1/4 overflow-hidden rounded bg-gray">
-                @if ($event->featuredImage)
-                    <x-image loading="lazy" class="block w-full" :src="$event->featuredImage->getUrl('wide')" :srcset="$event->featuredImage->getSrcset('wide')" />
-                @endif
-            </a>
-            <a href="{{ route('event.show', ['event' => $event->slug]) }}" class="flex w-1/2 flex-col">
+<div class="container divide-y divide-gray-light pt-3 pb-8">
+    <div class="overflow-hidden">
+        @php $events = $events->concat($events)->concat($events) @endphp
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 -mx-2 -mb-px">
+            @foreach ($events as $event)
+                <div class="border-gray-light pt-3 pb-12 border-b flex flex-col px-2">
+                    <div class="type-xs-mono mb-3">{{ $event->instance_dates }}</div>
+                    <a href="{{ route('event.show', ['event' => $event->slug]) }}"
+                        class="mb-auto aspect-video overflow-hidden rounded">
 
-                <div class="mb-3">{{ $event->instance_dates }}</div>
-                <h2 class="type-medium mb-4">{{ $event->name }}</h2>
-                <x-location color="text-yellow" :location="$event->venue" />
+                        <div class="relative aspect-video flex flex-col">
+                            <div class="w-full relative flex-1 bg-gray rounded overflow-hidden">
+                                @if ($event->featuredImage)
+                                    <x-image width="100%" class="absolute inset-0" :src="$event->featuredImage->getUrl('wide')"
+                                        :srcset="$event->featuredImage->getSrcset('wide')" />
+                                @endif
+                            </div>
 
-                <div class="mt-auto flex flex-row items-center gap-2 pt-2">
-                    <x-certificate :certificate="$event->certificate_age_guidance" />
-                    @foreach ($event->strands as $strand)
-                        <x-strand :strand="$strand" />
-                    @endforeach
-                    <x-accessibilities :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl" :audiodescribed="$event->has_audio_described" />
-                    <x-genres-vibes-badge class="ml-2" :values="$event->genres_and_vibes" />
+                            <x-accessibilities class="absolute top-2 right-1.5" :dark="true" :captioned="$event->has_captioned"
+                                :signedbsl="$event->has_signed_bsl" :audiodescribed="$event->has_audio_described" :specialevent="$event->has_special_event" />
+                            @foreach ($event->strands as $strand)
+                                <x-strand-badge class="mt-2" :strand="$strand" />
+                            @endforeach
+                        </div>
+                    </a>
+                    <a href="{{ route('event.show', ['event' => $event->slug]) }}" class="h-[5.5em]">
+                        <h2 class="type-regular max-w-xs mt-4 mb-2">{{ $event->name }}
+                            <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
+                        </h2>
+                    </a>
+
+                    <div>
+                        <button class="type-small inline-block py-0 bg-yellow text-black rounded-full px-2"
+                            @click="$dispatch('booking', { eventID: '{{ $event->id }}', venue: '{{ $event->venue }}'  })">Book</button>
+                        /
+                        <a class="type-small inline-block py-0 bg-gray-dark text-white rounded-full px-2"
+                            href="{{ $event->url }}">Info</a>
+                    </div>
+
                 </div>
-            </a>
-            <div class="flex w-1/4 flex-grow flex-col">
-                @if ($event->description)
-                    <div class="mb-auto overflow-hidden pb-4">
-                        {!! $event->description !!}</div>
-                @endif
-                <a class="type-regular mt-auto block rounded bg-gray py-2 px-4 text-center hover:bg-yellow hover:text-black"
-                    href="{{ route('event.show', ['event' => $event->slug]) }}">More information &amp; tickets</a>
-            </div>
-
+            @endforeach
         </div>
-    @endforeach
+    </div>
 </div>

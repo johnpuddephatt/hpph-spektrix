@@ -11,7 +11,9 @@ use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\Image\Manipulations;
 use Illuminate\Http\Request;
 use Advoor\NovaEditorJs\NovaEditorJs;
-
+use Illuminate\Support\Facades\Vite;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Menu\Menu;
 use Laravel\Nova\Menu\MenuGroup;
 use Laravel\Nova\Menu\MenuItem;
@@ -26,12 +28,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function boot()
     {
+        parent::boot();
+
         $settings = [
             new \App\Nova\Settings\Alert(),
             new \App\Nova\Settings\Banner(),
             new \App\Nova\Settings\Cinema(),
             new \App\Nova\Settings\Messages(),
             new \App\Nova\Settings\Services(),
+            new \App\Nova\Settings\Newsletter(),
         ];
 
         foreach ($settings as $setting) {
@@ -42,16 +47,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             );
         }
 
-        parent::boot();
-
-        Nova::serving(function () {
-            Nova::script(
-                "editorjs-plugins",
-                (new \Illuminate\Foundation\Vite())->asset(
-                    "resources/js/editorjs-plugins.js"
-                )
-            );
-        });
+        // Nova::serving(function () {
+        //     Nova::script(
+        //         "editorjs-plugins",
+        //         Vite::asset("resources/js/editorjs-plugins.js")
+        //     );
+        // });
 
         Nova::footer(function ($request) {
             return "

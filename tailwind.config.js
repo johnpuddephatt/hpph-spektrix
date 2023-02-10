@@ -53,7 +53,7 @@ module.exports = {
             },
 
             yellow: {
-                DEFAULT: "#f5db4f",
+                DEFAULT: "#FFDA3D",
                 dark: "#f4cf48",
             },
 

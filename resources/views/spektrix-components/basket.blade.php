@@ -1,37 +1,36 @@
 @push('webComponents', '#spektrix-basket-summary')
 
-<spektrix-basket-summary hidden id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
+<spektrix-basket-summary id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
     x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ $settings['spektrix_client_name'] }}"
     custom-domain="{{ $settings['spektrix_custom_domain'] }}">
-    <a aria-label="View basket" ref="/basket/" class="relative block"
-        :class="{ 'bg-yellow-dark text-black': open, 'max-lg:hidden': scrolled }"
+    <a aria-label="View basket" ref="/basket/" class="relative block" :class="{ 'max-lg:hidden': scrolled }"
         @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
-        @svg('basket', 'h-8 w-8 pb-1 ')
-        <span
+        @svg('basket', 'h-6 w-6 lg:h-8 lg:w-8 pb-1 ')
+        <span hidden id="spektrixBasketCount"
             class="mobile-basket-count absolute top-0 right-0 h-4 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow-dark px-1.5 pt-0.5 text-center text-[0.65rem] leading-tight text-black"
             data-basket-item-count></span>
     </a>
     <script>
         // Add 'hidden' attribute to <spektrix-basket-summary> to enable hidding empty basket.
-        let showBasketIfNotEmpty = function() {
-            var spektrixBasketSummary = document.getElementById(
-                'spektrixBasketSummary'
+        let showBasketCountIfNotEmpty = function() {
+            var spektrixBasketCount = document.getElementById(
+                'spektrixBasketCount'
             );
             if (spektrixBasketSummary.getAttribute('count') > 0) {
-                spektrixBasketSummary.removeAttribute('hidden');
-                spektrixBasketSummary.classList.add('block');
+                spektrixBasketCount.removeAttribute('hidden');
+                spektrixBasketCount.classList.add('block');
             }
         };
-        showBasketIfNotEmpty();
+        showBasketCountIfNotEmpty();
         setInterval(() => {
-            showBasketIfNotEmpty();
+            showBasketCountIfNotEmpty();
         }, 1000);
     </script>
 
     <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open" x-transition:enter-start="opacity-0"
-        x-transition:leave-end="opacity-0" class="fixed inset-0 z-20 bg-black bg-opacity-80 duration-300">
+        x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 bg-black bg-opacity-80 duration-300">
     </div>
-    <div class="container fixed inset-0 left-auto z-20 flex h-screen w-full max-w-lg transform flex-col bg-sand p-12 transition-all delay-100 duration-200"
+    <div class="container fixed inset-0 left-auto z-50 flex h-screen w-full max-w-lg transform flex-col bg-sand p-12 transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">
         <template x-if="open">
             <div class="relative">

@@ -1,4 +1,4 @@
-@extends('layouts.default', ['header_background' => 'bg-sand', 'edit_link' => route('nova.pages.edit', ['resource' => 'posts', 'resourceId' => $post->id])])
+@extends('layouts.default', ['header_position' => 'fixed', 'edit_link' => route('nova.pages.edit', ['resource' => 'posts', 'resourceId' => $post->id])])
 @section('title', $post->title)
 @section('description', $post->introduction)
 
@@ -9,14 +9,16 @@
 
             <div class="container mx-auto max-w-6xl">
 
-                <p
+                <div
                     class="type-xs-mono mb-8 xl:absolute xl:bottom-0 xl:left-0 xl:mb-0 xl:origin-left xl:-rotate-90 xl:transform">
-                    {{ $post->created_at->format('j F Y') }}
-                    {{-- @if ($post->tags->count())
+                    {{ $post->date }}
+                    @if ($post->tags->count())
                         &bullet;
-                        <x-post-tags :tags="$post->tags" />
-                    @endif --}}
-                </p>
+                        <x-post-tags :tags="$post->tagsTranslated" />
+                    @endif
+                </div>
+
+                <x-journal-postmeta :post="$post" />
 
                 <h1 class="type-regular lg:type-medium xl:type-large mb-8 max-w-xl xl:mb-32">{{ $post->title }}</h1>
 
@@ -45,7 +47,8 @@
     <div class="bg-sand py-12">
         <div class="flew-row container mb-8 flex items-center justify-between gap-4">
             <h2 class="type-regular">Related posts</h2>
-            <a class="type-large" href="{{ route('post.index') }}">All journal posts @svg('arrow-right', 'inline-block w-6 h-6')</a>
+            <a class="type-large" href="{{ \App\Models\Page::getTemplateUrl('journal-page') }}">All journal posts
+                @svg('arrow-right', 'inline-block w-6 h-6')</a>
         </div>
         {{-- @include('components.posts-grid', ['posts' => $related_posts]) --}}
 

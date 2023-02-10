@@ -127,7 +127,7 @@ class Page extends Model implements HasMedia
         );
     }
 
-        public function secondaryImage(): MorphOne
+    public function secondaryImage(): MorphOne
     {
         return $this->morphOne(Media::class, "model")->where(
             "collection_name",
@@ -197,6 +197,10 @@ class Page extends Model implements HasMedia
                 return (new $value['class'])->name();
             }
         );
+    }
+
+    public static function getTemplateUrl($template) {
+        return \App\Models\Page::firstWhere('template', $template)->url;
     }
 
     public function resolveContent() {

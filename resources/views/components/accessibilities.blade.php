@@ -1,28 +1,19 @@
 @props(['dark' => false, 'captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'specialevent' => ''])
 
-<div {{ $attributes }}>
+<div {{ $attributes->class(['flex flex-row gap-0.5']) }}>
 
     @if ($specialevent ?? null)
-        <span
-            class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono py-0.5 !leading-none inline-block rounded-full pl-1 pr-2 text-center">
-
+        <x-accessibilities.badge :dark="$dark" :class="$dark ? 'pl-1' : 'py-0.5 font-bold !font-sans !uppercase'" :title="'+' . $specialevent">
             +{{ $specialevent }}
-        </span>
+        </x-accessibilities.badge>
     @endif
     @if ($captioned ?? null)
-        <span
-            class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block rounded-full px-2 text-center">
-            C
-        </span>
+        <x-accessibilities.badge title="Captioned" :dark="$dark">C</x-accessibilities.badge>
     @endif
     @if ($signedbsl ?? null)
-        <span
-            class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block rounded-full px-2 text-center">
-            BSL</span>
+        <x-accessibilities.badge title="Signed BSL" :dark="$dark">BSL</x-accessibilities.badge>
     @endif
     @if ($audiodescribed ?? null)
-        <span
-            class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block rounded-full px-2 text-center">
-            AD</span>
+        <x-accessibilities.badge title="Audio described" :dark="$dark">AD</x-accessibilities.badge>
     @endif
 </div>

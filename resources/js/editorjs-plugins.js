@@ -1,5 +1,5 @@
 import Carousel from "editorjs-carousel";
-// import Carousel from "@vtchinh/gallery-editorjs";
+// // import Carousel from "@vtchinh/gallery-editorjs";
 import BlockWidthTune from "editorjs-block-width-tune";
 import Quote from "@editorjs/quote";
 import ToggleBlock from "editorjs-toggle-block";

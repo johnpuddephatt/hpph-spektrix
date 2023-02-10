@@ -7,7 +7,7 @@ use Laravel\Nova\Fields\DateTime;
 
 class Alert
 {
-    public $page = "Alert";
+    public $page = "alert";
 
     public function fields(): array
     {

@@ -113,7 +113,7 @@
         </div>
     @endif
 
-    @include('components.featured-post', ['featured_post' => $strand->posts->first()])
+    @include('components.journal-featuredpost', ['featured_post' => $strand->posts->first()])
 
     @includeWhen($strand->content->members_voices, 'components.quote', [
         'members_voices' => $strand->content->members_voices,

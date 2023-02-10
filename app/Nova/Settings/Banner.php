@@ -5,6 +5,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\Fields\Text;
 use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
+use Trin4ik\NovaSwitcher\NovaSwitcher;
 
 class Banner
 {
@@ -17,7 +18,8 @@ class Banner
             Text::make("URL", "banner_url"),
             SimpleRepeatable::make("Values", "banner_values", [
                 Text::make("Label"),
-            ]),
+                NovaSwitcher::make("Bold?"),
+            ])->addRowLabel("Add new line"),
         ];
     }
 

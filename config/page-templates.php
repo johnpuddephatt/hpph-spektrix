@@ -29,4 +29,8 @@ return [
         "class" => "\App\Nova\Templates\TeamPageTemplate",
         "unique" => true, // Whether more than one page can be created with this template
     ],
+    "journal-page" => [
+        "class" => "\App\Nova\Templates\JournalPageTemplate",
+        "unique" => true, // Whether more than one page can be created with this template
+    ],
 ];

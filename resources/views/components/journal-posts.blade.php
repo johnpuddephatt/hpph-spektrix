@@ -1,39 +1,62 @@
 @if (count($posts))
 
     <div class="bg-sand-dark py-24">
-        <div class="relative">
-            <div class="type-xs-mono text-center">Latest</div>
-            <h2 class="type-medium mb-24 text-center">Stories from our <a class="underline" href="/journal/">journal</a>
+        <div class="container">
+            <div class="type-xs-mono text-center mb-2">Latest</div>
+            <h2 class="type-regular lg:type-medium mb-24 text-center">Stories from our <a class="underline"
+                    href="/journal/">journal</a>
             </h2>
 
-            <div class="container mx-auto flex flex-row justify-center gap-8">
+            <div x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true }" x-init="swiper = new Swiper($refs.container, {
+                loop: false,
+                slidesPerView: 1,
+                spaceBetween: 15,
+                centerInsufficientSlides: true,
+            
+                on: {
+                    progress: function() {
+                        showPreviousControl = !this.isBeginning;
+                        showNextControl = !this.isEnd;
+                        showControls = !this.isLocked;
+                    }
+                },
+            
+                breakpoints: {
+                    640: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 2,
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                    },
+                },
+            })" class="relative max-w-none mx-auto">
 
-                @foreach ($posts as $post)
-                    <a href="{{ $post->url }}" class="w-1/3 flex flex-col">
-                        @if ($post->image)
-                            {!! $post->image !!}
-                        @else
-                            <div class="= aspect-video rounded bg-gray-light"></div>
-                        @endif
+                <div class="swiper-container w-full overflow-hidden" x-ref="container">
+                    <div class="swiper-wrapper w-full">
+                        @foreach ($posts as $post)
+                            <x-journal-card class="swiper-slide w-1/3" :post="$post" />
+                        @endforeach
+                    </div>
+                </div>
 
-                        <div class="">
-                            <h2 class="type-regular my-6">{{ $post->title }}</h2>
-                            <div class="type-xs-mono">
-                                @svg('plus-square', 'inline-block mr-1')
-                                {{ $post->created_at }}
-                            </div>
-
-                            <div class="space-x-0.5">
-                                @svg('bookmark', 'inline-block mr-1')
-
-                                @foreach ($post->tagsTranslated as $tag)
-                                    <span class="type-xs-mono bg-sand rounded p-1">{{ $tag->name_translated }}</span>
-                                @endforeach
-                            </div>
-                        </div>
-                    </a>
-                @endforeach
+                <div x-show="showControls"
+                    class="mt-8 lg:mt-24 justify-center flex flex-row gap-4 border-t border-gray-light text-black">
+                    <div class="-mt-6 bg-sand-dark flex flex-row border border-gray-light rounded-full">
+                        <button :class="{ 'opacity-25': !showPreviousControl }" :disabled="!showPreviousControl"
+                            @click="swiper.slidePrev()" class="block py-1 pl-6 pr-2">
+                            @svg('chevron-right', 'rotate-180 h-8 w-8 block')
+                        </button>
+                        <button :class="{ 'opacity-25': !showNextControl }" :disabled="!showNextControl"
+                            @click="swiper.slideNext()" class="block py-1 pl-2 pr-6">
+                            @svg('chevron-right', 'h-8 w-8 block')
+                        </button>
+                    </div>
+                </div>
             </div>
+
         </div>
 
     </div>

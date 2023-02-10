@@ -19,6 +19,8 @@ class Instances extends Component
     public $accessibility = null;
     public $date = null;
 
+    public $filtered = false;
+
     public function instances()
     {
         $instances = \App\Models\Instance::whereHas("event")
@@ -35,8 +37,11 @@ class Instances extends Component
                 "captioned",
                 "signed_bsl",
                 "strand_name",
-                "audio_described"
+                "audio_described",
+                "special_event"
             );
+
+        $this->filtered = false;
 
         if ($this->strand) {
             $strand = $this->strand;
@@ -45,14 +50,17 @@ class Instances extends Component
             ) {
                 $query->where("strands.slug", $strand);
             });
+            $this->filtered = true;
         }
 
         if ($this->accessibility) {
             $instances->{Str::camel($this->accessibility)}();
+            $this->filtered = true;
         }
 
         if ($this->date) {
             $instances->whereDate("start", $this->date);
+            $this->filtered = true;
         }
 
         return $instances;
@@ -68,35 +76,33 @@ class Instances extends Component
 
     public function clearFilters()
     {
-        $this->strand = null;
-        $this->accessibility = null;
-        $this->date = null;
+        $this->reset("strand");
+        $this->reset("accessibility");
+        $this->reset("date");
     }
 
     public function setStrand($value)
     {
-        $this->clearFilters();
+        // $this->clearFilters();
         $this->strand = $value;
     }
 
     public function setAccessibility($value)
     {
-        $this->clearFilters();
+        // $this->clearFilters();
         $this->accessibility = $value;
     }
 
     public function setDate($value)
     {
-        $this->clearFilters();
+        // $this->clearFilters();
         $this->date = $value;
     }
 
     public function render()
     {
-        $this->emit("updateCount", $this->instances()->count());
         return view("livewire.programme.instances", [
             "instances" => $this->instances()->get(),
-            "page_title" => "wow",
         ]);
     }
 }

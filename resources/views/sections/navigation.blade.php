@@ -34,13 +34,13 @@
             <div class="float-left mr-auto clear-both border border-yellow rounded py-1.5 pl-1 pr-2">
                 @if ($loop->first)
                     <span
-                        class="type-xs-mono !leading-none bg-yellow text-black py-1.5 pb-1 rounded-full px-2 inline-block align-top mr-1">New!</span>
+                        class="type-xs-mono !leading-none bg-yellow text-black py-1.5 rounded-full px-2 inline-block align-top mr-1">New!</span>
                 @endif
                 <span class="font-bold text-yellow uppercase">{{ $season->name }}</span>
             </div>
         @endforeach
 
-        <div class="hidden lg:flex mt-auto mb-8 flex-row gap-3 py-1 lg:w-1/2 justify-start xl:items-start">
+        <div class="hidden lg:flex mt-auto mb-8 flex-row gap-3 py-1 pt-8 lg:w-1/2 justify-start xl:items-start">
             @foreach (['facebook', 'twitter', 'youtube', 'instagram', 'linkedin', 'vimeo'] as $account)
                 <x-social-icon :account="$account" />
             @endforeach

@@ -91,7 +91,9 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     protected $appends = [
         "has_captioned",
+        "has_signed_bsl",
         "has_audio_described",
+        "has_special_event",
         "genres_and_vibes",
     ];
 
@@ -231,6 +233,15 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
+    public function getHasSpecialEventAttribute(): string
+    {
+        return $this->remember("has_special_event", 3600, function (): string {
+            return $this->instances()
+                ->pluck("special_event")
+                ->first();
+        });
+    }
+
     public function getTrailerEmbedAttribute(): array
     {
         return $this->remember("trailer", 3600, function (): array {
@@ -248,7 +259,11 @@ class Event extends Model implements HasMedia, CachableAttributes
                                 100
                             : 56.25,
                     ];
+                } else {
+                    return [];
                 }
+            } else {
+                return [];
             }
         });
     }
@@ -385,6 +400,8 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function formatForHomepage()
     {
         return [
+            "id" => $this->id,
+            "venue" => $this->venue,
             "url" => $this->url,
             "status" => $this->status,
             "name" => $this->name,

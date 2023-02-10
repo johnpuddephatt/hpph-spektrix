@@ -11,8 +11,12 @@
         @apply text-[1.25rem] font-bold leading-[120%] tracking-[-0.02em];
     }
 
+    .type-body {
+        @apply font-normal text-[0.875rem] lg:text-[1rem] leading-[157.1%] lg:leading-[162.5%] tracking-normal;
+    }
+
     .type-small {
-        @apply text-[0.875rem] lg:text-[0.9375rem] font-bold leading-[120%] tracking-[-0.015em];
+        @apply text-[0.875rem] md:text-[0.9375rem] font-bold leading-[120%] tracking-[-0.015em];
     }
 
     .type-xs-mono {

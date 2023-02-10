@@ -123,6 +123,31 @@ class HomePageTemplate
                 "link_url" => $page->content->values->link_url,
             ],
 
+            "events" => Cache::remember("home_events", 3600, function () use (
+                $page
+            ) {
+                return (count($page->content->featured_films)
+                    ? \App\Models\Event::whereIn(
+                        "id",
+                        $page->content->featured_films
+                    )->orderByRaw(
+                        "FIELD(id,'" .
+                            implode("','", $page->content->featured_films) .
+                            "')"
+                    )
+                    : \App\Models\Event::orderBy(
+                        "first_instance_date_time",
+                        "DESC"
+                    )->take(3)
+                )
+                    ->with(["featuredImage", "featuredVideo"])
+                    ->get()
+                    ->each->append(["strands"])
+                    ->map(function ($item, $key) {
+                        return $item->formatForHomepage();
+                    });
+            }),
+
             "instances" => Cache::remember("home_instances", 3600, function () {
                 return \App\Models\Instance::take(8)
                     ->with("event.featuredImage", "strand")
@@ -156,30 +181,6 @@ class HomePageTemplate
                         ];
                     });
             }),
-            "events" => Cache::remember("home_events", 3600, function () use (
-                $page
-            ) {
-                return (count($page->content->featured_films)
-                    ? \App\Models\Event::whereIn(
-                        "id",
-                        $page->content->featured_films
-                    )->orderByRaw(
-                        "FIELD(id,'" .
-                            implode("','", $page->content->featured_films) .
-                            "')"
-                    )
-                    : \App\Models\Event::orderBy(
-                        "first_instance_date_time",
-                        "DESC"
-                    )->take(3)
-                )
-                    ->with(["featuredImage", "featuredVideo"])
-                    ->get()
-                    ->each->append(["strands"])
-                    ->map(function ($item, $key) {
-                        return $item->formatForHomepage();
-                    });
-            }),
 
             // "banner" => [
             //     "enabled" => $page->content->banner->enabled,
@@ -209,17 +210,9 @@ class HomePageTemplate
                                 "slug" => $item->slug,
                                 "title" => $item->title,
                                 "introduction" => $item->introduction,
-                                "tagsTranslated" => $item->tagsTranslated,
-                                "created_at" => $item->created_at->format(
-                                    "d M"
-                                ),
-                                "image" => $item->featuredImage
-                                    ? $item->featuredImage
-                                        ->img("wide", [
-                                            "class" => "lg:w-1/2 rounded",
-                                        ])
-                                        ->toHtml()
-                                    : null,
+                                "tags_translated" => $item->tagsTranslated,
+                                "date" => $item->date,
+                                "image" => $item->image,
                             ];
                         });
                 }
@@ -241,16 +234,9 @@ class HomePageTemplate
                             "url" => $item->url,
                             "slug" => $item->slug,
                             "title" => $item->title,
-                            "tagsTranslated" => $item->tagsTranslated,
-
-                            "created_at" => $item->created_at->format("d M"),
-                            "image" => $item->featuredImage
-                                ? $item->featuredImage
-                                    ->img("landscape", [
-                                        "class" => "rounded",
-                                    ])
-                                    ->toHtml()
-                                : null,
+                            "tags_translated" => $item->tagsTranslated,
+                            "date" => $item->date,
+                            "image" => $item->image,
                         ];
                     });
             }),

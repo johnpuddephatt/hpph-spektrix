@@ -64,7 +64,7 @@
         <div class="border-t-8 border-yellow gap-8 bg-sand flex flex-row pb-12 relative mt-[calc(100vh-4.25rem-1rem)]">
             <div class="container w-1/2 flex-1 flex flex-col justify-end">
                 <x-why-watch />
-                <x-journal-post-card :post="$event->latest_post->count() ? $event->latest_post->first() : null" />
+                <x-journal-featuredpost-mini :post="$event->latest_post->count() ? $event->latest_post->first() : null" />
             </div>
             <div class="relative lg:w-1/2">
                 <div class="bg-yellow p-6">
