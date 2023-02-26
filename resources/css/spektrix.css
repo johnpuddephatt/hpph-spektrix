@@ -113,7 +113,7 @@ Booking Path
 }
 
 .Ticket_Types_Selection .TicketType .Input_Text {
-    @apply bg-white my-0 rounded-none border-none w-16 py-6 text-center order-last  type-regular !font-normal !font-mono;
+    @apply bg-sand-light my-0 rounded-none border-none w-16 py-6 text-center order-last  type-regular !font-normal !font-mono;
 }
 
 .Ticket_Types_Selection .TicketType .Price {
