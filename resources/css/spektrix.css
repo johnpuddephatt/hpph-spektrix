@@ -216,7 +216,7 @@ dd.Footer {
 }
 
 .CheckoutLink {
-    @apply w-full mt-4 rounded bg-sand-light type-regular py-4 px-4 after:w-12 after:h-12 after:block after:ml-auto after:pl-2 flex flex-row items-center;
+    @apply w-full mt-4 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
 .CheckoutLink::after {
