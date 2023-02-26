@@ -12,14 +12,14 @@
     "src": "resources/js/editorjs-plugins.js",
     "isEntry": true
   },
-  "resources/css/spektrix.css": {
-    "file": "assets/spektrix.d7a8b67c.css",
-    "src": "resources/css/spektrix.css",
-    "isEntry": true
-  },
   "resources/css/app.css": {
     "file": "assets/app.aca780c9.css",
     "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/spektrix.css": {
+    "file": "assets/spektrix.c5c42dfb.css",
+    "src": "resources/css/spektrix.css",
     "isEntry": true
   }
 }

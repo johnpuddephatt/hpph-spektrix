@@ -105,7 +105,7 @@ Booking Path
 }
 
 .Ticket_Types_Selection {
-    @apply border-t border-gray-light divide-y divide-gray-light;
+    @apply border-t border-b border-gray-light divide-y divide-gray-light;
 }
 
 .Ticket_Types_Selection .TicketType {
@@ -113,7 +113,7 @@ Booking Path
 }
 
 .Ticket_Types_Selection .TicketType .Input_Text {
-    @apply w-16 py-6 text-center order-last  type-regular !font-normal !font-mono;
+    @apply bg-white my-0 rounded-none border-none w-16 py-6 text-center order-last  type-regular !font-normal !font-mono;
 }
 
 .Ticket_Types_Selection .TicketType .Price {
@@ -231,7 +231,7 @@ dd.Footer {
 
 .CheckoutLink,
 .spx-button-primary {
-    @apply max-w-lg w-full mt-4 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
+    @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
 .CheckoutLink::after,
