@@ -30,8 +30,18 @@ h6 {
     @apply rounded bg-sand-light px-12 py-1 font-bold hover:bg-yellow transition;
 }
 
-.Input_Text {
-    @apply rounded bg-transparent p-1 border border-gray-light;
+label {
+    @apply block;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+select {
+    @apply max-w-lg rounded bg-transparent px-1.5 py-1 border border-gray-light;
 }
 
 /*
