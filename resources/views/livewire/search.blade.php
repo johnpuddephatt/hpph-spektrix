@@ -5,7 +5,9 @@
         @svg('search', 'w-6 h-6 lg:h-8 lg:w-8 p-1 ')</button>
 
     <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open" x-transition:enter-start="opacity-0"
-        x-transition:leave-end="opacity-0" class="fixed inset-0 z-20 bg-black bg-opacity-70 duration-300">
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-20 bg-black bg-opacity-60 duration-150 backdrop-blur-lg">
+
     </div>
     <div class="container fixed inset-0 left-auto z-20 flex h-screen w-full max-w-lg transform flex-col border-black bg-black p-12 text-white transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">

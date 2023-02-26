@@ -74,6 +74,10 @@ Booking Path
     @apply font-bold;
 }
 
+.ErrorMessage {
+    @apply bg-yellow py-2 px-4 rounded mt-2 mb-4;
+}
+
 /* We want to hide the 'members please select a full price ticket...' message
    as we display our own separately */
 

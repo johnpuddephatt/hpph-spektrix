@@ -28,7 +28,10 @@
         },
     }" x-effect="getInstances(eventID)">
 
-    <div x-transition.opacity x-show="eventID" x-on:click="closeBooking" class="bg-black fixed inset-0 z-30"></div>
+    <div x-show="eventID" x-on:click="closeBooking"
+        class="bg-black backdrop-blur-lg bg-opacity-60 duration-150 fixed inset-0 z-30"
+        x-transition:enter-start="opacity-0" x-transition:leave-end="opacity-0">
+    </div>
 
     <div x-transition:enter-start="translate-x-full" x-transition:leave="translate-x-full" x-show="eventID"
         class="bg-sand lg:min-h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
