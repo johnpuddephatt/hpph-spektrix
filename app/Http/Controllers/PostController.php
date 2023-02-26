@@ -49,7 +49,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        $post->content = json_decode($post->content);
+        // $post->content = json_decode($post->content);
         $related_posts = $post->relatedPosts(3);
         return view("posts.show", compact("post", "related_posts"));
     }

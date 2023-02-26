@@ -11,6 +11,7 @@ use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Tag;
 use Laravel\Nova\Fields\URL;
+use Laravel\Nova\Panel;
 use Advoor\NovaEditorJs\NovaEditorJsField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Spatie\TagsField\Tags;
@@ -63,10 +64,24 @@ class Post extends Resource
                 ->withMeta([
                     "extraAttributes" => [
                         "class" => "text-xl p-4 h-auto",
-                        "maxlength" => 100,
                     ],
                 ])
-                ->rules("required", "max:100"),
+                ->rules("required", "max:100")
+                ->maxlength(100)
+                ->enforceMaxlength(),
+            Text::make("Subtitle")
+                ->rules("max:100")
+                ->maxlength(100)
+                ->enforceMaxlength()
+                ->hideFromIndex()
+                ->help("E.g. Episode 5: In conversation with Park Chan-Wook"),
+            Text::make("Summary")
+                ->rules("max:100")
+                ->maxlength(100)
+                ->enforceMaxlength()
+                ->hideFromIndex()
+                ->help("A short line summarising the content of this post"),
+
             Boolean::make("Published")
                 ->showOnPreview()
                 ->filterable(),
@@ -74,31 +89,45 @@ class Post extends Resource
                 ->showOnPreview()
                 ->filterable(),
             BelongsTo::make("User")->searchable(),
-            Tag::make("Tags"),
-            // Tags::make("Tags")
-            //     ->limit(2)
-            //     ->help("Select a maximum of two tags"),
-            Textarea::make("Introduction")
-                ->rows(3)
-                ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 300,
-                    ],
-                ])
-                ->alwaysShow()
-                ->rules("required", "max:300"),
-            Tag::make("Events")->displayAsList(),
-            Tag::make("Seasons")->displayAsList(),
-            Tag::make("Strands")->displayAsList(),
-            Images::make("Featured image", "main")->rules("required"),
-            NovaEditorJsField::make("Content")
-                ->hideFromIndex()
-                ->stacked()
-                ->rules("required"),
-            URL::make(
-                "URL",
-                fn() => $this->slug ? $this->url : "#"
-            )->displayUsing(fn() => $this->slug ? "Visit" : "–"),
+            Tag::make("Tags")->hideFromIndex(),
+
+            Tag::make("Events")
+                ->displayAsList()
+                ->hideFromIndex(),
+            Tag::make("Seasons")
+                ->displayAsList()
+                ->hideFromIndex(),
+            Tag::make("Strands")
+                ->displayAsList()
+                ->hideFromIndex(),
+            Images::make("Image", "main")->rules("required"),
+            Panel::make("Content", [
+                Textarea::make("Introduction")
+                    ->rows(3)
+                    ->maxlength(300)
+                    ->enforceMaxlength()
+                    ->alwaysShow()
+                    ->rules("required", "max:300"),
+                NovaEditorJsField::make("Content")
+                    ->hideFromIndex()
+                    ->stacked()
+                    ->rules("required")
+                    ->hideFromDetail(),
+
+                Text::make("Content", function () {
+                    return view("components.editorjs", [
+                        "content" => $this->content,
+                    ])->render();
+                })
+                    ->asHtml()
+                    ->onlyOnDetail(),
+            ]),
+            URL::make("URL", fn() => $this->slug ? $this->url : "#")
+
+                ->displayUsing(fn() => $this->slug ? "Visit" : "–")
+                ->showOnIndex(function (NovaRequest $request, $resource) {
+                    return $this->published === true;
+                }),
         ];
     }
 

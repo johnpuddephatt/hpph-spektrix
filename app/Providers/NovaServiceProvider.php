@@ -47,12 +47,21 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             );
         }
 
-        // Nova::serving(function () {
-        //     Nova::script(
-        //         "editorjs-plugins",
-        //         Vite::asset("resources/js/editorjs-plugins.js")
-        //     );
-        // });
+        // \Outl1ne\NovaSettings\NovaSettings::addSettingsPages([
+        //     new \App\Nova\Settings\Alert(),
+        //     new \App\Nova\Settings\Banner(),
+        //     new \App\Nova\Settings\Cinema(),
+        //     new \App\Nova\Settings\Messages(),
+        //     new \App\Nova\Settings\Services(),
+        //     new \App\Nova\Settings\Newsletter(),
+        // ]);
+
+        Nova::serving(function () {
+            Nova::script(
+                "editorjs-plugins",
+                Vite::asset("resources/js/editorjs-plugins.js")
+            );
+        });
 
         Nova::footer(function ($request) {
             return "

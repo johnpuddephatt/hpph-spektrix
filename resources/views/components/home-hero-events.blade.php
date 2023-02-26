@@ -35,13 +35,12 @@
                             x-on:click.prevent="activeSlide = (activeSlide < {{ $loop->count - 1 }}) ?  (activeSlide + 1) : 0">
                             @svg('chevron-right', 'w-10 h-10 -ml-2')</button>
                     </div>
-                    <div>{{ $event->status }}</div>
+                    <div class="mt-4">{{ $event->status }}</div>
                 </div>
                 <div class="">
-                    @foreach ($event->strands as $strand)
-                        <x-strand-badge :strand="$strand" :partof="true"
-                            class="absolute left-1/2 -translate-x-1/2 lg:transform-none bottom-8 lg:static mb-4 inline-block" />
-                    @endforeach
+
+                    <x-strand-badge :strand="$event->strand" :partof="true"
+                        class="absolute left-1/2 -translate-x-1/2 lg:transform-none bottom-8 lg:static mb-4 inline-block" />
 
                     <h3 class="type-medium md:type-regular">{{ $event->name }}
                         <x-certificate :certificate="$event->certificate_age_guidance" :dark="true" />
@@ -49,7 +48,7 @@
 
                     <div class="mt-8 mx-auto lg:mt-1">
                         <button class="type-small inline-block py-0 bg-yellow text-black rounded-full px-2"
-                            @click="$dispatch('booking', { eventID: '{{ $event->id }}', venue: '{{ $event->venue }}'  })">Book</button>
+                            @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">Book</button>
                         /
                         <a class="type-small inline-block py-0 bg-gray-dark text-white rounded-full px-2"
                             href="{{ $event->url }}">Info</a>

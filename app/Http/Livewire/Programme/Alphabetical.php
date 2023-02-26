@@ -10,7 +10,7 @@ class Alphabetical extends Component
     {
         return view("livewire.programme.alphabetical", [
             "events" => \App\Models\Event::orderBy("name")
-                ->with("featuredImage")
+                ->with("featuredImage", "instances.strand")
                 ->get(),
         ]);
     }

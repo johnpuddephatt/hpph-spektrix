@@ -37,26 +37,33 @@
                              Strands
                              @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
                          <dialog x-ref="stranddialog" x-on:click.self="$refs.stranddialog.close()"
-                             class="overflow-visible py-16 opacity-0 open:opacity-100 transition max-w-3xl px-16 rounded fixed top-1/2 m-0 w-full left-1/2 bg-sand p-12 z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
-                             <form class="max-w-md mx-auto" method="dialog">
-                                 <h3
-                                     class="type-xs-mono lg:block top-[45%] lg:absolute lg:right-full origin-bottom lg:translate-x-full lg:-rotate-90 whitespace-nowrap">
-                                     Filter by strand</h3>
-                                 <div class="grid grid-cols-3 gap-4">
-                                     @foreach ($strands_with_showings as $strand)
-                                         <button aria-label="Filter to show {{ $strand->name }} screenings"
-                                             wire:click="$emit('updateStrand', '{{ $strand->slug }}' )"
-                                             style="color: {{ $strand->color }}"
-                                             class="type-xs-mono rounded-full hover:bg-current">
-                                             @icon($strand->logo, ' px-4 p-2 pb-1 w-full h-auto')
-                                         </button>
-                                     @endforeach
+                             class="overflow-visible opacity-0 open:opacity-100 transition rounded fixed top-1/2 m-0 p-0 w-[40rem] max-w-[90%] left-1/2 bg-sand z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
+                             <form class="px-8 py-16 md:px-16" method="dialog">
+                                 <div class="max-w-md mx-auto">
+                                     <h3
+                                         class="type-xs-mono mb-6 lg:block top-[45%] lg:absolute lg:right-full origin-bottom lg:translate-x-full lg:-rotate-90 whitespace-nowrap">
+                                         Filter by strand</h3>
+                                     <div class="grid grid-cols-3 gap-4">
+                                         @foreach ($strands_with_showings as $strand)
+                                             <button aria-label="Filter to show {{ $strand->name }} screenings"
+                                                 wire:click="$emit('updateStrand', '{{ $strand->slug }}' )"
+                                                 style="color: {{ $strand->color }}"
+                                                 class="type-xs-mono rounded-full bg-sand-dark hover:bg-current">
+                                                 @if ($strand->logo_simple)
+                                                     @icon($strand->logo_simple, ' px-4 p-2 pb-1 w-full h-auto')
+                                                 @else
+                                                     <div class="text-xs-mono text-black px-4 p-2 pb-1 w-full h-auto">
+                                                         {{ $strand->name }}</div>
+                                                 @endif
+                                             </button>
+                                         @endforeach
+                                     </div>
+                                     <button aria-label="Cancel" value="cancel"
+                                         class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light hover:bg-black transition border border-black pr-4">
+                                         @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
+                                         Close
+                                     </button>
                                  </div>
-                                 <button aria-label="Cancel" value="cancel"
-                                     class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light pr-4">
-                                     @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
-                                     Close
-                                 </button>
                              </form>
                          </dialog>
 
@@ -77,29 +84,32 @@
                              Access
                              @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
                      @endif
-                     <dialog x-ref="accessdialog" x-on:click.self="$refs.stranddialog.close()"
-                         class="overflow-visible py-16 opacity-0 open:opacity-100 transition max-w-3xl px-16 rounded fixed top-1/2 m-0 w-full left-1/2 bg-sand p-12 z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
-                         <form class="max-w-md mx-auto" method="dialog">
-                             <h3
-                                 class="type-xs-mono lg:block top-[45%] lg:absolute lg:right-full origin-bottom lg:translate-x-full lg:-rotate-90 whitespace-nowrap">
-                                 Filter by access</h3>
-                             <div class="grid grid-cols-2 gap-4">
-                                 @foreach ($accessibilities_with_showings as $accessibility)
-                                     <button wire:click="$emit('updateAccessibility', '{{ $accessibility['slug'] }}' )"
-                                         class="type-xs-mono group transition text-center bg-gray hover:bg-yellow py-8 rounded whitespace-nowrap px-4">
-                                         <span
-                                             class="type-xs-mono rounded-full text-center inline-block bg-white group-hover:bg-black group-hover:text-white transition px-2">{{ $accessibility['abbreviation'] }}</span>
+                     <dialog x-ref="accessdialog" x-on:click.self="$refs.accessdialog.close()"
+                         class="overflow-visible opacity-0 open:opacity-100 transition w-[40rem] max-w-[90%] rounded fixed top-1/2 m-0 left-1/2 bg-sand p-0 z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
+                         <form class="px-8 py-16 md:px-16" method="dialog">
+                             <div class="max-w-md mx-auto">
+                                 <h3
+                                     class="type-xs-mono mb-6 top-[45%] md:absolute md:right-full origin-bottom md:translate-x-full md:-rotate-90 whitespace-nowrap">
+                                     Filter by access</h3>
+                                 <div class="grid md:grid-cols-2 gap-2 md:gap-4">
+                                     @foreach ($accessibilities_with_showings as $accessibility)
+                                         <button
+                                             wire:click="$emit('updateAccessibility', '{{ $accessibility['slug'] }}' )"
+                                             class="type-xs-mono group p-4 justify-between transition max-md:flex text-center bg-sand-dark items-center flex-row-reverse gap-4 hover:bg-yellow md:py-8 rounded whitespace-nowrap px-4">
+                                             <span
+                                                 class="type-xs-mono rounded-full text-center inline-block bg-white group-hover:bg-black group-hover:text-white transition px-2">{{ $accessibility['abbreviation'] }}</span>
 
-                                         <p class="mt-2">{{ $accessibility['label'] }}
-                                         </p>
-                                     </button>
-                                 @endforeach
+                                             <p class="md:mt-2">{{ $accessibility['label'] }}
+                                             </p>
+                                         </button>
+                                     @endforeach
+                                 </div>
+                                 <button aria-label="Cancel" value="cancel"
+                                     class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light hover:bg-black transition border border-black pr-4">
+                                     @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
+                                     Close
+                                 </button>
                              </div>
-                             <button aria-label="Cancel" value="cancel"
-                                 class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light pr-4">
-                                 @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
-                                 Close
-                             </button>
                          </form>
                      </dialog>
 
@@ -116,18 +126,20 @@
                          class="type-xs-mono cursor-default rounded bg-sand hover:bg-sand-dark pt-2 py-1.5 px-3">
                          Date
                          @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
-                     <dialog x-ref="datedialog"
-                         class="overflow-visible py-16 opacity-0 open:opacity-100 transition max-w-3xl px-16 rounded fixed top-1/2 m-0 w-full left-1/2 bg-sand p-12 z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
-                         <form class="max-w-md mx-auto" method="dialog">
-                             <h3
-                                 class="type-xs-mono lg:block top-[45%] lg:absolute lg:right-full origin-bottom lg:translate-x-full lg:-rotate-90 whitespace-nowrap">
-                                 Filter by date</h3>
-                             <x-datepicker />
-                             <button aria-label="Cancel" value="cancel"
-                                 class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light pr-4">
-                                 @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
-                                 Close
-                             </button>
+                     <dialog x-ref="datedialog" x-on:click.self="$refs.datedialog.close()"
+                         class="p-0 overflow-visible opacity-0 open:opacity-100 transition rounded fixed top-1/2 m-0 w-[40rem] max-w-[90%] left-1/2 bg-sand z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
+                         <form class="px-8 py-16 md:px-16" method="dialog">
+                             <div class="max-w-md mx-auto">
+                                 <h3
+                                     class="type-xs-mono mb-6 lg:block top-[45%] lg:absolute lg:right-full origin-bottom lg:translate-x-full lg:-rotate-90 whitespace-nowrap">
+                                     Filter by date</h3>
+                                 <x-datepicker />
+                                 <button aria-label="Cancel" value="cancel"
+                                     class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light pr-4">
+                                     @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
+                                     Close
+                                 </button>
+                             </div>
                          </form>
 
                      </dialog>

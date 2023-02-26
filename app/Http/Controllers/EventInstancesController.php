@@ -9,6 +9,6 @@ class EventInstancesController extends Controller
 {
     public function __invoke(Event $event)
     {
-        return $event->instances;
+        return $event->instances->load("strand");
     }
 }

@@ -47,12 +47,15 @@ class EventController extends Controller
     public function show(Event $event)
     {
         return view("events.show", [
-            "event" => $event->load(
-                "featuredVideo",
-                "featuredImage",
-                "gallery",
-                "latest_post.tags"
-            ),
+            "event" => $event
+                ->load(
+                    "featuredVideo",
+                    "featuredImage",
+                    "gallery",
+                    "latest_post.tags",
+                    "latest_post.featuredImage"
+                )
+                ->append("strand"),
         ]);
     }
 

@@ -16,15 +16,17 @@ class CreateSeasonsTable extends Migration
         Schema::create("seasons", function (Blueprint $table) {
             $table->id();
             $table->softDeletes();
+            $table->string("name", 50)->unique();
             $table
                 ->string("slug")
                 ->unique()
                 ->nullable();
-            $table->string("name", 50)->unique();
-            $table->boolean("enabled")->default(false);
             $table->boolean("published")->default(false);
+            $table->boolean("enabled")->default(false);
             $table->string("short_description")->nullable();
-            $table->text("description")->nullable();
+            $table->string("description")->nullable();
+            $table->text("content")->nullable();
+            $table->text("logo")->nullable();
         });
     }
 

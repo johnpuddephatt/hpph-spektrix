@@ -7,7 +7,6 @@
     <div class="relative h-[calc(100vh-1rem)] w-full overflow-hidden bg-black">
         <div class="relative">
             <div x-data="{}" x-init="setTimeout(function() {
-                console.log(($el.scrollWidth - document.body.clientWidth) / 2);
                 $el.scrollLeft = ($el.scrollWidth - document.body.clientWidth) / 2;
                 $el.classList.remove('opacity-0');
             }, 500);"

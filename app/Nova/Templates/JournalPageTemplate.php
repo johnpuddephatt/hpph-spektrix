@@ -42,9 +42,8 @@ class JournalPageTemplate
             "featured_post" => \App\Models\Post::latest()
                 ->where("featured", true)
                 ->with("tagsTranslated")
-
                 ->first()
-                ->append("image"),
+                ->appendImageSrc("landscape"),
         ]);
     }
 

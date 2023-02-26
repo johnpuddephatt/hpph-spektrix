@@ -33,7 +33,9 @@ class Strand extends Model implements HasMedia, CachableAttributes
         "slug",
         "short_description",
         "description",
+        "color",
         "logo",
+        "logo_simple",
         "content",
         "enabled",
         "published",
@@ -133,5 +135,15 @@ class Strand extends Model implements HasMedia, CachableAttributes
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function getLatestPostAttribute()
+    {
+        return $this->posts->first();
+    }
+
+    public function getUrlAttribute()
+    {
+        return route("strand.show", $this->slug);
     }
 }

@@ -6,13 +6,6 @@
 @section('content')
     @include('sections.pageheader-default', ['hide_image' => true])
 
-    <div class="flex flex-row">
-        @foreach ($page->getMedia('gallery')->shuffle()->take(5) as $image)
-            {!! $image->img('portrait', [
-                    'class' => 'w-1/5',
-                ])->toHtml() !!}
-        @endforeach
-    </div>
     <div class="bg-yellow py-16">
         <div class="type-medium container max-w-6xl lg:text-center">
             {{ $page->content->banner_text }}
@@ -46,7 +39,9 @@
                     id="{{ Illuminate\Support\Str::of($section->attributes->title)->kebab() }}">
 
                     <div class="container">
-                        {!! $page->getMedia('banner_' . $section->key)->first()->img('landscape', ['class' => 'rounded mb-6'])->toHtml() !!}
+                        @if ($page->getMedia('banner_' . $section->key)->first())
+                            {!! $page->getMedia('banner_' . $section->key)->first()->img('landscape', ['class' => 'rounded mb-6'])->toHtml() !!}
+                        @endif
                     </div>
 
                     <h2 class="type-regular container">

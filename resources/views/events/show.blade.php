@@ -19,7 +19,7 @@
             {!! $event->featuredImage->img('wide', ['class' => 'w-full absolute h-full opacity-70  inset-0 object-cover'])->toHtml() !!}
         @endif
 
-        <div class="md:ml-[50%] relative z-10">
+        <div class="lg:ml-[50%] relative z-10">
             <div class="container pt-48 pb-12 text-white 2xl:px-6">
                 <h1 class="type-medium md:type-large mb-1 font-bold">{{ $event->name }}</h1>
 
@@ -61,23 +61,21 @@
 
     <div class="relative mt-[calc(100vh-4.75rem)] bg-black pb-12">
 
-        <div class="border-t-8 border-yellow gap-8 bg-sand flex flex-row pb-12 relative mt-[calc(100vh-4.25rem-1rem)]">
-            <div class="container w-1/2 flex-1 flex flex-col justify-end">
-                <x-why-watch />
+        <div
+            class="border-t-8 border-yellow gap-8 bg-sand flex flex-col-reverse lg:flex-row pb-12 relative mt-[calc(100vh-4.25rem-1rem)]">
+            <div class="max-lg:pl-0 container lg:w-1/2 flex-1 flex flex-col justify-end">
+                <x-event-why-watch :why_watch="$event->why_watch" />
                 <x-journal-featuredpost-mini :post="$event->latest_post->count() ? $event->latest_post->first() : null" />
             </div>
             <div class="relative lg:w-1/2">
                 <div class="bg-yellow p-6">
-                    <div class="type-medium py-20 max-w-2xl">
-
+                    <div class="type-regular lg:type-medium py-20 max-w-2xl">
                         {!! $event->description !!}
                     </div>
                     <x-genres-vibes-badge :values="$event->genres_and_vibes" />
                 </div>
 
-                @foreach ($event->strands as $strand)
-                    <x-strand-strip :strand="$strand" />
-                @endforeach
+                <x-strand-strip :strand="$event->strand" />
 
                 <div class="max-w-4xl lg:pr-16 xl:pr-32">
 
@@ -88,7 +86,7 @@
                     <div class="container">
                         <h3 class="type-xs-mono">Film details</h3>
 
-                        <div class="mt-4 divide-y divide-gray border-t border-gray">
+                        <div class="mt-4 divide-y divide-sand-dark border-t border-sand-dark">
                             <x-details-row label="Duration" :value="$event->duration" />
                             <x-details-row label="Director" :value="$event->director" />
                             <x-details-row label="Featuring" :value="implode(' &bullet; ', $event->featuring_stars)" />
@@ -105,14 +103,14 @@
 
         <x-gallery :images="$event->gallery" />
         <button
-            class="type-regular sticky bottom-0 flex flex-row justify-between text-left pl-[calc(50%+1.5rem)] pr-6 py-5 items-center bg-yellow w-full"
-            @click="$dispatch('booking', { eventID: '{{ $event->id }}', venue: '{{ $event->venue }}'  })">
+            class="type-regular container sticky bottom-0 flex flex-row justify-between text-left lg:pl-[calc(50%+1.5rem)] pr-6 py-5 items-center bg-yellow w-full"
+            @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">
             See
             showtimes @svg('arrow-right', 'h-8 w-8 p-2 text-yellow bg-black rounded-full')</button>
-        <x-reviews :reviews="$event->reviews" />
-        @foreach ($event->strands as $strand)
-            <x-strand-card :strand="$strand" />
-        @endforeach
+        <x-event-reviews :reviews="$event->reviews" />
+
+        <x-strand-card :strand="$event->strand" />
+
     </div>
 
 @endsection

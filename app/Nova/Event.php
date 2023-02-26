@@ -15,7 +15,7 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Panel;
 
 use Advoor\NovaEditorJs\NovaEditorJsField;
-
+use Alexwenzel\DependencyContainer\DependencyContainer;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
@@ -136,6 +136,21 @@ class Event extends Resource
             // ],
             // false
             // ),
+
+            Panel::make("Why watch?", [
+                NovaSwitcher::make(
+                    "Enabled?",
+                    "why_watch->enabled"
+                )->hideFromIndex(),
+                DependencyContainer::make([
+                    Textarea::make("Quote", "why_watch->quote")->rows(3),
+                    Text::make("Name", "why_watch->name")->hideFromIndex(),
+                    Text::make(
+                        "Role/description",
+                        "why_watch->role"
+                    )->hideFromIndex(),
+                ])->dependsOn("why_watch->enabled", 1),
+            ]),
 
             Panel::make("Screenings", [
                 HasMany::make("Screenings", "instances", "\App\Nova\Instance"),

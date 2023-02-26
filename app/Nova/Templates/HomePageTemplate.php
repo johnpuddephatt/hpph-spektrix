@@ -21,6 +21,7 @@ use Laravel\Nova\Fields\FormData;
 
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Support\Facades\DB;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\URL;
 
 class HomePageTemplate
@@ -57,7 +58,11 @@ class HomePageTemplate
                         "Redevelopment",
                     ]),
                 ]),
-                Text::make("Values statement", "content->values->statement"),
+                Text::make("Values heading", "content->values->heading"),
+                Textarea::make(
+                    "Values statement",
+                    "content->values->statement"
+                ),
                 Text::make("Values link text", "content->values->link_text"),
                 URL::make("Values link URL", "content->values->link_url"),
             ]),
@@ -105,13 +110,17 @@ class HomePageTemplate
 
         return [
             "values" => [
+                "heading" => $page->content->values->heading,
                 "statement" => $page->content->values->statement,
                 "images" => count($shuffled_images)
                     ? $shuffled_images
                         ->map(function ($values) {
                             return $values->first();
                         })
-                        ->push($shuffled_images->first()[1])
+                        ->flatten()
+                        ->filter(function ($item) {
+                            return $item->hasGeneratedConversion("square");
+                        })
                         ->map(function ($item) {
                             return [
                                 "src" => $item->getUrl("square"),
@@ -140,7 +149,11 @@ class HomePageTemplate
                         "DESC"
                     )->take(3)
                 )
-                    ->with(["featuredImage", "featuredVideo"])
+                    ->with([
+                        "instances.strand",
+                        "featuredImage",
+                        "featuredVideo",
+                    ])
                     ->get()
                     ->each->append(["strands"])
                     ->map(function ($item, $key) {
@@ -200,7 +213,7 @@ class HomePageTemplate
                 function () use ($page) {
                     return \App\Models\Post::latest()
                         ->where("featured", true)
-                        ->with("featuredImage")
+
                         ->take(1)
                         ->get()
                         ->map(function ($item) {
@@ -209,10 +222,11 @@ class HomePageTemplate
                                 "id" => $item->id,
                                 "slug" => $item->slug,
                                 "title" => $item->title,
-                                "introduction" => $item->introduction,
+                                "summary" => $item->summary,
+                                "subtitle" => $item->subtitle,
                                 "tags_translated" => $item->tagsTranslated,
                                 "date" => $item->date,
-                                "image" => $item->image,
+                                "image" => $item->getImageSrc("wide"),
                             ];
                         });
                 }
@@ -234,9 +248,11 @@ class HomePageTemplate
                             "url" => $item->url,
                             "slug" => $item->slug,
                             "title" => $item->title,
+                            "summary" => $item->summary,
+                            "subtitle" => $item->subtitle,
                             "tags_translated" => $item->tagsTranslated,
                             "date" => $item->date,
-                            "image" => $item->image,
+                            "image" => $item->getImageSrc("landscape"),
                         ];
                     });
             }),

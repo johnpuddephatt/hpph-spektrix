@@ -56,16 +56,29 @@ Booking Path
 }
 
 #ctl00_ContentPlaceHolder_EventDetails .EventName::after {
-    content: "•";
+    content: "";
     @apply inline-block ml-2 mr-1;
 }
 
 .SeatingAreaInstructions {
-    @apply font-bold mt-8 py-2 border-b border-gray-light;
+    width: 27ch;
+    @apply type-small !font-normal mt-24 py-2 border-b border-gray-light;
 }
 
+.SeatingAreaInstructions:first-line {
+    @apply !font-bold;
+}
+
+/* We want to hide the 'members please select a full price ticket...' message
+   as we display our own separately */
+
 .ChooseSeatsHeading {
-    @apply mb-8;
+    visibility: collapse;
+    height: 2em;
+}
+
+.ChooseSeatsHeading h2 {
+    visibility: visible;
 }
 
 .Ticket_Types_Selection {
@@ -73,15 +86,16 @@ Booking Path
 }
 
 .Ticket_Types_Selection .TicketType {
-    @apply py-2 flex flex-row items-center;
+    @apply flex flex-row items-center;
 }
 
 .Ticket_Types_Selection .TicketType .Input_Text {
-    @apply w-12 text-center rounded-full border border-gray px-2;
+    @apply w-16 py-6 text-center order-last;
 }
 
 .Ticket_Types_Selection .TicketType .Price {
-    @apply w-24;
+    @apply w-24 overflow-hidden type-regular !font-normal !font-mono;
+    text-indent: -2ch;
 }
 
 #ctl00_ContentPlaceHolder_UpdateBasketButton {
@@ -144,7 +158,7 @@ Booking Path
 }
 
 #ctl00_ContentPlaceHolder_RelatedOffersControl_LoginForDiscounts {
-    @apply mb-4;
+    @apply hidden;
 }
 
 #ctl00_ContentPlaceHolder_DiscountsPanel .Input_Text {

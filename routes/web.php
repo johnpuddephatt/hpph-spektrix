@@ -67,6 +67,11 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("strand.show");
 
+    Route::get("/seasons/{season:slug}", [
+        \App\Http\Controllers\SeasonController::class,
+        "show",
+    ])->name("season.show");
+
     Route::get("team/{user:slug}", [
         \App\Http\Controllers\UserController::class,
         "show",

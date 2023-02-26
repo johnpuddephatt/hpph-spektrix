@@ -7,6 +7,6 @@
     @include('components.home-hero')
     @include('components.home-carousel')
     @include('components.home_instances')
-    @include('components.journal-featuredpost', ['featured_post' => $page->content->featured_posts[0]])
+    <x-journal-featuredpost :featured_post="$page->content->featured_posts[0]" class="bg-sand-dark py-16" />
     @include('components.journal-posts', ['posts' => $page->content->posts])
 @endsection

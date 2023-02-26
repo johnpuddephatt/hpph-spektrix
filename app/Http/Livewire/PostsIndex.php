@@ -33,18 +33,24 @@ class PostsIndex extends Component
 
     public function render()
     {
+        $paginated_posts = $this->selected_tag
+            ? \App\Models\Post::whereNot("id", $this->featured_post)
+                ->with("featuredImage")
+                ->withAnyTags([$this->selected_tag])
+                ->paginate(12)
+            : \App\Models\Post::whereNot("id", $this->featured_post)
+                ->with("featuredImage")
+                ->paginate(12);
+
+        $posts = $paginated_posts->getCollection();
+        $posts->each->appendImageSrc("landscape");
+        $paginated_posts->setCollection($posts);
+
         return view("livewire.posts-index", [
             "tags" => \App\Models\Tag::withCount("posts")
                 ->get()
                 ->where("posts_count"),
-            "posts" => $this->selected_tag
-                ? \App\Models\Post::whereNot("id", $this->featured_post)
-                    ->withAnyTags([$this->selected_tag])
-                    ->paginate(12)
-                : \App\Models\Post::whereNot(
-                    "id",
-                    $this->featured_post
-                )->paginate(12),
+            "posts" => $paginated_posts,
         ]);
     }
 }

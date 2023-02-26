@@ -63,12 +63,16 @@ class Strand extends Resource
     {
         return [
             ID::make()->hide(),
-            Text::make("Name")->withMeta([
-                "extraAttributes" => [
-                    "class" => "text-xl p-4 h-auto",
-                    "maxlength" => 50,
-                ],
-            ]),
+            Text::make("Name")
+                ->withMeta([
+                    "extraAttributes" => [
+                        "class" => "text-xl p-4 h-auto",
+                        "maxlength" => 50,
+                    ],
+                ])
+                ->readOnly(function ($request) {
+                    return $request->isUpdateOrUpdateAttachedRequest();
+                }),
             Boolean::make("Published"),
             Boolean::make("Synced", "enabled")
                 ->readonly()
@@ -76,6 +80,9 @@ class Strand extends Resource
                 ->filterable(),
             Color::make("Color"),
             Image::make("Logo")
+                ->acceptedTypes(".svg")
+                ->disableDownload(),
+            Image::make("Simplified logo", "logo_simple")
                 ->acceptedTypes(".svg")
                 ->disableDownload(),
             Media::make("Video")

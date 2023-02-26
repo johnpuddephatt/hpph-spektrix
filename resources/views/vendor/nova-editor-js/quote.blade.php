@@ -1,13 +1,9 @@
-@php
-$width = isset($_tunes) ? ($_tunes->blockWidthTune ?: 'normal') : 'normal';
-@endphp
-
-<div
-    class="@if (($_align ?? false == 'right') && $width !== 'full') lg:w-1/2 lg:ml-[50%] mx-0 @endif @if ($width === 'full') max-w-7xl @elseif($width === 'wide') max-w-none @else max-w-6xl @endif container my-16">
-    <blockquote
-        class="@if ($width == 'normal') max-w-2xl @endif @if ($width == 'wide') max-w-4xl @endif @if ($width == 'full') max-w-6xl @endif relative">
-        <p class="type-medium mb-8"><span class="right-full text-yellow xl:absolute xl:pr-4">“</span>{{ $text }}
-        </p>
-        <cite class="block not-italic">{!! $caption !!}</cite>
-    </blockquote>
-</div>
+<blockquote
+    class="{{ $width == '' ? 'max-w-[55ch]' : '' }} {{ $width == 'wide' ? 'container lg:mr-0 lg:w-2/3' : '' }} {{ $width == 'full' ? 'container lg:ml-[calc(25vw)] lg:text-right lg:w-[75vw] lg:max-w-[calc(55ch+25vw+3rem)]' : '' }} my-16 relative">
+    <p class="{{ $width == 'full' ? 'lg:type-large' : '' }} type-medium" style="text-indent: -0.8ch">
+        “ {{ $text }} ”
+    </p>
+    @if ($caption)
+        <cite class="mt-4 block not-italic">{!! $caption !!}</cite>
+    @endif
+</blockquote>

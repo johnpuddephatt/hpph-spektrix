@@ -7,6 +7,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Model::preventLazyLoading(!$this->app->isProduction());
+
         View::composer("*", function ($view) {
             $view->with(
                 "strands",
@@ -39,7 +44,9 @@ class AppServiceProvider extends ServiceProvider
                         "color",
                         "logo",
                         "logo_text"
-                    )->get();
+                    )
+                        ->with("featuredImage")
+                        ->get();
                 })
             );
 

@@ -1,18 +1,18 @@
 <header x-cloak x-data="{ menu_open: false, header_position: '{{ $header_position ?? 'static' }}' }" @menutoggled.window="menu_open = $event.detail"
     :class="{
-        'z-10 fixed left-0 right-0 top-0': header_position == 'fixed',
-        'z-10 lg:z-10 absolute left-0 right-0 top-0': header_position == 'absolute',
-        'relative z-10': header_position == 'relative',
+        'fixed left-0 right-0 top-0': header_position == 'fixed',
+        'absolute left-0 right-0 top-0': header_position == 'absolute',
+        'relative': header_position == 'static',
         'transition duration-200': header_position == 'absolute' || header_position == 'fixed' || menu_open,
-        'relative z-10 transition duration-200': header_position == 'static' && !menu_open,
-        'z-10 !text-white': menu_open || nav_open
+        'transition duration-200': header_position == 'static' && !menu_open,
+        '!text-white': menu_open || nav_open
     }"
-    class="{{ $header_class ?? 'text-white' }}">
+    class="{{ $header_class ?? 'text-white' }} z-20">
 
     <div class="container flex flex-row items-center py-3 2xl:py-6">
         <a title="Navigate to homepage" aria-label="Navigate to homepage" class="relative z-20 mr-3 text-yellow"
             style="color: @yield('color')" href="/">
-            @svg('logo-compact', 'h-10 w-auto')</a>
+            @svg('logo-compact', 'h-10 w-auto ' . ($logo_background ?? 'text-transparent'))</a>
 
         <a class="type-xs-mono relative z-20 flex flex-row items-center gap-1.5 rounded py-1 px-2"
             :class="{
@@ -32,8 +32,11 @@
 
         <div class="absolute top-14 lg:top-16 right-5 flex flex-col items-center lg:mt-0 gap-3">
             <livewire:search />
-            @include('spektrix-components.basket')
-            @include('spektrix-components.login-status')
+            @production
+                @include('spektrix-components.basket')
+                @include('spektrix-components.login-status')
+            @endproduction
+
             @if ($edit_link ?? null)
                 <a aria-label="Edit page" title="Edit page" class="inline-block" :class="{ 'max-lg:!hidden': scrolled }"
                     href="{{ $edit_link }}">@svg('edit', 'h-6 w-6 lg:h-8 lg:w-8 p-0.5 pb-0.5')</a>

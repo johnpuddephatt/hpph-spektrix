@@ -89,6 +89,7 @@ NovaEditorJS.booting(function (editorConfig, fieldConfig) {
         editorConfig.tools.carousel.tunes = ["blockWidthTune"];
         editorConfig.tools.quote.tunes = ["blockWidthTune"];
         editorConfig.tools.embed.tunes = ["blockWidthTune"];
+        editorConfig.tools.raw.tunes = ["blockWidthTune"];
         editorConfig.tools.header.toolbox = [
             {
                 icon: "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M15.8 2.5h3.8v19.1h-3.8V14H8.2v7.6H4.4V2.5h3.8v7.6h7.6V2.5z' stroke='#000' stroke-width='.75' stroke-miterlimit='10'/></svg>",

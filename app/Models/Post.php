@@ -37,13 +37,15 @@ class Post extends Model implements HasMedia
         "published",
         "content",
         "slug",
+        "subtitle",
     ];
 
     protected $casts = [
         "created_at" => "date",
         "featured" => "boolean",
         "published" => "boolean",
-        // "content" => NovaEditorJsCast::class,
+        // "content" => "object",
+        "content" => NovaEditorJsCast::class,
     ];
 
     protected $appends = ["url", "date"];
@@ -129,11 +131,17 @@ class Post extends Model implements HasMedia
         }
     }
 
-    public function getImageAttribute(): object
+    public function appendImageSrc($size = "landscape")
+    {
+        $this->image = $this->getImageSrc($size);
+        return $this;
+    }
+
+    public function getImageSrc($size = "landscape"): object
     {
         return (object) [
-            "src" => $this->featuredImage->getUrl("landscape"),
-            "srcset" => $this->featuredImage->getSrcset("landscape"),
+            "src" => $this->featuredImage->getUrl($size),
+            "srcset" => $this->featuredImage->getSrcset($size),
         ];
     }
 

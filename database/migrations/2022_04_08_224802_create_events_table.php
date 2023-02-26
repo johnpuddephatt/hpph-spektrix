@@ -22,6 +22,9 @@ class CreateEventsTable extends Migration
             $table->text("description")->nullable();
             $table->text("long_description")->nullable();
             $table->json("reviews")->default(new Expression("(JSON_ARRAY())"));
+            $table
+                ->json("why_watch")
+                ->default(new Expression("(JSON_ARRAY())"));
             $table->string("trailer")->nullable();
 
             $table->boolean("enabled")->default(false);

@@ -24,6 +24,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cohensive\OEmbed\Facades\OEmbed;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Event extends Model implements HasMedia, CachableAttributes
 {
@@ -43,6 +44,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "published" => "boolean",
         "long_description" => NovaEditorJsCast::class,
         "reviews" => FlexibleCast::class,
+        "why_watch" => "object",
     ];
 
     protected static function booted()
@@ -62,6 +64,8 @@ class Event extends Model implements HasMedia, CachableAttributes
         "id",
         "description",
         "long_description",
+        "reviews",
+        "why_watch",
         "duration",
         "is_on_sale",
         "name",
@@ -278,14 +282,19 @@ class Event extends Model implements HasMedia, CachableAttributes
         }
     }
 
-    public function getStrandsAttribute($value)
+    public function getStrandAttribute($value)
     {
         return $this->remember("strand", 3600, function () {
-            return $this->instances
+            $strand = $this->instances
                 ->pluck("strand")
                 ->unique()
                 ->flatten()
-                ->filter();
+                ->filter()
+                ->first();
+            if ($strand) {
+                $strand->load("featuredImage");
+            }
+            return $strand;
         });
     }
 
@@ -413,7 +422,7 @@ class Event extends Model implements HasMedia, CachableAttributes
             "srcset" => $this->featuredImage
                 ? $this->featuredImage->getSrcset("wide")
                 : null,
-            "strands" => $this->strands,
+            "strand" => $this->strand,
             "video_thumbnail" => $this->featuredVideo
                 ? $this->featuredVideo
                     ->img("thumb", [

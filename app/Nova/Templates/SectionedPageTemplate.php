@@ -28,16 +28,9 @@ class SectionedPageTemplate
                     ->maxlength(20)
                     ->enforceMaxlength(),
                 Flexible::make("Content", "content->flexible")
-                    ->addLayout(
-                        \App\Nova\Flexible\Layouts\Test\HeroLayout::class
-                    )
-                    ->addLayout(
-                        \App\Nova\Flexible\Layouts\Test\BlogLayout::class
-                    )
+                    ->addLayout(\App\Nova\Flexible\Layouts\SectionLayout::class)
                     ->button("Add a section")
-                    ->stacked()
-                    ->enablePreview()
-                    ->previewStylesheet(Vite::asset("resources/css/app.css")),
+                    ->stacked(),
             ]),
         ];
     }

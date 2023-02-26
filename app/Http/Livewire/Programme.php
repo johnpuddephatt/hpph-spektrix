@@ -77,7 +77,7 @@ class Programme extends Component
     public function render()
     {
         $strands_with_showings = \App\Models\Strand::whereHas("instances")
-            ->select("name", "slug", "logo", "color")
+            ->select("name", "slug", "logo_simple", "color")
             ->get();
 
         $accessibilities_with_showings = collect([]);

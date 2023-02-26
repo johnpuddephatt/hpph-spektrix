@@ -212,13 +212,5 @@ class Page extends Model implements HasMedia
         return $this;
     }
 
-    public function getHomeJournalPostsAttribute()
-    {
-        return Cache::remember("home_posts", 3600, function () {
-            return \App\Models\Post::with("mainImage")
-                ->latest()
-                ->take(3)
-                ->get();
-        });
-    }
+
 }

@@ -22,7 +22,8 @@ class CreatePostsTable extends Migration
             $table->boolean("published")->default(false);
             $table->string("slug");
             $table->string("introduction", 300)->nullable();
-            $table->string("title");
+            $table->string("subtitle", 100)->nullable();
+            $table->string("title", 100);
             $table->text("content");
         });
     }

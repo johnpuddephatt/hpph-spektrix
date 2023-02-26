@@ -1,3 +1,7 @@
+.prose {
+    max-width: 55ch;
+}
+
 .prose p {
     @apply mb-2;
 }
