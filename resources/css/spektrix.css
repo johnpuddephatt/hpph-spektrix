@@ -231,7 +231,7 @@ dd.Footer {
 
 .CheckoutLink,
 .spx-button-primary {
-    @apply w-full mt-4 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
+    @apply max-w-lg w-full mt-4 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
 .CheckoutLink::after,
