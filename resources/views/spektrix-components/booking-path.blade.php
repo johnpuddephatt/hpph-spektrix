@@ -33,24 +33,25 @@
         x-transition:enter-start="opacity-0" x-transition:leave-end="opacity-0">
     </div>
 
-    <div x-transition:enter-start="translate-x-full" x-transition:leave="translate-x-full" x-show="eventID"
+    <div x-transition:enter-start="translate-y-full lg:translate-x-full"
+        x-transition:leave="translate-y-full lg:translate-x-full" x-show="eventID"
         class="bg-sand lg:min-h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
         <button x-on:click="closeBooking" aria-label="Close booking options"
-            class="top-[3.25rem] absolute mr-10 right-full">@svg('plus', 'h-8 w-8 p-0.5 text-white rotate-45 transform origin-center text-white')</button>
+            class="z-30 top-5 lg:top-[3.25rem] absolute lg:mr-10 right-4 lg:right-full">@svg('plus', 'h-8 w-8 p-0.5 text-black lg:text-white rotate-45 transform origin-center')</button>
         <h2 x-on:click="instanceID = null"
-            class="type-medium cursor-pointer z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap"
-            :class="instanceID ? 'bg-yellow-dark' : 'bg-sand'">
-            Showings <span
-                class="type-medium lg:rotate-90 ml-4 inline-block w-16 h-16 py-5 !leading-none rounded-full bg-yellow align-middle text-center">1</span>
+            class="type-regular lg:type-medium lg:justify-between gap-4 flex items-center flex-row cursor-pointer z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-4 lg:px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap"
+            :class="instanceID ? 'bg-yellow-dark cursor-pointer' : 'cursor-default bg-sand-dark lg:bg-sand'">
+            <span>Showings</span> <span
+                class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">1</span>
         </h2>
-        <div class="container relative py-16 lg:pl-48" x-show="eventID">
+        <div class="container relative py-12 lg:pl-48" x-show="eventID">
 
             <div class="type-medium !font-normal">Select a showtime</div>
 
             <div x-show="!instances.length" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
                 @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
             </div>
-            <div class="flex lg:flex-row gap-24" x-show="instances.length">
+            <div class="flex flex-col lg:flex-row gap-24" x-show="instances.length">
                 <div class="max-w-lg w-full">
                     <div class="mt-1"><span class="font-bold" x-text="event"></span> <span
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
@@ -84,19 +85,19 @@
                     </div>
 
                 </div>
-                <div class="text-center max-w-xs w-1/3 pt-[6.9rem]">
+                <div class="lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
                     <h3 class="type-small mb-3">Key</h3>
                     <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
                         <span
                             class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">C</span>
                         <p class="!normal-case"> Captioned</p>
                     </div>
-                    <div class="type-xs-mono border-t last:border-b border-gray-light py-4">
+                    <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
                         <span
                             class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">BSL</span>
                         <p class="!normal-case">Signed BSL</p>
                     </div>
-                    <div class="type-xs-mono border-t last:border-b border-gray-light py-4">
+                    <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
                         <span
                             class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">AD</span>
                         <p class="!normal-case">Audio Described</p>
@@ -105,20 +106,21 @@
             </div>
         </div>
     </div>
-    <div x-transition:enter-start="translate-x-full" x-transition:leave="translate-x-full"
-        class="w-[calc(100vw-9rem)] lg:w-[calc(75vw-9rem)] z-[60] bg-sand lg:min-h-screen transition fixed top-0 bottom-0 right-0"
+    <div x-transition:enter-start="translate-y-full lg:translate-x-full"
+        x-transition:leave="translate-y-full lg:translate-x-full"
+        class="w-full lg:w-[calc(75vw-9rem)] z-[60] bg-sand lg:min-h-screen transition fixed top-[4.5rem] lg:top-0 bottom-0 right-0"
         x-show="instanceID && eventID">
         <h2
-            class="type-medium cursor-pointer z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap bg-sand">
-            Tickets &amp; extras <span
-                class="type-medium lg:rotate-90 ml-4 inline-block w-16 h-16 py-5 !leading-none rounded-full bg-yellow align-middle text-center">2</span>
+            class="type-regular lg:type-medium bg-sand-dark lg:bg-transparent lg:justify-between gap-4 flex items-center flex-row z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-4 lg:px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap">
+            <span>Tickets &amp; extras</span> <span
+                class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">2</span>
         </h2>
-        <div class="container relative py-16 pl-48" x-show="instanceID">
+        <div class="container relative py-12 lg:pl-48" x-show="instanceID">
 
             <template x-if="instanceID">
                 <div class="max-w-xl">
-                    <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
-                        @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
+                    <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 pl-32">
+                        @svg('loading', 'w-32 lg:ml-36 block pt-24 text-sand-dark')
 
                     </div>
                     <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"

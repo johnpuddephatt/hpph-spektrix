@@ -27,7 +27,7 @@ h6 {
 
 .Button,
 .LinkButton {
-    @apply rounded bg-gray px-12 py-1 font-bold hover:bg-yellow;
+    @apply rounded bg-sand-light px-12 py-1 font-bold hover:bg-yellow transition;
 }
 
 /*
@@ -213,4 +213,12 @@ dd.Footer {
 
 .Basket2 .Header {
     display: none;
+}
+
+.CheckoutLink {
+    @apply w-full rounded bg-sand-light type-regular py-8 px-4 after:w-12 after:h-12 after:block after:ml-auto after:pl-2 flex flex-row items-center;
+}
+
+.CheckoutLink::after {
+    background: url("data:image/svg+xml;PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNy40MzEiIGhlaWdodD0iMjcuNDMxIiB2aWV3Qm94PSIwIDAgMjcuNDMxIDI3LjQzMSI+CiAgICA8ZyBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiPgogICAgICAgIDxwYXRoIGRhdGEtbmFtZT0iUGF0aCA4NyIgZD0iTTEzLjY1NS4zNDVsMTMuMzcgMTMuMzctMTMuMzcgMTMuMzciLz4KICAgICAgICA8cGF0aCBkYXRhLW5hbWU9IkxpbmUgMTgiIGQ9Ik0uMjg0IDEzLjcxNmgyNi43NDIiLz4KICAgIDwvZz4KPC9zdmc+Cg==");
 }

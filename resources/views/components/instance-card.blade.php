@@ -12,7 +12,7 @@
         <div class="type-xs-mono">{{ $instance->start_date }}</div>
     </div>
 
-    <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 @endif md:justify-self-center lg:max-w-lg w-full">
+    <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 lg:max-w-lg @endif md:justify-self-center w-full">
         <div class="relative aspect-video flex flex-col">
             <div class="w-full relative flex-1 bg-gray rounded overflow-hidden">
                 <x-image width="100%" class="absolute max-w-none inset-0" :src="$instance->src ?? $instance->event->featuredImage->getUrl('wide')" :srcset="$instance->srcset ?? $instance->event->featuredImage->getSrcset('wide')" />
