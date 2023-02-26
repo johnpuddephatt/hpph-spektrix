@@ -11,7 +11,7 @@ body {
 
 h1,
 h2 {
-    @apply type-medium;
+    @apply type-medium !font-normal;
 }
 
 h3,
@@ -62,11 +62,11 @@ Booking Path
 
 .SeatingAreaInstructions {
     width: 27ch;
-    @apply type-small !font-normal mt-24 py-2 border-b border-gray-light;
+    @apply mt-24 py-2;
 }
 
 .SeatingAreaInstructions:first-line {
-    @apply !font-bold;
+    @apply font-bold;
 }
 
 /* We want to hide the 'members please select a full price ticket...' message
@@ -82,7 +82,7 @@ Booking Path
 }
 
 .Ticket_Types_Selection {
-    @apply divide-y divide-gray-light;
+    @apply border-t border-gray-light divide-y divide-gray-light;
 }
 
 .Ticket_Types_Selection .TicketType {
@@ -90,11 +90,11 @@ Booking Path
 }
 
 .Ticket_Types_Selection .TicketType .Input_Text {
-    @apply w-16 py-6 text-center order-last;
+    @apply w-16 py-6 text-center order-last  type-regular !font-normal !font-mono;
 }
 
 .Ticket_Types_Selection .TicketType .Price {
-    @apply w-24 overflow-hidden type-regular !font-normal !font-mono;
+    @apply w-24 overflow-hidden;
     text-indent: -2ch;
 }
 
