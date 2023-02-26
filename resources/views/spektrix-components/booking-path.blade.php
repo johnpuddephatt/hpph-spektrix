@@ -36,7 +36,7 @@
     <div x-transition:enter-start="translate-x-full" x-transition:leave="translate-x-full" x-show="eventID"
         class="bg-sand lg:min-h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
         <button x-on:click="closeBooking" aria-label="Close booking options"
-            class="top-16 absolute mr-6 right-full">@svg('plus', 'h-8 w-8 p-0.5 text-white rotate-45 transform origin-center text-white')</button>
+            class="top-[3.25rem] absolute mr-10 right-full">@svg('plus', 'h-8 w-8 p-0.5 text-white rotate-45 transform origin-center text-white')</button>
         <h2 x-on:click="instanceID = null"
             class="type-medium cursor-pointer z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap"
             :class="instanceID ? 'bg-yellow-dark' : 'bg-sand'">
@@ -50,9 +50,9 @@
             <div x-show="!instances.length" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
                 @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
             </div>
-            <div class="flex flex-row gap-24" x-show="instances.length">
+            <div class="flex lg:flex-row gap-24" x-show="instances.length">
                 <div class="max-w-lg w-full">
-                    <div class="mt-1"><span class="type-small" x-text="event"></span> <span
+                    <div class="mt-1"><span class="font-bold" x-text="event"></span> <span
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
                             x-text="certificate"></span></div>
 
@@ -84,7 +84,7 @@
                     </div>
 
                 </div>
-                <div class="text-center w-1/3 pt-24">
+                <div class="text-center max-w-xs w-1/3 pt-[6.9rem]">
                     <h3 class="type-small mb-3">Key</h3>
                     <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
                         <span
