@@ -30,6 +30,10 @@ h6 {
     @apply rounded bg-sand-light px-12 py-1 font-bold hover:bg-yellow transition;
 }
 
+.Input_Text {
+    @apply rounded bg-transparent p-1 border border-gray-light;
+}
+
 /*
 Booking Path
 */
@@ -171,7 +175,7 @@ Booking Path
 }
 
 #ctl00_ContentPlaceHolder_DiscountsPanel .Input_Text {
-    @apply rounded bg-transparent p-1 border border-gray-light;
+    @apply my-0;
 }
 
 #ctl00_ContentPlaceHolder_DiscountsPanel h2,
@@ -215,11 +219,13 @@ dd.Footer {
     display: none;
 }
 
-.CheckoutLink {
+.CheckoutLink,
+.spx-button-primary {
     @apply w-full mt-4 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
-.CheckoutLink::after {
+.CheckoutLink::after,
+.spx-button-primary::after {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNy40MzEiIGhlaWdodD0iMjcuNDMxIiB2aWV3Qm94PSIwIDAgMjcuNDMxIDI3LjQzMSI+CiAgICA8ZyBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlPSIjMDAwIj4KICAgICAgICA8cGF0aCBkYXRhLW5hbWU9IlBhdGggODciIGQ9Ik0xMy42NTUuMzQ1bDEzLjM3IDEzLjM3LTEzLjM3IDEzLjM3Ii8+CiAgICAgICAgPHBhdGggZGF0YS1uYW1lPSJMaW5lIDE4IiBkPSJNLjI4NCAxMy43MTZoMjYuNzQyIi8+CiAgICA8L2c+Cjwvc3ZnPgo=");
     background-repeat: no-repeat;
     background-size: contain;
