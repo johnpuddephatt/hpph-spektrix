@@ -35,7 +35,7 @@ Booking Path
 */
 
 .SeatingSelector {
-    @apply mb-8;
+    @apply mb-16;
 }
 
 #ctl00_SpektrixFooter,
@@ -44,26 +44,30 @@ Booking Path
     display: none;
 }
 
-#ctl00_ContentPlaceHolder_EventDetails {
-    @apply text-transparent;
+.Event.EventDetails {
+    @apply text-transparent leading-tight;
 }
 
-#ctl00_ContentPlaceHolder_EventDetails span {
+.Event.EventDetails span {
     @apply text-black;
 }
 
-#ctl00_ContentPlaceHolder_EventDetails .EventName {
+.Event.EventDetails .EventName {
     @apply font-bold;
 }
 
-#ctl00_ContentPlaceHolder_EventDetails .EventName::after {
+.Event.EventDetails .EventName::after {
     content: "";
-    @apply inline-block ml-2 mr-1;
+    @apply inline-block ml-1;
+}
+
+.Event.AreaAndVenueDetails {
+    @apply leading-tight;
 }
 
 .SeatingAreaInstructions {
     width: 27ch;
-    @apply mt-24 py-2 leading-tight mb-2;
+    @apply mt-20 py-2 leading-tight mb-2;
 }
 
 .SeatingAreaInstructions:first-line {
@@ -75,7 +79,7 @@ Booking Path
 
 .ChooseSeatsHeading {
     visibility: collapse;
-    height: 2em;
+    height: 2.5em;
 }
 
 .ChooseSeatsHeading h2 {
