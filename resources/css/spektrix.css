@@ -11,7 +11,8 @@ body {
 
 h1,
 h2 {
-    @apply type-medium !font-normal;
+    @apply type-medium mb-2;
+    @apply font-normal !important;
 }
 
 h3,
@@ -62,7 +63,7 @@ Booking Path
 
 .SeatingAreaInstructions {
     width: 27ch;
-    @apply mt-24 py-2;
+    @apply mt-24 py-2 leading-tight mb-2;
 }
 
 .SeatingAreaInstructions:first-line {
@@ -157,7 +158,7 @@ Booking Path
     @apply type-regular mb-1;
 }
 
-#ctl00_ContentPlaceHolder_RelatedOffersControl_LoginForDiscounts {
+#ctl00_ContentPlaceHolder_RelatedOffersControl1_LoginForDiscountsText {
     @apply hidden;
 }
 

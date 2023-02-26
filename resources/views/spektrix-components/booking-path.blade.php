@@ -33,7 +33,7 @@
     <div x-transition:enter-start="translate-x-full" x-transition:leave="translate-x-full" x-show="eventID"
         class="bg-sand lg:min-h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
         <button x-on:click="closeBooking" aria-label="Close booking options"
-            class="top-6 absolute mr-6 right-full">@svg('plus', 'h-8 w-8 p-0.5 text-white rotate-45 transform origin-center text-white')</button>
+            class="top-16 absolute mr-6 right-full">@svg('plus', 'h-8 w-8 p-0.5 text-white rotate-45 transform origin-center text-white')</button>
         <h2 x-on:click="instanceID = null"
             class="type-medium cursor-pointer z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap"
             :class="instanceID ? 'bg-yellow-dark' : 'bg-sand'">
@@ -118,8 +118,8 @@
                         @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
 
                     </div>
-                    <iframe x-on:load="iFrameLoading = false" class="h-96 w-full transition-all" id="SpektrixIFrame"
-                        name="SpektrixIFrame"
+                    <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
+                        style="height: 90vh;" name="SpektrixIFrame"
                         :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ instanceID }&resize=true`"></iframe>
                 </div>
             </template>
