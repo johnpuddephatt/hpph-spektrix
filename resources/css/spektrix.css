@@ -50,7 +50,7 @@ select {
 }
 
 .spx-section-container {
-    @apply relative max-w-lg w-full rounded bg-transparent p-4 border border-gray-light my-4;
+    @apply relative max-w-xl w-full rounded bg-transparent p-4 border border-gray-light my-4;
 }
 
 .
