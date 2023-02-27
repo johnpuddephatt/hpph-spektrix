@@ -32,7 +32,7 @@ h6 {
 }
 
 .spx-link-edit__checkout {
-    @apply absolute top-2 right-2;
+    @apply absolute top-4 right-2;
 }
 
 .spx-text-copy__checkout--start-checkout {
@@ -245,12 +245,14 @@ dd.Footer {
 }
 
 .CheckoutLink,
-.spx-button-primary {
+.spx-button-primary,
+.spx-button-secondary {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
 .CheckoutLink::after,
-.spx-button-primary::after {
+.spx-button-primary::after,
+.spx-button-secondary::after {
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNy40MzEiIGhlaWdodD0iMjcuNDMxIiB2aWV3Qm94PSIwIDAgMjcuNDMxIDI3LjQzMSI+CiAgICA8ZyBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlPSIjMDAwIj4KICAgICAgICA8cGF0aCBkYXRhLW5hbWU9IlBhdGggODciIGQ9Ik0xMy42NTUuMzQ1bDEzLjM3IDEzLjM3LTEzLjM3IDEzLjM3Ii8+CiAgICAgICAgPHBhdGggZGF0YS1uYW1lPSJMaW5lIDE4IiBkPSJNLjI4NCAxMy43MTZoMjYuNzQyIi8+CiAgICA8L2c+Cjwvc3ZnPgo=");
     background-repeat: no-repeat;
     background-size: contain;
