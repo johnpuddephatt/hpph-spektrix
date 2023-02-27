@@ -26,8 +26,13 @@ h6 {
 }
 
 .Button,
-.LinkButton {
+.LinkButton,
+.spx-link-edit {
     @apply rounded bg-sand-light px-12 py-1 font-bold hover:bg-yellow transition;
+}
+
+.spx-link-edit__checkout {
+    @apply absolute top-2 right-2;
 }
 
 label {
@@ -43,6 +48,12 @@ input[type="url"],
 select {
     @apply max-w-lg w-full rounded bg-transparent px-4 py-2 border border-gray-light my-2;
 }
+
+.spx-section-container {
+    @apply relative max-w-lg w-full rounded bg-transparent p-4 border border-gray-light my-4;
+}
+
+.
 
 /*
 Booking Path
