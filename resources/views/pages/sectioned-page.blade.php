@@ -46,7 +46,7 @@
 
                     <div class="container">
                         @if ($layout->banner)
-                            <x-image class="rounded w-full mb-8 h-auto" width="30rem" :src="Storage::url($layout->banner)" />
+                            <img class="rounded w-full mb-8 h-auto" src="{{ Storage::url($layout->banner) }}" />
                         @endif
                     </div>
 

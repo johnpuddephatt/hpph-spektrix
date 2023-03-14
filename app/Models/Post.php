@@ -48,7 +48,6 @@ class Post extends Model implements HasMedia, CachableAttributes
         "created_at" => "date",
         "featured" => "boolean",
         "published" => "boolean",
-        // "content" => "object",
         "content" => NovaEditorJsCast::class,
     ];
 
@@ -76,8 +75,6 @@ class Post extends Model implements HasMedia, CachableAttributes
         return LogOptions::defaults()->logOnly(["title"]);
     }
 
-    // protected $appends = ["tags"];
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection("main")->singleFile();
@@ -87,8 +84,6 @@ class Post extends Model implements HasMedia, CachableAttributes
     {
         $this->addMediaConversion("wide")
             ->quality(80)
-            // ->width(1920)
-            // ->height(1080)
             ->sharpen(10)
             ->crop("crop-center", 1500, 627)
             ->withResponsiveImages()
@@ -96,8 +91,6 @@ class Post extends Model implements HasMedia, CachableAttributes
 
         $this->addMediaConversion("landscape")
             ->quality(80)
-            // ->width(1920)
-            // ->height(1080)
             ->sharpen(10)
             ->crop("crop-center", 1200, 800)
             ->withResponsiveImages()
@@ -134,20 +127,6 @@ class Post extends Model implements HasMedia, CachableAttributes
         } else {
             return $related;
         }
-    }
-
-    public function appendImageSrc($size = "landscape")
-    {
-        $this->image = $this->getImageSrc($size);
-        return $this;
-    }
-
-    public function getImageSrc($size = "landscape"): object
-    {
-        return (object) [
-            "src" => $this->featuredImage->getUrl($size),
-            "srcset" => $this->featuredImage->getSrcset($size),
-        ];
     }
 
     public function getTagsTranslatedAttribute()

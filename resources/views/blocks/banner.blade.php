@@ -4,8 +4,8 @@
             <div class="bg-black relative my-0 lg:w-1/3 bg-opacity-50 self-stretch">
 
                 @if ($layout->banner)
-                    <x-image class="w-full h-auto group-hover:opacity-80 transition opacity-60" width="30rem"
-                        :src="Storage::url($layout->banner)" />
+                    <img src="{{ Storage::disk('public')->url($layout->banner) }}"
+                        class="w-full h-auto group-hover:opacity-80 transition opacity-60" />
                 @endif
 
                 @if ($layout->logo)

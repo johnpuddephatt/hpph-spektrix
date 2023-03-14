@@ -35,7 +35,7 @@ class FeaturedMembershipLayout extends Layout
     public function fields()
     {
         return [
-            File::make("Video"),
+            File::make("Video")->acceptedTypes("video/*"),
             Text::make("Title"),
             Text::make("Subtitle"),
             Select::make("Membership", "membership_id")

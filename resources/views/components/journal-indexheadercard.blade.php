@@ -18,8 +18,8 @@
          </div>
      </div>
 
-     @if ($post->image)
-         <x-image class="w-full max-lg:aspect-[1.2]" :src="$post->image->src" :srcset="$post->image->srcset" />
+     @if ($post->featuredImage)
+         {!! $post->featuredImage->img('landscape', ['class' => 'w-full max-lg:aspect-[1.2]'])->toHtml() !!}
      @else
          <div class="= aspect-video rounded bg-gray-light"></div>
      @endif

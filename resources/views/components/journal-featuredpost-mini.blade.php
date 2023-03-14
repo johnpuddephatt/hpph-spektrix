@@ -7,7 +7,7 @@
             <div class="">
 
                 @if ($post->featuredImage)
-                    <x-image class="w-64 rounded" :src="$post->featuredImage->getUrl()" :srcset="$post->featuredImage->getSrcset('landscape')" />
+                    {!! $post->featuredImage->img('landscape')->attributes(['class' => 'w-64 rounded']) !!}
                 @else
                     <div class="w-64 aspect-video rounded bg-gray-light"></div>
                 @endif

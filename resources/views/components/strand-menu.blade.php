@@ -14,9 +14,10 @@
                      class="group pt-[100%] lg:pt-[75%] block relative text-center">
 
                      @if ($strand->featuredImage)
-                         <x-image
-                             class="absolute h-full inset-0 object-cover object-center block w-full opacity-70 lg:group-hover:opacity-40 transition"
-                             width="30rem" :src="$strand->featuredImage->getUrl('wide')" :srcset="$strand->featuredImage->getSrcset('wide')" />
+                         {!! $strand->featuredImage->img('wide')->attributes([
+                             'class' =>
+                                 'absolute h-full inset-0 object-cover object-center block w-full opacity-70 lg:group-hover:opacity-40 transition',
+                         ]) !!}
                      @else
                          <div
                              class="absolute h-full inset-0 bg-white object-cover object-center block w-full opacity-10 lg:group-hover:opacity-0 transition">

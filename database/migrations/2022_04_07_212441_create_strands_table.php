@@ -25,6 +25,7 @@ class CreateStrandsTable extends Migration
             $table->boolean("enabled")->default(false);
             $table->string("short_description")->nullable();
             $table->string("description")->nullable();
+            $table->string("color")->nullable();
             $table->text("content")->nullable();
             $table->text("logo")->nullable();
             $table->text("logo_simple")->nullable();

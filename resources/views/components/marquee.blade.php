@@ -7,7 +7,8 @@
             x-bind:style="`animation-duration: ${animationDuration}ms;`">
             @foreach ([1, 2, 3, 4] as $loop)
                 @svg('plus', 'block h-6 w-6')
-                <div class="type-xs-mono inline-block bg-black text-yellow py-0.5 px-2 rounded-full">New!
+                <div class="type-xs-mono inline-block bg-black text-yellow py-0.5 px-2 rounded-full"
+                    style="color: @yield('color')">New!
                 </div>
                 <div class="type-regular !font-normal !leading-none inline-block">
                     @foreach ($settings['banner_values'] as $value)

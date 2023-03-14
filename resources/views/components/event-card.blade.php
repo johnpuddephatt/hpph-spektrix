@@ -8,7 +8,7 @@
         <div class="relative aspect-video flex flex-col">
             <div class="w-full relative flex-1 bg-gray md:rounded overflow-hidden">
                 @if ($event->featuredImage)
-                    <x-image width="100%" class="absolute inset-0" :src="$event->featuredImage->getUrl('wide')" :srcset="$event->featuredImage->getSrcset('wide')" />
+                    {!! $event->featuredImage->img('wide')->attributes(['class' => 'absolute inset-0']) !!}
                 @endif
             </div>
 

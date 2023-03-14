@@ -58,17 +58,10 @@
         </div>
     @endif
 
-    <x-journal-featuredpost :featured_post="$season->latestPost" :dark="true" class="bg-black pt-16 pb-32" />
-
-    @includeWhen($season->content->members_voices, 'components.quote', [
-        'members_voices' => $season->content->members_voices,
-    ])
-
-    @includeWhen($season->content->more_information && $strand->content->more_information->enabled,
-        'components.faq',
-        [
-            'title' => $season->content->more_information->title,
-            'faqs' => $season->content->more_information->faqs,
-        ])
+    @if ($season->content)
+        @foreach ($season->content as $layout)
+            @include('blocks.' . $layout->name(), ['layout' => $layout])
+        @endforeach
+    @endif
 
 @endsection

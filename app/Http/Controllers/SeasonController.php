@@ -12,9 +12,6 @@ class SeasonController extends Controller
         $season->load("featuredImage", "instances.event");
 
         $season->append("latestPost");
-        // if ($season->latestPost) {
-        //     $season->latestPost->appendImageSrc("wide");
-        // }
 
         return view("seasons.show", [
             "season" => $season,

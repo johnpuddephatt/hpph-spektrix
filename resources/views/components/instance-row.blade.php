@@ -6,7 +6,7 @@
 
         @if ($instance->event->featuredImage)
             <div class="w-1/2 lg:w-2/12">
-                <x-image :width="'20rem'" :src="$instance->event->featuredImage->getUrl('wide')" :srcset="$instance->event->featuredImage->getSrcset('wide')" class="w-full overflow-hidden rounded" />
+                {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'w-full overflow-hidden rounded']) !!}
             </div>
         @endif
 

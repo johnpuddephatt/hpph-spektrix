@@ -31,7 +31,7 @@
             <div class="container grid lg:grid-cols-3 gap-8">
                 @foreach ($products as $product)
                     <a class="group block" href="{{ $product->url }}">
-                        <x-image class="w-full block" :srcset="$product->featuredImage->getSrcSet('landscape')" :src="$product->featuredImage->getUrl('landscape')" />
+                        {!! $product->featuredImage->img('landscape')->attributes(['class' => 'rounded w-full block']) !!}
                         <div class="mt-4 flex flex-row justify-between items-start gap-2">
                             <div>
                                 <h3 class="type-regular mb-2">{{ $product->name }}</h3>

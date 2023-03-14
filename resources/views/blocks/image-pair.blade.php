@@ -1,9 +1,9 @@
 <div class="grid lg:grid-cols-2">
     @if ($layout->image)
-        <x-image class="w-full h-auto" width="100vw" :src="Storage::url($layout->image)" />
+        <img src="{{ Storage::disk('public')->url($layout->image) }}" class="w-full h-auto" />
     @endif
     @if ($layout->image_2)
-        <x-image class="w-full h-auto" width="100vw" :src="Storage::url($layout->image_2)" />
+        <img src="{{ Storage::disk('public')->url($layout->image_2) }}" class="w-full h-auto" />
     @endif
 
 </div>

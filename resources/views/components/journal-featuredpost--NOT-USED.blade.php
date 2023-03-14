@@ -8,8 +8,7 @@
             <a href="{{ $featured_post->url }}"
                 class="{{ $dark ? 'bg-black-light text-white' : 'bg-sand' }} rounded overflow-hidden block lg:flex flex-col items-center lg:flex-row">
                 @if ($featured_post->image)
-                    <x-image class="w-full block lg:w-1/2 aspect-video lg:aspect-auto" :src="$featured_post->image->src"
-                        :srcset="$featured_post->image->srcset" />
+                    {!! $featured_post->image->img('landscape')->attributes(['class' => 'w-full block lg:w-1/2 aspect-video lg:aspect-auto']) !!}
                 @endif
 
                 <div class="flex flex-col aspect-video lg:block lg:aspect-auto lg:py-8 p-8 lg:w-1/2 mx-auto lg:max-w-md">

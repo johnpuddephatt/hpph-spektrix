@@ -21,18 +21,7 @@ class JournalPageTemplate
     // Fields displayed in CMS
     public function fields(Request $request): array
     {
-        return [
-                // new Panel("Page content", [
-                //     Flexible::make("Content", "content")
-                //         ->addLayout("Fund group", "fund_group", [
-                //             Text::make("Fund group title"),
-                //             MultiSelect::make("Funds")->options(
-                //                 \App\Models\Fund::pluck("name", "id")
-                //             ),
-                //         ])
-                //         ->button("Add new fund group"),
-                // ]),
-            ];
+        return [];
     }
 
     // Resolve data for serialization
@@ -42,8 +31,7 @@ class JournalPageTemplate
             "featured_post" => \App\Models\Post::latest()
                 ->where("featured", true)
                 ->with("tagsTranslated")
-                ->first()
-                ->appendImageSrc("landscape"),
+                ->first(),
         ]);
     }
 }

@@ -60,19 +60,6 @@
         </div>
     @endif
 
-    <x-journal-featuredpost :featured_post="$strand->latestPost" :dark="true" class="bg-black pt-16 pb-32" />
-
-    {{-- @includeWhen($strand->content->members_voices, 'components.quote', [
-        'members_voices' => $strand->content->members_voices,
-    ])
-
-    @includeWhen($strand->content->more_information && $strand->content->more_information->enabled,
-        'components.faq',
-        [
-            'title' => $strand->content->more_information->title,
-            'faqs' => $strand->content->more_information->faqs,
-        ]) --}}
-
     @if ($strand->content)
         @foreach ($strand->content as $layout)
             @include('blocks.' . $layout->name(), ['layout' => $layout])

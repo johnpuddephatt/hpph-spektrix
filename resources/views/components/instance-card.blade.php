@@ -15,7 +15,7 @@
     <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 lg:max-w-lg @endif md:justify-self-center w-full">
         <div class="relative aspect-video flex flex-col">
             <div class="w-full relative flex-1 bg-gray rounded overflow-hidden">
-                <x-image class="block w-full absolute max-w-none inset-0" :src="$instance->src ?? $instance->event->featuredImage->getUrl('wide')" :srcset="$instance->srcset ?? $instance->event->featuredImage->getSrcset('wide')" />
+                {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'block w-full absolute max-w-none inset-0']) !!}
             </div>
             <x-accessibilities class="absolute top-2 right-1.5" :dark="true" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl"
                 :audiodescribed="$instance->audio_described" :specialevent="$instance->special_event" />

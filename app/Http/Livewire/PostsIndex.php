@@ -42,9 +42,9 @@ class PostsIndex extends Component
                 ->with("featuredImage")
                 ->paginate(12);
 
-        $posts = $paginated_posts->getCollection();
-        $posts->each->appendImageSrc("landscape");
-        $paginated_posts->setCollection($posts);
+        // $posts = $paginated_posts->getCollection();
+        // $posts->each->appendImageSrc("landscape");
+        // $paginated_posts->setCollection($posts);
 
         return view("livewire.posts-index", [
             "tags" => \App\Models\Tag::withCount("posts")
