@@ -24,13 +24,13 @@
 
         },
         1024: {
-            slidesPerView: Math.min({{ count($instances) }}, 3),
+            slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) }}, 3) @endif,
         },
         1280: {
-            slidesPerView: Math.min({{ count($instances) }}, 4),
+            slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) }}, 4) @endif,
         },
         1536: {
-            slidesPerView: Math.min({{ count($instances) }}, 4),
+            slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) }}, 4) @endif,
         },
     },
 })" class="mt-12 lg:mt-24 relative max-w-none mx-auto">
