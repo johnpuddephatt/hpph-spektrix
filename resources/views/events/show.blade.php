@@ -1,4 +1,4 @@
-@extends('layouts.default', ['header_position' => 'fixed', 'edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
+@extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
 @section('title', $event->name)
 @section('content')
     <div x-data="{ trailerOpen: false, trailerLoaded: false }" class="fixed flex items-center inset-0 z-[-1] h-screen w-full overflow-hidden bg-black">
@@ -21,7 +21,7 @@
 
         <div class="lg:ml-[50%] relative z-10">
             <div class="container pt-48 pb-12 text-white 2xl:px-6">
-                <h1 class="type-medium md:type-large mb-1 font-bold">{{ $event->name }}</h1>
+                <h1 class="type-medium md:type-large mb-1 font-bold max-w-xl">{{ $event->name }}</h1>
 
                 <div class="flex flex-row items-center gap-2">
                     <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
@@ -59,7 +59,7 @@
         @endif
     </div>
 
-    <div class="relative mt-[calc(100vh-4.75rem)] bg-black pb-12">
+    <div class="relative mt-[calc(100vh-4.25rem)] bg-black pb-12">
 
         <div
             class="border-t-8 border-yellow gap-8 bg-sand flex flex-col-reverse lg:flex-row pb-12 relative mt-[calc(100vh-4.25rem-1rem)]">
@@ -102,11 +102,19 @@
         </div>
 
         <x-gallery :images="$event->gallery" />
-        <button
-            class="type-regular container sticky bottom-0 flex flex-row justify-between text-left lg:pl-[calc(50%+1.5rem)] pr-6 py-5 items-center bg-yellow w-full"
+
+        <button class="w-full sticky bottom-0 bg-yellow block py-4"
             @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">
-            See
-            showtimes @svg('arrow-right', 'h-8 w-8 p-2 text-yellow bg-black rounded-full')</button>
+            <div class="container flex flex-row items-center">
+                <div class="w-1/2 hidden lg:block">
+                    @svg('plus', 'h-6 w-6')
+                </div>
+                <div class="type-regular lg:px-6">
+                    See showtimes
+                </div> @svg('arrow-right', 'ml-auto h-8 w-8 p-2 text-yellow bg-black rounded-full')
+            </div>
+        </button>
+
         <x-event-reviews :reviews="$event->reviews" />
 
         <x-strand-card :strand="$event->strand" />

@@ -32,10 +32,4 @@ class TeamPageTemplate
             )->get(),
         ]);
     }
-
-    // Optional suffix to the route (ie {blogPostName})
-    public function pathSuffix(): string|null
-    {
-        return null;
-    }
 }

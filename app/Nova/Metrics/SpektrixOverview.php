@@ -23,30 +23,36 @@ class SpektrixOverview extends Table
                 ->iconClass("text-sky-500")
                 ->title(\App\Models\Event::count() . " events")
                 ->actions(function () {
-                    return [MenuItem::resource(\App\Nova\Event::class)];
-                }),
-            // ->subtitle('In every part of the globe it is the same!'),
-            MetricTableRow::make()
-                ->icon("information-circle")
-                ->iconClass("text-sky-500")
-                ->title(\App\Models\Instance::count() . " instances"),
+                    return [
+                        MenuItem::resource(\App\Nova\Event::class)->name(
+                            "Go to events"
+                        ),
+                    ];
+                })
+                ->subtitle(\App\Models\Instance::count() . " instances"),
 
-            // ->subtitle('In every part of the globe it is the same!'),
             MetricTableRow::make()
                 ->icon("information-circle")
                 ->iconClass("text-sky-500")
                 ->title(\App\Models\Membership::count() . " memberships")
                 ->actions(function () {
                     return [
-                        MenuItem::externalLink(
-                            "View all",
-                            route("nova.pages.index", [
-                                "resource" => "memberships",
-                            ])
+                        MenuItem::resource(\App\Nova\Membership::class)->name(
+                            "Go to memberships"
                         ),
                     ];
                 }),
-            // ->subtitle('In every part of the globe it is the same!'),
+            MetricTableRow::make()
+                ->icon("information-circle")
+                ->iconClass("text-sky-500")
+                ->title(\App\Models\Fund::count() . " funds")
+                ->actions(function () {
+                    return [
+                        MenuItem::resource(\App\Nova\Fund::class)->name(
+                            "Go to funds"
+                        ),
+                    ];
+                }),
         ];
     }
 

@@ -11,7 +11,7 @@ class PageController extends Controller
     {
         $page = Page::where("template", "home-page")->firstOrFail();
 
-        return view("pages." . $page["template"], [
+        return view("pages." . $page->template, [
             "page" => $page->resolveContent(),
         ]);
     }

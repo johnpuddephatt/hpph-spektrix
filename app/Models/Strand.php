@@ -17,6 +17,8 @@ use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Advoor\NovaEditorJs\NovaEditorJsCast;
+use App\Casts\PageContentCast;
 
 class Strand extends Model implements HasMedia, CachableAttributes
 {
@@ -42,7 +44,7 @@ class Strand extends Model implements HasMedia, CachableAttributes
     ];
 
     protected $casts = [
-        "content" => "object",
+        "content" => PageContentCast::class,
         "enabled" => "boolean",
         "published" => "boolean",
     ];
@@ -62,9 +64,9 @@ class Strand extends Model implements HasMedia, CachableAttributes
             $builder->where("published", true);
         });
 
-        static::addGlobalScope("enabled", function (Builder $builder) {
-            $builder->where("enabled", true);
-        });
+        // static::addGlobalScope("enabled", function (Builder $builder) {
+        //     $builder->where("enabled", true);
+        // });
     }
 
     public function registerMediaConversions(Media $media = null): void
@@ -75,7 +77,7 @@ class Strand extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->format("jpg")
             ->withResponsiveImages()
-            ->performOnCollections("main", "content->members_voices->image");
+            ->performOnCollections("main");
 
         $this->addMediaConversion("thumb")
             ->width(800)
@@ -96,10 +98,6 @@ class Strand extends Model implements HasMedia, CachableAttributes
     {
         $this->addMediaCollection("video")->singleFile();
         $this->addMediaCollection("main")->singleFile();
-
-        $this->addMediaCollection(
-            "content->members_voices->image"
-        )->singleFile();
     }
 
     public function featuredImage(): MorphOne
@@ -124,13 +122,6 @@ class Strand extends Model implements HasMedia, CachableAttributes
     {
         return $this->hasMany(Instance::class, "strand_name", "name");
     }
-
-    // public function latest_post()
-    // {
-    //     return $this->posts()
-    //         ->latest()
-    //         ->first();
-    // }
 
     public function posts(): BelongsToMany
     {

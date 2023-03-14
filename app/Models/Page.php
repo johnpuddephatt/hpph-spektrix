@@ -14,14 +14,13 @@ use Illuminate\Support\Arr;
 
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
-use App\Casts\PageCast;
+use App\Casts\PageContentCast;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
 
 class Page extends Model implements HasMedia
 {
@@ -32,10 +31,10 @@ class Page extends Model implements HasMedia
     use Sluggable;
     use SoftDeletes;
 
-    protected $fillable = ["name", "template", "content", "parent_id", "slug", "introduction"];
+    protected $fillable = ["name", "template", "content", "parent_id", "slug", "subtitle", "introduction"];
 
     protected $casts = [
-        "content" => "object",
+        "content" => PageContentCast::class,
     ];
 
     protected static function booted()
@@ -73,7 +72,7 @@ class Page extends Model implements HasMedia
             ->sharpen(10)
             ->crop("crop-center", 1500, 627)
             ->withResponsiveImages()
-            ->performOnCollections("main", "secondary");
+            ->performOnCollections("main");
 
         $this->addMediaConversion("landscape")
             ->quality(80)
@@ -82,39 +81,32 @@ class Page extends Model implements HasMedia
             ->sharpen(10)
             ->crop("crop-center", 1200, 800)
             ->withResponsiveImages()
-            ->performOnCollections("main", "banner", "gallery", "secondary");
+            ->performOnCollections("main", "gallery");
 
-        // $this->addMediaConversion("portrait")
-        //     ->quality(80)
-        //     ->sharpen(10)
-        //     ->crop("crop-center", 1360, 1600)
-        //     ->withResponsiveImages()
-        //     ->performOnCollections("gallery");
 
         $this->addMediaConversion("square")
             ->quality(80)
             ->sharpen(10)
             ->crop("crop-center", 1600, 1600)
             ->withResponsiveImages()
-            ->performOnCollections("gallery");
+            ->performOnCollections("gallery", "main");
 
-        if ($media && Str::startsWith($media->collection_name, "banner_")) {
-            $this->addMediaConversion("landscape")
-                ->quality(80)
-                ->sharpen(10)
-                ->crop("crop-center", 1600, 900)
-                ->withResponsiveImages()
-                ->performOnCollections($media->collection_name);
-        }
+        // Used on sectioned page flexible layout. probably doesn't need to be responsive, switch to regular image field? 
+        // if ($media && Str::startsWith($media->collection_name, "banner_")) {
+        //     $this->addMediaConversion("landscape")
+        //         ->quality(80)
+        //         ->sharpen(10)
+        //         ->crop("crop-center", 1600, 900)
+        //         ->withResponsiveImages()
+        //         ->performOnCollections($media->collection_name);
+        // }
     }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection("main")->singleFile();
-        $this->addMediaCollection("secondary")->singleFile();
-        $this->addMediaCollection("gallery");
-
-        $this->addMediaCollection("banner")->singleFile(); // a block with an image background and overlaid text
+        $this->addMediaCollection("gallery"); // MOVE TO FLEXIBLE
+        // $this->addMediaCollection("banner")->singleFile(); // a block with an image background and overlaid text - MOVE TO FLEXIBLE
         
     }
 
@@ -124,15 +116,6 @@ class Page extends Model implements HasMedia
             "collection_name",
             "=",
             "main"
-        );
-    }
-
-    public function secondaryImage(): MorphOne
-    {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "secondary"
         );
     }
 
@@ -200,7 +183,7 @@ class Page extends Model implements HasMedia
     }
 
     public static function getTemplateUrl($template) {
-        return \App\Models\Page::firstWhere('template', $template)->url;
+        return \App\Models\Page::firstWhere('template', $template)?->url;
     }
 
     public function resolveContent() {
@@ -209,8 +192,7 @@ class Page extends Model implements HasMedia
                     "class"
                 ]
                 ))->resolve($this);
+
         return $this;
     }
-
-
 }

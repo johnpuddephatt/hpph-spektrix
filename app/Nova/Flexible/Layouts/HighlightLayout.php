@@ -20,14 +20,14 @@ class HighlightLayout extends Layout implements HasMedia
      *
      * @var string
      */
-    protected $name = "highlightlayout";
+    protected $name = "highlight";
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "HighlightLayout";
+    protected $title = "Highlight Layout";
 
     /**
      * Get the fields displayed by the layout.

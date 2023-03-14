@@ -1,35 +1,32 @@
-@extends('layouts.default', ['header_position' => 'absolute', 'edit_link' => route('nova.pages.edit', ['resource' => 'users', 'resourceId' => $user->id])])
+@extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'users', 'resourceId' => $user->id])])
 @section('title', $user->name)
 @section('content')
-    <div class="fixed inset-0 -z-10 h-[75vh] w-full overflow-hidden bg-black">
-        @if ($user->avatar)
-            <img src="{{ $user->avatar }}" class="absolute top-0 right-0 bottom-0 h-full w-1/2 object-cover" />
+    <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">
+        @if ($user->featuredImage)
+            {{ $user->featuredImage->img('portrait')->attributes(['class' => 'h-full w-full object-cover']) }}
         @endif
-        <div class="fade-to-right pointer-events-none absolute left-1/2 top-0 bottom-0 w-72">
-        </div>
-
-        <div
-            class="absolute left-1/2 top-1/2 w-1/2 max-w-xl -translate-x-1/2 -translate-y-1/2 transform text-center text-white">
-            <h2 class="type-large">{{ $user->name }}</h2>
-            <p class="type-xs-mono mt-4">{{ $user->role_title }}</p>
-        </div>
     </div>
 
-    <div class="relative z-[-1] mt-[75vh]">
-        <div class="absolute bottom-full left-0 right-0 z-[1] mt-auto" id="event-content">
-            <div class="px-4 pt-48 pb-12 text-white 2xl:px-6">
+    <div class="mt-[75vh] lg:mt-0 lg:ml-[50%] min-h-screen bg-sand relative">
+        <div class="bg-sand-light pt-6 pb-12 lg:h-[66.6vh] flex flex-col">
+            <div class="container relative z-50">
+                <a class="type-xs-mono border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
+                    href="{{ \App\Models\Page::getTemplateUrl('about-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
+                    Back </a>
             </div>
+            <div class="container my-auto">
+                <h2 class="type-medium lg:type-large">{{ $user->name }}</h2>
+                <p class="type-regular lg:type-medium !font-normal">{{ $user->role_title }}</p>
+            </div>
+            <div class="type-regular pt-12 container !font-normal">{{ $user->role_description }}</div>
         </div>
-
-        <a href="#event-content"
-            class="fixed left-1/2 top-[75vh] z-10 -translate-x-1/2 transform text-5xl text-white">@svg('chevron-down', 'h-16 w-16')</a>
-
+        @if ($user->content)
+            <div class="container py-16">
+                @foreach ($user->content as $layout)
+                    @include('blocks.' . $layout->name(), ['layout' => $layout])
+                @endforeach
+            </div>
+        @endif
     </div>
-
-    <div class="bg-yellow">
-        <div class="type-h4 container max-w-6xl py-16 text-center">{{ $user->role_description }}</div>
-    </div>
-
-    <x-users-grid :users="$users" />
 
 @endsection

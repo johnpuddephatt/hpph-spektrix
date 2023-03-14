@@ -28,9 +28,9 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // \Outl1ne\NovaSettings\Models\Settings::observe(
-        //     \App\Observers\SettingsObserver::class
-        // );
+        \Outl1ne\NovaSettings\Models\Settings::observe(
+            \App\Observers\SettingsObserver::class
+        );
         \Outl1ne\MenuBuilder\Models\MenuItem::observe(
             \App\Observers\MenuObserver::class
         );

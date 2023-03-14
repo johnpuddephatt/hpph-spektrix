@@ -7,6 +7,7 @@ use Outl1ne\PageManager\Template;
 use Laravel\Nova\Fields\Text;
 use Advoor\NovaEditorJs\NovaEditorJsField;
 use Laravel\Nova\Panel;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 class StandardPageTemplate
 {
@@ -21,9 +22,22 @@ class StandardPageTemplate
     {
         return [
             new Panel("Content", [
-                NovaEditorJsField::make("Content", "content")
-                    ->stacked()
-                    ->hideFromDetail(),
+                Flexible::make("Content", "content")
+                    ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\ImagePairLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\JournalPostLayout::class
+                    )
+                    ->addLayout(\App\Nova\Flexible\Layouts\TeamLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\LinkBannerLayout::class
+                    )
+                    ->button("Add a section")
+                    ->stacked(),
             ]),
         ];
     }
@@ -31,12 +45,6 @@ class StandardPageTemplate
     // Resolve data for serialization
     public function resolve($page)
     {
-        return json_decode($page->content);
-    }
-
-    // Optional suffix to the route (ie {blogPostName})
-    public function pathSuffix(): string|null
-    {
-        return null;
+        return $page->content;
     }
 }

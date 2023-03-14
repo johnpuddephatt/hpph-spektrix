@@ -19,7 +19,8 @@ return new class extends Migration {
             $table->string("name");
             $table->string("slug");
             $table->boolean("published")->default(false);
-            $table->string("introduction", 400)->nullable();
+            $table->string("subtitle", 30)->nullable();
+            $table->string("introduction", 200)->nullable();
             $table->string("template");
             $table->json("content")->nullable();
             $table

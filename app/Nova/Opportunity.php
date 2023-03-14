@@ -3,8 +3,10 @@
 namespace App\Nova;
 
 use Advoor\NovaEditorJs\NovaEditorJsField;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Select;
@@ -53,6 +55,9 @@ class Opportunity extends Resource
             ID::make()
                 ->sortable()
                 ->hide(),
+
+            Images::make("Main image", "main"),
+
             Text::make("Title")
                 ->withMeta([
                     "extraAttributes" => [
@@ -72,7 +77,10 @@ class Opportunity extends Resource
                 ])
                 ->hideFromIndex()
                 ->rules("max:300", "required"),
-            Heading::make("Specifics"),
+            File::make("Application form", "application_form")->path(
+                "application-forms"
+            ),
+            Heading::make("Specifics")->withMeta(["class" => "bg-gray-50"]),
             Select::make("Type")
                 ->options([
                     "Full-time" => "Full-time",

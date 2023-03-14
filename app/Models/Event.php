@@ -291,24 +291,24 @@ class Event extends Model implements HasMedia, CachableAttributes
                 ->flatten()
                 ->filter()
                 ->first();
-            if ($strand) {
-                $strand->load("featuredImage");
-            }
+
             return $strand;
         });
     }
 
     public function getStatusAttribute()
     {
-        if ($this->todayInstances()->count()) {
-            return "Showing today";
-        } elseif ($this->tomorrowInstances()->count()) {
-            return "Showing tomorrow";
-        } elseif ($this->instance_dates) {
-            return $this->instance_dates;
-        } else {
-            return "Coming soon";
-        }
+        return $this->remember("status", 3600, function () {
+            if ($this->todayInstances()->count()) {
+                return "Showing today";
+            } elseif ($this->tomorrowInstances()->count()) {
+                return "Showing tomorrow";
+            } elseif ($this->instance_dates) {
+                return $this->instance_dates;
+            } else {
+                return "Coming soon";
+            }
+        });
     }
 
     public function getUrlAttribute()
@@ -404,36 +404,5 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function thisWeekInstances()
     {
         return $this->instances()->thisWeek();
-    }
-
-    public function formatForHomepage()
-    {
-        return [
-            "id" => $this->id,
-            "venue" => $this->venue,
-            "url" => $this->url,
-            "status" => $this->status,
-            "name" => $this->name,
-            "slug" => $this->slug,
-            "certificate_age_guidance" => $this->certificate_age_guidance,
-            "src" => $this->featuredImage
-                ? $this->featuredImage->getUrl("wide")
-                : null,
-            "srcset" => $this->featuredImage
-                ? $this->featuredImage->getSrcset("wide")
-                : null,
-            "strand" => $this->strand,
-            "video_thumbnail" => $this->featuredVideo
-                ? $this->featuredVideo
-                    ->img("thumb", [
-                        "class" =>
-                            "-z-10 w-full absolute h-full inset-0 object-cover",
-                    ])
-                    ->toHtml()
-                : null,
-            "video_conversions" => $this->featuredVideo
-                ? json_decode($this->featuredVideo->video_conversions)
-                : null,
-        ];
     }
 }

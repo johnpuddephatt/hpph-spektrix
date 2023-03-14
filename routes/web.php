@@ -52,6 +52,11 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("opportunity.show");
 
+    Route::get("/shop/{product:slug}", [
+        \App\Http\Controllers\ProductController::class,
+        "show",
+    ])->name("product.show");
+
     Route::get(
         "whats-on",
         \App\Http\Controllers\ProgrammeController::class

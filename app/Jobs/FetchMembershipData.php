@@ -50,8 +50,6 @@ class FetchMembershipData implements ShouldQueue
                 [
                     "enabled" => true,
                     "name" => $membership->name ?? null,
-                    "description" => $membership->description ?? null,
-                    "long_description" => $membership->htmlDescription ?? false,
                     "price" => $membership->price ?? null,
                     "renewal_price" => $membership->renewal_price ?? null,
                 ]

@@ -233,6 +233,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 // MenuSection::resource(\App\Nova\Post::class)->icon("pencil"),
 
+                MenuSection::resource(\App\Nova\Product::class)->icon("gift"),
+
                 MenuSection::resource(\App\Nova\Opportunity::class)->icon(
                     "briefcase"
                 ),

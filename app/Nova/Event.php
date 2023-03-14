@@ -110,7 +110,7 @@ class Event extends Resource
                 Images::make("Main image", "main")->rules([
                     Rule::requiredIf(fn() => $request->published),
                 ]),
-                Media::make("Image gallery", "gallery")
+                Images::make("Image gallery", "gallery")
                     ->singleMediaRules("dimensions:min_width=800")
                     ->customPropertiesFields([Markdown::make("Description")])
                     ->fullWidth()
@@ -133,9 +133,6 @@ class Event extends Resource
                     ->fullWidth()
                     ->button("Add a review"),
             ]),
-            // ],
-            // false
-            // ),
 
             Panel::make("Why watch?", [
                 NovaSwitcher::make(

@@ -8,13 +8,10 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Textarea;
-use Advoor\NovaEditorJs\NovaEditorJs;
-use Advoor\NovaEditorJs\NovaEditorJsField;
 use Alexwenzel\DependencyContainer\DependencyContainer;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 
-use Laravel\Nova\Fields\Color;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Image;
@@ -117,23 +114,19 @@ class Season extends Resource
                     )->hideFromIndex(),
                 ])->dependsOn("content->members_voices->enabled", 1),
             ]),
-            Panel::make("More information", [
-                NovaSwitcher::make(
-                    "Enabled?",
-                    "content->more_information->enabled"
-                )->hideFromIndex(),
-                DependencyContainer::make([
-                    Text::make("Title", "content->more_information->title")
-                        ->default("Information & FAQs")
-                        ->hideFromIndex(),
-
-                    Flexible::make("FAQs", "content->more_information->faqs")
-                        ->addLayout("Question", "question", [
-                            Text::make("Question"),
-                            NovaEditorJsField::make("Answer"),
-                        ])
-                        ->button("Add a question"),
-                ])->dependsOn("content->more_information->enabled", 1),
+            new Panel("Content", [
+                Flexible::make("Content", "content")
+                    ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\JournalPostLayout::class
+                    )
+                    ->addLayout(\App\Nova\Flexible\Layouts\QuoteLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\LinkBannerLayout::class
+                    )
+                    ->button("Add a section")
+                    ->stacked(),
             ]),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];

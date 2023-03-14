@@ -9,6 +9,9 @@ use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Panel;
+use NormanHuth\Values\Values;
 
 class Membership extends Resource
 {
@@ -47,18 +50,23 @@ class Membership extends Resource
     public function fields(NovaRequest $request)
     {
         return [
+            ID::make()->hide(),
+            Text::make("Name")->readonly(),
+            Text::make("Price")->readonly(),
+            Text::make("Renewal price")->readonly(),
+
+            Panel::make("Details", [
+                Image::make("Logo")
+                    ->acceptedTypes(".svg")
+                    ->disableDownload(),
+                Textarea::make("Description"),
+                Values::make("Benefits")->valueLabel("Benefit"),
+                Boolean::make("Show when booking", "show_by_booking_path"),
+            ]),
             Boolean::make("Synced", "enabled")
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
-            Boolean::make("Show when booking", "show_by_booking_path"),
-            ID::make()->hide(),
-
-            Text::make("Name")->readonly(),
-            Textarea::make("Description")->readonly(),
-            Trix::make("Long description")->readonly(),
-            Text::make("Price")->readonly(),
-            Text::make("Renewal price")->readonly(),
         ];
     }
 

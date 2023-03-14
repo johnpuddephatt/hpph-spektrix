@@ -12,9 +12,9 @@ class StrandController extends Controller
         $strand->load("featuredImage", "instances.event");
 
         $strand->append("latestPost");
-        if ($strand->latestPost) {
-            $strand->latestPost->appendImageSrc("wide");
-        }
+        // if ($strand->latestPost) {
+        //     $strand->latestPost->appendImageSrc("wide");
+        // }
 
         return view("strands.show", [
             "strand" => $strand,

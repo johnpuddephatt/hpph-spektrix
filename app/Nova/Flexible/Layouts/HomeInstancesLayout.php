@@ -2,18 +2,22 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use Astrotomic\CachableAttributes\CachableAttributes;
+use Astrotomic\CachableAttributes\CachesAttributes;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Carbon\Carbon;
-use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
+use Illuminate\Support\Facades\Cache;
+use Outl1ne\MultiselectField\Multiselect;
 
-class HomeInstancesLayout extends Layout
+class HomeInstancesLayout extends Layout implements CachableAttributes
 {
+    use CachesAttributes;
     /**
      * The layout's unique identifier
      *
      * @var string
      */
-    protected $name = "home_instances";
+    protected $name = "home-instances";
 
     /**
      * The displayed title
@@ -22,8 +26,6 @@ class HomeInstancesLayout extends Layout
      */
     protected $title = "Home Instances";
 
-    protected $appends = ["options"];
-
     /**
      * Get the fields displayed by the layout.
      *
@@ -31,40 +33,14 @@ class HomeInstancesLayout extends Layout
      */
     public function fields()
     {
-        // return [
-        //     Select::make("Display")->options([
-        //         "day" => "Today/tommorrow",
-        //         "week" => "This week/next week",
-        //     ]),
-        // ];
+        return [Text::make("Title")];
     }
-
-    public function getOptionsAttribute()
+    public function getInstancesAttribute()
     {
-        if (
-            \App\Models\Instance::today()->count() &&
-            \App\Models\Instance::tomorrow()->count()
-        ) {
-            $options = [
-                ["label" => "Today", "offset" => 0, "duration" => 1],
-                ["label" => "Tomorrow", "offset" => 1, "duration" => 1],
-            ];
-        } elseif (\App\Models\Instance::today()->count()) {
-            $options = [["label" => "Today", "offset" => 0, "duration" => 1]];
-        } elseif (\App\Models\Instance::tomorrow()->count()) {
-            $options = [
-                ["label" => "Tomorrow", "offset" => 1, "duration" => 1],
-            ];
-        } else {
-            $options = [
-                [
-                    "label" => "Soon",
-                    "offset" => 0,
-                    "duration" => 28,
-                    "limit" => 6,
-                ],
-            ];
-        }
-        return $options;
+        return $this->remember("instances", 0, function () {
+            return \App\Models\Instance::take(8)
+                ->with("event.featuredImage", "strand")
+                ->get();
+        });
     }
 }

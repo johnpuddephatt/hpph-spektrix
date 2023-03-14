@@ -46,7 +46,6 @@ class OpportunityController extends Controller
      */
     public function show(Opportunity $opportunity)
     {
-        $opportunity->content = json_decode($opportunity->content);
         return view("opportunities.show", compact("opportunity"));
     }
 

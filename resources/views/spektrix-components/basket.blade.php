@@ -28,7 +28,9 @@
     </script>
 
     <div @click.self="open = ! open; $dispatch('menutoggled', open)" x-show="open" x-transition:enter-start="opacity-0"
-        x-transition:leave-end="opacity-0" class="fixed inset-0 z-50 bg-black bg-opacity-80 duration-300">
+        x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-50 bg-black backdrop-blur-lg bg-opacity-60 duration-150"
+        x-transition:enter-start="opacity-0" x-transition:leave-end="opacity-0">
     </div>
     <div class="container fixed inset-0 left-auto z-50 flex h-screen w-full max-w-lg transform flex-col bg-sand p-12 transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">
@@ -36,7 +38,7 @@
             <div class="relative">
                 <button class="absolute right-0 top-0 z-10 ml-auto"
                     @click="open = ! open; $dispatch('menutoggled', open)"
-                    aria-label="Close basket menu">@svg('plus', 'h-8 w-8 transform rotate-45 origin-center text-gray-medium')</button>
+                    aria-label="Close basket menu">@svg('plus', 'h-8 w-8 transform rotate-45 origin-center text-black')</button>
                 <div x-show="iFrameLoading" x-transition class="absolute inset-0 p-16">
                     @svg('loading', 'w-32 mx-auto block pt-24 text-sand-dark')
                 </div>

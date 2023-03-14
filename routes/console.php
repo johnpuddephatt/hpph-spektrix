@@ -22,6 +22,7 @@ Artisan::command("fetch:all", function () {
     dispatch(new \App\Jobs\FetchEventData());
     dispatch(new \App\Jobs\FetchMembershipData());
     dispatch(new \App\Jobs\FetchFundData());
+    dispatch(new \App\Jobs\FetchShopData());
     // @todo clear caches.
 })->purpose("Fetches all data from Spektrix");
 
@@ -36,6 +37,10 @@ Artisan::command("fetch:events", function () {
 Artisan::command("fetch:funds", function () {
     dispatch(new \App\Jobs\FetchFundData());
 })->purpose("Fetches fund data from Spektrix");
+
+Artisan::command("fetch:shop", function () {
+    dispatch(new \App\Jobs\FetchShopData());
+})->purpose("Fetches shop data from Spektrix");
 
 // Artisan::command("fetch:instances", function () {
 //     dispatch(new \App\Jobs\FetchInstanceData());

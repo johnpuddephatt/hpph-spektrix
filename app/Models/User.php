@@ -9,10 +9,15 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens, HasFactory, Notifiable, Sluggable;
+    use InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -23,12 +28,11 @@ class User extends Authenticatable
         "name",
         "email",
         "password",
-        "avatar",
         "show_in_directory",
         "enable_login",
         "role_title",
         "role_description",
-        "extras",
+        "content",
     ];
 
     public function sluggable(): array
@@ -38,6 +42,37 @@ class User extends Authenticatable
                 "source" => "name",
             ],
         ];
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion("portrait")
+            ->quality(80)
+            ->width(1600)
+            ->height(1200)
+            ->sharpen(10)
+            ->crop("crop-center", 1200, 1600)
+            ->withResponsiveImages()
+            ->performOnCollections("main");
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection("main")->singleFile();
+    }
+
+    public function featuredImage(): MorphOne
+    {
+        return $this->morphOne(Media::class, "model")->where(
+            "collection_name",
+            "=",
+            "main"
+        );
+    }
+
+    public function getUrlAttribute()
+    {
+        return route("user.show", ["user" => $this->slug]);
     }
 
     /**
@@ -54,5 +89,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         "email_verified_at" => "datetime",
+        "content" => \App\Casts\PageContentCast::class,
     ];
 }

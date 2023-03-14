@@ -15,12 +15,16 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Tags\HasTags;
 use Advoor\NovaEditorJs\NovaEditorJsCast;
+use Astrotomic\CachableAttributes\CachableAttributes;
+use Astrotomic\CachableAttributes\CachesAttributes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Post extends Model implements HasMedia
+class Post extends Model implements HasMedia, CachableAttributes
 {
+    use CachesAttributes;
+
     use HasFactory;
     use InteractsWithMedia;
     use LogsActivity;
@@ -49,6 +53,7 @@ class Post extends Model implements HasMedia
     ];
 
     protected $appends = ["url", "date"];
+    protected $with = ["featuredImage"];
 
     protected static function booted()
     {
@@ -147,7 +152,9 @@ class Post extends Model implements HasMedia
 
     public function getTagsTranslatedAttribute()
     {
-        return $this->tagsTranslated()->get();
+        return $this->remember("tags_translated", 3600, function () {
+            return $this->tagsTranslated()->get();
+        });
     }
 
     public function featuredImage(): MorphOne
@@ -177,19 +184,5 @@ class Post extends Model implements HasMedia
     public function user(): BelongsTo
     {
         return $this->belongsTo(\App\Models\User::class);
-    }
-
-    public function getIntroductionAttribute($value)
-    {
-        return $value ?:
-            substr(
-                strip_tags(
-                    \Advoor\NovaEditorJs\NovaEditorJs::generateHtmlOutput(
-                        $this->content
-                    )
-                ),
-                0,
-                100
-            );
     }
 }

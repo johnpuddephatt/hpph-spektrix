@@ -24,10 +24,7 @@ class SectionedPageTemplate
     {
         return [
             new Panel("Page content", [
-                Text::make("Banner text", "content->banner_text")
-                    ->maxlength(20)
-                    ->enforceMaxlength(),
-                Flexible::make("Content", "content->flexible")
+                Flexible::make("Content", "content")
                     ->addLayout(\App\Nova\Flexible\Layouts\SectionLayout::class)
                     ->button("Add a section")
                     ->stacked(),
@@ -39,11 +36,5 @@ class SectionedPageTemplate
     public function resolve($page)
     {
         return $page->content;
-    }
-
-    // Optional suffix to the route (ie {blogPostName})
-    public function pathSuffix(): string|null
-    {
-        return null;
     }
 }

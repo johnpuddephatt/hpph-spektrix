@@ -47,3 +47,7 @@ cite:first-line {
         transform: translateX(calc(-50% - 0.3rem));
     }
 }
+
+.strong-yellow strong {
+    @apply text-yellow;
+}

@@ -32,24 +32,6 @@ class Programme extends Component
         "clearStrand" => "clearStrand",
     ];
 
-    // public function resetStrand($value)
-    // {
-    //     $this->reset("strand");
-    //     $this->emit("updateStrand2", $this->strand);
-    // }
-
-    // public function resetAccessibility($value)
-    // {
-    //     $this->reset("accessibility");
-    //     $this->emit("updateAccessibility2", $this->accessibility);
-    // }
-
-    // public function resetDate($value)
-    // {
-    //     $this->reset("data");
-    //     $this->emit("updateDate2", $this->date);
-    // }
-
     public function setStrand($value)
     {
         // $this->reset();
@@ -60,7 +42,6 @@ class Programme extends Component
 
     public function setAccessibility($value)
     {
-        // $this->reset();
         $this->type = "schedule";
         $this->accessibility = $value;
         $this->emit("updateAccessibility2", $this->accessibility);
@@ -68,7 +49,6 @@ class Programme extends Component
 
     public function setDate($value)
     {
-        // $this->reset();
         $this->type = "schedule";
         $this->date = $value;
         $this->emit("updateDate2", $this->date);

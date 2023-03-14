@@ -77,6 +77,7 @@ class Page extends Resource
                 ->hideFromIndex(function (ResourceIndexRequest $request) {
                     return !$request->viaRelationship();
                 })
+                ->maxLength(100)->enforceMaxlength()
                 ->withMeta([
                     "extraAttributes" => [
                         "class" => "text-xl p-4 h-auto",
@@ -97,14 +98,15 @@ class Page extends Resource
                 ->hideFromIndex()
                 ->placeholder("Leave blank to generate automatically")
                 ->rules("max:100"),
+            Text::make("Subtitle")->maxLength(30)->enforceMaxlength(),
             Boolean::make("Published")->showOnPreview()
                 ->filterable()->hideWhenCreating(),
             Images::make("Image", "main"),
-            Textarea::make("Introduction")
+            Textarea::make("Introduction")->maxLength(200)->enforceMaxlength()
                 ->rows(3)
                 ->withMeta([
                     "extraAttributes" => [
-                        "maxlength" => 350,
+                        "maxlength" => 200,
                         "class" => "md:w-3/4"
                     ],
                 ])

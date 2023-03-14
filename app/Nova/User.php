@@ -2,20 +2,20 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Validation\Rules;
-use Laravel\Nova\Fields\Avatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Heading;
+use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Panel;
+use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
 use Whitecube\NovaFlexibleContent\Flexible;
+use Illuminate\Validation\Rule;
+use NormanHuth\Values\Values;
 
 class User extends Resource
 {
@@ -57,26 +57,15 @@ class User extends Resource
                 ->sortable()
                 ->hide(),
 
-            Avatar::make("Avatar")
-                ->maxWidth(50)
-                ->disableDownload()
-                ->store(function (Request $request, $model) {
-                    $image = Image::make($request->avatar)
-                        ->fit(200, 200)
-                        ->encode("jpg", 80);
-
-                    Storage::disk("public")->put(
-                        "/avatar/" . $request->avatar->getClientOriginalName(),
-                        $image
-                    );
-
-                    return "/avatar/" .
-                        $request->avatar->getClientOriginalName();
-                }),
+            Images::make("Main image", "main")->rules([
+                Rule::requiredIf(fn() => $request->show_in_directory),
+            ]),
 
             Text::make("Name")
                 ->sortable()
                 ->rules("required", "max:255"),
+
+            Slug::make("Slug")->from("name"),
 
             Text::make("Email")
                 ->sortable()
@@ -99,22 +88,21 @@ class User extends Resource
                 Textarea::make("Role description"),
             ]),
 
-            Panel::make("Favourite films", [
-                // Image::make("Favourite film image"),
-                Flexible::make("Favourite films", "extras->favourite_films")
-                    ->addLayout("Favourite films", "favourite_films", [
-                        Text::make("Film name"),
-                    ])
-                    ->button("Add a film"),
-            ]),
+            Panel::make("Content", [
+                Flexible::make("", "content")
+                    ->addLayout("Favourite films", "favourite-films", [
+                        // SimpleRepeatable::make(
+                        //     "Favourite films",
+                        //     "favourite_films",
+                        //     [Text::make("Film name")]
+                        // )->addRowLabel("Add film"),
 
-            Panel::make("Quote", [Textarea::make("Quote", "extras->quote")]),
-            Panel::make("Favourite film quote", [
-                // Image::make("Film quote image"),
-                Textarea::make("Quote", "extras->film_quote->quote"),
-                Text::make("Author", "extras->film_quote->author"),
-                Text::make("Film", "extras->film_quote->film"),
-                Text::make("Year", "extras->film_quote->year"),
+                        Values::make("Favourite films")->valueLabel("Film"),
+                    ])
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\SimpleTextLayout::class
+                    )
+                    ->button("Add section"),
             ]),
         ];
     }

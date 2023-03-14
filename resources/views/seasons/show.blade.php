@@ -1,4 +1,4 @@
-@extends('layouts.default', ['header_position' => 'fixed', 'edit_link' => route('nova.pages.edit', ['resource' => 'seasons', 'resourceId' => $season->id])])
+@extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'seasons', 'resourceId' => $season->id])])
 @section('title', $season->name)
 
 @section('content')
@@ -64,8 +64,11 @@
         'members_voices' => $season->content->members_voices,
     ])
 
-    @includeWhen($season->content->more_information, 'components.faq', [
-        'more_information' => $season->content->more_information,
-    ])
+    @includeWhen($season->content->more_information && $strand->content->more_information->enabled,
+        'components.faq',
+        [
+            'title' => $season->content->more_information->title,
+            'faqs' => $season->content->more_information->faqs,
+        ])
 
 @endsection

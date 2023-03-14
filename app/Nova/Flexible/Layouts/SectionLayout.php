@@ -4,8 +4,9 @@ namespace App\Nova\Flexible\Layouts;
 
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Image;
 use Advoor\NovaEditorJs\NovaEditorJsField;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\HasMedia;
 use Whitecube\NovaFlexibleContent\Concerns\HasMediaLibrary;
 
@@ -18,7 +19,7 @@ class SectionLayout extends Layout implements HasMedia
      *
      * @var string
      */
-    protected $name = "sectionlayout";
+    protected $name = "section";
 
     /**
      * The displayed title
@@ -35,7 +36,12 @@ class SectionLayout extends Layout implements HasMedia
     public function fields()
     {
         return [
-            Images::make("Banner")->fullSize(),
+            Image::make("Image", "banner")
+                ->disk("public")
+                ->preview(function ($value, $disk) {
+                    return $value ? Storage::disk($disk)->url($value) : null;
+                })
+                ->store(new \App\Nova\Actions\SaveAndResizeBannerImage()),
             Text::make("Title"),
             NovaEditorJsField::make("Content", "section_content"),
         ];

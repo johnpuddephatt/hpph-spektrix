@@ -1,4 +1,4 @@
-@props(['content', 'block_class' => 'max-w-3xl mx-auto', 'wide_class' => 'max-w-6xl mx-auto', 'fullwidth_class' => 'wow'])
+@props(['content', 'block_class' => 'max-w-3xl mx-auto', 'wide_class' => 'max-w-6xl mx-auto', 'fullwidth_class' => ''])
 
 @if (isset($block))
     @php $content = $block->editorjs @endphp
@@ -6,6 +6,7 @@
 
 <div {{ $attributes->class(['']) }}>
     @foreach ($content->blocks as $block)
+        @php $block = (array) $block @endphp
         @php $width = $block['tunes']['blockWidthTune'] ?? ''; @endphp
 
         @if ($block['type'] == 'carousel')
@@ -15,7 +16,7 @@
         <div
             class="@if ($width == 'full') {{ $fullwidth_class }} @elseif($width == 'wide') {{ $wide_class }} @else {{ $block_class }} @endif">
             @include('vendor.nova-editor-js.' . $block['type'],
-                array_merge($block['data'], ['width' => $width]))
+                array_merge((array) $block['data'], ['width' => $width]))
         </div>
     @endforeach
 </div>

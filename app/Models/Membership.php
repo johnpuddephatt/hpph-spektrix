@@ -40,6 +40,7 @@ class Membership extends Model
     protected $casts = [
         "enabled" => "boolean",
         "show_by_booking_path" => "boolean",
+        "benefits" => "object",
     ];
 
     protected static function booted()

@@ -49,7 +49,7 @@ class PageType extends MenuItemSelectType
      */
     public static function getDisplayValue($value, ?array $data, $locale)
     {
-        return "Page: " . \App\Models\Page::find($value)->name;
+        return "Page: " . \App\Models\Page::find($value)?->name;
     }
 
     /**
@@ -68,7 +68,7 @@ class PageType extends MenuItemSelectType
      */
     public static function getValue($value, ?array $data, $locale)
     {
-        return \App\Models\Page::find($value)->URL;
+        return \App\Models\Page::find($value)?->URL;
     }
 
     public static function getFields(): array

@@ -17,19 +17,9 @@ class Instance extends Model
 
     protected static function booted()
     {
-        // static::addGlobalScope("order", function (Builder $builder) {
-        //     $builder
-        //         ->orderBy("start", "asc")
-        //         ->where("start", ">", Carbon::today());
-        // });
-
         static::addGlobalScope("has_event", function (Builder $builder) {
             $builder->whereHas("event");
         });
-
-        //  static::addGlobalScope("is_on_sale", function (Builder $builder) {
-        //     $builder->where("is_on_sale", true);
-        // });
     }
 
     protected $fillable = [

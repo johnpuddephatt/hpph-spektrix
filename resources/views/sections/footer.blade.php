@@ -1,4 +1,4 @@
-@include('sections.marquee')
+<x-marquee :hide_marquee="$hide_marquee ?? false" />
 
 <footer class="type-xs relative">
     <div class="bg-black py-12 text-gray-light">

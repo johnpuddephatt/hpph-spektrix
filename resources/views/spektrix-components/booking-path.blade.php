@@ -33,11 +33,11 @@
         x-transition:enter-start="opacity-0" x-transition:leave-end="opacity-0">
     </div>
 
-    <div x-transition:enter-start="translate-y-full lg:translate-x-full"
-        x-transition:leave="translate-y-full lg:translate-x-full" x-show="eventID"
-        class="bg-sand lg:min-h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
+    <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
+        x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full" x-show="eventID"
+        class="bg-sand lg:h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
         <button x-on:click="closeBooking" aria-label="Close booking options"
-            class="z-30 top-5 lg:top-[3.25rem] absolute lg:mr-10 right-4 lg:right-full">@svg('plus', 'h-8 w-8 p-0.5 text-black lg:text-white rotate-45 transform origin-center')</button>
+            class="z-30 top-5 lg:top-[2.5rem] absolute lg:mr-10 right-4 lg:right-full">@svg('plus', 'h-8 w-8 p-0.5 text-black lg:text-white rotate-45 transform origin-center')</button>
         <h2 x-on:click="instanceID = null"
             class="type-regular lg:type-medium lg:justify-between gap-4 flex items-center flex-row cursor-pointer z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-4 lg:px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap"
             :class="instanceID ? 'bg-yellow-dark cursor-pointer' : 'cursor-default bg-sand-dark lg:bg-sand'">
@@ -106,8 +106,8 @@
             </div>
         </div>
     </div>
-    <div x-transition:enter-start="translate-y-full lg:translate-x-full"
-        x-transition:leave="translate-y-full lg:translate-x-full"
+    <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
+        x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full"
         class="w-full lg:w-[calc(75vw-9rem)] z-[60] bg-sand lg:min-h-screen transition fixed top-[4.5rem] lg:top-0 bottom-0 right-0"
         x-show="instanceID && eventID">
         <h2

@@ -97,47 +97,20 @@ class Strand extends Resource
                 ->rows(3)
                 ->hideFromIndex(),
             Tag::make("Posts")->displayAsList(),
-            Panel::make("Members’ voices", [
-                NovaSwitcher::make(
-                    "Enabled?",
-                    "content->members_voices->enabled"
-                )->hideFromIndex(),
-                DependencyContainer::make([
-                    Textarea::make(
-                        "Quote",
-                        "content->members_voices->quote"
-                    )->rows(3),
-                    Text::make(
-                        "Member name",
-                        "content->members_voices->name"
-                    )->hideFromIndex(),
-                    Images::make(
-                        "Image",
-                        "content->members_voices->image"
-                    )->hideFromIndex(),
-                    Text::make(
-                        "Member role/description",
-                        "content->members_voices->role"
-                    )->hideFromIndex(),
-                ])->dependsOn("content->members_voices->enabled", 1),
-            ]),
-            Panel::make("More information", [
-                NovaSwitcher::make(
-                    "Enabled?",
-                    "content->more_information->enabled"
-                )->hideFromIndex(),
-                DependencyContainer::make([
-                    Text::make("Title", "content->more_information->title")
-                        ->default("Information & FAQs")
-                        ->hideFromIndex(),
 
-                    Flexible::make("FAQs", "content->more_information->faqs")
-                        ->addLayout("Question", "question", [
-                            Text::make("Question"),
-                            NovaEditorJsField::make("Answer"),
-                        ])
-                        ->button("Add a question"),
-                ])->dependsOn("content->more_information->enabled", 1),
+            new Panel("Content", [
+                Flexible::make("Content", "content")
+                    ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\JournalPostLayout::class
+                    )
+                    ->addLayout(\App\Nova\Flexible\Layouts\QuoteLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\LinkBannerLayout::class
+                    )
+                    ->button("Add a section")
+                    ->stacked(),
             ]),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];

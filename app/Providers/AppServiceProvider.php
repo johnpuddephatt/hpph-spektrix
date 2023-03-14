@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // Model::preventLazyLoading(!$this->app->isProduction());
+        // Model::preventLazyLoading(true);
 
         View::composer("*", function ($view) {
             $view->with(

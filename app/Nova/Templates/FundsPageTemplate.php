@@ -24,12 +24,9 @@ class FundsPageTemplate
         return [
             new Panel("Page content", [
                 Flexible::make("Content", "content")
-                    ->addLayout("Fund group", "fund_group", [
-                        Text::make("Fund group title"),
-                        MultiSelect::make("Funds")->options(
-                            \App\Models\Fund::pluck("name", "id")
-                        ),
-                    ])
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\FundGroupLayout::class
+                    )
                     ->button("Add new fund group"),
             ]),
         ];
@@ -39,11 +36,5 @@ class FundsPageTemplate
     public function resolve($page)
     {
         return $page->content;
-    }
-
-    // Optional suffix to the route (ie {blogPostName})
-    public function pathSuffix(): string|null
-    {
-        return null;
     }
 }

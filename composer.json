@@ -27,6 +27,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.10",
         "madewithlove/laravel-nova-uuid-support": "^1.4",
+        "norman-huth/nova-values-field": "^1.0",
         "outl1ne/nova-menu-builder": "7.1.0",
         "outl1ne/nova-multiselect-field": "^4.0",
         "outl1ne/nova-settings": "^5.0",

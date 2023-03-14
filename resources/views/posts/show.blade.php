@@ -1,4 +1,4 @@
-@extends('layouts.default', ['header_position' => 'fixed', 'header_class' => 'text-white', 'logo_background' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'posts', 'resourceId' => $post->id])])
+@extends('layouts.default', ['header_class' => 'text-white', 'logo_background' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'posts', 'resourceId' => $post->id])])
 @section('title', $post->title)
 @section('description', $post->introduction)
 

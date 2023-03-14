@@ -39,7 +39,7 @@
     @stack('footer')
     @livewireScripts
 
-    @env('local')
+    {{-- @env('local')
     <div
         class="border-gray-light bg-gray-light text-black flex items-center m-2 fixed bottom-0 right-0 border rounded p-2 text-sm">
 
@@ -51,7 +51,7 @@
         <span class="ml-1 hidden xl:inline 2xl:hidden font-extrabold">xl</span>
         <span class="ml-1 hidden 2xl:inline font-extrabold">2xl</span>
     </div>
-    @endenv
+    @endenv --}}
 </body>
 
 </html>
