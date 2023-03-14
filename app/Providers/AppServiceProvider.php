@@ -42,8 +42,7 @@ class AppServiceProvider extends ServiceProvider
                         "slug",
                         "short_description",
                         "color",
-                        "logo",
-                        "logo_text"
+                        "logo"
                     )
                         ->with("featuredImage")
                         ->get();
