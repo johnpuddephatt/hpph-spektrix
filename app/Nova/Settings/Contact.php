@@ -5,9 +5,9 @@ use Laravel\Nova\Panel;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\KeyValue;
 
-class Cinema
+class Contact
 {
-    public $page = "Cinema";
+    public $page = "Contact";
 
     public function fields(): array
     {

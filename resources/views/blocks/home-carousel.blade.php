@@ -7,7 +7,7 @@
     </div>
 @endif
 
-@if (count($layout->shuffled_images))
+@if ($layout->shuffled_images && count($layout->shuffled_images))
 
     <div x-data="carousel" class="w-full overflow-hidden bg-black pb-12 lg:pb-36">
         <div class="absolute left-0 right-0 h-48 bg-yellow"></div>
@@ -17,9 +17,9 @@
             <div class="images">
                 @foreach ($layout->shuffled_images as $image)
                     {!! $image->img('square')->attributes([
-                            'data-width' => '50vw',
-                            'class' => 'absolute left-0 block w-[66.667vw] origin-center rounded lg:w-[50vw] xl:w-[33.3vw]',
-                        ]) !!}
+                        'data-width' => '50vw',
+                        'class' => 'absolute left-0 block w-[66.667vw] origin-center rounded lg:w-[50vw] xl:w-[33.3vw]',
+                    ]) !!}
                 @endforeach
             </div>
         </div>

@@ -33,9 +33,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         $settings = [
             new \App\Nova\Settings\Alert(),
             new \App\Nova\Settings\Banner(),
-            new \App\Nova\Settings\Cinema(),
+            new \App\Nova\Settings\Contact(),
             new \App\Nova\Settings\Messages(),
-            new \App\Nova\Settings\Services(),
+            new \App\Nova\Settings\System(),
             new \App\Nova\Settings\Newsletter(),
         ];
 

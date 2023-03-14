@@ -3,9 +3,9 @@ namespace App\Nova\Settings;
 
 use Laravel\Nova\Fields\Text;
 
-class Services
+class System
 {
-    public $page = "Services";
+    public $page = "System";
 
     public function fields(): array
     {
