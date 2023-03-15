@@ -21,13 +21,13 @@ class ShopPageTemplate
     public function fields(Request $request): array
     {
         return [
-            new Panel("Content", [
-                Flexible::make("Content", "content")
-                    ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
-                    ->button("Add a section")
-                    ->stacked(),
-            ]),
-        ];
+                // new Panel("Content", [
+                //     Flexible::make("Content", "content")
+                //         ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
+                //         ->button("Add a section")
+                //         ->stacked(),
+                // ]),
+            ];
     }
 
     // Resolve data for serialization
