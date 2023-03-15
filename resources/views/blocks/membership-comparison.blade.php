@@ -7,7 +7,7 @@
 
             <div class="flex flex-col">
                 <div class="relative min-h-[14rem]">
-                    <img src="{{ $membership->logo }}" class="w-32 block h-auto mx-auto" />
+                    <img src="{{ Storage::url($membership->logo) }}" class="w-32 block h-auto mx-auto" />
 
                     <div class="type-xs-mono text-white mt-8 mb-12 max-w-xs mx-auto">
                         {{ $membership->description }}
@@ -21,7 +21,7 @@
                 <ul class="flex-grow bg-sand">
                     @foreach ($membership->benefits as $benefit)
                         <li
-                            class="type-label {{ $loop->even ? '' : 'bg-sand-dark' }} text-black text-center py-3 lg:py-8">
+                            class="type-xs-mono {{ $loop->even ? '' : 'bg-sand-dark' }} text-black text-center py-3 lg:py-8">
                             {{ $benefit }}
                         </li>
                     @endforeach

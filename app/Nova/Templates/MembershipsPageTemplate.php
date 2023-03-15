@@ -31,9 +31,6 @@ class MembershipsPageTemplate
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\FeaturedMembershipLayout::class
                     )
-                    ->addLayout(
-                        \App\Nova\Flexible\Layouts\MembershipLayout::class
-                    )
                     ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
                     ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
                     ->button("Add new section"),
