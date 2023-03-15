@@ -7,13 +7,13 @@
                         {!! $child->page->mainImage
                             ?->img('landscape')->attributes(['class' => 'max-w-none w-full opacity-60 transition group-hover:opacity-90']) !!}
 
-                        <div class="inset-0 absolute text-center items-center justify-center flex flex-col">
+                        <div class="p-4 inset-0 absolute text-center items-center justify-center flex flex-col">
 
                             <div class="mt-auto pt-16 transition group-hover:-translate-y-4">
                                 <h3 class="type-medium">{{ $child->page->name }}</h3>
                                 @svg('arrow-right', 'text-white group-hover:text-black -rotate-45 h-10 w-10 block rounded-full bg-black bg-opacity-50  group-hover:bg-opacity-100 group-hover:bg-yellow p-2 mt-4 text-black mx-auto transition')
                             </div>
-                            <p class="mt-auto py-4">{{ $child->page->subtitle }}</p>
+                            <p class="max-w-lg mt-auto pt-4">{{ $child->page->subtitle }}</p>
                         </div>
                     </a>
                 @else
@@ -22,13 +22,13 @@
                         <img src="{{ Storage::url($child->image) }}"
                             class="max-w-none w-full opacity-60 transition group-hover:opacity-90" />
 
-                        <div class="inset-0 absolute text-center items-center justify-center flex flex-col">
+                        <div class="p-4 inset-0 absolute text-center items-center justify-center flex flex-col">
 
                             <div class="mt-auto pt-16 transition group-hover:-translate-y-4">
                                 <h3 class="type-medium">{{ $child->title }}</h3>
                                 @svg('arrow-right', 'text-white group-hover:text-black -rotate-45 h-10 w-10 block rounded-full bg-black bg-opacity-50  group-hover:bg-opacity-100 group-hover:bg-yellow p-2 mt-4 text-black mx-auto transition')
                             </div>
-                            <p class="mt-auto py-4">{{ $child->description }}</p>
+                            <p class="max-w-lg mt-auto pt-4">{{ $child->description }}</p>
                         </div>
                     </a>
                 @endif
