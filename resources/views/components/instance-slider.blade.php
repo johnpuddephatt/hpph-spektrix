@@ -9,7 +9,7 @@
     centeredSlides: true,
     on: {
         progress: function() {
-            console.log('isBeginning: ', this.isBeginning, '... isEnd: ', this.isEnd);
+            console.log('isBeginning: ', this.isBeginning, '... isEnd: ', this.isEnd, '... isLocked: ', this.isLocked);
             showPreviousControl = !this.isBeginning;
             showNextControl = !this.isEnd;
             showControls = !(this.isBeginning && this.isEnd);
