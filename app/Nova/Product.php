@@ -81,6 +81,10 @@ class Product extends Resource
                             ->actionText("Add detail"),
                     ])
                     ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\ImagePairLayout::class
+                    )
+                    ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
                     ->button("Add section"),
             ]),
         ];

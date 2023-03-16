@@ -9,6 +9,7 @@
     centeredSlides: true,
     on: {
         progress: function() {
+            console.log('isBeginning: ', this.isBeginning, '... isEnd: ', this.isEnd);
             showPreviousControl = !this.isBeginning;
             showNextControl = !this.isEnd;
             showControls = !(this.isBeginning && this.isEnd);
@@ -24,10 +25,10 @@
 
         },
         1024: {
-            slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) }}, 3) @endif,
+            slidesPerView: @if ($layout == 'home') 4 @else Math.min({{ count($instances) }}, 3) @endif,
         },
         1280: {
-            slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) }}, 4) @endif,
+            slidesPerView: @if ($layout == 'home') 5 @else Math.min({{ count($instances) }}, 4) @endif,
         },
         1536: {
             slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) }}, 4) @endif,
