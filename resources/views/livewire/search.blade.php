@@ -16,12 +16,12 @@
                 aria-label="Close search menu">@svg('plus', 'h-8 w-8 transform rotate-45 origin-center text-black')</button>
             <h2 class="type-medium">Search</h2>
             <input x-ref="searchInput"
-                class="type-xs-mono w-full border-b-2 border-gray-light bg-transparent py-6 focus-visible:outline-none"
+                class="type-xs-mono w-full border-b-2 border-sand-dark bg-transparent py-6 focus-visible:outline-none"
                 wire:model="search" type="text" placeholder="Search for a film" />
 
-            <ul class="h-64 flex-1 divide-y divide-gray-medium overflow-y-auto">
+            <ul class="h-64 flex-1 divide-y divide-sand-dark overflow-y-auto">
                 @foreach ($results as $result)
-                    <li><a class="block py-6 hover:bg-gray-dark"
+                    <li><a class="block py-6 hover:bg-sand-dark"
                             href="{{ route('event.show', ['event' => $result->slug]) }}">{{ $result->name }}</a></li>
                 @endforeach
             </ul>

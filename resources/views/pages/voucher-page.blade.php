@@ -5,7 +5,7 @@
     <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">
 
         @if ($page->mainImage)
-            {{ $page->mainImage->img('landscape')->attributes(['class' => 'h-full w-full object-cover']) }}
+            {{ $page->mainImage->img('square')->attributes(['class' => 'h-full w-full object-cover']) }}
         @endif
     </div>
 
