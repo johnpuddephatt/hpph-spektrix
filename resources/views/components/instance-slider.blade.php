@@ -5,11 +5,9 @@
     slidesPerView: Math.min({{ count($instances) }}, 1.5),
     spaceBetween: 15,
     centerInsufficientSlides: true,
-    centeredSlidesBounds: true,
-    centeredSlides: true,
+
     on: {
         progress: function() {
-            console.log('isBeginning: ', this.isBeginning, '... isEnd: ', this.isEnd, '... isLocked: ', this.isLocked);
             showPreviousControl = !this.isBeginning;
             showNextControl = !this.isEnd;
             showControls = !(this.isBeginning && this.isEnd);
