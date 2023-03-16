@@ -12,7 +12,7 @@
     </p>
     <div class="relative w-full max-w-lg mx-auto">
         <div class="rounded pt-[56%] relative p-12 bg-black bg-opacity-25 backdrop-blur-sm border border-gray-medium">
-            <img src="{{ $layout->membership->logo }}"
+            <img src="{{ Storage::url($layout->membership->logo) }}"
                 class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mx-auto w-40"></inline-svg>
             <div
                 class="type-xs-mono absolute left-0 transform text-opacity-50 text-white top-1/2 -rotate-90 origin-center">
