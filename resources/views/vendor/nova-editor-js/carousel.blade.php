@@ -5,7 +5,7 @@
             <figure
                 class="@if (count($images) == 1) w-full @elseif (count($images) == 2) w-1/2 h-auto @endif flex-none">
                 <img src="{{ $image['url'] }}"
-                    class="@if (count($images) > 2) h-[32em] w-auto @endif block rounded">
+                    class="@if (count($images) > 2) h-[32em] w-auto @else w-full h-auto @endif block rounded">
 
                 <figcaption class="type-xs-mono py-3">
                     @if (count($images) > 1)
