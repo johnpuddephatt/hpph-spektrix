@@ -2,7 +2,7 @@
 
  <a href="{{ $post->url }}" {{ $attributes->class(['flex', 'flex-col']) }}>
      @if ($post->featuredImage)
-         {!! $post->featuredImage->img('landscape', ['class' => 'w-full block rounded'])->toHtml() !!}
+         {!! $post->featuredImage->img('landscape', ['id' => 'image-' . $post->id, 'class' => 'w-full block rounded'])->toHtml() !!}
      @else
          <div class="{{ $dark ? 'bg-gray-dark' : 'bg-gray-light' }} aspect-video rounded"></div>
      @endif
