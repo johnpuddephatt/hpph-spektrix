@@ -70,9 +70,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 #nova { position: relative;}
                 header {box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px}
                 .editor-js, #editor-js-content {
-                    padding-top: 0.5em;
-                    padding-bottom: 0.5em;
-                    border-radius: 0.25em;
+                    padding-top: 0.5rem;
+                    padding-bottom: 0.5rem;
+                    border-radius: 0.25rem;
                     box-shadow: none;
                     width: 73.75%;
                 }
@@ -82,7 +82,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 }
 
                 .ce-toolbar__actions {
-                    margin-right: 2em !important;
+                    margin-right: 2rem !important;
                 }
 
                 .md\:pt-2  > .editor-js, .md\:pt-2  > #editor-js-content {
@@ -96,7 +96,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     margin-top: -2.2rem;
                     background-color: white;
                     color: inherit;
-                    font-size: 1rem;
+                    font-size: 1.25rem;
+                    line-height: 1.5;
                 }
                 .md\:pt-2 .ce-block {
                     width: 60%;
@@ -129,8 +130,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 .ce-toolbar__plus,
                 .ce-toolbar__settings-btn {    
-                    border-radius: 0.5em;
-                    padding: 0.4em;
+                    border-radius: 0.5rem;
+                    padding: 0.4rem;
                 }
             
                 .ce-header {
@@ -149,7 +150,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 }
                 .toggle-block__selector {
                     border: 1px solid rgba(var(--colors-gray-300));
-                    margin-bottom: 0.25em;
+                    margin-bottom: 0.25rem;
                     border-radius: 0.25rem;
                     padding-left: 0.5rem;
                     margin-top: 0.5rem;
