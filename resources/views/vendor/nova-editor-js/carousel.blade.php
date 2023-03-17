@@ -3,7 +3,8 @@
         class="ml-[calc((100vw-100%)/-2)] flex w-screen flex-row gap-5 overflow-x-auto px-[calc((100vw-100%)/2)] scrollbar-hide">
         @foreach ($images as $image)
             <figure class="flex-none">
-                <img src="{{ $image['url'] }}" class="block h-[32em] w-auto rounded">
+                <img src="{{ $image['url'] }}"
+                    class="@if (count($images) == 1) w-full @elseif (count($images) == 2) w-1/2 h-auto @else h-[32em] w-auto @endif block rounded">
 
                 <figcaption class="type-xs-mono py-3">
                     @if (count($images) > 1)
