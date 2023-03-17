@@ -70,14 +70,14 @@ class Post extends Resource
                 ->maxlength(100)
                 ->enforceMaxlength(),
             Text::make("Subtitle")
-                ->rules("max:100")
-                ->maxlength(100)
+                ->rules("max:50")
+                ->maxlength(50)
                 ->enforceMaxlength()
                 ->hideFromIndex()
                 ->help("E.g. Episode 5: In conversation with Park Chan-Wook"),
             Text::make("Summary")
-                ->rules("max:100")
-                ->maxlength(100)
+                ->rules("max:120")
+                ->maxlength(120)
                 ->enforceMaxlength()
                 ->hideFromIndex()
                 ->help("A short line summarising the content of this post"),

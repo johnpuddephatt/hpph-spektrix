@@ -119,7 +119,7 @@ class Page extends Resource
                 )
                 ->displayUsingLabels()->readonly(function ($request) {
                     return $request->isUpdateOrUpdateAttachedRequest();
-                })->help('The template value cannot be changed after page creation to prevent data loss. Some templates can only be used once.')->required(),
+                })->help('The template value cannot be changed after page creation to prevent data loss. Some templates can only be used once.')->required()->rules("required"),
 
             Text::make("URL", function () {
                 return "<a onclick='event.stopPropagation()' class='underline text-primary-500' target='_blank' href='{$this->URL}'>{$this->URL}<svg xmlns='http://www.w3.org/2000/svg' class='inline-block w-4 h-4 ml-1' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>

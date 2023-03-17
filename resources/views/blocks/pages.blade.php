@@ -13,7 +13,7 @@
                                 <h3 class="type-medium">{{ $child->page->name }}</h3>
                                 @svg('arrow-right', 'text-white group-hover:text-black -rotate-45 h-10 w-10 block rounded-full bg-black bg-opacity-50  group-hover:bg-opacity-100 group-hover:bg-yellow p-2 mt-4 text-black mx-auto transition')
                             </div>
-                            <p class="max-w-lg mt-auto pt-4">{{ $child->page->subtitle }}</p>
+                            <p class="max-w-lg mt-auto pt-4">{{ $child->page->description }}</p>
                         </div>
                     </a>
                 @else
