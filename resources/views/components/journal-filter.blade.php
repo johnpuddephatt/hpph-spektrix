@@ -1,5 +1,5 @@
  <div
-     class="max-lg:order-last container sticky bottom-0 flex flex-row justify-center lg:justify-start items-center gap-2 py-4 lg:py-12 bg-sand-light lg:bg-transparent">
+     class="max-lg:order-last container sticky bottom-0 flex flex-row justify-center lg:justify-start items-center gap-2 pt-4 lg:pt-12 bg-sand-light lg:bg-transparent">
      <div class="type-xs-mono hidden lg:block">Filter:</div>
 
      @if ($selected_tag)
