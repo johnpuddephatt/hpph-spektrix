@@ -113,7 +113,6 @@ class Post extends Resource
                     ->stacked()
                     ->rules("required")
                     ->hideFromDetail(),
-
                 Text::make("Content", function () {
                     return view("components.editorjs", [
                         "content" => $this->content,
