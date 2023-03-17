@@ -5,7 +5,7 @@
         <span class="{{ $dark ? 'text-white' : 'text-dark' }}"> {{ $post->date }}</span>
     </div>
 
-    @if ($post->tags_translated)
+    @if (count($post->tags_translated))
         <div class="gap-1 flex flex-row items-center">
             @svg('bookmark', 'h-3 w-3 inline-block mr-0.5')
             @foreach ($post->tags_translated ?? [] as $tag)
