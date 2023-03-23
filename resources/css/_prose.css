@@ -17,3 +17,7 @@
 .prose h4 {
     @apply type-medium;
 }
+
+.prose > *:first-child {
+    margin-top: 0;
+}
