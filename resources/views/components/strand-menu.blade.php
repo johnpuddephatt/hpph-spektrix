@@ -15,6 +15,7 @@
 
                      @if ($strand->featuredImage)
                          {!! $strand->featuredImage->img('wide')->attributes([
+                             'data-width' => '600px',
                              'class' =>
                                  'absolute h-full inset-0 object-cover object-center block w-full opacity-70 lg:group-hover:opacity-40 transition',
                          ]) !!}
