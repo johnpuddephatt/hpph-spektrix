@@ -1,5 +1,5 @@
 @if ($layout->child_pages)
-    <div class="bg-black text-white py-8">
+    <div class="bg-black text-white py-8 pb-16">
         <div class="flex flex-col lg:flex-row justify-center">
             @foreach ($layout->child_pages as $child)
                 @if ($child->page)
