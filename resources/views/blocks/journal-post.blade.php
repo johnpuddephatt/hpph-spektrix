@@ -1,6 +1,6 @@
 @if ($layout->post)
 
-    <div class="@if ($layout->dark) bg-black @else bg-sand-dark @endif relative py-24">
+    <div class="@if ($layout->dark) bg-black @else bg-sand-dark @endif relative py-16">
         @if ($layout->striped)
             <div class="bg-black absolute inset-0 h-1/2"></div>
         @endif
