@@ -9,7 +9,7 @@
             @endif
         </div>
         <div class="prose">
-            <x-editorjs :content="$layout->section_content" block_class="mx-0" />
+            <x-editorjs :content="$layout->section_content" block_class="" />
         </div>
     </div>
 </div>

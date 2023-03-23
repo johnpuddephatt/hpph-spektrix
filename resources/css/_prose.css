@@ -18,6 +18,6 @@
     @apply type-medium;
 }
 
-.prose > *:first-child {
+.prose > *:first-child > *:first-child {
     margin-top: 0;
 }
