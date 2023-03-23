@@ -101,6 +101,8 @@ class JournalPostLayout extends Layout implements CachableAttributes
                     ->with("featuredImage");
             }
 
+            dd($post);
+
             if (!isset($post) || !$post) {
                 return null;
             }
