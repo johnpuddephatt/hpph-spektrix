@@ -80,7 +80,6 @@ class JournalPostLayout extends Layout implements CachableAttributes
     public function getPostAttribute()
     {
         return $this->remember("posts", 3600, function () {
-            dd($this->display);
             if ($this->display == "featured") {
                 $post = \App\Models\Post::where("featured", true)
                     ->latest()
@@ -99,8 +98,8 @@ class JournalPostLayout extends Layout implements CachableAttributes
             if ($this->display == "tagged") {
                 $post = \App\Models\Post::latest()
                     ->withAnyTags($this->tags_to_include)
-                    ->first()
-                    ->with("featuredImage");
+                    ->with("featuredImage")
+                    ->first();
             }
 
             dd($post);
