@@ -47,7 +47,7 @@ class JournalPostLayout extends Layout implements CachableAttributes
                     "featured" => "The newest featured post",
                     "related" => "The newest related post",
                     "specific" => "A specific post",
-                    "tagged" => "Tagged",
+                    "tagged" => "The newest post with a specific tag/tags",
                 ])
                 ->default("featured")
                 ->displayUsingLabels(),
