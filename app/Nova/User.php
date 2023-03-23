@@ -15,6 +15,7 @@ use Laravel\Nova\Panel;
 use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
 use Whitecube\NovaFlexibleContent\Flexible;
 use Illuminate\Validation\Rule;
+use Laravel\Nova\Fields\KeyValue;
 use NormanHuth\Values\Values;
 
 class User extends Resource
@@ -91,13 +92,9 @@ class User extends Resource
             Panel::make("Content", [
                 Flexible::make("", "content")
                     ->addLayout("Favourite films", "favourite-films", [
-                        // SimpleRepeatable::make(
-                        //     "Favourite films",
-                        //     "favourite_films",
-                        //     [Text::make("Film name")]
-                        // )->addRowLabel("Add film"),
-
-                        Values::make("Favourite films")->valueLabel("Film"),
+                        KeyValue::make("Favourite films")
+                            ->valueLabel("Year")
+                            ->keyLabel("Film"),
                     ])
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\SimpleTextLayout::class
