@@ -102,8 +102,6 @@ class JournalPostLayout extends Layout implements CachableAttributes
                     ->first();
             }
 
-            dd($post);
-
             if (!isset($post) || !$post) {
                 return null;
             }
