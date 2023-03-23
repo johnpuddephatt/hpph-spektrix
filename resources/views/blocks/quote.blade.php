@@ -1,4 +1,4 @@
-    <div class="py-16 bg-black flex flex-col lg:flex-row">
+    <div class="py-12 bg-black flex flex-col lg:flex-row">
         <div style="background-color: @yield('color')"
             class="flex items-center text-center flex-col justify-center bg-yellow lg:w-1/2">
             <h2 class="type-medium max-w-lg mx-auto mb-6 lg:mb-16">“{{ $layout->quote }}”</h2>
