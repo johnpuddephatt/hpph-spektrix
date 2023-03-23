@@ -42,11 +42,15 @@ class JournalPostLayout extends Layout implements CachableAttributes
     public function fields()
     {
         return [
-            Select::make("Display", "display")->options([
-                "related" => "The newest related post",
-                "specific" => "A specific post",
-                "tagged" => "Tagged",
-            ]),
+            Select::make("Display", "display")
+                ->options([
+                    "featured" => "The newest featured post",
+                    "related" => "The newest related post",
+                    "specific" => "A specific post",
+                    "tagged" => "Tagged",
+                ])
+                ->default("featured")
+                ->displayUsingLabels(),
 
             Select::make("Post", "post_id")
                 ->options(\App\Models\Post::pluck("title", "id"))
@@ -76,6 +80,12 @@ class JournalPostLayout extends Layout implements CachableAttributes
     public function getPostAttribute()
     {
         return $this->remember("posts", 3600, function () {
+            if ($this->display == "featured") {
+                $post = \App\Models\Post::where("featured", true)
+                    ->latest()
+                    ->first();
+            }
+
             if ($this->display == "specific") {
                 $post = \App\Models\Post::find($this->post_id);
             }

@@ -1,4 +1,4 @@
-<div class="bg-black py-12 text-white">
+<div class="bg-black pt-12 pb-16 text-white">
     <div class="container">
         <div class="type-xs-mono text-center mb-4">{{ $layout->title }}</div>
         <div class="type-regular lg:type-medium text-center"><span class="underline text-yellow">Upcoming</span> / <a

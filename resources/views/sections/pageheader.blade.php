@@ -3,7 +3,7 @@
         {!! $page->mainImage->img('wide', ['class' => 'w-full opacity-80'])->toHtml() !!}
     @endif
     <h1
-        class="type-medium lg:type-large container max-w-full text-center text-white absolute top-1/2 left-0 right-0 -translate-y-1/2">
+        class="type-regular lg:type-medium container max-w-full text-center text-white absolute top-1/2 left-0 right-0 -translate-y-1/2">
         {{ $page->name }}
     </h1>
 </div>

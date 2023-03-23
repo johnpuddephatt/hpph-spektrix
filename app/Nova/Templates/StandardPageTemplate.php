@@ -33,6 +33,7 @@ class StandardPageTemplate
                     )
                     ->addLayout(\App\Nova\Flexible\Layouts\TeamLayout::class)
                     ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\QuoteLayout::class)
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\LinkBannerLayout::class
                     )

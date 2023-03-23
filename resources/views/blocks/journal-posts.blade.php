@@ -1,6 +1,6 @@
 @if (count($layout->posts))
 
-    <div class="bg-sand-dark pb-16">
+    <div class="bg-sand-dark py-16">
         <div class="container">
             <div class="type-xs-mono text-center mb-2">Latest</div>
             <h2 class="type-regular lg:type-medium mb-8 lg:mb-16 text-center">Stories from our <a class="underline"
