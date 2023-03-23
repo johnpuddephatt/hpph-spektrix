@@ -8,8 +8,8 @@
                     {{ $layout->title }}</h2>
             @endif
         </div>
-        <div class="prose">
-            <x-editorjs :content="$layout->section_content" block_class="" />
-        </div>
+
+        <x-editorjs class="prose" :content="$layout->section_content" block_class="" />
+
     </div>
 </div>

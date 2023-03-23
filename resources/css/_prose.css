@@ -18,6 +18,7 @@
     @apply type-medium;
 }
 
-.prose > *:first-child > *:first-child {
+.prose > *:first-child h2,
+.prose > *:first-child h3 {
     margin-top: 0;
 }

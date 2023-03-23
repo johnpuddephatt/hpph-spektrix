@@ -1,3 +1,3 @@
-<p class="prose mb-5">
+<p class="mb-5">
     {!! $text !!}
 </p>
