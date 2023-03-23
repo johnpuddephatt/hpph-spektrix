@@ -8,7 +8,7 @@
                     {{ $layout->title }}</h2>
             @endif
         </div>
-        <div class="">
+        <div class="prose">
             <x-editorjs :content="$layout->section_content" block_class="mx-0" />
         </div>
     </div>
