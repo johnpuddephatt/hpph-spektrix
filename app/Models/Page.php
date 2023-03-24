@@ -92,14 +92,14 @@ class Page extends Model implements HasMedia
             ->performOnCollections("gallery", "main");
 
         // Used on sectioned page flexible layout. probably doesn't need to be responsive, switch to regular image field? 
-        // if ($media && Str::startsWith($media->collection_name, "banner_")) {
-        //     $this->addMediaConversion("landscape")
-        //         ->quality(80)
-        //         ->sharpen(10)
-        //         ->crop("crop-center", 1600, 900)
-        //         ->withResponsiveImages()
-        //         ->performOnCollections($media->collection_name);
-        // }
+        if ($media && Str::startsWith($media->collection_name, "gallery_")) {
+            $this->addMediaConversion("square")
+                ->quality(80)
+                ->sharpen(10)
+                ->crop("crop-center", 1600, 1600)
+                ->withResponsiveImages()
+                ->performOnCollections($media->collection_name);
+        }
     }
 
     public function registerMediaCollections(): void
