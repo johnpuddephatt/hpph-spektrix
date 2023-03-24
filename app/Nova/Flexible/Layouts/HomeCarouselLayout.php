@@ -53,8 +53,7 @@ class HomeCarouselLayout extends Layout implements HasMedia
 
     public function getShuffledImagesAttribute()
     {
-        $shuffled_images = $this->model
-            ->getMedia("gallery")
+        $shuffled_images = $this->getMedia("gallery")
             ->shuffle()
             ->groupBy("custom_properties.category");
 
