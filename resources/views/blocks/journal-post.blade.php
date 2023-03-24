@@ -8,7 +8,7 @@
             <a href="{{ $layout->post->url }}"
                 class="{{ $layout->dark ? 'bg-black-light text-white' : 'bg-sand' }} rounded overflow-hidden block lg:flex flex-col items-center lg:flex-row">
                 @if ($layout->post->featuredImage)
-                    {!! $layout->post->featuredImage->img('landscape')->attributes(['class' => 'w-full block lg:w-1/2 aspect-video lg:aspect-auto']) !!}
+                    {!! $layout->post->featuredImage->img('wide')->attributes(['class' => 'w-full block lg:w-1/2 aspect-video lg:aspect-auto']) !!}
                 @endif
 
                 <div class="flex flex-col aspect-video lg:block lg:aspect-auto lg:py-8 p-8 lg:w-1/2 mx-auto lg:max-w-md">
@@ -18,7 +18,6 @@
                             <p class="type-regular lg:type-medium !font-normal mb-4">{{ $layout->post->subtitle }}</p>
                         @endif
                     </div>
-                    <p class="">{{ $layout->post->summary }}</p>
 
                     <div class="mt-auto flex flex-row gap-4 pt-2 justify-between align-bottom">
                         <div>
