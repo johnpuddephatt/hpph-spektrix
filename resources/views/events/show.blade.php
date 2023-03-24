@@ -80,7 +80,7 @@
 
                 <div class="max-w-4xl lg:pr-16 xl:pr-32">
 
-                    <div class="prose mt-12 mb-24">
+                    <div class="prose container mt-12 mb-24">
                         {{ $event->long_description }}
                     </div>
 
