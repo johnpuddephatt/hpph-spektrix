@@ -23,7 +23,7 @@
             class="bg-yellow lg:bg-transparent pl-2.5 rounded-l-full flex-grow lg:flex-grow-0 lg:rounded-none p-1 lg:p-0 mt-4 lg:mt-0 lg:border-l lg:border-gray-light lg:pl-4 flex flex-row gap-2 lg:flex-col self-stretch lg:w-4/12">
 
             <div class="flex flex-row items-center gap-1.5">@svg('clock', ' w-4 h-4')
-                <div class="type-regular !leading-none">{{ $instance->start->format('H:i') }}</div>
+                <div class="type-regular">{{ $instance->start->format('H:i') }}</div>
                 <x-accessibilities :dark="true" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->audio_described" />
             </div>
 
