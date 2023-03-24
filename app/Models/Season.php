@@ -18,6 +18,8 @@ use Astrotomic\CachableAttributes\CachesAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Casts\PageContentCast;
+
 class Season extends Model implements HasMedia, CachableAttributes
 {
     use HasFactory;
