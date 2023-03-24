@@ -15,10 +15,11 @@
                 <div class="">
                     <h2 class="type-regular mb-1 mt-3">{{ $post->title }}</h2>
                     <div class="type-xs-mono">
-                        {{ $post->date }}@if ($post->tags)
-                            ,
+                        {{ $post->date }}
+                        <!-- -->
+                        @if (count($post->tags))
+                            ,&nbsp;
                         @endif
-
                         @foreach ($post->tags as $tag)
                             <span>{{ $tag->name }}</span>
                         @endforeach
