@@ -83,8 +83,7 @@ class JournalPostLayout extends Layout implements CachableAttributes
             if ($this->display == "featured") {
                 $post = \App\Models\Post::where("featured", true)
                     ->latest()
-                    ->first()
-                    ->get();
+                    ->first();
             }
 
             if ($this->display == "specific") {
