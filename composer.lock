@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "321f935a3575f30f110d7887c69af672",
+    "content-hash": "0e64cc5fda66d4c7f78e4c10bb2a0238",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -2919,6 +2919,51 @@
                 "source": "https://github.com/laravel/nova/tree/v4.22.2"
             },
             "time": "2023-03-07T18:10:41+00:00"
+        },
+        {
+            "name": "laravel/nova-log-viewer",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/nova-log-viewer.git",
+                "reference": "58e7a340f7a7d4ba1554085768abe360297d00f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/nova-log-viewer/zipball/58e7a340f7a7d4ba1554085768abe360297d00f1",
+                "reference": "58e7a340f7a7d4ba1554085768abe360297d00f1",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Nova\\LogViewer\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Nova\\LogViewer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool for viewing your application logs.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/nova-log-viewer/tree/v0.1.4"
+            },
+            "time": "2022-10-25T14:28:46+00:00"
         },
         {
             "name": "laravel/sanctum",

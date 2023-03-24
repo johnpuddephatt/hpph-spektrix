@@ -308,7 +308,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             \Outl1ne\MenuBuilder\MenuBuilder::make(),
             new \Outl1ne\NovaSettings\NovaSettings(),
             new \Spatie\BackupTool\BackupTool(),
-            new \Stepanenko3\LogsTool\LogsTool(),
+            \Laravel\Nova\LogViewer\LogViewer::make(),
         ];
     }
 
