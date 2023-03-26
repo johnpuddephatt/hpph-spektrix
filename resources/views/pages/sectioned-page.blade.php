@@ -53,7 +53,7 @@
                     <h2 class="type-medium container">
                         {{ $layout->title }}</h2>
 
-                    <x-editorjs block_class="my-8 container" :content="json_decode($layout->section_content)" />
+                    <x-editorjs block_class="mt-8 mb-16 container" :content="json_decode($layout->section_content)" />
 
                 </section>
             @endforeach
