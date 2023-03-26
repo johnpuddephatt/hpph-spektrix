@@ -1,6 +1,6 @@
 @props(['class' => null, 'tags'])
 
-@if ($tags)
+@if (count($tags))
     <div class="{{ $class }}">
         {{ $tags[0]->name_translated }}
         @if (count($tags) > 1)
