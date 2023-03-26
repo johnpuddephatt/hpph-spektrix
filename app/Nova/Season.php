@@ -90,30 +90,7 @@ class Season extends Resource
                 ->rows(3)
                 ->hideFromIndex(),
             Tag::make("Posts")->displayAsList(),
-            Panel::make("Members’ voices", [
-                NovaSwitcher::make(
-                    "Enabled?",
-                    "content->members_voices->enabled"
-                )->hideFromIndex(),
-                DependencyContainer::make([
-                    Textarea::make(
-                        "Quote",
-                        "content->members_voices->quote"
-                    )->rows(3),
-                    Text::make(
-                        "Member name",
-                        "content->members_voices->name"
-                    )->hideFromIndex(),
-                    Images::make(
-                        "Image",
-                        "content->members_voices->image"
-                    )->hideFromIndex(),
-                    Text::make(
-                        "Member role/description",
-                        "content->members_voices->role"
-                    )->hideFromIndex(),
-                ])->dependsOn("content->members_voices->enabled", 1),
-            ]),
+
             new Panel("Content", [
                 Flexible::make("Content", "content")
                     ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)

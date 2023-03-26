@@ -107,7 +107,7 @@
             <div
                 class="col-span-2 lg:col-span-1 flex flex-row justify-center lg:justify-start items-center gap-2 self-end">
                 <a target="_blank" class="text-white" href="https://leedsheritagetheatres.com/">@svg('logo-lht', 'w-28 h-auto')</a>
-                @svg('logo-full', 'text-white w-24 h-auto')
+                @svg('logo-hpph', 'text-white w-24 h-auto')
             </div>
 
         </div>

@@ -34,7 +34,7 @@
             <div class="flex flex-col gap-4">
                 @foreach ($seasons as $season)
                     <a href="{{ $season->url }}"
-                        class="float-left mr-auto clear-both border border-yellow rounded py-1.5 pl-1 pr-2">
+                        class="truncate max-w-full float-left mr-auto clear-both border border-yellow rounded py-1.5 pl-1 pr-2">
                         @if ($loop->first)
                             <span
                                 class="type-xs-mono !leading-none bg-yellow text-black py-1.5 rounded-full px-2 inline-block align-top mr-1">New!</span>
