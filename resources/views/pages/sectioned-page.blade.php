@@ -42,7 +42,7 @@
             @foreach ($page->content as $layout)
                 <section
                     x-intersect:enter.half="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'"
-                    id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}" class="mb-8">
+                    id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}" class="pb-8">
 
                     <div class="container">
                         @if ($layout->banner)
