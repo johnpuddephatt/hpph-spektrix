@@ -61,9 +61,11 @@
     @endif
 
     @if ($strand->content)
-        @foreach ($strand->content as $layout)
-            @include('blocks.' . $layout->name(), ['layout' => $layout])
-        @endforeach
+        <div class="bg-black">
+            @foreach ($strand->content as $layout)
+                @include('blocks.' . $layout->name(), ['layout' => $layout])
+            @endforeach
+        </div>
     @endif
 
 @endsection

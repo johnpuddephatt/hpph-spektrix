@@ -44,7 +44,7 @@
     @if ($season->instances->count())
         <div class="bg-black text-yellow">
             <div class="pt-24 pb-16 container">
-                <p class="type-xs-mono text-center container mb-2">What’s on</p>
+                <p class="type-xs-mono text-white text-center container mb-2">What’s on</p>
                 <h2 class="type-regular lg:type-medium text-center container mb-12">
                     {{ $season->name }}
                 </h2>
@@ -59,9 +59,11 @@
     @endif
 
     @if ($season->content)
-        @foreach ($season->content as $layout)
-            @include('blocks.' . $layout->name(), ['layout' => $layout])
-        @endforeach
+        <div class="bg-black">
+            @foreach ($season->content as $layout)
+                @include('blocks.' . $layout->name(), ['layout' => $layout])
+            @endforeach
+        </div>
     @endif
 
 @endsection
