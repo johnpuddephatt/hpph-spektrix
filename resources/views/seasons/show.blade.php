@@ -20,7 +20,7 @@
         @endif
 
         <div class="w-full absolute text-white text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-            @svg('logo-hpph-without-est', 'mx-auto text-black')
+            @svg('logo-hpph-without-est', 'w-12 mx-auto text-yellow')
             <div class="type-xs-mono mb-8 mt-1">presents</div>
             <h1 class="type-large mx-auto max-w-sm">{{ $season->name }}</h1>
             <div
