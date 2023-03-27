@@ -125,7 +125,6 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->width(1920)
             ->height(1080)
             ->crop("crop-center", 1920, 1080)
-
             ->extractVideoFrameAtSecond(0);
         // ->performOnCollections("video");
 
