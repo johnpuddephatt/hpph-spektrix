@@ -156,6 +156,5 @@
              @endif
          </div>
 
-         <x-newsletter-card />
      </div>
  </div>

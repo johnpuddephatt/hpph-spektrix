@@ -36,7 +36,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new \App\Nova\Settings\Contact(),
             new \App\Nova\Settings\Messages(),
             new \App\Nova\Settings\System(),
-            new \App\Nova\Settings\Newsletter(),
+            // new \App\Nova\Settings\Newsletter(),
         ];
 
         foreach ($settings as $setting) {
@@ -46,15 +46,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 $setting->page ?? null
             );
         }
-
-        // \Outl1ne\NovaSettings\NovaSettings::addSettingsPages([
-        //     new \App\Nova\Settings\Alert(),
-        //     new \App\Nova\Settings\Banner(),
-        //     new \App\Nova\Settings\Cinema(),
-        //     new \App\Nova\Settings\Messages(),
-        //     new \App\Nova\Settings\Services(),
-        //     new \App\Nova\Settings\Newsletter(),
-        // ]);
 
         Nova::serving(function () {
             Nova::script(
