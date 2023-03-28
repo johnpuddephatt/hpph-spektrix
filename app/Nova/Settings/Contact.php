@@ -12,7 +12,7 @@ class Contact
     public function fields(): array
     {
         return [
-            Text::make("Phone")->help("foo"),
+            Text::make("Phone"),
             Text::make("Address"),
             KeyValue::make("Email addresses")
                 ->keyLabel("Name")
