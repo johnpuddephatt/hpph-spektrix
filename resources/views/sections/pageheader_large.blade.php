@@ -4,7 +4,7 @@
           {!! $page->mainImage->img('wide', ['class' => 'absolute w-full opacity-60 inset-0 h-full object-cover'])->toHtml() !!}
       @endif
 
-      <div class="text-white relative container w-1/2 mr-0 mt-auto">
+      <div class="text-white relative container lg:w-1/2 lg:mr-0 mt-auto">
           <h1 class="type-medium lg:type-large">{{ $page->name }}</h1>
           <p class="type-xs-mono mt-4">{{ $page->subtitle }}</p>
       </div>
