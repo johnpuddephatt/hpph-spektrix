@@ -1,4 +1,4 @@
-<a class="mb-5 inline-block rounded bg-yellow p-4" href="{{ $file['url'] }}"><span
+<a class="max-w-[50ch] mt-12 mb-5 inline-block rounded bg-yellow p-4" href="{{ $file['url'] }}"><span
         class="type-regular">{{ $title }}</span>&nbsp;
     <span class="type-xs-mono">
         @if ($file['size'] > 1048576)

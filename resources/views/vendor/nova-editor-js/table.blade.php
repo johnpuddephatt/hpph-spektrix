@@ -1,4 +1,4 @@
-<table class="w-full max-w-[55ch] table-auto">
+<table class="w-full max-w-[50ch] table-auto">
     @foreach ($content as $row)
         @php $is_header_row = $loop->first @endphp
         <tr>

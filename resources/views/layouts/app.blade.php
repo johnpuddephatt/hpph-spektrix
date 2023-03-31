@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth antialiased 2xl:text-lg">
+<html class="scroll-smooth antialiased">
 
 <head>
 
