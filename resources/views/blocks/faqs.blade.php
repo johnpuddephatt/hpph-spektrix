@@ -8,13 +8,13 @@
             @foreach ($layout->faqs as $faq)
                 <details v-for="faq in faqs">
                     <summary style="color: @yield('color')"
-                        class="group lg:type-regular text-yellow container focus-visible:outline-none focus:outline-none focus:bg-white focus:bg-opacity-10 leading-tight font-bold py-6 flex items-center justify-between gap-2">
+                        class="group lg:type-regular text-yellow lg:container focus-visible:outline-none focus:outline-none focus:bg-white focus:bg-opacity-10 leading-tight font-bold py-6 flex items-center justify-between gap-2">
                         <div class="group-hover:text-[inherit] text-white">{{ $faq->question }}</div>
                         @svg('plus', 'block text-white w-6 h-6')
 
                     </summary>
                     @if ($faq->answer)
-                        <x-editorjs :content="$faq->answer" class="py-4 px-6" block_class="mx-0" />
+                        <x-editorjs :content="$faq->answer" class="py-4 lg:px-6" block_class="mx-0" />
                     @endif
                 </details>
             @endforeach
