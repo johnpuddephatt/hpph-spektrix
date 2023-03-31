@@ -86,7 +86,7 @@
 
                 </div>
                 <div class="lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
-                    <h3 class="type-small mb-3">Key</h3>
+                    <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
                     <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
                         <span
                             class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">C</span>

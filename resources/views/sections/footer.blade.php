@@ -44,7 +44,7 @@
             </div>
             <div class="-order-1 col-span-2 lg:-order-none lg:max-w-xl">
                 <h3 class="type-regular lg:type-xs text-center lg:text-left text-yellow font-bold lg:text-white">
-                    Newsletter<span class="hidden lg:inline">:</span></h3>
+                    {!! $settings['newsletter_heading'] ?? 'Newsletter' !!}<span class="hidden lg:inline">:</span></h3>
 
                 <form class="mt-8 grid grid-cols-2 gap-x-4 gap-y-4">
                     <div class="relative z-0 mt-6">
