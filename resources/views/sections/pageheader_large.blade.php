@@ -5,7 +5,7 @@
       @endif
 
       <div class="text-white relative container w-1/2 mr-0 mt-auto">
-          <h1 class="type-large">{{ $page->name }}</h1>
+          <h1 class="type-medium lg:type-large">{{ $page->name }}</h1>
           <p class="type-xs-mono mt-4">{{ $page->subtitle }}</p>
       </div>
 
