@@ -9,7 +9,7 @@
           <p class="type-xs-mono mt-4">{{ $page->subtitle }}</p>
       </div>
 
-      <div class="relative bg-yellow mt-auto container lg:w-1/2 mr-0">
+      <div class="relative bg-yellow mt-8 lg:mt-auto container lg:w-1/2 mr-0">
           <div class="type-medium pt-8 lg:pt-16 pb-16 max-w-6xl">
               {{ $page->introduction }}
           </div>
