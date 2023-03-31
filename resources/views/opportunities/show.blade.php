@@ -24,8 +24,10 @@
                             class="container top-[50vh] lg:top-auto right-0 lg:right-[50vw] lg:w-[50vw] w-screen fixed text-white -z-10">
                             <h1 class="type-medium lg:type-large max-w-md">{{ $opportunity->title }}</h1>
                             <div class="type-xs-mono mt-2">{{ $opportunity->type }}</div>
-                            <div class="type-xs-mono">
-                                {{ $opportunity->application_deadline }}</div>
+                            @if ($opportunity->application_deadline)
+                                <div class="type-xs-mono">
+                                    Apply by {{ $opportunity->application_deadline }}</div>
+                            @endif
                         </div>
                         <div class="type-medium mb-8 max-w-xl">{{ $opportunity->summary }}</div>
                     </div>

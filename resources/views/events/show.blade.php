@@ -111,7 +111,7 @@
                     @svg('plus', 'h-6 w-6')
                 </div>
                 <div class="type-regular lg:px-6">
-                    See showtimes
+                    {!! $settings['showtimes_link'] ?? 'See showtimes &amp; book' !!}
                 </div> @svg('arrow-right', 'ml-auto h-8 w-8 p-2 text-yellow bg-black rounded-full')
             </div>
         </button>
