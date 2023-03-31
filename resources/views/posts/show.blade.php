@@ -12,7 +12,8 @@
             <div class="lg:container text-center lg:text-left flex flex-col h-full absolute inset-0 text-white">
                 <div class="my-auto">
                     <div class="type-xs-mono lg:hidden mt-16 mb-8">{{ $post->date }}</div>
-                    <h1 class="type-medium xl:type-large max-w-xs lg:max-w-xl mx-auto lg:mx-0">{{ $post->title }}</h1>
+                    <h1 class="type-medium xl:type-large max-w-xs lg:max-w-lg 2xl:max-w-xl mx-auto lg:mx-0">
+                        {{ $post->title }}</h1>
 
                     <div class="justify-center mt-8 lg:hidden gap-1 flex flex-row items-center">
                         @foreach ($post->tags_translated ?? [] as $tag)
@@ -23,7 +24,7 @@
                 </div>
                 <div class="pb-8 lg:flex flex-row items-end">
                     <div class="lg:w-1/2">
-                        <p class="mx-auto lg:mx-0 max-w-xs lg:max-w-lg">{{ $post->summary }}</p>
+                        <p class="mx-auto lg:mx-0 max-w-xs lg:max-w-md">{{ $post->summary }}</p>
                     </div>
                     <x-journal-postmeta class="hidden lg:block border-l border-gray container w-1/2 !text-white"
                         :dark="true" :post="$post" />
