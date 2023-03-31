@@ -39,6 +39,9 @@ class FilmLayout extends Layout implements HasMedia
     {
         return [
             Images::make("Film image", "image"),
+            Text::make("Error message", "message")
+                ->maxLength(40)
+                ->enforceMaxlength(),
             Text::make("Film title", "title"),
             Text::make("Film year", "year"),
             Text::make("Film certificate", "certificate"),
