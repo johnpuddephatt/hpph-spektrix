@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="scroll-smooth antialiased">
+<!-- 2xl:text-lg -->
 
 <head>
 

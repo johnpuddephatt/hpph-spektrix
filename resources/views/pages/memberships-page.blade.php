@@ -1,5 +1,6 @@
 @push('webComponents', '#spektrix-memberships')
-@extends('layouts.default', ['header_class' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'pages', 'resourceId' => $page->id])])
+@extends('layouts.default', ['header_class' => 'text-white', 'edit_link' => route('nova.pages.edit', ['resource' => 'pages', 'resourceId' => $page->id])])
+
 @section('title', $page->name)
 @section('content')
 
