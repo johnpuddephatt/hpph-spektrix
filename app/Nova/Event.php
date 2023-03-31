@@ -116,9 +116,13 @@ class Event extends Resource
                 ]),
                 Images::make("Image gallery", "gallery")
                     ->singleMediaRules("dimensions:min_width=800")
+                    ->rules("max:4")
                     ->customPropertiesFields([Markdown::make("Description")])
                     ->fullWidth()
-                    ->hideFromIndex(),
+                    ->hideFromIndex()
+                    ->help(
+                        "Maximum four images, minimum width per image 800px"
+                    ),
                 Url::make("Trailer")->placeholder(
                     "Provide a URL for a video hosted on YouTube, Vimeo etc."
                 ),

@@ -7,7 +7,7 @@
     <div class="container flex flex-row items-center py-3 2xl:py-6">
         <a title="Navigate to homepage" aria-label="Navigate to homepage" class="relative z-20 mr-3 text-yellow"
             style="color: @yield('color')" href="/">
-            @svg('logo-compact', 'h-10 w-auto ' . ($logo_background ?? 'text-transparent'))</a>
+            @svg('logo-compact', 'h-[2.35rem] w-auto ' . ($logo_background ?? 'text-transparent'))</a>
 
         <a class="type-xs-mono relative z-20 flex flex-row items-center gap-1.5 rounded py-1 px-2"
             :class="{
@@ -25,7 +25,7 @@
 
         @include('sections.navigation')
 
-        <div class="absolute top-14 lg:top-16 right-5 flex flex-col items-center lg:mt-0 gap-3">
+        <div class="absolute top-14 right-5 flex flex-col items-center lg:mt-0 gap-2">
             @include('components.menu-button')
 
             <livewire:search />
@@ -33,7 +33,7 @@
             @include('spektrix-components.basket')
             @include('spektrix-components.login-status')
 
-            @if ($edit_link ?? null)
+            @if (\Auth::user() && $edit_link ?? null)
                 <a aria-label="Edit page" title="Edit page" class="inline-block" :class="{ 'max-lg:!hidden': scrolled }"
                     href="{{ $edit_link }}">@svg('edit', 'h-6 w-6 lg:h-8 lg:w-8 p-0.5 pb-0.5')</a>
             @endif
