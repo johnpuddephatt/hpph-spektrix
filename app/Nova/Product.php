@@ -14,6 +14,7 @@ use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
 use Whitecube\NovaFlexibleContent\Flexible;
 use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\Fields\Slug;
+use Illuminate\Validation\Rule;
 
 class Product extends Resource
 {
