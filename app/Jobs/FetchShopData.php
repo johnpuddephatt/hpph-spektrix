@@ -49,7 +49,7 @@ class FetchShopData implements ShouldQueue
                 ["id" => $product->id],
                 [
                     "enabled" => true,
-                    "name" => $product->name ?? null,
+                    "spektrix_name" => $product->name ?? null,
                     "price" => $product->price ?? null,
                     "postage" => $product->postageAndPacking ?? null,
                     "type" => $product->attribute_HPPHStockType ?? null,

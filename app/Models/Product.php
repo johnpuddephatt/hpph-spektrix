@@ -44,6 +44,7 @@ class Product extends Model implements HasMedia
         "slug",
         "id",
         "name",
+        "spektrix_name",
         "description",
         "price",
         "postage",

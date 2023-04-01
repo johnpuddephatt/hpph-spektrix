@@ -62,7 +62,8 @@ class Product extends Resource
     {
         return [
             ID::make()->hide(),
-            Text::make("Name")->readOnly(),
+            Text::make("Name"),
+            Text::make("Spektrix name")->readOnly(),
             Text::make("Price")->readOnly(),
             Text::make("Postage")->readOnly(),
             Boolean::make("Synced", "enabled")
