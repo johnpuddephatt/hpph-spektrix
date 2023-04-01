@@ -7,7 +7,8 @@
             @php($video_conversions = json_decode($season->featuredVideo->video_conversions))
             {!! $season->featuredVideo->img('thumb', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() !!}
 
-            <video onplay="(function(e){e.classList.remove('opacity-0'); e.classList.add('opacity-50') })(this)"
+            <video
+                onplay="(function(e){e.previousElementSibling.classList.add('opacity-0'); e.classList.remove('opacity-0'); e.classList.add('opacity-50') })(this)"
                 class="absolute inset-0 h-full w-full object-cover opacity-0" playsinline muted autoplay loop>
                 @foreach ($video_conversions->{'1280x720'} as $format => $url)
                     <source src="{{ Storage::url($url) }}" type="video/{{ $format }}">
