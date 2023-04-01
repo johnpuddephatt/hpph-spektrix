@@ -1,4 +1,4 @@
-<div class="py-16 bg-black text-white">
+<div id="team" class="py-16 bg-black text-white">
     <div class="container lg:flex flex-row pb-16">
         <h3 class="type-medium mb-4 lg:w-1/2 text-yellow">{{ $layout->title }}</h3>
         <p class="max-w-lg">{{ $layout->subtitle }}</p>

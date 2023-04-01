@@ -10,9 +10,11 @@
     <div class="mt-[75vh] lg:mt-0 lg:ml-[50%] min-h-screen bg-sand relative">
         <div class="bg-sand-light pt-6 pb-12 lg:h-[66.6vh] flex flex-col">
             <div class="container relative z-50">
-                <a class="type-xs-mono border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
-                    href="/about-us">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
-                    Back </a>
+                @if (isset($settings['team_page']))
+                    <a class="type-xs-mono border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
+                        href="{{ \App\Models\Page::find($settings['team_page'])?->url }}{{ $settings['team_page_hash'] ?? null }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
+                        Back </a>
+                @endif
             </div>
             <div class="container my-auto">
                 <h2 class="type-medium lg:type-large">{{ $user->name }}</h2>
