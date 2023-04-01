@@ -13,6 +13,7 @@ use Laravel\Nova\Panel;
 use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
 use Whitecube\NovaFlexibleContent\Flexible;
 use Laravel\Nova\Fields\KeyValue;
+use Laravel\Nova\Fields\Slug;
 
 class Product extends Resource
 {
@@ -64,6 +65,10 @@ class Product extends Resource
             ID::make()->hide(),
             Text::make("Name"),
             Text::make("Spektrix name")->readOnly(),
+            Slug::make("Slug")
+                ->from("Name")
+                ->hideFromIndex()
+                ->rules([Rule::requiredIf(fn() => $request->published)]),
             Text::make("Price")->readOnly(),
             Text::make("Postage")->readOnly(),
             Boolean::make("Synced", "enabled")

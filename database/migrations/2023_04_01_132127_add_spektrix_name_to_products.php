@@ -18,6 +18,10 @@ return new class extends Migration {
                 ->string("name")
                 ->nullable()
                 ->change();
+            $table
+                ->string("slug")
+                ->nullable()
+                ->change();
         });
     }
 
