@@ -33,7 +33,7 @@
             @include('spektrix-components.basket')
             @include('spektrix-components.login-status')
 
-            @if (\Auth::user() && $edit_link ?? null)
+            @if (\Auth::user() && isset($edit_link))
                 <a aria-label="Edit page" title="Edit page" class="inline-block" :class="{ 'max-lg:!hidden': scrolled }"
                     href="{{ $edit_link }}">@svg('edit', 'h-6 w-6 lg:h-8 lg:w-8 p-0.5 pb-0.5')</a>
             @endif

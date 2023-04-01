@@ -8,9 +8,7 @@
                     class="@if (count($images) > 2) h-[32em] w-auto @else w-full h-auto @endif block rounded">
 
                 <figcaption class="type-xs-mono py-3">
-                    @if (count($images) > 1)
-                        <strong>{{ $loop->iteration }}/{{ count($images) }}</strong>
-                    @endif
+
                     @if (isset($image['caption']))
                         {{ $image['caption'] }}
                     @endif
