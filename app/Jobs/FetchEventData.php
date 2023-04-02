@@ -128,7 +128,7 @@ class FetchEventData implements ShouldQueue
                     "original_language_title" =>
                         $event->attribute_OriginalLanguageTitle ?? null,
                     "strobe_light_warning" =>
-                        $event->attribute_StrobeLightWarning ?? false,
+                        $event->attribute_StrobeLightWarning ?? null,
                     "year_of_production" =>
                         $event->attribute_YearOfProduction ?? null,
                     "featuring_stars" => implode(
@@ -152,6 +152,14 @@ class FetchEventData implements ShouldQueue
                         array_filter([
                             $event->attribute_Vibe1 ?? null,
                             $event->attribute_Vibe2 ?? null,
+                        ])
+                    ),
+                    "content_guidance" => implode(
+                        ",",
+                        array_filter([
+                            $event->attribute_ContentGuidance1 ?? null,
+                            $event->attribute_ContentGuidance2 ?? null,
+                            $event->attribute_ContentGuidance3 ?? null,
                         ])
                     ),
                     "members_offer_available" =>

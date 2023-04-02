@@ -84,6 +84,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "language",
         "original_language_title",
         "strobe_light_warning",
+        "content_guidance",
         "year_of_production",
         "featuring_stars",
         "genres",

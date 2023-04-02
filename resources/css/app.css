@@ -27,9 +27,9 @@ form {
     margin-bottom: 0;
 }
 
-cite:first-line {
+/* cite:first-line {
     @apply type-regular;
-}
+} */
 
 .marquee {
     animation: marquee 40s linear infinite;

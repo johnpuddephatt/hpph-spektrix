@@ -85,15 +85,20 @@
                     </div>
 
                     <div class="container">
-                        <h3 class="type-xs-mono">Film details</h3>
+                        <h3 class="type-xs-mono">Details</h3>
 
                         <div class="mt-4 divide-y divide-sand-dark border-t border-sand-dark">
+
+                            <x-details-row label="Original language title" :value="$event->original_language_title" />
                             <x-details-row label="Duration" :value="$event->duration" />
                             <x-details-row label="Director" :value="$event->director" />
                             <x-details-row label="Featuring" :value="implode(' &bullet; ', $event->featuring_stars)" />
-                            <x-details-row label="Format" :value="$event->format" />
-                            <x-details-row label="Language" :value="implode(' &bullet; ', $event->language)" />
+                            <x-details-row label="Year" :value="$event->year_of_production" />
                             <x-details-row label="Country of origin" :value="implode(' &bullet; ', $event->country_of_origin)" />
+                            <x-details-row label="Language" :value="implode(' &bullet; ', $event->language)" />
+                            <x-details-row label="Format" :value="$event->format" />
+                            <!-- Strobe lighting -->
+                            <!-- Content warning -->
                         </div>
                     </div>
                 </div>
