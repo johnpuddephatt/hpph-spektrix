@@ -66,7 +66,9 @@ class User extends Resource
                 ->sortable()
                 ->rules("required", "max:255"),
 
-            Slug::make("Slug")->from("name"),
+            Slug::make("Slug")
+                ->from("name")
+                ->hideFromIndex(),
 
             Text::make("Email")
                 ->sortable()
