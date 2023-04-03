@@ -6,10 +6,10 @@
                 <ul class="text-[3.75rem] font-bold leading-[108%] tracking-[-0.050em] text-white">
                     <li>
                         <a href="/" class="relative block py-0.5 hover:text-yellow transition">
-                            @if (Request::is('/'))
+                            {{-- @if (Request::is('/'))
                                 <span
                                     class="-left-4 absolute top-1/2 transform -translate-y-full block w-3 h-3 rounded-full bg-yellow"></span>
-                            @endif
+                            @endif --}}
                             Home
                         </a>
                     </li>
@@ -17,10 +17,10 @@
                         <li>
                             <a href="{{ $menu_item['value'] }}"
                                 class="relative block py-0.5 hover:text-yellow transition">
-                                @if (Str::of($menu_item['value'])->startsWith('/' . Request::path()))
+                                {{-- @if (Str::of($menu_item['value'])->startsWith('/' . Request::path()))
                                     <span
                                         class="-left-4 absolute top-1/2 transform -translate-y-full block w-3 h-3 rounded-full bg-yellow"></span>
-                                @endif
+                                @endif --}}
                                 {{ $menu_item['name'] }}
 
                             </a>
