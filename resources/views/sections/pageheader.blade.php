@@ -7,7 +7,7 @@
         {{ $page->name }}
     </h1>
 </div>
-<div class="bg-yellow text-center pt-8 lg:pt-12 pb-16">
-    <div class="type-xs-mono pb-12 lg:pb-8">{{ $page->subtitle }}</div>
+<div class="bg-yellow text-center pt-12 pb-16">
+    <div class="type-xs-mono pb-8">{{ $page->subtitle }}</div>
     <div class="type-regular lg:type-medium container max-w-4xl text-center">{{ $page->introduction }}</div>
 </div>
