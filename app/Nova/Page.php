@@ -98,7 +98,7 @@ class Page extends Resource
                 ->hideFromIndex()
                 ->placeholder("Leave blank to generate automatically")
                 ->rules("max:100"),
-            Text::make("Subtitle")->maxLength(30)->enforceMaxlength(),
+            Text::make("Subtitle")->maxLength(30)->enforceMaxlength()->hideFromIndex(),
             Boolean::make("Published")->showOnPreview()
                 ->filterable()->hideWhenCreating(),
             Images::make("Image", "main"),

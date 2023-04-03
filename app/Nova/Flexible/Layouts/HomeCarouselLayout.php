@@ -55,12 +55,13 @@ class HomeCarouselLayout extends Layout implements HasMedia
     {
         $shuffled_images = $this->getMedia("gallery")
             ->shuffle()
-            ->groupBy("custom_properties.category");
+            ->groupBy("custom_properties.category")
+            ->shuffle();
 
         return count($shuffled_images)
             ? $shuffled_images
                 ->map(function ($values) {
-                    return $values->first();
+                    return $values->take(2);
                 })
                 ->flatten()
                 ->filter(function ($item) {

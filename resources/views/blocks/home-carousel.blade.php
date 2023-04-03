@@ -1,6 +1,6 @@
 @if ($layout->statement)
     <div class="bg-yellow pt-10 pb-16">
-        <div class="container max-w-7xl text-center">
+        <div class="container max-w-6xl text-center">
             <p class="type-xs-mono mb-12">{{ $layout->heading }}</p>
             <h2 class="type-regular md:type-large">{{ $layout->statement }}</h2>
         </div>
