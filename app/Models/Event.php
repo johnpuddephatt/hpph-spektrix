@@ -337,7 +337,7 @@ class Event extends Model implements HasMedia, CachableAttributes
     {
         return $this->remember("format", 3600, function () {
             if (!$this->instances->count()) {
-                return "np instances";
+                return null;
             }
             return $this->instances
                 ->pluck("analogue")
@@ -345,7 +345,7 @@ class Event extends Model implements HasMedia, CachableAttributes
                 ->count() > 1
                 ? "Showing in multiple formats"
                 : ($this->instances->first()->analogue ?:
-                    "Digital");
+                    null);
         });
     }
 
@@ -361,16 +361,6 @@ class Event extends Model implements HasMedia, CachableAttributes
 
         return array_merge(array_slice($genres, 0, 1), $vibes);
     }
-
-    // public function getGenresAttribute($value): array
-    // {
-    //     return $value ? explode(",", $value) : [];
-    // }
-
-    // public function getVibesAttribute($value): array
-    // {
-    //     return $value ? explode(",", $value) : [];
-    // }
 
     public function getFeaturingStarsAttribute($value): array
     {

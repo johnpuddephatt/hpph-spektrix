@@ -53,7 +53,7 @@
                         <x-strand-badge :strand="$event->strand" :partof="true"
                             class="absolute left-1/2 -translate-x-1/2 lg:transform-none bottom-8 lg:static mb-4 inline-block" />
 
-                        <h3 class="type-medium md:type-regular"> <a href="{{ $event->url }}">{{ $event->name }}
+                        <h3 class="type-medium md:type-regular"><a href="{{ $event->url }}">{{ $event->name }}
                                 <x-certificate :certificate="$event->certificate_age_guidance" :dark="true" />
                             </a>
                         </h3>

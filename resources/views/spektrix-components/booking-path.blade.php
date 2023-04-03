@@ -41,7 +41,7 @@
         <h2 x-on:click="instanceID = null"
             class="type-regular lg:type-medium lg:justify-between gap-4 flex items-center flex-row cursor-pointer z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-4 lg:px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap"
             :class="instanceID ? 'bg-yellow-dark cursor-pointer' : 'cursor-default bg-sand-dark lg:bg-sand'">
-            <span>Showings</span> <span
+            <span>Showtimes</span> <span
                 class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">1</span>
         </h2>
         <div class="container relative py-12 lg:pl-48" x-show="eventID">
@@ -130,21 +130,6 @@
             </template>
         </div>
 
-        {{-- @if ($event->instances->count())
-            <div class="container bg-yellow py-6 pl-32">
-                <h2 class="type-medium max-w-[8em]">Want to see this film for free?</h2>
-            </div>
-
-            <div class="container relative py-8 pl-32">
-                <div class="type-xs-mono absolute right-full origin-right translate-x-8 -rotate-90 transform">
-                    Memberships</div>
-                <div class="max-w-xs">Become a HPPH member and receive free tickets plus loads of exclusive
-                    benefits.
-                </div>
-
-                @include('spektrix-components.memberships')
-            </div>
-            @endif --}}
     </div>
 
 </div>

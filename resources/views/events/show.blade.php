@@ -93,7 +93,6 @@
                             <x-details-row label="Director" :value="$event->director" />
                             <x-details-row label="Featuring" :value="implode(' &bullet; ', $event->featuring_stars)" />
                             <x-details-row label="Year" :value="$event->year_of_production" />
-                            <x-details-row label="Year" :value="$event->year_of_production" />
                             <x-details-row label="Country of origin" :value="implode(' &bullet; ', $event->country_of_origin)" />
                             <x-details-row label="Language" :value="implode(' &bullet; ', $event->language)" />
                             <x-details-row label="Format" :value="$event->format" />
