@@ -47,13 +47,11 @@
                 </div>
 
                 <div>
-
-                    <button class="type-small relative z-10 inline-block py-0 bg-yellow text-black rounded-full px-2"
+                    <a class="type-small before:absolute before:inset-0 inline-block py-0 bg-gray-dark text-white rounded-full px-2"
+                        href="{{ $instance->url }}">Info</a> / <button
+                        class="type-small relative z-10 inline-block py-0 bg-yellow text-black rounded-full px-2"
                         @if ($color) style="background-color: {{ $color }}" @endif
                         @click="$dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ filter_var($instance->id, FILTER_SANITIZE_NUMBER_INT) }}', event: '{{ $instance->event->name }}', certificate: '{{ $instance->event->certificate_age_guidance }}' })">Book</button>
-                    /
-                    <a class="type-small before:absolute before:inset-0 inline-block py-0 bg-gray-dark text-white rounded-full px-2"
-                        href="{{ $instance->url }}">Info</a>
                 </div>
             </div>
         </div>

@@ -59,11 +59,10 @@
                         </h3>
 
                         <div class="-mb-1 mt-8 mx-auto lg:mt-1">
-                            <button class="type-small inline-block py-0 bg-yellow text-black rounded-full px-2"
-                                @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">Book</button>
-                            /
                             <a class="type-small inline-block py-0 bg-gray-dark text-white rounded-full px-2"
-                                href="{{ $event->url }}">Info</a>
+                                href="{{ $event->url }}">Info</a> / <button
+                                class="type-small inline-block py-0 bg-yellow text-black rounded-full px-2"
+                                @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">Book</button>
                         </div>
                     </div>
                 </div>
