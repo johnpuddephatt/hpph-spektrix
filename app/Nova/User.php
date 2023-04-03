@@ -87,7 +87,7 @@ class User extends Resource
             ]),
 
             Panel::make("Role", [
-                Text::make("Role title"),
+                Text::make("Role title")->hideFromIndex(),
                 Textarea::make("Role description"),
             ]),
 
