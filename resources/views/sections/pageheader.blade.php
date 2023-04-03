@@ -1,6 +1,6 @@
 <div class="relative bg-black">
     @if ($page->mainImage && !($hide_image ?? false))
-        {!! $page->mainImage->img('wide', ['class' => 'h-[100vw] lg:h-auto w-full opacity-80'])->toHtml() !!}
+        {!! $page->mainImage->img('wide', ['class' => 'h-[100vw] lg:h-auto w-full object-cover opacity-80'])->toHtml() !!}
     @endif
     <h1
         class="type-medium lg:type-large container max-w-full text-center text-white absolute top-1/2 left-0 right-0 -translate-y-1/2">
