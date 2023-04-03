@@ -23,6 +23,11 @@ class Messages
             Text::make("Access key", "access_key")->help(
                 "Displayed above the accessibility key in the booking path"
             ),
+
+            Text::make(
+                "Content guidance unavailable",
+                "content_guidance_unavailable"
+            )->help("Displayed when content guidance is not available"),
         ];
     }
 

@@ -382,6 +382,11 @@ class Event extends Model implements HasMedia, CachableAttributes
         return $value ? explode(",", $value) : [];
     }
 
+    public function getContentGuidanceAttribute($value): array
+    {
+        return $value ? explode(",", $value) : [];
+    }
+
     public function getDurationAttribute($value): string
     {
         return Str::of(
