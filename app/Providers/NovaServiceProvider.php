@@ -87,7 +87,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     margin-top: -2.2rem;
                     background-color: white;
                     color: inherit;
-                    font-size: 1.25rem;
+                    font-size: 1rem;
                     line-height: 1.5;
                 }
                 .md\:pt-2 .ce-block {
