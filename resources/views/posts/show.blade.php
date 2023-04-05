@@ -27,7 +27,7 @@
                         <p class="mx-auto lg:mx-0 max-w-xs lg:max-w-md">{{ $post->summary }}</p>
                     </div>
                     <x-journal-postmeta class="hidden lg:block border-l border-gray container w-1/2 !text-white"
-                        :dark="true" :post="$post" />
+                        :dark="true" :post="$post" :link_tags="true" />
                 </div>
             </div>
         </div>

@@ -34,8 +34,7 @@ class PostsIndex extends Component
     public function render()
     {
         $paginated_posts = $this->selected_tag
-            ? \App\Models\Post::whereNot("id", $this->featured_post)
-                ->with("featuredImage")
+            ? \App\Models\Post::with("featuredImage")
                 ->withAnyTags([$this->selected_tag])
                 ->paginate(12)
             : \App\Models\Post::whereNot("id", $this->featured_post)
