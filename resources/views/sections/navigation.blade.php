@@ -85,6 +85,6 @@
         <x-credits />
     </div>
 
-    <x-strand-menu>Programme strands @svg('arrow-right', 'inline-block ml-auto w-10 h-10 p-2.5 bg-black rounded-full text-yellow')</x-strand-menu>
+    <x-strand.menu>Programme strands @svg('arrow-right', 'inline-block ml-auto w-10 h-10 p-2.5 bg-black rounded-full text-yellow')</x-strand.menu>
 
 </div>
