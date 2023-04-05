@@ -117,7 +117,7 @@
             <span>Tickets &amp; extras</span> <span
                 class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">2</span>
         </h2>
-        <div class="container relative py-12 lg:pl-48" x-show="instanceID">
+        <div class="container relative h-screen overflow-y-auto pt-12 lg:pl-48" x-show="instanceID">
 
             <template x-if="instanceID">
                 <div class="max-w-xl">
