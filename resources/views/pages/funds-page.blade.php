@@ -34,7 +34,7 @@
                                 client-name="{{ $settings['spektrix_client_name'] }}"
                                 custom-domain="{{ $settings['spektrix_custom_domain'] }}" fund-id="{{ $fund->id }}">
 
-                                <div class="gap-2 flex flex-row mt-6">
+                                <div class="gap-2 flex flex-col lg:flex-row mt-6">
                                     <div class="relative z-0">
 
                                         <input type="text" id="amount" name="amount" data-custom-donation-input
