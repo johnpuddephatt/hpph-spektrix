@@ -20,7 +20,7 @@
                 <h2 class="type-medium lg:type-large">{{ $user->name }}</h2>
                 <p class="type-regular lg:type-medium !font-normal">{{ $user->role_title }}</p>
             </div>
-            <div class="type-regular pt-12 container !font-normal">{{ $user->role_description }}</div>
+            <div class="type-regular pt-12 max-w-xl container !font-normal">{{ $user->role_description }}</div>
         </div>
         @if ($user->content)
             <div class="container py-16">
