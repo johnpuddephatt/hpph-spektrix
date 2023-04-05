@@ -20,6 +20,14 @@ class Instance extends Model
         static::addGlobalScope("has_event", function (Builder $builder) {
             $builder->whereHas("event");
         });
+
+        static::addGlobalScope("order", function (Builder $builder) {
+            $builder->orderBy("start", "asc");
+        });
+
+        static::addGlobalScope("future", function (Builder $builder) {
+            $builder->where("start", ">", Carbon::now()->subMinutes(60));
+        });
     }
 
     protected $fillable = [

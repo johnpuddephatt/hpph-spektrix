@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Advoor\NovaEditorJs\NovaEditorJsCast;
+use Carbon\Carbon;
 use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
@@ -45,6 +46,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "long_description" => NovaEditorJsCast::class,
         "reviews" => FlexibleCast::class,
         "why_watch" => "object",
+        "last_instance_date_time" => "datetime",
     ];
 
     protected static function booted()
@@ -55,6 +57,16 @@ class Event extends Model implements HasMedia, CachableAttributes
 
         static::addGlobalScope("enabled", function (Builder $builder) {
             $builder->where("enabled", true);
+        });
+
+        static::addGlobalScope("hasFutureInstances", function (
+            Builder $builder
+        ) {
+            $builder->where(
+                "last_instance_date_time",
+                ">",
+                Carbon::now()->subMinutes(60)
+            );
         });
     }
 
