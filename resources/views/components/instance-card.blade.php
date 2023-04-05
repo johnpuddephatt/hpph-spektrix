@@ -49,7 +49,7 @@
                 <div>
                     <a class="type-small before:absolute before:inset-0 inline-block py-0 bg-gray-dark text-white rounded-full px-2"
                         href="{{ $instance->url }}">Info</a> / <button
-                        class="type-small relative z-10 inline-block py-0 bg-yellow text-black rounded-full px-2"
+                        class="type-small relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
                         @if ($color) style="background-color: {{ $color }}" @endif
                         @click="$dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ $instance->event->name }}', certificate: '{{ $instance->event->certificate_age_guidance }}' })">Book</button>
                 </div>
