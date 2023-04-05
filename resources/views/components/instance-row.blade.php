@@ -35,7 +35,7 @@
 
         <button
             class="type-regular :after:absolute lg:after:hidden after:z-20 after:bottom-4 after:left-0 after:right-0 after:h-10 z-10 mt-4 lg:mt-0 lg:translate-x-1.5 justify-between pl-4 p-1 lg:w-2/12 bg-yellow hover:lg:bg-yellow-dark rounded-r-full lg:rounded-full items-center flex flex-row"
-            @click="$dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ filter_var($instance->id, FILTER_SANITIZE_NUMBER_INT) }}', event: '{{ $instance->event->name }}', certificate: '{{ $instance->event->certificate_age_guidance }}' })">Book
+            @click="$dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ $instance->event->name }}', certificate: '{{ $instance->event->certificate_age_guidance }}' })">Book
             @svg('arrow-right', 'block text-yellow p-2 ml-2 flex-shrink-0 h-7 w-7 bg-black rounded-full')</button>
     </div>
 

@@ -50,7 +50,7 @@ class Instance extends Model
         "captioned" => "boolean",
     ];
 
-    protected $appends = ["start_date", "start_time", "url"];
+    protected $appends = ["start_date", "start_time", "url", "short_id"];
 
     public function event()
     {
@@ -70,6 +70,11 @@ class Instance extends Model
     public function getUrlAttribute()
     {
         return $this->event->url . "#" . $this->start->timestamp;
+    }
+
+    public function getShortIdAttribute()
+    {
+        return filter_var($this->id, FILTER_SANITIZE_NUMBER_INT);
     }
 
     public function getStartDateAttribute()

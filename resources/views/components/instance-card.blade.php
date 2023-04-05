@@ -51,7 +51,7 @@
                         href="{{ $instance->url }}">Info</a> / <button
                         class="type-small relative z-10 inline-block py-0 bg-yellow text-black rounded-full px-2"
                         @if ($color) style="background-color: {{ $color }}" @endif
-                        @click="$dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ filter_var($instance->id, FILTER_SANITIZE_NUMBER_INT) }}', event: '{{ $instance->event->name }}', certificate: '{{ $instance->event->certificate_age_guidance }}' })">Book</button>
+                        @click="$dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ $instance->event->name }}', certificate: '{{ $instance->event->certificate_age_guidance }}' })">Book</button>
                 </div>
             </div>
         </div>
