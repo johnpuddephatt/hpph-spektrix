@@ -106,7 +106,9 @@
 
         </div>
 
-        <x-gallery :images="$event->gallery" />
+        <x-event-reviews :reviews="$event->reviews" />
+
+        <x-strand-card :strand="$event->strand" />
 
         <button class="w-full sticky bottom-0 bg-yellow block py-4"
             @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">
@@ -120,9 +122,7 @@
             </div>
         </button>
 
-        <x-event-reviews :reviews="$event->reviews" />
-
-        <x-strand-card :strand="$event->strand" />
+        <x-gallery :images="$event->gallery" />
 
     </div>
 

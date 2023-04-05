@@ -2,14 +2,15 @@
     <div class="container bg-black flex justify-between lg:justify-start flex-row-reverse lg:flex-row py-20 lg:py-24 text-white"
         x-data="{ activeReview: 0 }">
 
-        @if ($reviews->count() > 1)
-            <div class="pt-16 lg:pr-40 w-1/2 flex flex-col gap-12 lg:gap-16 items-end lg:pt-12">
+        <div class="pt-16 lg:pr-40 w-1/2 flex flex-col gap-12 lg:gap-16 items-end lg:pt-12">
+            @if ($reviews->count() > 1)
                 <button aria-label="Previous review"
                     x-on:click.prevent="activeReview = (activeReview > 0) ? ( activeReview - 1) : {{ $reviews->count() - 1 }} ">@svg('chevron-down', 'block w-6 h-4 lg:w-10 lg:h-6 origin-center rotate-180')</button>
                 <button aria-label="Next review"
                     x-on:click.prevent="activeReview = (activeReview < {{ $reviews->count() - 1 }}) ?  (activeReview + 1) : 0">@svg('chevron-down', 'block w-6 h-4 lg:w-10 lg:h-6')</button>
-            </div>
-        @endif
+            @endif
+        </div>
+
         <div class="relative min-h-[12em]">
             @foreach ($reviews as $review)
                 <a href="{{ $review->url }}" class="transition block"
