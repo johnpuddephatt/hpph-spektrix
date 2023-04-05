@@ -51,8 +51,8 @@
             <div x-show="!instances.length" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
                 @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
             </div>
-            <div class="flex-1 flex flex-col lg:flex-row gap-24 overflow-hidden" x-show="instances.length">
-                <div class="max-w-lg w-full flex flex-col overflow-y-auto h-full">
+            <div class="flex-1 flex flex-col lg:flex-row gap-12 overflow-hidden" x-show="instances.length">
+                <div class="max-w-xl pr-12 w-full flex flex-col h-full">
                     <div class="mt-1"><span class="font-bold" x-text="event"></span> <span
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
                             x-text="certificate"></span></div>
