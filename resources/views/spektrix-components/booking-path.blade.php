@@ -71,7 +71,7 @@
 
                                 <x-strand.booking-path />
                                 <span
-                                    x-show="instance.strand || instance.captioned || instance.audio_described || instance.signed_bsl"
+                                    x-show="instance.strand && (instance.captioned || instance.audio_described || instance.signed_bsl)"
                                     class="text-2xl">&middot;</span>
                                 <x-accessibilities.booking-path />
 
