@@ -37,7 +37,6 @@ class SectionLayout extends Layout implements HasMedia
     {
         return [
             Image::make("Image", "banner")
-                ->disk("public")
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })

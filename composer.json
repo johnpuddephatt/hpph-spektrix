@@ -27,6 +27,7 @@
         "laravel/nova-log-viewer": "^0.1.4",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "^3.12",
         "livewire/livewire": "^2.10",
         "madewithlove/laravel-nova-uuid-support": "^1.4",
         "norman-huth/nova-values-field": "^1.0",

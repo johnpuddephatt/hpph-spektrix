@@ -37,7 +37,6 @@ class BannerLayout extends Layout
             Text::make("Link text", "link_text"),
             Text::make("Label", "label"),
             Image::make("Image", "banner")
-                ->disk("public")
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })

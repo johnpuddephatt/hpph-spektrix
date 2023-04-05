@@ -29,7 +29,7 @@ class Newsletter
                         ->fit(840, 560)
                         ->encode("jpg", 80);
 
-                    Storage::disk("public")->put(
+                    Storage::put(
                         "/newsletter/" .
                             $request->newsletter_image->getClientOriginalName(),
                         $image

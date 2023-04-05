@@ -32,13 +32,11 @@ class ImagePairLayout extends Layout
     {
         return [
             Image::make("Image", "image")
-                ->disk("public")
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
                 ->store(new \App\Nova\Actions\SaveAndResizeSquareImage()),
             Image::make("Image", "image_2")
-                ->disk("public")
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })

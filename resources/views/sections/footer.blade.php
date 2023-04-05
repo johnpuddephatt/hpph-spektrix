@@ -95,7 +95,7 @@
             </div>
 
             <div class="lg:col-span-1 col-span-2 self-end text-center lg:text-left order-last lg:-order-none">
-                <p class="text-xs">Copyright Hyde Park Picture House 2022</p>
+                <p class="text-xs">Copyright Hyde Park Picture House {{ date('Y') }}</p>
                 @if (isset($settings['charity_number']))
                     <p class="text-xs">Registered Charity No.{{ $settings['charity_number'] }}</p>
                 @endif

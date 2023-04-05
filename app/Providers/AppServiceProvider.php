@@ -104,7 +104,7 @@ class AppServiceProvider extends ServiceProvider
             $path = trim($path, "' ");
             $class = trim($class, "' ");
 
-            return "{!! str_replace('<svg ', '<svg class=\"{$class}\" ', \Storage::disk('public')->get({$path}) ) !!}";
+            return "{!! str_replace('<svg ', '<svg class=\"{$class}\" ', \Storage::get({$path}) ) !!}";
         });
     }
 }

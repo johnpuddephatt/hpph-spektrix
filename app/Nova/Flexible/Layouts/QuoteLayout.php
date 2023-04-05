@@ -37,7 +37,6 @@ class QuoteLayout extends Layout
             Text::make("Member name", "name")->hideFromIndex(),
             Text::make("Member role/description", "role")->hideFromIndex(),
             Image::make("Image")
-                ->disk("public")
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })

@@ -6,8 +6,7 @@
     <div class="bg-black container py-16">
         <div class="bg-black-light rounded overflow-hidden flex flex-col lg:flex-row lg:items-center text-white">
             <div class="bg-black self-stretch relative lg:w-1/3 bg-opacity-50">
-                <img class="object-cover h-full"
-                    src="{{ Storage::disk('public')->url($settings['newsletter_image']) }}" />
+                <img class="object-cover h-full" src="{{ Storage::url($settings['newsletter_image']) }}" />
             </div>
             <div class="relative lg:py-16 lg:w-2/3 px-8 p-6 pr-16 lg:pl-[16.67%]"">
                 <h3

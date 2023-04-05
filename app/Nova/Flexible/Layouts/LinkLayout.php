@@ -31,7 +31,6 @@ class LinkLayout extends Layout
     {
         return [
             Image::make("Image", "image")
-                ->disk("public")
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
