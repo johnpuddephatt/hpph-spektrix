@@ -57,7 +57,7 @@
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
                             x-text="certificate"></span></div>
 
-                    <div class="flex-1 overflow-y-auto">
+                    <div class="mt-8 flex-1 overflow-y-auto">
                         <template x-for="(instance, key) in instances">
                             <div>
                                 <h3 x-show="key == 0 ||
