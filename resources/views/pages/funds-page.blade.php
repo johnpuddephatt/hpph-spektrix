@@ -26,9 +26,9 @@
                             @else
                                 <div class="aspect-video rounded bg-sand-dark mb-4"></div>
                             @endif
-                            <div class="grid-cols-3 grid gap-4">
+                            <div class="lg:grid-cols-3 grid gap-4">
                                 <h3 class="type-regular mb-4 max-w-xs">{{ $fund->name }}</h3>
-                                <div class="max-w-lg col-span-2 mb-4">{{ $fund->description }}</div>
+                                <div class="max-w-lg lg:col-span-2 mb-4">{{ $fund->description }}</div>
                             </div>
                             <spektrix-donate class="mt-auto block border-t border-sand-dark pt-4"
                                 client-name="{{ $settings['spektrix_client_name'] }}"
