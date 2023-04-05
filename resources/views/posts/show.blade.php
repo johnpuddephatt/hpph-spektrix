@@ -38,7 +38,9 @@
                 {{ $post->introduction }}
             </div>
 
-            <p class="type-xs-mono pb-4 whitespace-nowrap">{{ $post->user->name }}</p>
+            @if ($post->user->id !== 1)
+                <p class="type-xs-mono pb-4 whitespace-nowrap">{{ $post->user->name }}</p>
+            @endif
 
         </div>
 
