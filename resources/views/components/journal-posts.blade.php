@@ -4,7 +4,7 @@
         <div class="container">
             <div class="type-xs-mono text-center mb-2">Latest</div>
             <h2 class="type-regular lg:type-medium mb-8 lg:mb-16 text-center">Stories from our <a class="underline"
-                    href="/journal/">journal</a>
+                    href="{{ \App\Models\Page::getTemplateUrl('journal-page') }}">journal</a>
             </h2>
 
             <div x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true }" x-init="swiper = new Swiper($refs.container, {

@@ -1,7 +1,7 @@
 <div x-init="$dispatch('eventcount', { number: {{ $filtered ? $instances->count() : 0 }}, })">
     <x-instances :instances="$instances" :options="$options" :dark="$dark" />
 
-    @if ($show_load_more)
+    {{-- @if ($show_load_more)
         <div class="container pb-16">
             <button class="text-left" wire:click="$set('page', {{ $page + 1 }})">
                 <h3 class="tracking-tight font-bold">Load more</h3>
@@ -10,5 +10,5 @@
                 </div>
             </button>
         </div>
-    @endif
+    @endif --}}
 </div>
