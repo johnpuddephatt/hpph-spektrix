@@ -15,7 +15,7 @@
                 </h2>
             </div>
 
-            <div class="container my-12 grid grid-cols-2 gap-4">
+            <div class="container my-12 grid lg:grid-cols-2 gap-4">
 
                 @foreach ($group->funds as $fundField)
                     @if ($fundField)
