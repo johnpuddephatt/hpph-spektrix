@@ -28,7 +28,7 @@
             </div>
 
             <div class="lg:mt-auto mr-auto lg:mb-2 flex flex-row gap-2 items-center">
-                <x-strand-badge class="" :strand="$instance->strand" />
+                <x-strand.badge class="" :strand="$instance->strand" />
                 <x-accessibilities :dark="false" :specialevent="$instance->special_event" />
             </div>
         </div>

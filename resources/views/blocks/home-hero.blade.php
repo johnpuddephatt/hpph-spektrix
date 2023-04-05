@@ -37,11 +37,11 @@
                     <div class="type-xs-mono mt-0 lg:mt-auto w-16">
                         @if ($layout->events->count() > 1)
                             <div class="flex flex-row absolute top-1/2 left-0 right-0 lg:static">
-                                <button class="absolute left-8 lg:static" aria-label="Previous event"
+                                <button class="absolute left-2 lg:static" aria-label="Previous event"
                                     x-on:click.prevent="activeSlide = (activeSlide > 0) ? ( activeSlide - 1) : {{ $loop->count - 1 }} ">
                                     @svg('chevron-right', 'rotate-180 -ml-2 w-12 h-12')
                                 </button>
-                                <button class="absolute right-8 lg:static" aria-label="Next event"
+                                <button class="absolute right-2 lg:static" aria-label="Next event"
                                     x-on:click.prevent="activeSlide = (activeSlide < {{ $loop->count - 1 }}) ?  (activeSlide + 1) : 0">
                                     @svg('chevron-right', 'w-12 h-12 -ml-3')</button>
                             </div>
@@ -50,10 +50,11 @@
                     </div>
                     <div class="">
 
-                        <x-strand-badge :strand="$event->strand" :partof="true"
+                        <x-strand.badge :strand="$event->strand" :partof="true"
                             class="absolute left-1/2 -translate-x-1/2 lg:transform-none bottom-8 lg:static mb-4 inline-block" />
 
-                        <h3 class="type-medium md:type-regular"><a href="{{ $event->url }}">{{ $event->name }}
+                        <h3 class="type-medium md:type-regular px-8 lg:px-0"><a
+                                href="{{ $event->url }}">{{ $event->name }}
                                 <x-certificate :certificate="$event->certificate_age_guidance" :dark="true" />
                             </a>
                         </h3>

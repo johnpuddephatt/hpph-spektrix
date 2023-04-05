@@ -20,7 +20,7 @@
             <x-accessibilities class="absolute top-2 right-1.5" :dark="true" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl"
                 :audiodescribed="$instance->audio_described" :specialevent="$instance->special_event" />
             @if ($show_strand)
-                <x-strand-badge :dark="$dark" class="mt-2" :strand="$instance->strand" />
+                <x-strand.badge :dark="$dark" class="mt-2" :strand="$instance->strand" />
             @endif
         </div>
     </div>

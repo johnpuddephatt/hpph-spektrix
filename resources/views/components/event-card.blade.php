@@ -14,7 +14,7 @@
 
             <x-accessibilities class="absolute top-2 right-1.5" :dark="true" :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl"
                 :audiodescribed="$event->has_audio_described" :specialevent="$event->has_special_event" />
-            <x-strand-badge class="max-md:rounded-none md:mt-2" :strand="$event->strand" />
+            <x-strand.badge class="max-md:rounded-none md:mt-2" :strand="$event->strand" />
         </div>
     </div>
 

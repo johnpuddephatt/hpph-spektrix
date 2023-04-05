@@ -76,7 +76,7 @@
                     <x-genres-vibes-badge :values="$event->genres_and_vibes" />
                 </div>
 
-                <x-strand-strip :strand="$event->strand" />
+                <x-strand.strip :strand="$event->strand" />
 
                 <div class="max-w-4xl lg:pr-16 xl:pr-32">
 
@@ -108,7 +108,7 @@
 
         <x-event-reviews :reviews="$event->reviews" />
 
-        <x-strand-card :strand="$event->strand" />
+        <x-strand.card :strand="$event->strand" />
 
         <button class="w-full sticky bottom-0 bg-yellow block py-4"
             @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">
