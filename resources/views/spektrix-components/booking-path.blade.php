@@ -62,7 +62,7 @@
                             <div>
                                 <h3 x-show="key == 0 ||
                             instances[key - 1].start_date !== instance.start_date"
-                                    class="type-small mt-20 mb-3" x-text="instance.start_date"></h3>
+                                    class="type-small mt-12 mb-3" x-text="instance.start_date"></h3>
                                 <button aria-label="Buy tickets for this screening"
                                     x-on:click="instanceID = instance.short_id"
                                     class="group border-t last:border-b transition w-full flex flex-row items-center gap-4 border-gray-light py-2">
