@@ -53,9 +53,10 @@
                                         data-submit-donation>Add
                                         to
                                         basket @svg('arrow-right', 'inline-block h-4 w-4 ml-auto')</button>
-                                    <div data-success-container style="display: none;">Donation added to basket</div>
-                                    <div data-fail-container style="display: none;">Donation could not be added to basket
-                                    </div>
+
+                                </div>
+                                <div data-success-container style="display: none;">Donation added to basket</div>
+                                <div data-fail-container style="display: none;">Donation could not be added to basket
                                 </div>
                             </spektrix-donate>
                         </div>

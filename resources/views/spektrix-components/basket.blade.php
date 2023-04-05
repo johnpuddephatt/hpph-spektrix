@@ -32,7 +32,7 @@
         class="fixed inset-0 z-50 bg-black backdrop-blur-lg bg-opacity-60 duration-150"
         x-transition:enter-start="opacity-0" x-transition:leave-end="opacity-0">
     </div>
-    <div class="container fixed inset-0 left-auto z-50 flex h-screen w-full max-w-lg transform flex-col bg-sand p-12 transition-all delay-100 duration-200"
+    <div class="container fixed inset-0 left-auto z-50 overflow-y-auto flex h-screen w-full max-w-lg transform flex-col bg-sand p-12 transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">
         <template x-if="open">
             <div class="relative">
