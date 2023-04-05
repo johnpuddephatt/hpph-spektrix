@@ -9,7 +9,7 @@
                     class="@if (count($images) > 2) h-[24rem] lg:h-[32em] w-auto @elseif(count($images) == 2) w-full h-auto lg:max-w-[80vw] lg:h-full object-cover @else w-full h-auto @endif block rounded">
 
                 @if ($image['caption'])
-                    <figcaption class="type-xs-mono pt-2">
+                    <figcaption class="type-xs-mono pt-4">
 
                         {{ $image['caption'] }}
 
