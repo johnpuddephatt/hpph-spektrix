@@ -44,44 +44,46 @@
             <span>Showtimes</span> <span
                 class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">1</span>
         </h2>
-        <div class="container h-screen flex flex-col relative py-12 lg:pl-48" x-show="eventID">
+        <div class="container h-screen flex flex-col relative pt-12 lg:pl-48" x-show="eventID">
 
             <div class="type-medium !font-normal">Select a showtime</div>
 
             <div x-show="!instances.length" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
                 @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
             </div>
-            <div class="flex-1 overflow-y-auto flex flex-col lg:flex-row gap-24" x-show="instances.length">
-                <div class="max-w-lg w-full">
+            <div class="flex-1 flex flex-col lg:flex-row gap-24 overflow-hidden" x-show="instances.length">
+                <div class="max-w-lg w-full flex flex-col overflow-y-auto h-full">
                     <div class="mt-1"><span class="font-bold" x-text="event"></span> <span
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
                             x-text="certificate"></span></div>
 
-                    <template x-for="(instance, key) in instances">
-                        <div>
-                            <h3 x-show="key == 0 ||
+                    <div class="flex-1 overflow-y-auto">
+                        <template x-for="(instance, key) in instances">
+                            <div>
+                                <h3 x-show="key == 0 ||
                             instances[key - 1].start_date !== instance.start_date"
-                                class="type-small mt-20 mb-3" x-text="instance.start_date"></h3>
-                            <button aria-label="Buy tickets for this screening"
-                                x-on:click="instanceID = instance.short_id"
-                                class="group border-t last:border-b transition w-full flex flex-row items-center gap-4 border-gray-light py-2">
-                                <div class="type-xs-mono !text-base rounded bg-black py-1 px-3 text-white"
-                                    x-text="instance.start_time">
-                                </div>
+                                    class="type-small mt-20 mb-3" x-text="instance.start_date"></h3>
+                                <button aria-label="Buy tickets for this screening"
+                                    x-on:click="instanceID = instance.short_id"
+                                    class="group border-t last:border-b transition w-full flex flex-row items-center gap-4 border-gray-light py-2">
+                                    <div class="type-xs-mono !text-base rounded bg-black py-1 px-3 text-white"
+                                        x-text="instance.start_time">
+                                    </div>
 
-                                <x-strand.booking-path />
-                                <span
-                                    x-show="instance.strand && (instance.captioned || instance.audio_described || instance.signed_bsl)"
-                                    class="text-2xl">&middot;</span>
-                                <x-accessibilities.booking-path />
+                                    <x-strand.booking-path />
+                                    <span
+                                        x-show="instance.strand && (instance.captioned || instance.audio_described || instance.signed_bsl)"
+                                        class="text-2xl">&middot;</span>
+                                    <x-accessibilities.booking-path />
 
-                                @svg('arrow-right', 'bg-sand-light ml-auto group-hover:bg-yellow rounded-full p-3 h-12 w-12')
-                            </button>
+                                    @svg('arrow-right', 'bg-sand-light ml-auto group-hover:bg-yellow rounded-full p-3 h-12 w-12')
+                                </button>
+                            </div>
+                        </template>
+
+                        <div x-show="!instances.length" class="mt-12 max-w-md rounded bg-gray py-16 text-center">
+                            {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
                         </div>
-                    </template>
-
-                    <div x-show="!instances.length" class="mt-12 max-w-md rounded bg-gray py-16 text-center">
-                        {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
                     </div>
 
                 </div>
