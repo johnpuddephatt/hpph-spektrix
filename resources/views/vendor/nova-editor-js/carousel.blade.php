@@ -8,7 +8,7 @@
                 <img src="{{ $image['url'] }}"
                     class="@if (count($images) > 2) h-[24rem] lg:h-[32em] w-auto @elseif(count($images) == 2) w-full h-auto lg:max-w-[80vw] lg:h-[calc(100%-3rem)] object-cover @else w-full h-auto @endif block rounded">
 
-                @if (isset($image['caption']))
+                @if ($image['caption'])
                     <figcaption class="type-xs-mono pb-6 lg:pb-3 py-3">
 
                         {{ $image['caption'] }}
