@@ -2,7 +2,7 @@
     <div class="bg-yellow pt-10 pb-16">
         <div class="container max-w-6xl text-center">
             <p class="type-xs-mono mb-12">{{ $layout->heading }}</p>
-            <h2 class="type-regular md:type-large">{{ $layout->statement }}</h2>
+            <h2 class="type-regular md:type-medium">{{ $layout->statement }}</h2>
         </div>
     </div>
 @endif
@@ -24,12 +24,12 @@
             </div>
         </div>
 
-        @if ($layout->link_text)
+        {{-- @if ($layout->link_text)
             <a class="block text-center mt-16" href="{{ $layout->link_url }}">
                 <p class="type-xs-mono text-white">{{ $layout->link_text }}
                 </p>
                 @svg('plus', 'mt-4 inline-block w-10 h-10 bg-white bg-opacity-[0.15] rounded-full p-2.5 text-white')
             </a>
-        @endif
+        @endif --}}
     </div>
 @endif
