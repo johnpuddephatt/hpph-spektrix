@@ -87,7 +87,14 @@ class Instance extends Model
 
     public function getStartDateAttribute()
     {
-        return $this->start->format("D d M");
+        if ($this->start->isToday()) {
+            return "Today";
+        }
+        if ($this->start->isTomorrow()) {
+            return "Tomorrow";
+        } else {
+            return $this->start->format("D d M");
+        }
     }
 
     public function getStartTimeAttribute()
@@ -95,23 +102,23 @@ class Instance extends Model
         return $this->start->format("H:i");
     }
 
-    public function scopeToday($query)
-    {
-        return $query->whereDate("start", Carbon::today());
-    }
+    // public function scopeToday($query)
+    // {
+    //     return $query->whereDate("start", Carbon::today());
+    // }
 
-    public function scopeTomorrow($query)
-    {
-        return $query->whereDate("start", Carbon::today()->addDay());
-    }
+    // public function scopeTomorrow($query)
+    // {
+    //     return $query->whereDate("start", Carbon::today()->addDay());
+    // }
 
-    public function scopeThisWeek($query)
-    {
-        return $query->whereBetween("start", [
-            Carbon::today(),
-            Carbon::now()->endOfWeek(),
-        ]);
-    }
+    // public function scopeThisWeek($query)
+    // {
+    //     return $query->whereBetween("start", [
+    //         Carbon::today(),
+    //         Carbon::now()->endOfWeek(),
+    //     ]);
+    // }
 
     public function scopeCaptioned($query)
     {

@@ -2,7 +2,7 @@
 
 <div class="border-gray-light relative md:pt-3 pb-8 md:pb-12 md:border-b flex flex-col px-2">
     <div class="type-xs-mono max-md:bg-sand-light max-md:container max-md:pt-3 pb-3">
-        {{ $event->instance_dates }}
+        {{ $event->date_range }}
     </div>
     <div class="mb-auto aspect-video overflow-hidden md:rounded">
         <div class="relative aspect-video flex flex-col">

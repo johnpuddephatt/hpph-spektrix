@@ -107,6 +107,7 @@ class Event extends Model implements HasMedia, CachableAttributes
     ];
 
     protected $appends = [
+        "date_range",
         "has_captioned",
         "has_signed_bsl",
         "has_audio_described",
@@ -310,17 +311,25 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
-    public function getStatusAttribute()
+    public function getDateRangeAttribute()
     {
-        return $this->remember("status", 3600, function () {
-            if ($this->todayInstances()->count()) {
-                return "Showing today";
-            } elseif ($this->tomorrowInstances()->count()) {
-                return "Showing tomorrow";
-            } elseif ($this->instance_dates) {
-                return $this->instance_dates;
+        return $this->remember("dateRange", 3600, function () {
+            if ($this->instances->count() == 0) {
+                if ($this->instances->removeGlobalScopes()->count() == 0) {
+                    return "Coming soon.";
+                } else {
+                    return "No further showings scheduled.";
+                }
             } else {
-                return "Coming soon";
+                $dates = $this->instances->pluck("start_date")->unique();
+
+                if ($dates->count() == 1) {
+                    return $dates->first() .
+                        " " .
+                        $this->instances()->first()->start_time;
+                } else {
+                    return $dates->first() . " – " . $dates->last();
+                }
             }
         });
     }
@@ -330,20 +339,20 @@ class Event extends Model implements HasMedia, CachableAttributes
         return route("event.show", ["event" => $this->slug]);
     }
 
-    public function getVenueAttribute()
-    {
-        return $this->remember("venue", 3600, function () {
-            if (!$this->instances->count()) {
-                return null;
-            }
-            return $this->instances
-                ->pluck("venue")
-                ->unique()
-                ->count() > 1
-                ? "Multiple venues"
-                : $this->instances->first()->venue;
-        });
-    }
+    // public function getVenueAttribute()
+    // {
+    //     return $this->remember("venue", 3600, function () {
+    //         if (!$this->instances->count()) {
+    //             return null;
+    //         }
+    //         return $this->instances
+    //             ->pluck("venue")
+    //             ->unique()
+    //             ->count() > 1
+    //             ? "Multiple venues"
+    //             : $this->instances->first()->venue;
+    //     });
+    // }
 
     public function getFormatAttribute()
     {
@@ -400,18 +409,18 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->replace(" minute", "min");
     }
 
-    public function todayInstances()
-    {
-        return $this->instances()->today();
-    }
+    // public function todayInstances()
+    // {
+    //     return $this->instances()->today();
+    // }
 
-    public function tomorrowInstances()
-    {
-        return $this->instances()->tomorrow();
-    }
+    // public function tomorrowInstances()
+    // {
+    //     return $this->instances()->tomorrow();
+    // }
 
-    public function thisWeekInstances()
-    {
-        return $this->instances()->thisWeek();
-    }
+    // public function thisWeekInstances()
+    // {
+    //     return $this->instances()->thisWeek();
+    // }
 }
