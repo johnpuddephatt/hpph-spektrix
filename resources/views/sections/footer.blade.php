@@ -2,7 +2,7 @@
 
 <footer class="type-xs relative">
     <div class="bg-black py-12 text-gray-light">
-        <div class="container grid grid-cols-2 gap-x-4 gap-y-12 lg:grid-cols-4 lg:gap-x-16 xl:gap-y-16">
+        <div class="container grid grid-cols-2 gap-x-4 gap-y-12 lg:grid-cols-4 lg:gap-x-8 xl:gap-y-16">
 
             <div
                 class="col-span-2 lg:col-span-1 text-center lg:text-left lg:order-none flex justify-center -order-2 flex-col gap-6">

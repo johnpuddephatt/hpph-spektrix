@@ -5,7 +5,7 @@
     class="{{ $header_class ?? 'text-white' }} z-20 fixed left-0 right-0 top-0">
 
     <div class="container flex flex-row items-center py-3 2xl:py-6">
-        <a title="Navigate to homepage" aria-label="Navigate to homepage" class="relative z-20 mr-3 text-yellow"
+        <a title="Navigate to homepage" aria-label="Navigate to homepage" class="relative z-20 lg:-ml-1.5 mr-3 text-yellow"
             style="color: @yield('color')" href="/">
             @svg('logo-compact', 'h-[2.35rem] w-auto ' . ($logo_background ?? 'text-transparent'))</a>
 

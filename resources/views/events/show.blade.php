@@ -69,7 +69,7 @@
                 <x-journal-featuredpost-mini :post="$event->latest_post->count() ? $event->latest_post->first() : null" />
             </div>
             <div class="relative lg:w-1/2">
-                <div class="bg-yellow p-6">
+                <div class="bg-yellow py-6 px-4">
                     <div class="type-regular lg:type-medium py-20 max-w-2xl">
                         {!! $event->description !!}
                     </div>
@@ -116,7 +116,7 @@
                 <div class="w-1/2 hidden lg:block">
                     @svg('plus', 'h-6 w-6')
                 </div>
-                <div class="type-regular lg:px-6">
+                <div class="type-regular lg:px-4">
                     {!! $settings['showtimes_link'] ?? 'See showtimes &amp; book' !!}
                 </div> @svg('arrow-right', 'ml-auto h-8 w-8 p-2 text-yellow bg-black rounded-full')
             </div>
