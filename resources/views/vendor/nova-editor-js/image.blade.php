@@ -1,5 +1,9 @@
+@php
+if (!isset($width)) {
+    $width = '';
+}
+@endphp
 <figure class="my-16 relative">
-
     <img class="@if ($width != 'full') rounded @endif w-full" src="{{ $file['url'] }}"
         alt="{{ $caption }}">
     @if (!empty($caption))

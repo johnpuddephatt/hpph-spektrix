@@ -15,8 +15,10 @@
 
         <div
             class="@if ($width == 'full') {{ $fullwidth_class }} @elseif($width == 'wide') {{ $wide_class }} @else {{ $block_class }} @endif">
+
             @include('vendor.nova-editor-js.' . $block['type'],
                 array_merge((array) $block['data'], ['width' => $width]))
+
         </div>
     @endforeach
 </div>
