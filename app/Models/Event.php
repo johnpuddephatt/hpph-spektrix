@@ -211,6 +211,14 @@ class Event extends Model implements HasMedia, CachableAttributes
         return $this->hasMany(Instance::class)->withoutGlobalScope("has_event");
     }
 
+    public function pastAndFutureInstances(): HasMany
+    {
+        return $this->hasMany(Instance::class)->withoutGlobalScopes([
+            "has_event",
+            "has_future_instances",
+        ]);
+    }
+
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -287,15 +295,15 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
-    public function getInstanceDatesAttribute($value): string
-    {
-        $parts = explode("-", $value);
-        if ($parts[0] == $parts[1]) {
-            return $parts[0];
-        } else {
-            return str_replace("-", " – ", $value);
-        }
-    }
+    // public function getInstanceDatesAttribute($value): string
+    // {
+    //     $parts = explode("-", $value);
+    //     if ($parts[0] == $parts[1]) {
+    //         return $parts[0];
+    //     } else {
+    //         return str_replace("-", " – ", $value);
+    //     }
+    // }
 
     public function getStrandAttribute($value)
     {
@@ -315,10 +323,12 @@ class Event extends Model implements HasMedia, CachableAttributes
     {
         return $this->remember("dateRange", 3600, function () {
             if ($this->instances->count() == 0) {
-                if ($this->instances->removeGlobalScopes()->count() == 0) {
-                    return "Coming soon.";
+                if (!$this->pastAndFutureInstances->count()) {
+                    return nova_get_setting("screenings_coming_soon") ??
+                        "Coming soon";
                 } else {
-                    return "No further showings scheduled.";
+                    return nova_get_setting("screenings_ended") ??
+                        "No further screenings scheduled";
                 }
             } else {
                 $dates = $this->instances->pluck("start_date")->unique();

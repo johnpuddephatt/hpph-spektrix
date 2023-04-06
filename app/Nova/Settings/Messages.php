@@ -28,6 +28,14 @@ class Messages
                 "Content guidance unavailable",
                 "content_guidance_unavailable"
             )->help("Displayed when content guidance is not available"),
+
+            Text::make(
+                "Screenings coming soon",
+                "screenings_coming_soon"
+            )->help("Displayed when an event has no future or past instances"),
+            Text::make("Screenings ended", "screenings_ended")->help(
+                "Displayed when an event has past instances but no future instances"
+            ),
         ];
     }
 

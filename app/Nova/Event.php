@@ -59,7 +59,11 @@ class Event extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScopes(["published", "enabled"]);
+        return $query->withoutGlobalScopes([
+            "published",
+            "enabled",
+            "hasFutureInstances",
+        ]);
     }
 
     /**
@@ -84,7 +88,13 @@ class Event extends Resource
                 })
                 ->onlyOnIndex(),
 
-            Text::make("Instance dates")->hideWhenUpdating(),
+            Text::make("Dates", "date_range", function () {
+                return $this->instances->count() ? $this->date_range : "—";
+            })->hideWhenUpdating(),
+
+            Text::make("Instances", function ($model) {
+                return $model->instances->count() ?: "—";
+            })->onlyOnIndex(),
 
             Boolean::make("Published")
                 ->showOnPreview()
@@ -123,12 +133,18 @@ class Event extends Resource
                     ->help(
                         "Maximum four images, minimum width per image 800px"
                     ),
-                Url::make("Trailer")->placeholder(
-                    "Provide a URL for a video hosted on YouTube, Vimeo etc."
-                ),
+                Url::make("Trailer")
+                    ->placeholder(
+                        "Provide a URL for a video hosted on YouTube, Vimeo etc."
+                    )
+                    ->hideFromIndex(),
             ]),
 
-            Panel::make("Journal", [Tag::make("Posts")->displayAsList()]),
+            Panel::make("Journal", [
+                Tag::make("Posts")
+                    ->displayAsList()
+                    ->hideFromIndex(),
+            ]),
 
             Panel::make("Reviews", [
                 Flexible::make("", "reviews")
@@ -179,14 +195,10 @@ class Event extends Resource
                 Text::make("Featuring stars")->onlyOnDetail(),
             ]),
 
-            Text::make("Instances", function ($model) {
-                return $model->instances->count();
-            })->onlyOnIndex(),
-
             URL::make(
                 "URL",
                 fn() => $this->slug ? $this->url : "#"
-            )->displayUsing(fn() => $this->slug ? "View" : "–"),
+            )->displayUsing(fn() => $this->slug ? "Visit" : "–"),
         ];
     }
 
