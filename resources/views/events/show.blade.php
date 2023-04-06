@@ -22,10 +22,11 @@
 
         <div class="lg:ml-[50%] relative z-10">
             <div class="container pt-48 pb-12 text-white 2xl:px-6">
-                <h1 class="type-medium md:type-large mb-1 font-bold max-w-xl">{{ $event->name }}</h1>
+                <h1 class="type-medium md:type-large mb-1 font-bold max-w-xl">{{ $event->name }}
+                    <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
+                </h1>
 
                 <div class="flex flex-row items-center gap-2">
-                    <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
                     <div class="type-xs-mono">{!! $event->date_range !!}</div>
                 </div>
 
