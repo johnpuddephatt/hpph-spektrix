@@ -46,7 +46,7 @@
                                     @svg('chevron-right', 'w-12 h-12 -ml-3')</button>
                             </div>
                         @endif
-                        <div class="h-12 mt-auto">{{ $event->date_range }}</div>
+                        <div class="h-12 mt-auto">{!! $event->date_range !!}</div>
                     </div>
                     <div class="">
 

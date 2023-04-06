@@ -26,7 +26,7 @@
 
                 <div class="flex flex-row items-center gap-2">
                     <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
-                    <div class="type-xs-mono">{{ $event->date_range }}</div>
+                    <div class="type-xs-mono">{!! $event->date_range !!}</div>
                 </div>
 
                 @if ($event->trailerEmbed)
