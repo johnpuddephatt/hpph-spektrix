@@ -70,7 +70,7 @@
             </div>
             <div class="relative lg:w-1/2">
                 <div class="bg-yellow py-6 px-4">
-                    <div class="type-regular lg:type-medium py-20 max-w-2xl">
+                    <div class="type-regular lg:type-medium py-20 max-w-xl">
                         {!! $event->description !!}
                     </div>
                     <x-genres-vibes-badge :values="$event->genres_and_vibes" />
