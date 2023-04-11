@@ -90,7 +90,9 @@ class Event extends Resource
 
             Text::make("Dates", "date_range", function () {
                 return $this->instances->count() ? $this->date_range : "—";
-            })->hideWhenUpdating(),
+            })
+                ->asHtml()
+                ->hideWhenUpdating(),
 
             Text::make("Instances", function ($model) {
                 return $model->instances->count() ?: "—";

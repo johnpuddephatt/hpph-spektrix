@@ -82,7 +82,8 @@
                 <div class="max-w-4xl lg:pr-16 xl:pr-32">
 
                     <div class="prose container mt-12 mb-24">
-                        {{ $event->long_description }}
+                        <x-editorjs :content="$event->long_description" />
+
                     </div>
 
                     <div class="container">

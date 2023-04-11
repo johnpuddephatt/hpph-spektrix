@@ -30,6 +30,7 @@
         "league/flysystem-aws-s3-v3": "^3.12",
         "livewire/livewire": "^2.10",
         "madewithlove/laravel-nova-uuid-support": "^1.4",
+        "manogi/nova-tiptap": "^3.2",
         "norman-huth/nova-values-field": "^1.0",
         "outl1ne/nova-menu-builder": "7.1.0",
         "outl1ne/nova-multiselect-field": "^4.0",

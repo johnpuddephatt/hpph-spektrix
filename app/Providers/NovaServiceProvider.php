@@ -60,12 +60,26 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 html:not(.dark) [data-testid='content'] > div:nth-of-type(1) { padding-bottom: 6rem; min-height: 100%; background-image: linear-gradient(to bottom, rgb(220,230,240), transparent);}
                 #nova { position: relative;}
                 header {box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px}
+
+                .trix-button-group--block-tools,
+                .trix-button-group--file-tools,
+                .trix-button-group--history-tools 
+                 {
+                    display: none !important;
+                }
+
+                trix-editor {
+                    border-color: rgb(203,213,225);
+                }
+
                 .editor-js, #editor-js-content {
                     padding-top: 0.5rem;
                     padding-bottom: 0.5rem;
-                    border-radius: 0.25rem;
+                    border-radius: 0.5rem;
                     box-shadow: none;
-                    width: 73.75%;
+                    border: 1px solid rgb(203,213,225);
+                    // width: 73.75%;
+                    width: 100%;
                 }
                 .ce-toolbar__content,
                 .ce-block__content {

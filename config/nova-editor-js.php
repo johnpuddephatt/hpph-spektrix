@@ -65,7 +65,7 @@ return [
             "activated" => false,
             "shortcut" => "CMD+SHIFT+I",
             "path" => "public/images",
-            "disk" => "local",
+            "disk" => "digitalocean",
             "alterations" => [
                 "resize" => [
                     "width" => false, // integer
