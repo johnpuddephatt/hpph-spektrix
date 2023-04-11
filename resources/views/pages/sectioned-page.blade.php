@@ -1,4 +1,4 @@
-@extends('layouts.default', ['logo_background' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'pages', 'resourceId' => $page['id']])])
+@extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'pages', 'resourceId' => $page['id']])])
 
 @section('title', $page->name)
 @section('description', $page->introduction)
@@ -27,7 +27,7 @@
                         <a @click="sectionMenuOpen = false" x-data="{ section: '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}' }"
                             class="type-regular text-center lg:text-left mb-2 flex flex-row items-center justify-center lg:justify-between gap-2 lg:bg-sand-light lg:hover:bg-white transition rounded lg:p-4"
                             :href="`#${section}`" @click="activeSection = section">
-                            {{ $layout->title }}
+                            {!! $layout->title !!}
 
                             @svg('arrow-right', 'hidden lg:block inline-block h-6 w-6 text-black')
 
@@ -51,7 +51,7 @@
                     </div>
 
                     <h2 class="type-medium container">
-                        {{ $layout->title }}</h2>
+                        {!! $layout->title !!}</h2>
 
                     <x-editorjs block_class="my-8 container" :content="json_decode($layout->section_content)" />
 

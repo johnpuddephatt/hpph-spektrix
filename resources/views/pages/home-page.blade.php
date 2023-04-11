@@ -1,4 +1,4 @@
-@extends('layouts.default', ['logo_background' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'pages', 'resourceId' => $page['id']])])
+@extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'pages', 'resourceId' => $page['id']])])
 
 @section('title', $page->name)
 @section('description', $page->introduction)
