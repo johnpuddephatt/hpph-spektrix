@@ -52,7 +52,7 @@
                         @endif
                     </div>
 
-                    <h2 class="type-medium">
+                    <h2 class="type-medium mb-8">
                         {!! $layout->title !!}</h2>
 
                     <x-editorjs block_class="" :content="json_decode($layout->section_content)" />
