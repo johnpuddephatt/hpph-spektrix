@@ -1,8 +1,8 @@
 {!! $style == 'unordered'
-    ? '<ul class="list-disc marker:text-yellow ml-4 max-w-2xl">'
-    : '<ol class="list-decimal  ml-6 marker:type-xs-mono max-w-2xl">' !!}
+    ? '<ul class="list-disc marker:text-sand-dark ml-4 ">'
+    : '<ol class="list-decimal  ml-6 marker:type-xs-mono">' !!}
 @foreach ($items as $item)
-    <li class="mb-2">
+    <li class="mb-2 max-w-[50ch]">
         {!! $item !!}
     </li>
 @endforeach
