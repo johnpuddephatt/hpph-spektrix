@@ -1,10 +1,10 @@
-.prose {
-    max-width: 55ch;
-}
+/* .prose {
+    max-width: 55ch; // removed because this doesn't work well with block level width adjustments
+} */
 
-.prose p {
+/* .prose p {
     @apply mb-5;
-}
+} */
 
 .prose h2 {
     @apply type-medium;
@@ -16,6 +16,10 @@
 
 .prose h4 {
     @apply type-medium;
+}
+
+.prose a {
+    @apply underline;
 }
 
 .prose > *:first-child h2,

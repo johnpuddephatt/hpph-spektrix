@@ -4,7 +4,7 @@
     @php $content = $block->editorjs @endphp
 @endif
 
-<div {{ $attributes->class(['']) }}>
+<div {{ $attributes->class(['prose']) }}>
     @foreach ($content->blocks as $block)
         @php $block = (array) $block @endphp
         @php $width = $block['tunes']['blockWidthTune'] ?? ''; @endphp
