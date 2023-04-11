@@ -44,18 +44,18 @@
             @foreach ($page->content as $layout)
                 <section
                     x-intersect:enter.half="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'"
-                    id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}" class="pb-8">
+                    id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}" class="container pb-8">
 
-                    <div class="container">
+                    <div class="">
                         @if ($layout->banner)
                             <img class="rounded w-full mb-8 h-auto" src="{{ Storage::url($layout->banner) }}" />
                         @endif
                     </div>
 
-                    <h2 class="type-medium container">
+                    <h2 class="type-medium">
                         {!! $layout->title !!}</h2>
 
-                    <x-editorjs block_class="my-8 container" :content="json_decode($layout->section_content)" />
+                    <x-editorjs block_class="" :content="json_decode($layout->section_content)" />
 
                 </section>
             @endforeach
