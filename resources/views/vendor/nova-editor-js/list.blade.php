@@ -3,7 +3,7 @@
     : '<ol class="list-decimal  ml-6 marker:type-xs-mono max-w-2xl">' !!}
 @foreach ($items as $item)
     <li class="mb-2">
-        {{ $item }}
+        {!! $item !!}
     </li>
 @endforeach
 {!! $style == 'unordered' ? '</ul>' : '</ol>' !!}
