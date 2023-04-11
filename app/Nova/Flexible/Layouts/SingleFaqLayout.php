@@ -23,7 +23,7 @@ class SingleFaqLayout extends Layout
      *
      * @var string
      */
-    protected $title = "Single FAQ";
+    protected $title = "Accordion";
 
     protected $casts = [
         "answer" => NovaEditorJsCast::class,

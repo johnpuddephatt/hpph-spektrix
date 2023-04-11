@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="min-h-screen py-8 lg:w-1/2">
+        <div class="min-h-screen pt-8 lg:w-1/2">
 
             @foreach ($page->content as $layout)
                 <section
@@ -55,7 +55,14 @@
                     <h2 class="type-medium mb-8">
                         {!! $layout->title !!}</h2>
 
-                    <x-editorjs block_class="" :content="json_decode($layout->section_content)" />
+                    @foreach ($layout->section_content as $child_layout)
+                        @include('blocks.' . $child_layout->name(), [
+                            'layout' => $child_layout,
+                            'dark' => false,
+                        ])
+                    @endforeach
+
+                    {{-- <x-editorjs block_class="" :content="json_decode($layout->section_content)" /> --}}
 
                 </section>
             @endforeach

@@ -7,6 +7,7 @@ use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
 class PageContentCast extends FlexibleCast
 {
     protected $layouts = [
+        "section" => \App\Nova\Flexible\Layouts\SectionLayout::class,
         "fund-group" => \App\Nova\Flexible\Layouts\FundGroupLayout::class,
         "home-hero" => \App\Nova\Flexible\Layouts\HomeHeroLayout::class,
         "home-carousel" => \App\Nova\Flexible\Layouts\HomeCarouselLayout::class,
@@ -30,6 +31,7 @@ class PageContentCast extends FlexibleCast
         "image" => \App\Nova\Flexible\Layouts\ImageLayout::class,
         "image-pair" => \App\Nova\Flexible\Layouts\ImagePairLayout::class,
         "faqs" => \App\Nova\Flexible\Layouts\FaqsLayout::class,
+        "single-faq" => \App\Nova\Flexible\Layouts\SingleFaqLayout::class,
         "film" => \App\Nova\Flexible\Layouts\FilmLayout::class,
         "team" => \App\Nova\Flexible\Layouts\TeamLayout::class,
         "link-banner" => \App\Nova\Flexible\Layouts\LinkBannerLayout::class,
