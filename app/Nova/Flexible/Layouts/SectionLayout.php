@@ -29,9 +29,9 @@ class SectionLayout extends Layout implements HasMedia
      */
     protected $title = "Section";
 
-    public function getSectionContentAttribute()
+    public function getSectionedContentAttribute()
     {
-        return $this->flexible("section_content", [
+        return $this->flexible("sectioned_content", [
             "simple-text" => \App\Nova\Flexible\Layouts\SimpleTextLayout::class,
             "single-faq" => \App\Nova\Flexible\Layouts\SingleFaqLayout::class,
         ]);
@@ -51,7 +51,7 @@ class SectionLayout extends Layout implements HasMedia
                 })
                 ->store(new \App\Nova\Actions\SaveAndResizeBannerImage()),
             Text::make("Title"),
-            Flexible::make("Content", "section_content")
+            Flexible::make("Content", "sectioned_content")
                 ->addLayout(\App\Nova\Flexible\Layouts\SimpleTextLayout::class)
                 ->addLayout(\App\Nova\Flexible\Layouts\SingleFaqLayout::class),
         ];

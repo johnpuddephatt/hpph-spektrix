@@ -55,7 +55,7 @@
                     <h2 class="type-medium mb-8">
                         {!! $layout->title !!}</h2>
 
-                    @foreach ($layout->section_content as $child_layout)
+                    @foreach ($layout->sectioned_content as $child_layout)
                         @include('blocks.' . $child_layout->name(), [
                             'layout' => $child_layout,
                             'dark' => false,
