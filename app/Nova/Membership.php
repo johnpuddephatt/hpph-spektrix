@@ -59,6 +59,7 @@ class Membership extends Resource
                 Image::make("Logo")
                     ->acceptedTypes(".svg")
                     ->disableDownload(),
+                Image::make("Image")->disableDownload(),
                 Textarea::make("Description"),
                 Values::make("Benefits")->valueLabel("Benefit"),
                 Boolean::make("Show when booking", "show_by_booking_path"),

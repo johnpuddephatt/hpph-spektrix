@@ -30,6 +30,8 @@ class Membership extends Model
         "long_description",
         "price",
         "renewal_price",
+        "image",
+        "logo",
     ];
 
     /**

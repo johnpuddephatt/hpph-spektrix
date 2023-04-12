@@ -6,10 +6,14 @@
             @php($membership = $membership->membership)
 
             <div class="flex flex-col">
-                <div class="relative min-h-[14rem]">
-                    <img src="{{ Storage::url($membership->logo) }}" class="w-32 block h-auto mx-auto" />
+                <div class="relative min-h-[14rem] mb-4">
+                    @if ($membership->image)
+                        <img src="{{ Storage::url($membership->image) }}"
+                            class="w-full inset-0 h-full opacity-75 absolute block object-cover object-center" />
+                    @endif
+                    <img src="{{ Storage::url($membership->logo) }}" class="relative w-32 block h-auto mx-auto" />
 
-                    <div class="type-xs-mono text-white mt-8 mb-12 max-w-xs mx-auto">
+                    <div class="type-xs-mono text-white relative mt-8 mb-12 max-w-xs mx-auto">
                         {{ $membership->description }}
                     </div>
 

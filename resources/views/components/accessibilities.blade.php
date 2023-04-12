@@ -3,7 +3,7 @@
 <div {{ $attributes->class(['flex flex-row gap-0.5']) }}>
 
     @if ($specialevent ?? null)
-        <x-accessibilities.badge :dark="$dark" :class="$dark ? 'pl-1' : 'py-0.5 font-bold !font-sans !uppercase'" :title="'+' . $specialevent">
+        <x-accessibilities.badge :dark="$dark" :class="$dark ? 'pl-1' : 'py-0.5 font-bold !font-sans !uppercase'" :title="'With ' . $specialevent">
             +{{ $specialevent }}
         </x-accessibilities.badge>
     @endif
