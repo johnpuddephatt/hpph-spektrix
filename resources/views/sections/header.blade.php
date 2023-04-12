@@ -25,7 +25,7 @@
 
         @include('sections.navigation')
 
-        <div class="absolute top-14 right-5 flex flex-col items-center lg:mt-0 gap-2">
+        <div class="absolute top-12 right-5 flex flex-col items-center lg:mt-0 gap-2.5">
             @include('components.menu-button')
 
             <livewire:search />
@@ -35,7 +35,7 @@
 
             @if (\Auth::user() && isset($edit_link))
                 <a aria-label="Edit page" title="Edit page" class="inline-block" :class="{ 'max-lg:!hidden': scrolled }"
-                    href="{{ $edit_link }}">@svg('edit', 'h-6 w-6 lg:h-8 lg:w-8 p-0.5 pb-0.5')</a>
+                    href="{{ $edit_link }}">@svg('edit', 'h-6 w-6 pb-0.5')</a>
             @endif
         </div>
 

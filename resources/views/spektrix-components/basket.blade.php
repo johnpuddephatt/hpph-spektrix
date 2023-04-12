@@ -5,7 +5,7 @@
     custom-domain="{{ $settings['spektrix_custom_domain'] }}">
     <a aria-label="View basket" ref="/basket/" class="relative block" :class="{ 'max-lg:hidden': scrolled }"
         @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
-        @svg('basket', 'h-6 w-6 lg:h-8 lg:w-8 pb-1 ')
+        @svg('basket', 'h-6 w-6 pb-0.5 ')
         <span hidden id="spektrixBasketCount"
             class="mobile-basket-count absolute top-0 right-0 h-4 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow-dark px-1.5 pt-0.5 text-center text-[0.65rem] leading-tight text-black"
             data-basket-item-count></span>
