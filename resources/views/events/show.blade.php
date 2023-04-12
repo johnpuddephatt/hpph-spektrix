@@ -112,7 +112,7 @@
 
         <x-strand.card :strand="$event->strand" />
 
-        <button class="w-full sticky bottom-0 bg-yellow block py-4"
+        <button class="z-20 w-full sticky bottom-0 bg-yellow block py-4"
             @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">
             <div class="container flex flex-row items-center">
                 <div class="w-1/2 hidden lg:block">
