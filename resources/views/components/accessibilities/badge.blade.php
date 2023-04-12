@@ -9,5 +9,7 @@
     'no-underline',
     'px-2',
     'text-center',
+    'pointer-default',
+    'z-10',
 ])>
     {{ $dark ? $slot : $title }}</abbr>
