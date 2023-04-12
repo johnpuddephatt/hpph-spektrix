@@ -24,12 +24,5 @@
             </div>
         </div>
 
-        {{-- @if ($layout->link_text)
-            <a class="block text-center mt-16" href="{{ $layout->link_url }}">
-                <p class="type-xs-mono text-white">{{ $layout->link_text }}
-                </p>
-                @svg('plus', 'mt-4 inline-block w-10 h-10 bg-white bg-opacity-[0.15] rounded-full p-2.5 text-white')
-            </a>
-        @endif --}}
     </div>
 @endif

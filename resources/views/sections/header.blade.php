@@ -25,7 +25,7 @@
 
         @include('sections.navigation')
 
-        <div class="absolute top-12 right-5 flex flex-col items-center lg:mt-0 gap-2.5">
+        <div class="absolute top-12 right-4 flex flex-col items-center lg:mt-0 gap-2.5">
             @include('components.menu-button')
 
             <livewire:search />

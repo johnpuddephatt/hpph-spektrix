@@ -53,12 +53,13 @@ export default () => ({
 
         if (!ticking) {
             let swing_percent =
-                (lastKnownScrollPosition -
+                -(
+                    lastKnownScrollPosition -
                     config.scrollContainer.offsetParent.offsetTop -
                     config.scrollContainer.offsetTop -
                     config.scrollContainer.clientHeight / 2 +
-                    window.innerHeight / 2) /
-                config.scrollContainer.clientHeight;
+                    window.innerHeight / 2
+                ) / config.scrollContainer.clientHeight;
 
             let swing = swing_percent * config.max_swing;
             config.images.forEach((img, key) => {
