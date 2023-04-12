@@ -13,12 +13,8 @@
 
      <div class="flex flex-col lg:block">
          <div
-             class="bg-sand-light z-10 sticky bottom-0 lg:static lg:bottom-auto lg:container lg:flex flex-row justify-between border-b border-sand lg:py-2.5">
-             <div class="grid grid-cols-2 lg:flex flex-row items-center lg:gap-2.5">
-                 <div class="type-xs-mono hidden lg:block">View:</div>
-                 <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
-                 <x-programme-button :selected="$type" type="alphabetical">A&ndash;Z</x-programme-button>
-             </div>
+             class="bg-sand-light z-10 sticky bottom-0 lg:static lg:bottom-auto lg:container lg:flex flex-row-reverse justify-between border-b border-yellow-dark lg:border-sand lg:py-2.5">
+
              <div class="grid grid-cols-3 px-4 py-3 lg:p-0 lg:flex flex-row items-center gap-4 lg:gap-2.5">
                  <div class="type-xs-mono hidden lg:block">Filter:</div>
 
@@ -144,6 +140,11 @@
 
                      </dialog>
                  @endif
+             </div>
+             <div class="grid grid-cols-2 lg:flex flex-row items-center lg:gap-2.5">
+                 <div class="type-xs-mono hidden lg:block">View:</div>
+                 <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
+                 <x-programme-button :selected="$type" type="alphabetical">A&ndash;Z</x-programme-button>
              </div>
          </div>
 

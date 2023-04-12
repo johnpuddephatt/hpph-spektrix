@@ -111,6 +111,7 @@
         <x-event-reviews :reviews="$event->reviews" />
 
         <x-strand.card :strand="$event->strand" />
+        <x-season.card :strand="$event->season" />
 
         <button class="z-20 w-full sticky bottom-0 bg-yellow block py-4"
             @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">
