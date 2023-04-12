@@ -1,6 +1,6 @@
 @props(['event'])
 
-<div class="border-gray-light relative md:pt-3 mb-8 md:border-b flex flex-col px-2">
+<div class="border-gray-light relative md:pt-3 mb-4 pb-4 md:border-b flex flex-col px-2">
     <div class="type-xs-mono max-md:bg-sand-light max-md:container max-md:pt-3 pb-3">
         {!! $event->date_range !!}
     </div>
