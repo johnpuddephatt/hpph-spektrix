@@ -5,7 +5,7 @@
 
     <div id="slider-wrapper" x-data="{ activeSlide: 0 }">
         @foreach ($layout->events as $event)
-            <div x-transition:enter="opacity-0" x-transition:leave="delay-500 opacity-0"
+            <dix x-cloak x-transition:enter="opacity-0" x-transition:leave="delay-500 opacity-0"
                 x-show="{{ $loop->index }} == activeSlide" href="{{ $event->url }}"
                 class="inset-0 absolute duration-500">
                 @if ($event->featuredVideo)
@@ -67,14 +67,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
     </div>
+    @endforeach
+</div>
 
-    <div :class="scrolled ? 'opacity-0 -translate-y-8 lg:opacity-100 lg:translate-y-0' : ''"
-        class="absolute inset-0 transform transition">
-        @svg('logo-full', 'h-auto max-w-[80vw]  lg:px-0 w-72 lg:w-96 absolute top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-yellow')
-        <button @click="document.documentElement.scrollTop = 12"
-            class="fixed left-1/2 bottom-16 z-20 -translate-x-1/2 transform rounded-full bg-black p-4 text-5xl text-white lg:hidden">@svg('arrow-right', 'transform rotate-90 h-6 w-6')</button>
-    </div>
+<div :class="scrolled ? 'opacity-0 -translate-y-8 lg:opacity-100 lg:translate-y-0' : ''"
+    class="absolute inset-0 transform transition">
+    @svg('logo-full', 'h-auto max-w-[80vw]  lg:px-0 w-72 lg:w-96 absolute top-[50vh] left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-yellow')
+    <button @click="document.documentElement.scrollTop = 12"
+        class="fixed left-1/2 bottom-16 z-20 -translate-x-1/2 transform rounded-full bg-black p-4 text-5xl text-white lg:hidden">@svg('arrow-right', 'transform rotate-90 h-6 w-6')</button>
+</div>
 </div>
