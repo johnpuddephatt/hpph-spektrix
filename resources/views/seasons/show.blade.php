@@ -62,7 +62,7 @@
     @if ($season->content)
         <div class="bg-black">
             @foreach ($season->content as $layout)
-                @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => true'])
+                @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => true])
             @endforeach
         </div>
     @endif
