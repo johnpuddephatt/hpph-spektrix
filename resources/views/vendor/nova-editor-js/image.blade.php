@@ -3,7 +3,7 @@ if (!isset($width)) {
     $width = '';
 }
 @endphp
-<figure class="my-16 relative">
+<figure class="{{ $width == '' ? 'max-w-[50ch]' : '' }} my-16 relative">
     <img class="@if ($width != 'full') rounded @endif w-full" src="{{ $file['url'] }}"
         alt="{{ $caption }}">
     @if (!empty($caption))
