@@ -36,7 +36,6 @@ class LinkLayout extends Layout
                 })
                 ->store(new \App\Nova\Actions\SaveAndResizeExternalLinkImage()),
             Text::make("Title", "title"),
-            Textarea::make("Description", "description"),
             Text::make("URL", "url"),
         ];
     }
