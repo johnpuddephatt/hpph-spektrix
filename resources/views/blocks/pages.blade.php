@@ -1,6 +1,6 @@
 @if ($layout->child_pages)
     <div class="bg-black text-white py-8 pb-16">
-        <div class="flex flex-col lg:flex-row justify-center">
+        <div class="flex flex-col md:flex-row justify-center">
             @foreach ($layout->child_pages as $child)
                 @if ($child->page)
                     <a class="group w-full lg:w-1/2 relative block bg-black-light" href="{{ $child->page->url }}">
