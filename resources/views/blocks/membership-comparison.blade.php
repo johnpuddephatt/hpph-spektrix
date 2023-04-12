@@ -6,17 +6,15 @@
             @php($membership = $membership->membership)
 
             <div class="flex flex-col">
-                <div class="relative min-h-[14rem] mb-4">
+                <div class="relative min-h-[14rem] flex flex-col justify-center">
                     @if ($membership->image)
                         <img src="{{ Storage::url($membership->image) }}"
-                            class="w-full inset-0 h-full opacity-75 absolute block object-cover object-center" />
+                            class="w-full inset-0 h-full opacity-60 absolute block object-cover object-center" />
                     @endif
                     <img src="{{ Storage::url($membership->logo) }}" class="relative w-32 block h-auto mx-auto" />
-
-                    <div class="type-xs-mono text-white relative mt-8 mb-12 max-w-xs mx-auto">
-                        {{ $membership->description }}
-                    </div>
-
+                </div>
+                <div class="type-xs-mono text-white relative mt-2 mb-6 max-w-xs mx-auto">
+                    {{ $membership->description }}
                 </div>
                 <div class="bg-yellow text-center py-6 text-black">
                     <span class="type-medium">{{ $membership->price }}</span><span
