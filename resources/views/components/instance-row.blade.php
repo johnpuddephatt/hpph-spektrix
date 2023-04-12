@@ -5,7 +5,7 @@
         class="border-b-[0.5px] border-gray-light py-4 relative flex flex-wrap lg:flex-nowrap flex-row items-start lg:gap-6">
 
         @if ($instance->event->featuredImage)
-            <div class="w-1/2 lg:w-2/12">
+            <div class="w-1/2 md:w-1/4 lg:w-2/12">
                 {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'w-full overflow-hidden rounded']) !!}
             </div>
         @endif
@@ -15,7 +15,7 @@
                 {{ $instance->event->name }}
                 <x-certificate class="align-middle" :dark="true" :certificate="$instance->event->certificate_age_guidance" />
             </h4>
-            <a class="type-small before:absolute before:inset-0 bg-sand-light inline-block mt-auto mb-2 px-4 rounded-full"
+            <a class="type-small hidden lg:inline-block before:absolute before:inset-0 bg-sand-light mt-auto mb-2 px-4 rounded-full"
                 href="{{ route('event.show', ['event' => $instance->event->slug]) }}">More info</a>
         </div>
 

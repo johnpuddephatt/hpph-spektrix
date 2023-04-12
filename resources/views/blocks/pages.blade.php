@@ -5,7 +5,9 @@
                 @if ($child->page)
                     <a class="group w-full lg:w-1/2 relative block bg-black-light" href="{{ $child->page->url }}">
                         {!! $child->page->mainImage
-                            ?->img('landscape')->attributes(['class' => 'max-w-none w-full opacity-60 transition group-hover:opacity-90']) !!}
+                            ?->img('landscape')->attributes([
+                                'class' => 'aspect-square lg:aspect-auto max-w-none w-full opacity-60 transition group-hover:opacity-90',
+                            ]) !!}
 
                         <div class="p-4 inset-0 absolute text-center items-center justify-center flex flex-col">
 
@@ -19,7 +21,7 @@
                     <a class="group w-full lg:w-1/2 relative block bg-black-light" href="{{ $child->url }}"
                         target="_blank">
                         <img src="{{ Storage::url($child->image) }}"
-                            class="max-w-none w-full opacity-60 transition group-hover:opacity-90" />
+                            class="aspect-square lg:aspect-auto max-w-none w-full opacity-60 transition group-hover:opacity-90" />
 
                         <div class="p-4 inset-0 absolute text-center items-center justify-center flex flex-col">
 
