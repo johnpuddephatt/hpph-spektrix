@@ -3,7 +3,7 @@ import Carousel from "editorjs-carousel";
 import BlockWidthTune from "editorjs-block-width-tune";
 import Quote from "@editorjs/quote";
 import ToggleBlock from "editorjs-toggle-block";
-import DetailsSummaryBlock from "editorjs-detailssummary";
+// import DetailsSummaryBlock from "editorjs-detailssummary";
 import ImageTool from "@editorjs/image";
 import AttachesBlock from "@editorjs/attaches";
 
@@ -39,14 +39,14 @@ NovaEditorJS.booting(function (editorConfig, fieldConfig) {
             },
         };
     }
-    if (fieldConfig.toolSettings.detailssummary.activated === true) {
-        editorConfig.tools.detailssummary = {
-            class: DetailsSummaryBlock,
-            inlineToolbar:
-                fieldConfig.toolSettings.detailssummary.inlineToolbar,
-            shortcut: fieldConfig.toolSettings.detailssummary.shortcut,
-        };
-    }
+    // if (fieldConfig.toolSettings.detailssummary.activated === true) {
+    //     editorConfig.tools.detailssummary = {
+    //         class: DetailsSummaryBlock,
+    //         inlineToolbar:
+    //             fieldConfig.toolSettings.detailssummary.inlineToolbar,
+    //         shortcut: fieldConfig.toolSettings.detailssummary.shortcut,
+    //     };
+    // }
     if (fieldConfig.toolSettings.toggle.activated === true) {
         editorConfig.tools.toggle = {
             class: ToggleBlock,
