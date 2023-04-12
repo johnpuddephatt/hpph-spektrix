@@ -6,7 +6,7 @@
         <div class="">
 
             @if ($meta['imageUrl'])
-                <img class="w-64 rounded" src="{{ $meta['imageUrl'] }}" />
+                <img class="w-64 rounded mb-2" src="{{ $meta['imageUrl'] }}" />
             @endif
 
             <div class="">
