@@ -56,7 +56,7 @@ class TextLayout extends Layout
                     "text-white" => "White",
                     "text-sand-dark" => "Grey",
                     "text-yellow" => "Yellow",
-                    "bg-black" => "Black",
+                    "text-black" => "Black",
                 ])
                 ->displayUsingLabels(),
             Boolean::make("Center?", "is_centered"),
