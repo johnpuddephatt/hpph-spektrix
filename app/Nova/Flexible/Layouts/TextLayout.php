@@ -50,6 +50,15 @@ class TextLayout extends Layout
                     "bg-black" => "Black",
                 ])
                 ->displayUsingLabels(),
+
+            Select::make("Heading colour")
+                ->options([
+                    "text-white" => "White",
+                    "text-sand-dark" => "Grey",
+                    "text-yellow" => "Yellow",
+                    "bg-black" => "Black",
+                ])
+                ->displayUsingLabels(),
             Boolean::make("Center?", "is_centered"),
         ];
     }

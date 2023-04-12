@@ -4,7 +4,7 @@
         class="{{ $layout->title ? 'grid lg:grid-cols-2 gap-4' : 'mx-auto max-w-xl' }} {{ $layout->is_centered ? 'text-center' : '' }}">
         <div class="">
             @if ($layout->title)
-                <h2 class="type-medium {{ $layout->background_colour == 'bg-black' ? 'text-gray-medium' : null }}">
+                <h2 class="type-medium {{ $layout->heading_colour }}">
                     {{ $layout->title }}</h2>
             @endif
         </div>
