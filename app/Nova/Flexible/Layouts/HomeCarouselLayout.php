@@ -46,8 +46,6 @@ class HomeCarouselLayout extends Layout implements HasMedia
             ]),
             Text::make("Values heading", "heading"),
             Textarea::make("Values statement", "statement"),
-            Text::make("Values link text", "link_text"),
-            URL::make("Values link URL", "link_url"),
         ];
     }
 
