@@ -7,6 +7,7 @@ use Astrotomic\CachableAttributes\CachesAttributes;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Number;
 use Illuminate\Support\Facades\Cache;
+use Laravel\Nova\Fields\Boolean;
 use Outl1ne\MultiselectField\Multiselect;
 
 class HomeHeroLayout extends Layout implements CachableAttributes
@@ -35,6 +36,9 @@ class HomeHeroLayout extends Layout implements CachableAttributes
     public function fields()
     {
         return [
+            Boolean::make("Randomise?", "randomise")->help(
+                "If checked, the featured events will be randomised. If unchecked, the featured events will be ordered by the order they appear in the list below."
+            ),
             Multiselect::make("Films", "featured_events")
                 ->max(5)
                 ->reorderable()
@@ -48,7 +52,7 @@ class HomeHeroLayout extends Layout implements CachableAttributes
     public function getEventsAttribute()
     {
         return $this->remember("events", 0, function () {
-            return (count($this->featured_events)
+            $events = (count($this->featured_events)
                 ? \App\Models\Event::whereIn(
                     "id",
                     $this->featured_events
@@ -59,9 +63,13 @@ class HomeHeroLayout extends Layout implements CachableAttributes
                     "first_instance_date_time",
                     "DESC"
                 )->take(3)
-            )
-                ->with(["featuredImage", "featuredVideo"])
-                ->get();
+            )->with(["featuredImage", "featuredVideo"]);
+
+            if ($this->randomise) {
+                return $events->get()->shuffle();
+            } else {
+                return $events->get();
+            }
         });
     }
 }
