@@ -9,7 +9,7 @@
 
                         <div class="p-4 inset-0 absolute text-center items-center justify-center flex flex-col">
 
-                            <div class="mt-auto pt-16 transition group-hover:-translate-y-4">
+                            <div class="my-auto pt-16 transition group-hover:-translate-y-4">
                                 <h3 class="type-medium">{{ $child->page->name }}</h3>
                                 @svg('arrow-right', 'text-white group-hover:text-black -rotate-45 h-10 w-10 block rounded-full bg-black bg-opacity-50  group-hover:bg-opacity-100 group-hover:bg-yellow p-2 mt-4 text-black mx-auto transition')
                             </div>
@@ -23,7 +23,7 @@
 
                         <div class="p-4 inset-0 absolute text-center items-center justify-center flex flex-col">
 
-                            <div class="mt-auto pt-16 transition group-hover:-translate-y-4">
+                            <div class="my-auto pt-16 transition group-hover:-translate-y-4">
                                 <h3 class="type-medium">{{ $child->title }}</h3>
                                 @svg('arrow-right', 'text-white group-hover:text-black -rotate-45 h-10 w-10 block rounded-full bg-black bg-opacity-50  group-hover:bg-opacity-100 group-hover:bg-yellow p-2 mt-4 text-black mx-auto transition')
                             </div>
