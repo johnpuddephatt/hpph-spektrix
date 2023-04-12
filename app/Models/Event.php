@@ -319,6 +319,20 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
+    public function getSeasonAttribute($value)
+    {
+        return $this->remember("season", 3600, function () {
+            $season = $this->instances
+                ->pluck("season")
+                ->unique()
+                ->flatten()
+                ->filter()
+                ->first();
+
+            return $season;
+        });
+    }
+
     public function getDateRangeAttribute()
     {
         return $this->remember("dateRange", 3600, function () {
