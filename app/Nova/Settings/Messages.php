@@ -3,6 +3,7 @@ namespace App\Nova\Settings;
 
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
+use Laravel\Nova\Panel;
 
 class Messages
 {
@@ -36,6 +37,16 @@ class Messages
             Text::make("Screenings ended", "screenings_ended")->help(
                 "Displayed when an event has past instances but no future instances"
             ),
+
+            Panel::make("Booking path", [
+                Text::make(
+                    "Memberships heading",
+                    "members_basket_heading"
+                )->help("Displayed next to the booking path"),
+                Trix::make("Memberships text", "members_basket_text")->help(
+                    "Displayed next to the booking path"
+                ),
+            ]),
         ];
     }
 

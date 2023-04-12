@@ -120,14 +120,24 @@
         <div class="container relative h-screen overflow-y-auto pt-12 lg:pl-48" x-show="instanceID">
 
             <template x-if="instanceID">
-                <div class="max-w-xl">
-                    <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 pl-32">
-                        @svg('loading', 'w-32 lg:ml-36 block pt-24 text-sand-dark')
+                <div class="flex-1 flex flex-col lg:flex-row gap-12 overflow-hidden">
 
+                    <div class="w-full max-w-xl">
+                        <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 pl-32">
+                            @svg('loading', 'w-32 lg:ml-36 block pt-24 text-sand-dark')
+
+                        </div>
+                        <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
+                            style="height: 90vh;" name="SpektrixIFrame"
+                            :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ instanceID }&resize=true`"></iframe>
                     </div>
-                    <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
-                        style="height: 90vh;" name="SpektrixIFrame"
-                        :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ instanceID }&resize=true`"></iframe>
+                    <div class="max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
+                        <h3 class="type-small mb-3">{{ $settings['members_basket_heading'] ?? 'Members' }}</h3>
+                        <div class="type-xs border-t last:border-b border-gray-light py-4">
+                            {!! $settings['members_basket_text'] ??
+                                'Please select a full-price ticket, any discounts will be applied at checkout after you have signed into your account' !!}
+                        </div>
+                    </div>
                 </div>
             </template>
         </div>
