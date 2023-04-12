@@ -1,6 +1,6 @@
 @props(['event'])
 
-<div class="border-gray-light relative md:pt-3 pb-8 md:pb-12 md:border-b flex flex-col px-2">
+<div class="border-gray-light relative md:pt-3 mb-8 md:border-b flex flex-col px-2">
     <div class="type-xs-mono max-md:bg-sand-light max-md:container max-md:pt-3 pb-3">
         {!! $event->date_range !!}
     </div>
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="max-md:container">
+    <div class="max-md:container md:bg-transparent bg-sand-light pb-4">
         <h2 class="type-regular lg:h-[4rem] max-w-xs mt-4 mb-4 lg:mb-2">{{ $event->name }}
             <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
         </h2>
