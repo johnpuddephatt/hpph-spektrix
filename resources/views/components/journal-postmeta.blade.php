@@ -9,10 +9,17 @@
         <div class="gap-1 flex flex-row items-center">
             @svg('bookmark', 'h-3 w-3 inline-block mr-0.5')
             @foreach ($post->tags_translated ?? [] as $tag)
-                <{{ $link_tags ? 'a href=' . \App\Models\Page::getTemplateUrl('journal-page') . '?tag=' . $tag->slug_translated : 'span' }}
-                    class="type-xs-mono {{ $dark ? 'bg-gray-dark text-white' : 'bg-sand text-black' }} rounded px-1 py-0.5">
-
-                    {{ $tag->name_translated }}</{{ $link_tags ? 'a' : 'span' }}>
+                @if ($link_tags)
+                    <a href="{{ \App\Models\Page::getTemplateUrl('journal-page') }}?tag={{ $tag->slug_translated }}"
+                        class="type-xs-mono {{ $dark ? 'bg-gray-dark hover:bg-black-light text-white' : 'bg-sand hover:bg-sand-dark text-black' }} px-1 py-0.5 rounded transition">
+                        {{ $tag->name_translated }}</a>
+                @else
+                    <span class="type-xs-mono {{ $dark ? 'text-white' : 'text-black' }} px-1 py-0.5">
+                        {{ $tag->name_translated }}</span>
+                    @if (!$loop->last)
+                        /
+                    @endif
+                @endif
             @endforeach
         </div>
     @endif

@@ -20,10 +20,8 @@
                     </div>
 
                     <div class="mt-auto flex flex-row gap-4 pt-2 justify-between align-bottom">
-                        <div>
-                            <div class="type-xs-mono">{{ $layout->post->date }}</div>
-                            <x-post-tags class="type-xs-mono" :tags="$layout->post->tags_translated" />
-                        </div>
+
+                        <x-journal-postmeta :post="$layout->post" :dark="$layout->dark" />
 
                         @svg('arrow-right', 'rounded-full border rotate -rotate-45 p-2.5 h-9 w-9')
                     </div>
