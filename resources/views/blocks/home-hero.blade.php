@@ -3,9 +3,9 @@
 
 <div class="fixed inset-0 -z-10 h-screen w-full overflow-hidden border-b-[1rem] border-yellow bg-black">
 
-    <div id="slider-wrapper" x-data="{ activeSlide: 0 }">
+    <div id="slider-wrapper" x-cloak x-data="{ activeSlide: 0 }">
         @foreach ($layout->events as $event)
-            <dix x-cloak x-transition:enter="opacity-0" x-transition:leave="delay-500 opacity-0"
+            <dix x-transition:enter="opacity-0" x-transition:leave="delay-500 opacity-0"
                 x-show="{{ $loop->index }} == activeSlide" href="{{ $event->url }}"
                 class="inset-0 absolute duration-500">
                 @if ($event->featuredVideo)
