@@ -101,7 +101,12 @@
                     </div>
                     <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
                         <span
-                            class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">AD</span>
+                            class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">R</span>
+                        <p class="!normal-case">Relaxed</p>
+                    </div>
+                    <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
+                        <span
+                            class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2">AD</span>
                         <p class="!normal-case">Audio Described</p>
                     </div>
                 </div>

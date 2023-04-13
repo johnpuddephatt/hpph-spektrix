@@ -39,7 +39,6 @@ class Instance extends Model
         "start_selling_at_web",
         "stop_selling_at_web",
         "cancelled",
-        "audio_described",
         "captioned",
         "relaxed",
         "signed_bsl",
@@ -125,13 +124,13 @@ class Instance extends Model
         return $query->where("captioned", true);
     }
 
-    public function scopeAudioDescribed($query)
-    {
-        return $query->where("audio_described", true);
-    }
-
     public function scopeSignedBsl($query)
     {
         return $query->where("signed_bsl", true);
+    }
+
+    public function scopeRelaxed($query)
+    {
+        return $query->where("relaxed", true);
     }
 }

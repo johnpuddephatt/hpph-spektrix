@@ -69,7 +69,7 @@ class Programme extends Component
                 "abbreviation" => "BSL",
             ]);
         }
-        if (\App\Models\Instance::audioDescribed()->count()) {
+        if (\App\Models\Event::audioDescribed()->count()) {
             $accessibilities_with_showings->push([
                 "label" => "Audio Described",
                 "slug" => "audio-described",
@@ -81,6 +81,13 @@ class Programme extends Component
                 "label" => "Captioned",
                 "slug" => "captioned",
                 "abbreviation" => "C",
+            ]);
+        }
+        if (\App\Models\Instance::relaxed()->count()) {
+            $accessibilities_with_showings->push([
+                "label" => "Relaxed",
+                "slug" => "relaxed",
+                "abbreviation" => "R",
             ]);
         }
 

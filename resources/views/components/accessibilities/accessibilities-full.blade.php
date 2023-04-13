@@ -1,5 +1,5 @@
-@props(['dark' => false, 'captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'specialevent' => ''])
-
+@props(['dark' => false, 'captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'relaxed' => false, 'specialevent' => ''])
+FULL?
 <div {{ $attributes }}>
 
     @if ($specialevent ?? null)
@@ -24,5 +24,10 @@
         <abbr title="Audio Described"
             class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block no-underline rounded-full px-2 text-center">
             AD</abbr>
+    @endif
+    @if ($relaxed ?? null)
+        <abbr title="Relaxed"
+            class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block no-underline rounded-full px-2 text-center">
+            R</abbr>
     @endif
 </div>

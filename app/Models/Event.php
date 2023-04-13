@@ -110,15 +110,15 @@ class Event extends Model implements HasMedia, CachableAttributes
         "date_range",
         "has_captioned",
         "has_signed_bsl",
-        "has_audio_described",
         "has_special_event",
+        "has_relaxed",
         "genres_and_vibes",
     ];
 
     protected $cachableAttributes = [
         "has_captioned",
         "has_signed_bsl",
-        "has_audio_described",
+        "has_relaxed",
     ];
 
     public function scopeUnpublished($query)
@@ -242,20 +242,20 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
-    public function getHasAudioDescribedAttribute(): bool
-    {
-        return $this->remember("has_audio_described", 3600, function (): bool {
-            return !!$this->instances()
-                ->audioDescribed()
-                ->count();
-        });
-    }
-
     public function getHasSignedBslAttribute(): bool
     {
         return $this->remember("has_signed_bsl", 3600, function (): bool {
             return !!$this->instances()
                 ->signedBsl()
+                ->count();
+        });
+    }
+
+    public function getHasRelaxedAttribute(): bool
+    {
+        return $this->remember("has_relaxed", 3600, function (): bool {
+            return !!$this->instances()
+                ->relaxed()
                 ->count();
         });
     }
@@ -431,6 +431,11 @@ class Event extends Model implements HasMedia, CachableAttributes
         )
             ->replace(" hour", "hr")
             ->replace(" minute", "min");
+    }
+
+    public function scopeAudioDescribed($query)
+    {
+        return $query->where("audio_description", true);
     }
 
     // public function todayInstances()

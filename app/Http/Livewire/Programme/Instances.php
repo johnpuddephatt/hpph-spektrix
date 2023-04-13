@@ -25,19 +25,18 @@ class Instances extends Component
     {
         $instances = \App\Models\Instance::whereHas("event")
             ->with(
-                "event:id,slug,name,description,certificate_age_guidance,year_of_production,duration,genres,vibes",
+                "event:id,slug,name,description,certificate_age_guidance,duration,audio_description",
                 "event.featuredImage",
                 "strand:slug,name,color"
             )
             ->select(
                 "id",
-                "venue",
                 "event_id",
                 "start",
                 "captioned",
+                "relaxed",
                 "signed_bsl",
                 "strand_name",
-                "audio_described",
                 "special_event"
             );
 

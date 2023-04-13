@@ -24,7 +24,9 @@
 
             <div class="flex flex-row items-center gap-1.5">@svg('clock', ' w-4 h-4')
                 <div class="type-regular">{{ $instance->start->format('H:i') }}</div>
-                <x-accessibilities :dark="true" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->audio_described" />
+
+                <x-accessibilities :dark="true" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description"
+                    :relaxed="$instance->relaxed" />
             </div>
 
             <div class="lg:mt-auto mr-auto lg:mb-2 flex flex-row gap-2 items-center">

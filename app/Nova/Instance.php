@@ -65,7 +65,7 @@ class Instance extends Resource
 
             // Boolean::make("Short film with feature")->onlyOnDetail(),
 
-            Boolean::make("AD", "audio_described"),
+            // Boolean::make("AD", "audio_described"),
             Boolean::make("Captioned"),
             Boolean::make("Relaxed", "relaxed"),
             Boolean::make("BSL", "signed_bsl"),
