@@ -53,8 +53,7 @@ class HomeCarouselLayout extends Layout implements HasMedia
     {
         $shuffled_images = $this->getMedia("gallery")
             ->shuffle()
-            ->groupBy("custom_properties.category")
-            ->shuffle();
+            ->groupBy("custom_properties.category");
 
         return count($shuffled_images)
             ? $shuffled_images
@@ -62,9 +61,11 @@ class HomeCarouselLayout extends Layout implements HasMedia
                     return $values->take(2);
                 })
                 ->flatten()
+
                 ->filter(function ($item) {
                     return $item->hasGeneratedConversion("square");
                 })
+                ->shuffle()
             : null;
     }
 }
