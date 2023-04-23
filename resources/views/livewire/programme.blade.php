@@ -44,7 +44,7 @@
                                              <button aria-label="Filter to show {{ $strand->name }} screenings"
                                                  wire:click="$emit('updateStrand', '{{ $strand->slug }}' )"
                                                  style="color: {{ $strand->color }}"
-                                                 class="type-xs-mono h-12 flex flex-row items-center rounded-full bg-sand-dark hover:bg-current">
+                                                 class="type-xs-mono h-20 flex flex-row items-center rounded-full bg-sand-dark hover:bg-current">
                                                  @if ($strand->logo_simple)
                                                      @icon($strand->logo_simple, ' px-8 py-4 max-h-[4.5rem] w-full h-auto')
                                                  @else
