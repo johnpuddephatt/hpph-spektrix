@@ -47,11 +47,6 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("post.show");
 
-    Route::get("/opportunities/{opportunity:slug}", [
-        \App\Http\Controllers\OpportunityController::class,
-        "show",
-    ])->name("opportunity.show");
-
     Route::get("/shop/{product:slug}", [
         \App\Http\Controllers\ProductController::class,
         "show",
@@ -85,4 +80,9 @@ Route::middleware(["spektrix"])->group(function () {
     Route::get("{page}", [\App\Http\Controllers\PageController::class, "show"])
         ->where("page", "^(?!nova).*")
         ->name("page.show");
+
+    Route::get("/opportunities/{opportunity:slug}", [
+        \App\Http\Controllers\OpportunityController::class,
+        "show",
+    ])->name("opportunity.show");
 });
