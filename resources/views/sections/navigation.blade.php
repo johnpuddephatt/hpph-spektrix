@@ -70,7 +70,7 @@
             </nav>
         @endif
 
-        <div class="lg:hidden flex mt-auto mb-8 flex-row gap-3 py-1">
+        <div class="lg:hidden flex mt-auto pt-12 mb-8 flex-row gap-3 py-1">
             @foreach (['facebook', 'twitter', 'youtube', 'instagram', 'linkedin', 'vimeo'] as $account)
                 <x-social-icon :account="$account" />
             @endforeach
