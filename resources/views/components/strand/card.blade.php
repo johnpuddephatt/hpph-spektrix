@@ -21,7 +21,7 @@
                     <h3
                         class="type-xs-mono hidden lg:block text-white opacity-30 top-[45%] absolute right-full origin-bottom translate-x-full -rotate-90 transform whitespace-nowrap">
                         Strands &amp; seasons</h3>
-                    <h3 class="type-regular lg:type-medium lg:mb-8 lg:!font-normal">Part of <span class="!font-bold"
+                    <h3 class="type-regular lg:type-medium mb-4 lg:mb-8 lg:!font-normal">Part of <span class="!font-bold"
                             style="color: {{ $strand->color }}">{{ $strand->name }}</span></h3>
                     <div class="type-regular max-w-lg !font-normal mb-16 lg:mb-8">{{ $strand->description }}</div>
                     <a class="type-xs-mono before:inset-0" style="color: {{ $strand->color }}"
