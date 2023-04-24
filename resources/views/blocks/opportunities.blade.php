@@ -13,8 +13,10 @@
                     </div>
                     <div class="flex-grow order-first lg:order-none lg:container">
                         <h3 class="type-regular mb-1">{{ $opportunity->title }}</h3>
-                        <div class="type-xs-mono">{{ $opportunity->type }} • Apply by
-                            {{ $opportunity->application_deadline }}
+                        <div class="type-xs-mono">{{ $opportunity->type }} @if ($opportunity->application_deadline)
+                                • Apply by
+                                {{ $opportunity->application_deadline }}
+                            @endif
                         </div>
                     </div>
                     <div
