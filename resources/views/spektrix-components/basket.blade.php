@@ -38,7 +38,7 @@
             <div class="relative">
                 <button class="absolute right-0 top-0 z-10 ml-auto"
                     @click="open = ! open; $dispatch('menutoggled', open)"
-                    aria-label="Close basket menu">@svg('plus', 'h-8 w-8 transform rotate-45 origin-center text-black')</button>
+                    aria-label="Close basket menu">@svg('plus', 'h-6 w-6 transform rotate-45 origin-center text-black')</button>
                 <div x-show="iFrameLoading" x-transition class="absolute inset-0 p-16">
                     @svg('loading', 'w-32 mx-auto block pt-24 text-sand-dark')
                 </div>

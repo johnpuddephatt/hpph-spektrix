@@ -15,7 +15,7 @@
                 {{ $instance->event->name }}
                 <x-certificate class="align-middle" :dark="true" :certificate="$instance->event->certificate_age_guidance" />
             </h4>
-            <a class="type-small bg-sand text-transparent lg:text-black inline-block before:absolute before:inset-0 lg:bg-sand-light mt-auto mb-2 px-4 rounded-full"
+            <a class="type-small bg-transparent text-transparent lg:text-black inset-0 absolute lg:static inline-block before:absolute before:inset-0 lg:bg-sand-light mt-auto mb-2 px-4 lg:rounded-full"
                 href="{{ route('event.show', ['event' => $instance->event->slug]) }}">Info</a>
         </div>
 
