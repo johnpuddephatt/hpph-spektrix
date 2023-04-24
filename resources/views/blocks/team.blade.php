@@ -58,7 +58,7 @@
             </div>
         </div>
 
-        <div class="mt-20 lg:mt-24 justify-center flex flex-row gap-4 border-t border-gray-dark text-white">
+        <div class="mt-20 lg:mt-12 justify-center flex flex-row gap-4 border-t border-gray-dark text-white">
             <div x-show="showControls" class="-mt-7 bg-black border border-gray-dark rounded-full">
                 <button :class="{ 'opacity-25': !showPreviousControl }" :disabled="!showPreviousControl"
                     @click="swiper.slidePrev()" class="py-1 pl-6 pr-2">
