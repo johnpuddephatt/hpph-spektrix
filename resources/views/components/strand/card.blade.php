@@ -2,7 +2,7 @@
     <div class="container bg-black py-12">
         <div class="bg-black-light mx-auto flex flex-col lg:flex-row items-center text-white rounded overflow-hidden">
             <a href="{{ route('strand.show', $strand->slug) }}"
-                class="bg-black relative my-0 lg:w-1/3 bg-opacity-50 self-stretch">
+                class="min-h-[18rem] bg-black relative my-0 lg:w-1/3 bg-opacity-50 self-stretch">
 
                 @if ($strand->featuredImage)
                     {!! $strand->featuredImage->img('landscape')->attributes(['class' => 'w-full h-auto opacity-60']) !!}
