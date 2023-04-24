@@ -1,6 +1,6 @@
 @if ($strand)
     <div class="container bg-black py-12">
-        <div class="bg-black-light mx-auto flex flex-col lg:flex-row items-center text-white rounded overflow-hidden">
+        <div class="bg-black-light mx-auto flex flex-col lg:flex-row lg:items-center text-white rounded overflow-hidden">
             <a href="{{ route('strand.show', $strand->slug) }}"
                 class="min-h-[18rem] bg-black relative my-0 lg:w-1/3 bg-opacity-50 self-stretch">
 
@@ -16,7 +16,7 @@
                         {{ $strand->name }}</h3>
                 @endif
             </a>
-            <div class="relative p-8 lg:pr-0 lg:py-4 lg:w-2/3 lg:pl-[16.67%]"">
+            <div class="relative lg:px-8 py-8 lg:pr-0 lg:py-4 lg:w-2/3 lg:pl-[16.67%]"">
                 <div class="container">
                     <h3
                         class="type-xs-mono hidden lg:block text-white opacity-30 top-[45%] absolute right-full origin-bottom translate-x-full -rotate-90 transform whitespace-nowrap">
