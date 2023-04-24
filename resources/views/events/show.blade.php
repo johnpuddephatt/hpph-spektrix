@@ -100,7 +100,14 @@
                             <x-details-row label="Language" :value="implode(' &bullet; ', $event->language)" />
                             <x-details-row label="Format" :value="$event->format" />
                             <x-details-row label="Strobe lighting" :value="$event->strobe_light_warning" />
-                            <x-details-row-masked label="Content guidance" :value="implode(' &bullet; ', $event->content_guidance)" :empty="$settings['content_guidance_unavailable'] ?? 'Content guidance is not available'" />
+                            @if (!$event->content_guidance)
+                                <x-details-row label="Content guidance" :value="$settings['content_guidance_unavailable'] ??
+                                    'No content guidance is available ?>'" />
+                            @elseif (in_array(implode(',', $event->content_guidance), $settings['content_warnings_to_not_hide']))
+                                <x-details-row label="Content guidance" :value="implode(',', $event->content_guidance)" />
+                            @else
+                                <x-details-row-masked label="Content guidance" :value="implode(' &bullet; ', $event->content_guidance)" />
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ namespace App\Nova\Settings;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Panel;
+use NormanHuth\Values\Values;
 
 class System
 {
@@ -24,11 +25,19 @@ class System
                     "Optional hash to scroll to on the team page. E.g. #team"
                 ),
             ]),
+            Panel::make("Content warnings", [
+                Values::make(
+                    "Content warnings to always display",
+                    "content_warnings_to_not_hide"
+                )->help("Content warnings to always display on the event page"),
+            ]),
         ];
     }
 
     public function casts(): array
     {
-        return [];
+        return [
+            "content_warnings_to_not_hide" => "array",
+        ];
     }
 }
