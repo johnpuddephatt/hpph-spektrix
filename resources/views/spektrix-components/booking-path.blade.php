@@ -35,7 +35,7 @@
 
     <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full" x-show="eventID"
-        class="bg-sand lg:h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
+        class="bg-sand flex flex-col h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
         <button x-on:click="closeBooking" aria-label="Close booking options"
             class="z-30 top-5 lg:top-[2.5rem] absolute lg:mr-10 right-4 lg:right-full">@svg('plus', 'h-8 w-8 p-0.5 text-black lg:text-white rotate-45 transform origin-center')</button>
         <h2 x-on:click="instanceID = null"
@@ -44,7 +44,7 @@
             <span>Showtimes</span> <span
                 class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">1</span>
         </h2>
-        <div class="container overflow-y-auto h-screen flex flex-col relative pt-12 lg:pl-48" x-show="eventID">
+        <div class="container flex-grow overflow-y-auto flex flex-col relative pt-12 lg:pl-48" x-show="eventID">
 
             <div class="type-medium !font-normal">Select a showtime</div>
 
@@ -87,7 +87,7 @@
                     </div>
 
                 </div>
-                <div class="lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
+                <div class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
                     <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
                     <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
                         <span
@@ -115,14 +115,14 @@
     </div>
     <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full"
-        class="w-full lg:w-[calc(75vw-9rem)] z-[60] bg-sand lg:min-h-screen transition fixed top-[4.5rem] lg:top-0 bottom-0 right-0"
+        class="w-full flex flex-col lg:w-[calc(75vw-9rem)] z-[60] bg-sand lg:min-h-screen transition fixed top-[4.5rem] lg:top-0 bottom-0 right-0"
         x-show="instanceID && eventID">
         <h2
             class="type-regular lg:type-medium bg-sand-dark lg:bg-transparent lg:justify-between gap-4 flex items-center flex-row z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-4 lg:px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap">
             <span>Tickets &amp; extras</span> <span
                 class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">2</span>
         </h2>
-        <div class="container overflow-y-auto relative h-screen pt-12 lg:pl-48" x-show="instanceID">
+        <div class="flex-grow container overflow-y-auto relative pt-12 lg:pl-48" x-show="instanceID">
 
             <template x-if="instanceID">
                 <div class="flex-1 flex flex-col lg:flex-row gap-12">
