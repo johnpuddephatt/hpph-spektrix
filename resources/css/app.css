@@ -29,6 +29,11 @@
     margin-top: calc(100svh - 4.25rem);
 }
 
+.mt-screen-minus-bar-minus-one {
+    margin-top: calc(100vh - 5.25rem);
+    margin-top: calc(100svh - 5.25rem);
+}
+
 .h-screen {
     height: 100vh;
     height: 100svh;

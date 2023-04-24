@@ -64,7 +64,7 @@
     <div class="mt-screen-minus-bar relative bg-black pb-12">
 
         <div
-            class="border-t-8 border-yellow gap-8 bg-sand flex flex-col-reverse lg:flex-row pb-12 relative mt-[calc(100vh-4.25rem-1rem)]">
+            class="mt-screen-minus-bar-minus-one border-t-8 border-yellow gap-8 bg-sand flex flex-col-reverse lg:flex-row pb-12 relative">
             <div class="max-lg:pl-0 container lg:w-1/2 flex-1 flex flex-col justify-end">
                 <x-event-why-watch :why_watch="$event->why_watch" />
                 <x-journal-featuredpost-mini :post="$event->latest_post->count() ? $event->latest_post->first() : null" />
