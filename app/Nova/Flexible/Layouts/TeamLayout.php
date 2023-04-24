@@ -23,8 +23,8 @@ class TeamLayout extends Layout
     public function getTeamAttribute()
     {
         return \App\Models\User::where("show_in_directory", true)
-            ->orderBy("name")
-            ->get();
+            ->get()
+            ->shuffle();
     }
 
     /**
