@@ -10,6 +10,6 @@
     'px-2',
     'text-center',
     'cursor-default',
-    'z-10',
+    'z-[2]',
 ])>
     {{ $dark ? $slot : $title }}</abbr>
