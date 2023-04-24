@@ -1,4 +1,4 @@
-<div class="mt-[100vh] block w-screen overflow-hidden">
+<div class="mt-screen block w-screen overflow-hidden">
 </div>
 
 <div class="fixed inset-0 -z-10 h-screen w-full overflow-hidden border-b-[1rem] border-yellow bg-black">
