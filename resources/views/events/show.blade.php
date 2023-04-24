@@ -61,7 +61,7 @@
         @endif
     </div>
 
-    <div class="relative mt-[calc(100vh-4.25rem)] bg-black pb-12">
+    <div class="mt-screen-minus-bar relative bg-black pb-12">
 
         <div
             class="border-t-8 border-yellow gap-8 bg-sand flex flex-col-reverse lg:flex-row pb-12 relative mt-[calc(100vh-4.25rem-1rem)]">
