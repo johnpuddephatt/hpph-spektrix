@@ -3,7 +3,7 @@
         <h3 class="type-medium mb-4 lg:w-1/2 text-yellow">{{ $layout->title }}</h3>
         <p class="max-w-lg">{{ $layout->subtitle }}</p>
     </div>
-    <div class="flex flex-row gap-4 overflow-x-auto">
+    <div class="flex flex-row overflow-x-auto">
         @foreach ($layout->team as $user)
             <a href="{{ $user->url }}" class="group block text-center w-64 mx-6">
                 {!! $user->featuredImage->img('portrait')->attributes(['class' => 'rounded block mb-8']) !!}
