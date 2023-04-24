@@ -44,7 +44,7 @@
                 @foreach ($layout->team as $user)
                     <a x-data="{ shown: true }"
                         class="swiper-slide group block text-center hover:opacity-60 !transition !duration-500"
-                        ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
+                        :class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
                         x-intersect:enter.full.margin.500.0="shown = true"
                         x-intersect:leave.full.margin.500.0="shown = false"
                         @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
