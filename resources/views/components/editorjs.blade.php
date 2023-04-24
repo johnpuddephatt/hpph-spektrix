@@ -1,4 +1,4 @@
-@props(['content', 'block_class' => 'max-w-3xl mx-auto', 'width' => null, 'wide_class' => 'max-w-6xl mx-auto', 'fullwidth_class' => ''])
+@props(['content', 'block_class' => 'max-w-3xl lg:mx-auto', 'width' => null, 'wide_class' => 'max-w-6xl lg:mx-auto', 'fullwidth_class' => ''])
 
 @if (isset($block))
     @php $content = $block->editorjs @endphp
