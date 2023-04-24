@@ -1,4 +1,4 @@
-    <div class="bg-black py-16 flex flex-col lg:flex-row">
+    <div class="@if ($dark) bg-black @endif py-16 flex flex-col lg:flex-row">
         <div style="background-color: @yield('color')"
             class="py-8 flex items-center text-center flex-col justify-center bg-yellow lg:w-1/2">
             <h2 class="type-medium max-w-lg mx-auto mb-6 lg:mb-16">“{{ $layout->quote }}”</h2>
