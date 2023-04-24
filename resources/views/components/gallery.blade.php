@@ -15,7 +15,7 @@
             x-intersect:leave.full="isActive = false;document.removeEventListener('scroll',galleryScroll)">
             <div x-ref="scroller" class="inline-flex leading-none gap-2">
                 @foreach ($images as $image)
-                    {!! $image->img('thumb', ['class' => 'h-[100vw] lg:h-[65vh] w-auto max-w-none block'])->toHtml() !!}
+                    {!! $image->img('thumb', ['class' => 'h-[65vh] w-auto max-w-none block'])->toHtml() !!}
                 @endforeach
             </div>
         </div>
