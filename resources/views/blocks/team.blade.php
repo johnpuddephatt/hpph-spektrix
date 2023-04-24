@@ -36,18 +36,19 @@
                 slidesPerView: 8,
             },
         },
-    })" class="relative max-w-none mx-auto">
+    })" class="relative container max-w-none mx-auto">
 
         <div class="swiper-container w-full overflow-hidden" x-ref="container">
             <div class="swiper-wrapper w-full">
 
                 @foreach ($layout->team as $user)
-                    <a x-data="{ shown: true }" class="swiper-slide hover:opacity-60 !transition !duration-500"
+                    <a x-data="{ shown: true }"
+                        class="swiper-slide group block text-center hover:opacity-60 !transition !duration-500"
                         ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
                         x-intersect:enter.full.margin.500.0="shown = true"
                         x-intersect:leave.full.margin.500.0="shown = false"
                         @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
-                        href="{{ $user->url }}" class="group block text-center w-64 mx-6">
+                        href="{{ $user->url }}">
                         {!! $user->featuredImage->img('portrait')->attributes(['class' => 'rounded block mb-8']) !!}
                         <h3 class="type-xs-mono transition group-hover:text-yellow text-white">{{ $user->name }}</h3>
                         <p class="type-xs-mono transition group-hover:text-white text-gray-medium">
