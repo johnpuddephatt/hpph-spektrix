@@ -28,7 +28,7 @@
         @if ($product->content)
             <div class="container py-24">
                 @foreach ($product->content as $layout)
-                    @include('blocks.' . $layout->name(), ['layout' => $layout])
+                    @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => false])
                 @endforeach
             </div>
         @endif

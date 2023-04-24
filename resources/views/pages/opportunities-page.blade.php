@@ -9,7 +9,7 @@
 
     @if ($page->content)
         @foreach ($page->content as $layout)
-            @include('blocks.' . $layout->name(), ['layout' => $layout])
+            @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => true])
         @endforeach
     @endif
 
