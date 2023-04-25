@@ -42,9 +42,10 @@
             <div>
                 <div @if ($layout == 'home' || $layout == 'default') class="mb-2 min-h-[4.5rem] mt-6" @else class="mb-4 mt-6 @if ($layout == 'extra-wide') md:mt-0 @elseif($layout == 'wide') lg:mt-0 @endif"
                     @endif>
-                    <h3 class="type-regular inline-block">{{ $instance->event->name }}
+                    <h3 class="type-regular">{{ $instance->event->name }}
                         <x-certificate :dark="true" :certificate="$instance->event->certificate_age_guidance" />
                     </h3>
+
                     <x-special-event-badge class="mt-2">{{ $instance->special_event }}</x-special-event-badge>
 
                 </div>
