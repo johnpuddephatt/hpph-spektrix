@@ -19,7 +19,7 @@
      </div>
 
      @if ($post->featuredImage)
-         {!! $post->featuredImage->img('landscape', ['class' => 'w-full max-lg:aspect-[1.2]'])->toHtml() !!}
+         {!! $post->featuredImage->img('landscape', ['class' => 'w-full max-lg:object-cover max-lg:aspect-[1.2]'])->toHtml() !!}
      @else
          <div class="= aspect-video rounded bg-gray-light"></div>
      @endif
