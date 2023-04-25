@@ -44,7 +44,7 @@
 
         </div>
 
-        <x-editorjs class="pb-24" :content="$post->content" block_class="lg:w-1/2 container lg:mr-0"
+        <x-editorjs class="pt-8 pb-24" :content="$post->content" block_class="lg:w-1/2 container lg:mr-0"
             wide_class="container lg:w-3/4 lg:mr-0" fullwidth_class="w-full" />
 
     </div>
