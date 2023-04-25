@@ -1,7 +1,7 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
 @section('title', $event->name)
 @section('content')
-    <div x-data="{ trailerOpen: false, trailerLoaded: false }" class="fixed flex items-end inset-0 z-[-1] h-screen w-full overflow-hidden bg-black">
+    <div x-data="{ trailerOpen: false, trailerLoaded: false }" class="fixed flex items-center inset-0 z-[-1] h-screen w-full overflow-hidden bg-black">
 
         @if ($event->featuredVideo && $event->featuredVideo->video_conversions)
             @php($video_conversions = json_decode($event->featuredVideo->video_conversions))
@@ -20,8 +20,8 @@
             {!! $event->featuredImage->img('wide', ['class' => 'w-full absolute h-full opacity-70  inset-0 object-cover'])->toHtml() !!}
         @endif
 
-        <div class="h-[55%] lg:ml-[50%] relative z-10">
-            <div class="container pb-12 text-white 2xl:px-6">
+        <div class="lg:ml-[50%] relative z-10">
+            <div class="container pt-12 text-white 2xl:px-6">
                 <h1 class="type-medium md:type-large mb-1 font-bold max-w-xl">{{ $event->name }}
                     <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
                 </h1>
