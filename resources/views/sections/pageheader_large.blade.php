@@ -10,7 +10,7 @@
       </div>
 
       <div class="relative bg-yellow mt-8 lg:mt-auto container lg:w-1/2 mr-0">
-          <div class="type-medium py-8 lg:py-16 max-w-xl">
+          <div class="type-regular lg:type-medium py-8 lg:py-16 max-w-xl">
               {{ $page->introduction }}
           </div>
           <a href="#page-content">@svg('chevron-down', 'h-10 w-10 text-black')</a>
