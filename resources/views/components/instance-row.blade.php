@@ -5,8 +5,13 @@
         class="border-b-[0.5px] border-gray-light py-4 relative flex flex-wrap lg:flex-nowrap flex-row items-start lg:gap-6">
 
         @if ($instance->event->featuredImage)
-            <div class="w-1/2 md:w-1/4 md:ml-[25%] lg:ml-0 lg:w-2/12">
-                {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'w-full overflow-hidden rounded']) !!}
+            <div class="w-1/2 md:w-1/4 md:ml-[25%] lg:ml-0 lg:w-2/12 relative aspect-video flex flex-col">
+                <div class="w-full relative flex-1 rounded overflow-hidden">
+                    {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'block w-full absolute max-w-none inset-0']) !!}
+                </div>
+
+                <x-strand.badge :dark="false" class="mt-2" :strand="$instance->strand" />
+
             </div>
         @endif
 
@@ -25,13 +30,11 @@
             <div class="flex flex-row items-center gap-1.5">@svg('clock', ' w-4 h-4')
                 <div class="type-regular">{{ $instance->start->format('H:i') }}</div>
 
-                <x-accessibilities :dark="true" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description"
-                    :relaxed="$instance->relaxed" />
+                <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description" :relaxed="$instance->relaxed" />
             </div>
 
             <div class="lg:mt-auto mr-auto lg:mb-2 flex flex-row gap-2 items-center">
-                <x-strand.badge class="" :strand="$instance->strand" />
-                <x-accessibilities :dark="false" :specialevent="$instance->special_event" />
+                {{ $instance->special_event }}
             </div>
         </div>
 

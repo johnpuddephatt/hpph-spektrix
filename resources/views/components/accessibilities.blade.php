@@ -1,22 +1,17 @@
-@props(['dark' => false, 'captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'relaxed' => false, 'specialevent' => ''])
+@props(['captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'relaxed' => false])
 
 <div {{ $attributes->class(['flex flex-row gap-0.5']) }}>
 
-    @if ($specialevent ?? null)
-        <x-accessibilities.badge :dark="$dark" :class="$dark ? 'pl-1' : 'py-0.5 font-bold !font-sans !uppercase'" :title="'With ' . $specialevent">
-            +{{ $specialevent }}
-        </x-accessibilities.badge>
+    @if ($captioned)
+        <x-accessibilities.badge title="Captioned screening">Captioned</x-accessibilities.badge>
     @endif
-    @if ($captioned ?? null)
-        <x-accessibilities.badge title="Captioned" :dark="$dark">C</x-accessibilities.badge>
+    @if ($signedbsl)
+        <x-accessibilities.badge title="Signed BSL">B.S.L.</x-accessibilities.badge>
     @endif
-    @if ($signedbsl ?? null)
-        <x-accessibilities.badge title="Signed BSL" :dark="$dark">BSL</x-accessibilities.badge>
+    @if ($audiodescribed)
+        <x-accessibilities.badge title="Audio described">A.D.</x-accessibilities.badge>
     @endif
-    @if ($audiodescribed ?? null)
-        <x-accessibilities.badge title="Audio described" :dark="$dark">AD</x-accessibilities.badge>
-    @endif
-    @if ($relaxed ?? null)
-        <x-accessibilities.badge title="Relaxed" :dark="$dark">R</x-accessibilities.badge>
+    @if ($relaxed)
+        <x-accessibilities.badge title="Relaxed screening">Relaxed</x-accessibilities.badge>
     @endif
 </div>

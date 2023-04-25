@@ -11,8 +11,8 @@
                     {!! $event->featuredImage->img('wide')->attributes(['class' => 'absolute inset-0']) !!}
                 @endif
             </div>
-            <x-accessibilities class="absolute top-2 right-1.5" :dark="true" :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl"
-                :audiodescribed="$event->audio_description" :specialevent="$event->has_special_event" :relaxed="$event->has_relaxed" />
+            <x-accessibilities class="absolute top-2 right-1.5" :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl" :audiodescribed="$event->audio_description"
+                :relaxed="$event->has_relaxed" />
             <x-strand.badge class="max-md:rounded-none md:mt-2" :strand="$event->strand" />
         </div>
     </div>
@@ -21,6 +21,8 @@
         <h2 class="type-regular lg:h-[4rem] max-w-xs mt-4 mb-4 lg:mb-2">{{ $event->name }}
             <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
         </h2>
+
+        <p>{{ $event->has_special_event }}</p>
 
         <div>
             <a class="type-small before:absolute before:inset-0 inline-block py-0 bg-sand lg:bg-sand-light rounded-full px-2"

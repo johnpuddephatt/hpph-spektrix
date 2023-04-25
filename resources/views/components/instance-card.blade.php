@@ -18,8 +18,8 @@
                 {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'block w-full absolute max-w-none inset-0']) !!}
             </div>
 
-            <x-accessibilities class="absolute top-2 right-1.5" :dark="true" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl"
-                :audiodescribed="$instance->event->audio_description" :specialevent="$instance->special_event" :relaxed="$instance->relaxed" />
+            <x-accessibilities class="absolute top-2 right-1.5" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description"
+                :relaxed="$instance->relaxed" />
             @if ($show_strand)
                 <x-strand.badge :dark="$dark" class="mt-2" :strand="$instance->strand" />
             @endif
