@@ -1,12 +1,14 @@
 <img{!! $attributeString !!} @if ($loadingAttributeValue) loading="{{ $loadingAttributeValue }}" @endif
     srcset="{{ $media->getSrcset($conversion) }}"
     onload="window.requestAnimationFrame(function(){
+        console.log('onload');
         if(dataset.width) {
             console.log('dataset.width:',dataset.width);
             onload = null; 
             sizes = dataset.width; 
         }
         else if(!(size=getBoundingClientRect().width)) {
+            setTimeout(onload,500);
             return;
         } 
         else {
