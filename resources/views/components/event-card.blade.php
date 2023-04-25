@@ -18,14 +18,15 @@
     </div>
 
     <div class="max-md:container md:bg-transparent bg-sand-light pb-4">
-        <h2 class="type-regular lg:h-[4rem] max-w-xs mt-4 mb-4 lg:mb-2">{{ $event->name }}
-            <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
-        </h2>
+        <div class="lg:min-h-[4.5rem] mt-4 mb-4 lg:mb-2">
+            <h2 class="type-regular max-w-xs">{{ $event->name }}
+                <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
+            </h2>
 
-        <p>{{ $event->has_special_event }}</p>
+            <x-special-event-badge class="mt-2">{{ $event->has_special_event }}</x-special-event-badge>
+        </div>
 
-        <div>
-            <a class="type-small before:absolute before:inset-0 inline-block py-0 bg-sand lg:bg-sand-light rounded-full px-2"
+        <div> <a class="type-small before:absolute before:inset-0 inline-block py-0 bg-sand lg:bg-sand-light rounded-full px-2"
                 href="{{ $event->url }}">Info</a> / <button
                 class="type-small relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
                 @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}'  })">Book</button>

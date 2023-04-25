@@ -20,8 +20,10 @@
                 {{ $instance->event->name }}
                 <x-certificate class="align-middle" :dark="true" :certificate="$instance->event->certificate_age_guidance" />
             </h4>
-            <a class="type-small bg-transparent text-transparent lg:text-black inset-0 absolute lg:static inline-block before:absolute before:inset-0 lg:bg-sand-light mt-auto mb-2 px-4 lg:rounded-full"
-                href="{{ route('event.show', ['event' => $instance->event->slug]) }}">Info</a>
+            <!-- <a class="type-small bg-transparent text-transparent lg:text-black inset-0 absolute lg:static inline-block before:absolute before:inset-0 lg:bg-sand-light mt-auto mb-2 px-4 lg:rounded-full"
+                href="{{ route('event.show', ['event' => $instance->event->slug]) }}">Info</a> -->
+
+            <x-special-event-badge class="mt-auto">{{ $instance->special_event }}</x-special-event-badge>
         </div>
 
         <div
@@ -34,7 +36,7 @@
             </div>
 
             <div class="lg:mt-auto mr-auto lg:mb-2 flex flex-row gap-2 items-center">
-                {{ $instance->special_event }}
+
             </div>
         </div>
 
