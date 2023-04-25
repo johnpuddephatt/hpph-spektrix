@@ -102,7 +102,7 @@
                             <x-details-row label="Strobe lighting" :value="$event->strobe_light_warning" />
                             @if (!$event->content_guidance)
                                 <x-details-row label="Content guidance" :value="$settings['content_guidance_unavailable'] ??
-                                    'No content guidance is available ?>'" />
+                                    'No content guidance is available'" />
                             @elseif (in_array(implode(',', $event->content_guidance), $settings['content_warnings_to_not_hide']))
                                 <x-details-row label="Content guidance" :value="implode(',', $event->content_guidance)" />
                             @else
