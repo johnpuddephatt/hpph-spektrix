@@ -3,7 +3,7 @@
 <abbr title="{{ $title }}" @class([
     'bg-gray-dark',
     'rounded-full',
-    'text-white'   
+    'text-white',
     'type-xs-mono',
     'block',
     'no-underline',
