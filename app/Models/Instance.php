@@ -133,4 +133,9 @@ class Instance extends Model
     {
         return $query->where("relaxed", true);
     }
+
+    public function scopeAudioDescribed($query)
+    {
+        return $query->whereRelation("event", "audio_described", true);
+    }
 }
