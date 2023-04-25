@@ -1,7 +1,7 @@
   <div class="h-screen flex flex-col relative border-b-8 border-yellow bg-black">
 
       @if ($page->mainImage && !($hide_image ?? false))
-          {!! $page->mainImage->img('wide', ['class' => 'absolute w-full opacity-60 inset-0 h-full object-cover'])->toHtml() !!}
+          {!! $page->mainImage->img('landscape', ['class' => 'absolute w-full opacity-60 inset-0 h-full object-cover'])->toHtml() !!}
       @endif
 
       <div class="text-white relative container lg:w-1/2 lg:mr-0 mt-auto">
