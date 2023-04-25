@@ -1,9 +1,9 @@
-@props(['dark' => false, 'title' => '', 'abbreviation' => '', 'class' => ''])
+@props(['title' => ''])
 
-<abbr title="{{ $dark ? $title : null }}" @class([
-    'bg-gray-dark rounded-full text-white' => $dark,
-    'rounded bg-sand-light' => !$dark,
-    $class,
+<abbr title="{{ $title }}" @class([
+    'bg-gray-dark',
+    'rounded-full',
+    'text-white'   
     'type-xs-mono',
     'block',
     'no-underline',
@@ -12,4 +12,4 @@
     'cursor-default',
     'z-[2]',
 ])>
-    {{ $dark ? $slot : $title }}</abbr>
+    {{ $slot }}</abbr>
