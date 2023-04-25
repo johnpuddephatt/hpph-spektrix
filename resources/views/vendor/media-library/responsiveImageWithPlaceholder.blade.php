@@ -4,7 +4,7 @@
         console.log('onload');
         if(dataset.width) {
             console.log('dataset.width:',dataset.width);
-            onload = null; 
+            
             sizes = dataset.width; 
         }
         else if(!(size=getBoundingClientRect().width)) {
@@ -12,7 +12,7 @@
             return;
         } 
         else {
-            onload=null;
+            
             sizes=Math.ceil(size/window.innerWidth*100)+'vw';
         }
     })
