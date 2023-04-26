@@ -7,7 +7,7 @@
     <div class="container flex flex-row items-center py-3 2xl:py-6">
         <a title="Navigate to homepage" aria-label="Navigate to homepage" class="relative z-20 lg:-ml-2 mr-3 text-yellow"
             style="color: @yield('color')" href="/">
-            @svg('logo-compact', 'h-[2.35rem] w-auto text-black')</a>
+            @svg('logo-compact', 'h-[2.35rem] w-auto')</a>
 
         <a class="type-xs-mono relative z-20 flex flex-row items-center gap-1.5 rounded py-1 px-2"
             :class="{
