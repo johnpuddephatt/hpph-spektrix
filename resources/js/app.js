@@ -21,3 +21,11 @@ window.addEventListener("scroll", function (e) {
         window.hasScrolled = true;
     }
 });
+
+Livewire.on("scrollToTop", () => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behaviour: "smooth",
+    });
+});

@@ -37,6 +37,7 @@ class Programme extends Component
         // $this->reset();
         $this->type = "schedule";
         $this->strand = $value;
+        $this->emit("scrollToTop");
         $this->emit("updateStrand2", $this->strand);
     }
 
@@ -44,6 +45,7 @@ class Programme extends Component
     {
         $this->type = "schedule";
         $this->accessibility = $value;
+        $this->emit("scrollToTop");
         $this->emit("updateAccessibility2", $this->accessibility);
     }
 
@@ -51,6 +53,7 @@ class Programme extends Component
     {
         $this->type = "schedule";
         $this->date = $value;
+        $this->emit("scrollToTop");
         $this->emit("updateDate2", $this->date);
     }
 
