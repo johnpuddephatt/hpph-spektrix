@@ -2,7 +2,7 @@
     :class="nav_open ? 'translate-x-0' : 'translate-x-full'" @keyup.escape.window="nav_open = false">
     <div class="lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
         @if ($primary_menu)
-            <nav class="mb-24">
+            <nav class="mb-8 lg:mb-24">
                 <ul class="text-[3.75rem] font-bold leading-[108%] tracking-[-0.050em] text-white">
                     <li>
                         <a href="/" class="relative block py-0.5 hover:text-yellow transition">
@@ -30,6 +30,19 @@
             </nav>
         @endif
 
+        @if ($secondary_menu)
+            <nav class="lg:hidden mb-24">
+                <ul class="">
+                    @foreach ($secondary_menu as $menu_item)
+                        <li>
+                            <a class="type-xs-mono antialiased text-gray-medium hover:text-white transition"
+                                href="{{ $menu_item['value'] }}">{{ $menu_item['name'] }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </nav>
+        @endif
+
         @if ($seasons->count())
             <div class="flex flex-col gap-4">
                 @foreach ($seasons as $season)
@@ -45,7 +58,7 @@
             </div>
         @endif
 
-        <div class="hidden lg:flex mt-auto mb-8 flex-row gap-3 py-1 pt-8 lg:w-1/2 justify-start xl:items-start">
+        <div class="flex mt-auto mb-8 flex-row gap-3 py-1 pt-8 lg:w-1/2 justify-start xl:items-start">
             @foreach (['facebook', 'twitter', 'youtube', 'instagram', 'linkedin', 'vimeo'] as $account)
                 <x-social-icon :account="$account" />
             @endforeach
@@ -55,7 +68,7 @@
 
     </div>
 
-    <div class="flex flex-col py-8 px-6 lg:px-12 lg:w-3/12">
+    <div class="hidden lg:flex flex-col py-8 px-6 lg:px-12 lg:w-3/12">
 
         @if ($secondary_menu)
             <nav>
@@ -70,13 +83,13 @@
             </nav>
         @endif
 
-        <div class="lg:hidden flex mt-auto pt-12 mb-8 flex-row gap-3 py-1">
+        <!-- <div class="lg:hidden flex mt-auto pt-12 mb-8 flex-row gap-3 py-1">
             @foreach (['facebook', 'twitter', 'youtube', 'instagram', 'linkedin', 'vimeo'] as $account)
-                <x-social-icon :account="$account" />
-            @endforeach
-        </div>
+<x-social-icon :account="$account" />
+@endforeach
+        </div> -->
 
-        <x-tertiary-menu class="mt-auto hidden lg:block" />
+        <x-tertiary-menu class="mt-auto" />
 
     </div>
 
