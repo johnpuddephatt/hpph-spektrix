@@ -27,7 +27,7 @@ class Instances extends Component
             ->with(
                 "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
                 "event.featuredImage",
-                "strand:slug,name,color"
+                "strand:slug,name,color,show_on_instance_card"
             )
             ->select(
                 "id",

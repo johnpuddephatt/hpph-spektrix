@@ -9,7 +9,6 @@
                 <div class="w-full relative flex-1 rounded overflow-hidden">
                     {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'block w-full absolute max-w-none inset-0']) !!}
                 </div>
-
                 @if ($instance->strand?->show_on_instance_card)
                     <x-strand.badge :dark="false" class="mt-2" :strand="$instance->strand" />
                 @endif
