@@ -261,7 +261,7 @@ dd.Footer {
 }
 
 .spx-button-tertiary {
-    @apply rounded px-6 py-2 border-sand-dark type-xs font-bold mr-4;
+    @apply rounded px-6 py-2 border-2 border-sand-dark type-small mr-4;
 }
 
 .CheckoutLink::after,
@@ -271,4 +271,8 @@ dd.Footer {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+}
+
+.spx-validation-errorlist li {
+    @apply my-2 bg-yellow type-small px-4 py-2;
 }
