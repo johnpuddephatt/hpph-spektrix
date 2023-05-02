@@ -57,8 +57,11 @@ select {
     @apply relative max-w-2xl w-full rounded bg-transparent pb-4 border-b border-gray-light my-4;
 }
 
-.spx-field-container__checkout--ticket-delivery {
-    @apply flex gap-2;
+.spx-field-container__checkout--ticket-delivery,
+.spx-field-container__checkout--select-address,
+.spx-field-container__checkout--gift-ai,
+.spx-field-container__checkout--contact-preferences {
+    @apply my-4 flex gap-2;
 }
 
 /*
@@ -260,8 +263,12 @@ dd.Footer {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
+.spx-button-primary + .spx-button-primary {
+    @apply mt-2;
+}
+
 .spx-button-tertiary {
-    @apply rounded px-6 py-2 border-2 border-sand-dark type-small mr-4;
+    @apply rounded px-6 py-2 border-2 border-sand-dark type-small mr-2;
 }
 
 .CheckoutLink::after,
@@ -274,9 +281,17 @@ dd.Footer {
 }
 
 .spx-validation-errorlist li {
-    @apply my-2 bg-yellow type-small px-4 py-2;
+    @apply my-2 bg-yellow type-small px-4 max-w-lg py-2;
 }
 
 .spx-validation-message {
-    @apply block font-bold;
+    @apply block font-bold mb-8;
+}
+
+.spx-link__checkout--new-address {
+    @apply block;
+}
+
+.spx-input-text__checkout--donation {
+    @apply max-w-xs;
 }
