@@ -41,12 +41,16 @@ class Strand extends Model implements HasMedia, CachableAttributes
         "content",
         "enabled",
         "published",
+        "show_on_event_card",
+        "show_on_instance_card",
     ];
 
     protected $casts = [
         "content" => PageContentCast::class,
         "enabled" => "boolean",
         "published" => "boolean",
+        "show_on_event_card" => "boolean",
+        "show_on_instance_card" => "boolean",
     ];
 
     public function sluggable(): array

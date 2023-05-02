@@ -106,6 +106,7 @@ class FetchEventData implements ShouldQueue
                     "duration" => $event->duration ?? null,
                     "is_on_sale" => $event->isOnSale ?? false,
                     "name" => $event->name ?? null,
+                    "subtitle" => $event->attribute_Subtitle ?? null,
                     "instance_dates" => $event->instanceDates ?? null,
                     "first_instance_date_time" =>
                         $event->firstInstanceDateTime ?? null,

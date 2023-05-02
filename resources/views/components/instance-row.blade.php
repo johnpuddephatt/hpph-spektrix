@@ -10,13 +10,14 @@
                     {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'block w-full absolute max-w-none inset-0']) !!}
                 </div>
 
-                <x-strand.badge :dark="false" class="mt-2" :strand="$instance->strand" />
-
+                @if ($show_strand && $instance->strand->show_on_instance_card)
+                    <x-strand.badge :dark="false" class="mt-2" :strand="$instance->strand" />
+                @endif
             </div>
         @endif
 
         <div class="max-lg:-order-1 flex w-1/2 pr-4 lg:pr-0 flex-col self-stretch items-start lg:w-4/12">
-            <h4 class="type-regular overflow-hidden text-ellipsis">
+            <h4 class="type-regular mb-auto overflow-hidden text-ellipsis">
                 <a class="before:absolute before:inset-0"
                     href="{{ route('event.show', ['event' => $instance->event->slug]) }}">
                     {{ $instance->event->name }}
@@ -24,7 +25,9 @@
                 </a>
             </h4>
 
-            <x-special-event-badge class="mt-auto">{{ $instance->special_event }}</x-special-event-badge>
+            @if ($instance->event->subtitle)
+                <p class="pt-2 leading-none">{{ $instance->event->subtitle }}</p>
+            @endif
         </div>
 
         <div
@@ -36,7 +39,8 @@
                 <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description" :relaxed="$instance->relaxed" />
             </div>
 
-            <div class="lg:mt-auto mr-auto lg:mb-2 flex flex-row gap-2 items-center">
+            <div class="lg:mt-auto mr-auto flex flex-row gap-2 items-center">
+                <x-special-event-badge class="">{{ $instance->special_event }}</x-special-event-badge>
 
             </div>
         </div>

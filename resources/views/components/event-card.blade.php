@@ -11,9 +11,10 @@
                     {!! $event->featuredImage->img('wide')->attributes(['class' => 'absolute inset-0']) !!}
                 @endif
             </div>
-            <x-accessibilities class="absolute top-2 right-1.5" :captioned="$event->has_captioned" :signedbsl="$event->has_signed_bsl" :audiodescribed="$event->audio_description"
-                :relaxed="$event->has_relaxed" />
-            <x-strand.badge class="max-md:rounded-none md:mt-2" :strand="$event->strand" />
+            <x-accessibilities class="absolute top-2 right-1.5" :audiodescribed="$event->audio_description" />
+            @if ($event->strand->show_on_event_card)
+                <x-strand.badge class="max-md:rounded-none md:mt-2" :strand="$event->strand" />
+            @endif
         </div>
     </div>
 
@@ -22,8 +23,11 @@
             <h2 class="type-regular max-w-xs">{{ $event->name }}
                 <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
             </h2>
-
-            <x-special-event-badge class="mt-2">{{ $event->has_special_event }}</x-special-event-badge>
+            @if ($event->subtitle)
+                <p class="pt-1 leading-none">{{ $event->subtitle }}</p>
+            @endif
+            <x-special-event-badge class="max-lg:bg-white mt-2">{{ $event->has_special_event }}
+            </x-special-event-badge>
         </div>
 
         <div> <a class="type-small before:absolute before:inset-0 inline-block py-0 bg-sand lg:bg-sand-light rounded-full px-2"

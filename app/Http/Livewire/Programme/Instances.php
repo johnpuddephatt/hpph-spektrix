@@ -25,7 +25,7 @@ class Instances extends Component
     {
         $instances = \App\Models\Instance::whereHas("event")
             ->with(
-                "event:id,slug,name,description,certificate_age_guidance,duration,audio_description",
+                "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
                 "event.featuredImage",
                 "strand:slug,name,color"
             )

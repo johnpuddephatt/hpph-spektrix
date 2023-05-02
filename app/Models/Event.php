@@ -81,6 +81,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "duration",
         "is_on_sale",
         "name",
+        "subtitle",
         "instance_dates",
         "first_instance_date_time",
         "last_instance_date_time",

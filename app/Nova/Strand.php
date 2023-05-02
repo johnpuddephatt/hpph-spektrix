@@ -96,6 +96,8 @@ class Strand extends Resource
             Textarea::make("Description")
                 ->rows(3)
                 ->hideFromIndex(),
+            Boolean::make("Show on event card")->hideFromIndex(),
+            Boolean::make("Show on instance card")->hideFromIndex(),
             Tag::make("Posts")->displayAsList(),
 
             new Panel("Content", [
