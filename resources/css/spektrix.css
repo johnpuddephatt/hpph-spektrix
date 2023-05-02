@@ -276,3 +276,7 @@ dd.Footer {
 .spx-validation-errorlist li {
     @apply my-2 bg-yellow type-small px-4 py-2;
 }
+
+.spx-validation-message {
+    @apply block font-bold;
+}
