@@ -250,6 +250,10 @@ dd.Footer {
     @apply mt-8;
 }
 
+.spx-heading-title__checkout {
+    @apply lg:type-large type-medium;
+}
+
 .CheckoutLink,
 .spx-button-primary,
 .spx-button-secondary {
