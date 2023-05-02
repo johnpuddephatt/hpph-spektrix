@@ -98,6 +98,7 @@ class Strand extends Resource
                 ->hideFromIndex(),
             Boolean::make("Show on event card")->hideFromIndex(),
             Boolean::make("Show on instance card")->hideFromIndex(),
+            Boolean::make("Show in booking path")->hideFromIndex(),
             Tag::make("Posts")->displayAsList(),
 
             new Panel("Content", [

@@ -55,6 +55,7 @@ class Instance extends Model
     protected $casts = [
         "start" => "datetime",
         "captioned" => "boolean",
+        "relaxed" => "boolean",
     ];
 
     protected $appends = ["start_date", "start_time", "url", "short_id"];

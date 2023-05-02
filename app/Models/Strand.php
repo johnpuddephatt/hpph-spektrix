@@ -43,6 +43,7 @@ class Strand extends Model implements HasMedia, CachableAttributes
         "published",
         "show_on_event_card",
         "show_on_instance_card",
+        "show_in_booking_path",
     ];
 
     protected $casts = [
@@ -51,6 +52,7 @@ class Strand extends Model implements HasMedia, CachableAttributes
         "published" => "boolean",
         "show_on_event_card" => "boolean",
         "show_on_instance_card" => "boolean",
+        "show_in_booking_path" => "boolean",
     ];
 
     public function sluggable(): array
