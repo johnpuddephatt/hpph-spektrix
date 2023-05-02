@@ -17,11 +17,12 @@
 
         <div class="max-lg:-order-1 flex w-1/2 pr-4 lg:pr-0 flex-col self-stretch items-start lg:w-4/12">
             <h4 class="type-regular overflow-hidden text-ellipsis">
-                {{ $instance->event->name }}
-                <x-certificate class="align-middle" :dark="true" :certificate="$instance->event->certificate_age_guidance" />
+                <a class="before:absolute before:inset-0"
+                    href="{{ route('event.show', ['event' => $instance->event->slug]) }}">
+                    {{ $instance->event->name }}
+                    <x-certificate class="align-middle" :dark="true" :certificate="$instance->event->certificate_age_guidance" />
+                </a>
             </h4>
-            <!-- <a class="type-small bg-transparent text-transparent lg:text-black inset-0 absolute lg:static inline-block before:absolute before:inset-0 lg:bg-sand-light mt-auto mb-2 px-4 lg:rounded-full"
-                href="{{ route('event.show', ['event' => $instance->event->slug]) }}">Info</a> -->
 
             <x-special-event-badge class="mt-auto">{{ $instance->special_event }}</x-special-event-badge>
         </div>

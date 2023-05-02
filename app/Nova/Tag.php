@@ -4,6 +4,7 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Spatie\Tags\Tag as TagModel;
+use Illuminate\Support\Str;
 
 class Tag extends Resource
 {
@@ -15,6 +16,19 @@ class Tag extends Resource
 
     public function fields(Request $request)
     {
-        return [Text::make("Name")->sortable()];
+        return [
+            Text::make("Name")
+                ->sortable()
+                ->fillUsing(function (
+                    $request,
+                    $model,
+                    $attribute,
+                    $requestAttribute
+                ) {
+                    $model->{$attribute} = Str::lower(
+                        $request->input($attribute)
+                    );
+                }),
+        ];
     }
 }
