@@ -59,8 +59,11 @@ select {
 
 .spx-field-container__checkout--ticket-delivery,
 .spx-field-container__checkout--select-address,
-.spx-field-container__checkout--gift-ai,
-.spx-field-container__checkout--contact-preferences {
+.spx-field-container__checkout--gift-aid,
+.spx-field-container__checkout--contact-preferences,
+.spx-field-container__checkout--credit,
+.spx-field-container__checkout--order-summary,
+.spx-field-container__checkout--payment-method {
     @apply my-4 flex gap-2;
 }
 
@@ -110,6 +113,10 @@ Booking Path
 
 .ErrorMessage {
     @apply bg-yellow py-2 px-4 rounded mt-2 mb-4;
+}
+
+.ErrorMessage:empty {
+    @apply hidden;
 }
 
 /* We want to hide the 'members please select a full price ticket...' message
@@ -254,7 +261,7 @@ dd.Footer {
 }
 
 .spx-heading-title__checkout {
-    @apply lg:type-large type-medium;
+    @apply lg:type-large type-medium mb-8;
 }
 
 .CheckoutLink,
@@ -263,12 +270,13 @@ dd.Footer {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
-.spx-button-primary + .spx-button-primary {
+.spx-button-primary + .spx-button-primary,
+.spx-button-secondary__checkout--donations:last-child {
     @apply mt-2;
 }
 
 .spx-button-tertiary {
-    @apply rounded px-6 py-2 border-2 border-sand-dark type-small mr-2;
+    @apply rounded px-6 py-2 border border-sand-dark type-small mr-2;
 }
 
 .CheckoutLink::after,
