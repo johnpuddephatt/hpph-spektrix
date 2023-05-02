@@ -54,7 +54,11 @@ select {
 }
 
 .spx-section-container {
-    @apply relative max-w-2xl w-full rounded bg-transparent p-4 border border-gray-light my-4;
+    @apply relative max-w-2xl w-full rounded bg-transparent pb-4 border-b border-gray-light my-4;
+}
+
+.spx-field-container__checkout--ticket-delivery {
+    @apply flex gap-2;
 }
 
 /*
@@ -246,6 +250,10 @@ dd.Footer {
 .spx-button-primary,
 .spx-button-secondary {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
+}
+
+.spx-button-tertary {
+    @apply rounded px-6 py-2 border-sand-dark type-xs font-bold;
 }
 
 .CheckoutLink::after,

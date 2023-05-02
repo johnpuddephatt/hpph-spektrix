@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.default', ['header_class' => 'text-black'])
 @section('title', 'Checkout')
 
 @section('content')
