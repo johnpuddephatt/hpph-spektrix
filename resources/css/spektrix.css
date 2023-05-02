@@ -246,14 +246,18 @@ dd.Footer {
     display: none;
 }
 
+.spx-heading-sub-headline {
+    @apply mt-8;
+}
+
 .CheckoutLink,
 .spx-button-primary,
 .spx-button-secondary {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
-.spx-button-tertary {
-    @apply rounded px-6 py-2 border-sand-dark type-xs font-bold;
+.spx-button-tertiary {
+    @apply rounded px-6 py-2 border-sand-dark type-xs font-bold mr-4;
 }
 
 .CheckoutLink::after,
