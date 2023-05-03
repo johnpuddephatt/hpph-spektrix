@@ -32,7 +32,7 @@ h2 {
 }
 
 .spx-section-container.spx-state-read-only:after {
-    @apply bg-yellow h-5 w-5 block absolute bottom-4 right-4;
+    @apply rounded-full  p-1 bg-yellow h-5 w-5 block absolute bottom-4 right-4;
     content: "";
     background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjggOCA4IDgiICBzdHJva2VXaWR0aD0iMS41IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgY2xhc3M9InctNiBoLTYiPjxwYXRoIHN0cm9rZUxpbmVjYXA9InJvdW5kIiBzdHJva2VMaW5lam9pbj0icm91bmQiIGQ9Ik05IDEyLjc1TDExLjI1IDE1IDE1IDkuNzUiIC8+PC9zdmc+")
         no-repeat;
