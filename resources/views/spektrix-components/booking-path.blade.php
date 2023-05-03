@@ -117,8 +117,8 @@
                             and move around.</p>
                     </div>
 
-                    <p class="type-xs-mono underline mt-6"><a
-                            href="https://hpph.letsdance.agency/access#accessible-screenings">More about
+                    <p class="underline mt-6"><a href="https://hpph.letsdance.agency/access#accessible-screenings">Learn
+                            about
                             accessibile screenings</a></p>
 
                 </div>
