@@ -29,12 +29,18 @@
             @svg('plus', 'mx-auto p-3 mt-12 mb-4 h-12 w-12 rounded-full border text-white border-gray-dark hover:bg-white hover:bg-opacity-25')
             Add to
             basket</button>
-
-        <div class="type-regular max-w-xs absolute bottom-0 left-0 right-0 text-black leading-tight py-2 px-6 bg-yellow-dark text-center"
-            data-success-container style="display: none;">Added to basket</div>
-        <div class="absolute text-black font-bold bottom-0 left-0 right-0 leading-tight py-2 px-6 bg-yellow-dark text-center"
+        <div data-success-container style="display: none;">
+            <div
+                class="type-regular max-w-xs absolute top-full left-0 right-0 text-black leading-tight py-2 px-6 bg-yellow-dark text-center">
+                Added to basket</div>
+            <p class="type-small text-white mt-4">Want your free membership to continue until your 26th birthday? After
+                you’ve processed your order, visit your account page and provide us with your date of birth.</p>
+        </div>
+        <div class="absolute text-black font-bold top-full left-0 right-0 leading-tight py-2 px-6 bg-yellow-dark text-center"
             data-fail-container style="display: none;">Something went wrong.</div>
     </spektrix-memberships>
+
+    <p class="type-xs-mono text-white mt-8">Proof of age will be required when you visit.</p>
 
 </div>
 
