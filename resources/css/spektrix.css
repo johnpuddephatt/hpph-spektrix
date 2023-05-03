@@ -376,12 +376,13 @@ dd.Footer {
     @apply absolute right-4 bottom-4;
 }
 
-.spx-text-copy__checkout--donation {
+.spx-field-container.spx-field-container__checkout.spx-field-container__checkout--donation
+    .spx-text-copy__checkout--donation {
     @apply absolute bottom-6 left-4 text-gray-medium;
 }
 
 .spx-input-text__checkout--donation {
-    @apply pl-12;
+    @apply !pl-12;
 }
 
 .spx-heading-headline__checkout--ticket-delivery-address {
