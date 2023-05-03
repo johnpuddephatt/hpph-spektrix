@@ -369,11 +369,19 @@ dd.Footer {
 }
 
 .spx-intent-decrement {
-    @apply absolute right-20 bottom-6;
+    @apply absolute right-20 bottom-4;
 }
 
 .spx-intent-increment {
-    @apply absolute right-2 bottom-6;
+    @apply absolute right-4 bottom-4;
+}
+
+.spx-text-copy__checkout--donation {
+    @apply absolute bottom-6 left-4 text-gray-medium;
+}
+
+.spx-input-text__checkout--donation {
+    @apply pl-12;
 }
 
 .spx-heading-headline__checkout--ticket-delivery-address {
@@ -382,4 +390,8 @@ dd.Footer {
 
 .spx-field-container {
     @apply my-4;
+}
+
+.spx-heading-sub-headline__checkout--contact-preferences {
+    @apply font-normal text-base;
 }
