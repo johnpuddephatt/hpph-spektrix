@@ -57,7 +57,7 @@
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
                             x-text="certificate"></span></div>
 
-                    <div class="pr-12 flex-1">
+                    <div class="pb-4 pr-12 flex-1">
                         <template x-for="(instance, key) in instances">
                             <div>
                                 <h3 x-show="key == 0 ||
@@ -72,7 +72,7 @@
 
                                     <x-strand.booking-path />
                                     <span
-                                        x-show="instance.strand && (instance.captioned || instance.audio_described || instance.signed_bsl)"
+                                        x-show="instance.strand && (instance.captioned || instance.audio_described || instance.signed_bsl || instance.relaxed)"
                                         class="text-2xl">&middot;</span>
                                     <x-accessibilities.booking-path />
 
@@ -87,28 +87,40 @@
                     </div>
 
                 </div>
-                <div class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
+                <div x-show="instances.some((instance) => instance.relaxed || instance.audio_described || instance.captioned)"
+                    class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
                     <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
-                    <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
+
+                    <div x-show="instances.some((instance) => instance.audio_described)"
+                        class="border-t last:border-b border-gray-light py-4">
                         <span
-                            class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">C</span>
-                        <p class="!normal-case"> Captioned</p>
+                            class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">AD</span>
+                        <p class="type-small mt-2 !font-normal">Audio Description available. Headsets
+                            can be reserved in advance during the
+                            next stage of booking.</p>
+
                     </div>
-                    <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
+                    <div x-show="instances.some((instance) => instance.captioned)"
+                        class="border-t last:border-b border-gray-light py-4">
                         <span
-                            class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">BSL</span>
-                        <p class="!normal-case">Signed BSL</p>
+                            class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Captioned</span>
+                        <p class="type-small mt-2 !font-normal">Fully subtitled for the benefit of audiences who are
+                            Deaf or Hard of Hearing.</p>
+
                     </div>
-                    <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
+                    <div x-show="instances.some((instance) => instance.relaxed)"
+                        class="border-t last:border-b border-gray-light py-4">
                         <span
-                            class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2.5">R</span>
-                        <p class="!normal-case">Relaxed</p>
+                            class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Relaxed</span>
+                        <p class="type-small mt-2 !font-normal">Relaxed screenings start promptly with no
+                            ads/trailers, raised lighting and reduced volume. Audiences can make noise
+                            and move around.</p>
                     </div>
-                    <div class="type-xs-mono border-t last:border-b border-gray-light py-2">
-                        <span
-                            class="type-xs-mono inline-block mb-1 rounded-full text-white bg-black py-1.5 px-2">AD</span>
-                        <p class="!normal-case">Audio Described</p>
-                    </div>
+
+                    <p class="type-xs-mono underline mt-6"><a
+                            href="https://hpph.letsdance.agency/access#accessible-screenings">More about
+                            accessibile screenings</a></p>
+
                 </div>
             </div>
         </div>
