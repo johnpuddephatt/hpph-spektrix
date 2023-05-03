@@ -54,17 +54,25 @@ select {
 }
 
 .spx-section-container {
-    @apply relative max-w-2xl w-full rounded bg-transparent pb-4 border-b border-gray-light my-4;
+    @apply relative max-w-2xl w-full rounded bg-transparent pb-4 border-b border-gray my-4;
 }
 
 .spx-field-container__checkout--ticket-delivery,
 .spx-field-container__checkout--select-address,
 .spx-field-container__checkout--gift-aid,
 .spx-field-container__checkout--contact-preferences,
-.spx-field-container__checkout--credit,
+#UseCreditToPayForm .spx-field-container__checkout--credit,
 .spx-field-container__checkout--order-summary,
 .spx-field-container__checkout--payment-method {
     @apply my-4 flex gap-2;
+}
+
+.spx-field-container__checkout--order-summary a {
+    @apply underline;
+}
+
+.spx-validation-message {
+    @apply block;
 }
 
 /*
@@ -302,4 +310,8 @@ dd.Footer {
 
 .spx-input-text__checkout--donation {
     @apply max-w-xs;
+}
+
+#foxform .Container {
+    @apply my-4;
 }
