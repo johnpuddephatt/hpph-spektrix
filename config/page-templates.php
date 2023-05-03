@@ -41,4 +41,8 @@ return [
         "class" => "\App\Nova\Templates\MembershipsPageTemplate",
         "unique" => true, // Whether more than one page can be created with this template
     ],
+    "checkout-page" => [
+        "class" => "\App\Nova\Templates\CheckoutPageTemplate",
+        "unique" => true, // Whether more than one page can be created with this template
+    ],
 ];

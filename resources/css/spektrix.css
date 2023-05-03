@@ -9,10 +9,14 @@ body {
     @apply font-sans;
 }
 
-h1,
+/* h1,
 h2 {
     @apply type-medium mb-2;
     @apply font-normal !important;
+} */
+
+.spx-heading-headline {
+    @apply type-regular mb-4;
 }
 
 h3,
@@ -50,11 +54,15 @@ input[type="password"],
 input[type="search"],
 input[type="url"],
 select {
-    @apply max-w-lg w-full rounded bg-transparent px-4 py-2 border border-gray-light my-2;
+    @apply max-w-lg w-full rounded bg-sand-light px-4 py-2 my-2;
 }
 
 .spx-section-container {
-    @apply relative max-w-2xl w-full rounded bg-transparent pb-4 border-b border-gray my-4;
+    @apply relative max-w-2xl w-full bg-transparent pt-4 mb-4;
+}
+
+.spx-section-container + .spx-section-container {
+    @apply border-b border-sand-dark;
 }
 
 .spx-field-container__checkout--ticket-delivery,
@@ -278,6 +286,10 @@ dd.Footer {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
+.spx-button-primary {
+    @apply bg-yellow;
+}
+
 .spx-button-primary + .spx-button-primary,
 .spx-button-secondary__checkout--donations:last-child {
     @apply mt-2;
@@ -314,4 +326,8 @@ dd.Footer {
 
 #foxform .Container {
     @apply my-4;
+}
+
+.spx-heading-title__checkout {
+    @apply hidden;
 }

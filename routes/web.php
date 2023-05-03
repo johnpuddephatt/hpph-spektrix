@@ -16,16 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(["spektrix"])->group(function () {
     Route::get("/", [\App\Http\Controllers\PageController::class, "home"]);
 
+    // Required by Spektrix. Do not remove.
     Route::get("spektrix", function () {
         return null;
     });
 
     Route::get("brand", function () {
         return view("brand");
-    });
-
-    Route::get("checkout", function () {
-        return view("checkout");
     });
 
     Route::get("account", function () {

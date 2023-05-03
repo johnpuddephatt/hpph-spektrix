@@ -140,7 +140,7 @@
                 <div data-fail-container class="type-regular max-w-2xl mt-4 bg-sand-light p-2 rounded"
                     style="display: none;">Something went wrong.</div>
             </div>
-            </spektrix-merchandise>
+        </spektrix-gift-vouchers>
 
     </div>
 
