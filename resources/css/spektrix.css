@@ -365,17 +365,21 @@ dd.Footer {
 }
 
 .spx-field-container__checkout--donation {
-    @apply relative;
+    @apply relative max-w-lg;
 }
 
 .spx-intent-decrement {
-    @apply absolute right-12 top-2;
+    @apply absolute right-20 bottom-6;
 }
 
 .spx-intent-increment {
-    @apply absolute right-2 top-2;
+    @apply absolute right-2 bottom-6;
 }
 
 .spx-heading-headline__checkout--ticket-delivery-address {
-    @apply type-small mb-0 mt-4;
+    @apply type-small mb-2 mt-4;
+}
+
+.spx-field-container {
+    @apply my-4;
 }
