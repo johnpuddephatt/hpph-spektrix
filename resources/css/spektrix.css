@@ -396,3 +396,8 @@ dd.Footer {
 .spx-heading-sub-headline__checkout--contact-preferences {
     @apply font-normal text-base;
 }
+
+.FoxIFrameControl iframe,
+.spx-iframe__checkout--payment {
+    height: 750px;
+}
