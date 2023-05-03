@@ -32,11 +32,11 @@ h2 {
 }
 
 .spx-section-container.spx-state-read-only:after {
-    @apply bg-no-repeat rounded-full bg-yellow h-8 w-8 block absolute bottom-4 right-4;
+    @apply bg-no-repeat rounded-full bg-yellow h-8 w-8 block absolute bottom-0 right-0;
     content: "";
     background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjggOCA4IDgiICBzdHJva2VXaWR0aD0iMS41IiBzdHJva2U9ImN1cnJlbnRDb2xvciIgY2xhc3M9InctNiBoLTYiPjxwYXRoIHN0cm9rZUxpbmVjYXA9InJvdW5kIiBzdHJva2VMaW5lam9pbj0icm91bmQiIGQ9Ik05IDEyLjc1TDExLjI1IDE1IDE1IDkuNzUiIC8+PC9zdmc+");
     background-position: center;
-    background-size: 80%;
+    background-size: 60%;
 }
 
 #SpektrixFooter {
@@ -85,8 +85,12 @@ select {
     @apply relative max-w-2xl w-full bg-transparent pt-4 mb-4;
 }
 
-.spx-section-container + .spx-section-container {
+.spx-section-container {
     @apply border-t border-sand-dark;
+}
+
+.spx-section-container:first-child {
+    @apply border-none;
 }
 
 .spx-section-container.spx-state-empty .spx-heading-headline {
@@ -345,7 +349,7 @@ dd.Footer {
 }
 
 .spx-link__checkout--new-address {
-    @apply block;
+    @apply type-small !font-normal mt-4 block underline;
 }
 
 .spx-input-text__checkout--donation {
@@ -358,4 +362,20 @@ dd.Footer {
 
 .spx-heading-title__checkout {
     @apply hidden;
+}
+
+.spx-field-container__checkout--donation {
+    @apply relative;
+}
+
+.spx-intent-decrement {
+    @apply absolute right-12 top-2;
+}
+
+.spx-intent-increment {
+    @apply absolute right-2 top-2;
+}
+
+.spx-heading-headline__checkout--ticket-delivery-address {
+    @apply type-small mb-0 mt-4;
 }
