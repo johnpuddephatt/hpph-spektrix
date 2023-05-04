@@ -151,7 +151,7 @@ class Event extends Resource
             Panel::make("Reviews", [
                 Flexible::make("", "reviews")
                     ->addLayout("Review", "review", [
-                        Select::make("Rating")->options([1, 2, 3, 4, 5]),
+                        Select::make("Rating")->options([null, 1, 2, 3, 4, 5]),
                         Textarea::make("Quote"),
                         Text::make("Publication name"),
                         URL::make("URL"),
