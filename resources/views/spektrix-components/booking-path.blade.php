@@ -95,26 +95,24 @@
                         class="border-t last:border-b border-gray-light py-4">
                         <span
                             class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">AD</span>
-                        <p class="type-small mt-2 !font-normal">Audio Description available. Headsets
-                            can be reserved in advance during the
-                            next stage of booking.</p>
+                        <p class="type-small mt-2 !font-normal">Audio Description available via headsets. These can be
+                            reserved in next booking stage.</p>
 
                     </div>
                     <div x-show="instances.some((instance) => instance.captioned)"
                         class="border-t last:border-b border-gray-light py-4">
                         <span
                             class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Captioned</span>
-                        <p class="type-small mt-2 !font-normal">Fully subtitled for the benefit of audiences who are
-                            Deaf or Hard of Hearing.</p>
+                        <p class="type-small mt-2 !font-normal">Descriptive subtitles for the benefit of audiences who
+                            are Deaf or Hard of Hearing.</p>
 
                     </div>
                     <div x-show="instances.some((instance) => instance.relaxed)"
                         class="border-t last:border-b border-gray-light py-4">
                         <span
                             class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Relaxed</span>
-                        <p class="type-small mt-2 !font-normal">Relaxed screenings start promptly with no
-                            ads/trailers, raised lighting and reduced volume. Audiences can make noise
-                            and move around.</p>
+                        <p class="type-small mt-2 !font-normal">Featuring prompt start times, raised lighting and
+                            reduced volume. Audiences can make noise / move around.</p>
                     </div>
 
                     <p class="underline mt-6"><a href="https://hpph.letsdance.agency/access#accessible-screenings">Learn
