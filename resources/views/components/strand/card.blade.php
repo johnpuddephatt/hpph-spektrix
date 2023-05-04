@@ -5,7 +5,7 @@
                 class="min-h-[18rem] bg-black relative my-0 lg:w-1/3 bg-opacity-50 self-stretch">
 
                 @if ($strand->featuredImage)
-                    {!! $strand->featuredImage->img('landscape')->attributes(['class' => 'w-full h-full object-cover opacity-60']) !!}
+                    {!! $strand->featuredImage->img('landscape')->attributes(['class' => 'absolute w-full h-full object-cover opacity-60']) !!}
                 @endif
 
                 @if ($strand->logo)
