@@ -14,7 +14,7 @@
                      class="group pt-[100%] lg:pt-[75%] block relative text-center">
 
                      @if ($strand->featuredImage)
-                         {!! $strand->featuredImage->img('wide')->attributes([
+                         {!! $strand->featuredImage->img('landscape')->attributes([
                              'data-width' => '600px',
                              'class' =>
                                  'absolute h-full inset-0 object-cover object-center block w-full opacity-70 lg:group-hover:opacity-40 transition',
