@@ -44,7 +44,7 @@
         @endif
 
         @if ($seasons->count())
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-4 lg:w-[125%]">
                 @foreach ($seasons as $season)
                     <a href="{{ $season->url }}"
                         class="truncate max-w-full float-left mr-auto text-yellow clear-both border border-yellow rounded py-1.5 pl-1 pr-2">
