@@ -17,7 +17,7 @@
                          {!! $strand->featuredImage->img('landscape')->attributes([
                              'data-width' => '600px',
                              'class' =>
-                                 'absolute h-full inset-0 object-cover object-center block w-full opacity-50 lg:group-hover:opacity-30 transition',
+                                 'absolute h-full inset-0 object-cover object-center block w-full opacity-50 lg:group-hover:opacity-20 transition',
                          ]) !!}
                      @else
                          <div
