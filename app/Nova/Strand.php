@@ -92,10 +92,14 @@ class Strand extends Resource
             Images::make("Main image", "main"),
             Textarea::make("Short description")
                 ->rows(2)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->maxLength(120)
+                ->enforceMaxlength(),
             Textarea::make("Description")
                 ->rows(3)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->maxLength(250)
+                ->enforceMaxlength(),
             Boolean::make("Show on event card")->hideFromIndex(),
             Boolean::make("Show on instance card")->hideFromIndex(),
             Boolean::make("Show in booking path")->hideFromIndex(),

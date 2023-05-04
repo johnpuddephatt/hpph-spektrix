@@ -85,10 +85,14 @@ class Season extends Resource
             Images::make("Main image", "main"),
             Textarea::make("Short description")
                 ->rows(2)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->maxLength(120)
+                ->enforceMaxlength(),
             Textarea::make("Description")
                 ->rows(3)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->maxLength(250)
+                ->enforceMaxlength(),
             Tag::make("Posts")->displayAsList(),
 
             new Panel("Content", [
