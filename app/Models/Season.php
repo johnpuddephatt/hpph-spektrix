@@ -65,6 +65,10 @@ class Season extends Model implements HasMedia, CachableAttributes
         static::addGlobalScope("enabled", function (Builder $builder) {
             $builder->where("enabled", true);
         });
+
+        static::addGlobalScope("order", function (Builder $builder) {
+            $builder->orderBy("id", "desc");
+        });
     }
 
     public function registerMediaConversions(Media $media = null): void
