@@ -195,6 +195,7 @@ class Event extends Resource
                 Text::make("Original language title")->onlyOnDetail(),
                 Text::make("Year of production")->onlyOnDetail(),
                 Text::make("Featuring stars")->onlyOnDetail(),
+                Text::make("Strobe light warning")->onlyOnDetail(),
             ]),
 
             URL::make(

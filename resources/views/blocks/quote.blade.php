@@ -1,6 +1,6 @@
     <div class="@if ($dark) bg-black @endif flex flex-col lg:flex-row">
         <div style="background-color: @yield('color')"
-            class="py-16 lg:py-8 flex items-center text-center flex-col justify-center bg-yellow lg:w-1/2">
+            class="py-24 lg:py-8 flex items-center text-center flex-col justify-center bg-yellow lg:w-1/2">
             <div class="container">
                 <div class="text-center lg:hidden text-6xl mb-2 leading-none">&OpenCurlyDoubleQuote;</div>
                 <h2 class="type-regular lg:type-medium max-w-lg mx-auto mb-12 lg:mb-16">“{{ $layout->quote }}”</h2>
