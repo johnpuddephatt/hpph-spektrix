@@ -99,7 +99,7 @@
                             <x-details-row label="Country of origin" :value="implode(' &bullet; ', $event->country_of_origin)" />
                             <x-details-row label="Language" :value="implode(' &bullet; ', $event->language)" />
                             <x-details-row label="Format" :value="$event->format" />
-                            <x-details-row label="Strobe lighting" :value="$event->strobe_light_warning" />
+                            <x-details-row label="Strobe lighting" :value="$event->strobe_light_warning ?: $settings['strobe_light_warning_unavailable']" />
                             @if (!$event->content_guidance)
                                 <x-details-row label="Content guidance" :value="$settings['content_guidance_unavailable'] ??
                                     'No content guidance is available'" />

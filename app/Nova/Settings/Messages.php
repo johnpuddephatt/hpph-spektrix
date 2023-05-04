@@ -31,6 +31,11 @@ class Messages
             )->help("Displayed when content guidance is not available"),
 
             Text::make(
+                "Strobe light warning unavailable",
+                "strobe_light_warning_unavailable"
+            )->help("Displayed when strobe light warning is not available"),
+
+            Text::make(
                 "Screenings coming soon",
                 "screenings_coming_soon"
             )->help("Displayed when an event has no future or past instances"),
