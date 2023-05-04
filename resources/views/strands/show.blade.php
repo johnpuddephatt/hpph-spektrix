@@ -18,7 +18,7 @@
         @elseif ($strand->featuredVideo)
             {!! $strand->featuredVideo->img('thumb', ['class' => 'w-full absolute h-full opacity-70 inset-0 object-cover'])->toHtml() !!}
         @elseif($strand->featuredImage)
-            {!! $strand->featuredImage->img('wide', ['class' => 'w-full absolute h-full opacity-70  inset-0 object-cover'])->toHtml() !!}
+            {!! $strand->featuredImage->img('landscape', ['class' => 'w-full absolute h-full opacity-70  inset-0 object-cover'])->toHtml() !!}
         @endif
 
         <div class="w-full absolute text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">

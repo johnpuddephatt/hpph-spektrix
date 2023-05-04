@@ -12,6 +12,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 
 class FetchEventData implements ShouldQueue
 {
@@ -41,6 +42,7 @@ class FetchEventData implements ShouldQueue
      */
     public function handle()
     {
+        Schema::disableForeignKeyConstraints();
         $events = $this->getEvents();
         $instances = $this->getInstances($events);
         $this->getInstancesVenues($instances);
@@ -48,6 +50,7 @@ class FetchEventData implements ShouldQueue
         $this->updateOrCreateSeasons($instances);
         $this->updateOrCreateStrands($instances);
         $this->updateOrCreateInstances($instances);
+        Schema::enableForeignKeyConstraints()
 
         Cache::flush();
 
@@ -213,6 +216,7 @@ class FetchEventData implements ShouldQueue
                         "name" => $strand,
                     ],
                     [
+                        "name" => $strand,
                         "enabled" => true,
                     ]
                 );
@@ -234,6 +238,7 @@ class FetchEventData implements ShouldQueue
                         "name" => $season,
                     ],
                     [
+                        "name" => $season,
                         "enabled" => true,
                     ]
                 );
