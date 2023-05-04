@@ -16,14 +16,14 @@
             </video>
         @elseif ($season->featuredVideo)
             {!! $season->featuredVideo->img('thumb', ['class' => 'w-full absolute h-full opacity-50 inset-0 object-cover'])->toHtml() !!}
-        @else
+        @elseif($season->featuredImage)
             {!! $season->featuredImage->img('wide', ['class' => 'w-full absolute h-full opacity-50  inset-0 object-cover'])->toHtml() !!}
         @endif
 
         <div class="w-full absolute text-white text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
             @svg('logo-hpph-without-est', 'w-20 mb-2 mx-auto text-yellow')
             <div class="type-xs-mono mb-8 mt-1">presents</div>
-            <h1 class="type-large mx-auto max-w-sm">{{ $season->name }}</h1>
+            <h1 class="type-medium lg:type-large mx-auto max-w-sm">{{ $season->name }}</h1>
             <div
                 class="type-xs-mono text-yellow max-w-md sm:max-w-xs absolute top-full left-1/2 -translate-x-1/2 w-full container mx-auto mt-32 md:mt-16">
                 {{ $season->short_description }}</div>
