@@ -17,7 +17,7 @@
         @elseif ($season->featuredVideo)
             {!! $season->featuredVideo->img('thumb', ['class' => 'w-full absolute h-full opacity-50 inset-0 object-cover'])->toHtml() !!}
         @elseif($season->featuredImage)
-            {!! $season->featuredImage->img('wide', ['class' => 'w-full absolute h-full opacity-50  inset-0 object-cover'])->toHtml() !!}
+            {!! $season->featuredImage->img('landscape', ['class' => 'w-full absolute h-full opacity-50  inset-0 object-cover'])->toHtml() !!}
         @endif
 
         <div class="w-full absolute text-white text-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">

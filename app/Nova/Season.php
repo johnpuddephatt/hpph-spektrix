@@ -75,9 +75,9 @@ class Season extends Resource
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
-            Image::make("Logo")
-                ->acceptedTypes(".svg")
-                ->disableDownload(),
+            // Image::make("Logo")
+            //     ->acceptedTypes(".svg")
+            //     ->disableDownload(),
             Media::make("Video")
                 ->conversionOnForm("thumb")
                 ->conversionOnDetailView("thumb")
