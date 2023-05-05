@@ -50,7 +50,7 @@ class FetchEventData implements ShouldQueue
         $this->updateOrCreateSeasons($instances);
         $this->updateOrCreateStrands($instances);
         $this->updateOrCreateInstances($instances);
-        Schema::enableForeignKeyConstraints()
+        Schema::enableForeignKeyConstraints();
 
         Cache::flush();
 
