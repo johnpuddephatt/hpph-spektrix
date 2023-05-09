@@ -91,7 +91,9 @@ class Post extends Resource
             Boolean::make("Featured")
                 ->showOnPreview()
                 ->filterable(),
-            BelongsTo::make("User")->searchable(),
+            BelongsTo::make("User")
+                ->searchable()
+                ->hideFromIndex(),
             Tag::make("Tags")->hideFromIndex(),
 
             Tag::make("Events")
@@ -125,11 +127,7 @@ class Post extends Resource
                     ->onlyOnDetail(),
             ]),
             URL::make("URL", fn() => $this->slug ? $this->url : "#")
-
-                ->displayUsing(fn() => $this->slug ? "Visit" : "–")
-                ->showOnIndex(function (NovaRequest $request, $resource) {
-                    return $this->published === true;
-                }),
+            ->displayUsing(fn() => $this->slug ? "Visit" : "–"),
         ];
     }
 
