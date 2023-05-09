@@ -21,14 +21,14 @@
   "__commonjsHelpers.b8add541.js": {
     "file": "assets/_commonjsHelpers.b8add541.js"
   },
-  "resources/css/spektrix.css": {
-    "file": "assets/spektrix.d0c53749.css",
-    "src": "resources/css/spektrix.css",
+  "resources/css/app.css": {
+    "file": "assets/app.a4bf99cd.css",
+    "src": "resources/css/app.css",
     "isEntry": true
   },
-  "resources/css/app.css": {
-    "file": "assets/app.181f1a0e.css",
-    "src": "resources/css/app.css",
+  "resources/css/spektrix.css": {
+    "file": "assets/spektrix.8b96eaf5.css",
+    "src": "resources/css/spektrix.css",
     "isEntry": true
   }
 }
