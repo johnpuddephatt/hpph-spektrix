@@ -3,7 +3,8 @@
 </div>
 
 <div class="fixed inset-0 -z-10 h-screen w-full overflow-hidden border-b-[1rem] border-yellow bg-black">
-    <figure class="z-40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-auto max-w-[80vw] mx-auto w-[48em]"
+    <figure
+        class="z-40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-auto max-w-[90vw] mx-auto w-[48rem]"
         x-data="{ animation: '' }" x-init="animation = lottie.loadAnimation({
             container: $el,
             renderer: 'svg',
@@ -38,14 +39,13 @@
                 {!! $layout->event->featuredImage->img('wide')->attributes(['class' => 'opacity-70 absolute inset-0 h-full w-full object-cover object-center lg:-z-10']) !!}
             @endif
 
-            <div class="transform text-white h-screen lg:h-auto justify-center lg:justify-start flex flex-col text-center lg:text-left items-center lg:items-end lg:flex-row gap-8 lg:gap-12 container absolute bottom-1/2 translate-y-1/2 lg:translate-y-0 lg:bottom-8 z-50"
-                :class="scrolled ? '' :
-                    'pointer-events-none opacity-0 lg:pointer-events-auto translate-y-8 lg:opacity-100 lg:translate-y-0'">
+            <div
+                class="transform text-white h-auto justify-start flex text-left items-end flex-row gap-8 lg:gap-12 container absolute bottom-8 z-50">
 
                 <a class="flex gap-4 flex-row items-center" href="{{ $layout->event->url }}">
-                    @svg('arrow-right', 'inline-block rounded-full border rotate -rotate-45 p-2 h-12 w-12')
+                    @svg('arrow-right', 'inline-block rounded-full border rotate -rotate-45 p-2 h-8 w-8 lg:h-12 lg:w-12')
 
-                    <h3 class="type-medium px-8 lg:px-0">{{ $layout->event->name }}
+                    <h3 class="type-regular lg:type-medium lg:max-w-xl max-w-xs">{{ $layout->event->name }}
                         <x-certificate :certificate="$layout->event->certificate_age_guidance" :dark="true" />
                     </h3>
                 </a>
@@ -60,7 +60,7 @@
         <!-- :class="scrolled ? 'opacity-0 -translate-y-8 lg:opacity-100 lg:translate-y-0' : ''" -->
         {{-- @svg('logo-full', 'h-auto max-w-[80vw]  lg:px-0 w-72 lg:w-96 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-yellow') --}}
 
-        <button @click="document.documentElement.scrollTop = 12"
-            class="fixed left-1/2 bottom-16 z-20 -translate-x-1/2 transform rounded-full bg-black p-4 text-5xl text-white lg:hidden">@svg('arrow-right', 'transform rotate-90 h-6 w-6')</button>
+        {{-- <button @click="document.documentElement.scrollTop = 12"
+            class="fixed left-1/2 bottom-16 z-20 -translate-x-1/2 transform rounded-full bg-black p-4 text-5xl text-white lg:hidden">@svg('arrow-right', 'transform rotate-90 h-6 w-6')</button> --}}
     </div>
 </div>
