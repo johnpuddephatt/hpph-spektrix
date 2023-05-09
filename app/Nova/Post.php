@@ -16,6 +16,7 @@ use Advoor\NovaEditorJs\NovaEditorJsField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 // use Spatie\TagsField\Tags;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Date;
 use Trin4ik\NovaSwitcher\NovaSwitcher;
 
 class Post extends Resource
@@ -85,6 +86,8 @@ class Post extends Resource
             Boolean::make("Published")
                 ->showOnPreview()
                 ->filterable(),
+            Date::make("Published date", "created_at"),
+
             Boolean::make("Featured")
                 ->showOnPreview()
                 ->filterable(),
