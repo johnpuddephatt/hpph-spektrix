@@ -21,12 +21,12 @@
         </div>
         <div x-show="showControls" class="text-white absolute bottom-1 right-4">
             <button :class="{ '!bg-sand-dark': !showPreviousControl }" :disabled="!showPreviousControl"
-                @click="scrollPosition = Math.max(0, scrollPosition - window.innerWidth/2)"
+                @click="scrollPosition = Math.max(0, scrollPosition - $refs.scroller.clientWidth/2)"
                 class="bg-black rounded-full py-1 px-1">
                 @svg('chevron-right', 'rotate-180 h-8 w-8')
             </button>
             <button :class="{ '!bg-sand-dark': !showNextControl }" :disabled="!showNextControl"
-                @click="scrollPosition = Math.min($refs.scroller.scrollWidth - $refs.scroller.clientWidth, scrollPosition + window.innerWidth/2)"
+                @click="scrollPosition = Math.min($refs.scroller.scrollWidth - $refs.scroller.clientWidth, scrollPosition + $refs.scroller.clientWidth/2)"
                 class="bg-black rounded-full py-1 px-1">
                 @svg('chevron-right', 'h-8 w-8')
             </button>
