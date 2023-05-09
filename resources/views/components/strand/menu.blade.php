@@ -1,7 +1,7 @@
  @if ($strands->count())
      <div class="sticky bottom-0 lg:static lg:w-5/12" x-data="{ open: false }">
 
-         <div class="bg-black lg:pt-0 lg:!block fixed lg:static inset-0 right-auto z-10 h-screen w-full transform overscroll-contain overflow-y-auto text-base text-white transition-all delay-100 duration-200"
+         <div class="bg-black divide-y-2 divide-black lg:pt-0 lg:!block fixed lg:static inset-0 right-auto z-10 h-screen w-full transform overscroll-contain overflow-y-auto text-base text-white transition-all delay-100 duration-200"
              x-show="open" x-transition:enter-start="max-lg:-translate-x-16 max-lg:opacity-0"
              x-transition:leave-end="max-lg:-translate-x-16 max-lg:opacity-0">
 

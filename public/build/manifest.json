@@ -22,12 +22,12 @@
     "file": "assets/_commonjsHelpers.b8add541.js"
   },
   "resources/css/app.css": {
-    "file": "assets/app.b499f103.css",
+    "file": "assets/app.12bca0e4.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/spektrix.css": {
-    "file": "assets/spektrix.9857aa34.css",
+    "file": "assets/spektrix.c345ac94.css",
     "src": "resources/css/spektrix.css",
     "isEntry": true
   }
