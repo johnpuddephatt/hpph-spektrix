@@ -4,7 +4,7 @@
 
 <div class="fixed inset-0 -z-10 h-screen w-full overflow-hidden border-b-[1rem] border-yellow bg-black">
     <figure
-        class="z-40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-auto max-w-[90vw] mx-auto w-[48rem]"
+        class="max-w-screen z-40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-auto mx-auto w-[48rem]"
         x-data="{ animation: '' }" x-init="animation = lottie.loadAnimation({
             container: $el,
             renderer: 'svg',
