@@ -41,7 +41,7 @@
             @endif
 
             <div
-                class="transform text-white h-auto justify-start flex text-left items-end flex-row gap-8 lg:gap-12 container absolute bottom-8 z-50">
+                class="transform text-white h-auto justify-start flex text-left items-end flex-row gap-8 lg:gap-12 container absolute bottom-4 lg:bottom-8 z-50">
 
                 <a class="flex gap-2 flex-row items-center" href="{{ $layout->event->url }}">
                     @svg('arrow-right', 'inline-block rounded-full border rotate -rotate-45 p-2.5 h-9 w-9')
