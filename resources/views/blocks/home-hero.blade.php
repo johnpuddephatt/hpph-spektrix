@@ -13,7 +13,7 @@
         })">
     </figure>
     @if ($layout->event)
-        <div href="{{ $layout->event->url }}" class="inset-0 absolute duration-[3000ms] opacity-0 delay-[3000ms]"
+        <div class="inset-0 absolute duration-[3000ms] opacity-0 delay-[3000ms]"
             x-bind:class="{ '!opacity-100': loaded }" x-data="{ loaded: false }" x-init="loaded = true">
             @if ($layout->event->featuredVideo)
                 {!! $layout->event->featuredVideo->img('thumb', [
