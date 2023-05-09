@@ -26,7 +26,7 @@
                 @if ($layout->event->featuredVideo->video_conversions)
                     @php($conversions = json_decode($layout->event->featuredVideo->video_conversions))
                     <div class="absolute inset-0 -z-10 h-full w-full bg-black opacity-0">
-                        <video oncanplaythrough="setTimeout(() => { this.play(); }, 3500)"
+                        <video oncanplaythrough="setTimeout(() => { this.autoplay = true; this.play(); }, 3500)"
                             onplay="(function(e){e.parentNode.classList.remove('opacity-0');e.parentNode.classList.add('opacity-100');})(this)"
                             class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70" playsinline muted loop>
                             @foreach ($conversions->{'1280x720'} as $format => $url)
@@ -42,8 +42,8 @@
             <div
                 class="transform text-white h-auto justify-start flex text-left items-end flex-row gap-8 lg:gap-12 container absolute bottom-8 z-50">
 
-                <a class="flex gap-4 flex-row items-center" href="{{ $layout->event->url }}">
-                    @svg('arrow-right', 'inline-block rounded-full border rotate -rotate-45 p-2 h-8 w-8 lg:h-12 lg:w-12')
+                <a class="flex gap-2 flex-row items-center" href="{{ $layout->event->url }}">
+                    @svg('arrow-right', 'inline-block rounded-full border rotate -rotate-45 p-2.5 h-9 w-9')
 
                     <h3 class="type-regular lg:max-w-xl max-w-xs">{{ $layout->event->name }}
                         <x-certificate :certificate="$layout->event->certificate_age_guidance" :dark="true" />
