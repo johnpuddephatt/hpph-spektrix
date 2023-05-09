@@ -72,7 +72,6 @@ class HomeHeroLayout extends Layout implements CachableAttributes
             )->limit(3)
         )
             ->with(["featuredImage", "featuredVideo"])
-            ->get()
 
             ->first();
     }
