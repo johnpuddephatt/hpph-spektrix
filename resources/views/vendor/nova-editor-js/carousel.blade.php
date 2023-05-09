@@ -1,8 +1,9 @@
-<div class="my-16 relative" x-data="{ scrollPosition: 0, showControls: {{ count($images) > 2 }}, showPreviousControl: true, showNextControl: true }"
+<div class="my-16 relative" x-data="{ timeout: null, scrollPosition: 0, showControls: {{ count($images) > 2 }}, showPreviousControl: true, showNextControl: true }"
     x-effect="$refs.scroller.scrollLeft = scrollPosition; showPreviousControl = !(scrollPosition == 0); showNextControl = !(scrollPosition >= $refs.scroller.scrollWidth - $refs.scroller.clientWidth);">
     <div class="{{ $width != 'full' ? '-mx-4' : '' }} overflow-hidden bg-sand-light px-4 py-6">
         <div x-ref="scroller"
-            class="@if (count($images) < 3) lg:flex-row gap-4 lg:gap-5 flex-col @else flex-row gap-5 @endif scroll-smooth ml-[calc((100vw-100%)/-2)] flex w-screen overflow-x-hidden px-[calc((100vw-100%)/2)] scrollbar-hide">
+            @scroll="clearTimeout(timeout);     timeout = setTimeout(() => {scrollPosition = $el.scrollLeft}, 50)"
+            class="@if (count($images) < 3) @else @endif lg:flex-row gap-4 lg:gap-5 flex-col flex-row gap-5 scroll-smooth ml-[calc((100vw-100%)/-2)] flex w-screen overflow-x-auto px-[calc((100vw-100%)/2)] scrollbar-hide">
             @foreach ($images as $image)
                 <figure
                     class="@if (count($images) < 3) w-full @elseif (count($images) == 2) w-full @else flex-none @endif">

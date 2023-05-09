@@ -36,9 +36,11 @@ class PostsIndex extends Component
         $paginated_posts = $this->selected_tag
             ? \App\Models\Post::with("featuredImage")
                 ->withAnyTags([$this->selected_tag])
+                ->latest()
                 ->paginate(12)
             : \App\Models\Post::whereNot("id", $this->featured_post)
                 ->with("featuredImage")
+                ->latest()
                 ->paginate(12);
 
         // $posts = $paginated_posts->getCollection();

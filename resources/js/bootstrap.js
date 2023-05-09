@@ -9,6 +9,12 @@ import Swiper from "swiper";
 import "swiper/css";
 window.Swiper = Swiper;
 
+import lottie from "lottie-web";
+import { create } from "@lottiefiles/lottie-interactivity";
+
+window.lottie = lottie;
+window.create = create;
+
 Alpine.plugin(intersect);
 
 window.Alpine = Alpine;

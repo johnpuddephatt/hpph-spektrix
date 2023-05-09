@@ -16,7 +16,10 @@
                         <h2 class="type-regular lg:type-medium">{{ $layout->post->title }}</h2>
                         @if ($layout->post->subtitle)
                             <p class="type-regular lg:type-medium !font-normal mb-4">{{ $layout->post->subtitle }}</p>
+                        @elseif($layout->post->summary)
+                            <p class="type-small mt-4 !font-normal mb-4">{{ $layout->post->summary }}</p>
                         @endif
+
                     </div>
 
                     <div class="mt-auto flex flex-row gap-4 pt-2 justify-between align-bottom">

@@ -36,6 +36,7 @@ class ImageLayout extends Layout
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
                 ->store(new \App\Nova\Actions\SaveAndResizeFullwidthImage()),
+            Text::make("Caption", "caption"),
         ];
     }
 }
