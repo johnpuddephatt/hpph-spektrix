@@ -62,7 +62,7 @@ class HomeHeroLayout extends Layout implements CachableAttributes
             "id",
             $this->featured_events ?? []
         )->count()
-            ? \App\Models\Event::whereIn("id", $this->featured_events ?? [])
+            ? \App\Models\Event::whereIn("id", $this->featured_events)
             : // ->orderByRaw(
             //     "FIELD(id,'" . implode("','", $this->featured_events) . "')"
             // )
@@ -73,7 +73,7 @@ class HomeHeroLayout extends Layout implements CachableAttributes
         )
             ->with(["featuredImage", "featuredVideo"])
             ->get()
-            ->shuffle()
+
             ->first();
     }
 }
