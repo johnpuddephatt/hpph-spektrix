@@ -3,10 +3,10 @@
     <div class="{{ $width != 'full' ? '-mx-4' : '' }} relative overflow-hidden bg-sand-light px-4 py-6">
         <div x-ref="scroller"
             @scroll="clearTimeout(timeout);     timeout = setTimeout(() => {scrollPosition = $el.scrollLeft}, 50)"
-            class="@if (count($images) < 3) @else @endif lg:flex-row gap-4 lg:gap-5 flex-col flex-row gap-5 scroll-smooth ml-[calc((100vw-100%)/-2)] flex w-screen overflow-x-auto px-[calc((100vw-100%)/2)] scrollbar-hide">
+            class="@if (count($images) < 3) @else @endif snap-x scroll-pl-4 lg:flex-row gap-4 lg:gap-5 flex-col flex-row gap-5 scroll-smooth ml-[calc((100vw-100%)/-2)] flex w-screen overflow-x-auto px-[calc((100vw-100%)/2)] scrollbar-hide">
             @foreach ($images as $image)
                 <figure
-                    class="@if (count($images) < 3) w-full @elseif (count($images) == 2) w-full @else flex-none @endif">
+                    class="@if (count($images) < 3) w-full @elseif (count($images) == 2) w-full @else snap-start flex-none @endif">
 
                     <img src="{{ $image['url'] }}"
                         class="@if (count($images) > 2) h-[20rem] lg:h-[26em] w-auto @elseif(count($images) == 2) w-full h-auto lg:max-w-[80vw] lg:h-[calc(100%-2rem)] object-cover @else w-full h-auto @endif block rounded">
