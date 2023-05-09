@@ -45,7 +45,7 @@
                 <a class="flex gap-4 flex-row items-center" href="{{ $layout->event->url }}">
                     @svg('arrow-right', 'inline-block rounded-full border rotate -rotate-45 p-2 h-8 w-8 lg:h-12 lg:w-12')
 
-                    <h3 class="type-regular lg:type-medium lg:max-w-xl max-w-xs">{{ $layout->event->name }}
+                    <h3 class="type-regular lg:max-w-xl max-w-xs">{{ $layout->event->name }}
                         <x-certificate :certificate="$layout->event->certificate_age_guidance" :dark="true" />
                     </h3>
                 </a>
