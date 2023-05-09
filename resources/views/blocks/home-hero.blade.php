@@ -4,7 +4,7 @@
 
 <div class="fixed inset-0 -z-10 h-screen w-full overflow-hidden border-b-[1rem] border-yellow bg-black">
     <figure
-        class="max-w-screen z-40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-auto mx-auto w-[48rem]"
+        class="max-w-[150vw] z-40 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-auto mx-auto w-[48rem]"
         x-data="{ animation: '' }" x-init="animation = lottie.loadAnimation({
             container: $el,
             renderer: 'svg',
@@ -13,6 +13,7 @@
             path: '{{ Storage::disk('public')->url($layout->animation) }}'
         })">
     </figure>
+
     @if ($layout->event)
         <div class="inset-0 absolute duration-[2000ms] opacity-0 delay-[3500ms]"
             x-bind:class="{ '!opacity-100': loaded }" x-data="{ loaded: false }" x-init="loaded = true">
@@ -54,12 +55,4 @@
         </div>
     @endif
 
-    <div class="absolute inset-0 transform transition">
-
-        <!-- :class="scrolled ? 'opacity-0 -translate-y-8 lg:opacity-100 lg:translate-y-0' : ''" -->
-        {{-- @svg('logo-full', 'h-auto max-w-[80vw]  lg:px-0 w-72 lg:w-96 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform text-yellow') --}}
-
-        {{-- <button @click="document.documentElement.scrollTop = 12"
-            class="fixed left-1/2 bottom-16 z-20 -translate-x-1/2 transform rounded-full bg-black p-4 text-5xl text-white lg:hidden">@svg('arrow-right', 'transform rotate-90 h-6 w-6')</button> --}}
-    </div>
 </div>
