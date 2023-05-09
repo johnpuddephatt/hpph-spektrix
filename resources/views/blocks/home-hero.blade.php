@@ -26,7 +26,7 @@
                     @php($conversions = json_decode($layout->event->featuredVideo->video_conversions))
                     <div class="absolute inset-0 -z-10 h-full w-full bg-black opacity-0">
                         <video
-                            onplay="(function(e){e.parentNode.classList.remove('opacity-0');e.parentNode.classList.add('opacity-100') })(this)"
+                            onplay="(function(e){setTimeout(()=> {e.parentNode.classList.remove('opacity-0');e.parentNode.classList.add('opacity-100');}, 3000) })(this)"
                             class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70" playsinline muted
                             autoplay loop>
                             @foreach ($conversions->{'1280x720'} as $format => $url)
