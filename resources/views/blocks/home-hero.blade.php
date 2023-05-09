@@ -26,7 +26,7 @@
                 @if ($layout->event->featuredVideo->video_conversions)
                     @php($conversions = json_decode($layout->event->featuredVideo->video_conversions))
                     <div class="absolute inset-0 -z-10 h-full w-full bg-black opacity-0">
-                        <video x-data="showVideo" x-init="setTimeout(() => { showVideo = true }, 3500)"
+                        <video
                             onplay="(function(e){e.parentNode.classList.remove('opacity-0');e.parentNode.classList.add('opacity-100'); setTimeout((e)=>{ e.currentTime = 0 },3500})(this)"
                             class="absolute inset-0 -z-10 h-full w-full object-cover opacity-70" autoplay playsinline
                             muted loop>
