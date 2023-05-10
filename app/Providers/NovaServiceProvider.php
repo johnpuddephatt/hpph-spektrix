@@ -11,6 +11,7 @@ use Spatie\MediaLibrary\Conversions\Conversion;
 use Spatie\Image\Manipulations;
 use Illuminate\Http\Request;
 use Advoor\NovaEditorJs\NovaEditorJs;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Vite;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
@@ -50,7 +51,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::serving(function () {
             Nova::script(
                 "editorjs-plugins",
-                Vite::asset("resources/js/editorjs-plugins.js")
+                // Vite::asset("resources/js/editorjs-plugins.js")
+                asset("editorjs-plugins.js")
             );
         });
 

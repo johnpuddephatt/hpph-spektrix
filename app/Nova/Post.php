@@ -126,8 +126,10 @@ class Post extends Resource
                     ->asHtml()
                     ->onlyOnDetail(),
             ]),
-            URL::make("URL", fn() => $this->slug ? $this->url : "#")
-            ->displayUsing(fn() => $this->slug ? "Visit" : "–"),
+            URL::make(
+                "URL",
+                fn() => $this->slug ? $this->url : "#"
+            )->displayUsing(fn() => $this->slug ? "Visit" : "–"),
         ];
     }
 
