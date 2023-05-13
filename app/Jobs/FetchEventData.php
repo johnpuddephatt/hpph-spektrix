@@ -248,10 +248,13 @@ class FetchEventData implements ShouldQueue
 
     public function updateOrCreateInstances($instances)
     {
+        \App\Models\Instance::query()->update(["enabled" => false]);
+
         foreach ($instances as $instance) {
             \App\Models\Instance::withoutGlobalScopes()->updateOrCreate(
                 ["id" => $instance->id],
                 [
+                    "enabled" => true,
                     "is_on_sale" => $instance->isOnSale ?? null,
                     "event_id" => $instance->event->id ?? null,
                     "venue" => $instance->venue ?? null,

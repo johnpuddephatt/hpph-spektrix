@@ -25,6 +25,12 @@ class Instance extends Resource
     {
         return "Screenings";
     }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query->withoutGlobalScopes(["enabled"]);
+    }
+
     /**
      * The model the resource corresponds to.
      *
@@ -62,6 +68,7 @@ class Instance extends Resource
             DateTime::make("Start"),
             Boolean::make("On sale", "is_on_sale"),
             Boolean::make("Cancelled"),
+            Boolean::make("Enabled"),
 
             // Boolean::make("Short film with feature")->onlyOnDetail(),
 

@@ -17,6 +17,10 @@ class Instance extends Model
 
     protected static function booted()
     {
+        static::addGlobalScope("enabled", function (Builder $builder) {
+            $builder->where("enabled", true);
+        });
+
         static::addGlobalScope("has_event", function (Builder $builder) {
             $builder->whereHas("event");
         });
@@ -33,6 +37,8 @@ class Instance extends Model
     protected $fillable = [
         "id",
         "is_on_sale",
+        "enabled",
+
         "event_id",
         "venue",
         "start",
