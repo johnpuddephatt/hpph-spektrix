@@ -55,7 +55,7 @@ h1.BasketHeading {
 }
 
 .spx-list-item__checkout--ticket-summary {
-    @apply flex py-2 border-b border-gray-light;
+    @apply flex py-2 border-b border-gray-light max-w-lg gap-1;
 }
 
 .spx-sublist-summary__checkout--ticket-summary {
