@@ -51,7 +51,7 @@
             <div x-show="!instances.length" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
                 @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
             </div>
-            <div class="flex-1 flex flex-col lg:flex-row gap-12" x-show="instances.length">
+            <div class="flex-1 flex flex-col lg:flex-row gap-8" x-show="instances.length">
                 <div class="max-w-xl w-full flex flex-col h-full">
                     <div class="mt-1 mb-8"><span class="font-bold" x-text="event"></span> <span
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
@@ -135,7 +135,7 @@
         <div class="flex-grow container overflow-y-auto relative pt-12 lg:pl-48" x-show="instanceID">
 
             <template x-if="instanceID">
-                <div class="flex-1 flex flex-col lg:flex-row gap-12">
+                <div class="flex-1 flex flex-col lg:flex-row gap-16">
 
                     <div class="w-full max-w-xl">
                         <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 pl-32">
@@ -146,8 +146,8 @@
                             style="height: 90vh;" name="SpektrixIFrame"
                             :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ instanceID }&resize=true`"></iframe>
                     </div>
-                    <div class="max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
-                        <h3 class="type-small mb-3">{{ $settings['members_basket_heading'] ?? 'Members' }}</h3>
+                    <div class="max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem] lg:mr-4">
+                        <h3 class="font-bold mb-3">{{ $settings['members_basket_heading'] ?? 'Members' }}</h3>
                         <div class="type-xs border-t last:border-b border-gray-light py-4">
                             {!! $settings['members_basket_text'] ??
                                 'Please select a full-price ticket, any discounts will be applied at checkout after you have signed into your account' !!}

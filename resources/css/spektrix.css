@@ -166,8 +166,12 @@ Booking Path
     @apply mt-20 py-2 leading-tight mb-2;
 }
 
-.SeatingAreaInstructions:first-line {
+/* .SeatingAreaInstructions:first-line {
     @apply font-bold;
+} */
+
+.PricesContainer {
+    @apply hidden;
 }
 
 .ErrorMessage {
