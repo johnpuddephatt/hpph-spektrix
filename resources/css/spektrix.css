@@ -401,3 +401,7 @@ dd.Footer {
 .spx-iframe__checkout--payment {
     height: 750px;
 }
+
+.SeatSelectable {
+    mix-blend-mode: multiply;
+}

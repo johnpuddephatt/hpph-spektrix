@@ -50,7 +50,7 @@
                 <form action="{!! $settings['newsletter_action'] ??
                     'https://system.spektrix.com/leedsheritagetheatres/website/secure/signup.aspx' !!}" method="POST" class="mt-8 grid grid-cols-2 gap-x-4 gap-y-4">
                     <div class="relative z-0 mt-6">
-                        <input type="text" id="firstNameSubscribe" name="FirstName"
+                        <input type="text" id="firstNameSubscribe" name="FirstName" required maxlength="30"
                             class="peer block w-full border-b border-gray-dark bg-transparent pb-2 focus-within:border-white focus-within:outline-none"
                             placeholder=" " />
                         <label for="firstNameSubscribe"
@@ -58,7 +58,7 @@
                             name<sup>*</sup></label>
                     </div>
                     <div class="relative z-0 mt-6">
-                        <input type="text" id="lastNameSubscribe" name="LastName"
+                        <input type="text" id="lastNameSubscribe" name="LastName" required maxlength="80"
                             class="peer block w-full border-b border-gray-dark bg-transparent pb-2 focus-within:border-white focus-within:outline-none"
                             placeholder=" " />
                         <label for="lastNameSubscribe"
@@ -66,7 +66,7 @@
                             name<sup>*</sup></label>
                     </div>
                     <div class="relative z-0 col-span-2 mt-6">
-                        <input type="email" id="emailSubscribe" name="Email"
+                        <input type="email" id="emailSubscribe" name="Email" required maxlength="255"
                             class="peer block w-full border-b border-gray-dark bg-transparent pb-2 focus-within:border-white focus-within:outline-none"
                             placeholder=" " />
                         <label for="emailSubscribe"
