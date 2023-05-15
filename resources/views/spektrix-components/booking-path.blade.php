@@ -72,7 +72,7 @@
 
                                     <x-strand.booking-path />
                                     <span
-                                        x-show="instance.strand && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
+                                        x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
                                         class="text-2xl">&middot;</span>
                                     <x-accessibilities.booking-path />
 

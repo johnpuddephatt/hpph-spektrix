@@ -9,18 +9,29 @@ body {
     @apply font-sans;
 }
 
-/* h1,
-h2 {
+/* h1 */
+.ChooseSeatsHeading h2,
+h1.EditTicketsHeading,
+h1.BasketHeading {
     @apply type-medium mb-2;
     @apply font-normal !important;
-} */
+}
 
-.spx-heading-headline {
+.spx-heading-headline,
+#ctl00_ContentPlaceHolder_EditTicketsWikiTextViewer h2 {
     @apply type-regular mt-4 mb-6;
+}
+
+#ctl00_ContentPlaceHolder_InstanceTicketsEditor table {
+    width: 100%;
 }
 
 .spx-heading-sub-headline {
     @apply type-small mt-4 mb-2;
+}
+
+#ctl00_ContentPlaceHolder_ChangeMySeatsLink {
+    @apply underline mb-8 inline-block;
 }
 
 .spx-legend-guide {
@@ -40,7 +51,7 @@ h2 {
 }
 
 #SpektrixFooter {
-    @apply bg-transparent mt-8;
+    @apply bg-transparent pt-40;
 }
 
 h3,
@@ -260,7 +271,7 @@ Booking Path
 }
 
 #ctl00_ContentPlaceHolder_DiscountsPanel .Input_Text {
-    @apply my-0;
+    @apply my-0 py-1 bg-transparent border border-gray-light;
 }
 
 #ctl00_ContentPlaceHolder_DiscountsPanel h2,
@@ -349,7 +360,8 @@ dd.Footer {
 }
 
 .spx-link__checkout--new-address {
-    @apply type-small !font-normal mt-4 block underline;
+    @apply type-small mt-4 block underline;
+    @apply font-normal !important;
 }
 
 .spx-input-text__checkout--donation {
