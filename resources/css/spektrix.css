@@ -427,7 +427,13 @@ dd.Footer {
 }
 
 .spx-heading-sub-headline__checkout--contact-preferences {
-    @apply font-normal text-base;
+    @apply font-normal text-base max-w-lg;
+}
+
+.spx-list-contact-preferences__checkout--contact-preferences,
+.spx-subsection-summary-container__checkout--ticket-delivery,
+.spx-subsection-container__checkout--donation {
+    @apply max-w-lg;
 }
 
 .FoxIFrameControl iframe,
