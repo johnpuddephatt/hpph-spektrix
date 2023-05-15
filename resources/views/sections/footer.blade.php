@@ -47,30 +47,33 @@
                     class="type-regular lg:type-xs max-w-xs mx-auto lg:max-w-none text-center lg:text-left text-yellow font-bold lg:text-white">
                     {!! $settings['newsletter_heading'] ?? 'Newsletter' !!}<span class="hidden lg:inline">:</span></h3>
 
-                <form class="mt-8 grid grid-cols-2 gap-x-4 gap-y-4">
+                <form action="{!! $settings['newsletter_action'] ??
+                    'https://system.spektrix.com/leedsheritagetheatres/website/secure/signup.aspx' !!}" method="POST" class="mt-8 grid grid-cols-2 gap-x-4 gap-y-4">
                     <div class="relative z-0 mt-6">
-                        <input type="text" id="first_name" name="first_name"
+                        <input type="text" id="firstNameSubscribe" name="FirstName"
                             class="peer block w-full border-b border-gray-dark bg-transparent pb-2 focus-within:border-white focus-within:outline-none"
                             placeholder=" " />
-                        <label for="first_name"
+                        <label for="firstNameSubscribe"
                             class="peer-focus:text-white absolute duration-300 transform -translate-y-full pb-2 top-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-full">First
                             name<sup>*</sup></label>
                     </div>
                     <div class="relative z-0 mt-6">
-                        <input type="text" id="last_name" name="last_name"
+                        <input type="text" id="lastNameSubscribe" name="LastName"
                             class="peer block w-full border-b border-gray-dark bg-transparent pb-2 focus-within:border-white focus-within:outline-none"
                             placeholder=" " />
-                        <label for="last_name"
+                        <label for="lastNameSubscribe"
                             class="peer-focus:text-white absolute duration-300 transform -translate-y-full pb-2 top-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-full">Last
                             name<sup>*</sup></label>
                     </div>
                     <div class="relative z-0 col-span-2 mt-6">
-                        <input type="email" id="email" name="email"
+                        <input type="email" id="emailSubscribe" name="Email"
                             class="peer block w-full border-b border-gray-dark bg-transparent pb-2 focus-within:border-white focus-within:outline-none"
                             placeholder=" " />
-                        <label for="email"
+                        <label for="emailSubscribe"
                             class="peer-focus:text-white absolute duration-300 transform -translate-y-full pb-2 top-0 -z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-full">Email<sup>*</sup></label>
                     </div>
+                    <input type="hidden" name="ReturnUrl"
+                        value="{{ isset($settings['newsletter_redirect']) ? url($settings['newsletter_redirect']) : url('/signed-up') }}">
                     <div class="col-span-2 mt-8 flex flex-row items-center gap-2 max-w-md">
                         <input class="mt-0.5 h-3 w-3 appearance-none rounded-full border bg-gray-dark checked:bg-yellow"
                             id="consent" name="consent" type="checkbox">

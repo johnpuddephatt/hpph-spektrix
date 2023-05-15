@@ -16,28 +16,15 @@ class Newsletter
     public function fields(): array
     {
         return [
-            Text::make("Title", "newsletter_title")->help(
-                "Supports markdown – e.g. **bold**"
+            Text::make("Newsletter heading", "newsletter_heading")->help(
+                "Title for the newsletter section in the footer"
             ),
-            Text::make("Message", "newsletter_message"),
-            Text::make("Link", "newsletter_link"),
-            Image::make("Image", "newsletter_image")
-                ->maxWidth(50)
-                ->disableDownload()
-                ->store(function (Request $request, $model) {
-                    $image = LaravelImage::make($request->newsletter_image)
-                        ->fit(840, 560)
-                        ->encode("jpg", 80);
-
-                    Storage::put(
-                        "/newsletter/" .
-                            $request->newsletter_image->getClientOriginalName(),
-                        $image
-                    );
-
-                    return "/newsletter/" .
-                        $request->newsletter_image->getClientOriginalName();
-                }),
+            Text::make("Newsletter action", "newsletter_action")->help(
+                "Enter a valid, absolute URL beginning http:// or https://"
+            ),
+            Text::make("Newsletter redirect", "newsletter_redirect")->help(
+                "Enter a relative URL, e.g. /signed-up"
+            ),
         ];
     }
 
