@@ -51,7 +51,7 @@ h1.BasketHeading {
 }
 
 #SpektrixFooter {
-    @apply bg-transparent pt-40;
+    @apply bg-transparent pt-40 static !important;
 }
 
 h3,

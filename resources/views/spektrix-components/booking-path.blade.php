@@ -51,7 +51,7 @@
             <div x-show="!instances.length" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
                 @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
             </div>
-            <div class="flex-1 flex flex-col lg:flex-row gap-8" x-show="instances.length">
+            <div class="flex-1 flex flex-col lg:flex-row gap-12" x-show="instances.length">
                 <div class="max-w-xl w-full flex flex-col h-full">
                     <div class="mt-1 mb-8"><span class="font-bold" x-text="event"></span> <span
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
@@ -132,10 +132,10 @@
             <span>Tickets &amp; extras</span> <span
                 class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">2</span>
         </h2>
-        <div class="flex-grow container overflow-y-auto relative pt-12 lg:pl-48" x-show="instanceID">
+        <div class="flex-grow container overflow-y-auto relative pt-12 lg:pl-40" x-show="instanceID">
 
             <template x-if="instanceID">
-                <div class="flex-1 flex flex-col lg:flex-row gap-16">
+                <div class="flex-1 flex flex-col lg:flex-row gap-12">
 
                     <div class="w-full max-w-xl">
                         <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 pl-32">
