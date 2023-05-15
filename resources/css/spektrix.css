@@ -364,6 +364,11 @@ dd.Footer {
     @apply font-normal !important;
 }
 
+.spx-input-dropdown__checkout--new-address {
+    display: block;
+    width: 100%;
+}
+
 .spx-input-text__checkout--donation {
     @apply max-w-xs;
 }
