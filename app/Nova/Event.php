@@ -102,7 +102,7 @@ class Event extends Resource
                 ->showOnPreview()
                 ->filterable(),
 
-            Boolean::make("Synced", "enabled")
+            Boolean::make("Synced", "nabled")
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),

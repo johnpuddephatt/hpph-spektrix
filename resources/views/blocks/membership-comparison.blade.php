@@ -36,9 +36,9 @@
                         class="type-regular w-full bg-yellow text-center py-6 text-black hover:bg-opacity-90 transition"
                         data-submit-membership>Add to basket</button>
 
-                    <div class="type-regular absolute text-black leading-tight py-6 px-6 inset-0 bg-yellow-dark text-center"
+                    <div class="type-regular absolute text-yellow leading-tight py-6 px-6 inset-0 bg-black text-center"
                         data-success-container style="display: none;">Added to basket</div>
-                    <div class="absolute text-black font-bold inset-0 leading-tight py-4 px-6 bg-yellow-dark text-center"
+                    <div class="absolute text-yellow font-bold inset-0 leading-tight py-4 px-6 bg-black text-center"
                         data-fail-container style="display: none;">Something went wrong.</div>
                 </spektrix-memberships>
 

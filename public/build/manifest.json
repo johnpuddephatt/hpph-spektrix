@@ -7,14 +7,14 @@
       "assets/app.2b86e033.css"
     ]
   },
-  "resources/css/app.css": {
-    "file": "assets/app.9184e987.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
-  },
   "resources/css/spektrix.css": {
     "file": "assets/spektrix.e1a205e1.css",
     "src": "resources/css/spektrix.css",
+    "isEntry": true
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.9184e987.css",
+    "src": "resources/css/app.css",
     "isEntry": true
   }
 }

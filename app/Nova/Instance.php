@@ -68,7 +68,7 @@ class Instance extends Resource
             DateTime::make("Start"),
             Boolean::make("On sale", "is_on_sale"),
             Boolean::make("Cancelled"),
-            Boolean::make("Enabled"),
+            Boolean::make("Synced", "enabled"),
 
             // Boolean::make("Short film with feature")->onlyOnDetail(),
 
