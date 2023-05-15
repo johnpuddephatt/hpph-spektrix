@@ -54,6 +54,18 @@ h1.BasketHeading {
     @apply bg-transparent pt-40 static !important;
 }
 
+.spx-list-item__checkout--ticket-summary {
+    @apply flex py-2 border-b border-gray-light;
+}
+
+.spx-sublist-summary__checkout--ticket-summary {
+    @apply pl-4 ml-auto;
+}
+
+.spx-list-item__checkout--ticket-summary:last-child {
+    @apply border-none;
+}
+
 h3,
 h4,
 h5,
