@@ -402,6 +402,6 @@ dd.Footer {
     height: 750px;
 }
 
-.SeatSelectable {
+.Seat {
     mix-blend-mode: multiply;
 }
