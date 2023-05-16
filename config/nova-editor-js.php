@@ -92,8 +92,8 @@ return [
             "disk" => "local",
             "alterations" => [
                 "resize" => [
-                    "width" => 1200, // integer
-                    "height" => 1200, // integer
+                    "width" => 1600, // integer
+                    "height" => 1600, // integer
                 ],
                 "optimize" => true, // true or false
                 "adjustments" => [
