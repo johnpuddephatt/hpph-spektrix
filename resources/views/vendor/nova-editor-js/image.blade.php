@@ -4,7 +4,7 @@ if (!isset($width)) {
 }
 @endphp
 <figure class="{{ $width == '' ? 'max-w-[50ch]' : '' }} my-16 relative">
-    <img class="@if ($width != 'full') rounded @endif w-full" src="{{ $file['url'] }}"
+    <img loading="lazy" class="@if ($width != 'full') rounded @endif w-full" src="{{ $file['url'] }}"
         alt="{{ $caption }}">
     @if (!empty($caption))
         <figcaption

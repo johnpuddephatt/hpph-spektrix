@@ -19,7 +19,7 @@
             @endif ">
             @foreach ($images as $image)
                 <figure class="@if (count($images) < 3) w-full @elseif (count($images) == 2) w-full @else flex-none @endif snap-start">     
-                    <img src="{{ $image['url'] }}" class="@if (count($images) > 2) h-[20rem] lg:h-[26em] w-auto @elseif(count($images) == 2) w-full h-auto lg:max-w-[80vw] lg:h-[calc(100%-2rem)] object-cover @else w-full h-auto @endif block rounded">
+                    <img loading="lazy" src="{{ $image['url'] }}" class="@if (count($images) > 2) h-[20rem] lg:h-[26em] w-auto @elseif(count($images) == 2) w-full h-auto lg:max-w-[80vw] lg:h-[calc(100%-2rem)] object-cover @else w-full h-auto @endif block rounded">
                     @if ($image['caption'])
                         <figcaption class="type-xs-mono pt-4">
                             {{ $image['caption'] }}
