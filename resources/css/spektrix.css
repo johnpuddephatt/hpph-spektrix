@@ -432,7 +432,8 @@ dd.Footer {
 
 .spx-list-contact-preferences__checkout--contact-preferences,
 .spx-subsection-summary-container__checkout--ticket-delivery,
-.spx-subsection-container__checkout--donation {
+.spx-subsection-container__checkout--donation,
+.spx-label-field__checkout--payment-method {
     @apply max-w-lg;
 }
 

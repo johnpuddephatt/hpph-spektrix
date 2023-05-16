@@ -22,7 +22,7 @@
         <div class="container pt-6 pb-24 min-h-screen">
             <iframe
                 src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/secure/checkout.aspx?resize=true"
-                class="min-h-screen w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
+                class="min-h-screen w-full lg:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
         </div>
 
     </div>

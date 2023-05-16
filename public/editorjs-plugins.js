@@ -191,18 +191,22 @@ __webpack_require__.r(__webpack_exports__);
 NovaEditorJS.booting(function (editorConfig, fieldConfig) {
   // REMOVE THIS
   // AND RE-ENABLE IMAGE IN CONFIG TO REVERT
-  editorConfig.tools.image = {
-    "class": (_editorjs_image__WEBPACK_IMPORTED_MODULE_4___default()),
-    config: {
-      endpoints: {
-        byFile: fieldConfig.uploadImageByFileEndpoint,
-        byUrl: fieldConfig.uploadImageByUrlEndpoint
-      },
-      additionalRequestHeaders: {
-        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
-      }
-    }
-  };
+  // but why is this here? I'm not sure...
+  // editorConfig.tools.image = {
+  //     class: ImageTool,
+  //     config: {
+  //         endpoints: {
+  //             byFile: fieldConfig.uploadImageByFileEndpoint,
+  //             byUrl: fieldConfig.uploadImageByUrlEndpoint,
+  //         },
+  //         additionalRequestHeaders: {
+  //             "X-CSRF-TOKEN": document
+  //                 .querySelector('meta[name="csrf-token"]')
+  //                 .getAttribute("content"),
+  //         },
+
+  //     },
+  // };
   if (fieldConfig.toolSettings.attaches.activated === true) {
     editorConfig.tools.attaches = {
       "class": (_editorjs_attaches__WEBPACK_IMPORTED_MODULE_5___default()),

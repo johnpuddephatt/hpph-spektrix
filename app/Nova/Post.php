@@ -93,7 +93,9 @@ class Post extends Resource
                 ->filterable(),
             BelongsTo::make("User")
                 ->searchable()
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->required()
+                ->default(1),
             Tag::make("Tags")->hideFromIndex(),
 
             Tag::make("Events")
@@ -105,7 +107,9 @@ class Post extends Resource
             Tag::make("Strands")
                 ->displayAsList()
                 ->hideFromIndex(),
-            Images::make("Image", "main")->rules("required"),
+            Images::make("Image", "main")
+                ->required()
+                ->rules("required"),
             Panel::make("Content", [
                 Textarea::make("Introduction")
                     ->rows(3)
@@ -116,7 +120,13 @@ class Post extends Resource
                 NovaEditorJsField::make("Content")
                     ->hideFromIndex()
                     ->stacked()
+                    ->required()
                     ->rules("required")
+                    ->default(
+                        '{"time":' .
+                            microtime() .
+                            ',"blocks":[],"version":"2.25.0"}'
+                    )
                     ->hideFromDetail(),
                 Text::make("Content", function () {
                     return view("components.editorjs", [

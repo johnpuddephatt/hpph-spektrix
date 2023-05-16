@@ -59,6 +59,13 @@ class Post extends Model implements HasMedia, CachableAttributes
         static::addGlobalScope("published", function (Builder $builder) {
             $builder->where("published", true);
         });
+
+        // static::saving(function ($post) {
+        //     if ($post->content == null) {
+        //         $post->content =
+        //             '{"time":1684240144151,"blocks":[],"version":"2.25.0"}';
+        //     }
+        // });
     }
 
     public function sluggable(): array
@@ -99,7 +106,9 @@ class Post extends Model implements HasMedia, CachableAttributes
 
     public function getDateAttribute()
     {
-        return $this->created_at->format($this->dateOutputFormat);
+        return $this->created_at
+            ? $this->created_at->format($this->dateOutputFormat)
+            : null;
     }
 
     public function getUrlAttribute()
