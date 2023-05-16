@@ -11,7 +11,7 @@
                     {!! $layout->post->featuredImage->img('wide')->attributes(['class' => 'w-full block lg:w-1/2 object-cover aspect-video lg:aspect-auto']) !!}
                 @endif
 
-                <div class="flex flex-col aspect-video lg:block lg:aspect-auto lg:py-8 p-8 lg:w-1/2 mx-auto lg:max-w-md">
+                <div class="flex flex-col aspect-video lg:block md:aspect-auto lg:py-8 p-8 lg:w-1/2 mx-auto lg:max-w-md">
                     <div class="lg:min-h-[9rem]">
                         <h2 class="type-regular lg:type-medium">{{ $layout->post->title }}</h2>
                         @if ($layout->post->subtitle)
