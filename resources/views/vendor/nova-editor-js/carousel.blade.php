@@ -9,7 +9,7 @@
             flex  overflow-x-auto scrollbar-hide snap-x scroll-pl-4 scroll-smooth 
 
             @if (count($images) < 3)
-                lg:flex-row gap-4 lg:gap-5 flex-col
+                md:flex-row gap-4 md:gap-5 flex-col
             @else
                 flex-row gap-5
             @endif 

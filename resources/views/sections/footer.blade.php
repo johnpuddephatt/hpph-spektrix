@@ -89,7 +89,7 @@
                 </form>
             </div>
             <div
-                class="col-span-2 lg:mt-6 flex flex-row flex-nowrap items-center gap-x-3 gap-y-5 lg:flex-nowrap lg:gap-4">
+                class="col-span-2 lg:mt-6 flex flex-row justify-center lg:justify-start flex-nowrap items-center gap-x-3 gap-y-5 lg:flex-nowrap lg:gap-4">
                 @svg('logo-hlf2', 'text-gray-light w-24 h-auto')
                 @svg('logo-filmhub', 'text-gray-light w-14 h-auto')
                 @svg('logo-bfi', 'text-gray-light w-40 h-auto')

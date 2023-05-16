@@ -28,7 +28,7 @@
         </div>
 
         <div class="-order-1 py-16">
-            <div class="container grid lg:grid-cols-3 gap-8">
+            <div class="container grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($products as $product)
                     <a class="group block" href="{{ $product->url }}">
                         {!! $product->featuredImage->img('landscape')->attributes(['class' => 'rounded w-full block']) !!}

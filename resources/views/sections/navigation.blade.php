@@ -1,6 +1,6 @@
-<div class="flex flex-col lg:flex-row fixed inset-0 z-30 h-screen transform overflow-y-auto bg-black text-white transition-transform"
+<div class="flex flex-col md:flex-row fixed inset-0 z-30 h-screen transform overflow-y-auto bg-black text-white transition-transform"
     :class="nav_open ? 'translate-x-0' : 'translate-x-full'" @keyup.escape.window="nav_open = false">
-    <div class="lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
+    <div class="md:1/2 lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
         @if ($primary_menu)
             <nav class="mb-8 lg:mb-24">
                 <ul class="text-[3.75rem] font-bold leading-[108%] tracking-[-0.050em] text-white">
@@ -64,11 +64,16 @@
             @endforeach
         </div>
 
-        <x-credits class="hidden lg:block" />
+        <x-credits class="hidden md:block" />
 
+        <!-- Middle column on desktop -->
+        <div class="py-8 md:hidden grid grid-cols-2 gap-4">
+            <x-tertiary-menu />
+            <x-credits />
+        </div>
     </div>
 
-    <div class="hidden lg:flex flex-col py-8 px-6 lg:px-12 lg:w-3/12">
+    <div class="hidden lg:flex flex-col py-8 lg:px-12 lg:w-3/12">
 
         @if ($secondary_menu)
             <nav>
@@ -91,11 +96,6 @@
 
         <x-tertiary-menu class="mt-auto" />
 
-    </div>
-
-    <div class="px-6 py-8 lg:hidden grid grid-cols-2 gap-4">
-        <x-tertiary-menu />
-        <x-credits />
     </div>
 
     <x-strand.menu>Programme strands @svg('arrow-right', 'inline-block ml-auto w-10 h-10 p-2.5 bg-black rounded-full text-yellow')</x-strand.menu>
