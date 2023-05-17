@@ -10,7 +10,7 @@
         </p>
     </div>
 
-    <div class="flex flex-col lg:block">
+    <div class="flex flex-col md:block">
         <div
             class="bg-sand-light z-10 sticky bottom-0 md:static md:bottom-auto md:container md:flex flex-row justify-between border-b border-sand md:py-2.5">
 
