@@ -5,7 +5,7 @@
              x-show="open" x-transition:enter-start="max-lg:-translate-x-16 max-md:opacity-0"
              x-transition:leave-end="max-lg:-translate-x-16 max-md:opacity-0">
 
-             <button class="md:hidden my-2 mx-4" @click="open = false"
+             <button class="md:hidden my-2.5 mx-4" @click="open = false"
                  aria-label="Close programme strands menu">@svg('arrow-right', 'transform rotate-180 w-10 h-10 rounded-full bg-black-light p-2.5')</button>
 
              @foreach ($strands as $strand)
