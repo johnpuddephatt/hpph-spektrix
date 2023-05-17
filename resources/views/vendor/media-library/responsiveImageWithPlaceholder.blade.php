@@ -3,9 +3,7 @@
     onload="window.requestAnimationFrame(function(){
         if(sizes !== '1px') return;
         
-        if(dataset.width) {
-            console.log('dataset.width:',dataset.width);
-            
+        if(dataset.width) {            
             sizes = dataset.width; 
         }
         else if(!(size=getBoundingClientRect().width)) {
