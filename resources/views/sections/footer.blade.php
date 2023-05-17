@@ -42,7 +42,7 @@
             <div class="col-span-1">
 
             </div>
-            <div class="-order-1 col-span-2 lg:-order-none mx-auto max-w-lg lg:max-w-xl lg:mx-0">
+            <div class="-order-1 col-span-2 lg:-order-none mx-auto max-w-xl lg:mx-0">
                 <h3
                     class="type-regular lg:type-xs max-w-xs mx-auto lg:max-w-none text-center lg:text-left text-yellow font-bold lg:text-white">
                     {!! $settings['newsletter_heading'] ?? 'Newsletter' !!}<span class="hidden lg:inline">:</span></h3>
