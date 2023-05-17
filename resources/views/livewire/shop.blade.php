@@ -12,10 +12,10 @@
 
     <div class="flex flex-col lg:block">
         <div
-            class="bg-sand-light z-10 sticky bottom-0 lg:static lg:bottom-auto lg:container lg:flex flex-row justify-between border-b border-sand lg:py-2.5">
+            class="bg-sand-light z-10 sticky bottom-0 md:static md:bottom-auto md:container md:flex flex-row justify-between border-b border-sand md:py-2.5">
 
-            <div class="grid grid-cols-3 px-4 py-3 lg:p-0 lg:flex flex-row items-center gap-4 lg:gap-2.5">
-                <div class="type-xs-mono hidden lg:block">Filter:</div>
+            <div class="grid grid-cols-3 px-4 py-3 md:p-0 md:flex flex-row items-center gap-4 md:gap-2.5">
+                <div class="type-xs-mono hidden md:block">Filter:</div>
                 <button
                     class="type-xs-mono {{ !$selected_type ? 'bg-yellow ' : 'hover:bg-sand-dark bg-sand' }} cursor-default rounded pt-2 py-1.5 px-3"
                     wire:click="$emit('updateType', '')">All</button>
