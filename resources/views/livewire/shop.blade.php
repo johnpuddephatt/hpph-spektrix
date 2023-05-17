@@ -14,14 +14,14 @@
         <div
             class="bg-sand-light z-10 sticky bottom-0 md:static md:bottom-auto md:container md:flex flex-row justify-between border-b border-sand md:py-2.5">
 
-            <div class="grid grid-cols-3 px-4 py-3 md:p-0 md:flex flex-row items-center gap-4 md:gap-2.5">
+            <div class="px-4 py-3 md:p-0 flex flex-row items-center gap-2 md:gap-2.5">
                 <div class="type-xs-mono hidden md:block">Filter:</div>
                 <button
-                    class="type-xs-mono {{ !$selected_type ? 'bg-yellow ' : 'hover:bg-sand-dark bg-sand' }} cursor-default rounded pt-2 py-1.5 px-3"
+                    class="type-xs-mono {{ !$selected_type ? 'bg-yellow ' : 'hover:bg-sand-dark bg-sand' }} flex-grow cursor-default rounded pt-2 py-1.5 px-3"
                     wire:click="$emit('updateType', '')">All</button>
                 @foreach ($types as $type)
                     <button
-                        class="type-xs-mono {{ $selected_type == $type ? 'bg-yellow ' : 'hover:bg-sand-dark bg-sand' }} cursor-default rounded pt-2 py-1.5 px-3"
+                        class="type-xs-mono {{ $selected_type == $type ? 'bg-yellow ' : 'hover:bg-sand-dark bg-sand' }} flex-grow cursor-default rounded pt-2 py-1.5 px-3"
                         wire:click="$emit('updateType', '{{ $type }}')">{{ $type }}</button>
                 @endforeach
             </div>
