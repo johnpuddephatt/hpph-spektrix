@@ -4,7 +4,7 @@
     @php $content = $block->editorjs @endphp
 @endif
 
-@if ($content->blocks)
+@if ($content)
     <div {{ $attributes->class(['prose']) }}>
         @foreach ($content->blocks as $block)
             @if ($block)
