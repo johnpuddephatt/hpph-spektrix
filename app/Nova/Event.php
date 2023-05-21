@@ -102,6 +102,10 @@ class Event extends Resource
                 ->showOnPreview()
                 ->filterable(),
 
+            Boolean::make("Show in programme?", "show_in_programme")
+                ->showOnPreview()
+                ->filterable(),
+
             Boolean::make("Synced", "nabled")
                 ->readonly()
                 ->showOnPreview()

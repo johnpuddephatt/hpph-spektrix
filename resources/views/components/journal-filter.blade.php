@@ -2,7 +2,7 @@
      class="max-lg:order-last container sticky bottom-0 flex flex-row justify-center lg:justify-start items-center gap-2 py-4 lg:pb-0 lg:pt-12 bg-sand-light lg:bg-transparent">
      <div class="type-xs-mono hidden lg:block">Filter:</div>
 
-     @if ($selected_tag)
+     @if ($selected_tag && $tags->firstWhere('slug', $selected_tag))
          <button wire:key="remove-tag-filter" aria-label="Remove filter for {{ $selected_tag }}"
              class="type-xs-mono cursor-default rounded bg-yellow hover:bg-yellow-dark pt-2 py-1.5 px-3"
              wire:click="$set('selected_tag', null)">

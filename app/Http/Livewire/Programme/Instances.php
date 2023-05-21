@@ -23,7 +23,9 @@ class Instances extends Component
 
     public function instances()
     {
-        $instances = \App\Models\Instance::whereHas("event")
+        $instances = \App\Models\Instance::whereHas("event", function ($event) {
+            return $event->shownInProgramme();
+        })
             ->with(
                 "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
                 "event.featuredImage",

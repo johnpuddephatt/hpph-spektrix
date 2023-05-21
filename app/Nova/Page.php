@@ -18,6 +18,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Http\Requests\ResourceIndexRequest;
 
 use Alexwenzel\DependencyContainer\HasDependencies;
+use Laravel\Nova\Panel;
 
 class Page extends Resource
 {
@@ -93,12 +94,12 @@ class Page extends Resource
                 ->hideFromIndex(function (ResourceIndexRequest $request) {
                     return $request->viaRelationship();
                 }),
+            Text::make("Subtitle")->maxLength(30)->enforceMaxlength()->hideFromIndex(),
 
             Slug::make("Slug")
                 ->hideFromIndex()
                 ->placeholder("Leave blank to generate automatically")
                 ->rules("max:100"),
-            Text::make("Subtitle")->maxLength(30)->enforceMaxlength()->hideFromIndex(),
             Boolean::make("Published")->showOnPreview()
                 ->filterable()->hideWhenCreating(),
             Images::make("Image", "main"),
@@ -125,7 +126,12 @@ class Page extends Resource
                 return "<a onclick='event.stopPropagation()' class='underline text-primary-500' target='_blank' href='{$this->URL}'>{$this->URL}<svg xmlns='http://www.w3.org/2000/svg' class='inline-block w-4 h-4 ml-1' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'>
               <path stroke-linecap='round' stroke-linejoin='round' d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14' />
             </svg></a>";
-            })->asHtml()
+            })->asHtml(),
+
+            Panel::make("SEO", [
+                Text::make("SEO title")->hideFromIndex()->help("Optional. Page name will be used if not provided")->maxLength(45)->enforceMaxlength(),
+                Textarea::make("SEO description")->rows(2)->hideFromIndex()->help("Optional. Page introduction will be used if not provided")->maxLength(120)->enforceMaxlength()
+            ])
         ];
         
         if ($this->template !== 'home-page') {

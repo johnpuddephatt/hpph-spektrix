@@ -1,5 +1,8 @@
 @extends('layouts.default', ['header_class' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'pages', 'resourceId' => $page->id])])
-@section('title', $page->name)
+
+@section('title', $page->seo_title ?? $page->name)
+@section('description', $page->seo_description ?? $page->introduction)
+
 @section('content')
     <div class="fixed bg-black -z-10 inset-0 h-[50vh] lg:h-screen lg:w-1/2">
 

@@ -4,23 +4,25 @@
     @php $content = $block->editorjs @endphp
 @endif
 
-<div {{ $attributes->class(['prose']) }}>
-    @foreach ($content->blocks as $block)
-        @if ($block)
-            @php $block = (array) $block @endphp
-            @php $width = $block['tunes']['blockWidthTune'] ?? ''; @endphp
+@if ($content->blocks)
+    <div {{ $attributes->class(['prose']) }}>
+        @foreach ($content->blocks as $block)
+            @if ($block)
+                @php $block = (array) $block @endphp
+                @php $width = $block['tunes']['blockWidthTune'] ?? ''; @endphp
 
-            @if ($block['type'] == 'carousel')
-                @php $block['data']['images'] = $block['data'] @endphp
+                @if ($block['type'] == 'carousel')
+                    @php $block['data']['images'] = $block['data'] @endphp
+                @endif
+
+                <div
+                    class="@if ($width == 'full') {{ $fullwidth_class }} @elseif($width == 'wide') {{ $wide_class }} @else {{ $block_class }} @endif">
+
+                    @include('vendor.nova-editor-js.' . $block['type'],
+                        array_merge((array) $block['data'], ['width' => $width]))
+
+                </div>
             @endif
-
-            <div
-                class="@if ($width == 'full') {{ $fullwidth_class }} @elseif($width == 'wide') {{ $wide_class }} @else {{ $block_class }} @endif">
-
-                @include('vendor.nova-editor-js.' . $block['type'],
-                    array_merge((array) $block['data'], ['width' => $width]))
-
-            </div>
-        @endif
-    @endforeach
-</div>
+        @endforeach
+    </div>
+@endif

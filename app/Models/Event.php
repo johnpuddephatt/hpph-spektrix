@@ -261,11 +261,13 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
-    public function getHasSpecialEventAttribute(): string
+    public function getHasSpecialEventAttribute()
     {
-        return $this->remember("has_special_event", 3600, function (): string {
+        return $this->remember("has_special_event", 3600, function () {
             return $this->instances()
+
                 ->pluck("special_event")
+                ->unique()
                 ->first();
         });
     }
@@ -437,6 +439,11 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function scopeAudioDescribed($query)
     {
         return $query->where("audio_description", true);
+    }
+
+    public function scopeShownInProgramme($query)
+    {
+        return $query->where("show_in_programme", true);
     }
 
     // public function todayInstances()

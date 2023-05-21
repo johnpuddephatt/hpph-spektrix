@@ -8,9 +8,7 @@
         @includeWhen(isset($settings['google_analytics']), 'analytics')
     @endproduction
 
-    <title>
-        @yield('title', config('app.description')) | {{ config('app.name') }}
-    </title>
+    <title>@yield('title', config('app.description'))</title>
     <meta name="description" content="@yield('description', config('app.description'))" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

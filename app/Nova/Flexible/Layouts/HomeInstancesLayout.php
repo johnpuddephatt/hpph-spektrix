@@ -39,6 +39,9 @@ class HomeInstancesLayout extends Layout implements CachableAttributes
     {
         return $this->remember("instances", 0, function () {
             return \App\Models\Instance::take(16)
+                ->whereHas("event", function ($event) {
+                    return $event->shownInProgramme();
+                })
                 ->with("event.featuredImage", "strand")
                 ->get();
         });

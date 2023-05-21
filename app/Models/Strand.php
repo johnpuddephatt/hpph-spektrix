@@ -126,7 +126,12 @@ class Strand extends Model implements HasMedia, CachableAttributes
 
     public function instances()
     {
-        return $this->hasMany(Instance::class, "strand_name", "name");
+        return $this->hasMany(Instance::class, "strand_name", "name")->whereHas(
+            "event",
+            function ($event) {
+                return $event->shownInProgramme();
+            }
+        );
     }
 
     public function posts(): BelongsToMany
