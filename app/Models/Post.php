@@ -60,12 +60,12 @@ class Post extends Model implements HasMedia, CachableAttributes
             $builder->where("published", true);
         });
 
-        // static::saving(function ($post) {
-        //     if ($post->content == null) {
-        //         $post->content =
-        //             '{"time":1684240144151,"blocks":[],"version":"2.25.0"}';
-        //     }
-        // });
+        static::saving(function ($post) {
+            if ($post->content == null) {
+                $post->content =
+                    '{"time":1684240144151,"blocks":[],"version":"2.25.0"}';
+            }
+        });
     }
 
     public function sluggable(): array

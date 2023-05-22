@@ -122,11 +122,11 @@ class Post extends Resource
                     ->stacked()
                     ->required()
                     ->rules("required")
-                    ->default(
-                        '{"time":' .
-                            microtime() .
-                            ',"blocks":[],"version":"2.25.0"}'
-                    )
+                    // ->default(
+                    //     '{"time":' .
+                    //         microtime() .
+                    //         ',"blocks":[],"version":"2.25.0"}'
+                    // )
                     ->hideFromDetail(),
                 Text::make("Content", function () {
                     return view("components.editorjs", [
