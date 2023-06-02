@@ -1,15 +1,17 @@
 @push('webComponents', '#spektrix-basket-summary')
 
-<spektrix-basket-summary id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
+<spektrix-basket-summary id="spektrixBasketSummary" class="relative" x-data="{ open: false, iFrameLoading: true }"
     x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ $settings['spektrix_client_name'] }}"
     custom-domain="{{ $settings['spektrix_custom_domain'] }}">
     <a aria-label="View basket" ref="/basket/" class="relative block" :class="{ 'max-lg:hidden': scrolled && !nav_open }"
         @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
         @svg('basket', 'h-6 w-6 pb-0.5 ')
-        <span hidden id="spektrixBasketCount"
-            class="mobile-basket-count absolute top-0 right-0 h-4 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow-dark px-1.5 pt-0.5 text-center text-[0.65rem] leading-tight text-black"
-            data-basket-item-count></span>
+
     </a>
+    <span hidden id="spektrixBasketCount"
+        :class="{ 'max-lg:!fixed max-lg:!top-3 max-lg:!right-3 max-lg:z-40 ': scrolled && !nav_open }"
+        class="mobile-basket-count absolute top-0 right-0 h-4 translate-x-1/2 -translate-y-1/4 transform rounded-full bg-yellow-dark px-1.5 pt-0.5 text-center text-[0.65rem] leading-tight text-black"
+        data-basket-item-count></span>
     <script>
         // Add 'hidden' attribute to <spektrix-basket-summary> to enable hidding empty basket.
         let showBasketCountIfNotEmpty = function() {

@@ -23,6 +23,7 @@ class PostsIndex extends Component
 
     public function setTag($tag = null)
     {
+        $this->emit("scrollToTop");
         $this->selected_tag = $tag;
     }
 
