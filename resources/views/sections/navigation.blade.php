@@ -1,4 +1,4 @@
-<div class="flex flex-col md:flex-row fixed inset-0 z-30 h-screen transform overflow-y-auto bg-black text-white transition-transform"
+<div class="h-dynamic-screen flex flex-col md:flex-row fixed inset-0 z-30 transform overflow-y-auto bg-black text-white transition-transform"
     :class="nav_open ? 'translate-x-0' : 'translate-x-full'" @keyup.escape.window="nav_open = false">
     <div class="md:1/2 lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
         @if ($primary_menu)

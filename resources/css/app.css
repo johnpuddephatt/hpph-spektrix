@@ -39,6 +39,11 @@
     height: 100svh;
 }
 
+.h-dynamic-screen {
+    height: 100vh;
+    height: 100dvh;
+}
+
 [x-cloak] {
     display: none !important;
 }
