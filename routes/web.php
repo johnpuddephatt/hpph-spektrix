@@ -25,19 +25,10 @@ Route::middleware(["spektrix"])->group(function () {
         return view("brand");
     });
 
-    Route::get("account", function () {
-        return view("account");
-    });
-
     Route::post(
         "file-upload",
         \App\Http\Controllers\UploadController::class
     )->name("file.upload");
-
-    // Route::get("journal", [
-    //     \App\Http\Controllers\PostController::class,
-    //     "index",
-    // ])->name("post.index");
 
     Route::get("journal/{post:slug}", [
         \App\Http\Controllers\PostController::class,
