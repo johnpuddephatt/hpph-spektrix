@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <div class="bg-sand relative z-[5]">
+    <div class="bg-sand relative z-[8] transform-gpu">
         <div class="h-screen border-b-[1rem] border-sand-light relative bg-black">
             @if ($post->featuredImage)
                 {!! $post->featuredImage->img('landscape', ['class' => 'absolute opacity-70 inset-0 h-full object-cover w-full'])->toHtml() !!}
@@ -50,7 +50,7 @@
     </div>
 
     @if (count($related_posts))
-        <div class="z-[1] overscroll-none sticky bottom-0">
+        <div class="z-[1] overscroll-none sticky bottom-0 transform-gpu">
             <div class="transform bg-black text-white pt-6">
                 <h2 class="type-xs-mono mb-2 lg:-mb-6 container">@svg('plus', 'inline-block mr-2 h-6 w-6 text-yellow') Related</h2>
                 <x-journal-grid class="[&>*:nth-child(3)]:max-lg:hidden" :posts="$related_posts" :dark="true"
