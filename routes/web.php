@@ -74,7 +74,7 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("user.show");
 
-    Route::get("opportunity/{opportunity}", [
+    Route::get("opportunity/{opportunity:slug}", [
         \App\Http\Controllers\OpportunityController::class,
         "show",
     ])->name("opportunity.show");
