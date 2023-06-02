@@ -74,12 +74,12 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("user.show");
 
-    Route::get("{page}", [\App\Http\Controllers\PageController::class, "show"])
-        ->where("page", "^(?!nova).*")
-        ->name("page.show");
-
-    Route::get("/opportunities/{opportunity:slug}", [
+    Route::get("/opportunities/{opportunity:slug?}", [
         \App\Http\Controllers\OpportunityController::class,
         "show",
     ])->name("opportunity.show");
+
+    Route::get("{page}", [\App\Http\Controllers\PageController::class, "show"])
+        ->where("page", "^(?!nova).*")
+        ->name("page.show");
 });
