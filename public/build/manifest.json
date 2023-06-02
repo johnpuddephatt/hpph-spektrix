@@ -7,14 +7,14 @@
       "assets/app.2b86e033.css"
     ]
   },
-  "resources/css/spektrix.css": {
-    "file": "assets/spektrix.4ae09c9a.css",
-    "src": "resources/css/spektrix.css",
+  "resources/css/app.css": {
+    "file": "assets/app.f7965454.css",
+    "src": "resources/css/app.css",
     "isEntry": true
   },
-  "resources/css/app.css": {
-    "file": "assets/app.9537df89.css",
-    "src": "resources/css/app.css",
+  "resources/css/spektrix.css": {
+    "file": "assets/spektrix.094c4d5e.css",
+    "src": "resources/css/spektrix.css",
     "isEntry": true
   }
 }
