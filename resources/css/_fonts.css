@@ -17,6 +17,14 @@
     @font-face {
         font-family: "Basis Grotesque";
         font-weight: 700;
+        font-style: italic;
+        src: url(../fonts/BasisGrotesquePro-BlackItalic.woff) format("woff"),
+            url(../fonts/BasisGrotesquePro-BlackItalic.woff2) format("woff2");
+    }
+
+    @font-face {
+        font-family: "Basis Grotesque";
+        font-weight: 700;
         src: url(../fonts/BasisGrotesquePro-Black.woff) format("woff"),
             url(../fonts/BasisGrotesquePro-Black.woff2) format("woff2");
     }

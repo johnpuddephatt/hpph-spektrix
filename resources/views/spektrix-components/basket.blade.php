@@ -3,7 +3,7 @@
 <spektrix-basket-summary id="spektrixBasketSummary" class="" x-data="{ open: false, iFrameLoading: true }"
     x-effect="if(open == false) { iFrameLoading = true; }" client-name="{{ $settings['spektrix_client_name'] }}"
     custom-domain="{{ $settings['spektrix_custom_domain'] }}">
-    <a aria-label="View basket" ref="/basket/" class="relative block" :class="{ 'max-lg:hidden': scrolled }"
+    <a aria-label="View basket" ref="/basket/" class="relative block" :class="{ 'max-lg:hidden': scrolled && !nav_open }"
         @click.prevent="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
         @svg('basket', 'h-6 w-6 pb-0.5 ')
         <span hidden id="spektrixBasketCount"
