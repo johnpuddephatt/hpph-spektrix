@@ -23,6 +23,7 @@ window.addEventListener("scroll", function (e) {
 });
 
 Livewire.on("scrollToTop", () => {
+    console.log("scrolling to top");
     window.scrollTo({
         top: 0,
         left: 0,

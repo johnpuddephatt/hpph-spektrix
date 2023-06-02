@@ -23,13 +23,13 @@ class PostsIndex extends Component
 
     public function setTag($tag = null)
     {
-        $this->emit("scrollToTop");
         $this->selected_tag = $tag;
     }
 
     public function updatingSelectedTag()
     {
         $this->resetPage();
+        $this->emit("scrollToTop");
     }
 
     public function render()
