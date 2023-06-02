@@ -39,12 +39,12 @@ Route::middleware(["spektrix"])->group(function () {
     //     "index",
     // ])->name("post.index");
 
-    Route::get("/journal/{post:slug}", [
+    Route::get("journal/{post:slug}", [
         \App\Http\Controllers\PostController::class,
         "show",
     ])->name("post.show");
 
-    Route::get("/shop/{product:slug}", [
+    Route::get("shop/{product:slug}", [
         \App\Http\Controllers\ProductController::class,
         "show",
     ])->name("product.show");
@@ -54,17 +54,17 @@ Route::middleware(["spektrix"])->group(function () {
         \App\Http\Controllers\ProgrammeController::class
     )->name("programme");
 
-    Route::get("/films/{event:slug}", [
+    Route::get("films/{event:slug}", [
         \App\Http\Controllers\EventController::class,
         "show",
     ])->name("event.show");
 
-    Route::get("/strands/{strand:slug}", [
+    Route::get("strands/{strand:slug}", [
         \App\Http\Controllers\StrandController::class,
         "show",
     ])->name("strand.show");
 
-    Route::get("/seasons/{season:slug}", [
+    Route::get("seasons/{season:slug}", [
         \App\Http\Controllers\SeasonController::class,
         "show",
     ])->name("season.show");
@@ -74,7 +74,7 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("user.show");
 
-    Route::get("/opportunities/{opportunity:slug?}", [
+    Route::get("opportunity/{opportunity}", [
         \App\Http\Controllers\OpportunityController::class,
         "show",
     ])->name("opportunity.show");
