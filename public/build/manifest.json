@@ -8,12 +8,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app.c05aeafb.css",
+    "file": "assets/app.96c1b63e.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/spektrix.css": {
-    "file": "assets/spektrix.231bddb6.css",
+    "file": "assets/spektrix.b7784e8a.css",
     "src": "resources/css/spektrix.css",
     "isEntry": true
   }

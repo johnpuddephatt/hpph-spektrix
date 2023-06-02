@@ -24,6 +24,8 @@
                 </a>
             </h4>
 
+            <x-special-event-badge class="lg:hidden pt-2">{{ $instance->special_event }}</x-special-event-badge>
+
             @if ($instance->event->subtitle)
                 <p class="pt-2 leading-none">{{ $instance->event->subtitle }}</p>
             @endif
@@ -37,7 +39,7 @@
                 <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description" :relaxed="$instance->relaxed" />
             </div>
 
-            <div class="lg:mt-auto mr-auto flex flex-row gap-2 items-center">
+            <div class="hidden lg:block mt-auto mr-auto flex flex-row gap-2 items-center">
                 <x-special-event-badge class="">{{ $instance->special_event }}</x-special-event-badge>
 
             </div>
