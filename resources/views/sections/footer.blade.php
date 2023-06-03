@@ -79,7 +79,8 @@
                     <input type="hidden" name="ReturnUrl"
                         value="{{ isset($settings['newsletter_redirect']) ? url($settings['newsletter_redirect']) : url('/signed-up') }}">
                     <div class="col-span-2 mt-8 flex flex-row items-center gap-2 max-w-md">
-                        <input class="mt-0.5 h-3 w-3 appearance-none rounded-full border bg-gray-dark checked:bg-yellow"
+                        <input
+                            class="mt-0.5 h-3 w-3 appearance-none hover:border-yellow transition rounded-full border bg-gray-dark checked:bg-yellow"
                             id="consent" name="consent" type="checkbox">
                         <label for="consent" class="text-xs inline-block text-white">
                             I agree to the HPPH Privacy Policy.</label>
