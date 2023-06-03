@@ -1,5 +1,5 @@
 @if ($post)
-    <a href="{{ $post->url }}" class="bg-sand-light rounded-r lg:rounded max-w-lg mt-4">
+    <a href="{{ $post->url }}" class="group bg-sand-light rounded-r lg:rounded max-w-lg mt-4">
         <div class="p-4 pl-[20%] lg:pl-[25%]">
             <div
                 class="type-xs-mono absolute right-full origin-right translate-x-8 lg:translate-x-12 -rotate-90 transform whitespace-nowrap">
@@ -7,7 +7,9 @@
             <div class="">
 
                 @if ($post->featuredImage)
-                    {!! $post->featuredImage->img('landscape')->attributes(['class' => 'w-64 rounded']) !!}
+                    <div class="overflow-hidden">
+                        {!! $post->featuredImage->img('landscape')->attributes(['class' => 'group-hover:scale-105 transition duration-500 w-64 rounded']) !!}]
+                    </div>
                 @else
                     <div class="w-64 aspect-video rounded bg-gray-light"></div>
                 @endif

@@ -2,10 +2,14 @@
     <div class="container bg-black py-12">
         <div class="bg-black-light mx-auto flex flex-col lg:flex-row lg:items-center text-white rounded overflow-hidden">
             <a href="{{ route('strand.show', $strand->slug) }}"
-                class="min-h-[18rem] bg-black relative my-0 lg:w-1/3 bg-opacity-50 self-stretch">
+                class="group min-h-[18rem] bg-black relative my-0 lg:w-1/3 bg-opacity-50 self-stretch">
 
                 @if ($strand->featuredImage)
-                    {!! $strand->featuredImage->img('landscape')->attributes(['class' => 'absolute w-full h-full object-cover opacity-60']) !!}
+                    <div class="overflow-hidden">
+                        {!! $strand->featuredImage->img('landscape')->attributes([
+                                'class' => 'group-hover:scale-105 transition duration-500 absolute w-full h-full object-cover opacity-60',
+                            ]) !!}
+                    </div>
                 @endif
 
                 @if ($strand->logo)

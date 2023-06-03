@@ -1,6 +1,6 @@
 @props(['event'])
 
-<div class="border-gray-light relative md:pt-3 mb-4 pb-4 md:border-b flex flex-col px-2">
+<div class="group border-gray-light relative md:pt-3 mb-4 pb-4 md:border-b flex flex-col px-2">
     <div class="type-xs-mono max-md:bg-sand-light max-md:container max-md:pt-3 pb-3">
         {!! $event->date_range !!}
     </div>
@@ -8,7 +8,7 @@
         <div class="relative aspect-video flex flex-col">
             <div class="w-full relative flex-1 bg-gray md:rounded overflow-hidden">
                 @if ($event->featuredImage)
-                    {!! $event->featuredImage->img('wide')->attributes(['class' => 'absolute inset-0']) !!}
+                    {!! $event->featuredImage->img('wide')->attributes(['class' => 'group-hover:scale-105 transition duration-500 absolute inset-0']) !!}
                 @endif
             </div>
             <x-accessibilities class="absolute top-2 right-1.5" :audiodescribed="$event->audio_description" />

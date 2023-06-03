@@ -36,7 +36,7 @@
                          class="type-xs-mono w-full px-8 max-w-xs lg:px-0 lg:group-hover:opacity-100 lg:opacity-0 transition lg:group-hover:translate-y-1/2 left-1/2 transform -translate-x-1/2 absolute bottom-6 lg:bottom-1/2 mx-auto lg:w-64">
                          {{ $strand->short_description }}</p>
 
-                     @svg('arrow-right', ' group-hover:delay-50 hidden lg:inline-block absolute bottom-8 -translate-x-1/2 left-1/2 transition w-9 h-9 p-2 rounded-full text-transparent group-hover:text-black bg-yellow transform -rotate-45 origin-center group-hover:scale-100 scale-[0.4]', ['style' => 'background-color: ' . $strand->color])
+                     @svg('arrow-right', ' group-hover:delay-50 hidden lg:inline-block absolute bottom-8 -translate-x-1/2 left-1/2 transition w-9 h-9 p-2 rounded-full text-transparent group-hover:text-black bg-yellow transform origin-center group-hover:scale-100 scale-[0.4]', ['style' => 'background-color: ' . $strand->color])
 
                  </a>
              @endforeach

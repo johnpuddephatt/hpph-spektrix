@@ -3,10 +3,12 @@
         <div
             class="bg-black-light relative mx-auto flex flex-col lg:flex-row items-center text-white rounded overflow-hidden">
             <a href="{{ route('season.show', $season->slug) }}"
-                class="bg-black relative min-h-[16rem] my-0 lg:w-1/3 bg-opacity-50 self-stretch">
+                class="group bg-black relative min-h-[16rem] my-0 lg:w-1/3 bg-opacity-50 self-stretch">
 
                 @if ($season->featuredImage)
-                    {!! $season->featuredImage->img('landscape')->attributes(['class' => 'w-full h-auto opacity-60']) !!}
+                    <div class="overflow-hidden">
+                        {!! $season->featuredImage->img('landscape')->attributes(['class' => 'group-hover:scale-105 transition duration-500 w-full h-auto opacity-60']) !!}
+                    </div>
                 @endif
 
             </a>

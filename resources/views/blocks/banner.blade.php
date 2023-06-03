@@ -4,8 +4,10 @@
             <div class="bg-black relative my-0 lg:w-1/3 bg-opacity-50 self-stretch">
 
                 @if ($layout->banner)
-                    <img src="{{ Storage::url($layout->banner) }}"
-                        class="w-full h-auto group-hover:opacity-80 transition opacity-60" />
+                    <div class="overflow-hidden">
+                        <img src="{{ Storage::url($layout->banner) }}"
+                            class="group-hover:scale-105 transition duration-500 w-full h-auto group-hover:opacity-80 opacity-60" />
+                    </div>
                 @endif
 
                 @if ($layout->logo)

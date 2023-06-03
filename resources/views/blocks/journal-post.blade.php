@@ -6,9 +6,14 @@
         @endif
         <div class="relative max-w-8xl container">
             <a href="{{ $layout->post->url }}"
-                class="{{ $layout->dark ? 'bg-black-light text-white' : 'bg-sand' }} rounded overflow-hidden block lg:flex flex-col items-center lg:flex-row">
+                class="{{ $layout->dark ? 'bg-black-light text-white' : 'bg-sand' }} group rounded overflow-hidden block lg:flex flex-col items-center lg:flex-row">
                 @if ($layout->post->featuredImage)
-                    {!! $layout->post->featuredImage->img('wide')->attributes(['class' => 'w-full block lg:w-1/2 object-cover aspect-video lg:aspect-auto']) !!}
+                    <div class="overflow-hidden">
+                        {!! $layout->post->featuredImage->img('wide')->attributes([
+                                'class' =>
+                                    'group-hover:scale-105 transition duration-500 w-full block lg:w-1/2 object-cover aspect-video lg:aspect-auto',
+                            ]) !!}
+                    </div>
                 @endif
 
                 <div class="flex flex-col aspect-video lg:block sm:aspect-auto lg:py-8 p-8 lg:w-1/2 mx-auto lg:max-w-md">

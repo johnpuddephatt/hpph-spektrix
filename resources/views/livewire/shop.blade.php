@@ -31,7 +31,9 @@
             <div class="container grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($products as $product)
                     <a class="group block" href="{{ $product->url }}">
-                        {!! $product->featuredImage->img('landscape')->attributes(['class' => 'rounded w-full block']) !!}
+                        <div class="overflow-hidden">
+                            {!! $product->featuredImage->img('landscape')->attributes(['class' => 'group-hover:scale-105 transition duration-500 rounded w-full block']) !!}
+                        </div>
                         <div class="mt-4 flex flex-row justify-between items-start gap-2">
                             <div>
                                 <h3 class="type-regular mb-2">{{ $product->name }}</h3>
