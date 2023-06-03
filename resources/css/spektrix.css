@@ -483,7 +483,18 @@ dd.Footer {
 } */
 
 #ctl00_ContentPlaceHolder_ChangePassword {
+    @apply underline mt-8;
+}
+
+.PreferenceHeading {
+    @apply type-small mb-4;
+}
+#ctl00_ContentPlaceHolder_EditContactPreferences {
     @apply underline;
+}
+
+.Input_Checkbox {
+    @apply flex flex-row gap-4;
 }
 
 .DetailsEditor {
@@ -496,10 +507,10 @@ dd.Footer {
 
 .Options {
     @media screen and (min-width: 600px) {
-        float: left;
-        margin-right: 2rem;
-        padding-right: 2rem;
-        border-right: 1px solid;
+        float: right;
+        margin-left: 2rem;
+        padding-left: 2rem;
+        border-left: 1px solid;
         clear: both;
     }
 }
