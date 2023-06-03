@@ -30,9 +30,9 @@
             </x-special-event-badge>
         </div>
 
-        <div> <a class="type-small before:absolute before:inset-0 inline-block py-0 bg-sand lg:bg-sand-light rounded-full px-2"
+        <div> <a class="type-small border:sand hover:text-sand-light hover:bg-gray-dark before:absolute before:inset-0 lg:border-sand-light inline-block py-0 bg-sand lg:bg-sand-light rounded-full px-2"
                 href="{{ $event->url }}">Info</a> &nbsp;&nbsp; / &nbsp;&nbsp; <button
-                class="type-small relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
+                class="type-small border border-yellow hover:bg-black hover:text-yellow relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
                 @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}'  })">Book</button>
         </div>
     </div>
