@@ -10,7 +10,7 @@
 
         <a class="type-xs-mono hover:text-yellow transition relative z-20 flex flex-row items-center gap-1.5 rounded py-1 px-2"
             :class="{
-                'bg-yellow text-black': {{ Request::routeIs('programme') ? 'true' : 'false' }} && !menu_open,
+                'bg-yellow !text-black': {{ Request::routeIs('programme') ? 'true' : 'false' }} && !menu_open,
                 'max-lg:!hidden': scrolled
             }"
             href="{{ route('programme') }}">
