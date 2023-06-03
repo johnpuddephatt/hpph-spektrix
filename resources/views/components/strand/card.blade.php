@@ -7,13 +7,14 @@
                 @if ($strand->featuredImage)
                     <div class="overflow-hidden">
                         {!! $strand->featuredImage->img('landscape')->attributes([
-                            'class' => 'group-hover:scale-105 transition duration-500 absolute w-full h-full object-cover opacity-60',
+                            'class' =>
+                                'group-hover:scale-105 transition duration-500 absolute w-full h-full object-cover opacity-60 group-hover:opacity-80',
                         ]) !!}
                     </div>
                 @endif
 
                 @if ($strand->logo)
-                    @icon($strand->logo, ' group-hover:delay-[0ms] delay-100 lg:group-hover:opacity-0 lg:group-hover:-translate-y-full absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 mx-auto w-72 max-w-full px-8')
+                    @icon($strand->logo, ' transition group-hover:delay-[0ms] delay-100 lg:group-hover:opacity-0 lg:group-hover:-translate-y-full absolute z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 mx-auto w-72 max-w-full px-8')
                 @else
                     <h3
                         class="type-regular lg:group-hover:opacity-0 lg:group-hover:-translate-y-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 mx-auto w-72 max-w-full px-8">
