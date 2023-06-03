@@ -505,26 +505,22 @@ dd.Footer {
     @apply mb-8;
 }
 
-.Options {
-    @media screen and (min-width: 600px) {
+@media screen and (min-width: 600px) {
+    .Options {
         float: right;
         margin-left: 2rem;
         padding-left: 2rem;
         border-left: 1px solid;
         clear: both;
     }
-}
-.Options:hover a {
-    @media screen and (min-width: 600px) {
+    .Options:hover a {
         display: inline-block !important;
         border: none !important;
         border-radius: 0 !important;
         padding: 0 !important;
     }
-}
 
-.Options:hover a::after {
-    @media screen and (min-width: 600px) {
+    .Options:hover a::after {
         content: none !important;
     }
 }
