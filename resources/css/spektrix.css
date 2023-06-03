@@ -538,15 +538,16 @@ dd.Footer {
 }
 
 .Options a.Selected {
-    display: inline-block !important;
+    display: flex !important;
     font-weight: bold;
 }
 
 @media screen and (max-width: 600px) {
     .Options a.Selected {
         width: 100%;
-        border: 1px solid #eee;
-        border-radius: 3px;
+
+        @apply bg-sand-light rounded;
+
         padding: 0.5em 1em;
         display: flex;
         justify-content: space-between;
