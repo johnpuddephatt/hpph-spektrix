@@ -43,7 +43,7 @@
 
             @foreach ($page->content as $layout)
                 <section x-intersect:enter="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'"
-                    id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}" class="container pb-8">
+                    class="container pb-8">
 
                     <div class="">
                         @if ($layout->banner)
@@ -51,7 +51,7 @@
                         @endif
                     </div>
 
-                    <h2 class="type-medium mb-8">
+                    <h2 class="type-medium mb-8" id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}">
                         {!! $layout->title !!}</h2>
 
                     @foreach ($layout->sectioned_content as $child_layout)
