@@ -1,8 +1,10 @@
 <div class="my-16 relative" x-data="{ timeout: null, scrollPosition: 0, showControls: {{ count($images) > 2 }}, showPreviousControl: true, showNextControl: true }"
     x-effect="$refs.scroller.scrollLeft = scrollPosition; showPreviousControl = !(scrollPosition == 0); showNextControl = !(scrollPosition >= $refs.scroller.scrollWidth - $refs.scroller.clientWidth);"
-    x-init="$refs.scroller.scrollLeft = 0;
-    showPreviousControl = !(scrollPosition == 0);
-    showNextControl = !(scrollPosition >= $refs.scroller.scrollWidth - $refs.scroller.clientWidth);">
+    x-init="setTimeout(() => {
+        $refs.scroller.scrollLeft = 0;
+        showPreviousControl = !(scrollPosition == 0);
+        showNextControl = !(scrollPosition >= $refs.scroller.scrollWidth - $refs.scroller.clientWidth);
+    }, 2000)">
     <div class="{{ $width != 'full' ? '-mx-4' : '' }} relative overflow-hidden bg-sand-light px-4 py-6">
 
         {{-- prettier-ignore-start --}}
