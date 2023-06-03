@@ -491,7 +491,7 @@ dd.Footer {
 }
 
 .Options {
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 600px) {
         float: left;
         margin-right: 2rem;
         padding-right: 2rem;
@@ -500,7 +500,7 @@ dd.Footer {
     }
 }
 .Options:hover a {
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 600px) {
         display: inline-block !important;
         border: none !important;
         border-radius: 0 !important;
@@ -509,7 +509,7 @@ dd.Footer {
 }
 
 .Options:hover a::after {
-    @media screen and (min-width: 1024px) {
+    @media screen and (min-width: 600px) {
         content: none !important;
     }
 }
@@ -518,7 +518,7 @@ dd.Footer {
     display: none;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 600px) {
     .Options a {
         display: inline-block;
     }
@@ -529,7 +529,7 @@ dd.Footer {
     font-weight: bold;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 600px) {
     .Options a.Selected {
         width: 100%;
         border: 1px solid #eee;
