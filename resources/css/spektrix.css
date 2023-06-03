@@ -446,3 +446,33 @@ dd.Footer {
 .Seat {
     mix-blend-mode: multiply;
 }
+
+.MyAccountHeading {
+    @apply hidden;
+}
+
+.MyAccount h2 {
+    @apply type-regular mb-2;
+}
+
+.DetailsEditor {
+    @apply space-y-8;
+}
+
+#ctl00_ContentPlaceHolder_AccountDetailsEditor_DateOfBirth_DayDropDown,
+#ctl00_ContentPlaceHolder_AccountDetailsEditor_DateOfBirth_MonthDropDown {
+    @apply w-1/3;
+}
+
+#ctl00_ContentPlaceHolder_AccountDetailsEditor_DateOfBirth_YearBox {
+    width: 75px;
+}
+
+.Options {
+    float: right;
+    @apply pl-4 lg:pl-8;
+}
+
+.Options .Selected {
+    @apply font-bold;
+}
