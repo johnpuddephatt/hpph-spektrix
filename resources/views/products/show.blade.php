@@ -11,14 +11,18 @@
     <div class="mt-[75vh] lg:mt-0 lg:ml-[50%] min-h-screen bg-sand relative">
 
         <div class="bg-sand-light pt-6 pb-12 lg:h-[66.6vh] flex flex-col">
-            <div class="container relative z-20">
-                <a class="type-xs-mono border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
-                    href="{{ \App\Models\Page::getTemplateUrl('shop-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
-                    Back </a>
+            <div class="container">
+                <div class="relative mr-auto float-left z-20">
+                    <a class="type-xs-mono border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
+                        href="{{ \App\Models\Page::getTemplateUrl('shop-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
+                        Back </a>
+                </div>
             </div>
             <div class="container my-auto max-w-2xl ml-0">
                 <h2 class="type-medium lg:type-large">{{ $product->name }}</h2>
-                <p class="type-regular lg:type-medium !font-normal mt-6">{{ $product->price }}</p>
+                <p
+                    class="type-regular lg:type-medium !font-/251/responsive-images/tote---adam-boardman___square_1338_1338.jpgnormal mt-6">
+                    {{ $product->price }}</p>
             </div>
             <div class="type-regular pt-12 container !font-normal max-w-2xl ml-0">
                 {{ $product->description }}
