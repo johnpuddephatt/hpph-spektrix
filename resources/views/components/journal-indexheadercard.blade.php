@@ -14,7 +14,7 @@
 
          <div
              class="mt-auto pt-8 lg:pt-0 flex flex-row-reverse justify-between lg:justify-start lg:flex-row items-center gap-6">
-             @svg('arrow-right', 'text-black h-10 w-10 p-2 lg:h-12 lg:w-12 lg:p-3 rounded-full border border-black')
+             @svg('arrow-right', 'group-hover:text-yellow group-hover:border-yellow transition text-black h-10 w-10 p-2 lg:h-12 lg:w-12 lg:p-3 rounded-full border border-black')
              <x-journal-postmeta :post="$post" />
          </div>
      </div>
