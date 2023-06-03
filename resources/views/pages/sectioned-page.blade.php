@@ -25,9 +25,9 @@
                     <h3 class="type-xs-mono mb-4 lg:hidden">Jump to:</h3>
                     @foreach ($page->content as $layout)
                         @if ($layout->title)
-                            <a @click="sectionMenuOpen = false" x-data="{ section: '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}' }"
+                            <a @click="sectionMenuOpen = false; activeSection = section" x-data="{ section: '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}' }"
                                 class="type-regular text-center lg:text-left mb-2 flex flex-row items-center justify-center lg:justify-between gap-2 lg:bg-sand-light lg:hover:bg-white transition rounded lg:p-4"
-                                :href="`#${section}`" @click="activeSection = section">
+                                :href="`#${section}`" :class="{ '!bg-black !text-white': activeSection == section }">
                                 {!! $layout->title !!}
 
                                 @svg('arrow-right', 'hidden lg:block inline-block h-6 w-6 text-black')
