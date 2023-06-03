@@ -21,6 +21,8 @@ class Alert
 
     public function casts(): array
     {
-        return [];
+        return [
+            "display_until" => "datetime",
+        ];
     }
 }
