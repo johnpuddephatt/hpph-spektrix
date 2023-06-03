@@ -53,8 +53,8 @@
                 <div>
                     <a class="type-small hover:text-gray-dark border-gray-dark hover:bg-white border before:absolute before:inset-0 inline-block py-0 bg-gray-dark text-white rounded-full px-2"
                         href="{{ $instance->url }}">Info</a> / <button
-                        class="type-small border border-current hover:bg-black hover:text-yellow relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
-                        @if ($color) style="background-color: {{ $color }}" @endif
+                        class="type-small border border-current hover:bg-black hover:text-current relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
+                        @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
                         @click="$dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ $instance->event->name }}', certificate: '{{ $instance->event->certificate_age_guidance }}' })">Book</button>
                 </div>
             </div>
