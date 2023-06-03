@@ -51,7 +51,7 @@
                 </div>
 
                 <div>
-                    <a class="border-bg-gray-dark type-small hover:text-bg-gray-dark hover:bg-white border before:absolute before:inset-0 inline-block py-0 bg-gray-dark text-white rounded-full px-2"
+                    <a class="type-small hover:text-gray-dark border-gray-dark hover:bg-white border before:absolute before:inset-0 inline-block py-0 bg-gray-dark text-white rounded-full px-2"
                         href="{{ $instance->url }}">Info</a> / <button
                         class="type-small border border-yellow hover:bg-black hover:text-yellow relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
                         @if ($color) style="background-color: {{ $color }}" @endif
