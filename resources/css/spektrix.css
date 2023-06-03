@@ -490,26 +490,30 @@ dd.Footer {
     @apply mb-8;
 }
 
-@media screen and (min-width: 1024px) {
-    .Options {
+.Options {
+    @media screen and (min-width: 1024px) {
         float: left;
         margin-right: 2rem;
         padding-right: 2rem;
         border-right: 1px solid;
         clear: both;
     }
-
-    .Options:hover a {
+}
+.Options:hover a {
+    @media screen and (min-width: 1024px) {
         display: inline-block !important;
         border: none !important;
         border-radius: 0 !important;
         padding: 0 !important;
     }
+}
 
-    .Options:hover a::after {
+.Options:hover a::after {
+    @media screen and (min-width: 1024px) {
         content: none !important;
     }
 }
+
 .Options a {
     display: none;
 }
