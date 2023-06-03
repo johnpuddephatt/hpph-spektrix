@@ -42,8 +42,7 @@
         <div class="min-h-screen pt-8 lg:w-1/2">
 
             @foreach ($page->content as $layout)
-                <section
-                    x-intersect:enter.half="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'"
+                <section x-intersect:enter="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'"
                     id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}" class="container pb-8">
 
                     <div class="">
