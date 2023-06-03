@@ -341,7 +341,8 @@ dd.Footer {
 
 .CheckoutLink,
 .spx-button-primary,
-.spx-button-secondary {
+.spx-button-secondary,
+.SaveDetailsButton {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
@@ -459,20 +460,82 @@ dd.Footer {
     @apply space-y-8;
 }
 
+.MyAccount .Buttons {
+    margin-bottom: 4rem;
+}
+
 #ctl00_ContentPlaceHolder_AccountDetailsEditor_DateOfBirth_DayDropDown,
 #ctl00_ContentPlaceHolder_AccountDetailsEditor_DateOfBirth_MonthDropDown {
-    @apply w-1/3;
+    @apply w-1/4;
 }
 
 #ctl00_ContentPlaceHolder_AccountDetailsEditor_DateOfBirth_YearBox {
-    width: 75px;
+    width: 75px !important;
 }
 
-.Options {
+/* .Options {
     float: right;
-    @apply pl-4 lg:pl-8;
+    @apply pl-6 lg:pl-8;
 }
 
 .Options .Selected {
     @apply font-bold;
+} */
+
+#ctl00_ContentPlaceHolder_ChangePassword {
+    @apply underline;
+}
+
+.Options {
+    @apply mb-8;
+}
+
+@media screen and (min-width: 1024px) {
+    .Options {
+        float: left;
+        margin-right: 2rem;
+        padding-right: 2rem;
+        border-right: 1px solid;
+        clear: both;
+    }
+
+    .Options:hover a {
+        display: inline-block !important;
+        border: none !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+    }
+
+    .Options:hover a::after {
+        content: none !important;
+    }
+}
+.Options a {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+    .Options a {
+        display: inline-block;
+    }
+}
+
+.Options a.Selected {
+    display: inline-block !important;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1024px) {
+    .Options a.Selected {
+        width: 100%;
+        border: 1px solid #eee;
+        border-radius: 3px;
+        padding: 0.5em 1em;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .Options a.Selected::after {
+        content: "▼";
+    }
 }
