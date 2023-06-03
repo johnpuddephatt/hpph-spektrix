@@ -52,7 +52,7 @@
     @if (count($related_posts))
         <div class="z-[1] overscroll-none sticky bottom-0 transform-gpu">
             <div class="transform bg-black text-white pt-6">
-                <h2 class="type-xs-mono mb-2 lg:-mb-6 container">@svg('plus', 'inline-block mr-2 h-6 w-6 text-yellow') Related</h2>
+                <h2 class="type-xs-mono mb-2 lg:-mb-6 container">Related posts</h2>
                 <x-journal-grid class="[&>*:nth-child(3)]:max-lg:hidden" :posts="$related_posts" :dark="true"
                     post_class="hidden first:block md:block" />
             </div>

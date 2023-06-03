@@ -38,7 +38,7 @@
                                 <p class="type-regular !font-normal">{{ $product->price }}</p>
                             </div>
                             <div class="p-3 rounded bg-sand-light group-hover:bg-yellow transition">
-                                @svg('arrow-right', '-rotate-45 h-5 w-5')
+                                @svg('arrow-right', 'h-5 w-5')
                             </div>
                         </div>
                     </a>

@@ -30,10 +30,10 @@
                 slidesPerView: 4,
             },
             1280: {
-                slidesPerView: 6,
+                slidesPerView: 5,
             },
             1536: {
-                slidesPerView: 8,
+                slidesPerView: 6,
             },
         },
     })" class="relative container max-w-none mx-auto">

@@ -1,6 +1,13 @@
 @push('webComponents', '#spektrix-merchandise')
 @extends('layouts.default', ['header_class' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'products', 'resourceId' => $product->id])])
 @section('title', $product->name)
+
+@section('menu_right')
+    <a class="type-xs-mono hidden lg:inline-block border-transparent uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
+        href="{{ \App\Models\Page::getTemplateUrl('shop-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
+        Back </a>
+@endsection
+
 @section('content')
     <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">
         @if ($product->featuredImage)
@@ -11,12 +18,10 @@
     <div class="mt-[75vh] lg:mt-0 lg:ml-[50%] min-h-screen bg-sand relative">
 
         <div class="bg-sand-light pt-6 pb-12 lg:h-[66.6vh] flex flex-col">
-            <div class="container">
-                <div class="relative mr-auto float-left z-20">
-                    <a class="type-xs-mono border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
-                        href="{{ \App\Models\Page::getTemplateUrl('shop-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
-                        Back </a>
-                </div>
+            <div class="container lg:hidden">
+                <a class="type-xs-mono border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
+                    href="{{ \App\Models\Page::getTemplateUrl('shop-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
+                    Back </a>
             </div>
             <div class="container my-auto max-w-2xl ml-0">
                 <h2 class="type-medium lg:type-large">{{ $product->name }}</h2>

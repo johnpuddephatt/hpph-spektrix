@@ -1,5 +1,14 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'users', 'resourceId' => $user->id])])
 @section('title', $user->name)
+
+@section('menu_right')
+    @if (isset($settings['team_page']))
+        <a class="type-xs-mono hidden relative z-50 border-transparent lg:inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
+            href="{{ \App\Models\Page::find($settings['team_page'])?->url }}{{ $settings['team_page_hash'] ?? null }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
+            Back </a>
+    @endif
+@endsection
+
 @section('content')
     <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">
         @if ($user->featuredImage)
@@ -9,7 +18,7 @@
 
     <div class="mt-[75vh] lg:mt-0 lg:ml-[50%] min-h-screen bg-sand relative">
         <div class="bg-sand-light pt-6 pb-12 lg:h-[66.6vh] flex flex-col">
-            <div class="container">
+            <div class="container lg:hidden">
                 @if (isset($settings['team_page']))
                     <a class="type-xs-mono relative z-50 border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
                         href="{{ \App\Models\Page::find($settings['team_page'])?->url }}{{ $settings['team_page_hash'] ?? null }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')

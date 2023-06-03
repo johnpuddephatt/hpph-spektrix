@@ -22,6 +22,12 @@
             label="Login" redirect-url="{{ route('nova.pages.home') }}" />
         @endenv
 
+        <div class="w-1/2 ml-auto">
+            <div class="container">
+                @yield('menu_right')
+            </div>
+        </div>
+
         @include('sections.navigation')
 
         <div class="absolute max-lg:z-40 top-12 right-4 flex flex-col items-center lg:mt-0 gap-2.5">

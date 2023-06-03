@@ -55,7 +55,9 @@
                                         basket @svg('arrow-right', 'inline-block h-4 w-4 ml-auto')</button>
 
                                 </div>
-                                <div data-success-container style="display: none;">Donation added to basket</div>
+                                <div class="mt-2 rounded p-2 font-bold bg-sand-light" data-success-container
+                                    style="display: none;">Donation added. <a href="/basket/">Go to
+                                        basket</a></div>
                                 <div data-fail-container style="display: none;">Donation could not be added to basket
                                 </div>
                             </spektrix-donate>

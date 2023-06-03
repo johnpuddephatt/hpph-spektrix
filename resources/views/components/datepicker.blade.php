@@ -28,7 +28,7 @@
 
             <div class="mb-6 text-center">
 
-                <span x-text="MONTH_NAMES[month]" class=""></span>
+                <span x-text="MONTH_NAMES[month] + ' ' + year" class=""></span>
 
             </div>
 
