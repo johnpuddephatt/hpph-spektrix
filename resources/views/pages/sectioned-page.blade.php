@@ -30,7 +30,7 @@
                                 :href="`#${section}`" :class="{ '!bg-black !text-white': activeSection == section }">
                                 {!! $layout->title !!}
 
-                                @svg('arrow-right', 'hidden lg:block inline-block h-6 w-6 text-black')
+                                @svg('arrow-right', 'hidden lg:block inline-block h-6 w-6 text-current')
 
                             </a>
                         @endif
