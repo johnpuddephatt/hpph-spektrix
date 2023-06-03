@@ -24,7 +24,7 @@
                     {!! Str::markdown($layout->title) !!}
                 </h3>
                 <div class="type-regular max-w-md !font-normal mb-16 lg:mb-8">{{ $layout->subtitle }}</div>
-                <span class="type-xs-mono text-yellow">+
+                <span class="type-xs-mono group-hover:underline text-yellow">+
                     {{ $layout->link_text ?? 'Explore' }}</span>
 
             </div>
