@@ -486,6 +486,10 @@ dd.Footer {
     @apply underline;
 }
 
+.DetailsEditor {
+    overflow: hidden;
+}
+
 .Options {
     @apply mb-8;
 }
