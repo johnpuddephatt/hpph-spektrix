@@ -138,8 +138,9 @@
                     @svg('arrow-right', 'w-4 h-4 ml-12 inline-block')
                 </button>
 
-                <div data-success-container class="type-regular max-w-2xl mt-4 bg-sand-light p-2 rounded"
-                    style="display: none;">Added to basket.</div>
+                <div class="type-regular mt-2 rounded p-2 bg-sand-light" data-success-container style="display: none;">
+                    Voucher added. <a class="underline" href="/basket/">Go to
+                        basket</a></div>
                 <div data-fail-container class="type-regular max-w-2xl mt-4 bg-sand-light p-2 rounded"
                     style="display: none;">Something went wrong.</div>
             </div>
