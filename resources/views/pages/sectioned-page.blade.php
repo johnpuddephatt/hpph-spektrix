@@ -42,8 +42,7 @@
         <div class="min-h-screen pt-8 lg:w-1/2">
 
             @foreach ($page->content as $layout)
-                <section x-intersect:enter="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'"
-                    class="container pb-8">
+                <section class="container pb-8">
 
                     <div class="">
                         @if ($layout->banner)
@@ -51,17 +50,17 @@
                         @endif
                     </div>
 
-                    <h2 class="type-medium mb-8" id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}">
-                        {!! $layout->title !!}</h2>
+                    <div x-intersect:enter="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'">
+                        <h2 class="type-medium mb-8" id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}">
+                            {!! $layout->title !!}</h2>
 
-                    @foreach ($layout->sectioned_content as $child_layout)
-                        @include('blocks.' . $child_layout->name(), [
-                            'layout' => $child_layout,
-                            'dark' => false,
-                        ])
-                    @endforeach
-
-                    {{-- <x-editorjs block_class="" :content="json_decode($layout->section_content)" /> --}}
+                        @foreach ($layout->sectioned_content as $child_layout)
+                            @include('blocks.' . $child_layout->name(), [
+                                'layout' => $child_layout,
+                                'dark' => false,
+                            ])
+                        @endforeach
+                    </div>
 
                 </section>
             @endforeach
