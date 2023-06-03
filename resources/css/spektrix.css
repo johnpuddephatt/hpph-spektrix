@@ -513,6 +513,8 @@ dd.Footer {
         border-left: 1px solid;
         clear: both;
     }
+}
+@media screen and (max-width: 600px) {
     .Options:hover a {
         display: inline-block !important;
         border: none !important;
