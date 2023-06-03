@@ -76,3 +76,33 @@ form {
 .strong-yellow strong {
     @apply text-yellow;
 }
+
+@media screen and (max-width: 1024px) {
+    .ticker {
+        animation: ticker 15s linear infinite;
+    }
+}
+
+@keyframes ticker {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .ticker {
+        animation: ticker2 15s linear infinite;
+    }
+}
+
+@keyframes ticker2 {
+    0% {
+        transform: translateX(20rem);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

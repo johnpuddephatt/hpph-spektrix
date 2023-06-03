@@ -12,17 +12,17 @@ class Alert
     public function fields(): array
     {
         return [
-            Text::make("Message"),
-            Text::make("Link"),
-            Boolean::make("Enabled?"),
-            DateTime::make("Display until"),
+            Text::make("Message", "alert_message"),
+            Text::make("Link", "alert_url"),
+            Boolean::make("Enabled?", "alert_enabled"),
+            DateTime::make("Display until", "alert_display_until"),
         ];
     }
 
     public function casts(): array
     {
         return [
-            "display_until" => "datetime",
+            "alert_display_until" => "datetime",
         ];
     }
 }

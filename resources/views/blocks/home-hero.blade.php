@@ -41,7 +41,7 @@
             @endif
 
             <div
-                class="transform text-white h-auto justify-start flex text-left items-end flex-row gap-8 lg:gap-12 container absolute bottom-4 lg:bottom-8 z-50">
+                class="{{ $settings['alert_enabled'] && $settings['alert_display_until'] > now() ? 'bottom-16' : 'bottom-4' }} transform text-white h-auto justify-start flex text-left items-end flex-row gap-8 lg:gap-12 container absolute lg:bottom-8 z-50">
 
                 <a class="flex gap-2 flex-row items-center" href="{{ $layout->event->url }}">
                     @svg('arrow-right', 'inline-block rounded-full text-white bg-black rotate p-3 h-10 w-10')
@@ -52,6 +52,8 @@
                 </a>
 
             </div>
+
+            <x-alert />
 
         </div>
     @endif
