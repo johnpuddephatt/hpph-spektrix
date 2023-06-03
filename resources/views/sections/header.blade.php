@@ -8,7 +8,7 @@
             style="color: @yield('color')" href="/">
             @svg('logo-compact', 'h-[2.35rem] w-auto')</a>
 
-        <a class="type-xs-mono relative z-20 flex flex-row items-center gap-1.5 rounded py-1 px-2"
+        <a class="type-xs-mono hover:text-yellow transition relative z-20 flex flex-row items-center gap-1.5 rounded py-1 px-2"
             :class="{
                 'bg-yellow text-black': {{ Request::routeIs('programme') ? 'true' : 'false' }} && !menu_open,
                 'max-lg:!hidden': scrolled
@@ -22,7 +22,7 @@
             label="Login" redirect-url="{{ route('nova.pages.home') }}" />
         @endenv
 
-        <div class="w-1/2 ml-auto">
+        <div class="hidden w-1/2 ml-auto">
             <div class="container">
                 @yield('menu_right')
             </div>
@@ -39,7 +39,7 @@
             @include('spektrix-components.login-status')
 
             @if (\Auth::user() && isset($edit_link))
-                <a aria-label="Edit page" title="Edit page" class="inline-block"
+                <a aria-label="Edit page" title="Edit page" class="inline-block hover:text-yellow transition"
                     :class="{ 'max-lg:!hidden': scrolled && !nav_open }"
                     href="{{ $edit_link }}">@svg('edit', 'h-6 w-6 pb-0.5')</a>
             @endif

@@ -16,7 +16,9 @@
                 @if (isset($settings['address']))
                     <div>
                         <h3 class="font-bold text-white">Find us at:</h3>
-                        <p class="">{{ $settings['address'] }}</p>
+                        <a target="_blank"
+                            href="https://www.google.co.uk/maps/place/Hyde+Park+Picture+House/@53.8121105,-1.5719085,17z/data=!3m1!4b1!4m6!3m5!1s0x48795eb36ea31d3b:0x2b8f7b787dcc4b35!8m2!3d53.8121105!4d-1.5693336!16zL20vMDg3MjN2?entry=ttu"
+                            class="hover:text-yellow transition">{{ $settings['address'] }}</p>
                     </div>
                 @endif
 
@@ -24,7 +26,8 @@
                     <div>
                         <h3 class="font-bold text-white">Box office:</h3>
                         <p>
-                            <a class="" href="tel:{{ $settings['phone'] }}">{{ $settings['phone'] }}</a>
+                            <a class="hover:text-yellow transition"
+                                href="tel:{{ $settings['phone'] }}">{{ $settings['phone'] }}</a>
                         </p>
                     </div>
                 @endif
@@ -33,7 +36,8 @@
                     <div>
                         <h3 class="font-bold text-white">Email us:</h3>
                         @foreach ($settings['email_addresses'] as $name => $email)
-                            <p><a class="" href="mailto:{{ $email }}">{{ $name }}</a></p>
+                            <p><a class="hover:text-yellow transition"
+                                    href="mailto:{{ $email }}">{{ $name }}</a></p>
                         @endforeach
                     </div>
                 @endif
@@ -103,14 +107,17 @@
                 @if (isset($settings['charity_number']))
                     <p class="text-xs">Registered Charity No.{{ $settings['charity_number'] }}</p>
                 @endif
-                <p class="text-xs">Site design by <a href="https://rabbithole.co.uk/" class="text-white"
-                        target="_blank">Rabbithole&#174;</a>. Build by <a class="text-white"
-                        href="https://letsdance.agency/" target="_blank">Let’s Dance</a></p>
+                <p class="text-xs">Site design by <a href="https://rabbithole.co.uk/"
+                        class="text-white hover:text-yellow transition" target="_blank">Rabbithole&#174;</a>. Build by
+                    <a class="text-white hover:text-yellow transition" href="https://letsdance.agency/"
+                        target="_blank">Let’s Dance</a>
+                </p>
             </div>
 
             <div
                 class="col-span-2 lg:col-span-1 flex flex-row justify-center lg:justify-start items-center gap-2 self-end">
-                <a target="_blank" class="text-white" href="https://leedsheritagetheatres.com/">@svg('logo-lht', 'w-28 h-auto')</a>
+                <a target="_blank" class="text-white hover:text-yellow transition"
+                    href="https://leedsheritagetheatres.com/">@svg('logo-lht', 'w-28 h-auto')</a>
                 @svg('logo-hpph', 'text-white w-24 h-auto')
             </div>
 

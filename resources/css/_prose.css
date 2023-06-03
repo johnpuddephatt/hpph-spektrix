@@ -19,7 +19,11 @@
 }
 
 .prose a {
-    @apply underline;
+    @apply underline font-bold;
+}
+
+.prose a:hover {
+    @apply text-gray-medium;
 }
 
 .prose > *:first-child h2,

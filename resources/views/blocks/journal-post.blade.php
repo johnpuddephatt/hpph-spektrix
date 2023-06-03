@@ -26,7 +26,7 @@
 
                         <x-journal-postmeta :post="$layout->post" :dark="$layout->dark" />
 
-                        @svg('arrow-right', 'rounded-full border rotate -rotate-45 p-2.5 h-9 w-9')
+                        @svg('arrow-right', 'rounded-full border rotate p-2.5 h-9 w-9')
                     </div>
                 </div>
             </a>

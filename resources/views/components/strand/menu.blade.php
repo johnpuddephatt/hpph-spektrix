@@ -11,13 +11,13 @@
              @foreach ($strands as $strand)
                  <a style="color: {{ $strand->color }} !important;"
                      href="{{ route('strand.show', ['strand' => $strand->slug]) }}"
-                     class="group pt-[100%] lg:pt-[75%] block relative text-center">
+                     class="group pt-[100%] lg:pt-[75%] block relative overflow-hidden text-center">
 
                      @if ($strand->featuredImage)
                          {!! $strand->featuredImage->img('landscape')->attributes([
                              'data-width' => '600px',
                              'class' =>
-                                 'absolute h-full inset-0 object-cover object-center block w-full opacity-50 lg:group-hover:opacity-20 transition',
+                                 'absolute h-full inset-0 object-cover object-center block w-full opacity-50 group-hover:scale-105 lg:group-hover:opacity-20 duration-500 transition',
                          ]) !!}
                      @else
                          <div

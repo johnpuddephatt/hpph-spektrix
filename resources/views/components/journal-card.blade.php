@@ -1,8 +1,13 @@
  @props(['post', 'dark' => false])
 
- <a href="{{ $post->url }}" {{ $attributes->class(['flex', 'flex-col']) }}>
+ <a href="{{ $post->url }}" {{ $attributes->class(['flex', 'flex-col', 'group']) }}>
      @if ($post->featuredImage)
-         {!! $post->featuredImage->img('landscape', ['id' => 'image-' . $post->id, 'class' => 'w-full block rounded'])->toHtml() !!}
+         <div class="overflow-hidden">
+             {!! $post->featuredImage->img('landscape', [
+                     'id' => 'image-' . $post->id,
+                     'class' => 'group-hover:scale-105 transition duration-500 w-full block rounded',
+                 ])->toHtml() !!}
+         </div>
      @else
          <div class="{{ $dark ? 'bg-gray-dark' : 'bg-gray-light' }} aspect-video rounded"></div>
      @endif

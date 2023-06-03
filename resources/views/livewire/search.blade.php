@@ -1,6 +1,6 @@
 <div class="" x-data="{ open: false }">
-    <button aria-label="Search for a film" title="Search for a film" class="relative block rounded"
-        :class="{ 'bg-yellow text-black': open, 'max-lg:hidden': scrolled && !nav_open }"
+    <button aria-label="Search for a film" title="Search for a film"
+        class="hover:text-yellow transition relative block rounded" :class="{ 'max-lg:hidden': scrolled && !nav_open }"
         @click="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('menutoggled', open)">
         @svg('search', 'w-6 h-6 p-0.5')</button>
 

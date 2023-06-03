@@ -80,7 +80,7 @@
                 <ul class="">
                     @foreach ($secondary_menu as $menu_item)
                         <li>
-                            <a class="type-xs-mono antialiased text-gray-medium hover:text-white transition"
+                            <a class="type-xs-mono antialiased text-gray-medium hover:text-yellow transition"
                                 href="{{ $menu_item['value'] }}">{{ $menu_item['name'] }}</a>
                         </li>
                     @endforeach
