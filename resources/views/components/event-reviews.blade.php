@@ -21,7 +21,7 @@
 
                             <div class="mb-8 flex flex-row gap-2">
                                 @if ($review['rating'])
-                                    @foreach (range(0, $review['rating']) as $rating)
+                                    @foreach (range(1, $review['rating']) as $rating)
                                         @svg('star', 'w-6 h-6 lg:w-10 lg:h-10')
                                     @endforeach
                                 @endif
