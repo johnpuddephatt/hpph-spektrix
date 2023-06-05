@@ -8,11 +8,10 @@
             <a href="{{ $layout->post->url }}"
                 class="{{ $layout->dark ? 'bg-black-light text-white' : 'bg-sand' }} group rounded overflow-hidden block lg:flex flex-col items-center lg:flex-row">
                 @if ($layout->post->featuredImage)
-                    <div class="overflow-hidden">
+                    <div class="overflow-hidden self-stretch w-full lg:w-1/2">
                         {!! $layout->post->featuredImage->img('wide')->attributes([
-                                'class' =>
-                                    'group-hover:scale-105 transition duration-500 w-full block lg:w-1/2 object-cover aspect-video lg:aspect-auto',
-                            ]) !!}
+                            'class' => 'h-full group-hover:scale-105 transition duration-500  block  object-cover aspect-video lg:aspect-auto',
+                        ]) !!}
                     </div>
                 @endif
 
