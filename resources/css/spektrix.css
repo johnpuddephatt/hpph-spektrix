@@ -505,7 +505,7 @@ dd.Footer {
     @apply mb-8;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 540px) {
     .Options {
         float: right;
         margin-left: 2rem;
@@ -514,7 +514,7 @@ dd.Footer {
         clear: both;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 540px) {
     .Options:hover a {
         display: inline-block !important;
         border: none !important;
@@ -531,7 +531,7 @@ dd.Footer {
     display: none;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 540px) {
     .Options a {
         display: inline-block;
     }
@@ -542,7 +542,7 @@ dd.Footer {
     font-weight: bold;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 540px) {
     .Options a.Selected {
         width: 100%;
 
