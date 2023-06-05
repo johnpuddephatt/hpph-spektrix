@@ -77,32 +77,19 @@ form {
     @apply text-yellow;
 }
 
-@media screen and (max-width: 1024px) {
-    .ticker {
-        animation: ticker 15s linear infinite;
-    }
+.ticker {
+    animation: ticker 15s linear infinite;
+}
+
+.ticker:hover {
+    animation-play-state: paused;
 }
 
 @keyframes ticker {
     0% {
-        transform: translateX(100vw);
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%);
-    }
-}
-
-@media screen and (min-width: 1024px) {
-    .ticker {
-        animation: ticker2 15s linear infinite;
-    }
-}
-
-@keyframes ticker2 {
-    0% {
-        transform: translateX(20rem);
-    }
-    100% {
-        transform: translateX(-100%);
+        transform: translateX(-50.5%);
     }
 }
