@@ -1,4 +1,4 @@
-@extends('layouts.default', ['header_class' => 'text-white lg:text-black'])
+@extends('layouts.default', ['header_class' => 'text-black'])
 
 @section('title', $page->seo_title ?? $page->name)
 @section('description', $page->seo_description ?? $page->introduction)
