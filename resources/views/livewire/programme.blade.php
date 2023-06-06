@@ -143,8 +143,8 @@
              </div>
              <div class="grid grid-cols-2 lg:flex flex-row items-center lg:gap-2.5">
                  <div class="type-xs-mono hidden lg:block">View:</div>
-                 <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
                  <x-programme-button :selected="$type" type="alphabetical">A&ndash;Z</x-programme-button>
+                 <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
              </div>
          </div>
 
