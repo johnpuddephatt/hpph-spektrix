@@ -27,11 +27,12 @@ class JournalPageTemplate
     // Resolve data for serialization
     public function resolve($page)
     {
-        return array_merge((array) $page->content, [
-            "featured_post" => \App\Models\Post::latest()
-                ->where("featured", true)
-                ->with("tagsTranslated")
-                ->first(),
-        ]);
+        return $page->content;
+        // return array_merge((array) $page->content, [
+        //     "featured_post" => \App\Models\Post::latest()
+        //         ->where("featured", true)
+        //         ->with("tagsTranslated")
+        //         ->first(),
+        // ]);
     }
 }

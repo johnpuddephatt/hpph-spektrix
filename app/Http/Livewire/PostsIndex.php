@@ -39,8 +39,7 @@ class PostsIndex extends Component
                 ->withAnyTags([$this->selected_tag])
                 ->latest()
                 ->paginate(12)
-            : \App\Models\Post::whereNot("id", $this->featured_post)
-                ->with("featuredImage")
+            : \App\Models\Post::with("featuredImage")
                 ->latest()
                 ->paginate(12);
 
