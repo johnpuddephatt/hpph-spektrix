@@ -8,5 +8,5 @@
     <div class="bg-sand-light pt-36 pb-8">
         <h1 class="type-medium lg:type-large container">Journal</h1>
     </div>
-    <livewire:posts-index :featured_post="$page->featured_post->id" />
+    <livewire:posts-index />
 @endsection
