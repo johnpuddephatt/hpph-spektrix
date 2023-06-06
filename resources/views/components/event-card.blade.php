@@ -13,7 +13,8 @@
             </div>
             <x-accessibilities class="absolute top-2 right-1.5" :audiodescribed="$event->audio_description" />
             @if ($event->strand?->show_on_event_card)
-                <x-strand.badge class="max-md:text-left max-md:py-2 max-md:rounded-none md:mt-2" :strand="$event->strand" />
+                <x-strand.badge class="max-md:px-4 max-md:text-left max-md:py-2 max-md:rounded-none md:mt-2"
+                    :strand="$event->strand" />
             @endif
         </div>
     </div>
