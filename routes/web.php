@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(["spektrix"])->group(function () {
-    Route::get("/", [\App\Http\Controllers\PageController::class, "home"]);
+    Route::get("/", function () {
+        return "Not long now...";
+    });
+    Route::get("/home", [\App\Http\Controllers\PageController::class, "home"]);
 
     // Required by Spektrix. Do not remove.
     Route::get("spektrix", function () {

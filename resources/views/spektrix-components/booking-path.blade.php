@@ -116,9 +116,9 @@
                             reduced volume. Audiences can make noise / move around.</p>
                     </div>
 
-                    <p class="underline mt-6"><a href="https://hpph.letsdance.agency/access#accessible-screenings">Learn
+                    <p class="underline mt-6"><a href="/access#accessible-screenings">Learn
                             about
-                            accessibile screenings</a></p>
+                            accessible screenings</a></p>
 
                 </div>
             </div>
