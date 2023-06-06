@@ -83,7 +83,8 @@
                             class="mt-0.5 h-3 w-3 appearance-none hover:border-yellow transition rounded-full border bg-gray-dark checked:bg-yellow"
                             id="consent" name="consent" type="checkbox">
                         <label for="consent" class="text-xs inline-block text-white">
-                            I agree to the HPPH Privacy Policy.</label>
+                            I agree to the HPPH <a target="_blank" class="underline" href="/privacy">Privacy
+                                Policy</a>.</label>
 
                         <button aria-label="Submit" type="submit"
                             class="w-9 block bg-gray-dark ml-auto rounded-full text-white">
