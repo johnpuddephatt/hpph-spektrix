@@ -13,12 +13,12 @@
             </div>
             <x-accessibilities class="absolute top-2 right-1.5" :audiodescribed="$event->audio_description" />
             @if ($event->strand?->show_on_event_card)
-                <x-strand.badge class="max-md:py-2 max-md:rounded-none md:mt-2" :strand="$event->strand" />
+                <x-strand.badge class="max-md:text-left max-md:py-2 max-md:rounded-none md:mt-2" :strand="$event->strand" />
             @endif
         </div>
     </div>
 
-    <div class="max-md:container md:bg-transparent bg-sand-light pb-4">
+    <div class="max-md:container pb-4">
         <div class="lg:min-h-[4.5rem] mt-4 mb-4 lg:mb-2">
             <h2 class="type-regular max-w-xs">{{ $event->name }}
                 <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
@@ -30,7 +30,7 @@
             </x-special-event-badge>
         </div>
 
-        <div> <a class="type-small border:sand-light transition hover:text-sand-light hover:bg-gray-dark before:absolute before:inset-0 lg:border-sand-light inline-block py-0 bg-sand lg:bg-sand-light rounded-full px-2"
+        <div> <a class="type-small transition hover:text-sand-light hover:bg-gray-dark before:absolute before:inset-0 border-sand-light inline-block py-0 bg-sand-light rounded-full px-2"
                 href="{{ $event->url }}">Info</a> &nbsp;&nbsp; / &nbsp;&nbsp; <button
                 class="type-small border transition border-yellow hover:bg-black hover:text-yellow relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
                 @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}'  })">Book</button>
