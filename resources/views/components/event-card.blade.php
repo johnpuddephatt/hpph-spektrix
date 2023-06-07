@@ -34,7 +34,7 @@
         <div> <a class="type-small transition hover:text-sand-light hover:bg-gray-dark before:absolute before:inset-0 border-sand-light inline-block py-0 bg-sand-light rounded-full px-2"
                 href="{{ $event->url }}">Info</a> &nbsp;&nbsp; / &nbsp;&nbsp; <button
                 class="type-small border transition border-yellow hover:bg-black hover:text-yellow relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
-                @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}'  })">Book</button>
+                @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}'  })">Book</button>
         </div>
     </div>
 

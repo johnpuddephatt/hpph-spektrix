@@ -122,7 +122,7 @@
         <x-season.card :season="$event->season" />
 
         <button class="w-full sticky bottom-0 bg-yellow block py-4"
-            @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ $event->name }}', certificate: '{{ $event->certificate_age_guidance }}' })">
+            @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">
             <div class="container flex flex-row items-center">
                 <div class="w-1/2 hidden lg:block">
                     @svg('plus', 'h-6 w-6')
