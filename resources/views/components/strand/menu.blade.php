@@ -2,8 +2,8 @@
      <div class="md:w-1/2 sticky bottom-0 md:static lg:w-5/12" x-data="{ open: false }">
 
          <div class="h-dynamic-screen bg-black divide-y-2 divide-black lg:pt-0 md:!block fixed md:static inset-0 right-auto z-10 w-full transform overscroll-contain overflow-y-auto text-base text-white transition-all delay-100 duration-200"
-             x-show="open" x-transition:enter-start="max-lg:-translate-x-16 max-md:opacity-0"
-             x-transition:leave-end="max-lg:-translate-x-16 max-md:opacity-0">
+             x-show="open" x-transition:enter-start="max-lg:translate-x-full"
+             x-transition:leave-end="max-lg:translate-x-full">
 
              <button class="md:hidden my-2.5 mx-4" @click="open = false"
                  aria-label="Close programme strands menu">@svg('arrow-right', 'transform rotate-180 w-10 h-10 rounded-full bg-black-light p-2.5')</button>
