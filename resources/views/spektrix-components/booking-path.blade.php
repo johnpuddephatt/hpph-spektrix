@@ -53,9 +53,9 @@
             </div>
             <div class="flex-1 flex flex-col lg:flex-row gap-12" x-show="instances.length">
                 <div class="max-w-xl w-full flex flex-col h-full">
-                    <div class="mt-1 mb-8"><span class="font-bold" x-text="event"></span> <span
+                    <div class="mt-1 mb-8"><span class="font-bold" x-html="event"></span> <span
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
-                            x-text="certificate"></span></div>
+                            x-html="certificate"></span></div>
 
                     <div class="pb-4 pr-12 flex-1">
                         <template x-for="(instance, key) in instances">
