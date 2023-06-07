@@ -32,7 +32,7 @@
 
         <div class="absolute max-lg:z-40 top-12 right-4 flex flex-col items-center lg:mt-0 gap-2.5"
             :class="{
-                '!text-white': menu_open,
+                '!text-white': nav_open,
             }">
             @include('components.menu-button')
 
