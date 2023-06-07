@@ -4,6 +4,7 @@
 import Alpine from "alpinejs";
 import intersect from "@alpinejs/intersect";
 import carousel from "./carousel.js";
+import focus from "@alpinejs/focus";
 
 import Swiper from "swiper";
 import "swiper/css";
@@ -14,6 +15,7 @@ import lottie from "lottie-web";
 window.lottie = lottie;
 
 Alpine.plugin(intersect);
+Alpine.plugin(focus);
 
 window.Alpine = Alpine;
 Alpine.data("carousel", carousel);

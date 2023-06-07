@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(["spektrix"])->group(function () {
+    // Route::get("/", function () {
+    //     return "<div style='background-color: #f2d13c; height: 100vh; display: flex; align-items: center; justify-content: center'><p style='font-family: Arial; font-size: 1.5em; font-weight: bold'>Coming soon.</p></div>";
+    // });
     Route::get("/", [\App\Http\Controllers\PageController::class, "home"]);
 
     // Required by Spektrix. Do not remove.

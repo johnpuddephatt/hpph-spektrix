@@ -10,12 +10,12 @@
              {{ $tags->firstWhere('slug', $selected_tag)->name }}
              @svg('plus', 'rotate-45 align-top inline-block ml-1 w-3 h-3')</button>
      @else
-         <button x-on:click="$refs.tagdialog.showModal()"
+         <button x-on:click="$refs.tagdialog.showModal()" aria-label="Select a filter"
              class="type-xs-mono cursor-default rounded bg-sand hover:bg-sand-dark lg:hover:bg-sand-light pt-2 py-1.5 px-3">
              <span class="hidden lg:inline">All</span>
              <span class="lg:hidden">Filter</span>
              @svg('plus', 'inline-block align-top ml-6 w-3 h-3')</button>
-         <dialog x-ref="tagdialog" x-on:click.self="$refs.tagdialog.close()"
+         <dialog x-trap="$el.open" x-ref="tagdialog" x-on:click.self="$refs.tagdialog.close()"
              class="overflow-visible opacity-0 open:opacity-100 transition rounded fixed top-1/2 m-0 p-0 w-[40rem] max-w-[90%] left-1/2 bg-sand z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
              <form class="px-8 py-16 md:px-16" method="dialog">
                  <div class="max-w-md mx-auto">
@@ -32,7 +32,7 @@
                      </div>
 
                      <button aria-label="Cancel" value="cancel"
-                         class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light hover:bg-black transition border border-black pr-4">
+                         class="type-xs-mono overflow-hidden absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light hover:bg-black transition border border-black pr-4">
                          @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
                          Close
                      </button>

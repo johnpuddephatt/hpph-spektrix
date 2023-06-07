@@ -1,4 +1,4 @@
-<div x-cloak
+<div x-trap="eventID" x-cloak
     @booking.window="eventID = $event.detail.eventID; instanceID = $event.detail.instanceID; event = $event.detail.event; certificate = $event.detail.certificate"
     @keyup.escape.window="closeBooking" x-data="{
         iFrameLoading: true,

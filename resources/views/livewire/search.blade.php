@@ -9,7 +9,8 @@
         class="fixed inset-0 z-20 bg-black bg-opacity-60 duration-150 backdrop-blur-lg">
 
     </div>
-    <div class="text-black container fixed inset-0 left-auto z-50 flex h-screen w-full max-w-lg transform flex-col bg-sand px-4 py-8 transition-all delay-100 duration-200"
+    <div x-trap="open"
+        class="text-black container fixed inset-0 left-auto z-50 flex h-screen w-full max-w-lg transform flex-col bg-sand px-4 py-8 transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">
         <div class="relative">
             <button class="absolute right-0 top-0 ml-auto" @click="open = ! open; $dispatch('menutoggled', open)"

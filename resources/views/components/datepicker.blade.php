@@ -46,14 +46,14 @@
                 </template>
                 <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
                     <div style="width: 14.28%" class="mb-1 px-0.5">
-                        <div @click="getDateValue(date)" x-text="date"
+                        <button @click="getDateValue(date)" x-text="date"
                             class="cursor-pointer rounded-full text-center px-2 py-1 transition"
                             :class="{
                                 'bg-yellow font-bold ': isToday(date) ==
                                     true,
                                 'hover:bg-gray': isToday(date) == false
                             }">
-                        </div>
+                        </button>
                     </div>
                 </template>
             </div>

@@ -12,6 +12,9 @@
 
 dialog {
     border: none;
+}
+
+dialog.-translate-x-1\/2.-translate-y-1\/2 {
     transform: translate(-50%, -50%) !important;
 }
 

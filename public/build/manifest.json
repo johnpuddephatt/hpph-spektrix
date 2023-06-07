@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.dfed8402.js",
+    "file": "assets/app.855ff054.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
@@ -8,12 +8,12 @@
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app.68b01ca3.css",
+    "file": "assets/app.62e12dca.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/spektrix.css": {
-    "file": "assets/spektrix.397ba6f5.css",
+    "file": "assets/spektrix.9760dd82.css",
     "src": "resources/css/spektrix.css",
     "isEntry": true
   }

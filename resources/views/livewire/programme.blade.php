@@ -32,7 +32,7 @@
                              class="type-xs-mono cursor-default rounded bg-sand hover:bg-sand-dark pt-2 py-1.5 px-3">
                              Strands
                              @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
-                         <dialog x-ref="stranddialog" x-on:click.self="$refs.stranddialog.close()"
+                         <dialog x-trap="$el.open" x-ref="stranddialog" x-on:click.self="$refs.stranddialog.close()"
                              class="overflow-visible opacity-0 open:opacity-100 transition rounded fixed top-1/2 m-0 p-0 w-[40rem] max-w-[90%] left-1/2 bg-sand z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
                              <form class="px-8 py-16 md:px-16" method="dialog">
                                  <div class="max-w-md mx-auto">
@@ -54,8 +54,8 @@
                                              </button>
                                          @endforeach
                                      </div>
-                                     <button aria-label="Cancel" value="cancel"
-                                         class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light hover:bg-black transition border border-black pr-4">
+                                     <button aria-label="Close strand filter" value="cancel"
+                                         class="type-xs-mono overflow-hidden absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light hover:bg-black transition border border-black pr-4">
                                          @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
                                          Close
                                      </button>
@@ -80,7 +80,7 @@
                              Access
                              @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
                      @endif
-                     <dialog x-ref="accessdialog" x-on:click.self="$refs.accessdialog.close()"
+                     <dialog x-trap="$el.open" x-ref="accessdialog" x-on:click.self="$refs.accessdialog.close()"
                          class="overflow-visible opacity-0 open:opacity-100 transition w-[40rem] max-w-[90%] rounded fixed top-1/2 m-0 left-1/2 bg-sand p-0 z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
                          <form class="px-8 py-16 md:px-16" method="dialog">
                              <div class="max-w-md mx-auto">
@@ -100,8 +100,8 @@
                                          </button>
                                      @endforeach
                                  </div>
-                                 <button aria-label="Cancel" value="cancel"
-                                     class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light hover:bg-black transition border border-black pr-4">
+                                 <button aria-label="Close accessibility filter" value="cancel"
+                                     class="type-xs-mono overflow-hidden absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light hover:bg-black transition border border-black pr-4">
                                      @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
                                      Close
                                  </button>
@@ -112,7 +112,7 @@
                  @endif
 
                  @if ($date)
-                     <button wire:key="remove-data-filter" aria-label="Remove data filter"
+                     <button wire:key="remove-date-filter" aria-label="Remove date filter"
                          class="type-xs-mono cursor-default rounded bg-yellow hover:bg-yellow-dark pt-2 py-1.5 px-3"
                          wire:click="$emit('updateDate', null)">
                          {{ date('d M', strtotime($date)) }}
@@ -122,16 +122,16 @@
                          class="type-xs-mono cursor-default rounded bg-sand hover:bg-sand-dark pt-2 py-1.5 px-3">
                          Date
                          @svg('plus', 'inline-block align-top ml-2 w-3 h-3')</button>
-                     <dialog x-ref="datedialog" x-on:click.self="$refs.datedialog.close()"
+                     <dialog x-trap="$el.open" x-ref="datedialog" x-on:click.self="$refs.datedialog.close()"
                          class="p-0 overflow-visible opacity-0 open:opacity-100 transition rounded fixed top-1/2 m-0 w-[40rem] max-w-[90%] left-1/2 bg-sand z-40 backdrop:bg-black backdrop:backdrop-blur-lg backdrop:bg-opacity-60 transform -translate-x-1/2 -translate-y-1/2">
                          <form class="px-8 py-16 md:px-16" method="dialog">
                              <div class="max-w-md mx-auto">
                                  <h3
-                                     class="type-xs-mono mb-6 lg:block top-[45%] lg:absolute lg:right-full origin-bottom lg:translate-x-full lg:-rotate-90 whitespace-nowrap">
+                                     class="type-xs-mono text-center mb-6 lg:block top-[45%] lg:absolute lg:right-full origin-bottom lg:translate-x-full lg:-rotate-90 whitespace-nowrap">
                                      Filter by date</h3>
                                  <x-datepicker />
-                                 <button aria-label="Cancel" value="cancel"
-                                     class="type-xs-mono absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light pr-4">
+                                 <button aria-label="Close date filter" value="cancel"
+                                     class="type-xs-mono overflow-hidden absolute top-full mt-4 left-1/2 !leading-none -translate-x-1/2 flex flex-row items-center rounded-full text-white bg-black-light pr-4">
                                      @svg('plus', 'rotate-45 w-9 h-9 p-2 mr-1 rounded-full bg-black block')
                                      Close
                                  </button>

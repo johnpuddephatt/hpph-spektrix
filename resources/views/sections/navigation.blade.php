@@ -1,11 +1,18 @@
-<div class="h-dynamic-screen flex flex-col md:flex-row fixed inset-0 z-30 transform overflow-y-auto bg-black text-white transition-transform"
-    :class="nav_open ? 'translate-x-0' : 'translate-x-full'" @keyup.escape.window="nav_open = false">
+<nav x-trap="nav_open"
+    class="h-dynamic-screen flex flex-col md:flex-row fixed inset-0 z-30 transform overflow-y-auto bg-black text-white transition-transform"
+    open x-show="nav_open" x-transition:enter="transition " x-transition:enter-start="translate-x-full"
+    x-transition:enter-end="translate-x-0" x-transition:leave="transition" x-transition:leave-start="translate-x-0"
+    x-transition:leave-end="translate-x-full" @keyup.escape.window="nav_open = false">
+    <button @click="$dispatch('navtoggled', false)" aria-label="Close menu" class="absolute z-10 top-6 right-4">
+        <x-icon-plus class="w-6 h-6 rotate-45" x-show="nav_open" />
+    </button>
+
     <div class="md:1/2 lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
         @if ($primary_menu)
             <nav class="mb-8 lg:mb-24">
                 <ul class="text-[3.75rem] font-bold leading-[108%] tracking-[-0.050em] text-white">
                     <li>
-                        <a href="/" class="relative block py-0.5 hover:text-yellow transition">
+                        <a href="/" class="relative inline-block block py-0.5 hover:text-yellow transition">
                             {{-- @if (Request::is('/'))
                                 <span
                                     class="-left-4 absolute top-1/2 transform -translate-y-full block w-3 h-3 rounded-full bg-yellow"></span>
@@ -16,7 +23,7 @@
                     @foreach ($primary_menu as $menu_item)
                         <li>
                             <a href="{{ $menu_item['value'] }}"
-                                class="relative block py-0.5 hover:text-yellow transition">
+                                class="relative inline-block py-0.5 hover:text-yellow transition">
                                 {{-- @if (Str::of($menu_item['value'])->startsWith('/' . Request::path()))
                                     <span
                                         class="-left-4 absolute top-1/2 transform -translate-y-full block w-3 h-3 rounded-full bg-yellow"></span>
@@ -100,4 +107,4 @@
 
     <x-strand.menu>Programme strands @svg('arrow-right', 'inline-block ml-auto w-10 h-10 p-2.5 bg-black rounded-full text-yellow')</x-strand.menu>
 
-</div>
+</nav>

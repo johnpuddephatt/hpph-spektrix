@@ -18,7 +18,7 @@
                         <h3 class="font-bold text-white">Find us at:</h3>
                         <a target="_blank"
                             href="https://www.google.co.uk/maps/place/Hyde+Park+Picture+House/@53.8121105,-1.5719085,17z/data=!3m1!4b1!4m6!3m5!1s0x48795eb36ea31d3b:0x2b8f7b787dcc4b35!8m2!3d53.8121105!4d-1.5693336!16zL20vMDg3MjN2?entry=ttu"
-                            class="hover:text-yellow transition">{{ $settings['address'] }}</p>
+                            class="hover:text-yellow transition">{{ $settings['address'] }}</a>
                     </div>
                 @endif
 
