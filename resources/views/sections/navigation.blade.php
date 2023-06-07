@@ -1,11 +1,7 @@
-<nav x-trap="nav_open"
-    class="h-dynamic-screen flex flex-col md:flex-row fixed inset-0 z-30 transform overflow-y-auto bg-black text-white transition-transform"
-    open x-show="nav_open" x-transition:enter="transition " x-transition:enter-start="translate-x-full"
+<nav class="h-dynamic-screen flex flex-col md:flex-row fixed inset-0 -z-10 transform overflow-y-auto bg-black text-white transition-transform"
+    x-show="nav_open" x-transition:enter="transition " x-transition:enter-start="translate-x-full"
     x-transition:enter-end="translate-x-0" x-transition:leave="transition" x-transition:leave-start="translate-x-0"
     x-transition:leave-end="translate-x-full" @keyup.escape.window="nav_open = false">
-    <button @click="$dispatch('navtoggled', false)" aria-label="Close menu" class="absolute z-10 top-6 right-4">
-        <x-icon-plus class="w-6 h-6 rotate-45" x-show="nav_open" />
-    </button>
 
     <div class="md:1/2 lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
         @if ($primary_menu)

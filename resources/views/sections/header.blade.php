@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="absolute max-lg:z-40 top-12 right-4 flex flex-col items-center lg:mt-0 gap-2.5"
+        <div x-trap="nav_open" class="absolute max-lg:z-40 top-12 right-4 flex flex-col items-center lg:mt-0 gap-2.5"
             :class="{
                 '!text-white': nav_open,
             }">
@@ -44,9 +44,9 @@
                     :class="{ 'max-lg:!hidden': scrolled && !nav_open }"
                     href="{{ $edit_link }}">@svg('edit', 'h-6 w-6 pb-0.5')</a>
             @endif
-        </div>
 
-        @include('sections.navigation')
+            @include('sections.navigation')
+        </div>
 
     </div>
 
