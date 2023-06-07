@@ -1,6 +1,6 @@
 <header x-cloak x-data="{ menu_open: false }" @menutoggled.window="menu_open = $event.detail"
     :class="{
-        'transition duration-200 !z-30': menu_open,
+        'transition duration-200 !z-30 !text-white': menu_open,
     }"
     class="{{ $header_class ?? 'text-white' }} z-20 fixed left-0 right-0 top-0">
     <div class="container flex flex-row items-center py-3 2xl:py-6">
