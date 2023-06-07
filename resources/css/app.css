@@ -4,9 +4,16 @@
 @import "_fades";
 @import "_details-summary";
 
+@import "../../node_modules/dialog-polyfill/dialog-polyfill.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+dialog {
+    border: none;
+    transform: translate(-50%, -50%) !important;
+}
 
 @layer base {
     details > summary::marker,
