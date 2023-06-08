@@ -1,5 +1,5 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'opportunities', 'resourceId' => $opportunity->id])])
-@section('title', $opportunity->title)
+@section('title', 'Opportunity: ' . $opportunity->title)
 @section('description', $opportunity->summary)
 @section('image', $opportunity->featuredImage?->getUrl('portrait'))
 
