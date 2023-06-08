@@ -2,9 +2,12 @@
 
 @section('title', $page->seo_title ?? $page->name)
 @section('description', $page->seo_description ?? $page->introduction)
+@section('image', $page->mainImage?->getUrl('landscape'))
 
 @section('content')
+
     @include('sections.pageheader')
+
     @if ($page->content)
         @foreach ($page->content as $layout)
             @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => false])

@@ -43,10 +43,10 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("product.show");
 
-    Route::get(
-        "whats-on",
-        \App\Http\Controllers\ProgrammeController::class
-    )->name("programme");
+    // Route::get(
+    //     "whats-on",
+    //     \App\Http\Controllers\ProgrammeController::class
+    // )->name("programme");
 
     Route::get("films/{event:slug}", [
         \App\Http\Controllers\EventController::class,

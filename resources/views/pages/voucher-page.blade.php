@@ -3,6 +3,7 @@
 
 @section('title', $page->seo_title ?? $page->name)
 @section('description', $page->seo_description ?? $page->introduction)
+@section('image', $page->mainImage?->getUrl('landscape'))
 
 @section('content')
     <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">

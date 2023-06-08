@@ -21,6 +21,10 @@ return [
         "class" => "\App\Nova\Templates\SectionedPageTemplate",
         "unique" => false, // Whether more than one page can be created with this template
     ],
+    "programme-page" => [
+        "class" => "\App\Nova\Templates\ProgrammePageTemplate",
+        "unique" => true, // Whether more than one page can be created with this template
+    ],
     "funds-page" => [
         "class" => "\App\Nova\Templates\FundsPageTemplate",
         "unique" => false, // Whether more than one page can be created with this template
