@@ -563,6 +563,7 @@ dd.Footer {
 
     .Options a {
         pointer-events: none;
+        transition: pointer-events 1s;
     }
 
     .Options a.Selected::after {
