@@ -535,46 +535,16 @@ dd.Footer {
     }
 }
 
-.Options a {
-    display: none;
-}
-
-@media screen and (min-width: 480px) {
-    .Options a {
-        display: inline-block;
-    }
-}
-
 .Options a.Selected {
     display: flex !important;
     font-weight: bold;
-    pointer-events: none;
 }
 
 @media screen and (max-width: 480px) {
-    .Options,
-    .Options li {
-        cursor: pointer;
+    .Options {
+        @apply bg-sand-light rounded;
     }
 
     .Options a.Selected {
-        width: 100%;
-
-        @apply bg-sand-light rounded;
-
-        padding: 0.5em 1em;
-
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .Options a {
-        pointer-events: none;
-        margin: 0.75em 0;
-        transition: pointer-events 1s;
-    }
-
-    .Options a.Selected::after {
-        content: "▼";
     }
 }
