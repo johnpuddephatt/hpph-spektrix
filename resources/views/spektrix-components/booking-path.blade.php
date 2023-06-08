@@ -71,11 +71,11 @@
                                         x-text="instance.start_time">
                                     </div>
 
-                                    <div class="flex items-center flex-row gap-x-2 flex-wrap">
+                                    <div class="lg:flex items-center flex-row gap-x-2">
                                         <x-strand.booking-path />
                                         <span
                                             x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
-                                            class="text-2xl">&middot;</span>
+                                            class="hidden lg:inline-block text-2xl">&middot;</span>
                                         <x-accessibilities.booking-path />
                                     </div>
 
