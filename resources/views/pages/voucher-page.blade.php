@@ -35,6 +35,8 @@
 
             <div class="container py-4 lg:pb-24">
 
+                <input type="text" name="giftType" data-gift-type value="2601" />
+
                 <div class="max-w-2xl border-b border-sand-dark py-8">
                     <div class="type-regular mb-4">
                         <span class="bg-yellow rounded-full p-2 h-10 w-10 inline-block text-center">1</span>

@@ -515,6 +515,12 @@ dd.Footer {
     }
 }
 @media screen and (max-width: 480px) {
+    .Options:hover {
+        @apply bg-sand-light rounded;
+
+        padding: 0.5em 1em;
+    }
+
     .Options:hover a {
         display: inline-block !important;
         border: none !important;
@@ -540,6 +546,7 @@ dd.Footer {
 .Options a.Selected {
     display: flex !important;
     font-weight: bold;
+    pointer-events: none;
 }
 
 @media screen and (max-width: 480px) {
