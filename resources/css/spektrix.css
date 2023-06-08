@@ -551,6 +551,10 @@ dd.Footer {
 }
 
 @media screen and (max-width: 480px) {
+    .Options {
+        cursor: pointer;
+    }
+
     .Options a.Selected {
         width: 100%;
 
