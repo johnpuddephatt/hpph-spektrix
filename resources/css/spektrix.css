@@ -526,6 +526,7 @@ dd.Footer {
         border: none !important;
         border-radius: 0 !important;
         padding: 0 !important;
+        pointer-events: auto !important;
     }
 
     .Options:hover a::after {
@@ -558,6 +559,10 @@ dd.Footer {
         padding: 0.5em 1em;
         display: flex;
         justify-content: space-between;
+    }
+
+    .Options a {
+        pointer-events: none;
     }
 
     .Options a.Selected::after {
