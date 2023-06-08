@@ -519,6 +519,7 @@ dd.Footer {
         @apply bg-sand-light rounded;
 
         padding: 0 1em;
+        transition: background-color 1s;
     }
 
     .Options:hover a {
