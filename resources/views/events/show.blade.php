@@ -1,6 +1,6 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
 @section('title', $event->name)
-@section('description', $event->description)
+@section('description', strip_tags($event->description))
 @section('image', $event->featuredImage?->getUrl('wide'))
 
 @section('content')
