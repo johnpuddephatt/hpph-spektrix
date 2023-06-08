@@ -515,25 +515,6 @@ dd.Footer {
         clear: both;
     }
 }
-@media screen and (max-width: 480px) {
-    .Options:hover {
-        @apply bg-sand-light rounded;
-
-        padding: 0 1em;
-    }
-
-    .Options:hover a {
-        display: inline-block !important;
-        border: none !important;
-        border-radius: 0 !important;
-        padding: 0 !important;
-        pointer-events: auto !important;
-    }
-
-    .Options:hover a::after {
-        content: none !important;
-    }
-}
 
 .Options a.Selected {
     display: flex !important;
@@ -542,7 +523,7 @@ dd.Footer {
 
 @media screen and (max-width: 480px) {
     .Options {
-        @apply bg-sand-light rounded;
+        @apply bg-sand-light rounded p-4;
     }
 
     .Options a.Selected {
