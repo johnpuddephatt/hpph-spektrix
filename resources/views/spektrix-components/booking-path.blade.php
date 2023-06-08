@@ -67,7 +67,7 @@
                                     x-on:click="instanceID = instance.short_id"
                                     :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
                                     class="group border-t transition w-full flex flex-row items-center gap-2 lg:gap-4 border-gray-light py-2">
-                                    <div class="type-xs-mono !text-base rounded bg-black py-1 px-3 text-white"
+                                    <div class="type-xs-mono !text-base rounded bg-black py-1.5 px-4 text-white"
                                         x-text="instance.start_time">
                                     </div>
 
