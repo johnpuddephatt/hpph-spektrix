@@ -551,7 +551,8 @@ dd.Footer {
 }
 
 @media screen and (max-width: 480px) {
-    .Options {
+    .Options,
+    .Options li {
         cursor: pointer;
     }
 
