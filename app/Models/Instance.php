@@ -21,6 +21,10 @@ class Instance extends Model
             $builder->where("enabled", true);
         });
 
+        static::addGlobalScope("not_cancelled", function (Builder $builder) {
+            $builder->where("cancelled", false);
+        });
+
         static::addGlobalScope("has_event", function (Builder $builder) {
             $builder->whereHas("event");
         });
