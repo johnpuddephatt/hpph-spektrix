@@ -57,7 +57,7 @@
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
                             x-html="certificate"></span></div>
 
-                    <div class="pb-4 pr-12 flex-1">
+                    <div class="pb-4 lg:pr-12 flex-1">
                         <template x-for="(instance, key) in instances">
                             <div>
                                 <h3 x-show="key == 0 ||
@@ -66,7 +66,7 @@
                                 <button aria-label="Buy tickets for this screening"
                                     x-on:click="instanceID = instance.short_id"
                                     :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
-                                    class="group border-t transition w-full flex flex-row items-center gap-4 border-gray-light py-2">
+                                    class="group border-t transition w-full flex flex-row items-center gap-2 lg:gap-4 border-gray-light py-2">
                                     <div class="type-xs-mono !text-base rounded bg-black py-1 px-3 text-white"
                                         x-text="instance.start_time">
                                     </div>
