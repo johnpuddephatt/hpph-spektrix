@@ -503,6 +503,7 @@ dd.Footer {
 
 .Options {
     @apply mb-8;
+    transition: background-color 1s;
 }
 
 @media screen and (min-width: 480px) {
@@ -519,7 +520,6 @@ dd.Footer {
         @apply bg-sand-light rounded;
 
         padding: 0 1em;
-        transition: background-color 1s;
     }
 
     .Options:hover a {
