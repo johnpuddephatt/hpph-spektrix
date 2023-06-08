@@ -1,5 +1,7 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'users', 'resourceId' => $user->id])])
 @section('title', $user->name)
+@section('description', $user->role_title . '. ' . $user->role_description)
+@section('image', $user->featuredImage?->getUrl('portrait'))
 
 @section('menu_right')
     @if (isset($settings['team_page']))

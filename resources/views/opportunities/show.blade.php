@@ -1,5 +1,8 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'opportunities', 'resourceId' => $opportunity->id])])
-@section('title', 'Opportunities')
+@section('title', $opportunity->title)
+@section('description', $opportunity->summary)
+@section('image', $opportunity->featuredImage?->getUrl('portrait'))
+
 @section('menu_right')
     <a class="type-xs-mono hidden border-transparent lg:inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
         href="{{ \App\Models\Page::getTemplateUrl('opportunities-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')

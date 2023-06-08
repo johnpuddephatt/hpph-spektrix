@@ -1,6 +1,7 @@
 @extends('layouts.default', ['header_class' => 'text-white', 'edit_link' => route('nova.pages.edit', ['resource' => 'posts', 'resourceId' => $post->id])])
 @section('title', $post->title)
 @section('description', $post->introduction)
+@section('image', $post->featuredImage?->getUrl('landscape'))
 
 @section('content')
 

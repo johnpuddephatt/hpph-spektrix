@@ -1,5 +1,8 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'events', 'resourceId' => $event->id])])
 @section('title', $event->name)
+@section('description', $event->description)
+@section('image', $page->featuredImage?->getUrl('wide'))
+
 @section('content')
     <div x-data="{ trailerOpen: false, trailerLoaded: false }" class="fixed flex items-center inset-0 z-[-1] h-screen w-full overflow-hidden bg-black">
 

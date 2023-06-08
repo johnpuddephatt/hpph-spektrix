@@ -1,5 +1,7 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'seasons', 'resourceId' => $season->id])])
 @section('title', $season->name)
+@section('description', $season->short_description)
+@section('image', $season->featuredImage?->getUrl('landscape'))
 
 @section('content')
     <div class="fixed inset-0 -z-10 h-[calc(100vh-1rem)] w-full overflow-hidden bg-black">

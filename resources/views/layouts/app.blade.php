@@ -17,8 +17,6 @@
     <meta property="og:image" content="@yield('image')" />
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('description')" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="800" />
 
     <link rel="shortcut icon" type="image/png" href="/favicon.png" />
 

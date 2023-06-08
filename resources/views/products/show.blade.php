@@ -1,6 +1,8 @@
 @push('webComponents', '#spektrix-merchandise')
 @extends('layouts.default', ['header_class' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'products', 'resourceId' => $product->id])])
 @section('title', $product->name)
+@section('description', $product->description)
+@section('image', $product->featuredImage?->getUrl('landscape'))
 
 @section('menu_right')
     <a class="type-xs-mono hidden lg:inline-block border-transparent uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
