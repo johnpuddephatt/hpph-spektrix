@@ -1,4 +1,4 @@
-@extends('layouts.default', ['header_class', 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'users', 'resourceId' => $user->id])])
+@extends('layouts.default', ['header_class' => 'text-black', 'edit_link' => route('nova.pages.edit', ['resource' => 'users', 'resourceId' => $user->id])])
 @section('title', $user->name)
 @section('description', $user->role_title . '. ' . $user->role_description)
 @section('image', $user->featuredImage?->getUrl('portrait'))
