@@ -71,13 +71,15 @@
                                         x-text="instance.start_time">
                                     </div>
 
-                                    <x-strand.booking-path />
-                                    <span
-                                        x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
-                                        class="text-2xl">&middot;</span>
-                                    <x-accessibilities.booking-path />
+                                    <div class="flex items-center flex-row gap-2 flex-wrap">
+                                        <x-strand.booking-path />
+                                        <span
+                                            x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
+                                            class="text-2xl">&middot;</span>
+                                        <x-accessibilities.booking-path />
+                                    </div>
 
-                                    @svg('arrow-right', 'bg-sand-light ml-auto group-hover:bg-yellow rounded-full p-3 h-12 w-12')
+                                    @svg('arrow-right', 'bg-sand-light flex-shrink-0 ml-auto group-hover:bg-yellow rounded-full p-3 h-12 w-12')
                                 </button>
                             </div>
                         </template>
