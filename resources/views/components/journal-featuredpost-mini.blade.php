@@ -7,8 +7,8 @@
             <div class="">
 
                 @if ($post->featuredImage)
-                    <div class="overflow-hidden">
-                        {!! $post->featuredImage->img('landscape')->attributes(['class' => 'group-hover:scale-105 transition duration-500 w-64 rounded']) !!}
+                    <div class="overflow-hidden rounded">
+                        {!! $post->featuredImage->img('landscape')->attributes(['class' => 'group-hover:scale-105 transition duration-500 w-64 ']) !!}
                     </div>
                 @else
                     <div class="w-64 aspect-video rounded bg-gray-light"></div>
