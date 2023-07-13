@@ -17,7 +17,7 @@
             <div class="images">
                 @foreach ($layout->shuffled_images as $image)
                     {!! $image->img('square')->attributes([
-                        'data-width' => '50vw',
+                        'data-width' => '35vw',
                         'class' => 'absolute left-0 block w-[66.667vw] origin-center rounded lg:w-[50vw] xl:w-[33.3vw]',
                     ]) !!}
                 @endforeach

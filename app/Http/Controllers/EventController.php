@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class EventController extends Controller
 {
@@ -44,10 +45,30 @@ class EventController extends Controller
      * @param  \App\Models\Event  $event
      * @return \Illuminate\Http\Response
      */
-    public function show(Event $event)
+    public function show($event)
     {
         return view("events.show", [
-            "event" => $event
+            "event" => Cache::remember("event_" . $event, 60, function () use (
+                $event
+            ) {
+                return Event::where("slug", $event)
+                    ->firstOrFail()
+                    ->load(
+                        "featuredVideo",
+                        "featuredImage",
+                        "gallery",
+                        "latest_post.tags",
+                        "latest_post.featuredImage"
+                    )
+                    ->append("strand");
+            }),
+        ]);
+
+        return Cache::rememberForever("event_" . $event, function () use (
+            $event
+        ) {
+            $event = Event::where("slug", $event)
+                ->firstOrFail()
                 ->load(
                     "featuredVideo",
                     "featuredImage",
@@ -55,8 +76,12 @@ class EventController extends Controller
                     "latest_post.tags",
                     "latest_post.featuredImage"
                 )
-                ->append("strand"),
-        ]);
+                ->append("strand");
+
+            return view("events.show", [
+                "event" => $event,
+            ]);
+        });
     }
 
     /**

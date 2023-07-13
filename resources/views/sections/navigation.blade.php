@@ -8,11 +8,7 @@
             <nav class="mb-8 lg:mb-24">
                 <ul class="text-[3.75rem] font-bold leading-[108%] tracking-[-0.050em] text-white">
                     <li>
-                        <a href="/" class="relative inline-block block py-0.5 hover:text-yellow transition">
-                            {{-- @if (Request::is('/'))
-                                <span
-                                    class="-left-4 absolute top-1/2 transform -translate-y-full block w-3 h-3 rounded-full bg-yellow"></span>
-                            @endif --}}
+                        <a href="/" class="relative inline-block py-0.5 hover:text-yellow transition">
                             Home
                         </a>
                     </li>
@@ -71,7 +67,7 @@
 
         <!-- Middle column on desktop -->
         <div class="py-8 md:hidden grid grid-cols-2 gap-4">
-            <x-tertiary-menu />
+            <x-tertiary-menu :tertiary_menu="$tertiary_menu" />
             <x-credits />
         </div>
     </div>
@@ -91,7 +87,7 @@
             </nav>
         @endif
 
-        <x-tertiary-menu class="mt-auto" />
+        <x-tertiary-menu :tertiary_menu="$tertiary_menu" class="mt-auto" />
 
     </div>
 

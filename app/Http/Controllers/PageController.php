@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Page;
+use Illuminate\Support\Facades\Cache;
 
 class PageController extends Controller
 {
     public function home()
     {
-        $page = Page::where("template", "home-page")->firstOrFail();
-
-        return view("pages." . $page->template, [
-            "page" => $page->resolveContent(),
-        ]);
+        return \Cache::remember("homepage", 60, function () {
+            return view("pages.home-page", [
+                "page" => Page::where("template", "home-page")
+                    ->firstOrFail()
+                    ->resolveContent(),
+            ])->render();
+        });
     }
 
     // public function show(Page $page1, Page $page2 = null, Page $page3 = null)

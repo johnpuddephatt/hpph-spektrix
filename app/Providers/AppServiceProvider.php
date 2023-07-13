@@ -34,6 +34,14 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer("*", function ($view) {
             $view->with(
+                "settings",
+                \Cache::rememberForever("settings", function () {
+                    return nova_get_settings();
+                })
+            );
+        });
+        View::composer(["components.strand.menu"], function ($view) {
+            $view->with(
                 "strands",
                 \Cache::rememberForever("strands", function () {
                     return \App\Models\Strand::select(
@@ -48,24 +56,18 @@ class AppServiceProvider extends ServiceProvider
                         ->get();
                 })
             );
+        });
 
+        View::composer("sections.header", function ($view) {
             $view->with(
-                "seasons",
-                \Cache::rememberForever("seasons", function () {
-                    return \App\Models\Season::select(
-                        "id",
-                        "name",
-                        "slug"
-                    )->get();
+                "programme_page_url",
+                \Cache::rememberForever("programme_page_url", function () {
+                    return \App\Models\Page::getTemplateUrl("programme-page");
                 })
             );
+        });
 
-            $view->with(
-                "settings",
-                \Cache::rememberForever("settings", function () {
-                    return nova_get_settings();
-                })
-            );
+        View::composer(["sections.navigation"], function ($view) {
             $view->with(
                 "primary_menu",
                 \Cache::rememberForever("primaryMenu", function () {
@@ -80,6 +82,16 @@ class AppServiceProvider extends ServiceProvider
                     return nova_get_menu_by_slug("secondary")
                         ? nova_get_menu_by_slug("secondary")["menuItems"]
                         : [];
+                })
+            );
+            $view->with(
+                "seasons",
+                \Cache::rememberForever("seasons", function () {
+                    return \App\Models\Season::select(
+                        "id",
+                        "name",
+                        "slug"
+                    )->get();
                 })
             );
 

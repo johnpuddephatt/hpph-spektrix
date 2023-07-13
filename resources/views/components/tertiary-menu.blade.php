@@ -1,3 +1,5 @@
+@props(['tertiary_menu'])
+
 @if ($tertiary_menu)
     <nav {{ $attributes }}>
         <ul class="space-y-1">

@@ -6,10 +6,10 @@
 
         <a class="type-xs-mono hover:text-yellow transition relative z-20 flex flex-row items-center gap-1.5 rounded py-1 px-2"
             :class="{
-                'bg-yellow !text-black': {{ '/' . Request::path() == \App\Models\Page::getTemplateUrl('programme-page') ? 'true' : 'false' }},
+                'bg-yellow !text-black': {{ '/' . Request::path() == $programme_page_url ? 'true' : 'false' }},
                 'max-lg:!hidden': scrolled
             }"
-            href="{{ \App\Models\Page::getTemplateUrl('programme-page') }}">
+            href="{{ $programme_page_url }}">
             @svg('eye', 'block w-5 h-5 pb-0.5')
             What’s on</a>
 
