@@ -1,6 +1,6 @@
 @props(['instances' => [], 'layout' => 'default', 'show_strand' => true, 'color' => null])
 
-<div x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true }" x-init="swiper = new Swiper($refs.container, {
+<div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true }" x-init="swiper = new Swiper($refs.container, {
     loop: false,
     slidesPerView: Math.min({{ count($instances) }}, 1.5),
     spaceBetween: 15,
