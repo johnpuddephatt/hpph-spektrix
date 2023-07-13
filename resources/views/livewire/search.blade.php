@@ -20,7 +20,7 @@
                 class="type-xs-mono w-full border-b-2 border-sand-dark bg-transparent py-6 focus-visible:outline-none"
                 wire:model="search" type="text" placeholder="Search for a film" />
 
-            <ul class="h-64 flex-1 divide-y divide-sand-dark overflow-y-auto">
+            <ul class="flex-1 divide-y divide-sand-dark overflow-y-auto">
                 @foreach ($results as $result)
                     <li><a class="block py-6 hover:bg-sand-dark"
                             href="{{ route('event.show', ['event' => $result->slug]) }}">{{ $result->name }}</a></li>
