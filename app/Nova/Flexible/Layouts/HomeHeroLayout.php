@@ -58,7 +58,7 @@ class HomeHeroLayout extends Layout implements CachableAttributes
     }
     public function getEventAttribute()
     {
-        return $this->remember("event", 0, function () {
+        return $this->remember("event", 60, function () {
             if (
                 \App\Models\Event::whereIn(
                     "id",

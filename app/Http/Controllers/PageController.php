@@ -10,13 +10,11 @@ class PageController extends Controller
 {
     public function home()
     {
-        // return \Cache::remember("homepage", 60, function () {
         return view("pages.home-page", [
             "page" => Page::where("template", "home-page")
                 ->firstOrFail()
                 ->resolveContent(),
         ])->render();
-        // });
     }
 
     // public function show(Page $page1, Page $page2 = null, Page $page3 = null)

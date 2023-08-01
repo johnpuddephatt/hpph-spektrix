@@ -63,25 +63,6 @@ class EventController extends Controller
                     ->append("strand");
             }),
         ]);
-
-        return Cache::rememberForever("event_" . $event, function () use (
-            $event
-        ) {
-            $event = Event::where("slug", $event)
-                ->firstOrFail()
-                ->load(
-                    "featuredVideo",
-                    "featuredImage",
-                    "gallery",
-                    "latest_post.tags",
-                    "latest_post.featuredImage"
-                )
-                ->append("strand");
-
-            return view("events.show", [
-                "event" => $event,
-            ]);
-        });
     }
 
     /**

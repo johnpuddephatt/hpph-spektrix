@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 class Programme extends Component
 {
-    public $type = "alphabetical";
+    public $type = "schedule";
 
     public $strand = null;
     public $accessibility = null;
