@@ -25,6 +25,13 @@ class Programme extends Component
         }
     }
 
+    public function boot()
+    {
+        if (nova_get_setting("default_programme_view")) {
+            $this->type = nova_get_setting("default_programme_view");
+        }
+    }
+
     protected $listeners = [
         "updateStrand" => "setStrand",
         "updateAccessibility" => "setAccessibility",

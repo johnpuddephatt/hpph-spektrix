@@ -31,6 +31,14 @@ class System
                     "content_warnings_to_not_hide"
                 )->help("Content warnings to always display on the event page"),
             ]),
+            Panel::make("Programme", [
+                Select::make("Default view", "default_programme_view")->options(
+                    [
+                        "schedule" => "Schedule",
+                        "alphabetical" => "Alphabetical (A-Z)",
+                    ]
+                ),
+            ]),
         ];
     }
 
