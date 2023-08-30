@@ -207,18 +207,18 @@ class Event extends Resource
                 fn() => $this->slug ? $this->url : "#"
             )->displayUsing(fn() => $this->slug ? "Visit" : "–"),
 
-            Panel::make("Generated", [
-                Text::make("Open graph image", "og_image", function () {
-                    return "<img src='" .
-                        og([
-                            "title" => $this->name . "!",
-                            "subtitle" => $this->date_range,
-                        ]) .
-                        "' />";
-                })
-                    ->onlyOnDetail()
-                    ->asHtml(),
-            ]),
+            // Panel::make("Generated", [
+            //     Text::make("Open graph image", "og_image", function () {
+            //         return "<img src='" .
+            //             og([
+            //                 "title" => $this->name . "!",
+            //                 "subtitle" => $this->date_range,
+            //             ]) .
+            //             "' />";
+            //     })
+            //         ->onlyOnDetail()
+            //         ->asHtml(),
+            // ]),
         ];
     }
 
