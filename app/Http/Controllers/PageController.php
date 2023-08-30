@@ -29,6 +29,7 @@ class PageController extends Controller
 
         if (
             count($slug_parts) > 1 &&
+            $page->parent &&
             $page->parent->slug != $slug_parts[count($slug_parts) - 2]
         ) {
             abort(404);

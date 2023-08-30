@@ -47,6 +47,7 @@
         "spatie/nova-backup-tool": "^5.0",
         "stepanenko3/nova-logs-tool": "^1.1",
         "trin4ik/nova-switcher": "^0.3.0",
+        "vormkracht10/laravel-open-graph-image": "^0.3.3",
         "whitecube/nova-flexible-content": "^1.0"
     },
     "require-dev": {

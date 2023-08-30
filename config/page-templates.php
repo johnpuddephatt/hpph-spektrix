@@ -29,6 +29,10 @@ return [
         "class" => "\App\Nova\Templates\FundsPageTemplate",
         "unique" => false, // Whether more than one page can be created with this template
     ],
+    "gift-membership-page" => [
+        "class" => "\App\Nova\Templates\GiftMembershipPageTemplate",
+        "unique" => true, // Whether more than one page can be created with this template
+    ],
     "journal-page" => [
         "class" => "\App\Nova\Templates\JournalPageTemplate",
         "unique" => true, // Whether more than one page can be created with this template

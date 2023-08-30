@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6a1ec9a62d1b10f173d7e4b5d68d986",
+    "content-hash": "9e70e354029bcec296d1009b1ed04484",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -6254,6 +6254,72 @@
             "time": "2023-02-09T15:13:18+00:00"
         },
         {
+            "name": "spatie/browsershot",
+            "version": "3.58.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/browsershot.git",
+                "reference": "6503b2b429e10ff28a4cdb9fffaecc25ba6d032c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/6503b2b429e10ff28a4cdb9fffaecc25ba6d032c",
+                "reference": "6503b2b429e10ff28a4cdb9fffaecc25ba6d032c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4|^8.0",
+                "spatie/image": "^1.5.3|^2.0",
+                "spatie/temporary-directory": "^1.1|^2.0",
+                "symfony/process": "^4.2|^5.0|^6.0"
+            },
+            "require-dev": {
+                "pestphp/pest": "^1.20",
+                "spatie/phpunit-snapshot-assertions": "^4.2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Browsershot\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://github.com/freekmurze",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert a webpage to an image or pdf using headless Chrome",
+            "homepage": "https://github.com/spatie/browsershot",
+            "keywords": [
+                "chrome",
+                "convert",
+                "headless",
+                "image",
+                "pdf",
+                "puppeteer",
+                "screenshot",
+                "webpage"
+            ],
+            "support": {
+                "source": "https://github.com/spatie/browsershot/tree/3.58.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-07-27T07:51:54+00:00"
+        },
+        {
             "name": "spatie/db-dumper",
             "version": "3.3.0",
             "source": {
@@ -10444,6 +10510,84 @@
                 }
             ],
             "time": "2022-03-08T17:03:00+00:00"
+        },
+        {
+            "name": "vormkracht10/laravel-open-graph-image",
+            "version": "v0.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vormkracht10/laravel-open-graph-image.git",
+                "reference": "b0bac13fc465bda1c4d97be7efd83134177d0269"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vormkracht10/laravel-open-graph-image/zipball/b0bac13fc465bda1c4d97be7efd83134177d0269",
+                "reference": "b0bac13fc465bda1c4d97be7efd83134177d0269",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.0|^10.0",
+                "php": "^8.1",
+                "spatie/browsershot": "^3.57",
+                "spatie/laravel-package-tools": "^1.14"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1.9",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Vormkracht10\\LaravelOpenGraphImage\\LaravelOpenGraphImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelOpenGraphImage": "Vormkracht10\\LaravelOpenGraphImage\\Facades\\LaravelOpenGraphImage"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Vormkracht10\\LaravelOpenGraphImage\\": "src",
+                    "Vormkracht10\\LaravelOpenGraphImage\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bas van Dinther",
+                    "email": "bas@vormkracht10.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package to generate dynamic Open Graph images",
+            "homepage": "https://github.com/vormkracht10/laravel-open-graph-image",
+            "keywords": [
+                "laravel",
+                "laravel-open-graph-image",
+                "vormkracht10"
+            ],
+            "support": {
+                "issues": "https://github.com/vormkracht10/laravel-open-graph-image/issues",
+                "source": "https://github.com/vormkracht10/laravel-open-graph-image/tree/v0.3.3"
+            },
+            "time": "2023-05-19T13:36:50+00:00"
         },
         {
             "name": "webmozart/assert",
