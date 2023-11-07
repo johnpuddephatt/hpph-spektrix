@@ -148,8 +148,8 @@
                         <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
                             style="height: 90vh;" name="SpektrixIFrame"
                             :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ instanceID }&resize=true`"></iframe>
-                        <p class="pb-8"><span
-                                class="inline-block mr-1 font-bold -translate-y-1/4 w-4 h-4 rounded-full bg-[#b9b6b2]"></span>
+                        <p class="pb-8 font-bold"><span
+                                class="inline-block mr-1 -translate-y-1/3 w-4 h-4 rounded-full bg-[#b9b6b2]"></span>
                             Seat
                             unavailable
                         </p>
