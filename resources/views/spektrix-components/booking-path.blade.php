@@ -57,7 +57,7 @@
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
                             x-html="certificate"></span></div>
 
-                    <div class="pb-4 lg:pr-12 flex-1">
+                    <div class="pb-4 lg:pr-12 lg:flex-1">
                         <template x-for="(instance, key) in instances">
                             <div>
                                 <h3 x-show="key == 0 ||
@@ -91,7 +91,7 @@
 
                 </div>
                 <div x-show="instances.some((instance) => instance.relaxed || instance.event.audio_description || instance.captioned)"
-                    class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem]">
+                    class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[6.9rem]">
                     <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
 
                     <div x-show="instances.some((instance) => instance.event.audio_description)"
