@@ -29,7 +29,11 @@
                     <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
                 </h1>
 
-                <div class="flex flex-row items-center gap-2">
+                @if ($event->subtitle)
+                    <div class="type-regular !font-normal">{{ $event->subtitle }}</div>
+                @endif
+
+                <div class="flex flex-row mt-4 items-center gap-2">
                     <div class="type-xs-mono">{!! $event->date_range !!}</div>
                 </div>
 
