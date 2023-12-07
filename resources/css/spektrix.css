@@ -134,7 +134,7 @@ select {
     @apply underline;
 }
 
-.AreaAndVenueDetails {
+/* .AreaAndVenueDetails {
     visibility: collapse;
 }
 
@@ -145,7 +145,7 @@ select {
 
 .AreaAndVenueDetails .AreaName::after {
     content: " –";
-}
+} */
 
 .spx-validation-message {
     @apply block;
