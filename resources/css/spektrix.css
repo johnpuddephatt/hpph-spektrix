@@ -138,6 +138,14 @@ select {
     @apply block;
 }
 
+.Message {
+    @apply bg-sand-light py-2 px-4 rounded mt-2 mb-4;
+}
+
+.Message a {
+    @apply underline;
+}
+
 /*
 Booking Path
 */
