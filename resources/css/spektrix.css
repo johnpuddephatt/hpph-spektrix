@@ -152,7 +152,7 @@ select {
 }
 
 .Message {
-    @apply bg-sand-light py-2 px-4 rounded mt-2 mb-4;
+    @apply bg-sand-light py-2 px-4 rounded mt-4 mb-4;
 }
 
 .Message a {
