@@ -134,6 +134,19 @@ select {
     @apply underline;
 }
 
+.AreaAndVenueDetails {
+    visibility: collapse;
+}
+
+.AreaAndVenueDetails .AreaName,
+.AreaAndVenueDetails .VenueName {
+    visibility: visible;
+}
+
+.AreaAndVenueDetails .AreaName::after {
+    content: " – ";
+}
+
 .spx-validation-message {
     @apply block;
 }
@@ -143,7 +156,7 @@ select {
 }
 
 .Message a {
-    @apply underline;
+    @apply underline font-semibold;
 }
 
 /*
