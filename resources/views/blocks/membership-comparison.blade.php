@@ -35,6 +35,9 @@
                     <button
                         class="type-regular w-full bg-yellow text-center py-6 text-black hover:bg-opacity-90 transition"
                         data-submit-membership>Add to basket</button>
+                    <a href="{{ \App\Models\Page::getTemplateUrl('gift-membership-page') . '?selected=' . $membership->id }}"
+                        class="type-regular block w-full bg-yellow-dark text-center py-6 text-black hover:bg-opacity-90 transition">Gift
+                        this membership</a>
 
                     <div class="type-regular absolute text-yellow leading-tight py-6 px-6 inset-0 bg-black text-center"
                         data-success-container style="display: none;">Added to basket</div>

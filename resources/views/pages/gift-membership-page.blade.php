@@ -1,10 +1,11 @@
 @php
 if (isset($_GET['selected'])) {
     $selectedMembershipId = $_GET['selected'];
-    $selectedMembership = \App\Models\Membership::firstWhere('id', 'LIKE', $selectedMembershipId . '%');
+    $selectedMembership = \App\Models\Membership::find($selectedMembershipId);
     if ($selectedMembership) {
         $page->name = "Gift $selectedMembership->name";
         $page->subtitle = $selectedMembership->price;
+        $page->image = $selectedMembership->image;
     }
 }
 @endphp
@@ -16,8 +17,9 @@ if (isset($_GET['selected'])) {
 
 @section('content')
     <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">
-
-        @if ($page->mainImage)
+        @if ($page->image)
+            <img src="{{ $page->image }}" class="h-full w-full object-cover">
+        @elseif ($page->mainImage)
             {{ $page->mainImage->img('square')->attributes(['class' => 'h-full w-full object-cover']) }}
         @endif
     </div>
@@ -27,7 +29,7 @@ if (isset($_GET['selected'])) {
         <div class="bg-sand-light pt-6 pb-12 lg:h-[66.6vh] flex flex-col">
             <div class="container">
                 <a class="type-xs-mono relative z-50 border-transparent mb-4 inline-block uppercase border-2 pl-1 pr-4 py-2 rounded hover:border-sand"
-                    href="{{ \App\Models\Page::getTemplateUrl('shop-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
+                    href="{{ \App\Models\Page::getTemplateUrl('memberships-page') }}">@svg('chevron-right', ' align-top h-4 w-4 inline-block transform rotate-180 origin-center')
                     Back </a>
             </div>
             <div class="container my-auto max-w-2xl ml-0">
@@ -42,14 +44,14 @@ if (isset($_GET['selected'])) {
         <div class="container pt-6 pb-24 min-h-screen">
             @if (isset($selectedMembership))
                 <iframe
-                    src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/GiftVouchers.aspx?resize=true&MembershipId={{ $_GET['selected'] }}"
+                    src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/GiftVouchers.aspx?resize=true&MembershipId={{ filter_var($_GET['selected'], FILTER_SANITIZE_NUMBER_INT) }}"
                     class="min-h-screen w-full xl:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
             @else
-                <h3 class="type-md mb-6">Choose a membership</h3>
-                @foreach (\App\Models\Membership::all() as $membership)
+                <h3 class="type-medium mb-6">Choose a membership</h3>
+                @foreach (\App\Models\Membership::where('price', '!=', 0)->get() as $membership)
                     <a href="?selected={{ $membership->id }}" class="block bg-sand-light rounded p-4 mb-4">
                         <h3 class="type-regular">{{ $membership->name }}</h3>
-                        <p class="type-regular">{{ $membership->price }}</p>
+                        <p class="type-regular !font-normal">{{ $membership->price }}</p>
                     </a>
                 @endforeach
             @endif
