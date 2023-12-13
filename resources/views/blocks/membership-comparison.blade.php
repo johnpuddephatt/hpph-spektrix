@@ -37,7 +37,7 @@
                         data-submit-membership>Add to basket</button>
                     @auth
                         <a href="{{ \App\Models\Page::getTemplateUrl('gift-membership-page') . '?selected=' . $membership->id }}"
-                            class="type-regular block w-full bg-yellow-dark text-center py-6 text-black hover:bg-opacity-90 transition">Gift
+                            class="type-regular block w-full border-yellow-dark border-2 text-yellow-dark text-center py-6 mt-1 hover:bg-opacity-90 transition">Gift
                             this membership</a>
                     @endauth
 

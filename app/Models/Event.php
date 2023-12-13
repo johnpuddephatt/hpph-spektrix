@@ -285,8 +285,8 @@ class Event extends Model implements HasMedia, CachableAttributes
                         ]),
                         "ratio" => isset($trailerEmbed->data()["height"])
                             ? ($trailerEmbed->data()["height"] /
-                                    $trailerEmbed->data()["width"]) *
-                                100
+                                $trailerEmbed->data()["width"]) *
+                            100
                             : 56.25,
                     ];
                 } else {
