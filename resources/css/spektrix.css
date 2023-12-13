@@ -134,7 +134,8 @@ select {
     max-width: 31rem;
 }
 
-.From .left {
+.From .left,
+.Container.Message .left {
     @apply block;
 }
 
