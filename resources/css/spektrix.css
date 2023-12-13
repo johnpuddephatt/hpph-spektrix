@@ -95,6 +95,7 @@ label {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="email"],
 input[type="tel"],
 input[type="password"],
@@ -405,6 +406,10 @@ dd.Footer {
 .spx-input-dropdown__checkout--new-address {
     display: block;
     width: 100%;
+}
+
+.Container {
+    @apply my-4;
 }
 
 .spx-input-text__checkout--donation {
