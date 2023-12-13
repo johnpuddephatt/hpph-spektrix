@@ -40,9 +40,19 @@ if (isset($_GET['selected'])) {
         </div>
 
         <div class="container pt-6 pb-24 min-h-screen">
-            <iframe
-                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/GiftVouchers.aspx?resize=true{{ isset($selectedMembership) ? '&MembershipId=' . $_GET['selected'] : '' }}"
-                class="min-h-screen w-full xl:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
+            @if (isset($selectedMembership))
+                <iframe
+                    src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/GiftVouchers.aspx?resize=true&MembershipId={{ $_GET['selected'] }}"
+                    class="min-h-screen w-full xl:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
+            @else
+                <h3 class="type-md mb-6">Choose a membership</h3>
+                @foreach (\App\Models\Membership::all() as $membership)
+                    <a href="?selected={{ $membership->id }}" class="block bg-sand-light rounded p-4 mb-4">
+                        <h3 class="type-regular">{{ $membership->name }}</h3>
+                        <p class="type-regular">{{ $membership->price }}</p>
+                    </a>
+                @endforeach
+            @endif
         </div>
 
     </div>
