@@ -16,9 +16,9 @@
         <div class="relative aspect-video flex flex-col">
             <div class="w-full relative flex-1 rounded overflow-hidden">
                 {!! $instance->event->featuredImage->img('wide')->attributes([
-                        'loading' => 'lazy',
-                        'class' => 'group-hover:scale-105 transition duration-500 block w-full absolute max-w-none inset-0',
-                    ]) !!}
+                    'loading' => 'lazy',
+                    'class' => 'group-hover:scale-105 transition duration-500 block w-full absolute max-w-none inset-0',
+                ]) !!}
             </div>
 
             <x-accessibilities class="absolute top-2 right-1.5" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description"
@@ -48,6 +48,9 @@
                     <h3 class="type-regular">{{ $instance->event->name }}
                         <x-certificate :dark="true" :certificate="$instance->event->certificate_age_guidance" />
                     </h3>
+                    @if ($instance->event->subtitle)
+                        <p class="pt-1 leading-none">{{ $instance->event->subtitle }}</p>
+                    @endif
 
                     <x-special-event-badge class="mt-2">{{ $instance->special_event }}</x-special-event-badge>
 
