@@ -421,7 +421,8 @@ dd.Footer {
 .CheckoutLink,
 .spx-button-primary,
 .spx-button-secondary,
-.SaveDetailsButton {
+.SaveDetailsButton,
+#ctl00_ContentPlaceHolder_LoginButton {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
