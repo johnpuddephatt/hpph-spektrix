@@ -31,7 +31,7 @@
 
         <div class="container pt-6 pb-24 min-h-screen">
             <iframe
-                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/GiftVouchers.aspx?resize=true"
+                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/GiftVouchers.aspx?resize=true{{ isset($_GET['selected']) ? '&MembershipId=' . $_GET['selected'] : '' }}"
                 class="min-h-screen w-full xl:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
         </div>
 
