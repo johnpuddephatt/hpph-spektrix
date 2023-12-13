@@ -18,7 +18,7 @@ if (isset($_GET['selected'])) {
 @section('content')
     <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">
         @if ($page->image)
-            <img src="{{ $page->image }}" class="h-full w-full object-cover">
+            <img src="{{ Storage::url($page->image) }}" class="h-full w-full object-cover">
         @elseif ($page->mainImage)
             {{ $page->mainImage->img('square')->attributes(['class' => 'h-full w-full object-cover']) }}
         @endif
