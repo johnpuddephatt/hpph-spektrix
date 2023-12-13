@@ -4,7 +4,7 @@ if (isset($_GET['selected'])) {
     $selectedMembership = \App\Models\Membership::firstWhere('id', 'LIKE', $selectedMembershipId . '%');
     if ($selectedMembership) {
         $page->name = "Gift $selectedMembership->name";
-        $page->subtitle = "Give the gift of $selectedMembership->name";
+        $page->subtitle = $selectedMembership->price;
     }
 }
 @endphp
@@ -41,7 +41,7 @@ if (isset($_GET['selected'])) {
 
         <div class="container pt-6 pb-24 min-h-screen">
             <iframe
-                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/GiftVouchers.aspx?resize=true{{ $selectedMembership ? '&MembershipId=' . $_GET['selected'] : '' }}"
+                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/GiftVouchers.aspx?resize=true{{ isset($selectedMembership) ? '&MembershipId=' . $_GET['selected'] : '' }}"
                 class="min-h-screen w-full xl:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
         </div>
 
