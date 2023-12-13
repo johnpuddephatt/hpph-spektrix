@@ -94,6 +94,14 @@ label {
     @apply block;
 }
 
+.SendTo label {
+    @apply inline-block;
+}
+
+.SendTo input[type="radio"] {
+    @apply ml-2 mr-1;
+}
+
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -101,8 +109,33 @@ input[type="tel"],
 input[type="password"],
 input[type="search"],
 input[type="url"],
+.Input_Text,
 select {
     @apply max-w-lg w-full rounded bg-sand-light p-4 my-2;
+}
+
+#ctl00_ContentPlaceHolder_DateToSendDatePicker_DayDropDown {
+    @apply w-24;
+}
+
+#ctl00_ContentPlaceHolder_DateToSendDatePicker_MonthDropDown {
+    @apply w-40;
+}
+
+#ctl00_ContentPlaceHolder_DateToSendDatePicker_YearBox {
+    @apply w-24 !important;
+}
+
+#ctl00_ContentPlaceHolder_VoucherExpiryText {
+    @apply block;
+}
+
+#ctl00_ContentPlaceHolder_AmountMoneyTextBox {
+    max-width: 31rem;
+}
+
+.From .left {
+    @apply block;
 }
 
 .spx-section-container {
@@ -152,11 +185,11 @@ select {
     @apply block;
 }
 
-.Message {
+.Message:not(.Container) {
     @apply bg-sand-light py-2 px-4 rounded mt-4 mb-4;
 }
 
-.Message a {
+.Message:not(.Container) a {
     @apply underline font-semibold;
 }
 

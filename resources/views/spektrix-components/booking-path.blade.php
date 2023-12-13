@@ -156,7 +156,7 @@
                     </div>
                     <div class="max-w-lg lg:max-w-xs lg:w-1/3 pt-[6.9rem] lg:mr-4">
                         <h3 class="font-bold mb-3">{{ $settings['members_basket_heading'] ?? 'Members' }}</h3>
-                        <div class="type-xs border-t last:border-b border-gray-light py-4">
+                        <div class="type-xs prose border-t last:border-b border-gray-light py-4">
                             {!! $settings['members_basket_text'] ??
                                 'Please select a full-price ticket, any discounts will be applied at checkout after you have signed into your account' !!}
                         </div>
