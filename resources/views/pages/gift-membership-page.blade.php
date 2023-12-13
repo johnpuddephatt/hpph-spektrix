@@ -5,7 +5,6 @@ if (isset($_GET['selected'])) {
     if ($selectedMembership) {
         $page->name = "Gift $selectedMembership->name";
         $page->subtitle = $selectedMembership->price;
-        $page->image = $selectedMembership->image;
     }
 }
 @endphp
@@ -17,8 +16,10 @@ if (isset($_GET['selected'])) {
 
 @section('content')
     <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">
-        @if ($page->image)
-            <img src="{{ Storage::url($page->image) }}" class="h-full w-full object-cover">
+        @if ($selectedMembership->image)
+            <img src="{{ Storage::url($selectedMembership->image) }}" class="h-full w-full object-contain object-center">
+            <img src="{{ Storage::url($selectedMembership->logo) }}"
+                class="w-40 h-auto absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
         @elseif ($page->mainImage)
             {{ $page->mainImage->img('square')->attributes(['class' => 'h-full w-full object-cover']) }}
         @endif
