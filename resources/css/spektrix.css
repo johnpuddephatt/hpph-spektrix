@@ -143,6 +143,9 @@ select {
 }
 
 .Account_Link {
+    @apply mt-8;
+}
+.Account_Link + .Account_Link {
     @apply mt-2;
 }
 
