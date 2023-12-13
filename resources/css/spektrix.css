@@ -134,6 +134,26 @@ select {
     max-width: 31rem;
 }
 
+#ctl00_ContentPlaceHolder_AddGiftVouchersBlurb h1 {
+    @apply hidden;
+}
+
+.LoginLogout .LoginHeading {
+    @apply hidden;
+}
+
+.Account_Link {
+    @apply mt-2;
+}
+
+.Account_Link a {
+    @apply underline font-bold;
+}
+
+.RedeemGiftLink a {
+    @apply underline font-bold;
+}
+
 .From .left,
 .Container.Message .left {
     @apply block;
