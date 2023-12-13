@@ -553,6 +553,11 @@ dd.Footer {
     @apply mt-4;
 }
 
+.AddGiftVoucher .Container.GiftType,
+.AddGiftVoucher .Container.Amount {
+    @apply hidden;
+}
+
 #ctl00_ContentPlaceHolder_AccountDetailsEditor_DateOfBirth_DayDropDown,
 #ctl00_ContentPlaceHolder_AccountDetailsEditor_DateOfBirth_MonthDropDown {
     @apply w-1/4;
