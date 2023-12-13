@@ -91,7 +91,6 @@
 
                     <div class="prose container mt-12 mb-24">
                         <x-editorjs :content="$event->long_description" />
-
                     </div>
 
                     <div class="container">
