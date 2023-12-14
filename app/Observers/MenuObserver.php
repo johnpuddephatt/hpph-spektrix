@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use Illuminate\Support\Facades\Cache;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class MenuObserver
 {
@@ -12,6 +13,7 @@ class MenuObserver
     public function forgetMenus()
     {
         Cache::flush();
+        ResponseCache::clear();
     }
 
     /**

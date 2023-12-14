@@ -79,36 +79,35 @@ class JournalPostLayout extends Layout implements CachableAttributes
 
     public function getPostAttribute()
     {
-        return $this->remember("posts", 3600, function () {
-            if ($this->display == "featured") {
-                $post = \App\Models\Post::where("featured", true)
-                    ->latest()
-                    ->first();
-            }
 
-            if ($this->display == "specific") {
-                $post = \App\Models\Post::find($this->post_id);
-            }
+        if ($this->display == "featured") {
+            $post = \App\Models\Post::where("featured", true)
+                ->latest()
+                ->first();
+        }
 
-            if ($this->display == "related" && $this->model->posts) {
-                $post = $this->model->posts->first();
-            }
+        if ($this->display == "specific") {
+            $post = \App\Models\Post::find($this->post_id);
+        }
 
-            if ($this->display == "tagged") {
-                $post = \App\Models\Post::latest()
-                    ->withAnyTags($this->tags_to_include)
-                    ->with("featuredImage")
-                    ->first();
-            }
+        if ($this->display == "related" && $this->model->posts) {
+            $post = $this->model->posts->first();
+        }
 
-            if (!isset($post) || !$post || !isset($post->id)) {
-                return null;
-            }
+        if ($this->display == "tagged") {
+            $post = \App\Models\Post::latest()
+                ->withAnyTags($this->tags_to_include)
+                ->with("featuredImage")
+                ->first();
+        }
 
-            if (!in_array($post->id, $GLOBALS["omit"] ?? [])) {
-                $GLOBALS["omit"][] = $post->id;
-            }
-            return $post;
-        });
+        if (!isset($post) || !$post || !isset($post->id)) {
+            return null;
+        }
+
+        if (!in_array($post->id, $GLOBALS["omit"] ?? [])) {
+            $GLOBALS["omit"][] = $post->id;
+        }
+        return $post;
     }
 }

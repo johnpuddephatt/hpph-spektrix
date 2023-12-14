@@ -3,16 +3,23 @@
 namespace App\Observers;
 
 use Illuminate\Support\Facades\Cache;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class SettingsObserver
 {
+
+    public function clearCache()
+    {
+        Cache::forget("settings");
+        ResponseCache::clear();
+    }
     /**
      * Handle the MenuItem "created" event.
      * @return void
      */
     public function created()
     {
-        Cache::forget("settings");
+        $this->clearCache();
     }
 
     /**
@@ -21,8 +28,7 @@ class SettingsObserver
      */
     public function updated()
     {
-        logger("wow");
-        Cache::forget("settings");
+        $this->clearCache();
     }
 
     /**
@@ -31,7 +37,7 @@ class SettingsObserver
      */
     public function deleted()
     {
-        Cache::forget("settings");
+        $this->clearCache();
     }
 
     /**
@@ -40,7 +46,7 @@ class SettingsObserver
      */
     public function restored()
     {
-        Cache::forget("settings");
+        $this->clearCache();
     }
 
     /**
@@ -49,7 +55,7 @@ class SettingsObserver
      */
     public function forceDeleted()
     {
-        Cache::forget("settings");
+        $this->clearCache();
     }
 
     /**
@@ -58,6 +64,6 @@ class SettingsObserver
      */
     public function saving()
     {
-        Cache::forget("settings");
+        $this->clearCache();
     }
 }

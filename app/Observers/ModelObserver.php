@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use Illuminate\Support\Facades\Cache;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class ModelObserver
 {
@@ -10,9 +11,15 @@ class ModelObserver
      * Handle the Model "created" event.
      * @return void
      */
-    public function created()
+
+    public function clearCache()
     {
         Cache::flush();
+        ResponseCache::clear();
+    }
+    public function created()
+    {
+        $this->clearCache();
     }
 
     /**
@@ -21,7 +28,7 @@ class ModelObserver
      */
     public function updated()
     {
-        Cache::flush();
+        $this->clearCache();
     }
 
     /**
@@ -30,7 +37,7 @@ class ModelObserver
      */
     public function deleted()
     {
-        Cache::flush();
+        $this->clearCache();
     }
 
     /**
@@ -39,7 +46,7 @@ class ModelObserver
      */
     public function restored()
     {
-        Cache::flush();
+        $this->clearCache();
     }
 
     /**
@@ -48,7 +55,7 @@ class ModelObserver
      */
     public function forceDeleted()
     {
-        Cache::flush();
+        $this->clearCache();
     }
 
     /**
@@ -57,6 +64,6 @@ class ModelObserver
      */
     public function saving()
     {
-        Cache::flush();
+        $this->clearCache();
     }
 }

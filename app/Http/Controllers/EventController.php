@@ -48,20 +48,17 @@ class EventController extends Controller
     public function show($event)
     {
         return view("events.show", [
-            "event" => Cache::remember("event_" . $event, 60, function () use (
-                $event
-            ) {
-                return Event::where("slug", $event)
-                    ->firstOrFail()
-                    ->load(
-                        "featuredVideo",
-                        "featuredImage",
-                        "gallery",
-                        "latest_post.tags",
-                        "latest_post.featuredImage"
-                    )
-                    ->append("strand");
-            }),
+            'event' => Event::where("slug", $event)
+                ->firstOrFail()
+                ->load(
+                    "featuredVideo",
+                    "featuredImage",
+                    "gallery",
+                    "latest_post.tags",
+                    "latest_post.featuredImage"
+                )
+                ->append("strand")
+
         ]);
     }
 
