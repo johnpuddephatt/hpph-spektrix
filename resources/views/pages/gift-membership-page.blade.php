@@ -16,7 +16,7 @@ if (isset($_GET['selected'])) {
 
 @section('content')
     <div class="fixed bg-black -z-10 inset-0 h-[75vh] lg:h-screen lg:w-1/2">
-        @if ($selectedMembership->image)
+        @if (isset($selectedMembership) && $selectedMembership->image)
             <img src="{{ Storage::url($selectedMembership->image) }}" class="h-full w-full object-contain object-center">
             <img src="{{ Storage::url($selectedMembership->logo) }}"
                 class="w-40 h-auto absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" />
