@@ -127,6 +127,7 @@
         <x-strand.card :strand="$event->strand" />
         <x-season.card :season="$event->season" />
 
+        {{ $event->coming_soon }}
         @if ($event->coming_soon)
             <div class="w-full sticky bottom-0 bg-yellow block py-4">
 
