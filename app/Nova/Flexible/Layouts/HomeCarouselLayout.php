@@ -43,7 +43,7 @@ class HomeCarouselLayout extends Layout implements HasMedia
                     "People",
                     "Redevelopment",
                 ]),
-            ])->conversionOnForm('landscape'),
+            ])->conversionOnForm('square'),
             Text::make("Values heading", "heading"),
             Textarea::make("Values statement", "statement"),
         ];
