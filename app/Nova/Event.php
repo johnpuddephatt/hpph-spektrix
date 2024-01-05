@@ -127,7 +127,7 @@ class Event extends Resource
                     ->help("Maximum file size is 15MB")
                     // File size is set in config/media-library.php
                     ->singleMediaRules("max:15000"),
-                Images::make("Main image", "main")->rules([
+                Images::make("Image", "main")->rules([
                     Rule::requiredIf(fn () => $request->published),
                 ]),
                 Images::make("Image gallery", "gallery")
