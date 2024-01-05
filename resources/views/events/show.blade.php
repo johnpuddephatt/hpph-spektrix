@@ -127,17 +127,32 @@
         <x-strand.card :strand="$event->strand" />
         <x-season.card :season="$event->season" />
 
-        <button class="w-full sticky bottom-0 bg-yellow block py-4"
-            @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">
-            <div class="container flex flex-row items-center">
-                <div class="w-1/2 hidden lg:block">
-                    @svg('plus', 'h-6 w-6')
+        @if ($event->coming_soon)
+            <div class="w-full sticky bottom-0 bg-yellow block py-4">
+
+                <div class="container flex flex-row items-center">
+                    <div class="w-1/2 hidden lg:block">
+                        @svg('plus', 'h-6 w-6')
+                    </div>
+                    <div class="type-regular lg:px-4">
+                        Coming soon: {{ $event->coming_soon }}
+
+                    </div>
                 </div>
-                <div class="type-regular lg:px-4">
-                    {!! $settings['showtimes_link'] ?? 'See showtimes &amp; book' !!}
-                </div> @svg('arrow-right', 'ml-auto h-8 w-8 p-2 text-yellow bg-black rounded-full')
             </div>
-        </button>
+        @else
+            <button class="w-full sticky bottom-0 bg-yellow block py-4"
+                @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">
+                <div class="container flex flex-row items-center">
+                    <div class="w-1/2 hidden lg:block">
+                        @svg('plus', 'h-6 w-6')
+                    </div>
+                    <div class="type-regular lg:px-4">
+                        {!! $settings['showtimes_link'] ?? 'See showtimes &amp; book' !!}
+                    </div> @svg('arrow-right', 'ml-auto h-8 w-8 p-2 text-yellow bg-black rounded-full')
+                </div>
+            </button>
+        @endif
 
         <x-gallery :images="$event->gallery" />
 
