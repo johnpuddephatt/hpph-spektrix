@@ -15,20 +15,21 @@
     </figure>
 
     @if ($layout->event)
+        @php($event = $layout->event)
         <div class="hidden">
-            @dump($layout->event)
+            @dump($event)
         </div>
 
         <div class="inset-0 absolute duration-[2000ms] opacity-0 delay-[3500ms]"
             x-bind:class="{ '!opacity-100': loaded }" x-data="{ loaded: false }" x-init="loaded = true">
-            @if ($layout->event->featuredVideo)
-                {!! $layout->event->featuredVideo->img('thumb', [
-                    'id' => $layout->event->id,
+            @if ($event->featuredVideo)
+                {!! $event->featuredVideo->img('thumb', [
+                    'id' => $event->id,
                     'class' => '-z-10 w-full absolute opacity-70 h-full inset-0 object-cover',
                 ]) !!}
 
-                @if ($layout->event->featuredVideo->video_conversions)
-                    @php($conversions = json_decode($layout->event->featuredVideo->video_conversions))
+                @if ($event->featuredVideo->video_conversions)
+                    @php($conversions = json_decode($event->featuredVideo->video_conversions))
                     <div class="absolute inset-0 -z-10 h-full w-full bg-black opacity-0">
                         <video
                             onplay="(function(e){e.parentNode.classList.remove('opacity-0');e.parentNode.classList.add('opacity-100'); setTimeout(()=>{ e.currentTime = 0 },3500)})(this)"
@@ -41,17 +42,17 @@
                     </div>
                 @endif
             @else
-                {!! $layout->event->featuredImage->img('wide')->attributes(['class' => 'opacity-70 absolute inset-0 h-full w-full object-cover object-center lg:-z-10']) !!}
+                {!! $event->featuredImage->img('wide')->attributes(['class' => 'opacity-70 absolute inset-0 h-full w-full object-cover object-center lg:-z-10']) !!}
             @endif
 
             <div
                 class="{{ $settings['alert_enabled'] && $settings['alert_display_until'] > now() ? 'bottom-16' : 'bottom-4' }} transform text-white h-auto justify-start flex text-left items-end flex-row gap-8 lg:gap-12 container absolute lg:bottom-8 z-50">
 
-                <a class="flex gap-2 flex-row items-center" href="{{ $layout->event->url }}">
+                <a class="flex gap-2 flex-row items-center" href="{{ $event->url }}">
                     @svg('arrow-right', 'inline-block rounded-full text-white bg-black rotate p-3 h-10 w-10')
 
-                    <h3 class="type-regular lg:max-w-xl max-w-xs">{{ $layout->event->name }}
-                        <x-certificate :certificate="$layout->event->certificate_age_guidance" :dark="false" />
+                    <h3 class="type-regular lg:max-w-xl max-w-xs">{{ $event->name }}
+                        <x-certificate :certificate="$event->certificate_age_guidance" :dark="false" />
                     </h3>
                 </a>
 
