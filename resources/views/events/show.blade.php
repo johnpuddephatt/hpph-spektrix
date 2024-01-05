@@ -128,7 +128,7 @@
         <x-season.card :season="$event->season" />
 
         @if ($event->coming_soon)
-            <div class="w-full sticky bottom-0 bg-yellow block py-4">
+            <div class="w-full sticky bottom-0 bg-yellow block py-5">
 
                 <div class="container flex flex-row items-center">
                     <div class="w-1/2 hidden lg:block">
