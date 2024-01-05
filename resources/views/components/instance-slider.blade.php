@@ -43,6 +43,14 @@
                     x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
                     :color="$color" :instance="$instance" />
             @endforeach
+
+            @foreach ($coming_soon as $instance)
+                <x-instance-card @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
+                    x-data="{ shown: true }" class="hover:opacity-60 !transition !duration-500" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
+                    x-intersect:enter.full.margin.500.0="shown = true"
+                    x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
+                    :color="$color" :instance="$instance" />
+            @endforeach
         </div>
     </div>
 

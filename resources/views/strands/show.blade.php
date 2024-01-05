@@ -54,11 +54,12 @@
                     {{ $strand->name }}
                 </h2>
 
-                <x-instance-slider :instances="$strand->instances" :layout="match (count($strand->instances)) {
+                <x-instance-slider :instances="$strand->instances" :coming_soon="$coming_soon" :layout="match (count($strand->instances)) {
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',
-                }" :color="$strand->color" :show_strand="false" />
+                }" :color="$strand->color"
+                    :show_strand="false" />
             </div>
         </div>
     @endif
