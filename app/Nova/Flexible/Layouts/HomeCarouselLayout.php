@@ -43,7 +43,7 @@ class HomeCarouselLayout extends Layout implements HasMedia
                     "People",
                     "Redevelopment",
                 ]),
-            ]),
+            ])->conversionOnForm('landscape'),
             Text::make("Values heading", "heading"),
             Textarea::make("Values statement", "statement"),
         ];
@@ -57,15 +57,15 @@ class HomeCarouselLayout extends Layout implements HasMedia
 
         return count($shuffled_images)
             ? $shuffled_images
-                ->map(function ($values) {
-                    return $values->take(2);
-                })
-                ->flatten()
+            ->map(function ($values) {
+                return $values->take(2);
+            })
+            ->flatten()
 
-                ->filter(function ($item) {
-                    return $item->hasGeneratedConversion("square");
-                })
-                ->shuffle()
+            ->filter(function ($item) {
+                return $item->hasGeneratedConversion("square");
+            })
+            ->shuffle()
             : null;
     }
 }

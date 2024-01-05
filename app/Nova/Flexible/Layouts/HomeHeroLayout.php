@@ -58,25 +58,27 @@ class HomeHeroLayout extends Layout implements CachableAttributes
     }
     public function getEventAttribute()
     {
+        if (
+            !\App\Models\Event::shownInProgramme()->count()
+        ) {
+            return null;
+        }
 
         if (
-            \App\Models\Event::whereIn(
+            \App\Models\Event::shownInProgramme()->whereIn(
                 "id",
                 $this->featured_events ?? []
             )->count()
         ) {
             return \App\Models\Event::shownInProgramme()
                 ->whereIn("id", $this->featured_events)
-                ->inRandomOrder()
                 ->get()
-                ->first();
+                ->random();
         } else {
             return \App\Models\Event::shownInProgramme()
                 ->orderBy("first_instance_date_time", "DESC")
-                ->limit(3)
-                ->inRandomOrder()
                 ->get()
-                ->first();
+                ->random();
         }
     }
 }
