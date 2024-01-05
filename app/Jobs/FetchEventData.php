@@ -13,6 +13,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class FetchEventData implements ShouldQueue
 {
@@ -52,6 +53,7 @@ class FetchEventData implements ShouldQueue
         $this->updateOrCreateInstances($instances);
         Schema::enableForeignKeyConstraints();
 
+        ResponseCache::clear();
         Cache::flush();
 
         Log::channel("spektrix")->info(
@@ -70,8 +72,8 @@ class FetchEventData implements ShouldQueue
                 nova_get_setting("spektrix_client_name") .
                 "/api/v3/events?instanceStart_from=" .
                 \Carbon\Carbon::now()
-                    ->subDay()
-                    ->format("Y-m-d") .
+                ->subDay()
+                ->format("Y-m-d") .
                 "&attribute_Website=HPPH"
         );
     }
@@ -87,8 +89,8 @@ class FetchEventData implements ShouldQueue
                         nova_get_setting("spektrix_client_name") .
                         "/api/v3/events/{$event->id}/instances?start_from=" .
                         \Carbon\Carbon::now()
-                            ->subDay()
-                            ->format("Y-m-d")
+                        ->subDay()
+                        ->format("Y-m-d")
                 )
             );
         }
@@ -112,29 +114,29 @@ class FetchEventData implements ShouldQueue
                     "subtitle" => $event->attribute_Subtitle ?? null,
                     "instance_dates" => $event->instanceDates ?? null,
                     "first_instance_date_time" =>
-                        $event->firstInstanceDateTime ?? null,
+                    $event->firstInstanceDateTime ?? null,
                     "last_instance_date_time" =>
-                        $event->lastInstanceDateTime ?? null,
+                    $event->lastInstanceDateTime ?? null,
                     "alternative_content" =>
-                        $event->attribute_AlternativeContent ?? false,
+                    $event->attribute_AlternativeContent ?? false,
                     "archive_film" => $event->attribute_ArchiveFilm ?? false,
                     "audio_description" =>
-                        $event->attribute_AudioDescription ?? false,
+                    $event->attribute_AudioDescription ?? false,
                     "mubigo" => $event->attribute_MUBIGO ?? false,
                     "non_specialist_film" =>
-                        $event->attribute_NonSpecialistFilm ?? false,
+                    $event->attribute_NonSpecialistFilm ?? false,
                     "country_of_origin" =>
-                        $event->attribute_CountryOfOrigin ?? null,
+                    $event->attribute_CountryOfOrigin ?? null,
                     "director" => $event->attribute_Director ?? null,
                     "distributor" => $event->attribute_Distributor ?? null,
                     "f_rating" => $event->attribute_FRating ?? null,
                     "language" => $event->attribute_Language ?? null,
                     "original_language_title" =>
-                        $event->attribute_OriginalLanguageTitle ?? null,
+                    $event->attribute_OriginalLanguageTitle ?? null,
                     "strobe_light_warning" =>
-                        $event->attribute_StrobeLightWarning ?? null,
+                    $event->attribute_StrobeLightWarning ?? null,
                     "year_of_production" =>
-                        $event->attribute_YearOfProduction ?? null,
+                    $event->attribute_YearOfProduction ?? null,
                     "featuring_stars" => implode(
                         ",",
                         array_filter([
@@ -167,11 +169,12 @@ class FetchEventData implements ShouldQueue
                         ])
                     ),
                     "members_offer_available" =>
-                        $event->attribute_MembersOfferAvailable ?? false,
+                    $event->attribute_MembersOfferAvailable ?? false,
                     "certificate_age_guidance" =>
-                        $event->attribute_CertificateAgeGuidance ?? null,
+                    $event->attribute_CertificateAgeGuidance ?? null,
                     "live_or_film" => $event->attribute_LiveOrFilm ?? null,
                     // "website" => $event->attribute_Website ?? null,
+                    "coming_soon" => $event->isOnSale ? null : ($event->attribute_ComingSoon ?? null),
                 ]
             );
             // });
@@ -206,10 +209,8 @@ class FetchEventData implements ShouldQueue
     {
         \App\Models\Strand::query()->update(["enabled" => false]);
 
-        foreach (
-            array_unique(Arr::pluck($instances, "attribute_Strand"))
-            as $strand
-        ) {
+        foreach (array_unique(Arr::pluck($instances, "attribute_Strand"))
+            as $strand) {
             if ($strand) {
                 \App\Models\Strand::withoutGlobalScopes()->updateOrCreate(
                     [
@@ -228,10 +229,8 @@ class FetchEventData implements ShouldQueue
     {
         \App\Models\Season::query()->update(["enabled" => false]);
 
-        foreach (
-            array_unique(Arr::pluck($instances, "attribute_Season"))
-            as $season
-        ) {
+        foreach (array_unique(Arr::pluck($instances, "attribute_Season"))
+            as $season) {
             if ($season) {
                 \App\Models\Season::withoutGlobalScopes()->updateOrCreate(
                     [
@@ -260,20 +259,20 @@ class FetchEventData implements ShouldQueue
                     "venue" => $instance->venue ?? null,
                     "start" => $instance->start ?? null,
                     "start_selling_at_web" =>
-                        $instance->startSellingAtWeb ?? null,
+                    $instance->startSellingAtWeb ?? null,
                     "stop_selling_at_web" =>
-                        $instance->stopSellingAtWeb ?? null,
+                    $instance->stopSellingAtWeb ?? null,
                     "cancelled" => $instance->cancelled ?? null,
 
                     "audio_described" =>
-                        $instance->attribute_AudioDescribed ?? null,
+                    $instance->attribute_AudioDescribed ?? null,
                     "captioned" => $instance->attribute_Captioned ?? null,
                     "relaxed" =>
-                        $instance->attribute_RelaxedPerformance ?? null,
+                    $instance->attribute_RelaxedPerformance ?? null,
                     "signed_bsl" => $instance->attribute_SignedBSL ?? null,
 
                     "special_event" =>
-                        $instance->attribute_CinemaSpecialEvent ?? null,
+                    $instance->attribute_CinemaSpecialEvent ?? null,
 
                     "analogue" => $instance->attribute_Analogue ?? null,
                     "door_time" => $instance->attribute_DoorTime ?? null,

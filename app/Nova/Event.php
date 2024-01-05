@@ -187,6 +187,7 @@ class Event extends Resource
                 // Boolean::make("Archive film")->onlyOnDetail(),
                 Boolean::make("Audio description")->onlyOnDetail(),
                 Boolean::make("MUBIGO")->onlyOnDetail(),
+                Text::make("Coming soon")->onlyOnDetail(),
                 // Boolean::make("Non-specialist film")->onlyOnDetail(),
                 Text::make("Country of origin")->onlyOnDetail(),
                 Text::make("Director")->onlyOnDetail(),

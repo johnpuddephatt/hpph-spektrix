@@ -66,7 +66,7 @@ class Event extends Model implements HasMedia, CachableAttributes
                 "last_instance_date_time",
                 ">",
                 Carbon::now()->subMinutes(60)
-            );
+            )->orWhereNotNull('coming_soon');
         });
     }
 
@@ -105,6 +105,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "members_offer_available",
         "certificate_age_guidance",
         "trailer",
+        "coming_soon"
     ];
 
     protected $appends = [
@@ -339,7 +340,9 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function getDateRangeAttribute()
     {
         return $this->remember("dateRange", 3600, function () {
-            if ($this->instances->count() == 0) {
+            if ($this->coming_soon) {
+                return 'Coming soon: ' . $this->coming_soon;
+            } elseif ($this->instances->count() == 0) {
                 if (!$this->pastAndFutureInstances->count()) {
                     return nova_get_setting("screenings_coming_soon") ??
                         "Coming soon";
