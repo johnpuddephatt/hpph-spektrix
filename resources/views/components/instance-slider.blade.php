@@ -1,4 +1,4 @@
-@props(['instances' => [], 'layout' => 'default', 'show_strand' => true, 'color' => null])
+@props(['instances' => [], 'coming_soon' => [], 'layout' => 'default', 'show_strand' => true, 'color' => null])
 
 <div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true }" x-init="swiper = new Swiper($refs.container, {
     loop: false,
