@@ -221,6 +221,11 @@ class Event extends Model implements HasMedia, CachableAttributes
         ]);
     }
 
+    public function allInstances(): HasMany
+    {
+        return $this->hasMany(Instance::class)->withoutGlobalScopes();
+    }
+
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -312,8 +317,7 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function getStrandAttribute($value)
     {
         return $this->remember("strand", 3600, function () {
-            $strand = $this->instances
-
+            $strand = $this->allInstances
                 ->pluck("strand")
                 ->unique()
                 ->flatten()
@@ -327,8 +331,7 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function getSeasonAttribute($value)
     {
         return $this->remember("season", 3600, function () {
-            $season = $this->instances
-
+            $season = $this->allInstances
                 ->pluck("season")
                 ->unique()
                 ->flatten()
