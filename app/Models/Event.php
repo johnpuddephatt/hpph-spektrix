@@ -313,7 +313,7 @@ class Event extends Model implements HasMedia, CachableAttributes
     {
         return $this->remember("strand", 3600, function () {
             $strand = $this->instances
-                ->withoutGlobalScope('future')
+
                 ->pluck("strand")
                 ->unique()
                 ->flatten()
@@ -328,7 +328,7 @@ class Event extends Model implements HasMedia, CachableAttributes
     {
         return $this->remember("season", 3600, function () {
             $season = $this->instances
-                ->withoutGlobalScope('future')
+
                 ->pluck("season")
                 ->unique()
                 ->flatten()
