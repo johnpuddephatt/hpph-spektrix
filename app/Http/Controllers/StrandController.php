@@ -18,7 +18,7 @@ class StrandController extends Controller
 
         return view("strands.show", [
             "strand" => $strand,
-            "coming_soon" => \App\Models\Instance::withoutGlobalScope('future')->where('strand_name', $strand->name)->get()
+            "coming_soon" => \App\Models\Instance::withoutGlobalScope('future')->whereRelation("event", "coming_soon", true)->where('strand_name', $strand->name)->get()
         ]);
     }
 }
