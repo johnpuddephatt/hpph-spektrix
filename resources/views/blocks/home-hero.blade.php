@@ -16,9 +16,6 @@
 
     @if ($layout->event)
         @php($event = $layout->event)
-        <div class="hidden">
-            @dump($event)
-        </div>
 
         <div class="inset-0 absolute duration-[2000ms] opacity-0 delay-[3500ms]"
             x-bind:class="{ '!opacity-100': loaded }" x-data="{ loaded: false }" x-init="loaded = true">
