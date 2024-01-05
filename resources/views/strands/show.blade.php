@@ -46,7 +46,7 @@
         <div class="type-regular lg:type-medium container max-w-4xl text-center">{{ $strand->description }}</div>
     </div>
 
-    @if ($strand->instances->count())
+    @if ($strand->instances->count() || $coming_soon->count())
         <div class="bg-black text-white">
             <div class="pt-24 pb-16 container">
                 <p class="type-xs-mono text-center container mb-2">What’s on</p>
@@ -54,7 +54,7 @@
                     {{ $strand->name }}
                 </h2>
 
-                <x-instance-slider :instances="$strand->instances" :coming_soon="$coming_soon" :layout="match (count($strand->instances)) {
+                <x-instance-slider :instances="$strand->instances" :coming_soon="$coming_soon" :layout="match (count($strand->instances) + count($coming_soon)) {
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',
