@@ -68,9 +68,11 @@ class HomeHeroLayout extends Layout implements CachableAttributes
                 $this->featured_events ?? []
             )->count()
         ) {
-            return \App\Models\Event::shownInProgramme()->whereIn("id", $this->featured_events)->get()->random();
+            return \App\Models\Event::shownInProgramme()->with("featuredImage", "featuredVideo")->whereIn("id", $this->featured_events)->get()->random();
         } else {
             return \App\Models\Event::shownInProgramme()
+                ->with("featuredImage", "featuredVideo")
+
                 ->orderBy("first_instance_date_time", "DESC")
                 ->limit(3)
                 ->random();
