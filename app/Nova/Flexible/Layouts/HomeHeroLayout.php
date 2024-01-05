@@ -12,9 +12,9 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\File;
 use Outl1ne\MultiselectField\Multiselect;
 
-class HomeHeroLayout extends Layout implements CachableAttributes
+class HomeHeroLayout extends Layout
 {
-    use CachesAttributes;
+    // use CachesAttributes;
 
     /**
      * The layout's unique identifier
