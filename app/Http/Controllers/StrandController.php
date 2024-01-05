@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Strand;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class StrandController extends Controller
 {
@@ -18,7 +19,10 @@ class StrandController extends Controller
 
         return view("strands.show", [
             "strand" => $strand,
-            "coming_soon" => \App\Models\Instance::withoutGlobalScope('future')->whereRelation("event", "coming_soon", true)->where('strand_name', $strand->name)->get()
+            "coming_soon" => \App\Models\Instance::withoutGlobalScope('future')
+                ->whereHas('event', function (Builder $query) {
+                    $query->whereNotNull('coming_soon');
+                })->where('strand_name', $strand->name)->get()
         ]);
     }
 }
