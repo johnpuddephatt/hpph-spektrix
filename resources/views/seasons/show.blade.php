@@ -52,11 +52,12 @@
                     {{ $season->name }}
                 </h2>
 
-                <x-instance-slider :instances="$season->instances" color="#f2d13c" :layout="match (count($season->instances)) {
+                <x-instance-slider :instances="$season->instances" :coming_soon="$coming_soon" color="#f2d13c" :layout="match (count($season->instances)) {
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',
-                }" :show_strand="false" />
+                }"
+                    :show_strand="false" />
             </div>
         </div>
     @endif
