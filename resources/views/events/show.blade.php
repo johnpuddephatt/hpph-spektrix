@@ -135,8 +135,7 @@
                         @svg('plus', 'h-6 w-6')
                     </div>
                     <div class="type-regular lg:px-4">
-                        Coming soon: {{ $event->coming_soon }}
-
+                        Showtimes & tickets available soon
                     </div>
                 </div>
             </div>
