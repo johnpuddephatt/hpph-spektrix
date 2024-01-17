@@ -65,6 +65,7 @@
                                     class="type-small mt-12 mb-3" x-text="instance.start_date"></h3>
                                 <button aria-label="Buy tickets for this screening"
                                     x-on:click="instanceID = instance.short_id"
+                                    :title="`${instance.availability} seats available`"
                                     :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
                                     class="group border-t transition w-full flex flex-row items-center gap-2 lg:gap-4 border-gray-light py-2">
                                     <div class="type-xs-mono !text-base rounded bg-black py-1.5 px-4 text-white"
@@ -77,9 +78,11 @@
                                             x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
                                             class="hidden sm:inline-block text-2xl">&middot;</span>
                                         <x-accessibilities.booking-path />
+
                                     </div>
 
                                     @svg('arrow-right', 'bg-sand-light flex-shrink-0 ml-auto group-hover:bg-yellow rounded-full p-3 h-12 w-12')
+
                                 </button>
                             </div>
                         </template>

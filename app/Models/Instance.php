@@ -6,10 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Http;
+use Astrotomic\CachableAttributes\CachableAttributes;
+use Astrotomic\CachableAttributes\CachesAttributes;
+use Illuminate\Support\Facades\Log;
 
-class Instance extends Model
+class Instance extends Model implements CachableAttributes
 {
     use HasFactory;
+    use CachesAttributes;
 
     public $timestamps = false;
     public $incrementing = false;
@@ -72,7 +78,7 @@ class Instance extends Model
         "relaxed" => "boolean",
     ];
 
-    protected $appends = ["start_date", "start_time", "url", "short_id"];
+    protected $appends = ["start_date", "start_time", "url", "short_id", "availability"];
 
     public function event()
     {
@@ -116,6 +122,28 @@ class Instance extends Model
         return $this->start->format("H:i");
     }
 
+    public function getAvailabilityAttribute()
+    {
+        return $this->remember(
+            "availability",
+            3600,
+            function (): int {
+                try {
+                    $response = Http::timeout(3)->withUrlParameters([
+                        'spektrix_client_name' => nova_get_setting("spektrix_client_name"),
+                        'instance_id' => $this->id,
+                    ])->get(
+                        "https://system.spektrix.com/{spektrix_client_name}/api/v3/instances/{instance_id}/status?includeLockInformation=true"
+                    );
+                    $json = $response->json();
+                    return $json['available'] - array_sum(Arr::pluck($json['lockInfoAvailable'], "quantity"));
+                } catch (\Exception $e) {
+                    Log::error($e);
+                    return [];
+                }
+            }
+        );
+    }
     // public function scopeToday($query)
     // {
     //     return $query->whereDate("start", Carbon::today());
