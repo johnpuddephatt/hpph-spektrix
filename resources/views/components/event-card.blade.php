@@ -27,8 +27,8 @@
             @if ($event->subtitle)
                 <p class="pt-1 leading-none">{{ $event->subtitle }}</p>
             @endif
-            <x-special-event-badge class="max-lg:bg-white mt-2">{{ $event->has_special_event }}
-            </x-special-event-badge>
+            {{-- <x-special-event-badge class="max-lg:bg-white mt-2">{{ $event->has_special_event }}
+            </x-special-event-badge> --}}
         </div>
 
         <div> <a class="type-small transition hover:text-sand-light hover:bg-gray-dark before:absolute before:inset-0 border-sand-light inline-block py-0 bg-sand-light rounded-full px-2"
