@@ -3,6 +3,7 @@ node_modules/
 /public/storage
 /storage/*.key
 /storage/media-library
+/storage/clockwork
 /vendor
 .env
 .env.backup
