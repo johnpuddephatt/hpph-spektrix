@@ -39,8 +39,11 @@
                 <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description" :relaxed="$instance->relaxed" />
             </div>
 
-            <div class="hidden lg:block mt-auto mr-auto flex flex-row gap-2 items-center">
+            <div class="flex mt-auto mr-auto flex-row gap-2 items-center">
                 <x-special-event-badge class="">{{ $instance->special_event }}</x-special-event-badge>
+                @if ($instance->format)
+                    <x-special-event-badge class="">{{ $instance->format }}</x-special-event-badge>
+                @endif
 
             </div>
         </div>

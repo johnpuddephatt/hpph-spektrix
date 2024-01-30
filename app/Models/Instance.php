@@ -122,6 +122,13 @@ class Instance extends Model implements CachableAttributes
         return $this->start->format("H:i");
     }
 
+    public function getFormatAttribute()
+    {
+        if ($this->event->analogue && $this->event->analogue !== 'Digital') {
+            return $this->event->analogue;
+        }
+    }
+
     public function getAvailabilityAttribute()
     {
         return $this->remember(

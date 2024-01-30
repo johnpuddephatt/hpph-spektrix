@@ -267,16 +267,16 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
-    public function getHasSpecialEventAttribute()
-    {
-        return $this->remember("has_special_event", 3600, function () {
-            return $this->instances()
+    // public function getHasSpecialEventAttribute()
+    // {
+    //     return $this->remember("has_special_event", 3600, function () {
+    //         return $this->instances()
 
-                ->pluck("special_event")
-                ->unique()
-                ->first();
-        });
-    }
+    //             ->pluck("special_event")
+    //             ->unique()
+    //             ->first();
+    //     });
+    // }
 
     public function getTrailerEmbedAttribute(): array
     {
