@@ -112,7 +112,6 @@ class Event extends Model implements HasMedia, CachableAttributes
         "date_range",
         "has_captioned",
         "has_signed_bsl",
-        "has_special_event",
         "has_relaxed",
         "genres_and_vibes",
     ];

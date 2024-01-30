@@ -78,7 +78,7 @@ class Instance extends Model implements CachableAttributes
         "relaxed" => "boolean",
     ];
 
-    protected $appends = ["start_date", "start_time", "url", "short_id", "availability"];
+    protected $appends = ["start_date", "start_time", "url", "short_id", "availability", "format"];
 
     public function event()
     {
@@ -124,8 +124,9 @@ class Instance extends Model implements CachableAttributes
 
     public function getFormatAttribute()
     {
-        if ($this->event->analogue && $this->event->analogue !== 'Digital') {
-            return $this->event->analogue;
+
+        if ($this->analogue && $this->analogue !== 'Digital') {
+            return $this->analogue;
         }
     }
 

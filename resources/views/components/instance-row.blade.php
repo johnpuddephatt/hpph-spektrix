@@ -24,7 +24,12 @@
                 </a>
             </h4>
 
-            <x-special-event-badge class="lg:hidden pt-2">{{ $instance->special_event }}</x-special-event-badge>
+            @if ($instance->special_event || $instance->format)
+                <div class="lg:hidden mt-2">
+                    <x-special-event-badge>{{ $instance->special_event }}</x-special-event-badge>
+                    <x-special-event-badge>{{ $instance->format }}</x-special-event-badge>
+                </div>
+            @endif
 
             @if ($instance->event->subtitle)
                 <p class="pt-2 leading-none">{{ $instance->event->subtitle }}</p>
@@ -39,13 +44,12 @@
                 <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description" :relaxed="$instance->relaxed" />
             </div>
 
-            <div class="flex mt-auto mr-auto flex-row gap-2 items-center">
-                <x-special-event-badge class="">{{ $instance->special_event }}</x-special-event-badge>
-                @if ($instance->format)
-                    <x-special-event-badge class="">{{ $instance->format }}</x-special-event-badge>
-                @endif
-
-            </div>
+            @if ($instance->special_event || $instance->format)
+                <div class="hidden lg:block mt-auto mr-auto">
+                    <x-special-event-badge>{{ $instance->special_event }}</x-special-event-badge>
+                    <x-special-event-badge>{{ $instance->format }}</x-special-event-badge>
+                </div>
+            @endif
         </div>
 
         <button

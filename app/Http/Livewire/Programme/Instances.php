@@ -38,8 +38,10 @@ class Instances extends Component
                 "captioned",
                 "relaxed",
                 "signed_bsl",
+                "analogue",
                 "strand_name",
-                "special_event"
+                "special_event",
+
             );
 
         $this->filtered = false;

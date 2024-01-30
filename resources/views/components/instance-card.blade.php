@@ -3,7 +3,6 @@
 
 <div
     {{ $attributes->class(['group', 'swiper-slide', 'relative', 'text-white', 'text-center' => $layout == 'home', 'pt-8 pb-16 md:py-0 grid md:grid-cols-2' => $layout == 'extra-wide', 'py-8 lg:gap-4 grid lg:grid-cols-2' => $layout == 'wide']) }}>
-
     <div
         class="{{ $layout == 'home' ? 'flex-col-reverse' : 'flex-row' }} @if ($layout == 'extra-wide') gap-2 mb-3 lg:mb-0 flex md:hidden @elseif($layout == 'wide') gap-2 mb-3 lg:mb-0 flex lg:hidden  @else gap-1 mb-6 flex @endif">
         <div class="{{ $layout == 'home' ? 'type-regular' : 'type-xs-mono' }} @if (!$color) group-hover:text-yellow @endif text-white"
@@ -52,8 +51,12 @@
                         <p class="pt-1 leading-none">{{ $instance->event->subtitle }}</p>
                     @endif
 
-                    <x-special-event-badge class="mt-2">{{ $instance->special_event }}</x-special-event-badge>
-
+                    @if ($instance->special_event || $instance->format)
+                        <div class="mt-2">
+                            <x-special-event-badge>{{ $instance->special_event }}</x-special-event-badge>
+                            <x-special-event-badge class="">{{ $instance->format }}</x-special-event-badge>
+                        </div>
+                    @endif
                 </div>
 
                 <div>

@@ -75,6 +75,7 @@ class HomeHeroLayout extends Layout
 
                 ->orderBy("first_instance_date_time", "DESC")
                 ->limit(3)
+                ->get()
                 ->random();
         }
     }

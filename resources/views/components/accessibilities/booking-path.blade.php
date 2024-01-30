@@ -15,4 +15,7 @@
         x-show="instance.event.audio_description">AD</abbr>
     <span class="type-xs py-0.5 text-black uppercase inline-block rounded px-2 bg-sand-light !font-bold !no-underline"
         x-show="instance.special_event" x-text="instance.special_event"></span>
+
+    <span class="type-xs py-0.5 text-black uppercase inline-block rounded px-2 bg-sand-light !font-bold !no-underline"
+        x-show="instance.format" x-text="instance.format"></span>
 </div>
