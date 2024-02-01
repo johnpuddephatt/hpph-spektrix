@@ -59,7 +59,8 @@
 
                     <div class="pb-4 lg:pr-12 flex-1">
                         <template x-for="(instance, key) in instances">
-                            <div>
+                            <div :title="`${instance.availability}`
+                            seats">
                                 <h3 x-show="key == 0 ||
                             instances[key - 1].start_date !== instance.start_date"
                                     class="type-small mt-12 mb-3" x-text="instance.start_date"></h3>

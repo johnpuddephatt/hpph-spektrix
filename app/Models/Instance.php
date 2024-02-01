@@ -141,13 +141,13 @@ class Instance extends Model implements CachableAttributes
                         'spektrix_client_name' => nova_get_setting("spektrix_client_name"),
                         'instance_id' => $this->id,
                     ])->get(
-                        "https://system.spektrix.com/{spektrix_client_name}/api/v3/instances/{instance_id}/status?includeLockInformation=true"
+                        "https://system.spektrix.com/{spektrix_client_name}/api/v3/instances/{instance_id}/status?includeLockInformation=true&includeChildPlans=true"
                     );
                     $json = $response->json();
                     return $json['available'] - array_sum(Arr::pluck($json['lockInfoAvailable'], "quantity"));
                 } catch (\Exception $e) {
                     Log::error($e);
-                    return [];
+                    return 9999;
                 }
             }
         );
