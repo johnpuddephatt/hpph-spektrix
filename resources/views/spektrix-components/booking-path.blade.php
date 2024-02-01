@@ -63,8 +63,7 @@
                                 <h3 x-show="key == 0 ||
                             instances[key - 1].start_date !== instance.start_date"
                                     class="type-small mt-12 mb-3" x-text="instance.start_date"></h3>
-                                <button :title="`${instance.availability}`
-                                seats"
+                                <button :title="`${instance.availability} seats`"
                                     aria-label="Buy tickets for this screening"
                                     x-on:click="instanceID = instance.short_id"
                                     :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
