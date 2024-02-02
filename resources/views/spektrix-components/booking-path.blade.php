@@ -26,7 +26,7 @@
                 .then((json) => this.instances = json);
             console.log('instances', this.instances)
         },
-    }" x-effect="getInstances(eventID)">
+    }" x-effect="console.log(eventID);getInstances(eventID)">
 
     <div x-show="eventID" x-on:click="closeBooking"
         class="bg-black backdrop-blur-lg bg-opacity-60 duration-150 fixed inset-0 z-30"
