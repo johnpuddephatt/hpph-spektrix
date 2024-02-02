@@ -1,5 +1,5 @@
 <div x-trap="eventID" x-cloak
-    @booking.window="eventID = $event.detail.eventID; getInstances(this.eventID); instanceID = $event.detail.instanceID; event = $event.detail.event; certificate = $event.detail.certificate"
+    @booking.window="eventID = $event.detail.eventID; instanceID = $event.detail.instanceID; event = $event.detail.event; certificate = $event.detail.certificate"
     @keyup.escape.window="closeBooking" x-data="{
         iFrameLoading: true,
     
@@ -26,10 +26,9 @@
                 .then((json) => this.instances = json);
             console.log('instances', this.instances)
         },
-    }" x-init="if (eventID) {
-        console.log('getting Instances');
+    }" x-effect="
         getInstances(eventID)
-    }">
+    ">
 
     <div x-show="eventID" x-on:click="closeBooking"
         class="bg-black backdrop-blur-lg bg-opacity-60 duration-150 fixed inset-0 z-30"
