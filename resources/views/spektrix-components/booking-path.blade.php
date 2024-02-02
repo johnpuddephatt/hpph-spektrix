@@ -13,18 +13,18 @@
         closeBooking() {
             this.eventID = null;
             this.instanceID = null;
-            this.instances = [];
+            this.instances = null;
             $dispatch('booking', false)
         },
     
         getInstances(eventID) {
             if (!eventID) {
-                this.instances = [];
                 return false;
             }
             fetch(`/api/event/${ this.eventID }/instances`)
                 .then((response) => response.json())
                 .then((json) => this.instances = json);
+            console.log('instances: ', this.instances);
         },
     }" x-effect="getInstances(eventID)">
 
