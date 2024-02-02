@@ -8,7 +8,7 @@
         certificate: null,
         instanceID: null,
     
-        instances: [],
+        instances: null,
     
         closeBooking() {
             this.eventID = null;
@@ -48,9 +48,15 @@
 
             <div class="type-medium !font-normal">Select a showtime</div>
 
-            <div x-show="!instances.length" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
+            <div x-show="instances === null" x-transition class="absolute inset-0 bg-sand py-16 pl-32">
                 @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
             </div>
+
+            <div x-show="instances === []" x-transition class="rounded-lg bg-sand px-6 py-2 font-semibold">
+
+                {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
+            </div>
+
             <div class="lg:flex-1 flex flex-col lg:flex-row gap-12" x-show="instances.length">
                 <div class="max-w-xl w-full flex flex-col lg:h-full">
                     <div class="mt-1 mb-8"><span class="font-bold" x-html="event"></span> <span

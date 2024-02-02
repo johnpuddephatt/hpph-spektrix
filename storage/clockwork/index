@@ -681,3 +681,6 @@
 1706874067-9033-1447742150,1706874067.8982,GET,/storage/135/responsive-images/Screenshot-2023-03-23-at-20.07.52___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,41.398048400879,request
 1706874069-5481-590440874,1706874069.5252,GET,/films/chess-of-the-wind,"App\Http\Controllers\EventController@show",500,293.79510879517,request
 1706874070-1505-146073840,1706874070.1321,GET,/favicon.ico,"App\Http\Controllers\PageController@show",404,76.196908950806,request
+1706874822-9071-1399758089,1706874822.8566,GET,/films/chess-of-the-wind,"App\Http\Controllers\EventController@show",200,351.61900520325,request
+1706874823-3783-1204615761,1706874823.3647,GET,/storage/84/responsive-images/IMG_5298___landscape_979_587.jpg,"App\Http\Controllers\PageController@show",404,73.516130447388,request
+1706874823-3783-1198314234,1706874823.3647,GET,/storage/84/responsive-images/IMG_5298___landscape_1171_703.jpg,"App\Http\Controllers\PageController@show",404,74.622869491577,request
