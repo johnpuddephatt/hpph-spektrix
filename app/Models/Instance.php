@@ -31,9 +31,9 @@ class Instance extends Model implements CachableAttributes
             $builder->where("cancelled", false);
         });
 
-        static::addGlobalScope("on_sale", function (Builder $builder) {
-            $builder->where("is_on_sale", true);
-        });
+        // static::addGlobalScope("on_sale", function (Builder $builder) {
+        //     $builder->where("is_on_sale", true);
+        // });
 
         static::addGlobalScope("has_event", function (Builder $builder) {
             $builder->whereHas("event");
@@ -97,7 +97,7 @@ class Instance extends Model implements CachableAttributes
 
     public function getUrlAttribute()
     {
-        return $this->event->url . "#" . $this->start->timestamp;
+        return $this->event->url;
     }
 
     public function getShortIdAttribute()

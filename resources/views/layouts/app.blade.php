@@ -39,7 +39,8 @@
 
 <body class="leading-[162.5%] tracking-normal" :class="{ 'overflow-hidden': nav_open || booking_path_open }"
     x-data="{ scrolled: false, nav_open: false, booking_path_open: false }" @navtoggled.window="nav_open = $event.detail"
-    @booking.window="booking_path_open = $event.detail" @scrolled.window="scrolled =  $event.detail;">
+    @booking.window="console.log('booking event on window');booking_path_open = $event.detail"
+    @scrolled.window="scrolled =  $event.detail;">
     @yield('templatecontent')
     @livewireScripts
     @stack('footer')

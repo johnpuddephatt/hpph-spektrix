@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Instance;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,11 @@ Route::middleware(["spektrix"])->group(function () {
         \App\Http\Controllers\ProductController::class,
         "show",
     ])->name("product.show");
+
+    Route::get("instance/{instance}", function ($instance) {
+        $instance = Instance::where("id", 'LIKE', $instance . '%')->first();
+        return redirect()->route("event.show", $instance->event);
+    });
 
     // Route::get(
     //     "whats-on",

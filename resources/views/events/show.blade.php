@@ -4,7 +4,10 @@
 @section('image', $event->featuredImage?->getUrl('wide'))
 
 @section('content')
-    <div x-data="{ trailerOpen: false, trailerLoaded: false }" class="fixed flex items-center inset-0 z-[-1] h-screen w-full overflow-hidden bg-black">
+    <div x-data="{ trailerOpen: false, trailerLoaded: false }" x-init="if (window.location.hash) {
+        $dispatch('booking', { instanceID: window.location.hash.substring(1), eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })
+    }"
+        class="fixed flex items-center inset-0 z-[-1] h-screen w-full overflow-hidden bg-black">
 
         @if ($event->featuredVideo && $event->featuredVideo->video_conversions)
             @php($video_conversions = json_decode($event->featuredVideo->video_conversions))
