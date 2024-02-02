@@ -26,8 +26,10 @@
                 .then((json) => this.instances = json);
             console.log('instances', this.instances)
         },
-    }" x-effect="
-        getInstances(eventID)
+    }"
+    x-effect="
+    if(instances === null && eventID) {
+        getInstances(eventID);}
     ">
 
     <div x-show="eventID" x-on:click="closeBooking"
