@@ -58,83 +58,87 @@
                 {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
             </div>
 
-            <div class="lg:flex-1 flex flex-col lg:flex-row gap-12" x-show="instances && instances.length">
-                <div class="max-w-xl w-full flex flex-col lg:h-full">
-                    <div class="mt-1 mb-8"><span class="font-bold" x-html="event"></span> <span
-                            class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
-                            x-html="certificate"></span></div>
+            <template x-if="instances && instances.length">
+                <div class="lg:flex-1 flex flex-col lg:flex-row gap-12">
+                    <div class="max-w-xl w-full flex flex-col lg:h-full">
+                        <div class="mt-1 mb-8"><span class="font-bold" x-html="event"></span> <span
+                                class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
+                                x-html="certificate"></span></div>
 
-                    <div class="pb-4 lg:pr-12 flex-1">
-                        <template x-for="(instance, key) in instances">
-                            <div>
-                                <h3 x-show="key == 0 ||
+                        <div class="pb-4 lg:pr-12 flex-1">
+                            <template x-for="(instance, key) in instances">
+                                <div>
+                                    <h3 x-show="key == 0 ||
                             instances[key - 1].start_date !== instance.start_date"
-                                    class="type-small mt-12 mb-3" x-text="instance.start_date"></h3>
-                                <button :title="`${instance.availability} seats`"
-                                    aria-label="Buy tickets for this screening"
-                                    x-on:click="instanceID = instance.short_id"
-                                    :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
-                                    class="group border-t transition w-full flex flex-row items-center gap-2 lg:gap-4 border-gray-light py-2">
-                                    <div class="type-xs-mono !text-base rounded bg-black py-1.5 px-4 text-white"
-                                        x-text="instance.start_time">
-                                    </div>
+                                        class="type-small mt-12 mb-3" x-text="instance.start_date"></h3>
+                                    <button :title="`${instance.availability} seats`"
+                                        aria-label="Buy tickets for this screening"
+                                        x-on:click="instanceID = instance.short_id"
+                                        :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
+                                        class="group border-t transition w-full flex flex-row items-center gap-2 lg:gap-4 border-gray-light py-2">
+                                        <div class="type-xs-mono !text-base rounded bg-black py-1.5 px-4 text-white"
+                                            x-text="instance.start_time">
+                                        </div>
 
-                                    <div class="flex sm:items-center flex-col sm:flex-row gap-x-2 gap-y-0.5">
-                                        <x-strand.booking-path />
-                                        <span
-                                            x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
-                                            class="hidden sm:inline-block text-2xl">&middot;</span>
-                                        <x-accessibilities.booking-path />
+                                        <div class="flex sm:items-center flex-col sm:flex-row gap-x-2 gap-y-0.5">
+                                            <x-strand.booking-path />
+                                            <span
+                                                x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
+                                                class="hidden sm:inline-block text-2xl">&middot;</span>
+                                            <x-accessibilities.booking-path />
 
-                                    </div>
+                                        </div>
 
-                                    @svg('arrow-right', 'bg-sand-light flex-shrink-0 ml-auto group-hover:bg-yellow rounded-full p-3 h-12 w-12')
+                                        @svg('arrow-right', 'bg-sand-light flex-shrink-0 ml-auto group-hover:bg-yellow rounded-full p-3 h-12 w-12')
 
-                                </button>
+                                    </button>
+                                </div>
+                            </template>
+
+                            <div x-show="instances && !instances.length"
+                                class="mt-12 max-w-md rounded bg-gray py-16 text-center">
+                                {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
                             </div>
-                        </template>
-
-                        <div x-show="instances && !instances.length"
-                            class="mt-12 max-w-md rounded bg-gray py-16 text-center">
-                            {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
                         </div>
-                    </div>
 
+                    </div>
+                    <div x-show="instances && instances.length && instances.some((instance) => instance.relaxed || instance.event.audio_description || instance.captioned)"
+                        class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[6.9rem]">
+                        <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
+
+                        <div x-show="instances.some((instance) => instance.event.audio_description)"
+                            class="border-t last:border-b border-gray-light py-4">
+                            <span
+                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">AD</span>
+                            <p class="type-small mt-2 !font-normal">Audio Description available via headsets. These can
+                                be
+                                reserved in next booking stage.</p>
+
+                        </div>
+                        <div x-show="instances.some((instance) => instance.captioned)"
+                            class="border-t last:border-b border-gray-light py-4">
+                            <span
+                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Captioned</span>
+                            <p class="type-small mt-2 !font-normal">Descriptive subtitles for the benefit of audiences
+                                who
+                                are Deaf or Hard of Hearing.</p>
+
+                        </div>
+                        <div x-show="instances.some((instance) => instance.relaxed)"
+                            class="border-t last:border-b border-gray-light py-4">
+                            <span
+                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Relaxed</span>
+                            <p class="type-small mt-2 !font-normal">Featuring prompt start times, raised lighting and
+                                reduced volume. Audiences can make noise / move around.</p>
+                        </div>
+
+                        <p class="underline mt-6"><a href="/access#accessible-screenings">Learn
+                                about
+                                accessible screenings</a></p>
+
+                    </div>
                 </div>
-                <div x-show="instances && instances.length && instances.some((instance) => instance.relaxed || instance.event.audio_description || instance.captioned)"
-                    class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[6.9rem]">
-                    <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
-
-                    <div x-show="instances.some((instance) => instance.event.audio_description)"
-                        class="border-t last:border-b border-gray-light py-4">
-                        <span
-                            class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">AD</span>
-                        <p class="type-small mt-2 !font-normal">Audio Description available via headsets. These can be
-                            reserved in next booking stage.</p>
-
-                    </div>
-                    <div x-show="instances.some((instance) => instance.captioned)"
-                        class="border-t last:border-b border-gray-light py-4">
-                        <span
-                            class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Captioned</span>
-                        <p class="type-small mt-2 !font-normal">Descriptive subtitles for the benefit of audiences who
-                            are Deaf or Hard of Hearing.</p>
-
-                    </div>
-                    <div x-show="instances.some((instance) => instance.relaxed)"
-                        class="border-t last:border-b border-gray-light py-4">
-                        <span
-                            class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Relaxed</span>
-                        <p class="type-small mt-2 !font-normal">Featuring prompt start times, raised lighting and
-                            reduced volume. Audiences can make noise / move around.</p>
-                    </div>
-
-                    <p class="underline mt-6"><a href="/access#accessible-screenings">Learn
-                            about
-                            accessible screenings</a></p>
-
-                </div>
-            </div>
+            </template>
         </div>
     </div>
     <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
