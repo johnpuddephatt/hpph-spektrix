@@ -24,7 +24,7 @@
             fetch(`/api/event/${ this.eventID }/instances`)
                 .then((response) => response.json())
                 .then((json) => this.instances = json);
-            console.log('instances: ', this.instances);
+            console.log('instances', this.instances)
         },
     }" x-effect="getInstances(eventID)">
 
@@ -57,7 +57,7 @@
                 {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
             </div>
 
-            <div class="lg:flex-1 flex flex-col lg:flex-row gap-12" x-show="instances.length">
+            <div class="lg:flex-1 flex flex-col lg:flex-row gap-12" x-show="instances && instances.length">
                 <div class="max-w-xl w-full flex flex-col lg:h-full">
                     <div class="mt-1 mb-8"><span class="font-bold" x-html="event"></span> <span
                             class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
@@ -93,7 +93,8 @@
                             </div>
                         </template>
 
-                        <div x-show="!instances.length" class="mt-12 max-w-md rounded bg-gray py-16 text-center">
+                        <div x-show="instances && !instances.length"
+                            class="mt-12 max-w-md rounded bg-gray py-16 text-center">
                             {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
                         </div>
                     </div>
