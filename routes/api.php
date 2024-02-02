@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get(
+Route::middleware('doNotCacheResponse')->get(
     "event/{event}/instances",
     \App\Http\Controllers\EventInstancesController::class
 )->name("event.instances");
