@@ -52,7 +52,8 @@
                 @svg('loading', 'w-32 ml-36 block pt-24 text-sand-dark')
             </div>
 
-            <div x-show="instances === []" x-transition class="rounded-lg bg-sand px-6 py-2 font-semibold">
+            <div x-show="instances && !instances.length" x-transition
+                class="rounded-lg bg-sand px-6 py-2 font-semibold">
 
                 {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
             </div>
