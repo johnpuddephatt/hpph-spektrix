@@ -44,10 +44,10 @@ Route::middleware(["spektrix"])->group(function () {
         "show",
     ])->name("product.show");
 
-    Route::get("instance/{instance}", function ($instance) {
-        $instance = Instance::where("id", 'LIKE', $instance . '%')->first();
-        dd($instance);
-        return to_route("event.show", $instance->event)->withFragment('#' . $instance);
+    Route::get("instance/{instance}", function ($instance_id) {
+        dd($instance_id);
+        $instance = Instance::where("id", 'LIKE', $instance_id . '%')->first();
+        return to_route("event.show", $instance->event)->withFragment('#' . $instance_id);
     });
 
     // Route::get(
