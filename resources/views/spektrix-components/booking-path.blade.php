@@ -57,7 +57,7 @@
             </div>
 
             <div x-show="instances && !instances.length" x-transition
-                class="rounded-lg bg-sand-light mt-4 px-6 py-2 font-semibold">
+                class="rounded max-w-md bg-sand-light mt-4 px-6 py-2 font-semibold">
 
                 {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
             </div>
