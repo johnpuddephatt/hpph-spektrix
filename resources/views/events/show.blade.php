@@ -139,7 +139,7 @@
                     </div>
                 </div>
             </div>
-        @else
+        @elseif($event->hasFutureShowtimes())
             <button class="w-full sticky bottom-0 bg-yellow block py-4"
                 @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">
                 <div class="container flex flex-row items-center">
