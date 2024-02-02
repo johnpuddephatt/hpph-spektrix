@@ -701,3 +701,7 @@
 1706876206-2648-2070818710,1706876206.254,GET,/storage/84/responsive-images/IMG_5298___landscape_979_587.jpg,"App\Http\Controllers\PageController@show",404,74.590921401978,request
 1706876206-2868-218863653,1706876206.2515,GET,/storage/84/responsive-images/IMG_5298___landscape_1171_703.jpg,"App\Http\Controllers\PageController@show",404,80.864906311035,request
 1706876206-9811-1825243406,1706876206.9733,GET,/api/event/144001ALMSHSNGTBBRCLJGGJRMMGJNTNQ/instances,"App\Http\Controllers\EventInstancesController",200,487.61582374573,request
+1706876779-5876-3318273,1706876779.563,GET,/films/chess-of-the-wind,"App\Http\Controllers\EventController@show",200,47.726154327393,request
+1706876779-7600-543507068,1706876779.7139,GET,/storage/84/responsive-images/IMG_5298___landscape_1171_703.jpg,"App\Http\Controllers\PageController@show",404,114.23802375793,request
+1706876779-7639-1372509604,1706876779.714,GET,/storage/84/responsive-images/IMG_5298___landscape_979_587.jpg,"App\Http\Controllers\PageController@show",404,114.20488357544,request
+1706876780-6596-1088081926,1706876780.6472,GET,/api/event/144001ALMSHSNGTBBRCLJGGJRMMGJNTNQ/instances,"App\Http\Controllers\EventInstancesController",200,76.321125030518,request
