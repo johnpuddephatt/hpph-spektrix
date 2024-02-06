@@ -35,6 +35,12 @@ class Instance extends Model implements CachableAttributes
         //     $builder->where("is_on_sale", true);
         // });
 
+        static::addGlobalScope("not_coming_soon", function (Builder $builder) {
+            $builder->whereHas('event', function (Builder $query) {
+                $query->whereNull('coming_soon');
+            });
+        });
+
         static::addGlobalScope("has_event", function (Builder $builder) {
             $builder->whereHas("event");
         });
