@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Nova\Settings;
 
 use Laravel\Nova\Fields\Text;
@@ -15,6 +16,7 @@ class Messages
             Trix::make("No scheduled screenings")->help(
                 "Displayed on the film page when there are no scheduled screenings."
             ),
+
             Text::make("Film page booking button", "showtimes_link")->help(
                 "Opens the booking path on the film page"
             ),
