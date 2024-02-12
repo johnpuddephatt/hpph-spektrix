@@ -631,3 +631,19 @@ dd.Footer {
     .Options a.Selected {
     }
 }
+
+.Subscription {
+    @apply my-2 p-4 rounded bg-sand-light overflow-hidden;
+}
+
+.AutoRenewCheckbox {
+    @apply block mt-2;
+}
+
+.AutoRenewCheckbox label {
+    @apply inline-block ml-1;
+}
+
+.Subscription .MembershipName {
+    @apply type-small block mb-2;
+}

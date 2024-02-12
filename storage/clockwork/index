@@ -332,3 +332,5 @@
 1707747959-9235-242411715,1707747959.8971,GET,/films/your-fat-friend,"App\Http\Controllers\EventController@show",200,182.6319694519,request
 1707747960-2623-1893488249,1707747960.2447,GET,/storage/84/responsive-images/IMG_5298___landscape_1171_703.jpg,"App\Http\Controllers\PageController@show",404,64.166069030762,request
 1707747961-4793-573411538,1707747961.4693,GET,/api/event/151601AQMCQSLQMMQBRKBHBNMBTPPBRDN/instances,"App\Http\Controllers\EventInstancesController",200,1052.579164505,request
+1707748052-7394-1755022430,1707748052.7109,GET,/films/your-fat-friend,"App\Http\Controllers\EventController@show",200,70.316791534424,request
+1707748053-0230-1708750419,1707748052.9871,GET,/storage/84/responsive-images/IMG_5298___landscape_1171_703.jpg,"App\Http\Controllers\PageController@show",404,109.26198959351,request
