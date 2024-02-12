@@ -632,6 +632,10 @@ dd.Footer {
     }
 }
 
+.MyOrders {
+    @apply overflow-hidden;
+}
+
 .Subscription {
     @apply my-2 p-4 rounded bg-sand-light overflow-hidden;
 }
