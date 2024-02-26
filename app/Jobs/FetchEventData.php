@@ -174,7 +174,7 @@ class FetchEventData implements ShouldQueue
                     $event->attribute_CertificateAgeGuidance ?? null,
                     "live_or_film" => $event->attribute_LiveOrFilm ?? null,
                     // "website" => $event->attribute_Website ?? null,
-                    "coming_soon" => $event->isOnSale ? null : ($event->attribute_ComingSoon ?: null),
+                    "coming_soon" => $event->attribute_ComingSoon ?? null,
                 ]
             );
             // });
