@@ -1,4 +1,8 @@
 @layer utilities {
+    .type-xl {
+        @apply text-[0rem] md:text-[5rem] font-bold leading-[100%] tracking-[-0.06em];
+    }
+
     .type-large {
         @apply text-[0rem] md:text-[2.8125rem] font-bold leading-[111.1%] tracking-[-0.045em];
     }
