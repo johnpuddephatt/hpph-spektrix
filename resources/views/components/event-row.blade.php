@@ -1,6 +1,6 @@
 @props(['event'])
 
-<div class="group relative md:pt-3 mb-4 pb-4 flex flex-row gap-4 lg:gap-6">
+<div class="group relative pt-4 pb-4 flex flex-row gap-4 lg:gap-6">
 
     <div class="w-1/2 md:w-1/4 md:ml-[25%] lg:ml-0 lg:w-2/12 relative aspect-video flex flex-col">
         <div class="w-full relative flex-1 bg-gray md:rounded overflow-hidden">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="flex flex-col max-md:container">
-        <div class="type-xs-mono max-md:bg-sand-light max-md:container pb-3 max-md:pt-3">
+        <div class="type-xs-mono max-md:container pb-2 pt-2">
             {!! $event->date_range !!}
         </div>
         <div class="lg:min-h-[4.5rem] mb-4 lg:mb-2">
