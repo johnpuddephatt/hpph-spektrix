@@ -17,8 +17,7 @@ class NewSearch extends Component
                 ? \App\Models\Event::shownInProgramme()
                 ->where("name", "like", "%" . $this->search . "%")
                 ->orWhereRelation('instances', 'strand_name', 'like', "%" . $this->search . "%")
-                // ->orWhere('strand_name', 'like', '%')
-                // })
+                ->orWhereRelation('instances', 'season_name', 'like', "%" . $this->search . "%")
                 ->with("featuredImage")
                 ->get()
                 : [],
