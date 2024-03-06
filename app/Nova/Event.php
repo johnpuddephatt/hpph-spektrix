@@ -111,6 +111,8 @@ class Event extends Resource
                 ->showOnPreview()
                 ->filterable(),
 
+            Text::make("External booking link")->hideFromIndex(),
+
             // Tabs::make(
             //     "Tabs",
             //     [

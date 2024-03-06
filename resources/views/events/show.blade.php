@@ -130,7 +130,20 @@
         <x-strand.card :strand="$event->strand" />
         <x-season.card :season="$event->season" />
 
-        @if ($event->coming_soon)
+        @if ($event->external_booking_link)
+            <a href="{{ $event->external_booking_link }}" target="_blank"
+                class="w-full sticky bottom-0 bg-yellow block py-5">
+
+                <div class="container flex flex-row items-center">
+                    <div class="w-1/2 hidden lg:block">
+                        @svg('plus', 'h-6 w-6')
+                    </div>
+                    <div class="type-regular lg:px-4">
+                        Book tickets (external link)
+                    </div> @svg('arrow-right', '-rotate-45 ml-auto h-8 w-8 p-2 text-yellow bg-black rounded-full')
+                </div>
+            </a>
+        @elseif ($event->coming_soon)
             <div class="w-full sticky bottom-0 bg-yellow block py-5">
 
                 <div class="container flex flex-row items-center">
