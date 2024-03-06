@@ -141,7 +141,7 @@ class Instance extends Model implements CachableAttributes
         return $this->remember(
             "availability",
             3600,
-            function (): int {
+            function (): array {
                 try {
                     $response = Http::timeout(3)->withUrlParameters([
                         'spektrix_client_name' => nova_get_setting("spektrix_client_name"),
@@ -150,10 +150,18 @@ class Instance extends Model implements CachableAttributes
                         "https://system.spektrix.com/{spektrix_client_name}/api/v3/instances/{instance_id}/status?includeLockInformation=true&includeChildPlans=true"
                     );
                     $json = $response->json();
-                    return $json['available'] - array_sum(Arr::pluck($json['lockInfoAvailable'], "quantity"));
+                    $collection = collect($json['lockInfoAvailable']);
+
+                    return [
+                        'seats' => $json['available'] - $collection->pluck('quantity')->sum(),
+                        'accessible_seats' => $collection->firstWhere('lockType.name', 'HPPH Wheelchair space')['quantity'] ?? 0
+                    ];
                 } catch (\Exception $e) {
                     Log::error($e);
-                    return 9999;
+                    return [
+                        'seats' => -1,
+                        'accessible_seats' => -1
+                    ];
                 }
             }
         );
