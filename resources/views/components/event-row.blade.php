@@ -2,7 +2,7 @@
 
 <div class="group relative pt-4 pb-4 flex flex-row gap-4 lg:gap-6">
 
-    <div class="w-1/2 md:w-1/4 md:ml-[25%] lg:ml-0 lg:w-2/12 relative aspect-video flex flex-col">
+    <div class="w-1/2 md:w-1/4 lg:w-2/12 relative aspect-video flex flex-col">
         <div class="w-full relative flex-1 bg-gray rounded overflow-hidden">
             @if ($event->featuredImage)
                 {!! $event->featuredImage->img('wide')->attributes(['class' => 'group-hover:scale-105 transition duration-500 absolute inset-0']) !!}
