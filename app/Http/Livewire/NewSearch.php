@@ -16,7 +16,7 @@ class NewSearch extends Component
             strlen($this->search) > 1
                 ? \App\Models\Event::shownInProgramme()
                 ->where("name", "like", "%" . $this->search . "%")
-                ->orWhereRelation('instances', 'strand_name', 'like', '%')
+                ->orWhereRelation('instances', 'strand_name', 'like', "%" . $this->search . "%")
                 // ->orWhere('strand_name', 'like', '%')
                 // })
                 ->with("featuredImage")
