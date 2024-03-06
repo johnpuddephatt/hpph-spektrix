@@ -14,8 +14,8 @@
         @endif
     </div>
 
-    <div class="flex flex-col max-md:container">
-        <div class="type-xs-mono max-md:container pb-2 pt-2">
+    <div class="flex flex-col">
+        <div class="type-xs-mono pb-2 pt-2">
             {!! $event->date_range !!}
         </div>
         <div class="lg:min-h-[4.5rem] mb-4 lg:mb-2">
