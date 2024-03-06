@@ -13,7 +13,7 @@
         class="flex bg-sand text-black fixed overscroll-contain inset-0 z-50 left-auto flex-col w-full transform transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">
         <div
-            class="{{ $search ? 'h-[33vh]' : 'h-screen' }} duration-200 flex-col flex bg-yellow transform transition-all ease-linear delay-100 container px-4 py-8">
+            class="{{ strlen($search) > 2 ? 'h-[33vh]' : 'h-screen' }} duration-200 flex-col flex bg-yellow transform transition-all ease-linear container px-4 py-8">
             <div class="relative"> <button class="top-7 absolute z-50 right-0 ml-auto"
                     @click="open = ! open; $dispatch('menutoggled', open)"
                     aria-label="Close search menu">@svg('plus', 'h-6 w-6 transform rotate-45 origin-center text-black')</button></div>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div
-            class="{{ $search ? 'h-[67vh] flex-1 ' : 'h-0 overflow-hidden ' }} bg-sand flex flex-col transition-all ease-linear delay-100 duration-200">
+            class="{{ strlen($search) > 2 ? 'h-[67vh] flex-1 ' : 'h-0 overflow-hidden ' }} bg-sand flex flex-col transition-all ease-linear duration-200">
             <div class="type-xs-mono bg-sand-light container py-2">Results [{{ count($results) }}]</div>
             @if (count($results))
                 <ul class="overflow-y-auto container divide-y divide-sand-dark">

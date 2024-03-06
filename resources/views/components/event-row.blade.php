@@ -1,6 +1,6 @@
 @props(['event'])
 
-<div class="group border-gray-light relative md:pt-3 mb-4 pb-4 md:border-b flex flex-row px-2 lg:gap-6">
+<div class="group relative md:pt-3 mb-4 pb-4 flex flex-row gap-4 lg:gap-6">
 
     <div class="w-1/2 md:w-1/4 md:ml-[25%] lg:ml-0 lg:w-2/12 relative aspect-video flex flex-col">
         <div class="w-full relative flex-1 bg-gray md:rounded overflow-hidden">
@@ -15,11 +15,11 @@
         @endif
     </div>
 
-    <div class="max-md:container pb-4">
-        <div class="type-xs-mono max-md:bg-sand-light max-md:container max-md:pt-3">
+    <div class="flex flex-col max-md:container">
+        <div class="type-xs-mono max-md:bg-sand-light max-md:container pb-3 max-md:pt-3">
             {!! $event->date_range !!}
         </div>
-        <div class="lg:min-h-[4.5rem]mb-4 lg:mb-2">
+        <div class="lg:min-h-[4.5rem] mb-4 lg:mb-2">
 
             <h2 class="type-regular max-w-xs">{{ $event->name }}
                 <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
@@ -30,7 +30,8 @@
 
         </div>
 
-        <div> <a class="type-small transition hover:text-sand-light hover:bg-gray-dark before:absolute before:inset-0 border-sand-light inline-block py-0 bg-sand-light rounded-full px-2"
+        <div class="mt-auto"> <a
+                class="type-small transition hover:text-sand-light hover:bg-gray-dark before:absolute before:inset-0 border-sand-light inline-block py-0 bg-sand-light rounded-full px-2"
                 href="{{ $event->url }}">Info</a>
             @if (!$event->coming_soon)
                 &nbsp;&nbsp; / &nbsp;&nbsp; <button
