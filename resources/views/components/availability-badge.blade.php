@@ -1,5 +1,5 @@
 <div x-show="!instance.availability.seats"
-    class="type-xs-mono type-xs-mono ml-auto flex items-center rounded flex-row bg-gray border border-sand-dark px-2 text-white"
+    class="type-xs-mono type-xs-mono ml-auto flex items-center rounded flex-row bg-gray border border-sand-dark px-2"
     :title="instance.availability.seats ?
         `There are ${instance.availability.seats} regular seats and ${instance.availability.accessible_seats} wheelchair seats available for this screening.` :
         `Regular seating for this screening has sold out. There are ${instance.availability.accessible_seats} wheelchair seats available.`"
