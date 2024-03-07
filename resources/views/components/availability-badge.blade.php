@@ -12,7 +12,7 @@
         <path fill="currentColor"
             d="M20 11h-1V5a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v6H4a2 2 0 0 0-2 2v8a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1h10v1a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-8a2 2 0 0 0-2-2ZM7 16a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v2H7ZM7 5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8.18a3 3 0 0 0-1-.18H8a3 3 0 0 0-1 .18V5Zm-3 8h1v7H4Zm16 7h-1v-7h1Z" />
     </svg>
-    <span x-text="instance.availability.seats ?: 'Sold out'"></span>
+    <span x-text="instance.availability.seats > 0  ? instance.availability.seats : 'Sold out'"></span>
 
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
         width="483.223" height="551.431" class="w-5 border-l opacity-70 border-gray-medium py-1 ml-2 mr-0.5 pl-2 h-auto"
