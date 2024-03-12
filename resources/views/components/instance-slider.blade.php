@@ -2,7 +2,7 @@
 
 <div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true }" x-init="swiper = new Swiper($refs.container, {
     loop: false,
-    slidesPerView: Math.min({{ count($instances) }}, 1.5),
+    slidesPerView: Math.min({{ count($instances) + count($coming_soon) }}, 1.5),
     spaceBetween: 15,
     centerInsufficientSlides: true,
 
@@ -16,20 +16,20 @@
 
     breakpoints: {
         640: {
-            slidesPerView: Math.min({{ count($instances) }}, 1.5),
+            slidesPerView: Math.min({{ count($instances) + count($coming_soon) }}, 1.5),
         },
         768: {
-            slidesPerView: Math.min({{ count($instances) }}, 2),
+            slidesPerView: Math.min({{ count($instances) + count($coming_soon) }}, 2),
 
         },
         1024: {
-            slidesPerView: @if ($layout == 'home') 4 @else Math.min({{ count($instances) }}, 3) @endif,
+            slidesPerView: @if ($layout == 'home') 4 @else Math.min({{ count($instances + count($coming_soon)) }}, 3) @endif,
         },
         1280: {
-            slidesPerView: @if ($layout == 'home') 5 @else Math.min({{ count($instances) }}, 4) @endif,
+            slidesPerView: @if ($layout == 'home') 5 @else Math.min({{ count($instances) + count($coming_soon) }}, 4) @endif,
         },
         1536: {
-            slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) }}, 4) @endif,
+            slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) + count($coming_soon) }}, 4) @endif,
         },
     },
 })" class="mt-12 lg:mt-24 relative max-w-none mx-auto">
