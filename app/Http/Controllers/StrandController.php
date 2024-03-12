@@ -19,7 +19,7 @@ class StrandController extends Controller
 
         return view("strands.show", [
             "strand" => $strand,
-            "coming_soon" => \App\Models\Instance::whereHas('event', function (Builder $query) {
+            "coming_soon" => \App\Models\Instance::withoutGlobalScope('not_coming_soon')->whereHas('event', function (Builder $query) {
                 $query->whereNotNull('coming_soon');
             })->where('strand_name', $strand->name)->get()
         ]);
