@@ -16,7 +16,7 @@ class SeasonController extends Controller
 
         return view("seasons.show", [
             "season" => $season,
-            "coming_soon" => \App\Models\Instance::whereHas('event', function (Builder $query) {
+            "coming_soon" => \App\Models\Instance::withoutGlobalScope('not_coming_soon')->whereHas('event', function (Builder $query) {
                 $query->whereNotNull('coming_soon');
             })->where('season_name', $season->name)->get()
         ]);
