@@ -44,7 +44,7 @@
         <div class="type-regular lg:type-medium container max-w-4xl text-center">{{ $season->description }}</div>
     </div>
 
-    @if ($season->instances->count())
+    @if ($season->instances->count() || $coming_soon->count())
         <div class="bg-black text-yellow">
             <div class="pt-24 pb-16 container">
                 <p class="type-xs-mono text-white text-center container mb-2">What’s on</p>
@@ -52,7 +52,7 @@
                     {{ $season->name }}
                 </h2>
 
-                <x-instance-slider :instances="$season->instances" :coming_soon="$coming_soon" color="#f2d13c" :layout="match (count($season->instances)) {
+                <x-instance-slider :instances="$season->instances" :coming_soon="$coming_soon" color="#f2d13c" :layout="match (count($season->instances) + count($coming_soon)) {
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',
