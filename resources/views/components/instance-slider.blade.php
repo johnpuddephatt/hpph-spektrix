@@ -23,7 +23,7 @@
 
         },
         1024: {
-            slidesPerView: @if ($layout == 'home') 4 @else Math.min({{ count($instances + count($coming_soon)) }}, 3) @endif,
+            slidesPerView: @if ($layout == 'home') 4 @else Math.min({{ count($instances) + count($coming_soon) }}, 3) @endif,
         },
         1280: {
             slidesPerView: @if ($layout == 'home') 5 @else Math.min({{ count($instances) + count($coming_soon) }}, 4) @endif,
