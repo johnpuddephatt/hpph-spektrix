@@ -140,7 +140,7 @@ class Instance extends Model implements CachableAttributes
     {
         return $this->remember(
             "availability",
-            60,
+            30,
             function (): array {
                 try {
                     $response = Http::timeout(3)->withUrlParameters([
