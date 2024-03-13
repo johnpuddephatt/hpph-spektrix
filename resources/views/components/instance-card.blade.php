@@ -7,8 +7,9 @@
         class="{{ $layout == 'home' ? 'flex-col-reverse' : 'flex-row' }} @if ($layout == 'extra-wide') gap-2 mb-3 lg:mb-0 flex md:hidden @elseif($layout == 'wide') gap-2 mb-3 lg:mb-0 flex lg:hidden  @else gap-1 mb-6 flex @endif">
         <div class="{{ $layout == 'home' ? 'type-regular' : 'type-xs-mono' }} @if (!$color) group-hover:text-yellow @endif text-white"
             @if ($color) style="color: {{ $color }}" @endif>
-            {{ $instance->start_time }}</div>
-        <div class="type-xs-mono">{{ $instance->start_date }}</div>
+            {{ $instance->event->coming_soon ? 'Coming soon • ' : $instance->start_time }}</div>
+        <div class="type-xs-mono">
+            {{ $instance->event->coming_soon ? $instance->event->coming_soon : $instance->start_date }}</div>
     </div>
 
     <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 lg:max-w-lg @endif md:justify-self-center w-full">
