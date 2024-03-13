@@ -41,6 +41,7 @@ class Instances extends Component
                 "analogue",
                 "strand_name",
                 "special_event",
+                "external_ticket_link"
 
             );
 
