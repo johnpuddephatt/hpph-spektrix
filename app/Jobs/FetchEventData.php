@@ -280,6 +280,7 @@ class FetchEventData implements ShouldQueue
 
                     "season_name" => $instance->attribute_Season ?: null,
                     "strand_name" => $instance->attribute_Strand ?: null,
+                    "external_ticket_link" => $instance->attribute_ExternalTicketLink ?: null,
                 ]
             );
         }
