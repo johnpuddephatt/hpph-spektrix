@@ -82,6 +82,7 @@ class Instance extends Resource
             Text::make("Analogue")->onlyOnDetail(),
             Text::make("Door time")->onlyOnDetail(),
             Text::make("Partnership")->onlyOnDetail(),
+            Text::make("External ticket link")->onlyOnDetail(),
 
             BelongsTo::make("Season")->exceptOnForms(),
             BelongsTo::make("Strand")->exceptOnForms(),
