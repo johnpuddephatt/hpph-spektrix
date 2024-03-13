@@ -30,11 +30,9 @@
                 '!text-white': nav_open,
             }">
             @include('components.menu-button')
-            @if ($_GET['newsearch'] ?? false)
-                <livewire:new-search />
-            @else
-                <livewire:search />
-            @endif
+
+            <livewire:new-search />
+
             @include('spektrix-components.basket')
             @include('spektrix-components.login-status')
 
