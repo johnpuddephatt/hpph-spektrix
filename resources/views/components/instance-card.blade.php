@@ -35,7 +35,7 @@
                 class="@if ($layout == 'extra-wide') md:flex @elseif($layout == 'wide') lg:flex @endif mt-3 hidden gap-2">
                 <div class="type-xs-mono text-yellow"
                     @if ($color) style="color: {{ $color }}" @endif>
-                    {{ $instance->event->coming_soon ? 'Coming soon:' : $instance->start_time }}</div>
+                    {{ $instance->event->coming_soon ? 'Coming soon &middot; ' : $instance->start_time }}</div>
                 <div class="{{ $layout == 'home' ? 'type-regular' : 'type-xs-mono' }}">
                     {{ $instance->event->coming_soon ? $instance->event->coming_soon : $instance->start_date }}
                 </div>
