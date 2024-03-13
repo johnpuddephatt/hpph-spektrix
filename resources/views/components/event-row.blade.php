@@ -20,7 +20,7 @@
         </div>
         <div class="lg:min-h-[4.5rem] mb-4 lg:mb-2">
 
-            <h2 class="type-regular max-w-xs">{{ $event->name }}
+            <h2 class="type-regular">{{ $event->name }}
                 <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
             </h2>
             @if ($event->subtitle)
