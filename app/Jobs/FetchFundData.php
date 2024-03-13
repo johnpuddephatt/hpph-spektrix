@@ -52,8 +52,8 @@ class FetchFundData implements ShouldQueue
                     "name" => $fund->name ?? null,
                     "description" => $fund->description ?? null,
                     "code" => $fund->code ?? false,
-                    "default_donation_amount" =>
-                        $fund->defaultDonationAmount ?? null,
+                    // "default_donation_amount" =>
+                    //     $fund->defaultDonationAmount ?? null,
                 ]
             );
         }

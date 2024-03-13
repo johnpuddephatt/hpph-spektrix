@@ -54,6 +54,8 @@ class Fund extends Resource
                 ->showOnPreview()
                 ->filterable(),
             Textarea::make("Description")->readonly(),
+            Text::make("Default Donation Amount", "default_donation_amount")
+                ->help('This is the default donation amount for this fund. This is used to pre-fill the donation amount on the donation form. It will also be enforced as the minimum donation amount.'),
             Images::make("Image", "main"),
         ];
     }
