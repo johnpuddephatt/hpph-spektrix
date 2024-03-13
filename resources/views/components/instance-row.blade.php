@@ -55,7 +55,8 @@
         @if (!$instance->event->coming_soon)
 
             @if ($instance->external_ticket_link)
-                <a class="type-regular after:absolute lg:after:hidden after:z-20 after:bottom-4 after:left-0 after:right-0 after:h-10 z-[1] mt-4 lg:mt-0 lg:translate-x-1.5 justify-between pl-4 p-1 lg:w-2/12 bg-yellow hover:lg:bg-yellow-dark rounded-r-full lg:rounded-full items-center flex flex-row"
+                <a target="_blank"
+                    class="type-regular after:absolute lg:after:hidden after:z-20 after:bottom-4 after:left-0 after:right-0 after:h-10 z-[1] mt-4 lg:mt-0 lg:translate-x-1.5 justify-between pl-4 p-1 lg:w-2/12 bg-yellow hover:lg:bg-yellow-dark rounded-r-full lg:rounded-full items-center flex flex-row"
                     href="{{ $instance->external_ticket_link }}">Book
                     @svg('arrow-right', 'inline-block text-yellow p-2 ml-2 flex-shrink-0 h-7 w-7 bg-black rounded-full')</a>
             @else
