@@ -76,6 +76,7 @@ class Instance extends Model implements CachableAttributes
 
         "season_name",
         "strand_name",
+        "external_ticket_link",
     ];
 
     protected $casts = [
