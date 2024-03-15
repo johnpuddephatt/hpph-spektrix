@@ -45,7 +45,7 @@ class ConvertEventVideo implements ShouldQueue
             ->export()
             // ->toDisk($this->media->disk)
             ->resize(1280, 720)
-            ->inFormat((new \FFMpeg\Format\Video\WebM())->setKiloBitrate(900))
+            ->inFormat((new \FFMpeg\Format\Video\WebM())->setKiloBitrate(1200))
             ->addFilter("-an") // mute audio
             ->save($webm_filename)
 
