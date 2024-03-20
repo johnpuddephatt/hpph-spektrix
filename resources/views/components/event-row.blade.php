@@ -10,7 +10,7 @@
         </div>
         <x-accessibilities class="absolute top-2 right-1.5" :audiodescribed="$event->audio_description" />
         @if ($event->strand?->show_on_event_card)
-            <x-strand.badge :partof="false" class="mt-2" :partof="true" :strand="$event->strand" />
+            <x-strand.badge :partof="false" class="mt-2" :strand="$event->strand" />
         @endif
     </div>
 
