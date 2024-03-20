@@ -2,11 +2,11 @@
 
 <div class="group relative pt-4 pb-4 flex flex-col md:flex-row gap-4 lg:gap-6">
 
-    <div class="w-1/2 md:w-1/4 lg:w-2/12 relative aspect-video flex flex-col">
-        <div class="type-xs-mono max-md:bg-sand-light md:hidden max-md:container max-md:pt-3 pb-3">
+    <div class="w-full md:w-1/4 lg:w-2/12 relative aspect-video flex flex-col">
+        <div class="type-xs-mono max-md:bg-sand-light md:hidden max-md:container py-2">
             {!! $event->date_range !!}
         </div>
-        <div class="w-full relative flex-1 bg-gray rounded overflow-hidden">
+        <div class="w-full relative flex-1 bg-gray md:rounded overflow-hidden">
             @if ($event->featuredImage)
                 {!! $event->featuredImage->img('wide')->attributes(['class' => 'group-hover:scale-105 transition duration-500 absolute inset-0']) !!}
             @endif
@@ -17,7 +17,7 @@
         @endif
     </div>
 
-    <div class="flex flex-col">
+    <div class="max-md:container flex flex-col">
         <div class="type-xs-mono hidden md:block pb-2 pt-2">
             {!! $event->date_range !!}
         </div>
