@@ -329,3 +329,5 @@
 1710529291-0300-1091429704,1710529291.0207,GET,/storage/133/responsive-images/Screenshot-2023-03-16-at-19.51.46___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,43.474912643433,request
 1710529291-4425-539552395,1710529291.4208,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,51.076889038086,request
 1710529292-2955-1684547784,1710529292.27,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,52.644968032837,request
+1710529527-1937-1413635091,1710529527.1588,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,85.561037063599,request
+1710529595-5695-37613881,1710529595.5346,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,79.920053482056,request
