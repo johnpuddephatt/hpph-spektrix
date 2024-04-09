@@ -37,8 +37,9 @@
     @stack('head')
 </head>
 
-<body class="leading-[162.5%] tracking-normal" :class="{ 'overflow-hidden': nav_open || booking_path_open }"
-    x-data="{ scrolled: false, nav_open: false, booking_path_open: false }" @navtoggled.window="nav_open = $event.detail"
+<body class="leading-[162.5%] tracking-normal"
+    :class="{ 'overflow-hidden': nav_open || booking_path_open || search_open }" x-data="{ scrolled: false, search_open: false, nav_open: false, booking_path_open: false }"
+    @navtoggled.window="nav_open = $event.detail" @searchtoggled.window="search_open = $event.detail"
     @booking.window="console.log('booking event on window');booking_path_open = $event.detail"
     @scrolled.window="scrolled =  $event.detail;">
     @yield('templatecontent')
