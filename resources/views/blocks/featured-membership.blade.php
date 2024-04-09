@@ -1,4 +1,4 @@
-<div class="bg-black py-20 lg:py-36 text-center px-4 relative overflow-x-hidden">
+<div id="{{ Str::slug($layout->title) }}" class="bg-black py-20 lg:py-36 text-center px-4 relative overflow-x-hidden">
     <video class="inset-0 absolute transition duration-1000 w-full h-full object-cover object-center" autoplay="true"
         preload="true" loop="true" muted="true" playsinline="true">
         <source type="video/mp4" src="{{ Storage::url($layout->video) }}" />
