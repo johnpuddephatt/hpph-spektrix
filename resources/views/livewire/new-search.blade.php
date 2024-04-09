@@ -16,7 +16,7 @@
         <div
             class="{{ strlen($search) > 2 ? 'h-[20vh] md:h-[33vh]' : 'h-screen' }} duration-200 flex-col flex bg-yellow transform transition-all ease-linear container px-4 py-8">
             <div class="relative"> <button class="top-7 absolute z-50 right-0 ml-auto"
-                    @click="open = ! open; $dispatch('menutoggled', open)"
+                    @click="open = ! open; $dispatch('menutoggled', open);$dispatch('searchtoggled', open)"
                     aria-label="Close search menu">@svg('plus', 'h-6 w-6 transform rotate-45 origin-center text-black')</button></div>
             <div class="text-center my-auto relative">
 
