@@ -263,7 +263,7 @@ Booking Path
 
 .SeatingAreaInstructions {
     width: 27ch;
-    @apply lg:mt-14 py-2 leading-tight mb-2;
+    @apply lg:mt-8 py-2 leading-tight mb-2;
 }
 
 /* .SeatingAreaInstructions:first-line {
