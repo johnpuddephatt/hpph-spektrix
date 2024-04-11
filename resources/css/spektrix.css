@@ -272,7 +272,7 @@ Booking Path
 }
 
 .ChooseSeats .Buttons {
-    @apply mt-0;
+    @apply mt-0 relative z-10;
 }
 
 .ChooseSeats #ctl00_ContentPlaceHolder_UpdateBasketButton {
