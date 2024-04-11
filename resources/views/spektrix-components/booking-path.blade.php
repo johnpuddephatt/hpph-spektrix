@@ -174,7 +174,7 @@
 
                     </div>
 
-                    <div class="pb-8 max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[8.9rem] lg:mr-4">
+                    <div class="-mt-8 lg:mt-0 pb-8 max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[8.9rem] lg:mr-4">
 
                         <div class="mb-8">
                             <h3 class="type-small mb-3">Seating plan key</h3>
