@@ -170,7 +170,7 @@
                         </div>
                         <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
                             style="height: 90vh;" name="SpektrixIFrame"
-                            :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ instanceID }&resize=true&stylesheet=hpph-spektrix.css`"></iframe>
+                            :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ instanceID }&resize=true&stylesheet=hpph-spektrix-2.css`"></iframe>
 
                     </div>
 
