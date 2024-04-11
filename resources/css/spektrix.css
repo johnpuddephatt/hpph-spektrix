@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+marquee {
+    @apply hidden;
+}
+
 body {
     @apply font-sans;
 }
