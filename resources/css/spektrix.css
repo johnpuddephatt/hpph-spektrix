@@ -223,7 +223,7 @@ Booking Path
 
 @media screen and (min-width: 480px) {
     .SeatingSelector {
-        @apply mb-8;
+        /* @apply mb-8; */
     }
 
     .SeatingAreaInstructions {
