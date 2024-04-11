@@ -271,6 +271,14 @@ Booking Path
     box-sizing: content-box;
 }
 
+.ChooseSeats .Buttons {
+    @apply mt-0;
+}
+
+.ChooseSeats #ctl00_ContentPlaceHolder_UpdateBasketButton {
+    @apply mt-0;
+}
+
 .SeatingAreaInstructions {
     /* width: 27ch; */
     @apply py-2 leading-tight mb-2;
