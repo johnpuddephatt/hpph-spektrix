@@ -256,6 +256,11 @@ Booking Path
     @apply leading-tight;
 }
 
+/* Added to fix issue with seating plan clipping – copied from Tyneside  */
+.ChooseSeats .SeatingArea * {
+    box-sizing: content-box;
+}
+
 .SeatingAreaInstructions {
     width: 27ch;
     @apply lg:mt-14 py-2 leading-tight mb-2;
