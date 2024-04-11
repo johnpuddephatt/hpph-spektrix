@@ -239,6 +239,10 @@ Booking Path
     @apply text-black;
 }
 
+.Event.EventDetails .DateAndTime {
+    @apply block;
+}
+
 .Event.EventDetails .EventName {
     @apply font-bold;
 }
