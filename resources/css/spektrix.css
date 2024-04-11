@@ -223,7 +223,7 @@ Booking Path
 
 @media screen and (min-width: 480px) {
     .SeatingSelector {
-        @apply mb-16;
+        @apply mb-8;
     }
 
     .SeatingAreaInstructions {
@@ -268,7 +268,7 @@ Booking Path
 }
 
 .SeatingAreaInstructions {
-    width: 27ch;
+    /* width: 27ch; */
     @apply py-2 leading-tight mb-2;
 }
 
