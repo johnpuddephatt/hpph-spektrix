@@ -63,7 +63,7 @@
             </div>
 
             <template x-if="instances && instances.length">
-                <div class="lg:flex-1 flex flex-col lg:flex-row gap-12">
+                <div class="gap:6 lg:flex-1 flex flex-col lg:flex-row lg:gap-12">
                     <div class="max-w-xl w-full flex flex-col lg:h-full">
                         <div class="mt-1 mb-8"><span class="font-bold" x-html="event"></span> <span
                                 class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
@@ -161,7 +161,7 @@
         <div class="flex-grow container overflow-y-auto relative pt-12 lg:pl-40" x-show="instanceID">
 
             <template x-if="instanceID">
-                <div class="flex-1 flex flex-col lg:flex-row gap-12">
+                <div class="gap:6 flex-1 flex flex-col lg:flex-row lg:gap-12">
 
                     <div class="w-full max-w-xl">
                         <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 pl-32">
@@ -174,7 +174,7 @@
 
                     </div>
 
-                    <div class="max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[6.9rem] lg:mr-4">
+                    <div class="pb-8 max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[8.9rem] lg:mr-4">
 
                         <div class="mb-8">
                             <h3 class="type-small mb-3">Seating plan key</h3>

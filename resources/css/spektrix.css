@@ -222,7 +222,7 @@ Booking Path
 */
 
 .SeatingSelector {
-    @apply mb-16;
+    @apply lg:mb-16;
 }
 
 #ctl00_SpektrixFooter,
@@ -254,7 +254,7 @@ Booking Path
 
 .SeatingAreaInstructions {
     width: 27ch;
-    @apply mt-20 py-2 leading-tight mb-2;
+    @apply lg:mt-14 py-2 leading-tight mb-2;
 }
 
 /* .SeatingAreaInstructions:first-line {
