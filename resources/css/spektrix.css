@@ -221,7 +221,7 @@ select {
 Booking Path
 */
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 480px) {
     .SeatingSelector {
         @apply mb-16;
     }
