@@ -446,3 +446,4 @@
 1712919224-5295-753571473,1712919224.5194,GET,/nova-api/events/filters,"Laravel\Nova\Http\Controllers\FilterController",200,44.248104095459,request
 1712919224-5753-836618095,1712919224.5709,GET,/nova-api/events/actions?relationshipType=&display=index,"Laravel\Nova\Http\Controllers\ActionController@index",200,24.818897247314,request
 1712919224-5785-410227893,1712919224.571,GET,/nova-api/events?search=&filters=W3siQm9vbGVhbjpwdWJsaXNoZWQiOiIifSx7IkJvb2xlYW46c2hvd19pbl9wcm9ncmFtbWUiOiIifSx7IkJvb2xlYW46ZW5hYmxlZCI6IiJ9XQ%3D%3D&orderBy=&perPage=25&trashed=&page=1&relationshipType=,"Laravel\Nova\Http\Controllers\ResourceIndexController",200,194.92411613464,request
+1712919810-4436-927662851,1712919810.3828,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,211.0071182251,request
