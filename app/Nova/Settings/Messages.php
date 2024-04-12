@@ -43,6 +43,10 @@ class Messages
                 "Displayed when an event has past instances but no future instances"
             ),
 
+            Text::make("15-25 membership count", "15_25_membership_count")->help(
+                "Displayed on the membership card"
+            ),
+
             Panel::make("Booking path", [
                 Text::make(
                     "Memberships heading",
@@ -52,6 +56,7 @@ class Messages
                     "Displayed next to the booking path"
                 ),
             ]),
+
         ];
     }
 

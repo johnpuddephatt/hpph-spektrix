@@ -22,7 +22,7 @@
 
                 <h2 class="type-xs-mono">Search for a film below</h2>
                 <input x-ref="searchInput" spellcheck="false"
-                    class="type-medium lg:type-xl max-w-2xl text-center block placeholder:text-black placeholder:text-opacity-30 mx-auto w-full bg-transparent pt-2 lg:py-6 focus-visible:outline-none"
+                    class="type-medium lg:type-xl max-w-2xl text-center block placeholder:text-black placeholder:text-opacity-30 mx-auto w-full bg-transparent pt-1 lg:py-6 focus-visible:outline-none"
                     wire:model="search" type="text" placeholder=" &thinsp;Type here&hellip;" />
 
             </div>
