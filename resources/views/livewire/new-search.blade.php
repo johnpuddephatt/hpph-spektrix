@@ -28,10 +28,10 @@
             </div>
         </div>
         <div
-            class="{{ strlen($search) > 2 ? 'h-[67vh] flex-1 ' : 'h-0 overflow-hidden ' }} bg-sand z-10 flex flex-col transition-all ease-linear duration-200">
+            class="{{ strlen($search) > 2 ? 'flex-1 ' : 'h-0 overflow-hidden ' }} bg-sand z-10 flex flex-col transition-all ease-linear duration-200">
             <div class="type-xs-mono bg-yellow-dark container py-2 md:py-3">Results [{{ count($results) }}]</div>
             @if (count($results))
-                <ul class="overflow-y-auto md:container md:divide-y md:divide-sand-dark">
+                <ul class="md:container md:divide-y md:divide-sand-dark">
                     @foreach ($results as $result)
                         <x-event-row :event="$result" />
                     @endforeach
