@@ -11,10 +11,10 @@
 
         @if ($event->featuredVideo && $event->featuredVideo->video_conversions)
             @php($video_conversions = json_decode($event->featuredVideo->video_conversions))
-            {!! $event->featuredVideo->img('thumb', ['class' => 'transition w-full opacity-70 absolute h-full inset-0 object-cover'])->toHtml() !!}
+            {!! $event->featuredVideo->img('thumb', ['class' => 'transition w-full opacity-50 absolute h-full inset-0 object-cover'])->toHtml() !!}
 
             <video
-                onplay="(function(e){e.previousElementSibling.classList.remove('opacity-70'); e.previousElementSibling.classList.add('opacity-0'); e.classList.remove('opacity-0'); e.classList.add('opacity-70') })(this)"
+                onplay="(function(e){e.previousElementSibling.classList.remove('opacity-50'); e.previousElementSibling.classList.add('opacity-0'); e.classList.remove('opacity-0'); e.classList.add('opacity-70') })(this)"
                 class="transition absolute inset-0 h-full w-full object-cover opacity-0" playsinline muted autoplay loop>
                 @foreach ($video_conversions->{'1280x720'} as $format => $url)
                     <source src="{{ Storage::url($url) }}" type="video/{{ $format }}">
