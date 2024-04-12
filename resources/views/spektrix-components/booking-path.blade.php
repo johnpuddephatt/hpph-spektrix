@@ -164,8 +164,8 @@
                 <div class="gap-8 flex-1 flex flex-col lg:flex-row lg:gap-12">
 
                     <div class="w-full max-w-xl">
-                        <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 pl-32">
-                            @svg('loading', 'w-32 lg:ml-36 block pt-24 text-sand-dark')
+                        <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 lg:pl-32">
+                            @svg('loading', 'w-32 mx-auto lg:ml-36 block pt-24 text-sand-dark')
 
                         </div>
                         <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
