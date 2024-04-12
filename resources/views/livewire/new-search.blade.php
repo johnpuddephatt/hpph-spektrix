@@ -11,7 +11,7 @@
 
     </div> --}}
     <div x-trap="open"
-        class="flex bg-sand text-black min-h-screen fixed top-0 left-0 overflow-y-scroll z-50 flex-col w-full transform transition-all delay-100 duration-200"
+        class="h-dynamic-screen flex bg-sand text-black fixed top-0 left-0 overflow-y-scroll z-50 flex-col w-full transform transition-all delay-100 duration-200"
         x-show="open" x-transition:enter-start="translate-x-full" x-transition:leave-end="translate-x-full">
         <div
             class="{{ strlen($search) > 2 ? 'h-[12vh] md:h-[33vh]' : 'h-screen' }} sticky top-0 duration-200 flex-col flex bg-yellow transform transition-all ease-linear container px-4 md:py-8 py-4">
