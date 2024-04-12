@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <spektrix-gift-vouchers client-name="{{ $settings['spektrix_client_name'] }}"
+        <spektrix-gift-vouchers x-data="{ deliveryType: 'CustomerEmail' }" client-name="{{ $settings['spektrix_client_name'] }}"
             custom-domain="{{ $settings['spektrix_custom_domain'] }}">
 
             <div class="container py-4 lg:pb-24">
@@ -73,14 +73,6 @@
                     </div>
                 </div>
 
-                <div class="hidden">
-                    <label for="deliveryType">Delivery type </label>
-                    <select name="deliveryType" data-delivery-type>
-                        <option value="CustomerEmail" selected>Customer Email</option>
-                        <option value="OtherEmail">Other Email</option>
-                    </select>
-                </div>
-
                 <div class="max-w-2xl border-b border-sand-dark py-8">
                     <div class="type-regular mb-4">
                         <span class="bg-yellow rounded-full p-2 h-10 w-10 inline-block text-center">3</span>
@@ -89,19 +81,26 @@
 
                     <div class="relative z-0 mt-6 max-w-lg">
 
+                        <label for="deliveryType"
+                            class="scale-75 peer-focus:scale-75 peer-placeholder-shown:scale-100 pointer-events-none text-gray-medium absolute duration-300 transform py-4 top-0 z-10 left-4 origin-top-left peer-placeholder-shown:translate-y-0.5 -translate-y-0.5 peer-focus:-translate-y-0.5">Deliver
+                            to</label>
+                        <select
+                            class="peer block w-full bg-sand-light pt-6 pb-2 px-3 rounded border border-transparent focus-within:border-white focus-within:outline-none"
+                            @change="deliveryType = $event.target.value" name="deliveryType" data-delivery-type>
+                            <option value="CustomerEmail" selected>Your Email address</option>
+                            <option value="OtherEmail">Another Email address</option>
+                        </select>
+                    </div>
+
+                    <div x-show="deliveryType == 'OtherEmail'" class="relative z-0 mt-6 max-w-lg">
+
                         <input type="text" id="deliveryEmail" name="deliveryEmail" data-delivery-email-address
                             class="peer block w-full bg-sand-light pt-6 pb-2 px-4 rounded border border-transparent focus-within:border-white focus-within:outline-none"
                             placeholder=" " />
 
                         <label for="deliveryEmail"
                             class="scale-75 peer-focus:scale-75 peer-placeholder-shown:scale-100 pointer-events-none text-gray-medium absolute duration-300 transform py-4 top-0 z-10 left-4 origin-top-left peer-placeholder-shown:translate-y-0.5 -translate-y-0.5 peer-focus:-translate-y-0.5">Email
-                            address</label>
-
-                        <p class="type-xs-mono mt-2 !normal-case !tracking-normal">Leave blank if you want the voucher
-                            to be sent to
-                            your
-                            email
-                            address.</p>
+                            address to deliver to</label>
 
                     </div>
 
