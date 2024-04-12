@@ -7,9 +7,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Log;
+
 use FFMpeg;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Spatie\ResponseCache\Facades\ResponseCache;
 
 class ConvertEventVideo implements ShouldQueue
 {
@@ -62,6 +64,9 @@ class ConvertEventVideo implements ShouldQueue
             ],
         ]);
         $this->media->save();
+
+        Cache::clear();
+        ResponseCache::clear();
 
         FFMpeg::cleanupTemporaryFiles();
     }
