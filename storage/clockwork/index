@@ -516,3 +516,9 @@
 1712921482-1498-550479371,1712921482.1014,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,"App\Http\Controllers\PageController@show",404,112.57290840149,request
 1712921491-7797-1001123021,1712921491.7595,GET,/vouchers,"App\Http\Controllers\PageController@show",200,118.51811408997,request
 1712921491-9652-894348316,1712921491.9506,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,"App\Http\Controllers\PageController@show",404,112.0171546936,request
+1712921519-7801-2056147640,1712921519.7437,GET,/vouchers,"App\Http\Controllers\PageController@show",200,128.51405143738,request
+1712921519-9415-1395071643,1712921519.9305,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,"App\Http\Controllers\PageController@show",404,123.07000160217,request
+1712929940-6951-1182204681,1712929940.5402,GET,/brand,Closure,500,781.1598777771,request
+1712929941-9492-1591500459,1712929941.9235,GET,/favicon.ico,"App\Http\Controllers\PageController@show",404,241.81294441223,request
+1712929956-8837-100605228,1712929956.8656,GET,/brand,Closure,500,228.48892211914,request
+1712929973-2594-1515129851,1712929973.2215,GET,/brand,Closure,500,237.49017715454,request

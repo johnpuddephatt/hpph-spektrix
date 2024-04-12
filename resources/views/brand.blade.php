@@ -21,6 +21,8 @@
             </div>
         </div>
 
+        <x-availability-badge :instance="@json({availability: { seats: 5, accessible_seats: 3}})" />
+
         <h1 class="type-large mt-32">Typography</h1>
         <div class="space-between mt-32 mb-32 flex flex-col lg:flex-row">
             <div class="space-y-8 lg:w-1/2">
