@@ -397,3 +397,11 @@
 1715957345-6420-1377439053,1715957345.6395,GET,/storage/135/responsive-images/Screenshot-2023-03-23-at-20.07.52___square_783_783.jpg,"App\Http\Controllers\PageController@show",404,40.264844894409,request
 1715957345-6518-1100261017,1715957345.6479,GET,/storage/133/responsive-images/Screenshot-2023-03-16-at-19.51.46___square_783_783.jpg,"App\Http\Controllers\PageController@show",404,37.775993347168,request
 1715957346-6874-1269313159,1715957346.6753,GET,/whats-on,"App\Http\Controllers\PageController@show",200,144.44398880005,request
+1715957738-3856-1126331677,1715957738.3095,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,226.60398483276,request
+1715957745-2547-788443797,1715957745.2371,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,50.842046737671,request
+1715957746-0980-1492551218,1715957746.0856,GET,/nova/resources/events,"Laravel\Nova\Http\Controllers\Pages\ResourceIndexController",200,394.43016052246,request
+1715957746-7156-2139875929,1715957746.6745,GET,/nova-api/events/lenses,"Laravel\Nova\Http\Controllers\LensController@index",200,76.303958892822,request
+1715957746-7158-381762237,1715957746.6745,GET,/nova-api/events/filters,"Laravel\Nova\Http\Controllers\FilterController",200,77.727794647217,request
+1715957746-7293-445682481,1715957746.6824,GET,/nova-api/events/cards,"Laravel\Nova\Http\Controllers\CardController",200,89.973926544189,request
+1715957746-7609-2084372911,1715957746.7571,GET,/nova-api/events/actions?relationshipType=&display=index,"Laravel\Nova\Http\Controllers\ActionController@index",200,31.730890274048,request
+1715957746-7609-278232534,1715957746.757,GET,/nova-api/events?search=&filters=W3siQm9vbGVhbjpwdWJsaXNoZWQiOiIifSx7IkJvb2xlYW46c2hvd19pbl9wcm9ncmFtbWUiOiIifSx7IkJvb2xlYW46ZW5hYmxlZCI6IiJ9XQ%3D%3D&orderBy=&perPage=25&trashed=&page=1&relationshipType=,"Laravel\Nova\Http\Controllers\ResourceIndexController",200,199.82600212097,request

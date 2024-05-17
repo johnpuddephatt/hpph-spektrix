@@ -93,13 +93,7 @@ class Programme extends Component
                 "abbreviation" => "C",
             ]);
         }
-        if (\App\Models\Instance::relaxed()->count()) {
-            $accessibilities_with_showings->push([
-                "label" => "Relaxed",
-                "slug" => "relaxed",
-                "abbreviation" => "R",
-            ]);
-        }
+
         if (\App\Models\Instance::autismFriendly()->count()) {
             $accessibilities_with_showings->push([
                 "label" => "Autism Friendly",
