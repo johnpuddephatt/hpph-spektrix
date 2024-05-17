@@ -1,4 +1,4 @@
-@props(['captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'relaxed' => false])
+@props(['captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'autism_friendly' => false])
 
 <div {{ $attributes->class(['flex flex-row gap-0.5']) }}>
 
@@ -11,7 +11,7 @@
     @if ($audiodescribed)
         <x-accessibilities.badge title="Audio described">AD</x-accessibilities.badge>
     @endif
-    @if ($relaxed)
-        <x-accessibilities.badge title="Relaxed screening">Relaxed</x-accessibilities.badge>
+    @if ($autism_friendly)
+        <x-accessibilities.badge title="Autism Friendly screening">Autism Friendly</x-accessibilities.badge>
     @endif
 </div>

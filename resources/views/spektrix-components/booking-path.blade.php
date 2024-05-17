@@ -86,7 +86,7 @@
                                         <div class="flex sm:items-center flex-col sm:flex-row gap-x-2 gap-y-0.5">
                                             <x-strand.booking-path />
                                             <span
-                                                x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.relaxed)"
+                                                x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.autism_friendly)"
                                                 class="hidden sm:inline-block text-2xl">&middot;</span>
                                             <x-accessibilities.booking-path />
 
@@ -110,7 +110,7 @@
                         </div>
 
                     </div>
-                    <div x-show="instances && instances.length && instances.some((instance) => instance.relaxed || instance.event.audio_description || instance.captioned)"
+                    <div x-show="instances && instances.length && instances.some((instance) => instance.event.audio_description || instance.captioned || instance.autism_friendly)"
                         class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[6.9rem]">
                         <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
 
@@ -132,10 +132,12 @@
                                 are Deaf or Hard of Hearing.</p>
 
                         </div>
-                        <div x-show="instances.some((instance) => instance.relaxed)"
+
+                        <div x-show="instances.some((instance) => instance.autism_friendly)"
                             class="border-t last:border-b border-gray-light py-4">
                             <span
-                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Relaxed</span>
+                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Autism
+                                Friendly</span>
                             <p class="type-small mt-2 !font-normal">Featuring prompt start times, raised lighting and
                                 reduced volume. Audiences can make noise / move around.</p>
                         </div>

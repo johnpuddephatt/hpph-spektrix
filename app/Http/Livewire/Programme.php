@@ -100,6 +100,13 @@ class Programme extends Component
                 "abbreviation" => "R",
             ]);
         }
+        if (\App\Models\Instance::autismFriendly()->count()) {
+            $accessibilities_with_showings->push([
+                "label" => "Autism Friendly",
+                "slug" => "autism-friendly",
+                "abbreviation" => "Autism Friendly",
+            ]);
+        }
 
         return view(
             "livewire.programme",

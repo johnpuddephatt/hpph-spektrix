@@ -114,6 +114,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "has_captioned",
         "has_signed_bsl",
         "has_relaxed",
+        "has_autism_friendly",
         "genres_and_vibes",
     ];
 
@@ -121,6 +122,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "has_captioned",
         "has_signed_bsl",
         "has_relaxed",
+        "has_autism_friendly"
     ];
 
     public function scopeUnpublished($query)
@@ -268,6 +270,15 @@ class Event extends Model implements HasMedia, CachableAttributes
         return $this->remember("has_relaxed", 3600, function (): bool {
             return !!$this->instances()
                 ->relaxed()
+                ->count();
+        });
+    }
+
+    public function getHasAutismFriendlyAttribute(): bool
+    {
+        return $this->remember("has_autism_friendly", 3600, function (): bool {
+            return !!$this->instances()
+                ->autismFriendly()
                 ->count();
         });
     }

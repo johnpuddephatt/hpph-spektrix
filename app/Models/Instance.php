@@ -67,6 +67,7 @@ class Instance extends Model implements CachableAttributes
         "cancelled",
         "captioned",
         "relaxed",
+        "autism_friendly",
         "signed_bsl",
         "special_event",
 
@@ -83,6 +84,7 @@ class Instance extends Model implements CachableAttributes
         "start" => "datetime",
         "captioned" => "boolean",
         "relaxed" => "boolean",
+        "autism_friendly" => "boolean",
     ];
 
     protected $appends = ["start_date", "start_time", "url", "short_id", "availability", "format"];
@@ -198,6 +200,11 @@ class Instance extends Model implements CachableAttributes
     public function scopeRelaxed($query)
     {
         return $query->where("relaxed", true);
+    }
+
+    public function scopeAutismFriendly($query)
+    {
+        return $query->where("autism_friendly", true);
     }
 
     public function scopeAudioDescribed($query)

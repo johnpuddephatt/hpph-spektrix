@@ -7,9 +7,10 @@
     <span title="Signed BSL"
         class="type-xs-mono bg-gray-dark rounded-full text-white block no-underline px-2 text-center cursor-default z-[2]"
         x-show="instance.signed_bsl">BSL</span>
+
     <span
         class="type-xs-mono bg-gray-dark rounded-full text-white block no-underline px-2 text-center cursor-default z-[2]"
-        x-show="instance.relaxed">Relaxed</span>
+        x-show="instance.autism_friendly">Autism Friendly</span>
     <abbr title="Audio Description"
         class="type-xs-mono bg-gray-dark rounded-full text-white block no-underline px-2 text-center cursor-default z-[2]"
         x-show="instance.event.audio_description">AD</abbr>

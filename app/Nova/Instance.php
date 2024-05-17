@@ -76,6 +76,7 @@ class Instance extends Resource
             Boolean::make("Captioned"),
             Boolean::make("Relaxed", "relaxed"),
             Boolean::make("BSL", "signed_bsl"),
+            Boolean::make("Autism friendly", "autism_friendly"),
 
             Text::make("Special", "special_event"),
 

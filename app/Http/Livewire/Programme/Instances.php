@@ -37,6 +37,7 @@ class Instances extends Component
                 "start",
                 "captioned",
                 "relaxed",
+                "autism_friendly",
                 "signed_bsl",
                 "analogue",
                 "strand_name",

@@ -22,7 +22,7 @@
             </div>
 
             <x-accessibilities class="absolute top-2 right-1.5" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description"
-                :relaxed="$instance->relaxed" />
+                :autism_friendly="$instance->autism_friendly" />
             @if ($show_strand && $instance->strand?->show_on_instance_card)
                 <x-strand.badge :dark="$dark" class="mt-2" :strand="$instance->strand" />
             @endif

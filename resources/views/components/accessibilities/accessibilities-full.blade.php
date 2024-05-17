@@ -1,4 +1,4 @@
-@props(['dark' => false, 'captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'relaxed' => false, 'specialevent' => ''])
+@props(['dark' => false, 'captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'autism_friendly' => false, 'specialevent' => ''])
 FULL?
 <div {{ $attributes }}>
 
@@ -25,9 +25,9 @@ FULL?
             class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block no-underline rounded-full px-2 text-center">
             AD</abbr>
     @endif
-    @if ($relaxed ?? null)
-        <abbr title="Relaxed"
+    @if ($autism_friendly ?? null)
+        <abbr title="Autism Friendly Screening"
             class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block no-underline rounded-full px-2 text-center">
-            R</abbr>
+            Autism Friendly</abbr>
     @endif
 </div>
