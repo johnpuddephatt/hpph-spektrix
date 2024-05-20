@@ -96,9 +96,9 @@ class Programme extends Component
 
         if (\App\Models\Instance::autismFriendly()->count()) {
             $accessibilities_with_showings->push([
-                "label" => "Autism Friendly",
+                "label" => "Autism-friendly",
                 "slug" => "autism-friendly",
-                "abbreviation" => "Autism Friendly",
+                "abbreviation" => "Autism-friendly",
             ]);
         }
 

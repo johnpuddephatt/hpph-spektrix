@@ -136,10 +136,10 @@
                         <div x-show="instances.some((instance) => instance.autism_friendly)"
                             class="border-t last:border-b border-gray-light py-4">
                             <span
-                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Autism
-                                Friendly</span>
-                            <p class="type-small mt-2 !font-normal">Featuring prompt start times, raised lighting and
-                                reduced volume. Audiences can make noise / move around.</p>
+                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Autism-friendly</span>
+                            <p class="type-small mt-2 !font-normal">Designed for neurodiverse audiences, these
+                                screenings feature prompt start times, raised lighting and reduced volume. Capacity is
+                                reduced and audiences can make noise and move around.</p>
                         </div>
 
                         <p class="underline mt-6"><a href="/access#accessible-screenings">Learn

@@ -26,8 +26,8 @@ FULL?
             AD</abbr>
     @endif
     @if ($autism_friendly ?? null)
-        <abbr title="Autism Friendly Screening"
+        <abbr title="Autism-friendly screening"
             class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block no-underline rounded-full px-2 text-center">
-            Autism Friendly</abbr>
+            Autism-friendly</abbr>
     @endif
 </div>

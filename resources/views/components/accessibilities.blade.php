@@ -12,6 +12,6 @@
         <x-accessibilities.badge title="Audio described">AD</x-accessibilities.badge>
     @endif
     @if ($autism_friendly)
-        <x-accessibilities.badge title="Autism Friendly screening">Autism Friendly</x-accessibilities.badge>
+        <x-accessibilities.badge title="Autism-friendly screening">Autism-friendly</x-accessibilities.badge>
     @endif
 </div>
