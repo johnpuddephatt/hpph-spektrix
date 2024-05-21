@@ -375,13 +375,10 @@ class Event extends Model implements HasMedia, CachableAttributes
                 $dates = $this->instances->pluck("start_date")->unique();
 
                 if ($dates->count() == 1) {
-                    if ($this->instances->count() == 1) {
-                        return $dates->first() .
-                            " &middot; " .
-                            implode(", ", $this->instances()->pluck('start_time'));
-                    } else {
-                        return $dates->first();
-                    }
+
+                    return $dates->first() .
+                        " &middot; " .
+                        implode(", ", $this->instances()->pluck('start_time'));
                 } else {
                     return $dates->first() . " – " . $dates->last();
                 }
