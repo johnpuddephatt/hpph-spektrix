@@ -491,3 +491,8 @@
 1716311082-6207-696571942,1716311082.5978,GET,/films/10-things-i-hate-about-you,"App\Http\Controllers\EventController@show",200,173.61307144165,request
 1716311135-9973-1613356563,1716311135.9693,GET,/films/10-things-i-hate-about-you,"App\Http\Controllers\EventController@show",200,233.22892189026,request
 1716311216-5757-201104528,1716311216.5405,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,258.06307792664,request
+1716311251-5924-1934554705,1716311251.5621,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,92.966079711914,request
+1716311258-5720-1112800534,1716311258.5436,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,83.420038223267,request
+1716311265-5570-1633415366,1716311265.5389,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,67.590951919556,request
+1716311272-5592-517711546,1716311272.5365,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,72.661161422729,request
+1716311286-5935-839965136,1716311286.5617,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,100.72803497314,request
