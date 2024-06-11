@@ -103,6 +103,7 @@
                             <x-details-row label="Original language title" :value="$event->original_language_title" />
                             <x-details-row label="Duration" :value="$event->duration" />
                             <x-details-row label="Director" :value="$event->director" />
+                            <x-details-row label="Distributor" :value="$event->distributor" />
                             <x-details-row label="Featuring" :value="implode(' &bullet; ', $event->featuring_stars)" />
                             <x-details-row label="Year" :value="$event->year_of_production" />
                             <x-details-row label="Country of origin" :value="implode(' &bullet; ', $event->country_of_origin)" />

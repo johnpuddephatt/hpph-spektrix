@@ -501,3 +501,17 @@
 1716311902-5237-666637108,1716311902.5049,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,68.900108337402,request
 1716326490-0873-1664234693,1716326490.0108,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",401,280.69496154785,request
 1716326490-3807-1280835114,1716326490.3534,GET,/nova/login,"Laravel\Nova\Http\Controllers\LoginController@showLoginForm",200,771.34013175964,request
+1718128189-7758-1046387227,1718128189.6002,GET,/,"App\Http\Controllers\PageController@home",200,1063.8489723206,request
+1718128190-7968-618344246,1718128190.7892,GET,/livewire/livewire.js?id=90730a3b0e7144480175,"Livewire\Controllers\LivewireJavaScriptAssets@source",200,46.041011810303,request
+1718128191-0889-103021729,1718128191.0662,GET,/storage/animation.json,"App\Http\Controllers\PageController@show",404,205.32894134521,request
+1718128191-1503-1095938825,1718128191.108,GET,/storage/95/responsive-images/Black-History-Month-2%402x___wide_735_307.jpg,"App\Http\Controllers\PageController@show",404,289.33310508728,request
+1718128191-3430-896111520,1718128191.3384,GET,/storage/81/responsive-images/IMG_2037___landscape_1003_669.jpg,"App\Http\Controllers\PageController@show",404,78.402996063232,request
+1718128191-2284-2083480674,1718128191.1081,GET,/storage/157/responsive-images/InTheClub2-copy___landscape_1003_669.jpg,"App\Http\Controllers\PageController@show",404,362.03908920288,request
+1718128191-4168-1723967099,1718128191.4105,GET,/storage/137/responsive-images/Screenshot-2023-03-23-at-13.15.47___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,81.607818603516,request
+1718128191-4096-43549304,1718128191.3933,GET,/storage/133/responsive-images/Screenshot-2023-03-16-at-19.51.46___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,120.23496627808,request
+1718128191-4390-120712134,1718128191.4342,GET,/storage/132/responsive-images/Screenshot-2023-03-03-at-22.03.39___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,79.501152038574,request
+1718128191-4862-984993123,1718128191.4805,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,75.059175491333,request
+1718128191-5072-1536524851,1718128191.5026,GET,/storage/138/responsive-images/Screenshot-2023-03-17-at-21.29.20___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,75.345993041992,request
+1718128191-5327-1010527993,1718128191.5264,GET,/storage/136/responsive-images/Screenshot-2023-03-16-at-11.44.43-%282%29___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,77.087163925171,request
+1718128191-5484-1802303242,1718128191.5431,GET,/storage/124/responsive-images/50-COLOUR___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,73.347091674805,request
+1718128191-5776-514924643,1718128191.5719,GET,/storage/134/responsive-images/placeholder___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,83.227872848511,request

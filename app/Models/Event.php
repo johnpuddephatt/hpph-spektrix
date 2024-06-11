@@ -106,7 +106,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "certificate_age_guidance",
         "trailer",
         "coming_soon",
-        "external_booking_link"
+        "external_booking_link",
     ];
 
     protected $appends = [

@@ -128,6 +128,7 @@ class FetchEventData implements ShouldQueue
                     "country_of_origin" =>
                     $event->attribute_CountryOfOrigin ?? null,
                     "director" => $event->attribute_Director ?? null,
+
                     "distributor" => $event->attribute_Distributor ?? null,
                     "f_rating" => $event->attribute_FRating ?? null,
                     "language" => $event->attribute_Language ?? null,
