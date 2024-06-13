@@ -384,13 +384,7 @@ class Event extends Model implements HasMedia, CachableAttributes
             if ($this->coming_soon) {
                 return 'Coming soon • ' . $this->coming_soon;
             } elseif ($this->instances->count() == 0) {
-                if (!$this->pastAndFutureInstances->count()) {
-                    return nova_get_setting("screenings_coming_soon") ??
-                        "Coming soon";
-                } else {
-                    return nova_get_setting("screenings_ended") ??
-                        "No further screenings scheduled";
-                }
+                return "";
             } else {
                 $dates = $this->instances->pluck("start_date")->unique();
 
