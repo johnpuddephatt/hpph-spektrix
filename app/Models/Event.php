@@ -55,9 +55,9 @@ class Event extends Model implements HasMedia, CachableAttributes
             $builder->where("published", true);
         });
 
-        static::addGlobalScope("enabled", function (Builder $builder) {
-            $builder->where("enabled", true);
-        });
+        // static::addGlobalScope("enabled", function (Builder $builder) {
+        //     $builder->where("enabled", true);
+        // });
     }
 
     protected $fillable = [
