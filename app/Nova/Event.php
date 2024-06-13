@@ -62,7 +62,6 @@ class Event extends Resource
         return $query->withoutGlobalScopes([
             "published",
             "enabled",
-            "hasFutureInstances",
         ]);
     }
 

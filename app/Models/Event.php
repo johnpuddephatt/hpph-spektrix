@@ -58,16 +58,6 @@ class Event extends Model implements HasMedia, CachableAttributes
         static::addGlobalScope("enabled", function (Builder $builder) {
             $builder->where("enabled", true);
         });
-
-        static::addGlobalScope("hasFutureInstances", function (
-            Builder $builder
-        ) {
-            $builder->where(
-                "last_instance_date_time",
-                ">",
-                Carbon::now()->subMinutes(60)
-            )->orWhereNotNull('coming_soon');
-        });
     }
 
     protected $fillable = [
@@ -131,6 +121,36 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->withoutGlobalScope("published")
             ->where("published", false);
     }
+
+    public function scopeHasFutureOrRecentInstances(Builder $query)
+    {
+        return $query->where(
+            "last_instance_date_time",
+            ">",
+            Carbon::now()->subDays(60)
+        )->orWhereNotNull('coming_soon');
+    }
+
+    public function scopeHasFutureInstances(Builder $query)
+    {
+        return $query->where(
+            "last_instance_date_time",
+            ">",
+            Carbon::now()->subMinutes(60)
+        )->orWhereNotNull('coming_soon');
+    }
+
+    public function scopeAudioDescribed($query)
+    {
+        return $query->where("audio_description", true);
+    }
+
+    public function scopeShownInProgramme($query)
+    {
+        return $query->where("show_in_programme", true);
+    }
+
+
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -460,15 +480,6 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->replace(" minute", "min");
     }
 
-    public function scopeAudioDescribed($query)
-    {
-        return $query->where("audio_description", true);
-    }
-
-    public function scopeShownInProgramme($query)
-    {
-        return $query->where("show_in_programme", true);
-    }
 
     // public function todayInstances()
     // {

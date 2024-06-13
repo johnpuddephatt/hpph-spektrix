@@ -14,7 +14,7 @@ class Search extends Component
         return view("livewire.search", [
             "results" =>
             strlen($this->search) > 1
-                ? \App\Models\Event::shownInProgramme()
+                ? \App\Models\Event::shownInProgramme()->hasFutureOrRecentInstances()
                 ->where("name", "like", "%" . $this->search . "%")
                 ->get()
                 : [],

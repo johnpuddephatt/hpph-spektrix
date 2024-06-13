@@ -15,6 +15,7 @@ class NewSearch extends Component
             "results" =>
             strlen($this->search) > 2
                 ? \App\Models\Event::shownInProgramme()
+                ->hasFutureOrRecentInstances()
                 ->where("name", "like", "%" . $this->search . "%")
                 ->orWhere("subtitle", "like", "%" . $this->search . "%")
                 ->orWhere("director", "like", "%" . $this->search . "%")
