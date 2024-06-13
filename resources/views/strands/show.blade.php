@@ -44,6 +44,12 @@
         style="background-color: {{ $strand->color }}">
         <div class="type-xs-mono pb-12 lg:pb-8">{{ $strand->name }}</div>
         <div class="type-regular lg:type-medium container max-w-4xl text-center">{{ $strand->description }}</div>
+        @if ($strand->additional_description)
+            <div class="prose mt-6 container max-w-3xl text-center">{{ $strand->additional_description }}</div>
+        @endif
+        @if ($strand->funders_logo)
+            <img src="{{ Storage::url($strand->funders_logo) }}" alt="" class="px-4 mt-6 mx-auto w-full max-w-sm">
+        @endif
     </div>
 
     @if ($strand->instances->count() || $coming_soon->count())

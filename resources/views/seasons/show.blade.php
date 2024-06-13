@@ -42,6 +42,12 @@
     <div id="event-content" class="bg-yellow text-center pt-8 lg:pt-12 lg:pb-16 pb-24">
         <div class="type-xs-mono pb-12 lg:pb-8">{{ $season->name }}</div>
         <div class="type-regular lg:type-medium container max-w-4xl text-center">{{ $season->description }}</div>
+        @if ($season->additional_description)
+            <div class="prose mt-6 container max-w-3xl text-center">{{ $season->additional_description }}</div>
+        @endif
+        @if ($season->funders_logo)
+            <img src="{{ Storage::url($season->funders_logo) }}" alt="" class="px-4 mt-6 mx-auto w-full max-w-sm">
+        @endif
     </div>
 
     @if ($season->instances->count() || $coming_soon->count())

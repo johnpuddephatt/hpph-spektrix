@@ -44,6 +44,8 @@ class Strand extends Model implements HasMedia, CachableAttributes
         "show_on_event_card",
         "show_on_instance_card",
         "show_in_booking_path",
+        "additional_description",
+        "funders_logo",
     ];
 
     protected $casts = [

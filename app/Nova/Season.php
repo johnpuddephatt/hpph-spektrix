@@ -93,6 +93,12 @@ class Season extends Resource
                 ->hideFromIndex()
                 ->maxLength(250)
                 ->enforceMaxlength(),
+            Textarea::make("Additional description")
+                ->rows(3)
+                ->hideFromIndex()
+                ->maxLength(800)
+                ->enforceMaxlength(),
+            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 100-150px wide. Multiple logos can be artworked on a canvas 384px wide.'),
             Tag::make("Posts")->displayAsList(),
 
             new Panel("Content", [
