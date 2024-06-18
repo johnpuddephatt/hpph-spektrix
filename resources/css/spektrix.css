@@ -690,11 +690,11 @@ dd.Footer {
 }
 
 .Membership {
-    @apply bg-sand-light p-4 rounded my-4;
+    @apply bg-sand-light p-4 rounded;
 }
 
 .Membership .Info span {
-    @apply block border-l-8 bg-sand-dark border-l-yellow p-4 my-4 rounded;
+    @apply block border-l-8 bg-sand border-l-yellow p-4 my-4 rounded;
 }
 
 .Membership .AutoRenew {
@@ -711,4 +711,22 @@ dd.Footer {
 
 input[value="Renew"] {
     @apply bg-yellow !important;
+}
+
+.Memberships .Header {
+    @apply hidden;
+}
+
+.Memberships {
+    @apply flex flex-col gap-4;
+}
+
+.Membership:has(input[value="Renew"]) {
+    @apply border-2 border-yellow order-[-1];
+}
+
+@media screen and (max-width: 480px) {
+    .Membership .Buttons .Button {
+        @apply block my-2 w-full;
+    }
 }
