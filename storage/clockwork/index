@@ -1582,3 +1582,9 @@
 1718721392-8755-161928760,1718721392.8444,GET,/email/2,"App\Http\Controllers\EmailController@show",200,992.2559261322,request
 1718721637-7881-1824744961,1718721637.6819,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1380.7210922241,request
 1718721652-2773-1598477818,1718721652.2248,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1029.4690132141,request
+1718723534-3375-1621050873,1718723534.2208,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1514.1909122467,request
+1718723536-4426-1447447925,1718723536.1743,GET,/favicon.ico,"App\Http\Controllers\PageController@show",404,449.25022125244,request
+1718723543-8773-1315751339,1718723543.8544,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1021.2399959564,request
+1718723552-0120-645197079,1718723551.9729,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1011.9240283966,request
+1718723559-6336-1286064707,1718723559.6103,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1140.3040885925,request
+1718723587-3636-127041475,1718723587.3272,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1657.6809883118,request
