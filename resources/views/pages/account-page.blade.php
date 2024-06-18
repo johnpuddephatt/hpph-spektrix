@@ -25,7 +25,7 @@
 
         <div class="container pt-6 pb-24 min-h-screen">
             <iframe
-                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/secure/myaccount.aspx?resize=true{{ isset($_GET['screen']) ? '&Screen=' . $_GET['screen'] : '' }}"
+                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/secure/myaccount.aspx?Stylesheet=hpph-spektrix-2.css&resize=true{{ isset($_GET['screen']) ? '&Screen=' . $_GET['screen'] : '' }}"
                 class="min-h-screen w-full xl:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
         </div>
 

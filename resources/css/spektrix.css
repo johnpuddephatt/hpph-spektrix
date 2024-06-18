@@ -730,3 +730,11 @@ input[value="Renew"] {
         @apply block my-2 w-full;
     }
 }
+
+.Membership .WikiText {
+    @apply mb-4;
+}
+
+.Membership .WikiText ul {
+    @apply list-disc pl-8;
+}
