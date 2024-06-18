@@ -710,5 +710,5 @@ dd.Footer {
 }
 
 input[value="Renew"] {
-    @apply bg-yellow;
+    @apply bg-yellow !important;
 }
