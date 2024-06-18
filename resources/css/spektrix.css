@@ -751,9 +751,20 @@ input[value="Renew"] {
 }
 
 .SupplementaryEventsPage h2 {
-    @apply type-medium mb-4;
+    @apply type-medium  mb-4;
+    @apply font-normal !important;
 }
 
 .SupplementaryEventsPage #SimpleSeatingDiv .Button {
     @apply px-3;
+}
+
+@media screen and (max-width: 480px) {
+    .SupplementaryEventsPage #SimpleSeatingDiv .TicketType {
+        @apply block;
+    }
+}
+
+SupplementaryEventDiv + SupplementaryEventDiv {
+    @apply border-t border-gray-light;
 }
