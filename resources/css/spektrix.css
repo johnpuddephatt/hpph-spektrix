@@ -694,7 +694,7 @@ dd.Footer {
 }
 
 .Membership .Info span {
-    @apply block bg-yellow p-4 my-4 rounded;
+    @apply block border-l-8 bg-sand-dark border-l-yellow p-4 my-4 rounded;
 }
 
 .Membership .AutoRenew {
@@ -707,4 +707,8 @@ dd.Footer {
 
 .Membership .Button {
     @apply bg-sand;
+}
+
+input[value="Renew"] {
+    @apply bg-yellow;
 }
