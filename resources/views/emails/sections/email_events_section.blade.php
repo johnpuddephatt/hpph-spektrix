@@ -33,7 +33,7 @@ $films = \App\Models\Event::withoutGlobalScopes()
                     {{ $film->name }}
                     @if ($film->certificate_age_guidance)
                         <span
-                            style="line-height: 1.1; vertical-align: middle; border-radius: 100px; background-color: #333; color: white; padding: 0 4px; font-weight: 400; font-size: 10px; display: inline-block">{{ $film->certificate_age_guidance }}</span>
+                            style="line-height: 1.1; vertical-align: middle; border-radius: 100px; background-color: #333; color: white; padding: 1px 4px 0; font-weight: 400; font-size: 10px; display: inline-block">{{ $film->certificate_age_guidance }}</span>
                     @endif
                 </mj-text>
                 <mj-text padding="0 0 0px 15px">{!! $film->description !!}</mj-text>
