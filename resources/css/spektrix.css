@@ -749,3 +749,11 @@ input[value="Renew"] {
 .LoginMessage a {
     @apply underline font-bold;
 }
+
+.SupplementaryEventsPage h2 {
+    @apply type-medium mb-4;
+}
+
+.SupplementaryEventsPage #SimpleSeatingDiv .Button {
+    @apply px-3;
+}
