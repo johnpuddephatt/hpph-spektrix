@@ -693,12 +693,8 @@ dd.Footer {
     @apply bg-sand-light p-4 rounded my-4;
 }
 
-.Membership .Info {
-    @apply bg-yellow p-4 my-4 rounded;
-}
-
-.Membership .Info:empty {
-    display: none;
+.Membership .Info span {
+    @apply block bg-yellow p-4 my-4 rounded;
 }
 
 .Membership .AutoRenew {
