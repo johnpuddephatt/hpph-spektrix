@@ -1,38 +1,36 @@
-@layer base {
-    @font-face {
-        font-family: "Basis Grotesque";
-        font-weight: 400;
-        font-style: italic;
-        src: url(../fonts/BasisGrotesquePro-Italic.woff) format("woff"),
-            url(../fonts/BasisGrotesquePro-Italic.woff2) format("woff2");
-    }
+@font-face {
+    font-family: "BasisGrotesque";
+    font-weight: 400;
+    font-style: italic;
+    src: url(../fonts/BasisGrotesquePro-Italic.woff) format("woff"),
+        url(../fonts/BasisGrotesquePro-Italic.woff2) format("woff2");
+}
 
-    @font-face {
-        font-family: "Basis Grotesque";
-        font-weight: 400;
-        src: url(../fonts/BasisGrotesquePro-Regular.woff) format("woff"),
-            url(../fonts/BasisGrotesquePro-Regular.woff2) format("woff2");
-    }
+@font-face {
+    font-family: "BasisGrotesque";
+    font-weight: 400;
+    src: url(../fonts/BasisGrotesquePro-Regular.woff) format("woff"),
+        url(../fonts/BasisGrotesquePro-Regular.woff2) format("woff2");
+}
 
-    @font-face {
-        font-family: "Basis Grotesque";
-        font-weight: 700;
-        font-style: italic;
-        src: url(../fonts/BasisGrotesquePro-BlackItalic.woff) format("woff"),
-            url(../fonts/BasisGrotesquePro-BlackItalic.woff2) format("woff2");
-    }
+@font-face {
+    font-family: "BasisGrotesque";
+    font-weight: 700;
+    font-style: italic;
+    src: url(../fonts/BasisGrotesquePro-BlackItalic.woff) format("woff"),
+        url(../fonts/BasisGrotesquePro-BlackItalic.woff2) format("woff2");
+}
 
-    @font-face {
-        font-family: "Basis Grotesque";
-        font-weight: 700;
-        src: url(../fonts/BasisGrotesquePro-Black.woff) format("woff"),
-            url(../fonts/BasisGrotesquePro-Black.woff2) format("woff2");
-    }
+@font-face {
+    font-family: "BasisGrotesque";
+    font-weight: 700;
+    src: url(../fonts/BasisGrotesquePro-Black.woff) format("woff"),
+        url(../fonts/BasisGrotesquePro-Black.woff2) format("woff2");
+}
 
-    @font-face {
-        font-family: "Basis Grotesque Mono";
-        font-weight: 400;
-        src: url(../fonts/BasisGrotesqueMonoPro-Regular.woff) format("woff"),
-            url(../fonts/BasisGrotesqueMonoPro-Regular.woff2) format("woff2");
-    }
+@font-face {
+    font-family: "BasisGrotesqueMono";
+    font-weight: 400;
+    src: url(../fonts/BasisGrotesqueMonoPro-Regular.woff) format("woff"),
+        url(../fonts/BasisGrotesqueMonoPro-Regular.woff2) format("woff2");
 }

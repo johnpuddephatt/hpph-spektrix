@@ -58,19 +58,19 @@ class HomeHeroLayout extends Layout
     }
     public function getEventAttribute()
     {
-        if (\App\Models\Event::shownInProgramme()->count() == 0) {
+        if (\App\Models\Event::shownInProgramme()->hasFutureInstances()->count() == 0) {
             return null;
         }
 
         if (
-            \App\Models\Event::shownInProgramme()->whereIn(
+            \App\Models\Event::shownInProgramme()->hasFutureInstances()->whereIn(
                 "id",
                 $this->featured_events ?? []
             )->count()
         ) {
-            return \App\Models\Event::shownInProgramme()->with("featuredImage", "featuredVideo")->whereIn("id", $this->featured_events)->get()->random();
+            return \App\Models\Event::shownInProgramme()->hasFutureInstances()->with("featuredImage", "featuredVideo")->whereIn("id", $this->featured_events)->get()->random();
         } else {
-            return \App\Models\Event::shownInProgramme()
+            return \App\Models\Event::shownInProgramme()->hasFutureInstances()
                 ->with("featuredImage", "featuredVideo")
 
                 ->orderBy("first_instance_date_time", "DESC")

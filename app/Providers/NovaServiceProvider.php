@@ -219,7 +219,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(\App\Nova\Event::class)->withBadgeIf(
                         \App\Models\Event::unpublished()->count() . " new",
                         "info",
-                        fn() => \App\Models\Event::unpublished()->count() > 0
+                        fn () => \App\Models\Event::unpublished()->count() > 0
                     ),
                     MenuItem::resource(\App\Nova\Strand::class),
                     MenuItem::resource(\App\Nova\Season::class),
@@ -245,6 +245,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 MenuSection::resource(\App\Nova\Opportunity::class)->icon(
                     "briefcase"
+                ),
+
+                MenuSection::resource(\App\Nova\Email::class)->icon(
+                    "at-symbol"
                 ),
 
                 // (new \Outl1ne\PageManager\PageManager())->menu($request),

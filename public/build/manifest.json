@@ -7,13 +7,18 @@
       "assets/app.2b86e033.css"
     ]
   },
+  "resources/css/fonts.css": {
+    "file": "assets/fonts.00c082de.css",
+    "src": "resources/css/fonts.css",
+    "isEntry": true
+  },
   "resources/css/app.css": {
-    "file": "assets/app.525e668c.css",
+    "file": "assets/app.4e744f2c.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
   "resources/css/spektrix.css": {
-    "file": "assets/spektrix.5e9304d9.css",
+    "file": "assets/spektrix.5e4bc682.css",
     "src": "resources/css/spektrix.css",
     "isEntry": true
   }

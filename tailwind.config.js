@@ -14,9 +14,9 @@ module.exports = {
             screens: { mobile: "2560px", tablet: "2560px", desktop: "2560px" },
         },
         fontFamily: {
-            sans: ['"Basis Grotesque"', ...defaultTheme.fontFamily.sans],
+            sans: ["BasisGrotesque", ...defaultTheme.fontFamily.sans],
             mono: [
-                '"Basis Grotesque Mono"',
+                "BasisGrotesqueMono",
                 "mono",
                 ...defaultTheme.fontFamily.sans,
             ],

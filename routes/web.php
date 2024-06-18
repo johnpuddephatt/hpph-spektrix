@@ -29,6 +29,11 @@ Route::middleware(["spektrix"])->group(function () {
         return view("brand");
     });
 
+    Route::get("email/{email}", [
+        \App\Http\Controllers\EmailController::class,
+        "show",
+    ])->name("email.show");
+
     Route::post(
         "file-upload",
         \App\Http\Controllers\UploadController::class
