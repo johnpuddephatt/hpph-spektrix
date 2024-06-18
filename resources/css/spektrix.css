@@ -765,6 +765,6 @@ input[value="Renew"] {
     }
 }
 
-SupplementaryEventDiv + SupplementaryEventDiv {
+.SupplementaryEventDiv + .SupplementaryEventDiv {
     @apply border-t border-gray-light;
 }
