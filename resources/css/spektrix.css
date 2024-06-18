@@ -82,7 +82,8 @@ h6 {
 
 .Button,
 .LinkButton,
-.spx-link-edit {
+.spx-link-edit,
+.MembershipsPageLink {
     @apply rounded bg-sand-light px-12 py-1 font-bold hover:bg-yellow transition;
 }
 
@@ -461,7 +462,6 @@ dd.Footer {
 .spx-button-primary,
 .spx-button-secondary,
 .SaveDetailsButton,
-.MembershipsPageLink,
 #ctl00_ContentPlaceHolder_LoginButton {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
@@ -470,10 +470,6 @@ dd.Footer {
 .MembershipsPageLink,
 #ctl00_ContentPlaceHolder_LoginButton {
     @apply bg-yellow;
-}
-
-.MembershipsPageLink {
-    @apply w-auto !important;
 }
 
 .spx-button-primary + .spx-button-primary,
