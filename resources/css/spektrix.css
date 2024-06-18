@@ -697,6 +697,10 @@ dd.Footer {
     @apply bg-yellow p-4 my-4 rounded;
 }
 
+.Membership .Info:empty {
+    display: none;
+}
+
 .Membership .AutoRenew {
     @apply flex flex-row gap-2;
 }
