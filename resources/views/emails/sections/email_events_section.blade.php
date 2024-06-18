@@ -9,7 +9,7 @@ $films = \App\Models\Event::withoutGlobalScopes()
 
 @foreach ($films->chunk(3) as $chunk)
     @foreach ($chunk as $film)
-        <mj-section padding="10px 10px 5px">
+        <mj-section padding="15px 10px 5px">
             <mj-column width="30%">
 
                 <mj-hero border-radius="5px" vertical-align="bottom" mode="fluid-height" background-width="1200px"
@@ -40,7 +40,7 @@ $films = \App\Models\Event::withoutGlobalScopes()
 
             </mj-column>
         </mj-section>
-        <mj-section border-bottom="1px solid #b5b5b5" padding="0 10px 15px">
+        <mj-section border-bottom="1px solid #b5b5b5" padding="0 10px 20px">
             <mj-column width="30%"></mj-column>
             <mj-column width="35%">
                 <mj-accordion>
