@@ -704,3 +704,7 @@ dd.Footer {
 .Membership h1 {
     @apply type-medium mb-3;
 }
+
+.Membership .Button {
+    @apply bg-sand;
+}
