@@ -39,7 +39,7 @@
 
     <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full" x-show="eventID"
-        class="bg-sand flex flex-col h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[75vw]">
+        class="bg-sand flex flex-col h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[90vw] xl:w-[75vw]">
         <button x-on:click="closeBooking" aria-label="Close booking options"
             class="z-30 top-5 lg:top-[2.5rem] absolute lg:mr-10 right-4 lg:right-full">@svg('plus', 'h-6 w-6 text-black lg:text-white rotate-45 transform origin-center')</button>
         <h2 x-on:click="instanceID = null"
@@ -153,7 +153,7 @@
     </div>
     <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full"
-        class="w-full flex flex-col lg:w-[calc(75vw-9rem)] z-[60] bg-sand lg:min-h-screen transition fixed top-[4.5rem] lg:top-0 bottom-0 right-0"
+        class="w-full flex flex-col lg:w-[calc(90vw-9rem)] xl:w-[calc(75vw-9rem)] z-[60] bg-sand lg:min-h-screen transition fixed top-[4.5rem] lg:top-0 bottom-0 right-0"
         x-show="instanceID && eventID">
         <h2
             class="type-regular lg:type-medium bg-sand-dark lg:bg-transparent lg:justify-between gap-4 flex items-center flex-row z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-4 lg:px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap">
