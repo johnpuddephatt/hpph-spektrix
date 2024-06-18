@@ -742,3 +742,10 @@ input[value="Renew"] {
 .Membership .WikiText ul {
     @apply list-disc pl-8;
 }
+
+.ForgottenPasswordHeading {
+    @apply type-small mb-4;
+}
+.LoginMessage a {
+    @apply underline font-bold;
+}
