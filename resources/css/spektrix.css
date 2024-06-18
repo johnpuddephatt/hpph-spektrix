@@ -461,13 +461,19 @@ dd.Footer {
 .spx-button-primary,
 .spx-button-secondary,
 .SaveDetailsButton,
+.MembershipsPageLink,
 #ctl00_ContentPlaceHolder_LoginButton {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
 .spx-button-primary,
+.MembershipsPageLink,
 #ctl00_ContentPlaceHolder_LoginButton {
     @apply bg-yellow;
+}
+
+.MembershipsPageLink {
+    @apply w-auto !important;
 }
 
 .spx-button-primary + .spx-button-primary,
@@ -681,4 +687,8 @@ dd.Footer {
 
 .Subscription .MembershipName {
     @apply type-small block mb-2;
+}
+
+.AddRenewalToBasket {
+    @apply block my-4;
 }
