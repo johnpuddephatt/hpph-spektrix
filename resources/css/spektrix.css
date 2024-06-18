@@ -725,6 +725,10 @@ input[value="Renew"] {
     @apply border-2 border-yellow order-[-1];
 }
 
+.Membership:has(input[value="Add to basket"]) {
+    @apply hidden;
+}
+
 @media screen and (max-width: 480px) {
     .Membership .Buttons .Button {
         @apply block my-2 w-full;
