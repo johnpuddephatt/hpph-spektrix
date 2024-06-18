@@ -688,3 +688,19 @@ dd.Footer {
 .AddRenewalToBasket {
     @apply block my-4;
 }
+
+.Membership {
+    @apply bg-sand-light p-4 rounded my-4;
+}
+
+.Membership .Info {
+    @apply bg-yellow p-4 my-4 rounded;
+}
+
+.Membership .AutoRenew {
+    @apply flex flex-row gap-2;
+}
+
+.Membership h1 {
+    @apply type-medium mb-3;
+}
