@@ -83,9 +83,13 @@ h6 {
 .Button,
 .LinkButton,
 .spx-link-edit,
-.MyPaymentCards a,
+.MyAccount > .MyPaymentCards a,
 .MembershipsPageLink {
     @apply rounded bg-sand-light px-12 py-1 font-bold hover:bg-yellow transition;
+}
+
+.MyAccount > .MyPaymentCards a {
+    @apply float-left mt-2;
 }
 
 .spx-link-edit__checkout {
