@@ -781,7 +781,7 @@ h1.AddCardHeading {
 }
 
 .Progress ol {
-    @apply flex flex-row gap-4 my-8 border-b border-gray-light;
+    @apply pl-4 flex flex-row gap-4 my-8 border-b border-gray-light;
 }
 
 .Progress .CardDetails,
@@ -790,7 +790,7 @@ h1.AddCardHeading {
 }
 
 .Progress .Current {
-    @apply border border-gray-light border-b-0 -mb-px bg-sand-light;
+    @apply border border-gray-light border-b-0 -mb-px bg-sand;
 }
 
 .Progress .Current {
@@ -799,7 +799,7 @@ h1.AddCardHeading {
 
 .BillingHeading,
 .CardDetailsHeading {
-    @apply type-small mb-4;
+    @apply type-regular mb-4;
 }
 
 .AddressList {
