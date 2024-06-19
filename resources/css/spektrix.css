@@ -84,7 +84,8 @@ h6 {
 .LinkButton,
 .spx-link-edit,
 .MyAccount > .MyPaymentCards a,
-.MembershipsPageLink {
+.MembershipsPageLink,
+.MyPaymentCards input[value="delete"] {
     @apply rounded bg-sand-light px-12 py-1 font-bold hover:bg-yellow transition;
 }
 
@@ -819,4 +820,11 @@ h1.AddCardHeading {
 
 .AddressEditHeading {
     @apply type-medium mb-4;
+}
+
+.MyPaymentCards {
+    @apply my-4;
+}
+.MyPaymentCards hr {
+    @apply my-4;
 }
