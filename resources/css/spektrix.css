@@ -89,7 +89,7 @@ h6 {
 }
 
 .MyAccount > .MyPaymentCards a {
-    @apply float-left mt-2;
+    @apply ml-2;
 }
 
 .spx-link-edit__checkout {
@@ -781,19 +781,29 @@ h1.AddCardHeading {
 }
 
 .Progress ol {
-    @apply flex flex-row gap-4 my-8;
+    @apply flex flex-row gap-4 my-8 border-b border-gray-light;
+}
+
+.Progress .CardDetails,
+.Progress .Billing {
+    @apply inline-block p-2;
+}
+
+.Progress .Current {
+    @apply border border-gray-light border-b-0 -mb-px bg-sand-light;
 }
 
 .Progress .Current {
     @apply font-bold;
 }
 
-.Progress .BillingHeading {
+.BillingHeading,
+.CardDetailsHeading {
     @apply type-small mb-4;
 }
 
 .AddressList {
-    @apply divide-y divide-gray-light border-t border-b border-gray-light py-4;
+    @apply divide-y divide-gray-light my-4 border-t border-b border-gray-light py-4;
 }
 
 .AddressList li {
