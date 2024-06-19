@@ -49,7 +49,6 @@ class EventController extends Controller
     {
         return view("events.show", [
             'event' => Event::where("slug", $event)
-                ->hasFutureOrRecentInstances()
                 ->firstOrFail()
                 ->load(
                     "featuredVideo",
