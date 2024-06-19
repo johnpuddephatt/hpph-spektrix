@@ -143,7 +143,7 @@
                     </div>
                 </div>
             </div>
-        @else
+        @elseif($event->date_range)
             <button class="w-full sticky bottom-0 bg-yellow block py-4"
                 @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">
                 <div class="container flex flex-row items-center">
@@ -155,6 +155,18 @@
                     </div> @svg('arrow-right', 'ml-auto h-8 w-8 p-2 text-yellow bg-black rounded-full')
                 </div>
             </button>
+        @else
+            <div class="w-full sticky bottom-0 bg-yellow block py-5">
+
+                <div class="container flex flex-row items-center">
+                    <div class="w-1/2 hidden lg:block">
+                        @svg('plus', 'h-6 w-6')
+                    </div>
+                    <div class="type-regular lg:px-4">
+                        No screenings scheduled
+                    </div>
+                </div>
+            </div>
         @endif
 
         <x-gallery :images="$event->gallery" />
