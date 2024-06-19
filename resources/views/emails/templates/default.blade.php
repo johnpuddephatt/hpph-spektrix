@@ -53,7 +53,7 @@
             @foreach ($email->content as $section)
                 @include('emails.sections.' . $section->name(), ['section' => $section])
             @endforeach
-            <mj-section>
+        </mj-wrapper>
 
     </mj-body>
 </mjml>

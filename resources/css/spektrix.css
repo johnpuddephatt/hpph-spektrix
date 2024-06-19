@@ -83,6 +83,7 @@ h6 {
 .Button,
 .LinkButton,
 .spx-link-edit,
+.MyPaymentCards a,
 .MembershipsPageLink {
     @apply rounded bg-sand-light px-12 py-1 font-bold hover:bg-yellow transition;
 }
@@ -462,13 +463,15 @@ dd.Footer {
 .spx-button-primary,
 .spx-button-secondary,
 .SaveDetailsButton,
-#ctl00_ContentPlaceHolder_LoginButton {
+#ctl00_ContentPlaceHolder_LoginButton,
+input[value="Continue"] {
     @apply max-w-lg w-full mt-16 rounded bg-sand-light type-regular py-4 px-4 after:w-8 after:h-8 after:block after:ml-auto after:pl-2 flex flex-row items-center;
 }
 
 .spx-button-primary,
 .MembershipsPageLink,
-#ctl00_ContentPlaceHolder_LoginButton {
+#ctl00_ContentPlaceHolder_LoginButton,
+input[value="Continue"] {
     @apply bg-yellow;
 }
 
@@ -767,4 +770,31 @@ input[value="Renew"] {
 
 .SupplementaryEventDiv + .SupplementaryEventDiv {
     @apply border-t border-gray-light;
+}
+
+h1.AddCardHeading {
+    @apply type-medium mb-4;
+}
+
+.Progress ol {
+    @apply flex flex-row gap-4 my-8;
+}
+
+.Progress .Current {
+    @apply font-bold;
+}
+
+.Progress .BillingHeading {
+    @apply type-small mb-4;
+}
+
+.AddressList {
+    @apply divide-y divide-gray-light border-t border-b border-gray-light py-4;
+}
+
+.AddressList li {
+    @apply flex flex-row gap-4 py-4;
+}
+.AddressList li label {
+    @apply flex-grow;
 }
