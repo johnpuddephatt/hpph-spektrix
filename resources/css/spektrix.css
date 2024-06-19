@@ -812,3 +812,11 @@ h1.AddCardHeading {
 .AddressList li label {
     @apply flex-grow;
 }
+
+.Checkbox.DefaultBilling {
+    @apply flex gap-2;
+}
+
+.AddressEditHeading {
+    @apply type-medium mb-4;
+}
