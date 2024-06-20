@@ -7,13 +7,8 @@ $films = \App\Models\Event::withoutGlobalScopes()
     ->get();
 @endphp
 
-@foreach ($films->chunk(3) as $chunk)
-    @foreach ($chunk as $film)
-        @if ($section->direction === 'horizontal')
-            @include('emails.components.film_horizontal', ['film' => $film])
-        @else
-            @include('emails.components.film_vertical', ['film' => $film])
-        @endif
-    @endforeach
-    </mj-section>
-@endforeach
+@if ($section->layout === 'rows')
+    @include('emails.components.film_rows')
+@else
+    @include('emails.components.film_columns')
+@endif

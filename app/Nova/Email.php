@@ -50,19 +50,21 @@ class Email extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Title')->required(),
-            Flexible::make('Email sections', 'content')->addLayout('Email Events Section', 'email_events_section', [
-                Select::make("Columns")->options(["2" => "2", "3" => "3"])->default("3"),
-                Multiselect::make("Films", "films")
+            Flexible::make('Email sections', 'content')
+                ->addLayout('Email Events Section', 'email_events_section', [
+                    Select::make("Layout")->options(["rows" => "Rows", 1 => "1", 2 => "2", 3 => "3"])->default("rows"),
+                    Multiselect::make("Films", "films")
 
-                    ->reorderable()
-                    ->asyncResource(\App\Nova\Event::class)
-                    ->stacked()
-                    ->fullWidth()
-                    ->saveAsJSON()
-                    ->help(
-                        "<style>.multiselect__option--selected { display: none !important } .multiselect__tag { display: block; padding: 10px 20px 10px 5px !important; margin-bottom: 5px !important} .multiselect__tag-icon { line-height: 32px; } .multiselect__tag-icon:after { font-size: 20px;}</style>"
-                    ),
-            ])
+                        ->reorderable()
+                        ->asyncResource(\App\Nova\Event::class)
+                        ->stacked()
+                        ->fullWidth()
+                        ->saveAsJSON()
+                        ->help(
+                            "<style>.multiselect__option--selected { display: none !important } .multiselect__tag { display: block; padding: 10px 20px 10px 5px !important; margin-bottom: 5px !important} .multiselect__tag-icon { line-height: 32px; } .multiselect__tag-icon:after { font-size: 20px;}</style>"
+                        ),
+                ])
+
 
 
         ];
