@@ -48,7 +48,8 @@
             <div class="prose mt-6 container max-w-3xl text-center">{{ $strand->additional_description }}</div>
         @endif
         @if ($strand->funders_logo)
-            <img src="{{ Storage::url($strand->funders_logo) }}" alt="" class="px-4 mt-6 mx-auto w-full max-w-sm">
+            <img src="{{ Storage::url($strand->funders_logo) }}" alt=""
+                class="px-4 mt-6 mx-auto w-auto h-auto max-w-sm">
         @endif
     </div>
 
