@@ -98,7 +98,7 @@ class Season extends Resource
                 ->hideFromIndex()
                 ->maxLength(800)
                 ->enforceMaxlength(),
-            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 150-200px wide. Multiple logos can be artworked on a canvas 384px wide.'),
+            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 300-400px wide. Multiple logos can be artworked on a canvas 800px wide.'),
             Tag::make("Posts")->displayAsList(),
 
             new Panel("Content", [
