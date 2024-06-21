@@ -1,9 +1,9 @@
-{{ 'FIELD(id,' . implode(',', $section->films) . ')' }}
-
 @php
+$array = Arr::pluck($section->events, 'attributes.event');
+
 $films = \App\Models\Event::withoutGlobalScopes()
-    ->whereIn('id', $section->films)
-    ->orderByRaw('FIELD(id, "' . implode('","', $section->films) . '")')
+    ->whereIn('id', $array)
+    ->orderByRaw('FIELD(id, "' . implode('","', $array) . '")')
     ->get();
 @endphp
 

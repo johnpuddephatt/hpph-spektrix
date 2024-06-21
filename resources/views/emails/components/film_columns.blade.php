@@ -1,5 +1,5 @@
 @foreach ($films->chunk($section->layout) as $chunk)
-    <mj-section padding="50px 0px">
+    <mj-section padding="50px 0px 0px">
 
         @foreach ($chunk as $film)
             <mj-column padding="0 {{ $loop->last ? 0 : '10px' }} 0 {{ !$loop->first ? '10px' : 0 }}"
@@ -25,9 +25,19 @@
                     @endif
                 </mj-text>
                 <mj-text padding="0 0 15px">{!! $film->description !!}</mj-text>
-
+                <mj-text padding="0 0 15px  ">
+                    Fri 14 Jun: 18:00 [talk]<br>
+                    Sat 15 Jun: 11:45, 19:15<br>
+                    Sun 16 Jun: 13:30 [c]<br>
+                    Mon 17 Jun: 18:00 [c]<br>
+                    Tue 18 Jun: 20:20<br>
+                    Wed 19 Jun: 11:15,17:50<br>
+                    Thu 20 Jun: 17:00<br>
+                </mj-text>
             </mj-column>
         @endforeach
+    </mj-section>
+    <mj-section padding="0 0 50px">
         @foreach ($chunk as $film)
             <mj-column padding="0 {{ $loop->last ? 0 : '10px' }} 0 {{ !$loop->first ? '10px' : 0 }}"
                 width="{{ 100 / $section->layout }}%">
