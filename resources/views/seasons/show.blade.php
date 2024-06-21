@@ -46,7 +46,7 @@
             <div class="prose mt-6 container max-w-3xl text-center">{{ $season->additional_description }}</div>
         @endif
         @if ($season->funders_logo)
-            <img onload="this.style.width = this.clientWidth/2" src="{{ Storage::url($season->funders_logo) }}"
+            <img onload="this.style.width = this.clientWidth/2 + 'px'" src="{{ Storage::url($season->funders_logo) }}"
                 alt="" class="px-4 mt-6 mx-auto w-auto h-auto max-w-sm">
         @endif
     </div>
