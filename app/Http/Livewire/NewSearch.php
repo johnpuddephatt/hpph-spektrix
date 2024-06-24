@@ -16,11 +16,13 @@ class NewSearch extends Component
             strlen($this->search) > 2
                 ? \App\Models\Event::shownInProgramme()
                 ->hasFutureOrRecentInstances()
-                ->where("name", "like", "%" . $this->search . "%")
-                ->orWhere("subtitle", "like", "%" . $this->search . "%")
-                ->orWhere("director", "like", "%" . $this->search . "%")
-                ->orWhereRelation('instances', 'strand_name', 'like', "%" . $this->search . "%")
-                ->orWhereRelation('instances', 'season_name', 'like', "%" . $this->search . "%")
+                ->where(function (Builder $query) {
+                    $query->where("name", "like", "%" . $this->search . "%")
+                        ->orWhere("subtitle", "like", "%" . $this->search . "%")
+                        ->orWhere("director", "like", "%" . $this->search . "%")
+                        ->orWhereRelation('instances', 'strand_name', 'like', "%" . $this->search . "%")
+                        ->orWhereRelation('instances', 'season_name', 'like', "%" . $this->search . "%");
+                })
                 ->with("featuredImage")
                 ->get()
                 : [],
