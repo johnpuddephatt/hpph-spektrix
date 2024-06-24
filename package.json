@@ -41,7 +41,7 @@
         "mjml": "^4.15.3",
         "postcss-easing-gradients": "^3.0.1",
         "puppeteer": "^20.9.0",
-        "swiper": "^8.4.6",
+        "swiper": "^11.1.4",
         "tailwind-scrollbar-hide": "^1.1.7"
     }
 }

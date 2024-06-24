@@ -73,7 +73,7 @@
                             <button
                                 class="type-small border border-yellow hover:!bg-black hover:text-current relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
                                 @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
-                                @click="$dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
+                                @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
                         @endif
                     @endif
                 </div>
