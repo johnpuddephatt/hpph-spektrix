@@ -1,5 +1,3 @@
-1718652350-6842-206567707,1718652350.5774,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1096.4570045471,request
-1718652392-3176-261913923,1718652392.2807,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1581.4859867096,request
 1718652875-9708-2097277854,1718652875.9264,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,166.11790657043,request
 1718660357-4708-662690012,1718660357.3541,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1460.019826889,request
 1718660385-5403-902122013,1718660385.4788,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1133.4030628204,request
@@ -1132,3 +1130,16 @@
 1719257149-1494-1260121102,1719257149.1456,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,73.755025863647,request
 1719257152-3765-806910821,1719257152.3476,POST,/livewire/message/new-search,"Livewire\Controllers\HttpConnectionHandler",200,143.44882965088,request
 1719257152-8877-1789271900,1719257152.8746,POST,/livewire/message/new-search,"Livewire\Controllers\HttpConnectionHandler",200,82.708120346069,request
+1719257216-5030-1251276525,1719257216.445,GET,/,"App\Http\Controllers\PageController@home",200,422.73116111755,request
+1719257217-3385-884364246,1719257217.3281,GET,/storage/animation.json,"App\Http\Controllers\PageController@show",404,125.09298324585,request
+1719257217-3722-1183428059,1719257217.3641,GET,/storage/157/responsive-images/InTheClub2-copy___landscape_1003_669.jpg,"App\Http\Controllers\PageController@show",404,91.940879821777,request
+1719257217-3736-92355526,1719257217.3645,GET,/storage/95/responsive-images/Black-History-Month-2%402x___wide_1500_627.jpg,"App\Http\Controllers\PageController@show",404,92.235088348389,request
+1719257217-4673-1022891932,1719257217.4632,GET,/storage/81/responsive-images/IMG_2037___landscape_1003_669.jpg,"App\Http\Controllers\PageController@show",404,59.763193130493,request
+1719257217-4844-185778645,1719257217.4806,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,60.189962387085,request
+1719257217-4929-690104588,1719257217.4875,GET,/storage/134/responsive-images/placeholder___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,60.765027999878,request
+1719257217-5532-1583588599,1719257217.5418,GET,/storage/132/responsive-images/Screenshot-2023-03-03-at-22.03.39___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,100.64697265625,request
+1719257217-5937-1212412875,1719257217.5863,GET,/storage/136/responsive-images/Screenshot-2023-03-16-at-11.44.43-%282%29___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,95.635890960693,request
+1719257217-6086-1738814448,1719257217.6023,GET,/storage/138/responsive-images/Screenshot-2023-03-17-at-21.29.20___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,184.6330165863,request
+1719257217-7203-1726541220,1719257217.7025,GET,/storage/133/responsive-images/Screenshot-2023-03-16-at-19.51.46___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,184.79084968567,request
+1719257217-7107-300036754,1719257217.6976,GET,/storage/137/responsive-images/Screenshot-2023-03-23-at-13.15.47___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,190.65403938293,request
+1719257217-8277-901416141,1719257217.8027,GET,/storage/124/responsive-images/50-COLOUR___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,129.69017028809,request
