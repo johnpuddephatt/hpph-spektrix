@@ -92,7 +92,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     margin-right: 2rem !important;
                 }
 
-                .md\:pt-2  > .editor-js, .md\:pt-2  > #editor-js-content {
+                .md\:flex-col  > .editor-js, .md\:flex-col  > #editor-js-content {
                     padding-top: 3rem;
                     border: none;
                     box-shadow: none;
@@ -106,17 +106,17 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     font-size: 1rem;
                     line-height: 1.5;
                 }
-                .md\:pt-2 .ce-block {
+                .md\:flex-col .ce-block {
                     width: 60%;
                     margin: 0 auto;
                 }
-                .md\:pt-2 .ce-block__content {
+                .md\:flex-col .ce-block__content {
                     max-width: 860px;
                     padding: 0 2rem;
                     margin: 0 !important;
                 }
 
-                .md\:pt-2 .ce-toolbar__content {
+                .md\:flex-col .ce-toolbar__content {
                     max-width: 60%;
                     margin-left: auto;
                 }
