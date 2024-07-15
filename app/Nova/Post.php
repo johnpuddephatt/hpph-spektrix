@@ -120,6 +120,7 @@ class Post extends Resource
                 NovaEditorJsField::make("Content")
                     ->hideFromIndex()
                     ->stacked()
+                    ->fullWidth()
                     ->required()
                     ->rules("required")
                     // ->default(
@@ -138,8 +139,8 @@ class Post extends Resource
             ]),
             URL::make(
                 "URL",
-                fn() => $this->slug ? $this->url : "#"
-            )->displayUsing(fn() => $this->slug ? "Visit" : "–"),
+                fn () => $this->slug ? $this->url : "#"
+            )->displayUsing(fn () => $this->slug ? "Visit" : "–"),
         ];
     }
 
