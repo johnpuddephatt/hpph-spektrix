@@ -21,6 +21,7 @@ class Kernel extends ConsoleKernel
             ->daily();
 
         $schedule->command("fetch:all")->hourly();
+        $schedule->command("fetch:shop")->hourly();
     }
 
     /**
