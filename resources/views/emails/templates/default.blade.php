@@ -30,6 +30,13 @@
             }
 
         </mj-style>
+        <mj-style>
+
+            @media only screen and (max-width:480px) {
+            .film-column-hero {max-width: none !important;
+            }
+            }
+        </mj-style>
     </mj-head>
 
     <mj-body>
