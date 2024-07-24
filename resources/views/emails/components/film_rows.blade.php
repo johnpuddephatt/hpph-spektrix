@@ -1,5 +1,5 @@
 @foreach ($films as $film)
-    <mj-section padding="{{ $section->title ? '0px' : '25px' }} 0px 5px">
+    <mj-section padding="25px 0px 5px">
         <mj-column width="30%">
 
             <mj-hero border-radius="5px" vertical-align="bottom" mode="fluid-height" background-width="1200px"
