@@ -32,7 +32,7 @@ Route::middleware(["spektrix"])->group(function () {
     Route::get("email/{email}", [
         \App\Http\Controllers\EmailController::class,
         "show",
-    ])->middleware(['doNotCacheResponse'])->name("email.show");
+    ])->middleware('doNotCacheResponse')->name("email.show");
 
     Route::post(
         "file-upload",
