@@ -4,6 +4,8 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\BooleanGroup;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -50,8 +52,10 @@ class Email extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Title')->required(),
+            Date::make('Date')->required(),
             Flexible::make('Email sections', 'content')
                 ->addLayout('Email Events Section', 'email_events_section', [
+                    Text::make('Title')->stacked()->fullWidth(),
                     Select::make("Layout")->fullWidth()->stacked()->options(["rows" => "Rows", 1 => "1", 2 => "2", 3 => "3"])->default("rows"),
 
                     Flexible::make('Events', 'events')
@@ -59,9 +63,20 @@ class Email extends Resource
                             Select::make('Event')->fullWidth()->stacked()->searchable()->options(
                                 \App\Models\Event::all()->pluck('name', 'id')
                             )->displayUsingLabels(),
-                            Text::make('Additional info')->stacked()->fullWidth()
-                        ])
+                            Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
+                        ])->button('Add event'),
                 ])
+                ->addLayout('Email Pick Section', 'email_pick_section', [
+                    Select::make('Pick')->fullWidth()->stacked()->searchable()->options(
+                        \App\Models\Post::all()->pluck('title', 'id')
+                    )->displayUsingLabels(),
+                    Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
+                ]),
+            BooleanGroup::make('Settings')->options([
+                'faqs' => 'Include FAQs',
+                'key' => 'Include accessibility key',
+
+            ])->default(['faqs' => true, 'key' => true]),
 
         ];
     }

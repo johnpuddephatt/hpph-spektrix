@@ -46,14 +46,13 @@
             </mj-section>
         </mj-wrapper>
 
-        <mj-wrapper background-color="#e6e4dd" full-width="full-width">
+        @if ($email->settings['key'])
+            @include('emails.components.key')
+        @endif
 
-            <mj-spacer height="15px" />
-
-            @foreach ($email->content as $section)
-                @include('emails.sections.' . $section->name(), ['section' => $section])
-            @endforeach
-        </mj-wrapper>
+        @foreach ($email->content as $section)
+            @include('emails.sections.' . $section->name(), ['section' => $section])
+        @endforeach
 
     </mj-body>
 </mjml>
