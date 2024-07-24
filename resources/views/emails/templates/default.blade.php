@@ -49,8 +49,8 @@
             <mj-section full-width="full-width" padding="0px 0 0px ">
 
                 <mj-image align="center" padding="0" src="https://hpph.ams3.cdn.digitaloceanspaces.com/hpph.gif" />
-                <mj-text font-size="24px" align="center" color="#ffda3d" line-height="1.2" font-weight="700">
-                    {{ $email->title }}</mj-text>
+                <mj-text font-size="24px" align="center" color="#ffffff" line-height="1.2" font-weight="700">
+                    Showing from {{ $email->date->format('l dS F') }}</mj-text>
 
             </mj-section>
         </mj-wrapper>

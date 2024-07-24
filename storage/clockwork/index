@@ -1281,3 +1281,7 @@
 1721846688-4402-1282296685,1721846688.4269,GET,/storage/95/responsive-images/Black-History-Month-2%402x___wide_1500_627.jpg,"App\Http\Controllers\PageController@show",404,94.722032546997,request
 1721857417-9707-1166910421,1721857417.7729,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1440.7072067261,request
 1721857452-9660-957042051,1721857452.9352,GET,/email/2,"App\Http\Controllers\EmailController@show",200,716.70889854431,request
+1721857706-6977-1036279605,1721857706.6698,GET,/email/2,"App\Http\Controllers\EmailController@show",200,825.06799697876,request
+1721857773-2102-2010357462,1721857773.1903,GET,/email/2,"App\Http\Controllers\EmailController@show",200,777.68087387085,request
+1721857791-3426-340317765,1721857791.3187,GET,/email/2,"App\Http\Controllers\EmailController@show",200,731.44698143005,request
+1721857823-5459-1206215776,1721857823.5306,GET,/email/2,"App\Http\Controllers\EmailController@show",200,716.39609336853,request
