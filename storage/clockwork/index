@@ -963,3 +963,10 @@
 1721836524-6514-620434682,1721836524.6364,GET,/email/2,"App\Http\Controllers\EmailController@show",200,731.62698745728,request
 1721836533-0136-1047537183,1721836532.9953,GET,/email/2,"App\Http\Controllers\EmailController@show",200,545.62711715698,request
 1721836606-1941-1772262137,1721836606.1738,GET,/email/2,"App\Http\Controllers\EmailController@show",200,746.62590026855,request
+1721836708-2761-1095747780,1721836708.2612,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,72.280883789062,request
+1721836712-5825-1119901427,1721836712.5639,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,63.279867172241,request
+1721836874-7028-1416304722,1721836874.689,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,63.37308883667,request
+1721836880-5722-237675745,1721836880.5553,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,60.686111450195,request
+1721836887-5654-1927270008,1721836887.5496,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,56.899070739746,request
+1721836922-5975-144970288,1721836922.5796,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,67.721128463745,request
+1721836929-5640-453632138,1721836929.5502,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,51.866054534912,request
