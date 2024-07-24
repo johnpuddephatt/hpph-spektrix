@@ -983,3 +983,4 @@
 1721838216-7987-1106726336,1721838216.7963,GET,/storage/138/responsive-images/Screenshot-2023-03-17-at-21.29.20___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,37.926912307739,request
 1721838216-8140-1962194682,1721838216.8116,GET,/storage/134/responsive-images/placeholder___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,39.499044418335,request
 1721838216-8227-1307084349,1721838216.8199,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,36.472082138062,request
+1721838599-8167-1055255073,1721838599.7882,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,128.64089012146,request

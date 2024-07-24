@@ -34,7 +34,7 @@
 
     @if ($instance->strand_name == 'Bring Your Own Baby')
         <span title="Bring Your Own Baby"
-            style="text-transform: uppercase; line-height: 1.1;  border-radius: 4px; font-weight: 700; background-color: #45cdff;   padding: 1px 4px 0; font-size: 12px; display: inline-block">
+            style="text-transform: uppercase; line-height: 1.1;  border-radius: 4px; font-weight: 700; background-color: #45cdff;   padding: 1px 4px 0; font-size: 11px; display: inline-block">
             BYOB
         </span>
     @endif
