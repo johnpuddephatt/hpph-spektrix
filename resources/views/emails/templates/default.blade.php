@@ -38,11 +38,13 @@
                 <a href="https://$UNSUB$">Unsubscribe from this email</a>
             </mj-text>
         </mj-section>
-        <mj-wrapper background-color="#000000" full-width="full-width">
-            <mj-section padding="10px 0 ">
+        <mj-wrapper background-color="#000" padding="0px 0 10px" full-width="full-width">
+            <mj-section full-width="full-width" padding="0px 0 0px ">
 
-                <mj-image
-                    src="https://ci3.googleusercontent.com/meips/ADKq_NYz45jqHv05Rc1o6-hUemFiFTeb2GoX-cjsbOFVQjMnlmxJhWDV3IlLfu0uVMW6KH24WBe9gSut4sfe_xH-EiItiSTUPemM14r_ui29707-GSp02si12jGFZj4DLsD7UyyMMdt7F3wxEw=s0-d-e1-ft#https://i.emlfiles4.com/cmpimg/2/1/0/0/8/2/files/1337082_hpphspinmailerheader_1.gif" />
+                <mj-image align="center" padding="0" src="https://hpph.ams3.cdn.digitaloceanspaces.com/hpph.gif" />
+                <mj-text font-size="24px" align="center" color="#ffda3d" line-height="1.2" font-weight="700">
+                    {{ $email->title }}</mj-text>
+
             </mj-section>
         </mj-wrapper>
 
