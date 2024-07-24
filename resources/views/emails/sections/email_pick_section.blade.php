@@ -4,7 +4,7 @@ $pick = \App\Models\Post::withoutGlobalScopes()->find($section->pick);
 @endphp
 <mj-wrapper background-color="#f8f7ef" full-width="full-width">
 
-    <mj-section padding="25px 5px">
+    <mj-section padding="25px 0px">
         <mj-column>
             <mj-hero border-radius="5px" vertical-align="middle" mode="fluid-height" background-width="1200px"
                 background-height="720px" background-url="{{ $pick->featuredImage?->getUrl('landscape') }}"
