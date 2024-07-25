@@ -1300,3 +1300,5 @@
 1721914794-6834-656386865,1721914794.664,GET,/email/2,"App\Http\Controllers\EmailController@show",200,728.12294960022,request
 1721914851-2217-528887310,1721914851.2079,GET,/email/2,"App\Http\Controllers\EmailController@show",200,740.94915390015,request
 1721914852-0227-536282826,1721914852.0132,GET,/favicon.ico,"App\Http\Controllers\PageController@show",404,60.349941253662,request
+1721914875-2459-1800742677,1721914875.233,GET,/email/2,"App\Http\Controllers\EmailController@show",200,700.34790039062,request
+1721914955-0305-791293127,1721914955.0122,GET,/email/2,"App\Http\Controllers\EmailController@show",200,790.25816917419,request

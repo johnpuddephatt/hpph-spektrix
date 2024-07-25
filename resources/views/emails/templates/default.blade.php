@@ -10,7 +10,7 @@
                 icon-wrapped-url="https://i.imgur.com/KKHenWa.png" icon-height="8px" icon-width="8px" padding="0" />
             <mj-accordion-title align="center" background-color="#f8f7f0" padding="7px 10px""
                 color=" #031017" />
-            <mj-accordion-text background-color="#fafafa" padding="15px 10px" color="#505050" font-size="14px" />
+            <mj-accordion-text background-color="#fafafa" padding="15px 10px" color="#505050" font-size="12px" />
         </mj-attributes>
 
         <mj-style inline="inline">
