@@ -36,6 +36,24 @@
             .film-column-hero {max-width: none !important;
             }
             }
+
+            .hidden-on-mobile {
+            display: none;
+            }
+
+            @media only screen and (min-width:480px) {
+            .hidden-on-mobile {
+            display: block;
+            }
+            .show-on-mobile {
+            display: none;
+            }
+            }
+            @media only screen and (min-width:480px) {
+            .pb0-on-desktop {
+            padding-bottom: 0 !important;
+            }
+            }
         </mj-style>
     </mj-head>
 

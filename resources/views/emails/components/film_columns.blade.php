@@ -1,7 +1,7 @@
 @foreach ($films->chunk($section->layout) as $chunk)
     <mj-section padding="15px 0px">
         @foreach ($chunk as $film)
-            <mj-column padding="15px 10px " width="{{ 100 / $section->layout }}%">
+            <mj-column padding="15px 10px " css-class="pb0-on-desktop" width="{{ 100 / $section->layout }}%">
                 <mj-hero css-class="film-column-hero" border-radius="5px" vertical-align="bottom" mode="fluid-height"
                     background-width="1200px" background-height="720px"
                     background-url="{{ $film->featuredImage?->getUrl('wide') }}" background-color="#2a3448"
@@ -23,9 +23,20 @@
                     @endif
                 </mj-text>
                 <mj-text padding="0 0 15px">{!! $film->description !!}</mj-text>
-                <mj-text padding="0 0 15px  ">
+                <mj-text padding="0">
                     @include('emails.components.instance_times')
                 </mj-text>
+                <mj-button css-class="show-on-mobile" inner-padding="5px 10px" font-weight="bold" width="100%"
+                    padding="15px 0 0" background-color="#ffda3d" color="#000000" href="{{ $film->url }}">More
+                    info &amp; tickets
+                </mj-button>
+            </mj-column>
+        @endforeach
+    </mj-section>
+    <mj-section css-class="hidden-on-mobile" padding="0 0 15px">
+        @foreach ($chunk as $film)
+            <mj-column padding="0 {{ $loop->last ? 0 : '10px' }} 0 {{ !$loop->first ? '10px' : 0 }}"
+                width="{{ 100 / $section->layout }}%">
                 <mj-button inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
                     background-color="#ffda3d" color="#000000" href="{{ $film->url }}">More
                     info &amp; tickets
@@ -33,14 +44,4 @@
             </mj-column>
         @endforeach
     </mj-section>
-    {{-- <mj-section padding="0 0 50px">
-        <mj-group>
-            @foreach ($chunk as $film)
-                <mj-column padding="0 {{ $loop->last ? 0 : '10px' }} 0 {{ !$loop->first ? '10px' : 0 }}"
-                    width="{{ 100 / $section->layout }}%">
-                  
-                </mj-column>
-            @endforeach
-        </mj-group>
-    </mj-section> --}}
 @endforeach

@@ -1285,3 +1285,14 @@
 1721857773-2102-2010357462,1721857773.1903,GET,/email/2,"App\Http\Controllers\EmailController@show",200,777.68087387085,request
 1721857791-3426-340317765,1721857791.3187,GET,/email/2,"App\Http\Controllers\EmailController@show",200,731.44698143005,request
 1721857823-5459-1206215776,1721857823.5306,GET,/email/2,"App\Http\Controllers\EmailController@show",200,716.39609336853,request
+1721860407-7245-1251699776,1721860407.6516,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",401,289.27516937256,request
+1721913018-8861-1901528380,1721913018.8378,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1207.6671123505,request
+1721913042-0647-30529560,1721913042.0476,GET,/email/2,"App\Http\Controllers\EmailController@show",200,884.96208190918,request
+1721913086-7334-928649062,1721913086.7122,GET,/email/2,"App\Http\Controllers\EmailController@show",200,915.77196121216,request
+1721913093-0162-1378471791,1721913093.0021,GET,/email/2,"App\Http\Controllers\EmailController@show",200,687.80422210693,request
+1721913834-7272-1688778910,1721913834.6785,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1107.2371006012,request
+1721914518-5189-618156827,1721914518.3736,GET,/email/2,"App\Http\Controllers\EmailController@show",200,1209.743976593,request
+1721914530-9297-1977050168,1721914530.9243,GET,/email/2,"App\Http\Controllers\EmailController@show",200,448.62103462219,request
+1721914531-6836-1800848543,1721914531.6755,GET,/favicon.ico,"App\Http\Controllers\PageController@show",404,86.554050445557,request
+1721914583-1196-1323661120,1721914583.1058,GET,/email/2,"App\Http\Controllers\EmailController@show",200,728.68013381958,request
+1721914628-7374-466217120,1721914628.7226,GET,/email/2,"App\Http\Controllers\EmailController@show",200,769.7741985321,request
