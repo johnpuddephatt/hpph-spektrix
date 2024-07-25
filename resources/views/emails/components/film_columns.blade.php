@@ -35,7 +35,7 @@
     </mj-section>
     <mj-section css-class="hidden-on-mobile" padding="0 0 15px">
         @foreach ($chunk as $film)
-            <mj-column padding="15px 7.5px " width="{{ 100 / $section->layout }}%">
+            <mj-column padding="0 7.5px " width="{{ 100 / $section->layout }}%">
                 <mj-button inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
                     background-color="#ffda3d" color="#000000" href="{{ $film->url }}">More
                     info &amp; tickets
