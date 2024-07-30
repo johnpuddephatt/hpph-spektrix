@@ -54,6 +54,12 @@ class Email extends Resource
             Text::make('Title')->required(),
             Date::make('Date')->required(),
             Flexible::make('Email sections', 'content')
+                ->addLayout('Email Featured Section', 'email_featured_section', [
+                    Select::make('Event')->fullWidth()->stacked()->searchable()->options(
+                        \App\Models\Event::all()->pluck('name', 'id')
+                    )->displayUsingLabels(),
+                    Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
+                ])
                 ->addLayout('Email Events Section', 'email_events_section', [
                     Text::make('Title')->stacked()->fullWidth(),
                     Select::make("Layout")->fullWidth()->stacked()->options(["rows" => "Rows", 1 => "1", 2 => "2", 3 => "3"])->default("rows"),
