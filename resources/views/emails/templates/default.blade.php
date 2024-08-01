@@ -81,5 +81,9 @@
             @include('emails.sections.' . $section->name(), ['section' => $section])
         @endforeach
 
+        @if ($email->settings['faqs'])
+            @include('emails.components.faqs')
+        @endif
+
     </mj-body>
 </mjml>

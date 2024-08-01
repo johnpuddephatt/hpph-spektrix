@@ -8,14 +8,18 @@ $pick = \App\Models\Post::withoutGlobalScopes()->find($section->pick);
 
 <mj-column padding="0 10px" css-class="hpph-pick">
 
-        <mj-image  border-radius="5px"  fluid-on-mobile="true"	 padding="0"   src="{{ $pick->featuredImage?->getUrl('landscape') }}" />
 
-<mj-text padding="10px" color="#ffda3d" align="center" font-size="30px" line-height="30px"
+
+
+
+ <mj-hero full-width="full-width" css-class="film-column-hero" border-radius="5px" vertical-align="middle"
+        mode="fluid-height" background-width="1200px" background-height="720px"
+        background-url="{{ $pick->featuredImage?->getUrl('landscape')  }}"
+        background-color="#2a3448" padding="0px 0px">
+        <mj-text padding="10px" color="#ffda3d" align="center" font-size="30px" line-height="30px"
 letter-spacing="10px" font-weight="600">
 HYDE PARK PICK</mj-text>
-
-
-
+    </mj-hero>
 </mj-column>
 <mj-column padding="0 10px">
 <mj-text font-size="24px" line-height="1.1" font-weight="700" padding="5px 0 10px 0px">

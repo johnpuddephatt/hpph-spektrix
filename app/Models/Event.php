@@ -127,7 +127,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         return $query->where(
             "last_instance_date_time",
             ">",
-            Carbon::now()->subDays(60)
+            Carbon::now()->subDays(30)
         )->orWhereNotNull('coming_soon');
     }
 

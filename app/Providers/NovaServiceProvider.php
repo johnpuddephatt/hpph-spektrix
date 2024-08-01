@@ -36,6 +36,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             new \App\Nova\Settings\Banner(),
             new \App\Nova\Settings\Contact(),
             new \App\Nova\Settings\Messages(),
+            new \App\Nova\Settings\Emails(),
             new \App\Nova\Settings\System(),
             new \App\Nova\Settings\Newsletter(),
         ];
