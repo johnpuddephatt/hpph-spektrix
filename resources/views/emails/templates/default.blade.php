@@ -77,9 +77,11 @@
             @include('emails.components.key')
         @endif
 
-        @foreach ($email->content as $section)
-            @include('emails.sections.' . $section->name(), ['section' => $section])
-        @endforeach
+        @if (is_iterable($email->content))
+            @foreach ($email->content as $section)
+                @include('emails.sections.' . $section->name(), ['section' => $section])
+            @endforeach
+        @endif
 
         @if ($email->settings['faqs'])
             @include('emails.components.faqs')

@@ -12,6 +12,7 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 use Whitecube\NovaFlexibleContent\Flexible;
 use Laravel\Nova\Fields\Repeater;
 use Laravel\Nova\Fields\FormData;
+use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Select;
 use Outl1ne\MultiselectField\Multiselect;
@@ -49,6 +50,7 @@ class Email extends Resource
      */
     public function fields(NovaRequest $request)
     {
+
         return [
             ID::make()->sortable(),
             Text::make('Title')->required(),
@@ -77,12 +79,23 @@ class Email extends Resource
                         \App\Models\Post::all()->pluck('title', 'id')
                     )->displayUsingLabels(),
                     Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
-                ]),
+                ])->hideFromDetail(),
             BooleanGroup::make('Settings')->options([
                 'faqs' => 'Include FAQs',
                 'key' => 'Include accessibility key',
 
-            ])->default(['faqs' => true, 'key' => true]),
+            ])->default(['faqs' => true, 'key' => true])->hideFromIndex(),
+
+            Heading::make($this->id ? '<iframe src="' . route('email.show', ['email' => $this->id]) . '"  width="100%" height="16000px"  frameborder="0" scrolling="yes"></iframe>' : '')->asHtml()->onlyOnDetail(),
+
+
+            // Text::make('Custom Link', function () {
+            //     if ($this->id) {
+            //         return '<iframe src="' . route('email.show', ['email' => $this->id]) . '"  width="100%" height="16000px"  frameborder="0" scrolling="yes"></iframe>';
+            //     }
+            // })->asHtml()->onlyOnDetail()->stacked()->fullWidth(),
+
+
 
         ];
     }
