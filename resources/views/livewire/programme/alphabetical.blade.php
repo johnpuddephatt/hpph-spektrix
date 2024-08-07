@@ -10,7 +10,7 @@
             <div class="type-regular text-center py-24">No events found.</div>
 
         @endif
+        {{ $events->links() }}
 
     </div>
-    {{ $events->links() }}
 </div>
