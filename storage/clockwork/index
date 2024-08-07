@@ -1507,3 +1507,13 @@
 1722532291-7075-141616271,1722532291.7006,GET,/nova-api/emails/lenses,"Laravel\Nova\Http\Controllers\LensController@index",200,30.933856964111,request
 1722532291-7215-288020819,1722532291.7149,GET,/nova-api/emails/actions?relationshipType=&display=index,"Laravel\Nova\Http\Controllers\ActionController@index",200,26.966094970703,request
 1722532291-7189-729323134,1722532291.7125,GET,/nova-api/emails?search=&filters=W10%3D&orderBy=&perPage=25&trashed=&page=1&relationshipType=,"Laravel\Nova\Http\Controllers\ResourceIndexController",200,48.256158828735,request
+1722532423-1020-1044332736,1722532423.0607,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,139.82582092285,request
+1723056218-4492-528591660,1723056218.4357,GET,/favicon.ico,"App\Http\Controllers\PageController@show",404,137.24994659424,request
+1723056226-3695-1054993463,1723056226.346,GET,/whats-on?type=past,"App\Http\Controllers\PageController@show",200,243.51382255554,request
+1723056226-6601-635881659,1723056226.657,GET,/livewire/livewire.js?id=90730a3b0e7144480175,"Livewire\Controllers\LivewireJavaScriptAssets@source",200,18.608093261719,request
+1723056231-1134-1594402839,1723056231.0906,POST,/livewire/message/programme,"Livewire\Controllers\HttpConnectionHandler",200,146.02518081665,request
+1723056232-1971-1379104530,1723056232.1819,POST,/livewire/message/programme,"Livewire\Controllers\HttpConnectionHandler",200,116.73188209534,request
+1723056232-8837-102146987,1723056232.8687,POST,/livewire/message/programme,"Livewire\Controllers\HttpConnectionHandler",200,132.11703300476,request
+1723056236-7165-27104889,1723056236.6876,GET,/whats-on?type=past,"App\Http\Controllers\PageController@show",200,242.76185035706,request
+1723056247-1572-1749931,1723056247.1339,POST,/livewire/message/programme,"Livewire\Controllers\HttpConnectionHandler",200,126.44600868225,request
+1723056248-0861-11442282,1723056248.0695,POST,/livewire/message/programme,"Livewire\Controllers\HttpConnectionHandler",200,115.149974823,request
