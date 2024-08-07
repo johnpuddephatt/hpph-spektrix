@@ -36,7 +36,7 @@ class Alphabetical extends Component
             $events = $events->hasFutureInstances();
         }
 
-        $events = $events->paginate(150);
+        $events = $events->paginate(156);
         return view("livewire.programme.alphabetical", compact('events'));
     }
 }
