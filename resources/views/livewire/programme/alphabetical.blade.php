@@ -12,4 +12,5 @@
         @endif
 
     </div>
+    {{ $events->links() }}
 </div>

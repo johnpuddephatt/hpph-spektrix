@@ -5,16 +5,23 @@ namespace App\Http\Livewire;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Carbon\Carbon;
+use Livewire\WithPagination;
 
 class Programme extends Component
 {
+
     public $type = "schedule";
 
     public $strand = null;
     public $accessibility = null;
     public $date = null;
+    public $past = false;
 
     protected $queryString = ["type", "strand", "accessibility", "date"];
+
+
+
+
 
     public function updatingType($value)
     {

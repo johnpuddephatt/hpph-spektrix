@@ -6,9 +6,24 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Livewire\WithPagination;
 
 class Instances extends Component
 {
+    use WithPagination;
+
+
+    public function paginationView()
+    {
+        return "vendor.livewire.tailwind";
+    }
+
+    public function gotoPage($page)
+    {
+        $this->setPage($page);
+        $this->emit('scrollToTop');
+    }
+
     public $options;
     public $dark = false;
     public $show_header = true;
@@ -20,6 +35,9 @@ class Instances extends Component
     public $date = null;
 
     public $filtered = false;
+
+    public $past = false;
+
 
     public function instances()
     {
@@ -46,6 +64,10 @@ class Instances extends Component
 
             );
 
+        if ($this->past == true) {
+            $instances->withoutGlobalScope("future");
+        }
+
         $this->filtered = false;
 
         if ($this->strand) {
@@ -71,7 +93,7 @@ class Instances extends Component
         return $instances;
     }
 
-    protected $queryString = ["accessibility", "strand", "date"];
+    protected $queryString = ["accessibility", "strand", "date", "past" => ["except" => false]];
 
     protected $listeners = [
         "updateStrand2" => "setStrand",
@@ -89,25 +111,31 @@ class Instances extends Component
     public function setStrand($value)
     {
         // $this->clearFilters();
+        $this->resetPage();
+
         $this->strand = $value;
     }
 
     public function setAccessibility($value)
     {
         // $this->clearFilters();
+        $this->resetPage();
+
         $this->accessibility = $value;
     }
 
     public function setDate($value)
     {
         // $this->clearFilters();
+        $this->resetPage();
+
         $this->date = $value;
     }
 
     public function render()
     {
         return view("livewire.programme.instances", [
-            "instances" => $this->instances()->get(),
+            "instances" => $this->instances()->paginate(150),
         ]);
     }
 }

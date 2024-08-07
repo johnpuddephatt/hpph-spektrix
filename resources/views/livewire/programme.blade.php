@@ -154,8 +154,6 @@
              @elseif ($type == 'schedule')
                  <livewire:programme.instances wire-key="instances" :show_header="false" :show_load_more="true"
                      :options="[(array) ['limit' => 10]]" />
-             @elseif ($type == 'past')
-                 <livewire:programme.past wire-key="past">
              @endif
          </div>
 
