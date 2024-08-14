@@ -21,7 +21,7 @@ class BannerLayout extends Layout
      *
      * @var string
      */
-    protected $title = "Banner";
+    protected $title = "Banner (link)";
 
     /**
      * Get the fields displayed by the layout.
