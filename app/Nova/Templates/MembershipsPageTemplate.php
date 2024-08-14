@@ -33,6 +33,8 @@ class MembershipsPageTemplate
                     )
                     ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
                     ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\LinkLayout::class)
+                    ->fullWidth()
                     ->button("Add new section"),
             ]),
         ];
