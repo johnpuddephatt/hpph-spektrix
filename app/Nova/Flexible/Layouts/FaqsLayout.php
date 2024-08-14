@@ -45,6 +45,7 @@ class FaqsLayout extends Layout
 
             Flexible::make("FAQs", "faqs")
                 ->addLayout(\App\Nova\Flexible\Layouts\SingleFaqLayout::class)
+                ->fullWidth()
                 ->button("Add a question"),
         ];
     }
