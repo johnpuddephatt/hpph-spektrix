@@ -36,6 +36,6 @@ class SingleFaqLayout extends Layout
      */
     public function fields()
     {
-        return [Text::make("Question"), NovaEditorJsField::make("Answer")];
+        return [Text::make("Question")->fullWidth(), NovaEditorJsField::make("Answer")->fullWidth()];
     }
 }
