@@ -65,11 +65,11 @@
                     @else
                         @include('emails.components.instance_times')
                     @endif
-                    <mj-button inner-padding="5px 10px" font-weight="bold" width="100%" padding="0px 0px 0px 0"
-                        background-color="#ffda3d" color="#000000" href="{{ $film->url }}">
-                        Info &amp; tickets
-                    </mj-button>
                 @endif
+                <mj-button inner-padding="5px 10px" font-weight="bold" width="100%" padding="0px 0px 0px 0"
+                    background-color="#ffda3d" color="#000000" href="{{ $film->url }}">
+                    Info &amp; tickets
+                </mj-button>
             </mj-column>
 
         </mj-group>

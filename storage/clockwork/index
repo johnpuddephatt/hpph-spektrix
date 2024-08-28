@@ -4668,3 +4668,11 @@
 1724858660-9956-354952240,1724858660.9899,GET,/email/2,"App\Http\Controllers\EmailController@show",200,746.05417251587,request
 1724858661-8084-377944798,1724858661.8001,GET,/storage/81/conversions/IMG_2037-landscape.jpg,"App\Http\Controllers\PageController@show",404,57.888984680176,request
 1724858667-8514-1917426993,1724858667.8357,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,53.589105606079,request
+1724858695-5119-2135850865,1724858695.4907,GET,/nova/resources/emails/2,"Laravel\Nova\Http\Controllers\Pages\ResourceDetailController",200,94.799041748047,request
+1724858695-6373-1173157212,1724858695.6313,GET,/nova-api/styles/dependency-container,"Laravel\Nova\Http\Controllers\StyleController",304,28.580904006958,request
+1724858695-7828-2137382099,1724858695.7748,GET,/nova-api/emails/cards?resourceId=2,"Laravel\Nova\Http\Controllers\CardController",200,52.164077758789,request
+1724858695-7826-998005457,1724858695.7727,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,54.563045501709,request
+1724858695-7964-1302158307,1724858695.7838,GET,/nova-api/emails/2?relationshipType=,"Laravel\Nova\Http\Controllers\ResourceShowController",200,58.029890060425,request
+1724858695-8838-1726363847,1724858695.8803,GET,/nova-api/emails/actions?resourceId=2&editing=true&editMode=create&display=detail,"Laravel\Nova\Http\Controllers\ActionController@index",200,21.741151809692,request
+1724858695-9191-302426546,1724858695.9139,GET,/email/2,"App\Http\Controllers\EmailController@show",200,748.90995025635,request
+1724858696-7213-457893018,1724858696.7152,GET,/storage/81/conversions/IMG_2037-landscape.jpg,"App\Http\Controllers\PageController@show",404,54.614067077637,request
