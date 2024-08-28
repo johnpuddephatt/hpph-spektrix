@@ -41,7 +41,7 @@
                 @endif
                 <mj-text padding="0 0 15px">{!! $film->description !!}</mj-text>
                 @if ($section->display_times !== 'range')
-                    @if ($section->display_times == 'collapsed' && instances->count() > 2)
+                    @if ($section->display_times == 'collapsed' && $film->instances->count() > 2)
                         <mj-accordion>
                             <mj-accordion-element>
                                 <mj-accordion-title>Toggle {{ $film->instances->count() }} showings</mj-accordion-title>

@@ -4522,3 +4522,4 @@
 1724853713-2986-1572332486,1724853713.2867,GET,/storage/81/conversions/IMG_2037-landscape.jpg,"App\Http\Controllers\PageController@show",404,55.466890335083,request
 1724853714-0910-1441810362,1724853714.0771,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,58.246850967407,request
 1724853721-0983-1926418036,1724853721.0804,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,70.245981216431,request
+1724854088-3184-1061731913,1724854088.3001,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,52.041053771973,request
