@@ -9,7 +9,8 @@
              @foreach ($settings['email_faqs'] as $faq)
                  <mj-accordion-element>
                      <mj-accordion-title @if (!$loop->last) border="1px solid #393939" @endif
-                         font-size="15px" background-color="#000000" color="#ffffff" font-weight="bold">
+                         font-size="17px" padding="10px 0" background-color="#000000" color="#ffffff"
+                         font-weight="bold">
                          {{ $faq['question'] }}</mj-accordion-title>
                      <mj-accordion-text background-color="#000000" color="#ffffff">
                          {!! Str::of($faq['answer'])->replace('<a ', '<a style="color:#ffda3d" ') !!}
