@@ -72,7 +72,7 @@ class Email extends Resource
                         'default' => 'Default (display all showing times)',
                         'range' => 'Date range only',
                         'collapsed' => 'Collapsed'
-                    ])->default('default'),
+                    ])->default('default')->withMeta(['value' => 'default']),
                     Flexible::make('Events', 'events')
                         ->stacked()->addLayout('Event', 'event', [
                             Select::make('Event')->fullWidth()->stacked()->searchable()->options(
