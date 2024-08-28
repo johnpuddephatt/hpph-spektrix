@@ -92,7 +92,19 @@ class Email extends Resource
                 ])->hideFromDetail()
 
                 ->addLayout('Email Banner Section', 'email_banner_section', [
+                    Select::make("Background")->options([
+                        '#000000' => 'Black',
+                        '#f8f7ef' => 'Light Grey',
+                        '#e6e4dd' => 'Grey',
+                        '#ffda3d' => 'Yellow',
+                        '#FFFFFF' => 'White',
+                    ])->displayUsingLabels(),
                     Image::make('Image')
+                        ->preview(function ($value, $disk) {
+                            return $value
+                                ? Storage::disk('digitalocean')->url($value)
+                                : null;
+                        })
                         ->store(function (Request $request, $model) {
                             $resized = InterventionImage::make($request->image)->resize(800, null, function ($constraint) {
                                 $constraint->aspectRatio();
