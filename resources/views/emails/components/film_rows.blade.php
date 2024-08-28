@@ -19,7 +19,7 @@
             </mj-column>
             <mj-column width="60%" padding="0 10px">
                 <mj-text line-height="1.2" padding="5px 0 10px 0" font-weight="700" font-size="18px">
-                    {{ $film->name }}
+                    {{ $film->name }} • {{ $film->date_range }}
 
                     @if ($film->certificate_age_guidance)
                         @include('emails.components.accessibility_icon', [
