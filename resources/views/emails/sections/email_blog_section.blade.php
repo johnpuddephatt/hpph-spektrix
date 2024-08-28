@@ -4,7 +4,7 @@ $post = \App\Models\Post::withoutGlobalScopes()->find($section->post);
 
 @if ($post)
     {{-- prettier-ignore-start --}}
-<mj-wrapper background-color="#f8f7ef" full-width="full-width">
+<mj-wrapper background-color="#ffda3d" full-width="full-width">
 <mj-section padding="25px 0">
 <mj-column padding="0 10px" css-class="hpph-pick">
  <mj-hero full-width="full-width" css-class="film-column-hero" border-radius="5px" vertical-align="middle"

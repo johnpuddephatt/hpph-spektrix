@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\Date;
@@ -17,6 +18,7 @@ use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Select;
 use Outl1ne\MultiselectField\Multiselect;
+use Intervention\Image\Facades\Image as InterventionImage;
 
 class Email extends Resource
 {
@@ -73,7 +75,7 @@ class Email extends Resource
                                 \App\Models\Event::all()->pluck('name', 'id')
                             )->displayUsingLabels(),
                             Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth(),
-                            Boolean::make('Show times on separate lines', 'show_times_on_separate_rows')->stacked()->fullWidth(),
+                            Boolean::make('Show times on separate lines', 'show_times_on_separate_rows')->fullWidth(),
                         ])->button('Add event'),
                 ])
                 ->addLayout('Email Pick Section', 'email_pick_section', [
@@ -90,7 +92,14 @@ class Email extends Resource
                 ])->hideFromDetail()
 
                 ->addLayout('Email Banner Section', 'email_banner_section', [
-                    Image::make('Image')->disk('digitalocean')->stacked()->fullWidth(),
+                    Image::make('Image')
+                        ->store(function (Request $request, $model) {
+                            $resized = InterventionImage::make($request->image)->resize(800, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                            });
+                            Storage::disk('digitalocean')->put($request->image->hashName(), (string) $resized->encode());
+                            return $request->image->hashName();
+                        })->stacked()->fullWidth(),
                     Text::make('URL')->stacked()->fullWidth()
                 ])->hideFromDetail(),
             BooleanGroup::make('Settings')->options([
