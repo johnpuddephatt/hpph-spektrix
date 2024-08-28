@@ -4747,3 +4747,4 @@
 1724859027-6114-602235465,1724859027.6085,GET,/nova-api/emails/actions?resourceId=2&editing=true&editMode=create&display=detail,"Laravel\Nova\Http\Controllers\ActionController@index",200,17.459154129028,request
 1724859027-6406-1202719119,1724859027.6368,GET,/email/2,"App\Http\Controllers\EmailController@show",200,745.68581581116,request
 1724859028-4411-520501019,1724859028.4374,GET,/storage/81/conversions/IMG_2037-landscape.jpg,"App\Http\Controllers\PageController@show",404,54.873943328857,request
+1724859330-9359-1556020556,1724859330.8935,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,166.00012779236,request
