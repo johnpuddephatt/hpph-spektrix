@@ -29,7 +29,7 @@ HYDE PARK PICK</mj-text>
 </mj-text>
 <mj-text padding="0 0 0px 0">{!! $pick->introduction !!}</mj-text>
 <mj-button padding="10px 0 0 0" inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
-background-color="#000000" color="#ffda3d" href="{{ $pick->url }}">Read more
+background-color="#ffda3d" color="#000000" href="{{ $pick->url }}">Read more
 </mj-button>
 </mj-column>
 </mj-section>

@@ -20,7 +20,7 @@ $post = \App\Models\Post::withoutGlobalScopes()->find($section->post);
 </mj-text>
 <mj-text padding="0 0 0px 0">{!! $post->introduction !!}</mj-text>
 <mj-button padding="10px 0 0 0" inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
-background-color="#ffda3d" color="#000000" href="{{ $post->url }}">Read more
+background-color="#000000" color="#ffda3d" href="{{ $post->url }}">Read more
 </mj-button>
 </mj-column>
 </mj-section>
