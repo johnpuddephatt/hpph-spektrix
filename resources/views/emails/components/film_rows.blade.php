@@ -21,9 +21,19 @@
             <mj-column width="60%" padding="0 10px">
                 <mj-text line-height="1.2" padding="5px 0 5px 0" font-weight="700" font-size="18px">
                     {{ $film->name }}
+
                     @if ($film->certificate_age_guidance)
-                        <span
-                            style="line-height: 1.1; vertical-align: middle; border-radius: 100px; background-color: #333; color: white; padding: 1px 4px 0; font-weight: 400; font-size: 10px; display: inline-block">{{ $film->certificate_age_guidance }}</span>
+                        @include('emails.components.accessibility_icon', [
+                            'label' => 'Certificate ' . $film->certificate_age_guidance,
+                            'abbreviation' => $film->certificate_age_guidance,
+                        ])
+                    @endif
+
+                    @if ($film->audio_description)
+                        @include('emails.components.accessibility_icon', [
+                            'label' => 'Audio Described',
+                            'abbreviation' => 'AD',
+                        ])
                     @endif
                 </mj-text>
                 <mj-text padding="0 0 0px  0">{!! $film->description !!}</mj-text>

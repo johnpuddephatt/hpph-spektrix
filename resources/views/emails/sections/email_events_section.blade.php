@@ -14,6 +14,10 @@ $films = \App\Models\Event::withoutGlobalScopes()
         if ($section->events[$key]->attributes->replacement_description ?: false) {
             $event->description = $section->events[$key]->attributes->replacement_description;
         }
+
+        if ($section->events[$key]->attributes->show_times_on_separate_rows ?: false) {
+            $event->show_times_on_separate_rows = $section->events[$key]->attributes->show_times_on_separate_rows;
+        }
     });
 
 @endphp

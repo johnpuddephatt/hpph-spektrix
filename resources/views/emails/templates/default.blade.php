@@ -68,7 +68,7 @@
 
                 <mj-image align="center" padding="0" src="https://hpph.ams3.cdn.digitaloceanspaces.com/hpph.gif" />
                 <mj-text font-size="24px" align="center" color="#ffffff" line-height="1.2" font-weight="700">
-                    Showing from {{ $email->date->format('l dS F') }}</mj-text>
+                    Showing from {{ $email->date->format('D d M') }}</mj-text>
 
             </mj-section>
         </mj-wrapper>
@@ -86,6 +86,37 @@
         @if ($email->settings['faqs'])
             @include('emails.components.faqs')
         @endif
+
+        @if ($email->settings['social'])
+            @include('emails.components.social')
+        @endif
+
+        <mj-section full-width="full-width" padding="15px 0" background-color="#000000" align="center">
+            <mj-group>
+                <mj-column width="22.5%"> </mj-column>
+
+                <mj-column width="30%">
+                    <mj-image padding="0 10px" src="https://hpph.ams3.cdn.digitaloceanspaces.com/lht-hpph.png"
+                        alt="Leeds Heritage Theatres & HPPH" />
+                </mj-column>
+                <mj-column width="25%">
+                    <mj-image padding="0 10px" src="https://hpph.ams3.cdn.digitaloceanspaces.com/lhf.png"
+                        alt="Lottery Heritage Fund" />
+                </mj-column>
+                <mj-column width="22.5%"> </mj-column>
+            </mj-group>
+        </mj-section>
+
+        <mj-section full-width="full-width" padding="10px 0 0 0" background-color="#000000">
+            <mj-text align="center" color="#ffffff">
+                <p class="text-xs">Copyright Hyde Park Picture House {{ date('Y') }}</p>
+                @if (isset($settings['charity_number']))
+                    <p class="text-xs">Registered Charity No.{{ $settings['charity_number'] }}</p>
+                @endif
+                <p>Address: {{ $settings['address'] }} &nbsp;&nbsp;&nbsp; Email: <a style="color: #ffffff"
+                        href="mailto:info@hpph.co.uk">info@hpph.co.uk</a></p>
+            </mj-text>
+        </mj-section>
 
     </mj-body>
 </mjml>

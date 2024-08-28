@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -71,7 +72,8 @@ class Email extends Resource
                             Select::make('Event')->fullWidth()->stacked()->searchable()->options(
                                 \App\Models\Event::all()->pluck('name', 'id')
                             )->displayUsingLabels(),
-                            Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
+                            Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth(),
+                            Boolean::make('Show times on separate lines', 'show_times_on_separate_rows')->stacked()->fullWidth(),
                         ])->button('Add event'),
                 ])
                 ->addLayout('Email Pick Section', 'email_pick_section', [
@@ -79,12 +81,28 @@ class Email extends Resource
                         \App\Models\Post::all()->pluck('title', 'id')
                     )->displayUsingLabels(),
                     Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
+                ])->hideFromDetail()
+                ->addLayout('Email Blog Section', 'email_blog_section', [
+                    Select::make('Post')->fullWidth()->stacked()->searchable()->options(
+                        \App\Models\Post::all()->pluck('title', 'id')
+                    )->displayUsingLabels(),
+                    Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
+                ])->hideFromDetail()
+
+                ->addLayout('Email Banner Section', 'email_banner_section', [
+                    Image::make('Image')->disk('digitalocean')->stacked()->fullWidth(),
+                    Text::make('URL')->stacked()->fullWidth()
                 ])->hideFromDetail(),
             BooleanGroup::make('Settings')->options([
                 'faqs' => 'Include FAQs',
                 'key' => 'Include accessibility key',
+                'social' => 'Include social media links',
 
-            ])->default(['faqs' => true, 'key' => true])->hideFromIndex(),
+            ])->default(['faqs' => true, 'key' => true, 'social' => true])->hideFromIndex(),
+            Heading::make(
+                "<div style='height: 150px;'></div>"
+            )->asHtml()->onlyOnForms(),
+
 
             Heading::make($this->id ? '<iframe src="' . route('email.show', ['email' => $this->id]) . '"  width="100%" height="16000px"  frameborder="0" scrolling="yes"></iframe>' : '')->asHtml()->onlyOnDetail(),
 

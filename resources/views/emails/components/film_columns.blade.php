@@ -1,4 +1,8 @@
 @foreach ($films->chunk($section->layout) as $chunk)
+    @if (!$loop->first)
+        <mj-divider border-width="1px" border-color="#b5b5b5" />
+    @endif
+
     <mj-section padding="15px 0px">
         @foreach ($chunk as $film)
             <mj-column padding="15px 7.5px " css-class="pb0-on-desktop" width="{{ 100 / $section->layout }}%">
@@ -21,6 +25,11 @@
                         <span
                             style="line-height: 1.1; vertical-align: middle; border-radius: 100px; background-color: #333; color: white; padding: 1px 4px 0; font-weight: 400; font-size: 10px; display: inline-block">{{ $film->certificate_age_guidance }}</span>
                     @endif
+
+                    @if ($film->audio_description)
+                        <span title="Audio Described"
+                            style="line-height: 1.1; vertical-align: middle; border-radius: 100px; background-color: #333; color: white; padding: 1px 4px 0; font-weight: 400; font-size: 10px; display: inline-block">AD</span>
+                    @endif
                 </mj-text>
                 <mj-text padding="0 0 15px">{!! $film->description !!}</mj-text>
                 <mj-text padding="0">
@@ -33,7 +42,7 @@
             </mj-column>
         @endforeach
     </mj-section>
-    <mj-section css-class="hidden-on-mobile" padding="0 0 15px">
+    <mj-section css-class="hidden-on-mobile" padding="0 0 25px">
         @foreach ($chunk as $film)
             <mj-column padding="0 7.5px " width="{{ 100 / $section->layout }}%">
                 <mj-button inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"

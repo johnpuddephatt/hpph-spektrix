@@ -25,6 +25,9 @@ Route::middleware(["spektrix"])->group(function () {
         return null;
     });
 
+    Route::get("signup-test", [\App\Http\Controllers\SignupController::class, 'form'])->name('signup.form');
+    Route::post("signup-test", [\App\Http\Controllers\SignupController::class, 'submit'])->name('signup.submit');
+
     Route::get("brand", function () {
         return view("brand");
     });
