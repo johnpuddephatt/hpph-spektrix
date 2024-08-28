@@ -5,7 +5,7 @@
         <mj-attributes>
 
             <mj-all line-height="1.6" font-family="BasisGrotesque, sans-serif" />
-            <mj-accordion padding="0 0 0 15px" border="none" />
+            <mj-accordion padding="0 0 0 0" border="none" />
             <mj-accordion-element icon-unwrapped-url="https://i.imgur.com/Xvw0vjq.png"
                 icon-wrapped-url="https://i.imgur.com/KKHenWa.png" icon-height="8px" icon-width="8px" padding="0" />
             <mj-accordion-title align="center" background-color="#f8f7f0" padding="7px 10px""
