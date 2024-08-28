@@ -21,14 +21,18 @@
                 </mj-hero>
                 <mj-text line-height="1.2" padding="10px 0" font-weight="700" font-size="18px">
 
-                    {{ $film->name }}&#8239;@if ($film->certificate_age_guidance)
-                        <span
-                            style="line-height: 1.1; vertical-align: middle; border-radius: 100px; background-color: #333; color: white; padding: 1px 4px 0; font-weight: 400; font-size: 10px; display: inline-block">{{ $film->certificate_age_guidance }}</span>
+                    {{ $film->name }}&#8239; @if ($film->certificate_age_guidance)
+                        @include('emails.components.accessibility_icon', [
+                            'label' => 'Certificate ' . $film->certificate_age_guidance,
+                            'abbreviation' => $film->certificate_age_guidance,
+                        ])
                     @endif
 
                     @if ($film->audio_description)
-                        <span title="Audio Described"
-                            style="line-height: 1.1; vertical-align: middle; border-radius: 100px; background-color: #333; color: white; padding: 1px 4px 0; font-weight: 400; font-size: 10px; display: inline-block">AD</span>
+                        @include('emails.components.accessibility_icon', [
+                            'label' => 'Audio Described',
+                            'abbreviation' => 'AD',
+                        ])
                     @endif
                 </mj-text>
                 <mj-text padding="0 0 15px">{!! $film->description !!}</mj-text>
