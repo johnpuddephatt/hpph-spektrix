@@ -11,7 +11,6 @@
                         <mj-button color="#000000" background-color="{{ $film->strand->color }}" width="100%"
                             line-height="1" padding="0px" font-size="11px" font-weight="bold" inner-padding="4px 0"
                             align="center">
-
                             {{ strtoupper($film->strand->name) }}
                         </mj-button>
                     @endif
@@ -19,7 +18,7 @@
 
             </mj-column>
             <mj-column width="60%" padding="0 10px">
-                <mj-text line-height="1.2" padding="5px 0 5px 0" font-weight="700" font-size="18px">
+                <mj-text line-height="1.2" padding="5px 0 10px 0" font-weight="700" font-size="18px">
                     {{ $film->name }}
 
                     @if ($film->certificate_age_guidance)
@@ -36,6 +35,10 @@
                         ])
                     @endif
                 </mj-text>
+                @if ($section->display_times == 'range' && $film->date_range)
+                    <mj-text line-height="1.2" padding="0px 0 15px 0" font-weight="700" font-size="15px">
+                        {!! $film->date_range !!}</mj-text>
+                @endif
                 <mj-text padding="0 0 0px  0">{!! $film->description !!}</mj-text>
 
             </mj-column>
@@ -45,23 +48,25 @@
         <mj-group>
             <mj-column width="40%" padding="0 10px"></mj-column>
             <mj-column width="60%" padding="0 10px">
-                @if ($film->instances->count() > 2)
-                    <mj-accordion>
-                        <mj-accordion-element>
-                            <mj-accordion-title>Toggle {{ $film->instances->count() }} showings</mj-accordion-title>
-                            <mj-accordion-text>
-                                @include('emails.components.instance_times')
-                            </mj-accordion-text>
-                        </mj-accordion-element>
+                @if ($section->display_times !== 'range')
+                    @if ($section->display_times == 'collapsed' && instances->count() > 2)
+                        <mj-accordion>
+                            <mj-accordion-element>
+                                <mj-accordion-title>Toggle {{ $film->instances->count() }} showings</mj-accordion-title>
+                                <mj-accordion-text>
+                                    @include('emails.components.instance_times')
+                                </mj-accordion-text>
+                            </mj-accordion-element>
 
-                    </mj-accordion>
-                @else
-                    @include('emails.components.instance_times')
+                        </mj-accordion>
+                    @else
+                        @include('emails.components.instance_times')
+                    @endif
+                    <mj-button inner-padding="5px 10px" font-weight="bold" width="100%" padding="0px 0px 0px 0"
+                        background-color="#ffda3d" color="#000000" href="{{ $film->url }}">
+                        Info &amp; tickets
+                    </mj-button>
                 @endif
-                <mj-button inner-padding="5px 10px" font-weight="bold" width="100%" padding="0px 0px 0px 0"
-                    background-color="#ffda3d" color="#000000" href="{{ $film->url }}">
-                    Info &amp; tickets
-                </mj-button>
             </mj-column>
 
         </mj-group>

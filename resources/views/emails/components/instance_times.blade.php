@@ -1,5 +1,5 @@
 {{-- prettier-ignore-start --}}
-
+<mj-text padding="0">
 @if ($film->show_times_on_separate_rows)
     @foreach ($film->instances as $instance)
         <strong>{{ $instance->start->format('D d M') }}</strong>:
@@ -24,4 +24,5 @@
     @endforeach
 
 @endif
+</mj-text>
 {{-- prettier-ignore-end --}}

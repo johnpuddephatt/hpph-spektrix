@@ -35,10 +35,26 @@
                         ])
                     @endif
                 </mj-text>
+                @if ($section->display_times == 'range' && $film->date_range)
+                    <mj-text line-height="1.2" padding="0px 0 15px 0" font-weight="700" font-size="15px">
+                        {!! $film->date_range !!}</mj-text>
+                @endif
                 <mj-text padding="0 0 15px">{!! $film->description !!}</mj-text>
-                <mj-text padding="0">
-                    @include('emails.components.instance_times')
-                </mj-text>
+                @if ($section->display_times !== 'range')
+                    @if ($section->display_times == 'collapsed' && instances->count() > 2)
+                        <mj-accordion>
+                            <mj-accordion-element>
+                                <mj-accordion-title>Toggle {{ $film->instances->count() }} showings</mj-accordion-title>
+                                <mj-accordion-text>
+                                    @include('emails.components.instance_times')
+                                </mj-accordion-text>
+                            </mj-accordion-element>
+
+                        </mj-accordion>
+                    @else
+                        @include('emails.components.instance_times')
+                    @endif
+                @endif
                 <mj-button css-class="show-on-mobile" inner-padding="5px 10px" font-weight="bold" width="100%"
                     padding="15px 0 0" background-color="#ffda3d" color="#000000" href="{{ $film->url }}">More
                     info &amp; tickets
