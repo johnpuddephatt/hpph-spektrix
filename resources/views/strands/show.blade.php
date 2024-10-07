@@ -53,7 +53,7 @@
         @endif
     </div>
 
-    @if ($strand->instances->count() || $coming_soon->count())
+    @if ($instances->count() || $coming_soon->count())
         <div class="bg-black text-white">
             <div class="pt-24 pb-16 container">
                 <p class="type-xs-mono text-center container mb-2">What’s on</p>
@@ -61,7 +61,7 @@
                     {{ $strand->name }}
                 </h2>
 
-                <x-instance-slider :instances="$strand->instances" :coming_soon="$coming_soon" :layout="match (count($strand->instances) + count($coming_soon)) {
+                <x-instance-slider :instances="$instances" :coming_soon="$coming_soon" :layout="match (count($instances) + count($coming_soon)) {
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',
