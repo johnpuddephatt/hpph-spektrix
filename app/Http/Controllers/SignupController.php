@@ -59,12 +59,14 @@ class SignupController extends Controller
 
             $customerId = $response->json()['id'];
 
-            foreach ($requestData['Tags'] as $tag) {
+
+            foreach ($requestData['Tags'] ?? [] as $tag) {
 
                 $updateTagUrl = 'https://system.spektrix.com/' . nova_get_setting("spektrix_client_name") . '/api/v3/customers/' . $customerId . '/tags';
                 $body = [
                     'id' => $tag
                 ];
+
 
                 $response = Http::withHeaders($this->generateHeaders($updateTagUrl, 'POST', json_encode($body)))->post($updateTagUrl, $body);
                 if ($response->badRequest()) {
@@ -72,16 +74,27 @@ class SignupController extends Controller
                 }
             }
 
+            // $getCustomerAgreedStatementsUrl = 'https://system.spektrix.com/' . nova_get_setting("spektrix_client_name") . '/api/v3/customers/' . $customerId . '/agreed-statements';
+            // $response = Http::acceptJson()->withHeaders($this->generateHeaders($getCustomerAgreedStatementsUrl, 'GET'))->get($getCustomerAgreedStatementsUrl);
+
+            // dd($response->json());
+
+
+
+
             $agreedStatementsBody = [];
-            foreach ($requestData['AgreedStatements'] as $key => $value) {
-                $agreedStatementsBody[] = [
-                    'id' => $key,
-                ];
+            if (isset($requestData['AgreedStatements'])) {
+                foreach ($requestData['AgreedStatements'] as $key => $value) {
+                    $agreedStatementsBody[] = [
+                        'id' => $key
+                    ];
+                }
             }
             $updateAgreedStatementsUrl = 'https://system.spektrix.com/' . nova_get_setting("spektrix_client_name") . '/api/v3/customers/' . $customerId . '/agreed-statements';
 
-            // dd($updateAgreedStatementsUrl, json_encode($agreedStatementsBody), $this->generateHeaders($updateAgreedStatementsUrl, 'PUT', json_encode($agreedStatementsBody)));
-            // 
+
+            dd($updateAgreedStatementsUrl, json_encode($agreedStatementsBody), $this->generateHeaders($updateAgreedStatementsUrl, 'PUT', json_encode($agreedStatementsBody)));
+
             // Not sure what's happening here
             // the signature matches the one in the tool.
             // it's not an auth issue
@@ -90,7 +103,7 @@ class SignupController extends Controller
             // security issue here? someone could just send a post request to update someone else's agreed statements
             // possible issues with LHT too? not sure. people share accounts but don't know it!
 
-            $response = Http::withHeaders($this->generateHeaders($updateAgreedStatementsUrl, 'PUT', json_encode($body)))->put($updateAgreedStatementsUrl, $body);
+            $response = Http::withHeaders($this->generateHeaders($updateAgreedStatementsUrl, 'POST', json_encode($agreedStatementsBody)))->post($updateAgreedStatementsUrl, $agreedStatementsBody);
 
             dd($response);
 
