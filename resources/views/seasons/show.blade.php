@@ -54,7 +54,7 @@
     @if ($season->instances->count() || $coming_soon->count())
         <div class="bg-black text-yellow">
             <div class="pt-24 pb-16 container">
-                <p class="type-xs-mono text-white text-center container mb-2">What’s on ({{ $season->instances->count() }})
+                <p class="type-xs-mono text-white text-center container mb-2">What’s on
                 </p>
                 <h2 class="type-regular lg:type-medium text-center container mb-12">
                     {{ $season->name }}
