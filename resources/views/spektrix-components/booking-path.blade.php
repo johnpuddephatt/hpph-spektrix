@@ -2,7 +2,7 @@
     @booking.window="eventID = $event.detail.eventID; instanceID = $event.detail.instanceID; event = $event.detail.event; certificate = $event.detail.certificate"
     @keyup.escape.window="closeBooking" x-data="{
         iFrameLoading: true,
-        displayAvailabilityBadge: {{ nova_get_setting('display_availability_badge', false) }}
+        displayAvailabilityBadge: {{ nova_get_setting('display_availability_badge', false) }},
         eventID: null,
         event: null,
         certificate: null,
