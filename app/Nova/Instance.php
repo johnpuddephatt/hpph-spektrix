@@ -68,7 +68,7 @@ class Instance extends Resource
 
             Text::make("Live Spektrix API Data", "api_link", function () {
                 return '<a class="link-default" href="' . $this->spektrix_api_link . '" target="_blank">Instance data</a> ' .
-                    '<a class="link-default" href="' . $this->spektrix_api_link . '/status?includeLockInformation=true&includeChildPlans=true" target="_blank">Status data</a>';
+                    '<a class="link-default" href="' . $this->spektrix_api_link . '/status?includeLockInformation=true&includeChildPlans=true" target="_blank">Status data</a> / ';
             })
                 ->asHtml()
                 ->hideFromIndex(),
