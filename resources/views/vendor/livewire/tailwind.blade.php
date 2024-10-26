@@ -44,9 +44,9 @@
                             @if ($paginator->onFirstPage())
                                 <span aria-disabled="true" aria-label="{{ __('pagination.previous') }}">
                                     <span
-                                        class="relative inline-flex h-12 w-12 cursor-default items-center justify-center rounded-full border border-gray border-gray-light bg-white font-medium text-gray"
+                                        class="relative inline-flex h-12 w-12 cursor-default items-center justify-center rounded-full border border-gray-light bg-sand-light font-medium text-gray"
                                         aria-hidden="true">
-                                        @svg('chevron-right', 'w-5 h-5 rotate-180 origin-center')
+                                        @svg('chevron-right', 'w-5 h-5 text-black rotate-180 origin-center')
                                     </span>
                                 </span>
                             @else
@@ -106,9 +106,9 @@
                             @else
                                 <span aria-disabled="true" aria-label="{{ __('pagination.next') }}">
                                     <span
-                                        class="relative inline-flex h-12 w-12 cursor-default items-center justify-center rounded-full border border-gray bg-white font-medium text-gray"
+                                        class="relative inline-flex h-12 w-12 cursor-default items-center justify-center rounded-full border border-gray bg-sand-light font-medium"
                                         aria-hidden="true">
-                                        @svg('chevron-right', 'w-5 h-5')
+                                        @svg('chevron-right', 'w-5 h-5 text-black')
                                     </span>
                                 </span>
                             @endif
