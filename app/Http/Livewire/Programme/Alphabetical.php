@@ -20,7 +20,9 @@ class Alphabetical extends Component
         $this->setPage($page);
         $this->emit('scrollToTop');
     }
+
     public $past = false;
+
     protected $queryString = [
         "past" => ["except" => false]
     ];
@@ -35,6 +37,7 @@ class Alphabetical extends Component
         if ($this->past == false) {
             $events = $events->hasFutureInstances();
         }
+
 
         $events = $events->paginate(156);
         return view("livewire.programme.alphabetical", compact('events'));

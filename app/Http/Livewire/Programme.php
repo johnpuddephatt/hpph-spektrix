@@ -17,11 +17,7 @@ class Programme extends Component
     public $date = null;
     public $past = false;
 
-    protected $queryString = ["type", "strand", "accessibility", "date"];
-
-
-
-
+    protected $queryString = ["type", "strand", "accessibility", "date", "past"];
 
     public function updatingType($value)
     {
@@ -45,6 +41,8 @@ class Programme extends Component
         "updateDate" => "setDate",
         "clearStrand" => "clearStrand",
     ];
+
+
 
     public function setStrand($value)
     {
@@ -109,9 +107,11 @@ class Programme extends Component
             ]);
         }
 
+        $past = $this->past;
+
         return view(
             "livewire.programme",
-            compact("strands_with_showings", "accessibilities_with_showings")
+            compact("strands_with_showings", "accessibilities_with_showings", "past")
         );
     }
 }

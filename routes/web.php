@@ -25,6 +25,8 @@ Route::middleware(["spektrix"])->group(function () {
         return null;
     });
 
+    Route::redirect('past-screenings', 'whats-on?type=alphabetical&past=true');
+
     Route::get("signup-test", [\App\Http\Controllers\SignupController::class, 'form'])->name('signup.form');
     Route::post("signup-test", [\App\Http\Controllers\SignupController::class, 'submit'])->name('signup.submit');
 
