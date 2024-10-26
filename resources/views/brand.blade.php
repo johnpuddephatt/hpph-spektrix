@@ -21,7 +21,20 @@
             </div>
         </div>
 
-        <x-availability-badge :instance="@json({availability: { seats: 5, accessible_seats: 3}})" />
+        <div class="flex flex-row my-16 gap-2">
+
+            <div x-data="{ instance: { 'availability': { 'capacity': 200, 'seats': 5, 'accessible_seats': 3 } } }">
+                <x-availability-badge />
+            </div>
+
+            <div x-data="{ instance: { 'availability': { 'capacity': 200, 'seats': 0, 'accessible_seats': 4 } } }">
+                <x-availability-badge />
+            </div>
+
+            <div x-data="{ instance: { 'availability': { 'capacity': 200, 'seats': 0, 'accessible_seats': 0 } } }">
+                <x-availability-badge />
+            </div>
+        </div>
 
         <h1 class="type-large mt-32">Typography</h1>
         <div class="space-between mt-32 mb-32 flex flex-col lg:flex-row">

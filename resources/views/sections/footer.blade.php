@@ -95,13 +95,18 @@
                 </form>
             </div>
             <div
-                class="col-span-2 lg:mt-6 flex flex-row justify-center lg:justify-start flex-nowrap items-center gap-x-3 gap-y-5 lg:flex-nowrap lg:gap-4">
-                @svg('logo-hlf2', 'text-gray-light w-24 h-auto')
-                @svg('logo-filmhub', 'text-gray-light w-14 h-auto')
-                @svg('logo-bfi', 'text-gray-light w-40 h-auto')
-                @svg('logo-lcc', 'text-gray-light w-20 h-auto')
-                @svg('logo-gwf', 'text-gray-light w-20 h-auto')
-                @svg('logo-fundraising_regulator', 'text-gray-light w-28 h-auto')
+                class="col-span-2 lg:mt-6 flex flex-row justify-center lg:justify-start flex-wrap items-center gap-x-4 gap-y-6 lg:gap-8">
+                @svg('logo-hlf2', 'text-gray-light w-28 h-auto')
+                @svg('logo-filmhub', 'text-gray-light w-16 h-auto')
+                @svg('logo-bfi', 'text-gray-light w-48 h-auto')
+
+                @svg('logo-gwf', 'text-gray-light w-24 h-auto')
+                @svg('logo-fundraising_regulator', 'text-gray-light w-36 h-auto')
+                @svg('logo-lcc', 'text-gray-light w-28 h-auto')
+
+                @svg('logo-wyca', 'text-gray-light w-36 h-auto')
+                @svg('logo-fundedbyukgovernment', 'text-gray-light w-36 h-auto')
+
             </div>
 
             <div class="lg:col-span-1 col-span-2 self-end text-center lg:text-left order-last lg:-order-none">
