@@ -45,3 +45,7 @@ Artisan::command("fetch:shop", function () {
 // Artisan::command("fetch:instances", function () {
 //     dispatch(new \App\Jobs\FetchInstanceData());
 // })->purpose("Fetches instance data from Spektrix");
+
+Artisan::command("cache:availability", function () {
+    dispatch(new \App\Jobs\CacheInstanceAvailability());
+})->purpose("Caches availability data for all instances");

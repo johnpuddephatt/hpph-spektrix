@@ -12,6 +12,7 @@
                 @if ($instance->strand?->show_on_instance_card)
                     <x-strand.badge :dark="false" class="mt-2" :strand="$instance->strand" />
                 @endif
+
             </div>
         @endif
 
@@ -42,6 +43,12 @@
             <div class="flex flex-row items-center gap-1.5">@svg('clock', ' w-4 h-4')
                 <div class="type-regular">{{ $instance->start->format('H:i') }}</div>
                 <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description" :autism_friendly="$instance->autism_friendly" />
+
+                @if (nova_get_setting('display_availability_badge', false))
+                    <div x-cloak x-data='{ instance: { availability: @json($instance->availability) } }'>
+                        <x-availability-badge />
+                    </div>
+                @endif
             </div>
 
             @if ($instance->special_event || $instance->format)

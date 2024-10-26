@@ -2,7 +2,7 @@
     @booking.window="eventID = $event.detail.eventID; instanceID = $event.detail.instanceID; event = $event.detail.event; certificate = $event.detail.certificate"
     @keyup.escape.window="closeBooking" x-data="{
         iFrameLoading: true,
-    
+        displayAvailabilityBadge: {{ nova_get_setting('display_availability_badge', false) }}
         eventID: null,
         event: null,
         certificate: null,
@@ -94,7 +94,7 @@
 
                                         <div class="ml-auto flex flex-row items-center gap-3">
 
-                                            <x-availability-badge />
+                                            <x-availability-badge x-show="displayAvailabilityBadge" />
 
                                             @svg('arrow-right', 'bg-sand-light flex-shrink-0 group-hover:bg-yellow rounded-full p-3 h-12 w-12')
                                         </div>

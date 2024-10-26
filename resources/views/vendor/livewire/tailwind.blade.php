@@ -2,7 +2,7 @@
     @if ($paginator->hasPages())
         @php(isset($this->numberOfPaginatorsRendered[$paginator->getPageName()]) ? $this->numberOfPaginatorsRendered[$paginator->getPageName()]++ : ($this->numberOfPaginatorsRendered[$paginator->getPageName()] = 1))
 
-        <nav role="navigation" aria-label="Pagination Navigation" class="my-12 flex items-center justify-between">
+        <nav role="navigation" aria-label="Pagination Navigation" class="py-12 flex items-center justify-between">
             <div class="flex flex-1 justify-between sm:hidden">
                 <span>
                     @if ($paginator->onFirstPage())

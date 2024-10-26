@@ -47,7 +47,8 @@ class Instances extends Component
             ->with(
                 "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
                 "event.featuredImage",
-                "strand:slug,name,color,show_on_instance_card"
+                "strand:slug,name,color,show_on_instance_card",
+
             )
             ->select(
                 "id",
@@ -61,7 +62,6 @@ class Instances extends Component
                 "strand_name",
                 "special_event",
                 "external_ticket_link"
-
             );
 
         if ($this->past == true) {
@@ -135,7 +135,7 @@ class Instances extends Component
     public function render()
     {
         return view("livewire.programme.instances", [
-            "instances" => $this->instances()->paginate(156),
+            "instances" => $this->instances()->paginate(50),
         ]);
     }
 }

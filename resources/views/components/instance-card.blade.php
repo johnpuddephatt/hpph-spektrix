@@ -23,8 +23,15 @@
                 @endif
             </div>
 
+            @if (nova_get_setting('display_availability_badge', false))
+                <div class="absolute top-2 left-1.5" x-cloak
+                    x-data='{ instance: { availability: @json($instance->availability) } }'>
+                    <x-availability-badge />
+                </div>
+            @endif
             <x-accessibilities class="absolute top-2 right-1.5" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description"
                 :autism_friendly="$instance->autism_friendly" />
+
             @if ($show_strand && $instance->strand?->show_on_instance_card)
                 <x-strand.badge :dark="$dark" class="mt-2" :strand="$instance->strand" />
             @endif

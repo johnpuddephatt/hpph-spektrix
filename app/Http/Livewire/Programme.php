@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Carbon\Carbon;
 use Livewire\WithPagination;
+use Livewire\Attributes\Url;
 
 class Programme extends Component
 {
@@ -15,9 +16,10 @@ class Programme extends Component
     public $strand = null;
     public $accessibility = null;
     public $date = null;
+
     public $past = false;
 
-    protected $queryString = ["type", "strand", "accessibility", "date", "past"];
+    protected $queryString = ["type", "strand", "accessibility", "date", "past" => ["except" => false]];
 
     public function updatingType($value)
     {

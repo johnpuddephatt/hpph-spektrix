@@ -21,6 +21,10 @@ class Instance extends Model implements CachableAttributes
     public $incrementing = false;
     protected $keyType = "string";
 
+    protected $cachableAttributes = [
+        'availability',
+    ];
+
     protected static function booted()
     {
         static::addGlobalScope("enabled", function (Builder $builder) {
@@ -148,7 +152,7 @@ class Instance extends Model implements CachableAttributes
     {
         return $this->remember(
             "availability",
-            30,
+            299,
             function (): array {
                 try {
                     $response = Http::timeout(3)->withUrlParameters([
@@ -161,6 +165,7 @@ class Instance extends Model implements CachableAttributes
                     $collection = collect($json['lockInfoAvailable']);
 
                     return [
+                        'capacity' => $json['capacity'],
                         'seats' => $json['available'] - $collection->pluck('quantity')->sum(),
                         'accessible_seats' => $collection->firstWhere('lockType.name', 'HPPH Wheelchair space')['quantity'] ?? 0
                     ];
