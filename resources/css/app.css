@@ -84,7 +84,7 @@ form {
 }
 
 .strong-yellow strong {
-    @apply text-yellow;
+    @apply text-yellow font-bold;
 }
 
 .ticker {

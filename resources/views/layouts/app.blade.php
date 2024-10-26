@@ -18,7 +18,7 @@
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('description')" />
 
-    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" type="image/png" href="{{ Storage::disk('digitalocean')->url('favicon.png') }}" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

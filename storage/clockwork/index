@@ -578,3 +578,16 @@
 1729968405-8688-1065189401,1729968405.8555,GET,/storage/134/responsive-images/placeholder___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,59.904098510742,request
 1729968405-8765-1959800479,1729968405.8737,GET,/storage/animation.json,"App\Http\Controllers\PageController@show",404,44.110059738159,request
 1729968405-8939-1785055432,1729968405.8815,GET,/storage/124/responsive-images/50-COLOUR___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,62.355041503906,request
+1729969120-3393-1337690699,1729969120.2535,GET,/,"App\Http\Controllers\PageController@home",200,3746.3901042938,request
+1729969124-5807-54696774,1729969124.575,GET,/storage/81/responsive-images/IMG_2037___landscape_702_468.jpg,"App\Http\Controllers\PageController@show",404,64.282178878784,request
+1729969124-3174-372742728,1729969124.3133,GET,/storage/95/responsive-images/Black-History-Month-2%402x___wide_735_307.jpg,"App\Http\Controllers\PageController@show",404,52.973031997681,request
+1729969124-3395-611064629,1729969124.3361,GET,/storage/157/responsive-images/InTheClub2-copy___landscape_702_468.jpg,"App\Http\Controllers\PageController@show",404,43.896913528442,request
+1729969124-2705-2114022214,1729969124.2566,GET,/storage/animation.json,"App\Http\Controllers\PageController@show",404,93.555927276611,request
+1729969124-7239-1533830475,1729969124.72,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,55.715084075928,request
+1729969124-7351-876039661,1729969124.7326,GET,/storage/135/responsive-images/Screenshot-2023-03-23-at-20.07.52___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,49.288034439087,request
+1729969124-7298-1575463127,1729969124.7264,GET,/storage/124/responsive-images/50-COLOUR___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,52.577972412109,request
+1729969124-7437-1440515249,1729969124.7397,GET,/storage/137/responsive-images/Screenshot-2023-03-23-at-13.15.47___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,56.780099868774,request
+1729969124-7876-1846781813,1729969124.7847,GET,/storage/134/responsive-images/placeholder___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,60.338973999023,request
+1729969124-8156-1324782043,1729969124.8116,GET,/storage/138/responsive-images/Screenshot-2023-03-17-at-21.29.20___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,61.418056488037,request
+1729969124-8203-1238175821,1729969124.8178,GET,/storage/132/responsive-images/Screenshot-2023-03-03-at-22.03.39___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,59.406995773315,request
+1729969124-8316-372810249,1729969124.8269,GET,/storage/133/responsive-images/Screenshot-2023-03-16-at-19.51.46___square_655_655.jpg,"App\Http\Controllers\PageController@show",404,62.754154205322,request
