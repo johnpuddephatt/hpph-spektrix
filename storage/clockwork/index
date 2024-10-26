@@ -153,3 +153,14 @@
 1729943326-4866-239978557,1729943326.4831,GET,/nova-api/instances/cards?resourceId=682801AKJJHRDVJQLSGKLQQSLQBLNJRSB,"Laravel\Nova\Http\Controllers\CardController",200,16.657114028931,request
 1729943326-4857-434133772,1729943326.4805,GET,/nova-api/instances/682801AKJJHRDVJQLSGKLQQSLQBLNJRSB?relationshipType=,"Laravel\Nova\Http\Controllers\ResourceShowController",200,27.354955673218,request
 1729943326-6219-204842354,1729943326.5971,GET,/nova-api/instances/actions?resourceId=682801AKJJHRDVJQLSGKLQQSLQBLNJRSB&editing=true&editMode=create&display=detail,"Laravel\Nova\Http\Controllers\ActionController@index",200,48.402070999146,request
+1729943347-4874-1895638744,1729943347.4439,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,147.66812324524,request
+1729943348-6938-1496082212,1729943348.6814,GET,/nova/resources/instances/682801AKJJHRDVJQLSGKLQQSLQBLNJRSB,"Laravel\Nova\Http\Controllers\Pages\ResourceDetailController",200,75.949907302856,request
+1729943348-9308-1378143504,1729943348.9259,GET,/nova-api/instances/cards?resourceId=682801AKJJHRDVJQLSGKLQQSLQBLNJRSB,"Laravel\Nova\Http\Controllers\CardController",200,44.327020645142,request
+1729943348-9247-1083167048,1729943348.9145,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,56.496858596802,request
+1729943348-9368-900110700,1729943348.9305,GET,/nova-api/instances/682801AKJJHRDVJQLSGKLQQSLQBLNJRSB?relationshipType=,"Laravel\Nova\Http\Controllers\ResourceShowController",200,50.451993942261,request
+1729943349-0358-1802961811,1729943349.0323,GET,/nova-api/instances/actions?resourceId=682801AKJJHRDVJQLSGKLQQSLQBLNJRSB&editing=true&editMode=create&display=detail,"Laravel\Nova\Http\Controllers\ActionController@index",200,24.926900863647,request
+1729943349-4139-1669015862,1729943349.4045,GET,/nova/resources/instances/682801AKJJHRDVJQLSGKLQQSLQBLNJRSB,"Laravel\Nova\Http\Controllers\Pages\ResourceDetailController",200,59.607982635498,request
+1729943349-5963-1217150347,1729943349.5891,GET,/nova-api/instances/cards?resourceId=682801AKJJHRDVJQLSGKLQQSLQBLNJRSB,"Laravel\Nova\Http\Controllers\CardController",200,48.762083053589,request
+1729943349-5947-1922344057,1729943349.5851,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,58.719158172607,request
+1729943349-6015-773728982,1729943349.5947,GET,/nova-api/instances/682801AKJJHRDVJQLSGKLQQSLQBLNJRSB?relationshipType=,"Laravel\Nova\Http\Controllers\ResourceShowController",200,55.949926376343,request
+1729943349-6961-399914170,1729943349.6927,GET,/nova-api/instances/actions?resourceId=682801AKJJHRDVJQLSGKLQQSLQBLNJRSB&editing=true&editMode=create&display=detail,"Laravel\Nova\Http\Controllers\ActionController@index",200,22.807836532593,request
