@@ -34,7 +34,7 @@ class CacheInstanceAvailability implements ShouldQueue
     public function handle()
     {
         Instance::all()->each(function ($instance) {
-            echo $instance->availability;
+            echo print_r($instance->availability);
         });
     }
 }
