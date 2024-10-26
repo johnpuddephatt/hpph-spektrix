@@ -13,7 +13,7 @@
             <div class="">
                 <h2 class="type-small mb-3 mt-3">{{ $meta['title'] }}</h2>
                 <div class="type-xs-mono font-normal">
-                    {{ \Illuminate\Support\Str::limit($meta['description'], 100) }}
+                    {{ \Illuminate\Support\Str::limit($meta['description'], 160) }}
                 </div>
             </div>
         </div>
