@@ -477,3 +477,8 @@
 1729955823-4135-1992415024,1729955823.3941,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,76.604843139648,request
 1729955826-9928-1156216701,1729955826.9736,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,61.300992965698,request
 1729956072-2250-2085424081,1729956072.1542,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,197.96705245972,request
+1729959025-9858-417707483,1729959025.8988,GET,/,"App\Http\Controllers\PageController@home",500,399.04499053955,request
+1729959027-1512-1259638720,1729959027.1407,GET,/favicon.ico,"App\Http\Controllers\PageController@show",404,99.415063858032,request
+1729959029-6104-1561530441,1729959029.5943,GET,/whats-on?type=schedule&past=true,"App\Http\Controllers\PageController@show",500,676.34797096252,request
+1729959044-6201-1434107343,1729959044.6047,GET,/whats-on?type=schedule&past=true,"App\Http\Controllers\PageController@show",200,10491.240978241,request
+1729959056-9799-263270763,1729959056.9674,GET,/whats-on?type=schedule&past=true,"App\Http\Controllers\PageController@show",200,260.26606559753,request

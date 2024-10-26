@@ -10,20 +10,16 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Http;
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class Instance extends Model implements CachableAttributes
+class Instance extends Model
 {
     use HasFactory;
-    use CachesAttributes;
 
     public $timestamps = false;
     public $incrementing = false;
     protected $keyType = "string";
-
-    protected $cachableAttributes = [
-        'availability',
-    ];
 
     protected static function booted()
     {
@@ -150,8 +146,9 @@ class Instance extends Model implements CachableAttributes
 
     public function getAvailabilityAttribute()
     {
-        return $this->remember(
-            "availability",
+
+        return Cache::remember(
+            "instance_availability_" . $this->id,
             299,
             function (): array {
                 try {
