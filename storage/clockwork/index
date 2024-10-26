@@ -476,3 +476,4 @@
 1729955721-7642-1456311879,1729955721.75,GET,/whats-on?type=schedule,"App\Http\Controllers\PageController@show",200,255.20586967468,request
 1729955823-4135-1992415024,1729955823.3941,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,76.604843139648,request
 1729955826-9928-1156216701,1729955826.9736,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,61.300992965698,request
+1729956072-2250-2085424081,1729956072.1542,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,197.96705245972,request
