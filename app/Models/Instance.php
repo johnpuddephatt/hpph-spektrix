@@ -109,6 +109,11 @@ class Instance extends Model implements CachableAttributes
         return $this->event->url;
     }
 
+    public function getSpektrixApiLinkAttribute(): string
+    {
+        return 'https://system.spektrix.com/' . nova_get_setting('spektrix_client_name') .  '/api/v3/instances/' . $this->id;
+    }
+
     public function getShortIdAttribute()
     {
         return filter_var($this->id, FILTER_SANITIZE_NUMBER_INT);

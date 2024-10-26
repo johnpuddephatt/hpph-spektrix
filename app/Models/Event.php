@@ -243,6 +243,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         ]);
     }
 
+
     public function allInstances(): HasMany
     {
         return $this->hasMany(Instance::class)->withoutGlobalScopes();
@@ -349,6 +350,11 @@ class Event extends Model implements HasMedia, CachableAttributes
     //         return str_replace("-", " – ", $value);
     //     }
     // }
+
+    public function getSpektrixApiLinkAttribute(): string
+    {
+        return 'https://system.spektrix.com/' . nova_get_setting('spektrix_client_name') .  '/api/v3/events/' . $this->id;
+    }
 
     public function getStrandAttribute($value)
     {

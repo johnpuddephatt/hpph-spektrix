@@ -66,6 +66,11 @@ class Instance extends Resource
                 ->sortable()
                 ->readonly()->hideFromIndex(),
 
+            Text::make("Live Spektrix API Data", "api_link", function () {
+                return '<a class="link-default" href="' . $this->spektrix_api_link . '" target="_blank">View</a>';
+            })
+                ->asHtml()
+                ->hideFromIndex(),
 
             DateTime::make("Start"),
             Boolean::make("On sale", "is_on_sale"),

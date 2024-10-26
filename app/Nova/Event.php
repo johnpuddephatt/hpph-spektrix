@@ -81,6 +81,12 @@ class Event extends Resource
             ID::make()
                 ->sortable()
                 ->readonly()->hideFromIndex(),
+
+            Text::make("Live Spektrix API Data", "api_link", function () {
+                return '<a class="link-default" href="' . $this->spektrix_api_link . '" target="_blank">View</a>';
+            })
+                ->asHtml()
+                ->hideFromIndex(),
             // Datetime::make("First Instance Date Time")->hide(),
 
             Text::make("Name")
