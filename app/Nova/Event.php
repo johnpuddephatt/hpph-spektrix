@@ -78,8 +78,9 @@ class Event extends Resource
                 ->asBigInt()
                 ->hide(),
 
-            Text::make('Spektrix ID', 'spektrix_id')->readonly()->hideFromIndex(),
-
+            ID::make()
+                ->sortable()
+                ->readonly()->hideFromIndex(),
             // Datetime::make("First Instance Date Time")->hide(),
 
             Text::make("Name")
