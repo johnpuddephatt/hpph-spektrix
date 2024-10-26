@@ -1,4 +1,4 @@
-<div class="my-16 relative" x-data="{ timeout: null, scrollPosition: 0, showControls: {{ count($images) > 2 }}, showPreviousControl: true, showNextControl: true }"
+<div class="my-16 relative" x-data="{ timeout: null, scrollPosition: 0, showControls: {{ count($images) > 2: 'true' : 'false' }}, showPreviousControl: true, showNextControl: true }"
     x-effect="$refs.scroller.scrollLeft = scrollPosition; showPreviousControl = !(scrollPosition == 0); showNextControl = !(scrollPosition >= $refs.scroller.scrollWidth - $refs.scroller.clientWidth);"
     x-init="setTimeout(() => {
         $refs.scroller.scrollLeft = 0;
