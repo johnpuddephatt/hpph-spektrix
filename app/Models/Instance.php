@@ -91,7 +91,7 @@ class Instance extends Model implements CachableAttributes
         "autism_friendly" => "boolean",
     ];
 
-    protected $appends = ["start_date", "start_time", "url", "short_id", "availability", "format"];
+    protected $appends = ["start_date", "start_time", "url", "short_id", "format"];
 
     public function event()
     {
