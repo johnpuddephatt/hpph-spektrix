@@ -12,6 +12,7 @@ class PageController extends Controller
     {
         return view("pages.home-page", [
             "page" => Page::where("template", "home-page")
+                ->with("mainImage")
                 ->firstOrFail()
                 ->resolveContent(),
         ])->render();

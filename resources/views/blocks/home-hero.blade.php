@@ -38,7 +38,7 @@
                         </video>
                     </div>
                 @endif
-            @else
+            @elseif($event->featuredImage)
                 {!! $event->featuredImage->img('wide')->attributes(['class' => 'opacity-70 absolute inset-0 h-full w-full object-cover object-center lg:-z-10']) !!}
             @endif
 

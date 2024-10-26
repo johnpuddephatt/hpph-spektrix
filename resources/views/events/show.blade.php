@@ -22,7 +22,7 @@
             </video>
         @elseif ($event->featuredVideo)
             {!! $event->featuredVideo->img('thumb', ['class' => 'w-full absolute h-full opacity-70 inset-0 object-cover'])->toHtml() !!}
-        @else
+        @elseif($event->featuredImage)
             {!! $event->featuredImage->img('wide', ['class' => 'w-full absolute h-full opacity-70  inset-0 object-cover'])->toHtml() !!}
         @endif
 
