@@ -78,6 +78,8 @@ class Event extends Resource
                 ->asBigInt()
                 ->hide(),
 
+            Text::make('Spektrix ID', 'spektrix_id')->readonly()->hideFromIndex(),
+
             // Datetime::make("First Instance Date Time")->hide(),
 
             Text::make("Name")
@@ -116,7 +118,7 @@ class Event extends Resource
             //     [
             Panel::make("Overview", [
                 Trix::make("Description")->rules([
-                    Rule::requiredIf(fn () => $request->published),
+                    Rule::requiredIf(fn() => $request->published),
                 ]),
                 NovaEditorJsField::make("Long description")->hideFromIndex(),
             ]),
@@ -128,7 +130,7 @@ class Event extends Resource
                     // File size is set in config/media-library.php
                     ->singleMediaRules("max:15000"),
                 Images::make("Image", "main")->rules([
-                    Rule::requiredIf(fn () => $request->published),
+                    Rule::requiredIf(fn() => $request->published),
                 ]),
                 Images::make("Image gallery", "gallery")
                     ->singleMediaRules("dimensions:min_width=800")
@@ -205,8 +207,8 @@ class Event extends Resource
 
             URL::make(
                 "URL",
-                fn () => $this->slug ? $this->url : "#"
-            )->displayUsing(fn () => $this->slug ? "Visit" : "–"),
+                fn() => $this->slug ? $this->url : "#"
+            )->displayUsing(fn() => $this->slug ? "Visit" : "–"),
 
             // Panel::make("Generated", [
             //     Text::make("Open graph image", "og_image", function () {

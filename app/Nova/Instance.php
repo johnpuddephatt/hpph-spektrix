@@ -65,6 +65,8 @@ class Instance extends Resource
             ID::make()
                 ->sortable()
                 ->hide(),
+            Text::make('Spektrix ID', 'spektrix_id')->readonly()->hideFromIndex(),
+
             DateTime::make("Start"),
             Boolean::make("On sale", "is_on_sale"),
             Boolean::make("Cancelled"),
