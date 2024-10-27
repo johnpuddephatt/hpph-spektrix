@@ -7,7 +7,10 @@
         @if ($instance->event->featuredImage)
             <div class="w-1/2 md:w-1/4 md:ml-[25%] lg:ml-0 lg:w-2/12 relative aspect-video flex flex-col">
                 <div class="w-full relative flex-1 rounded overflow-hidden">
-                    {!! $instance->event->featuredImage->img('wide')->attributes(['class' => 'group-hover:scale-105 transition duration-500 block w-full absolute max-w-none inset-0']) !!}
+                    {!! $instance->event->featuredImage->img('wide')->attributes([
+                        'class' => 'group-hover:scale-105 transition duration-500 block w-full absolute max-w-none inset-0',
+                        'loading' => 'lazy',
+                    ]) !!}
                 </div>
                 @if ($instance->strand?->show_on_instance_card)
                     <x-strand.badge :dark="false" class="mt-2" :strand="$instance->strand" />
