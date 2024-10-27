@@ -283,7 +283,7 @@ Booking Path
 }
 
 .ChooseSeats .Buttons {
-    @apply mt-0 relative z-10;
+    @apply mt-12 relative z-10;
 }
 
 .ChooseSeats #ctl00_ContentPlaceHolder_UpdateBasketButton {
@@ -328,7 +328,7 @@ Booking Path
 }
 
 .Ticket_Types_Selection .TicketType {
-    @apply flex flex-row items-center;
+    @apply flex flex-row items-center my-0;
 }
 
 .Ticket_Types_Selection .TicketType .Input_Text {
