@@ -9,6 +9,6 @@ class EventInstancesController extends Controller
 {
     public function __invoke(Event $event)
     {
-        return $event->instances->load("strand");
+        return $event->instances->load("strand")->each->append('availability');
     }
 }
