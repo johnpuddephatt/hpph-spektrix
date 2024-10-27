@@ -323,6 +323,10 @@ Booking Path
     visibility: visible;
 }
 
+input#ctl00_ContentPlaceHolder_RefreshButton {
+    @apply float-right -mt-12 mb-8;
+}
+
 .Ticket_Types_Selection {
     @apply border-t border-b border-gray-light divide-y divide-gray-light;
 }
