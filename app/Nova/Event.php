@@ -86,7 +86,7 @@ class Event extends Resource
                 return '<a class="link-default" href="' . $this->spektrix_api_link . '" target="_blank">View</a>';
             })
                 ->asHtml()
-                ->hideFromIndex(),
+                ->onlyOnDetail(),
             // Datetime::make("First Instance Date Time")->hide(),
 
             Text::make("Name")
