@@ -71,7 +71,7 @@ class Instance extends Resource
                     '<a class="link-default" href="' . $this->spektrix_api_link . '/status?includeLockInformation=true&includeChildPlans=true" target="_blank">Status data</a>';
             })
                 ->asHtml()
-                ->hideFromIndex(),
+                ->onlyOnDetail(),
 
             DateTime::make("Start"),
             Boolean::make("On sale", "is_on_sale"),
