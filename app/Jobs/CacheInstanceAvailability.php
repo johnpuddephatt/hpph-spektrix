@@ -39,5 +39,6 @@ class CacheInstanceAvailability implements ShouldQueue
                 return $instance->availability;
             });
         });
+        \Log::info("Cached instance availability");
     }
 }
