@@ -36,7 +36,6 @@ class VitePublish extends Command
 
         foreach ($buildFiles as $asset) {
             $this->info('Uploading asset to: build/' . $asset->getRelativePathname());
-
             Storage::disk('digitalocean')->put('build/' . $asset->getRelativePathname(), $asset->getContents());
         }
 

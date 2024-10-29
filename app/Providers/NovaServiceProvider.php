@@ -53,7 +53,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Nova::script(
                 "editorjs-plugins",
                 // Vite::asset("resources/js/editorjs-plugins.js")
-                asset("editorjs-plugins.js")
+                public_path("editorjs-plugins.js")
             );
         });
 
@@ -222,7 +222,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuItem::resource(\App\Nova\Event::class)->withBadgeIf(
                         \App\Models\Event::unpublished()->count() . " new",
                         "info",
-                        fn () => \App\Models\Event::unpublished()->count() > 0
+                        fn() => \App\Models\Event::unpublished()->count() > 0
                     ),
                     MenuItem::resource(\App\Nova\Strand::class),
                     MenuItem::resource(\App\Nova\Season::class),
