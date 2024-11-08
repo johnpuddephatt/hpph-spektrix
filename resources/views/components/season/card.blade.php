@@ -1,4 +1,4 @@
-@props(['strand'])
+@props(['season'])
 
 @if ($season)
     <div class="container bg-black py-12">
