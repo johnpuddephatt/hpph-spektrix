@@ -60,8 +60,8 @@ class EventController extends Controller
 
         return view("events.show", [
             'event' => $event,
-            "strand_related" => $event->strand ? $event->strand->instances()->whereNotIn('id', $event->instances()->pluck('id'))->take(2)->get() : [],
-            "season_related" => $event->season ? $event->season->instances()->whereNotIn('id', $event->instances()->pluck('id'))->get() : [],
+            // "strand_related" => $event->strand ? $event->strand->instances()->whereNotIn('id', $event->instances()->pluck('id'))->take(2)->get() : [],
+            // "season_related" => $event->season ? $event->season->instances()->whereNotIn('id', $event->instances()->pluck('id'))->get() : [],
         ]);
     }
 

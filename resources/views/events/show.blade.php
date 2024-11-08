@@ -127,8 +127,10 @@
         </div>
 
         <x-event-reviews :reviews="$event->reviews" />
+        <x-strand.card :strand="$event->strand" />
+        <x-season.card :season="$event->season" />
 
-        @if ($event->strand)
+        {{-- @if ($event->strand)
             <div class="container mt-0 mb-8">
                 <x-instance-slider :layout="match (count($strand_related) + 1) {
                     1 => 'extra-wide',
@@ -147,7 +149,7 @@
                 }" x-show="count($season_related)" :season="$event->season"
                     :instances="$season_related" />
             </div>
-        @endif
+        @endif --}}
 
         @if ($event->coming_soon)
             <div class="w-full sticky bottom-0 bg-yellow block py-5">
