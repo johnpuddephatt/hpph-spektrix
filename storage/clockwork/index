@@ -1805,3 +1805,7 @@
 1731104541-6082-1405857446,1731104541.5883,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,49.655914306641,request
 1731104548-6166-150787456,1731104548.599,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,59.315919876099,request
 1731104555-6021-116118205,1731104555.5862,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,49.491882324219,request
+1731105098-4214-964258164,1731105098.3777,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,147.77803421021,request
+1731105100-4837-513925622,1731105100.4718,GET,/whats-on?type=alphabetical&past=true,"App\Http\Controllers\PageController@show",200,944.11706924438,request
+1731105101-8900-2090857331,1731105101.8768,GET,/storage/153/responsive-images/burial___wide_685_411.webp,"App\Http\Controllers\PageController@show",404,113.07597160339,request
+1731105101-8904-222481246,1731105101.8733,GET,/storage/47/responsive-images/54076_CSC222443_IMG_05_0000___wide_685_411.webp,"App\Http\Controllers\PageController@show",404,116.63603782654,request

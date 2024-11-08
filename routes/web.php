@@ -25,7 +25,7 @@ Route::middleware(["spektrix"])->group(function () {
         return null;
     });
 
-    foreach (nova_get_setting("redirects") as $redirect) {
+    foreach (nova_get_setting("redirects") ?? [] as $redirect) {
         if (!$redirect["enabled"]) {
             continue;
         }
