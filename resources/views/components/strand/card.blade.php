@@ -1,4 +1,6 @@
 @if ($strand)
+
+    {{ $total_slides }}
     <div class="container bg-black py-12">
         <a href="{{ route('strand.show', $strand->slug) }}"
             class="group bg-black-light mx-auto flex flex-col lg:flex-row lg:items-center text-white rounded overflow-hidden">

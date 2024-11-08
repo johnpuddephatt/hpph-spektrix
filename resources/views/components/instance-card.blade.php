@@ -14,7 +14,7 @@
 
     <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 lg:max-w-lg @endif md:justify-self-center w-full">
         <div class="relative aspect-video flex flex-col">
-            <div class="w-full relative flex-1 rounded overflow-hidden">
+            <div class="w-full relative bg-black-light flex-1 rounded overflow-hidden">
                 @if ($instance->event->featuredImage)
                     {!! $instance->event->featuredImage->img('wide')->attributes([
                         'loading' => 'lazy',

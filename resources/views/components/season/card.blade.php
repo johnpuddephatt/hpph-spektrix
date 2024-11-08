@@ -1,3 +1,5 @@
+@props(['strand', 'total_slides' => 1])
+
 @if ($season)
     <div class="container bg-black py-12">
         <div

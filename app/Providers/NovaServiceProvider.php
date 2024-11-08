@@ -32,6 +32,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         parent::boot();
 
         $settings = [
+            new \App\Nova\Settings\Redirects(),
             new \App\Nova\Settings\Alert(),
             new \App\Nova\Settings\Banner(),
             new \App\Nova\Settings\Contact(),

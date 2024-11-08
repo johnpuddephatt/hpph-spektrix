@@ -25,7 +25,13 @@ Route::middleware(["spektrix"])->group(function () {
         return null;
     });
 
-    Route::redirect('past-screenings', 'whats-on?type=alphabetical&past=true');
+    foreach (nova_get_setting("redirects") as $redirect) {
+        if (!$redirect["enabled"]) {
+            continue;
+        }
+        Route::redirect($redirect["from"], $redirect["to"], $redirect["permanent"] ? 301 : 302);
+    }
+
 
     Route::get("signup-test", [\App\Http\Controllers\SignupController::class, 'form'])->name('signup.form');
     Route::post("signup-test", [\App\Http\Controllers\SignupController::class, 'submit'])->name('signup.submit');
@@ -42,7 +48,7 @@ Route::middleware(["spektrix"])->group(function () {
     Route::post(
         "file-upload",
         \App\Http\Controllers\UploadController::class
-    )->name("file.upload");
+    )->name("file.upload")->middleware('auth');
 
     Route::get("journal/{post:slug}", [
         \App\Http\Controllers\PostController::class,
@@ -58,11 +64,6 @@ Route::middleware(["spektrix"])->group(function () {
         $instance = Instance::where("id", 'LIKE', $instance_id . '%')->firstOrFail();
         return to_route("event.show", $instance->event)->withFragment('#' . $instance_id);
     });
-
-    // Route::get(
-    //     "whats-on",
-    //     \App\Http\Controllers\ProgrammeController::class
-    // )->name("programme");
 
     Route::get("films/{event:slug}", [
         \App\Http\Controllers\EventController::class,

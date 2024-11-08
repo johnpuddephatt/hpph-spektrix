@@ -128,8 +128,26 @@
 
         <x-event-reviews :reviews="$event->reviews" />
 
-        <x-strand.card :strand="$event->strand" />
-        <x-season.card :season="$event->season" />
+        @if ($event->strand)
+            <div class="container mt-0 mb-8">
+                <x-instance-slider :layout="match (count($strand_related) + 1) {
+                    1 => 'extra-wide',
+                    2 => 'wide',
+                    default => 'default',
+                }" :strand="$event->strand" :color="$event->strand->color" :show_strand="false"
+                    :instances="$strand_related" />
+            </div>
+        @endif
+        @if ($event->season)
+            <div class="containe my-8">
+                <x-instance-slider :layout="match (count($season_related) + 1) {
+                    1 => 'extra-wide',
+                    2 => 'wide',
+                    default => 'default',
+                }" x-show="count($season_related)" :season="$event->season"
+                    :instances="$season_related" />
+            </div>
+        @endif
 
         @if ($event->coming_soon)
             <div class="w-full sticky bottom-0 bg-yellow block py-5">
@@ -144,7 +162,7 @@
                 </div>
             </div>
         @elseif($event->date_range)
-            <button class="w-full sticky bottom-0 bg-yellow block py-4"
+            <button class="w-full z-10 sticky bottom-0 bg-yellow block py-4"
                 @click="$dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">
                 <div class="container flex flex-row items-center">
                     <div class="w-1/2 hidden lg:block">
@@ -156,7 +174,7 @@
                 </div>
             </button>
         @else
-            <div class="w-full sticky bottom-0 bg-yellow block py-5">
+            <div class="w-full z-10 sticky bottom-0 bg-yellow block py-5">
 
                 <div class="container flex flex-row items-center">
                     <div class="w-1/2 hidden lg:block">

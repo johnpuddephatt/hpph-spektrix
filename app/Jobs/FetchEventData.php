@@ -56,13 +56,7 @@ class FetchEventData implements ShouldQueue
         ResponseCache::clear();
         Cache::flush();
 
-        Log::channel("spektrix")->info(
-            "Imported " .
-                count($events) .
-                " events (" .
-                count($instances) .
-                " instances)"
-        );
+        Log::channel("spektrix")->info("Imported " . count($events) . " events (" . count($instances) . " instances)");
     }
 
     public function getEvents()
@@ -210,8 +204,10 @@ class FetchEventData implements ShouldQueue
     {
         \App\Models\Strand::query()->update(["enabled" => false]);
 
-        foreach (array_unique(Arr::pluck($instances, "attribute_Strand"))
-            as $strand) {
+        foreach (
+            array_unique(Arr::pluck($instances, "attribute_Strand"))
+            as $strand
+        ) {
             if ($strand) {
                 \App\Models\Strand::withoutGlobalScopes()->updateOrCreate(
                     [
@@ -230,8 +226,10 @@ class FetchEventData implements ShouldQueue
     {
         \App\Models\Season::query()->update(["enabled" => false]);
 
-        foreach (array_unique(Arr::pluck($instances, "attribute_Season"))
-            as $season) {
+        foreach (
+            array_unique(Arr::pluck($instances, "attribute_Season"))
+            as $season
+        ) {
             if ($season) {
                 \App\Models\Season::withoutGlobalScopes()->updateOrCreate(
                     [

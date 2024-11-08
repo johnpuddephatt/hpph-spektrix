@@ -1,8 +1,9 @@
-@props(['instances' => [], 'coming_soon' => [], 'layout' => 'default', 'show_strand' => true, 'color' => null])
+@props(['instances' => [], 'coming_soon' => [], 'layout' => 'default', 'show_strand' => true, 'color' => null, 'strand' => null, 'season' => null])
 
-<div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true }" x-init="swiper = new Swiper($refs.container, {
+<div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($instances) + count($coming_soon) + ($strand ? 1 : 0) + ($season ? 1 : 0) }}, }" x-init="swiper = new Swiper($refs.container, {
     loop: false,
-    slidesPerView: Math.min({{ count($instances) + count($coming_soon) }}, 1.5),
+
+    slidesPerView: Math.min(totalSlides, 1.5),
     spaceBetween: 15,
     centerInsufficientSlides: true,
 
@@ -16,26 +17,36 @@
 
     breakpoints: {
         640: {
-            slidesPerView: Math.min({{ count($instances) + count($coming_soon) }}, 1.5),
+            slidesPerView: Math.min(totalSlides, 1.5),
         },
         768: {
-            slidesPerView: Math.min({{ count($instances) + count($coming_soon) }}, 2),
+            slidesPerView: Math.min(totalSlides, 2),
 
         },
         1024: {
-            slidesPerView: @if ($layout == 'home') 4 @else Math.min({{ count($instances) + count($coming_soon) }}, 3) @endif,
+            slidesPerView: @if ($layout == 'home') 4 @else Math.min(totalSlides, 3) @endif,
         },
         1280: {
-            slidesPerView: @if ($layout == 'home') 5 @else Math.min({{ count($instances) + count($coming_soon) }}, 4) @endif,
+            slidesPerView: @if ($layout == 'home') 5 @else Math.min(totalSlides, 4) @endif,
         },
         1536: {
-            slidesPerView: @if ($layout == 'home') 6 @else Math.min({{ count($instances) + count($coming_soon) }}, 4) @endif,
+            slidesPerView: @if ($layout == 'home') 6 @else Math.min(totalSlides, 4) @endif,
         },
     },
 })" class="mt-12 lg:mt-24 relative max-w-none mx-auto">
 
     <div class="swiper-container border-t border-gray-dark pt-10 lg:pt-16 w-full overflow-hidden" x-ref="container">
         <div class="swiper-wrapper w-full">
+            @if ($strand)
+                <div class="swiper-slide">
+                    <x-strand.card-reactive :strand="$strand" :total_slides="count($instances) + count($coming_soon) + 1" />
+                </div>
+            @elseif($season)
+                <div class="swiper-slide">
+                    <x-season.card :season="$season" :total_slides="count($instances) + count($coming_soon) + 1" />
+                </div>
+            @endif
+
             @foreach ($instances as $instance)
                 <x-instance-card @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
                     x-data="{ shown: true }" class="hover:opacity-60 !transition !duration-500" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"

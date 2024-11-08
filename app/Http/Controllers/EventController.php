@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
+use App\Models\Instance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -47,18 +48,20 @@ class EventController extends Controller
      */
     public function show($event)
     {
-        return view("events.show", [
-            'event' => Event::where("slug", $event)
-                ->firstOrFail()
-                ->load(
-                    "featuredVideo",
-                    "featuredImage",
-                    "gallery",
-                    "latest_post.tags",
-                    "latest_post.featuredImage"
-                )
-                ->append("strand")
+        $event = Event::where("slug", $event)
+            ->with(
+                "featuredVideo",
+                "featuredImage",
+                "gallery",
+                "latest_post.tags",
+                "latest_post.featuredImage",
+            )
+            ->firstOrFail();
 
+        return view("events.show", [
+            'event' => $event,
+            "strand_related" => $event->strand ? $event->strand->instances()->whereNotIn('id', $event->instances()->pluck('id'))->take(2)->get() : [],
+            "season_related" => $event->season ? $event->season->instances()->whereNotIn('id', $event->instances()->pluck('id'))->get() : [],
         ]);
     }
 

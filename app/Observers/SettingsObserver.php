@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
@@ -11,6 +12,7 @@ class SettingsObserver
     public function clearCache()
     {
         Cache::forget("settings");
+        Artisan::call('route:cache');
         ResponseCache::clear();
     }
     /**
