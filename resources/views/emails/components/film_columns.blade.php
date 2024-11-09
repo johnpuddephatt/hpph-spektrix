@@ -38,7 +38,7 @@
                 @if ($section->display_times == 'range' && $film->date_range)
                     <mj-text font-family="BasisGrotesqueMono" line-height="1.2" padding="0px 0 15px 0" font-weight="700"
                         font-size="15px">
-                        {!! $film->date_range !!}</mj-text>
+                        {!! Str::of($film->date_range)->uppercase() !!}</mj-text>
                 @endif
                 <mj-text padding="0 0 15px">{!! $film->description !!}</mj-text>
                 @if ($section->display_times !== 'range')
