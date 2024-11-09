@@ -60,7 +60,7 @@ class Email extends Resource
             Date::make('Date')->required(),
             Flexible::make('Email sections', 'content')
                 // ->addLayout('Email Featured Section', 'email_featured_section', [
-                //      Boolean::make('Include all dates', 'include_all_dates')->help('If enabled, all future screenings dates will be shown in this block. The default is to only show the next 7 days')->stacked()->fullWidth(),
+                //      Boolean::make('Include all dates', 'include_all_dates')->help('If enabled, all future screenings dates will be shown in this block. The default is to only show the next 7 days'),
                 //     Select::make('Event')->fullWidth()->stacked()->searchable()->options(
                 //         \App\Models\Event::all()->pluck('name', 'id')
                 //     )->displayUsingLabels(),
@@ -74,7 +74,7 @@ class Email extends Resource
                         'range' => 'Date range only',
                         'collapsed' => 'Collapsed'
                     ]),
-                    Boolean::make('Include all dates', 'include_all_dates')->help('If enabled, all future screenings dates will be shown in this block. The default is to only show the next 7 days')->stacked()->fullWidth(),
+                    Boolean::make('Include all dates', 'include_all_dates')->help('If enabled, all future screenings dates will be shown in this block. The default is to only show the next 7 days'),
                     Flexible::make('Events', 'events')
                         ->stacked()->addLayout('Event', 'event', [
                             Select::make('Event')->fullWidth()->stacked()->searchable()->options(
