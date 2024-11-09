@@ -2295,3 +2295,4 @@
 1731110825-0824-978604261,1731110825.0669,GET,/films/we-live-in-time,"App\Http\Controllers\EventController@show",200,138.18192481995,request
 1731110832-1199-717842073,1731110832.1092,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,46.31781578064,request
 1731110829-2891-1906669503,1731110829.2759,GET,/whats-on,"App\Http\Controllers\PageController@show",200,8037.7168655396,request
+1731111013-5490-1759586553,1731111013.5306,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,58.718919754028,request

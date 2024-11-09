@@ -8,7 +8,7 @@
 
                 @if ($event->featuredImage)
                     <div class="overflow-hidden w-64 rounded">
-                        {!! $event->featuredImage->img('landscape')->attributes(['class' => 'group-hover:scale-105 transition duration-500 w-64 ']) !!}
+                        {!! $event->featuredImage->img('wide')->attributes(['class' => 'group-hover:scale-105 transition duration-500 w-64 ']) !!}
                     </div>
                 @else
                     <div class="w-64 aspect-video rounded bg-gray-light"></div>
