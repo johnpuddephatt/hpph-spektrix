@@ -13,13 +13,14 @@
                 @else
                     <div class="w-64 aspect-video rounded bg-gray-light"></div>
                 @endif
-                <x-strand.badge class="max-md:px-4 max-md:text-left max-md:py-2 max-md:rounded-none md:mt-2"
+                <x-strand.badge
+                    class="max-w-full max-md:px-4 w-64 max-md:text-left max-md:py-2 max-md:rounded-none md:mt-2"
                     :partof="false" :strand="$event->strand" />
 
                 <div class="">
                     <h2 class="type-regular mb-1 mt-3">{{ $event->name }}</h2>
                     <div class="type-xs-mono">
-                        {{ $event->date_range }}
+                        {!! $event->date_range !!}
                         </p>
                     </div>
                 </div>
