@@ -72,7 +72,7 @@ class Email extends Resource
                         'default' => 'Default (display all showing times)',
                         'range' => 'Date range only',
                         'collapsed' => 'Collapsed'
-                    ])->default('default')->withMeta(['value' => 'default']),
+                    ]),
                     Flexible::make('Events', 'events')
                         ->stacked()->addLayout('Event', 'event', [
                             Select::make('Event')->fullWidth()->stacked()->searchable()->options(
@@ -80,7 +80,7 @@ class Email extends Resource
                             )->displayUsingLabels(),
                             Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth(),
 
-                            Boolean::make('Display each screening time on a new line?', 'show_times_on_separate_rows')->fullWidth(),
+                            Boolean::make('Each time on a new line?', 'show_times_on_separate_rows')->fullWidth(),
 
                         ])->button('Add event'),
                 ])
