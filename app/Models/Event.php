@@ -25,6 +25,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cohensive\OEmbed\Facades\OEmbed;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Event extends Model implements HasMedia, CachableAttributes
@@ -97,6 +98,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "trailer",
         "coming_soon",
         "external_booking_link",
+        "related_event_id"
     ];
 
     protected $appends = [
@@ -223,6 +225,11 @@ class Event extends Model implements HasMedia, CachableAttributes
         return $this->posts()
             ->latest()
             ->limit(1);
+    }
+
+    public function related_event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class, "related_event_id");
     }
 
     public function posts(): BelongsToMany

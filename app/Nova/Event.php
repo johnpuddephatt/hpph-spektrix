@@ -21,12 +21,12 @@ use Whitecube\NovaFlexibleContent\Flexible;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Eminiarts\Tabs\Traits\HasTabs;
-use Eminiarts\Tabs\Tabs;
-use Eminiarts\Tabs\Tab;
 use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Trix;
 use Trin4ik\NovaSwitcher\NovaSwitcher;
 use Illuminate\Validation\Rule;
+use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 
 class Event extends Resource
 {
@@ -155,7 +155,11 @@ class Event extends Resource
                     ->hideFromIndex(),
             ]),
 
-            Panel::make("Journal", [
+            Panel::make("Related", [
+                BelongsTo::make("Related event", "related_event", Event::class)
+                    ->nullable()
+                    ->searchable()
+                    ->hideFromIndex(),
                 Tag::make("Posts")
                     ->displayAsList()
                     ->hideFromIndex(),

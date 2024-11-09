@@ -54,6 +54,7 @@ class EventController extends Controller
                 "featuredImage",
                 "gallery",
                 "latest_post.tags",
+                "related_event.featuredImage",
                 "latest_post.featuredImage",
             )
             ->firstOrFail();

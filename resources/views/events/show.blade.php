@@ -78,6 +78,7 @@
             <div class="max-lg:pl-0 container lg:w-1/2 flex-1 flex flex-col justify-end">
                 <x-event-why-watch :why_watch="$event->why_watch" />
                 <x-journal-featuredpost-mini :post="$event->latest_post->count() ? $event->latest_post->first() : null" />
+                <x-related-event :event="$event->related_event" />
             </div>
             <div class="relative lg:w-1/2">
                 <div class="bg-yellow py-6 px-4">
