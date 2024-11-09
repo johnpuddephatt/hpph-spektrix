@@ -95,7 +95,8 @@ class Email extends Resource
                         \App\Models\Post::all()->pluck('title', 'id')
                     )->displayUsingLabels(),
                     Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
-                ])->hideFromDetail()
+                ])
+                ->fullWidth()->hideFromDetail()
 
                 ->addLayout('Email Banner Section', 'email_banner_section', [
                     Select::make("Background")->options([

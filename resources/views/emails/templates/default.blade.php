@@ -30,13 +30,6 @@
             padding: 4px 10px !important;
             }
 
-            .type-regular {
-            font-size: 20px;
-            font-weight: bold;
-            line-height: 1.2;
-            text-spacing: -0.02em;
-            }
-
         </mj-style>
         <mj-style>
 
