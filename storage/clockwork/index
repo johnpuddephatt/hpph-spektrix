@@ -2296,3 +2296,15 @@
 1731110832-1199-717842073,1731110832.1092,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,46.31781578064,request
 1731110829-2891-1906669503,1731110829.2759,GET,/whats-on,"App\Http\Controllers\PageController@show",200,8037.7168655396,request
 1731111013-5490-1759586553,1731111013.5306,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,58.718919754028,request
+1731111274-8343-1681816388,1731111274.7862,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,161.85784339905,request
+1731111275-8290-1860364186,1731111275.818,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,34.371852874756,request
+1731111278-8658-1268891839,1731111278.8474,GET,/nova/resources/events/254201ARDRVSBVHVPRMPMDLDMSKQVDDGC/edit,"Laravel\Nova\Http\Controllers\Pages\ResourceUpdateController",200,79.973936080933,request
+1731111279-2679-184559787,1731111279.2606,GET,/nova-api/events/254201ARDRVSBVHVPRMPMDLDMSKQVDDGC/update-fields?editing=true&editMode=update&viaResource=&viaResourceId=&viaRelationship=,"Laravel\Nova\Http\Controllers\UpdateFieldController",200,89.384078979492,request
+1731111279-4053-956253642,1731111279.4013,GET,/nova-api/events/soft-deletes,"Laravel\Nova\Http\Controllers\SoftDeleteStatusController",200,32.740116119385,request
+1731111281-7778-802651897,1731111281.7681,GET,/nova-api/events/cards,"Laravel\Nova\Http\Controllers\CardController",200,34.085988998413,request
+1731111281-7781-2141022853,1731111281.7709,GET,/nova-api/events/filters,"Laravel\Nova\Http\Controllers\FilterController",200,32.371997833252,request
+1731111281-7806-372966912,1731111281.7742,GET,/nova-api/events/lenses,"Laravel\Nova\Http\Controllers\LensController@index",200,30.46703338623,request
+1731111281-8273-1457196367,1731111281.8207,GET,/nova-api/events/actions?relationshipType=&display=index,"Laravel\Nova\Http\Controllers\ActionController@index",200,27.715921401978,request
+1731111281-8248-1486706016,1731111281.8178,GET,/nova-api/events?search=&filters=W3siQm9vbGVhbjpwdWJsaXNoZWQiOiIifSx7IkJvb2xlYW46c2hvd19pbl9wcm9ncmFtbWUiOiIifSx7IkJvb2xlYW46ZW5hYmxlZCI6IiJ9XQ%3D%3D&orderBy=&perPage=25&trashed=&page=1&relationshipType=,"Laravel\Nova\Http\Controllers\ResourceIndexController",200,159.19399261475,request
+1731111282-2418-1435781596,1731111282.234,GET,/storage/47/54076_CSC222443_IMG_05_0000.jpeg,"App\Http\Controllers\PageController@show",404,88.776826858521,request
+1731111282-8162-1671458304,1731111282.807,GET,/nova-api/nova-notifications,"Laravel\Nova\Http\Controllers\NotificationIndexController",200,36.691904067993,request

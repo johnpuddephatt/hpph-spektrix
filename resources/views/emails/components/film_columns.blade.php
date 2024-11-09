@@ -36,18 +36,21 @@
                     @endif
                 </mj-text>
                 @if ($section->display_times == 'range' && $film->date_range)
-                    <mj-text line-height="1.2" padding="0px 0 15px 0" font-weight="700" font-size="15px">
+                    <mj-text font-family="BasisGrotesqueMono" line-height="1.2" padding="0px 0 15px 0" font-weight="700"
+                        font-size="15px">
                         {!! $film->date_range !!}</mj-text>
                 @endif
                 <mj-text padding="0 0 15px">{!! $film->description !!}</mj-text>
                 @if ($section->display_times !== 'range')
-                    @if ($section->display_times == 'collapsed' && $film->instances->count() > 2)
+                    @if ($section->display_times == 'collapsed')
                         <mj-accordion>
                             <mj-accordion-element
                                 icon-unwrapped-url="https://hpph.ams3.cdn.digitaloceanspaces.com/plus-black.png"
                                 icon-wrapped-url="https://hpph.ams3.cdn.digitaloceanspaces.com/plus-black.png"
                                 icon-height="16px" icon-width="16px" padding="0">
-                                <mj-accordion-title>Toggle {{ $film->instances->count() }} showings</mj-accordion-title>
+                                <mj-accordion-title>+ Toggle {{ $film->instances->count() }}
+                                    showtime{{ $film->instances->count() > 1 ? 's' : '' }}
+                                </mj-accordion-title>
                                 <mj-accordion-text>
                                     @include('emails.components.instance_times')
                                 </mj-accordion-text>

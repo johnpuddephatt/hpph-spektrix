@@ -54,7 +54,8 @@
                                 icon-unwrapped-url="https://hpph.ams3.cdn.digitaloceanspaces.com/plus-black.png"
                                 icon-wrapped-url="https://hpph.ams3.cdn.digitaloceanspaces.com/plus-black.png"
                                 icon-height="16px" icon-width="16px" padding="0">
-                                <mj-accordion-title>Toggle {{ $film->instances->count() }} showings</mj-accordion-title>
+                                <mj-accordion-title>+ Toggle {{ $film->instances->count() }} showtimes
+                                </mj-accordion-title>
                                 <mj-accordion-text>
                                     @include('emails.components.instance_times')
                                 </mj-accordion-text>

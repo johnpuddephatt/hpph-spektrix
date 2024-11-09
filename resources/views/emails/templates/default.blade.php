@@ -1,6 +1,7 @@
 <mjml>
     <mj-head>
         <mj-font name="BasisGrotesque" href="{{ url('build/assets/fonts.css') }}" />
+        <mj-font name="BasisGrotesqueMono" href="{{ url('build/assets/fonts.css') }}" />
 
         <mj-attributes>
 
