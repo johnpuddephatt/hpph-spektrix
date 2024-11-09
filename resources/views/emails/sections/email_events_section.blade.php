@@ -25,7 +25,7 @@ $films = \App\Models\Event::withoutGlobalScopes()
 <mj-wrapper background-color="#e6e4dd" full-width="full-width">
     @if ($section->title)
         <mj-section padding="25px 10px 0px">
-            <mj-text font-size="24px" line-height="1.2" font-weight="700">{{ $section->title }}</mj-text>
+            <mj-text css-class="type-regular">{{ $section->title }}</mj-text>
         </mj-section>
     @endif
     @if ($section->layout === 'rows')
