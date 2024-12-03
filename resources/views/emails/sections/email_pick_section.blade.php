@@ -21,14 +21,20 @@ $pick = \App\Models\Post::withoutGlobalScopes()->find($section->pick);
         <mj-text padding="10px" color="#ffda3d" align="center" font-size="30px" line-height="30px"
 letter-spacing="10px" font-weight="600">
 HYDE PARK PICK</mj-text>
+
+
     </mj-hero>
 </mj-column>
 <mj-column padding="0 10px">
-                <mj-text line-height="1.2" padding="5px 0 5px 0" font-weight="700" font-size="24px">
-{{ $pick->title }}
-</mj-text>
+
+<x-email.heading type="xs-mono" padding="5px 0 10px 0">This week’s Hyde Park Pick</x-email.heading>
+
+<x-email.heading type="medium" padding="5px 0 10px 0">
+{{ Str::of($pick->title)->replace('Hyde Park Pick… ', '') }}
+</x-email.heading>
+
 <mj-text padding="0 0 0px 0">{!! $pick->introduction !!}</mj-text>
-<mj-button padding="10px 0 0 0" inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
+<mj-button padding="15px 0 0 0" inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
 background-color="#ffda3d" color="#000000" href="{{ $pick->url }}">Read more
 </mj-button>
 </mj-column>

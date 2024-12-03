@@ -1,16 +1,10 @@
  <mj-wrapper background-color="#f8f7ef" padding="7px 0" full-width="full-width">
      <mj-section padding="0">
-         <mj-text align="center">
-             <div id="screeningkey">
-                 Key:&nbsp;&nbsp;
-                 <a style="color: black;"
-                     href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
-                         'label' => 'Signed in British Sign Language',
-                         'abbreviation' => 'BSL',
-                     ]) British Sign
-                     Language</a>
+         
+<x-email.heading align="center" type="xs-mono">             
+                 Key:  &nbsp;&nbsp;&nbsp;
 
-                 &nbsp;&nbsp; <a style="color: black;"
+                  <a style="color: black; text-decoration: none;"
                      href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
                          'label' => 'Captioned',
                          'abbreviation' => 'C',
@@ -18,18 +12,29 @@
 
                  &nbsp;&nbsp; <a style="color: black;"
                      href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
-                         'label' => 'Audio Described',
+                         'label' => 'Audio Description',
                          'abbreviation' => 'AD',
                      ])
-                     Audio Described</a>
+                     Audio description</a>
 
                  &nbsp;&nbsp; <a style="color: black;"
                      href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
                          'label' => 'Autism Friendly',
                          'abbreviation' => 'AF',
-                     ]) Autism
-                     Friendly</a>
-             </div>
-         </mj-text>
+                     ]) Autism-friendly</a>
+
+                         &nbsp;&nbsp; <a style="color: black;"
+                     href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
+                         'label' => 'Toddler-friendly',
+                         'abbreviation' => 'TF',
+                     ])
+                     Toddler-friendly</a>
+
+                        &nbsp;&nbsp; <span title="Bring Your Own Baby"
+style="text-transform: uppercase; line-height: 1.1;  border-radius: 4px; font-weight: 700; background-color: #45cdff;   padding: 1px 4px 0; font-size: 11px; display: inline-block">
+BYOB
+</span> Bring your own baby
+
+         </x-email.heading>
      </mj-section>
  </mj-wrapper>

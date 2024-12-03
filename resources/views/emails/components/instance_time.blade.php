@@ -13,13 +13,19 @@ style="text-transform: uppercase; line-height: 1.1;  border-radius: 5px; font-we
 ])@endif
 @if ($instance->audio_described)
 @include('emails.components.accessibility_icon', [
-'label' => 'Audio Described',
+'label' => 'Audio Description',
 'abbreviation' => 'AD',
 ])
 @endif
 @if ($instance->autism_friendly)
 @include('emails.components.accessibility_icon', [
-'label' => 'Autism Friendly',
+'label' => 'Autism-friendly',
+'abbreviation' => 'AF',
+])
+@endif
+@if ($instance->toddler_friendly)
+@include('emails.components.accessibility_icon', [
+'label' => 'Toddler-friendly',
 'abbreviation' => 'AF',
 ])
 @endif

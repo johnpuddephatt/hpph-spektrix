@@ -268,7 +268,9 @@ class FetchEventData implements ShouldQueue
                     "captioned" => $instance->attribute_Captioned ?? null,
                     "relaxed" =>
                     $instance->attribute_RelaxedPerformance ?? null,
+
                     "autism_friendly" => $instance->attribute_AutismFriendlyScreening ?? null,
+                    "toddler_friendly" => $instance->attribute_ToddlerFriendlyScreening ?? null,
                     "signed_bsl" => $instance->attribute_SignedBSL ?? null,
 
                     "special_event" =>

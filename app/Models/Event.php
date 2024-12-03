@@ -107,6 +107,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         "has_signed_bsl",
         "has_relaxed",
         "has_autism_friendly",
+        "has_toddler_friendly",
         "genres_and_vibes",
     ];
 
@@ -114,7 +115,8 @@ class Event extends Model implements HasMedia, CachableAttributes
         "has_captioned",
         "has_signed_bsl",
         "has_relaxed",
-        "has_autism_friendly"
+        "has_autism_friendly",
+        "has_toddler_friendly"
     ];
 
     public function scopeUnpublished($query)
@@ -311,6 +313,14 @@ class Event extends Model implements HasMedia, CachableAttributes
         });
     }
 
+    public function getHasToddlerFriendlyAttribute(): bool
+    {
+        return $this->remember("has_toddler_friendly", 3600, function (): bool {
+            return !!$this->instances()
+                ->toddlerFriendly()
+                ->count();
+        });
+    }
     // public function getHasSpecialEventAttribute()
     // {
     //     return $this->remember("has_special_event", 3600, function () {

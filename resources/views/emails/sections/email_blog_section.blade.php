@@ -14,12 +14,21 @@ $post = \App\Models\Post::withoutGlobalScopes()->find($section->post);
 
     </mj-hero>
 </mj-column>
+  
 <mj-column padding="0 10px">
-                <mj-text line-height="1.2" padding="5px 0 5px 0" font-weight="700" font-size="24px">
+
+<x-email.heading padding="5px 0 10px 0" type="xs-mono">
+From the journal
+</x-email.heading>
+
+
+<x-email.heading padding="5px 0 10px 0" type="medium">
 {{ $post->title }}
-</mj-text>
+</x-email.heading>
+
+
 <mj-text padding="0 0 0px 0">{!! $post->introduction !!}</mj-text>
-<mj-button padding="10px 0 0 0" inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
+<mj-button padding="15px 0 0 0" inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
 background-color="#000000" color="#ffda3d" href="{{ $post->url }}">Read more
 </mj-button>
 </mj-column>

@@ -11,6 +11,10 @@
     <span
         class="type-xs-mono bg-gray-dark rounded-full text-white block no-underline px-2 text-center cursor-default z-[2]"
         x-show="instance.autism_friendly">Autism-friendly</span>
+
+        <span
+        class="type-xs-mono bg-gray-dark rounded-full text-white block no-underline px-2 text-center cursor-default z-[2]"
+        x-show="instance.toddler_friendly">Toddler-friendly</span>
     <abbr title="Audio Description"
         class="type-xs-mono bg-gray-dark rounded-full text-white block no-underline px-2 text-center cursor-default z-[2]"
         x-show="instance.event.audio_description">AD</abbr>

@@ -27,7 +27,10 @@ $films = \App\Models\Event::withoutGlobalScopes()
 <mj-wrapper background-color="#e6e4dd" full-width="full-width">
     @if ($section->title)
         <mj-section padding="25px 10px 0px">
-            @include('emails.components.heading', ['heading' => $section->title])
+        
+        
+        <x-email.heading  type="medium">{{ $section->title }}</x-email.heading>
+        
         </mj-section>
     @endif
     @if ($section->layout === 'rows')

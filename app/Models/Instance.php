@@ -68,6 +68,7 @@ class Instance extends Model
         "captioned",
         "relaxed",
         "autism_friendly",
+        "toddler_friendly",
         "signed_bsl",
         "special_event",
 
@@ -84,7 +85,10 @@ class Instance extends Model
         "start" => "datetime",
         "captioned" => "boolean",
         "relaxed" => "boolean",
+        "cancelled" => "boolean",
+        "signed_bsl" => "boolean",
         "autism_friendly" => "boolean",
+        "toddler_friendly" => "boolean",
     ];
 
     protected $appends = ["start_date", "start_time", "url", "short_id", "format"];
@@ -213,6 +217,13 @@ class Instance extends Model
     {
         return $query->where("autism_friendly", true);
     }
+
+
+    public function scopeToddlerFriendly($query)
+    {
+        return $query->where("toddler_friendly", true);
+    }
+
 
     public function scopeAudioDescribed($query)
     {

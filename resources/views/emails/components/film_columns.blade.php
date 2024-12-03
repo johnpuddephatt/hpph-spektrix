@@ -19,7 +19,8 @@
                         </mj-button>
                     @endif
                 </mj-hero>
-                <mj-text line-height="1.2" padding="10px 0" font-weight="700" font-size="18px">
+                <x-email.heading type="regular" padding="10px 0">
+                
 
                     {{ $film->name }}&#8239; @if ($film->certificate_age_guidance)
                         @include('emails.components.accessibility_icon', [
@@ -34,7 +35,7 @@
                             'abbreviation' => 'AD',
                         ])
                     @endif
-                </mj-text>
+                </x-email.heading>
                 @if ($section->display_times == 'range' && $film->date_range)
                     <mj-text font-family="BasisGrotesqueMono" line-height="1.2" padding="0px 0 15px 0" font-size="12px">
                         {!! Str::of($film->date_range)->upper()->replace('&MIDDOT;', '&middot;') !!}</mj-text>

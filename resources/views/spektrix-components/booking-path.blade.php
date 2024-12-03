@@ -86,7 +86,7 @@
                                         <div class="flex sm:items-center flex-col sm:flex-row gap-x-2 gap-y-0.5">
                                             <x-strand.booking-path />
                                             <span
-                                                x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.autism_friendly)"
+                                                x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.toddler_friendly) "
                                                 class="hidden sm:inline-block text-2xl">&middot;</span>
                                             <x-accessibilities.booking-path />
 
@@ -140,6 +140,14 @@
                             <p class="type-small mt-2 !font-normal">Designed for neurodiverse audiences, these
                                 screenings feature prompt start times, raised lighting and reduced volume. Capacity is
                                 reduced and audiences can make noise and move around.</p>
+                        </div>
+
+                        <div x-show="instances.some((instance) => instance.toddler_friendly)"
+                            class="border-t last:border-b border-gray-light py-4">
+                            <span
+                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Toddler-friendly</span>
+                            <p class="type-small mt-2 !font-normal">Designed for younger audiences, in particular those who are too old for our Bring Your Own Baby screenings but too young to stay seated! These
+                                screenings feature shorter run times and audiences can make noise and move around.</p>
                         </div>
 
                         <p class="underline mt-6"><a href="/access#accessible-screenings">Learn

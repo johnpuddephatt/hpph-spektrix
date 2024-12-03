@@ -56,7 +56,7 @@ class Email extends Resource
 
         return [
             ID::make()->sortable(),
-            Text::make('Title')->required(),
+            Text::make('Title')->required()->default('This week from HPPH'),
             Date::make('Date')->required(),
             Flexible::make('Email sections', 'content')
                 // ->addLayout('Email Featured Section', 'email_featured_section', [

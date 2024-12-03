@@ -109,6 +109,14 @@ class Programme extends Component
             ]);
         }
 
+        if (\App\Models\Instance::toddlerFriendly()->count()) {
+            $accessibilities_with_showings->push([
+                "label" => "Toddler-friendly",
+                "slug" => "toddler-friendly",
+                "abbreviation" => "Toddler-friendly",
+            ]);
+        }
+
         $past = $this->past;
 
         return view(
