@@ -148,7 +148,7 @@
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',
-                }" x-show="count($season_related)" :season="$event->season" :show_strand="false"
+                }" x-show="count($season_related)" color="#FFDA3D" :season="$event->season" :show_strand="false"
                     :instances="$season_related" />
             </div>
         @endif
