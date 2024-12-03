@@ -43,7 +43,7 @@
                 </div>
             @elseif($season)
                 <div class="swiper-slide">
-                    <x-season.card :season="$season" :total_slides="count($instances) + count($coming_soon) + 1" />
+                    <x-season.card-reactive :season="$season" :total_slides="count($instances) + count($coming_soon) + 1" />
                 </div>
             @endif
 
