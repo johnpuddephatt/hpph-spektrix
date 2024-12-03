@@ -17,9 +17,9 @@
                     ]) !!}
                 </div>
             @endif
-                <h3
+                {{-- <h3
                     class="type-regular lg:group-hover:opacity-0 lg:group-hover:-translate-y-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 mx-auto w-72 max-w-full px-8">
-                    {{ $season->name }}</h3>
+                    {{ $season->name }}</h3> --}}
         </div>
         <div
             class="{{ $total_slides == 3 ? '' : null }} {{ $total_slides == 1 ? ' lg:w-2/3 lg:pl-[16.67%] lg:px-8' : null }} {{ $total_slides == 2 ? 'xl:pl-6' : null }} {{ $total_slides < 3 ? 'lg:w-1/2  py-2 xl:py-8 lg:py-2' : 'py-6 bg-black-light w-full' }} relative lg:pr-0">
