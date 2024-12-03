@@ -110,7 +110,7 @@
                         </div>
 
                     </div>
-                    <div x-show="instances && instances.length && instances.some((instance) => instance.event.audio_description || instance.captioned || instance.autism_friendly)"
+                    <div x-show="instances && instances.length && instances.some((instance) => instance.event.audio_description || instance.captioned || instance.autism_friendly || instance.toddler_friendly)"
                         class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[6.9rem]">
                         <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
 
