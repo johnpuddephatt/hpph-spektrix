@@ -97,7 +97,7 @@ class Programme extends Component
             $accessibilities_with_showings->push([
                 "label" => "Captioned",
                 "slug" => "captioned",
-                "abbreviation" => "C",
+                "abbreviation" => "Captioned",
             ]);
         }
 
@@ -105,7 +105,7 @@ class Programme extends Component
             $accessibilities_with_showings->push([
                 "label" => "Autism-friendly",
                 "slug" => "autism-friendly",
-                "abbreviation" => "Autism-friendly",
+                "abbreviation" => "Autism",
             ]);
         }
 
@@ -113,7 +113,7 @@ class Programme extends Component
             $accessibilities_with_showings->push([
                 "label" => "Toddler-friendly",
                 "slug" => "toddler-friendly",
-                "abbreviation" => "Toddler-friendly",
+                "abbreviation" => "Toddler",
             ]);
         }
 

@@ -28,11 +28,11 @@
     @if ($autism_friendly ?? null)
         <abbr title="Autism-friendly screening"
             class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block no-underline rounded-full px-2 text-center">
-            Autism-friendly</abbr>
+            Autism</abbr>
     @endif
       @if ($toddler_friendly ?? null)
         <abbr title="Toddler-friendly screening"
             class="{{ $dark ? 'bg-gray-dark text-white' : 'bg-sand-light' }} type-xs-mono inline-block no-underline rounded-full px-2 text-center">
-            Toddler-friendly</abbr>
+            Toddler</abbr>
     @endif
 </div>

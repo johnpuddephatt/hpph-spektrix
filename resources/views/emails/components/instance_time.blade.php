@@ -20,13 +20,13 @@ style="text-transform: uppercase; line-height: 1.1;  border-radius: 5px; font-we
 @if ($instance->autism_friendly)
 @include('emails.components.accessibility_icon', [
 'label' => 'Autism-friendly',
-'abbreviation' => 'AF',
+'abbreviation' => 'Autism',
 ])
 @endif
 @if ($instance->toddler_friendly)
 @include('emails.components.accessibility_icon', [
 'label' => 'Toddler-friendly',
-'abbreviation' => 'AF',
+'abbreviation' => 'Toddler',
 ])
 @endif
 @if ($instance->signed_bsl)

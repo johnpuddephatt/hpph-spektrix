@@ -136,8 +136,8 @@
                         <div x-show="instances.some((instance) => instance.autism_friendly)"
                             class="border-t last:border-b border-gray-light py-4">
                             <span
-                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Autism-friendly</span>
-                            <p class="type-small mt-2 !font-normal">Designed for neurodiverse audiences, these
+                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Autism</span>
+                            <p class="type-small mt-2 !font-normal">Autism-friendly. Designed for neurodiverse audiences, these
                                 screenings feature prompt start times, raised lighting and reduced volume. Capacity is
                                 reduced and audiences can make noise and move around.</p>
                         </div>
@@ -145,8 +145,8 @@
                         <div x-show="instances.some((instance) => instance.toddler_friendly)"
                             class="border-t last:border-b border-gray-light py-4">
                             <span
-                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Toddler-friendly</span>
-                            <p class="type-small mt-2 !font-normal">Designed for younger audiences, in particular those who are too old for our Bring Your Own Baby screenings but too young to stay seated! These
+                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Toddler</span>
+                            <p class="type-small mt-2 !font-normal">Toddler-friendly. Designed for younger audiences, in particular those who are too old for our Bring Your Own Baby screenings but too young to stay seated! These
                                 screenings feature shorter run times and audiences can make noise and move around.</p>
                         </div>
 

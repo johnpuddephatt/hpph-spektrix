@@ -19,14 +19,14 @@
 
                  &nbsp;&nbsp; <a style="color: black;"
                      href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
-                         'label' => 'Autism Friendly',
-                         'abbreviation' => 'AF',
+                         'label' => 'Autism-friendly',
+                         'abbreviation' => 'Autism',
                      ]) Autism-friendly</a>
 
                          &nbsp;&nbsp; <a style="color: black;"
                      href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
                          'label' => 'Toddler-friendly',
-                         'abbreviation' => 'TF',
+                         'abbreviation' => 'Toddler',
                      ])
                      Toddler-friendly</a>
 
