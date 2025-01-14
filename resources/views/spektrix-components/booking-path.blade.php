@@ -119,7 +119,7 @@
                             <span
                                 class="type-xs py-0.5 text-black uppercase inline-block rounded px-2 bg-sand-light !font-bold !no-underline z-[2]">Pay What You Can</span>
                             <p class="type-small mt-2 !font-normal">This screening allows you to choose the ticket price you’re able to afford.</p>
-                            <p class="type-small mt-2 !font-normal">Those unable to pay can obtain free tickets – email info@hpph.co.uk or call 0113 275 2045 at least 48 hours before the screening. <a target="_blank" href="https://hpph.co.uk/strands/hyde-seek" class="underline">More details.</a></p>
+                            <p class="type-small mt-2 !font-normal">Those unable to pay can obtain free tickets – email info@hpph.co.uk or call 0113 275 2045 at least 48 hours before the screening. <a target="_blank" href="https://hpph.co.uk/strands/hyde-seek" class="underline">Learn more</a>.</p>
 
                         </div>
 
