@@ -114,6 +114,15 @@
                         class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[6.9rem]">
                         <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
 
+                        <div x-show="instances.some((instance) => instance.special_event == 'Pay What You Can')"
+                            class="border-t last:border-b border-gray-light py-4">
+                            <span
+                                class="type-xs py-0.5 text-black uppercase inline-block rounded px-2 bg-sand-light !font-bold !no-underline z-[2]">Pay What You Can</span>
+                            <p class="type-small mt-2 !font-normal">This is a Pay What You Can screening, allowing you to choose the ticket price you’re able to afford.</p>
+                            <p class="type-small mt-2 !font-normal">For those unable to pay, free tickets are available by emailing (info@hpph.co.uk) or calling (0113 275 2045) 48hrs before the screening. <a target="_blank" href="https://hpph.co.uk/strands/hyde-seek" class="underline">More details here.</a></p>
+
+                        </div>
+
                         <div x-show="instances.some((instance) => instance.event.audio_description)"
                             class="border-t last:border-b border-gray-light py-4">
                             <span
