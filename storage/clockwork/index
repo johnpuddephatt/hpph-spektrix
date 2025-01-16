@@ -305,3 +305,11 @@
 1736985010-3642-721820135,1736985010.3613,GET,/storage/132/responsive-images/Screenshot-2023-03-03-at-22.03.39___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,174.97706413269,request
 1736985010-3853-995456402,1736985010.3805,GET,/storage/138/responsive-images/Screenshot-2023-03-17-at-21.29.20___square_937_937.jpg,"App\Http\Controllers\PageController@show",404,174.35693740845,request
 1736985013-0136-176189817,1736985012.9998,GET,/whats-on,"App\Http\Controllers\PageController@show",200,258.72802734375,request
+1736985139-1834-62653799,1736985139.1358,GET,/whats-on?type=schedule,"App\Http\Controllers\PageController@show",200,358.45017433167,request
+1736985151-3558-259696519,1736985151.3354,GET,/whats-on?type=schedule,"App\Http\Controllers\PageController@show",200,296.61202430725,request
+1736985180-4434-861810853,1736985180.3984,GET,/whats-on?type=schedule,"App\Http\Controllers\PageController@show",200,605.40819168091,request
+1736985182-1733-432537093,1736985182.147,GET,/whats-on?type=schedule,"App\Http\Controllers\PageController@show",200,59.185028076172,request
+1736985182-3284-346209531,1736985182.3126,GET,/livewire/livewire.js?id=90730a3b0e7144480175,"Livewire\Controllers\LivewireJavaScriptAssets@source",200,42.205095291138,request
+1736985184-8659-1502171754,1736985184.8467,GET,/whats-on,"App\Http\Controllers\PageController@show",200,242.08188056946,request
+1736985614-2019-1481949909,1736985613.9973,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,200,376.12891197205,request
+1736985614-9152-459379762,1736985614.7189,GET,/livewire/livewire.js?id=90730a3b0e7144480175,Livewire\Controllers\LivewireJavaScriptAssets@source,200,440.02103805542,request

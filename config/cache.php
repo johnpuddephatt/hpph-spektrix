@@ -17,7 +17,7 @@ return [
 
     'default' => env('CACHE_DRIVER', 'file'),
 
-    'hasher' => \App\SpatieResponseCache\Hasher::class,
+    'hasher' => \App\Cache\Hasher::class,
 
 
 

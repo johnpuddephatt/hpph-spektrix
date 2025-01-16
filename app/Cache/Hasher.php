@@ -1,13 +1,13 @@
 <?php
 
-namespace App\SpatieResponseCache\Hasher;
+namespace App\Cache;
 
 use Spatie\ResponseCache\RequestHasher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\ResponseCache\CacheProfiles\CacheProfile;
 
-class DefaultHasher implements RequestHasher
+class Hasher implements RequestHasher
 {
     public function __construct(
         protected CacheProfile $cacheProfile,
@@ -27,7 +27,7 @@ class DefaultHasher implements RequestHasher
 
     protected function getNormalizedRequestUri(Request $request): string
     {
-
+        \Log::info('Cache?' . $request->getBaseUrl());
         if ($queryParams = $request->query()) {
             $queryParams = collect($request->query())
                 ->reject(fn($value, $key) => Str::startsWith($key, 'utm_'))
