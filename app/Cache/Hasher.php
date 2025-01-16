@@ -2,7 +2,7 @@
 
 namespace App\Cache;
 
-use Spatie\ResponseCache\RequestHasher;
+use Spatie\ResponseCache\Hasher\RequestHasher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\ResponseCache\CacheProfiles\CacheProfile;
@@ -27,7 +27,7 @@ class Hasher implements RequestHasher
 
     protected function getNormalizedRequestUri(Request $request): string
     {
-        \Log::info('Cache?' . $request->getBaseUrl());
+
         if ($queryParams = $request->query()) {
             $queryParams = collect($request->query())
                 ->reject(fn($value, $key) => Str::startsWith($key, 'utm_'))
@@ -37,7 +37,7 @@ class Hasher implements RequestHasher
             $queryString = '?' . $queryString;
         }
 
-        return $request->getBaseUrl() . $request->getPathInfo() . $queryString;
+        return $request->getBaseUrl() . $request->getPathInfo() . ($queryString ?? '');
     }
 
     protected function getCacheNameSuffix(Request $request)

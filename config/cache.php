@@ -17,10 +17,6 @@ return [
 
     'default' => env('CACHE_DRIVER', 'file'),
 
-    'hasher' => \App\Cache\Hasher::class,
-
-
-
     /*
     |--------------------------------------------------------------------------
     | Cache Stores
