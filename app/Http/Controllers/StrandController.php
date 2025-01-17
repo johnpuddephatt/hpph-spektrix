@@ -22,19 +22,20 @@ class StrandController extends Controller
 
             "instances" =>
             $strand->display_type == 'instances' ?
-                \App\Models\Instance::whereHas('event')
+                // \App\Models\Instance::whereHas('event')
+                // ->where('strand_name', $strand->name)
+                // ->with('event')
+                // ->get()
+                // ->concat(
+                \App\Models\Instance::withoutGlobalScope('not_coming_soon')
+                // ->whereHas('event', function (Builder $query) {
+                //     $query->whereNotNull('coming_soon');
+                // })
                 ->where('strand_name', $strand->name)
                 ->with('event')
                 ->get()
-                ->concat(
-                    \App\Models\Instance::withoutGlobalScope('not_coming_soon')
-                        ->whereHas('event', function (Builder $query) {
-                            $query->whereNotNull('coming_soon');
-                        })
-                        ->where('strand_name', $strand->name)
-                        ->with('event')
-                        ->get()
-                ) : null,
+                // ) 
+                : null,
 
             // "coming_soon_instances" => $strand->display_type == 'instances' ?  \App\Models\Instance::withoutGlobalScope('not_coming_soon')->whereHas('event', function (Builder $query) {
             //     $query->whereNotNull('coming_soon');
