@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "310060e99ef89efe62bcfbc86139c64a",
+    "content-hash": "2ad98d9f170fbfbdd00c5f5b0af51928",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -322,16 +322,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.337.0",
+            "version": "3.337.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "7e40cecb3ce66749bbd5eaa9f370de48c16acd6c"
+                "reference": "f885dd803a257da9d54e72a4750bba73e1196aee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/7e40cecb3ce66749bbd5eaa9f370de48c16acd6c",
-                "reference": "7e40cecb3ce66749bbd5eaa9f370de48c16acd6c",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/f885dd803a257da9d54e72a4750bba73e1196aee",
+                "reference": "f885dd803a257da9d54e72a4750bba73e1196aee",
                 "shasum": ""
             },
             "require": {
@@ -414,9 +414,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.337.0"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.337.2"
             },
-            "time": "2025-01-15T19:58:52+00:00"
+            "time": "2025-01-17T19:10:04+00:00"
         },
         {
             "name": "blade-ui-kit/blade-icons",
@@ -1147,16 +1147,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.9.3",
+            "version": "3.9.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "61446f07fcb522414d6cfd8b1c3e5f9e18c579ba"
+                "reference": "ec16c82f20be1a7224e65ac67144a29199f87959"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/61446f07fcb522414d6cfd8b1c3e5f9e18c579ba",
-                "reference": "61446f07fcb522414d6cfd8b1c3e5f9e18c579ba",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ec16c82f20be1a7224e65ac67144a29199f87959",
+                "reference": "ec16c82f20be1a7224e65ac67144a29199f87959",
                 "shasum": ""
             },
             "require": {
@@ -1172,15 +1172,13 @@
                 "doctrine/coding-standard": "12.0.0",
                 "fig/log-test": "^1",
                 "jetbrains/phpstorm-stubs": "2023.1",
-                "phpstan/phpstan": "1.12.6",
-                "phpstan/phpstan-strict-rules": "^1.6",
-                "phpunit/phpunit": "9.6.20",
-                "psalm/plugin-phpunit": "0.18.4",
+                "phpstan/phpstan": "2.1.1",
+                "phpstan/phpstan-strict-rules": "^2",
+                "phpunit/phpunit": "9.6.22",
                 "slevomat/coding-standard": "8.13.1",
                 "squizlabs/php_codesniffer": "3.10.2",
                 "symfony/cache": "^5.4|^6.0|^7.0",
-                "symfony/console": "^4.4|^5.4|^6.0|^7.0",
-                "vimeo/psalm": "4.30.0"
+                "symfony/console": "^4.4|^5.4|^6.0|^7.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -1240,7 +1238,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.9.3"
+                "source": "https://github.com/doctrine/dbal/tree/3.9.4"
             },
             "funding": [
                 {
@@ -1256,7 +1254,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-10T17:56:43+00:00"
+            "time": "2025-01-16T08:28:55+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -5218,16 +5216,16 @@
         },
         {
             "name": "outl1ne/nova-settings",
-            "version": "5.3.0",
+            "version": "5.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/outl1ne/nova-settings.git",
-                "reference": "b033965cde0fa8f4be5961a2eeb7dbc1417ce7d9"
+                "reference": "25518f77d596f56c82ed3c20378a8cc28343ebea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/outl1ne/nova-settings/zipball/b033965cde0fa8f4be5961a2eeb7dbc1417ce7d9",
-                "reference": "b033965cde0fa8f4be5961a2eeb7dbc1417ce7d9",
+                "url": "https://api.github.com/repos/outl1ne/nova-settings/zipball/25518f77d596f56c82ed3c20378a8cc28343ebea",
+                "reference": "25518f77d596f56c82ed3c20378a8cc28343ebea",
                 "shasum": ""
             },
             "require": {
@@ -5268,7 +5266,7 @@
             ],
             "support": {
                 "issues": "https://github.com/outl1ne/nova-settings/issues",
-                "source": "https://github.com/outl1ne/nova-settings/tree/5.3.0"
+                "source": "https://github.com/outl1ne/nova-settings/tree/5.2.0"
             },
             "funding": [
                 {
@@ -5276,7 +5274,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-19T12:01:50+00:00"
+            "time": "2023-06-29T08:25:04+00:00"
         },
         {
             "name": "outl1ne/nova-simple-repeatable",
@@ -7521,20 +7519,21 @@
         },
         {
             "name": "spatie/mjml-php",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/mjml-php.git",
-                "reference": "26c61cbe5acf5de52c5968af0f4eb96d46e4c2ea"
+                "reference": "70329ca9adbea09eec57a83c5e663cca7c75279e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/mjml-php/zipball/26c61cbe5acf5de52c5968af0f4eb96d46e4c2ea",
-                "reference": "26c61cbe5acf5de52c5968af0f4eb96d46e4c2ea",
+                "url": "https://api.github.com/repos/spatie/mjml-php/zipball/70329ca9adbea09eec57a83c5e663cca7c75279e",
+                "reference": "70329ca9adbea09eec57a83c5e663cca7c75279e",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
+                "spatie/temporary-directory": "^2.2",
                 "symfony/process": "^6.3.2|^7.0"
             },
             "require-dev": {
@@ -7570,7 +7569,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/mjml-php/issues",
-                "source": "https://github.com/spatie/mjml-php/tree/1.2.1"
+                "source": "https://github.com/spatie/mjml-php/tree/1.2.2"
             },
             "funding": [
                 {
@@ -7578,7 +7577,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-01T12:34:00+00:00"
+            "time": "2025-01-17T10:34:03+00:00"
         },
         {
             "name": "spatie/nova-backup-tool",

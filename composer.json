@@ -35,7 +35,7 @@
         "norman-huth/nova-values-field": "^1.0",
         "outl1ne/nova-menu-builder": "7.1.0",
         "outl1ne/nova-multiselect-field": "^4.0",
-        "outl1ne/nova-settings": "^5.0",
+        "outl1ne/nova-settings": "5.2",
         "outl1ne/nova-simple-repeatable": "^2.1",
         "outl1ne/nova-translations-loader": "^5.0",
         "pbmedia/laravel-ffmpeg": "^8.2",

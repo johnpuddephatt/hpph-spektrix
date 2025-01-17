@@ -15,6 +15,7 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Tag;
 use Laravel\Nova\Panel;
 use Trin4ik\NovaSwitcher\NovaSwitcher;
@@ -75,6 +76,10 @@ class Season extends Resource
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
+            Select::make("Display type", "display_type")->options([
+                "instances" => "Instances (default)",
+                "events" => "Events",
+            ])->displayUsingLabels(),
             // Image::make("Logo")
             //     ->acceptedTypes(".svg")
             //     ->disableDownload(),

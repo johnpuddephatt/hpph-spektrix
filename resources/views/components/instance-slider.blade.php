@@ -1,6 +1,6 @@
-@props(['instances' => [], 'coming_soon' => [], 'layout' => 'default', 'show_strand' => true, 'color' => null, 'strand' => null, 'season' => null])
+@props(['instances' => [], 'layout' => 'default', 'show_strand' => true, 'color' => null, 'strand' => null, 'season' => null])
 
-<div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($instances) + count($coming_soon) + ($strand ? 1 : 0) + ($season ? 1 : 0) }}, }" x-init="swiper = new Swiper($refs.container, {
+<div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($instances) + ($strand || $season ? 1 : 0) }}, }" x-init="swiper = new Swiper($refs.container, {
     loop: false,
 
     slidesPerView: Math.min(totalSlides, 1.5),
@@ -55,13 +55,13 @@
                     :color="$color" :instance="$instance" />
             @endforeach
 
-            @foreach ($coming_soon as $instance)
+            {{-- @foreach ($coming_soon as $instance)
                 <x-instance-card @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
                     x-data="{ shown: true }" class="hover:opacity-60 !transition !duration-500" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
                     x-intersect:enter.full.margin.500.0="shown = true"
                     x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
                     :color="$color" :instance="$instance" />
-            @endforeach
+            @endforeach --}}
         </div>
     </div>
 

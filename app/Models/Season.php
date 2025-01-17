@@ -41,6 +41,7 @@ class Season extends Model implements HasMedia, CachableAttributes
         "published",
         "additional_description",
         "funders_logo",
+        'display_type'
     ];
 
     protected $casts = [

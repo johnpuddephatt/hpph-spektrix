@@ -16,11 +16,22 @@ class SeasonController extends Controller
 
         return view("seasons.show", [
             "season" => $season,
+
             "instances" =>
-            \App\Models\Instance::whereHas('event')->where('season_name', $season->name)->with('event')->get(),
-            "coming_soon" => \App\Models\Instance::withoutGlobalScope('not_coming_soon')->whereHas('event', function (Builder $query) {
+            $season->display_type == 'instances' ? \App\Models\Instance::whereHas('event')->where('season_name', $season->name)->with('event')->get() : null,
+
+            "coming_soon_instances" => $season->display_type == 'instances' ?  \App\Models\Instance::withoutGlobalScope('not_coming_soon')->whereHas('event', function (Builder $query) {
                 $query->whereNotNull('coming_soon');
-            })->where('season_name', $season->name)->with('event')->get()
+            })->where('season_name', $season->name)->with('event')->get() : null,
+
+            'events' => $season->display_type == 'events' ? \App\Models\Event::whereHas('instances', function (Builder $query) use ($season) {
+                $query->where('season_name', $season->name);
+            })->get() : null,
+
+            'coming_soon_events' => $season->display_type == 'events' ? \App\Models\Event::whereHas('instances', function (Builder $query) use ($season) {
+                $query->where('season_name', $season->name);
+            })->whereNotNull('coming_soon')->get() : null
+
         ]);
     }
 }

@@ -18,6 +18,7 @@ use Laravel\Nova\Fields\Color;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Tag;
 use Laravel\Nova\Panel;
 use Trin4ik\NovaSwitcher\NovaSwitcher;
@@ -78,6 +79,10 @@ class Strand extends Resource
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
+            Select::make("Display type", "display_type")->options([
+                "instances" => "Instances (default)",
+                "events" => "Events",
+            ])->displayUsingLabels(),
             Color::make("Color"),
             Image::make("Logo")
                 ->acceptedTypes(".svg")
