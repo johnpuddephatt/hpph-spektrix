@@ -6,7 +6,7 @@
                     class="hover:underline" href="{{ \App\Models\Page::getTemplateUrl('programme-page') }}">Full
                     listings</a>
             </div>
-            <x-instance-slider :instances="$layout->instances" layout="home" />
+            <x-instance-slider :entries="$layout->instances" layout="home" />
         </div>
     </div>
 @endif

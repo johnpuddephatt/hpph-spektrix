@@ -19,35 +19,20 @@ class StrandController extends Controller
 
         return view("strands.show", [
             "strand" => $strand,
-
-            "instances" =>
-            $strand->display_type == 'instances' ?
-                // \App\Models\Instance::whereHas('event')
-                // ->where('strand_name', $strand->name)
-                // ->with('event')
-                // ->get()
-                // ->concat(
+            "entries" =>
+            $strand->display_type == 'events' ?
+                \App\Models\Event::shownInProgramme()->whereHas('allInstances', function (Builder $query) use ($strand) {
+                    $query->where('strand_name', $strand->name);
+                })->get() :
                 \App\Models\Instance::withoutGlobalScope('not_coming_soon')
-                // ->whereHas('event', function (Builder $query) {
-                //     $query->whereNotNull('coming_soon');
-                // })
                 ->where('strand_name', $strand->name)
                 ->with('event')
                 ->get()
-                // ) 
-                : null,
+                ->sortBy([
+                    fn($a) => $a->event->coming_soon ? 1 : -1,
+                    ['start', 'asc'],
+                ])
 
-            // "coming_soon_instances" => $strand->display_type == 'instances' ?  \App\Models\Instance::withoutGlobalScope('not_coming_soon')->whereHas('event', function (Builder $query) {
-            //     $query->whereNotNull('coming_soon');
-            // })->where('strand_name', $strand->name)->with('event')->get() : null,
-
-            // 'events' => $strand->display_type == 'events' ? \App\Models\Event::whereHas('instances', function (Builder $query) use ($strand) {
-            //     $query->where('strand_name', $strand->name);
-            // })->get() : null,
-
-            // 'coming_soon_events' => $strand->display_type == 'events' ? \App\Models\Event::whereHas('instances', function (Builder $query) use ($strand) {
-            //     $query->where('strand_name', $strand->name);
-            // })->whereNotNull('coming_soon')->get() : null
         ]);
     }
 }

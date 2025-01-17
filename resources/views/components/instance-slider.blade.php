@@ -1,6 +1,6 @@
-@props(['instances' => [], 'layout' => 'default', 'show_strand' => true, 'color' => null, 'strand' => null, 'season' => null])
+@props(['entries' => [], 'type' => 'instance', 'layout' => 'default', 'show_strand' => true, 'color' => null, 'strand' => null, 'season' => null])
 
-<div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($instances) + ($strand || $season ? 1 : 0) }}, }" x-init="swiper = new Swiper($refs.container, {
+<div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($entries) + ($strand || $season ? 1 : 0) }}, }" x-init="swiper = new Swiper($refs.container, {
     loop: false,
 
     slidesPerView: Math.min(totalSlides, 1.5),
@@ -39,21 +39,28 @@
         <div class="swiper-wrapper w-full">
             @if ($strand)
                 <div class="swiper-slide">
-                    <x-strand.card-reactive :strand="$strand" :total_slides="count($instances) + 1" />
+                    <x-strand.card-reactive :strand="$strand" :total_slides="count($entries) + 1" />
                 </div>
             @elseif($season)
                 <div class="swiper-slide">
-                    <x-season.card-reactive :season="$season" :total_slides="count($instances) + 1" />
+                    <x-season.card-reactive :season="$season" :total_slides="count($entries) + 1" />
                 </div>
             @endif
 
-            @foreach ($instances as $instance)
+            @foreach ($entries as $entry)
+
+            @if($type == 'instance')
                 <x-instance-card @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
                     x-data="{ shown: true }" class="hover:opacity-60 !transition !duration-500" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
                     x-intersect:enter.full.margin.500.0="shown = true"
                     x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
-                    :color="$color" :instance="$instance" />
+                    :color="$color" :instance="$entry" />
+            @elseif($type == 'event')
+            <div> event goes here</div>
+            @endif
+
             @endforeach
+
 
         </div>
     </div>
