@@ -390,3 +390,10 @@
 1737158650-9609-668393609,1737158650.9534,GET,/storage/70/responsive-images/41-COLOUR%402x___landscape_685_411.jpg,App\Http\Controllers\PageController@show,404,102.98585891724,request
 1737158650-9664-1657943891,1737158650.9604,GET,/storage/84/responsive-images/IMG_5298___landscape_685_411.jpg,App\Http\Controllers\PageController@show,404,99.89595413208,request
 1737158651-0085-1506077767,1737158650.9923,GET,/storage/69/video-conversions/rerun-loop.mp4.webm,App\Http\Controllers\PageController@show,404,87.033033370972,request
+1737158689-7961-1182454961,1737158689.7723,GET,/strands/hyde-seek,App\Http\Controllers\StrandController@show,200,228.08003425598,request
+1737158690-1011-1636928025,1737158690.0749,GET,/storage/69/conversions/rerun-loop-thumb.jpg,App\Http\Controllers\PageController@show,404,159.96217727661,request
+1737158690-3372-953120863,1737158690.3283,GET,/storage/69/video-conversions/rerun-loop.mp4.mp4,App\Http\Controllers\PageController@show,404,132.02810287476,request
+1737158690-4903-410517691,1737158690.4754,GET,/storage/69/video-conversions/rerun-loop.mp4.webm,App\Http\Controllers\PageController@show,404,111.02080345154,request
+1737158706-8122-1750575082,1737158706.7905,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,82.683086395264,request
+1737158926-1089-229986371,1737158926.0716,GET,/,App\Http\Controllers\PageController@home,200,3342.6518440247,request
+1737158930-0425-972779327,1737158930.0243,GET,/storage/animation.json,App\Http\Controllers\PageController@show,404,100.97503662109,request
