@@ -139,7 +139,8 @@
                     2 => 'wide',
                     default => 'default',
                 }" :strand="$event->strand" :color="$event->strand->color" :show_strand="false"
-                    :entries="$strand_related" />
+                    :entries="$strand_related"
+                    :type="$event->strand->display_type" />
             </div>
         @endif
         @if ($event->season)
@@ -149,6 +150,7 @@
                     2 => 'wide',
                     default => 'default',
                 }" x-show="count($season_related)" color="#FFDA3D" :season="$event->season" :show_strand="false"
+                :type="$event->season->display_type"
                     :entries="$season_related" />
             </div>
         @endif

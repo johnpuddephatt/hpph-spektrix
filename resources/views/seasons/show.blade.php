@@ -60,7 +60,7 @@
                     {{ $season->name }}
                 </h2>
 
-                <x-instance-slider :entries="$entries" color="#f2d13c" :layout="match ($entries->count()) {
+                <x-instance-slider :type="$strand->display_type" :entries="$entries" color="#f2d13c" :layout="match ($entries->count()) {
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',

@@ -154,6 +154,18 @@ class Event extends Model implements HasMedia, CachableAttributes
         return $query->where("show_in_programme", true);
     }
 
+    public static function getEventsForSlider($type, $name, $exclude = [])
+    {
+        return Event::shownInProgramme()->whereHas('allFutureInstances', function (Builder $query) use ($name, $type) {
+            $query->where($type . '_name', $name);
+        })
+            ->whereNotIn('id', $exclude)
+            ->get()
+            ->sortBy([
+                fn($a) => $a->coming_soon ? 1 : 0,
+                ['first_instance_date_time', 'asc'],
+            ]);
+    }
 
 
     public function getActivitylogOptions(): LogOptions

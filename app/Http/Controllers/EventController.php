@@ -58,10 +58,15 @@ class EventController extends Controller
                 "latest_post.featuredImage",
             )
             ->firstOrFail();
+
+        $current_event_instance_ids = $event->instances()->pluck('id');
+
         return view("events.show", [
             'event' => $event,
-            "strand_related" => $event->strand ? $event->strand->instances()->whereNotIn('id', $event->instances()->pluck('id'))->get() : [],
-            "season_related" => $event->season ? $event->season->instances()->whereNotIn('id', $event->instances()->pluck('id'))->get() : [],
+            "strand_related" =>
+            $event->strand ? ($event->strand->display_type == 'events' ? Event::getEventsForSlider('strand', $event->strand->name, $current_event_instance_ids) : Instance::getInstancesForSlider('strand', $event->strand->name, $current_event_instance_ids)) : [],
+            "season_related" => $event->season ? ($event->season->display_type == 'events' ? Event::getEventsForSlider('season', $event->season->name, $current_event_instance_ids) :
+                Instance::getInstancesForSlider('season', $event->season->name, $current_event_instance_ids)) : [],
         ]);
     }
 

@@ -12,6 +12,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
@@ -127,9 +128,19 @@ class Strand extends Model implements HasMedia, CachableAttributes
         );
     }
 
-    public function instances()
+    public function instances(): HasMany
     {
         return $this->hasMany(Instance::class, "strand_name", "name")->whereHas(
+            "event",
+            function ($event) {
+                return $event->shownInProgramme();
+            }
+        );
+    }
+
+    public function allFutureInstances(): HasMany
+    {
+        return $this->hasMany(Instance::class)->withoutGlobalScope('not_coming_soon')->whereHas(
             "event",
             function ($event) {
                 return $event->shownInProgramme();

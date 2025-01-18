@@ -229,4 +229,17 @@ class Instance extends Model
     {
         return $query->whereRelation("event", "audio_description", true);
     }
+
+    public static function getInstancesForSlider($type, $name, $exclude = [])
+    {
+        return Instance::withoutGlobalScope('not_coming_soon')
+            ->where($type . '_name', $name)
+            ->with('event')
+            ->whereNotIn('id', $exclude)
+            ->get()
+            ->sortBy([
+                fn($a) => $a->event->coming_soon ? 1 : 0,
+                ['start', 'asc'],
+            ]);
+    }
 }

@@ -1,4 +1,4 @@
-@props(['entries' => [], 'type' => 'instance', 'layout' => 'default', 'show_strand' => true, 'color' => null, 'strand' => null, 'season' => null])
+@props(['entries' => [], 'type' => 'instances', 'layout' => 'default', 'show_strand' => true, 'color' => null, 'strand' => null, 'season' => null])
 
 <div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($entries) + ($strand || $season ? 1 : 0) }}, }" x-init="swiper = new Swiper($refs.container, {
     loop: false,
@@ -34,7 +34,6 @@
         },
     },
 })" class="mt-12 lg:mt-24 relative max-w-none mx-auto">
-
     <div class="swiper-container border-t border-gray-dark pt-10 lg:pt-16 w-full overflow-hidden" x-ref="container">
         <div class="swiper-wrapper w-full">
             @if ($strand)
@@ -49,14 +48,18 @@
 
             @foreach ($entries as $entry)
 
-            @if($type == 'instance')
+            @if($type == 'instances')
                 <x-instance-card @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
                     x-data="{ shown: true }" class="hover:opacity-60 !transition !duration-500" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
                     x-intersect:enter.full.margin.500.0="shown = true"
                     x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
                     :color="$color" :instance="$entry" />
-            @elseif($type == 'event')
-            <div> event goes here</div>
+            @elseif($type == 'events')
+                <x-event-card-responsive @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
+                    x-data="{ shown: true }" class="hover:opacity-60 !transition !duration-500" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
+                    x-intersect:enter.full.margin.500.0="shown = true"
+                    x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
+                    :color="$color" :event="$entry" />
             @endif
 
             @endforeach
