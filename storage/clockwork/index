@@ -641,3 +641,4 @@
 1737164387-2373-1101969485,1737164387.2236,GET,/films/shimoni,App\Http\Controllers\EventController@show,200,144.69194412231,request
 1737164410-0182-1179684073,1737164410.0018,GET,/storage/84/responsive-images/IMG_5298___landscape_685_411.jpg,App\Http\Controllers\PageController@show,404,103.71589660645,request
 1737164410-0182-1984979057,1737164409.9993,GET,/storage/70/responsive-images/41-COLOUR%402x___landscape_685_411.jpg,App\Http\Controllers\PageController@show,404,106.25195503235,request
+1737164443-4601-2122346877,1737164443.4412,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,69.884061813354,request

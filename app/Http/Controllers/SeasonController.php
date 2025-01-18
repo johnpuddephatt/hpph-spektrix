@@ -20,7 +20,7 @@ class SeasonController extends Controller
             "season" => $season,
             "entries" =>
             $season->display_type == 'events' ?
-                Event::getEventsForSlider('strand', $season->name) : Instance::getInstancesForSlider('strand', $season->name)
+                Event::getEventsForSlider('season', $season->name) : Instance::getInstancesForSlider('season', $season->name)
         ]);
     }
 }
