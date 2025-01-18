@@ -29,8 +29,9 @@ class StrandController extends Controller
                 ->with('event')
                 ->get()
                 ->sortBy([
-                    fn($a) => $a->event->coming_soon ? 1 : -1,
+                    fn($a) => $a->event->coming_soon ? 1 : 0,
                     ['start', 'asc'],
+
                 ])
 
         ]);
