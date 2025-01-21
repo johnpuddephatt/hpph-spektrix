@@ -662,3 +662,9 @@
 1737468129-1787-1937534627,1737468129.156,GET,/storage/69/conversions/rerun-loop-thumb.jpg,App\Http\Controllers\PageController@show,404,112.71095275879,request
 1737468129-2490-1710099601,1737468129.2339,GET,/storage/69/video-conversions/rerun-loop.mp4.mp4,App\Http\Controllers\PageController@show,404,52.739143371582,request
 1737468129-2969-1421527859,1737468129.2934,GET,/storage/69/video-conversions/rerun-loop.mp4.webm,App\Http\Controllers\PageController@show,404,44.555902481079,request
+1737468503-4830-1764507296,1737468503.4003,GET,/films/wicked,App\Http\Controllers\EventController@show,200,451.09105110168,request
+1737468504-7394-1974302140,1737468504.7269,GET,/strands/hyde-seek,App\Http\Controllers\StrandController@show,200,237.76197433472,request
+1737468505-0306-484477067,1737468505.0241,GET,/storage/69/conversions/rerun-loop-thumb.jpg,App\Http\Controllers\PageController@show,404,79.489946365356,request
+1737468505-0982-1188629648,1737468505.0894,GET,/storage/69/video-conversions/rerun-loop.mp4.mp4,App\Http\Controllers\PageController@show,404,47.785997390747,request
+1737468505-1480-828060879,1737468505.1455,GET,/storage/69/video-conversions/rerun-loop.mp4.webm,App\Http\Controllers\PageController@show,404,36.578178405762,request
+1737468506-4097-943362914,1737468506.3994,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,200,260.4398727417,request

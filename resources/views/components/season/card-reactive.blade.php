@@ -5,7 +5,7 @@
         class="{{ $total_slides == 2 ? 'mt-8' : '' }} {{ $total_slides < 3 ? 'lg:flex-row gap-3 lg:gap-4 lg:bg-black-light' : null }} group mx-auto flex flex-col lg:items-center text-white rounded overflow-hidden">
         <div class="{{ $total_slides < 3 ? 'lg:hidden' : ' mb-6' }} type-xs-mono self-start text-white">More from this
             season</div>
-        </div>
+
 
         <div
             class="{{ $total_slides == 2 ? 'lg:w-1/2 rounded lg:rounded-none' : '' }} {{ $total_slides == 1 ? 'lg:w-1/3 h-[18rem]' : 'aspect-video' }} bg-black overflow-hidden rounded-t relative my-0 bg-opacity-50 self-stretch">
