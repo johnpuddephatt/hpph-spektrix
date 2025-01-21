@@ -161,9 +161,10 @@ class Event extends Model implements HasMedia, CachableAttributes
         })
             ->whereNotIn('id', $exclude)
             ->get()
+
             ->sortBy([
                 fn($a) => $a->coming_soon ? 1 : 0,
-                ['first_instance_date_time', 'asc'],
+                fn($a) => $a->allFutureInstances->first()->start_date,
             ]);
     }
 
