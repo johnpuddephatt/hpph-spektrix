@@ -160,12 +160,12 @@ class Event extends Model implements HasMedia, CachableAttributes
             $query->where($type . '_name', $name);
         })
             ->whereNotIn('id', $exclude)
-            ->get()
+            ->get();
 
-            ->sortBy([
-                fn($a) => $a->coming_soon ? 1 : 0,
-                fn($a) => $a->allFutureInstances->first()->start
-            ]);
+        // ->sortBy([
+        //     fn($a) => $a->coming_soon ? 1 : 0,
+        //     fn($a) => $a->allFutureInstances->first()->start
+        // ]);
     }
 
 
