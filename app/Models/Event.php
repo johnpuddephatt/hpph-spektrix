@@ -156,16 +156,35 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public static function getEventsForSlider($type, $name, $exclude = [])
     {
+        // $events =
+        //     Event::shownInProgramme()->whereHas('allFutureInstances', function (Builder $query) use ($name, $type) {
+        //         $query->where($type . '_name', $name);
+        //     })
+        //     ->whereNotIn('id', $exclude)
+        //     ->get()
+
+        //     ->sortBy([
+        //         fn($a, $b) => $a->allFutureInstances()->orderBy('start')->first()->start->timestamp - $b->allFutureInstances()->orderBy('start')->first()->start->timestamp
+        //         // fn($a) => $a->coming_soon ? 1 : 0
+        //     ]);
+        // echo '<table>';
+        // foreach ($events as $event) {
+        //     echo '<tr><td> ' . $event->name . '</td><td>' . $event->date_range .  '</td><td>' . $event->allFutureInstances()->orderBy('start')->first()->start->format('jS F Y')  . ':::' .  $event->allFutureInstances()->orderBy('start')->first()->start->timestamp  . "</td></tr>";
+        // }
+        // echo '</table>';
+        // die();
+
+
         return Event::shownInProgramme()->whereHas('allFutureInstances', function (Builder $query) use ($name, $type) {
             $query->where($type . '_name', $name);
         })
             ->whereNotIn('id', $exclude)
-            ->get();
+            ->get()
 
-        // ->sortBy([
-        //     fn($a) => $a->allFutureInstances->orderBy('start')->first()->start->timestamp
-        //     // fn($a) => $a->coming_soon ? 1 : 0
-        // ]);
+            ->sortBy([
+                fn($a, $b) => $a->allFutureInstances()->orderBy('start')->first()->start->timestamp - $b->allFutureInstances()->orderBy('start')->first()->start->timestamp,
+                fn($a) => $a->coming_soon ? 1 : 0
+            ]);
     }
 
 

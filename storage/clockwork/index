@@ -671,3 +671,13 @@
 1737469001-8011-803674905,1737469001.738,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,500,288.69795799255,request
 1737469002-5656-899985508,1737469002.544,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,145.24102210999,request
 1737469018-7045-594528674,1737469018.6683,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,200,230.98611831665,request
+1737469245-6583-183788152,1737469245.6036,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,200,230.7460308075,request
+1737469259-7454-1086505459,1737469259.7188,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,500,282.29284286499,request
+1737469260-4737-1090410381,1737469260.4314,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,129.76098060608,request
+1737469273-5446-936731681,1737469273.5015,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,200,237.09511756897,request
+1737469546-5897-1233608370,1737469546.5419,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,500,282.87196159363,request
+1737469604-8808-1776788533,1737469604.8698,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,108.8399887085,request
+1737469670-4466-1445563501,1737469670.4182,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,500,277.59981155396,request
+1737469846-9902-583630257,1737469846.9825,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,125.27012825012,request
+1737469948-1459-635206858,1737469948.0977,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,500,316.42699241638,request
+1737470157-7369-44941289,1737470157.681,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,200,320.27506828308,request
