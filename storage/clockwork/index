@@ -681,3 +681,12 @@
 1737469846-9902-583630257,1737469846.9825,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,125.27012825012,request
 1737469948-1459-635206858,1737469948.0977,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,500,316.42699241638,request
 1737470157-7369-44941289,1737470157.681,GET,/films/mufasa-the-lion-king,App\Http\Controllers\EventController@show,200,320.27506828308,request
+1737470450-3722-335460515,1737470450.3226,GET,/storage/84/responsive-images/IMG_5298___landscape_1171_703.jpg,App\Http\Controllers\PageController@show,404,150.31814575195,request
+1737470450-3889-1418801743,1737470450.3829,GET,/storage/70/responsive-images/41-COLOUR%402x___landscape_1171_703.jpg,App\Http\Controllers\PageController@show,404,90.167045593262,request
+1737470452-1327-408604803,1737470452.1204,GET,/strands/cinema-africa,App\Http\Controllers\StrandController@show,200,163.14601898193,request
+1737470457-4502-537908939,1737470457.4344,GET,/strands/cinema-africa,App\Http\Controllers\StrandController@show,200,127.79378890991,request
+1737470457-7031-1817511048,1737470457.6935,GET,/livewire/livewire.js?id=90730a3b0e7144480175,Livewire\Controllers\LivewireJavaScriptAssets@source,200,34.103870391846,request
+1737470465-1964-2131908645,1737470465.1769,GET,/strands/cinema-africa,App\Http\Controllers\StrandController@show,200,153.20301055908,request
+1737470477-2368-1336288710,1737470477.2124,GET,/strands/cinema-africa,App\Http\Controllers\StrandController@show,200,151.8189907074,request
+1737470486-5405-258647168,1737470486.5203,GET,/strands/cinema-africa,App\Http\Controllers\StrandController@show,200,121.05584144592,request
+1737470520-4632-1841067286,1737470520.3907,GET,/strands/cinema-africa,App\Http\Controllers\StrandController@show,200,223.53219985962,request
