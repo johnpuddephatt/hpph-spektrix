@@ -182,8 +182,8 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->get()
 
             ->sortBy([
+                fn($a) => $a->coming_soon ? 1 : 0,
                 fn($a, $b) => $a->allFutureInstances()->orderBy('start')->first()->start->timestamp - $b->allFutureInstances()->orderBy('start')->first()->start->timestamp,
-                fn($a) => $a->coming_soon ? 1 : 0
             ]);
     }
 
