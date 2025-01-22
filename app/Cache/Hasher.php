@@ -33,11 +33,10 @@ class Hasher implements RequestHasher
                 ->reject(fn($value, $key) => Str::startsWith($key, 'utm_'))
                 ->reject(fn($value, $key) => Str::startsWith($key, 'dm_'))
                 ->toArray();
-            if (empty($queryParams)) {
-                return '';
+            if (!empty($queryParams)) {
+                $queryString = http_build_query($queryParams);
+                $queryString = '?' . $queryString;
             }
-            $queryString = http_build_query($queryParams);
-            $queryString = '?' . $queryString;
         }
 
         return $request->getBaseUrl() . $request->getPathInfo() . ($queryString ?? '');
