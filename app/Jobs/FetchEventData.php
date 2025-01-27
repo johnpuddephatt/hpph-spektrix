@@ -47,6 +47,7 @@ class FetchEventData implements ShouldQueue
         $events = $this->getEvents();
         $instances = $this->getInstances($events);
         $this->getInstancesVenues($instances);
+
         $this->updateOrCreateEvents($events);
         $this->updateOrCreateSeasons($instances);
         $this->updateOrCreateStrands($instances);
@@ -93,8 +94,6 @@ class FetchEventData implements ShouldQueue
 
     public function updateOrCreateEvents($events)
     {
-        \App\Models\Event::query()->update(["enabled" => false]);
-
         foreach ($events as $event) {
             // \App\Models\Event::withoutEvents(function () use ($event) {
             \App\Models\Event::withoutGlobalScopes()->updateOrCreate(
@@ -122,7 +121,6 @@ class FetchEventData implements ShouldQueue
                     "country_of_origin" =>
                     $event->attribute_CountryOfOrigin ?? null,
                     "director" => $event->attribute_Director ?? null,
-
                     "distributor" => $event->attribute_Distributor ?? null,
                     "f_rating" => $event->attribute_FRating ?? null,
                     "language" => $event->attribute_Language ?? null,
@@ -174,6 +172,7 @@ class FetchEventData implements ShouldQueue
             );
             // });
         }
+        \App\Models\Event::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($events, 'id'))->update(["enabled" => false]);
     }
 
     public function getInstancesVenues($instances)
@@ -246,7 +245,6 @@ class FetchEventData implements ShouldQueue
 
     public function updateOrCreateInstances($instances)
     {
-        \App\Models\Instance::query()->update(["enabled" => false]);
 
         foreach ($instances as $instance) {
             \App\Models\Instance::withoutGlobalScopes()->updateOrCreate(
@@ -262,29 +260,26 @@ class FetchEventData implements ShouldQueue
                     "stop_selling_at_web" =>
                     $instance->stopSellingAtWeb ?? null,
                     "cancelled" => $instance->cancelled ?? null,
-
                     "audio_described" =>
                     $instance->attribute_AudioDescribed ?? null,
                     "captioned" => $instance->attribute_Captioned ?? null,
                     "relaxed" =>
                     $instance->attribute_RelaxedPerformance ?? null,
-
                     "autism_friendly" => $instance->attribute_AutismFriendlyScreening ?? null,
                     "toddler_friendly" => $instance->attribute_ToddlerFriendlyScreening ?? null,
                     "signed_bsl" => $instance->attribute_SignedBSL ?? null,
-
                     "special_event" =>
                     $instance->attribute_CinemaSpecialEvent ?? null,
-
                     "analogue" => $instance->attribute_Analogue ?? null,
                     "door_time" => $instance->attribute_DoorTime ?? null,
                     "partnership" => $instance->attribute_Partnership ?? null,
-
                     "season_name" => $instance->attribute_Season ?: null,
                     "strand_name" => $instance->attribute_Strand ?: null,
                     "external_ticket_link" => $instance->attribute_ExternalTicketLink ?: null,
                 ]
             );
         }
+
+        \App\Models\Instance::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($instances, 'id'))->update(["enabled" => false]);
     }
 }
