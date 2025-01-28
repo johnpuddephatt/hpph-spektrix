@@ -4,11 +4,9 @@
             @if ($dark) style="color: @yield('color')" @endif>
             {{ $layout->title }}</h3>
 
-        <div class="">
-
+        <div class=""  x-data="{ open: null}" x-init="open =  window.location.hash.replace('#', '') ">
             @foreach ($layout->faqs as $faq)
                 @include('blocks.single-faq', ['layout' => $faq, 'dark' => $dark ?? false])
             @endforeach
-
         </div>
     </div>
