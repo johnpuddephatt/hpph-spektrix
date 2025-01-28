@@ -88,7 +88,9 @@
                     <x-genres-vibes-badge :values="$event->genres_and_vibes" />
                 </div>
 
-                <x-strand.strip :strand="$event->strand" />
+                @foreach($event->strands as $strand)
+                    <x-strand.strip :strand="$strand" />
+                @endforeach
                 <x-season.strip :season="$event->season" />
 
                 <div class="max-w-4xl lg:pr-16 xl:pr-32">
