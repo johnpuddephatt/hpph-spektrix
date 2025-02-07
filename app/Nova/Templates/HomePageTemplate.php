@@ -53,6 +53,9 @@ class HomePageTemplate
                     )
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\JournalPostsLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\HomeStrandsLayout::class
                     ),
             ]),
         ];

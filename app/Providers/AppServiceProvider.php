@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
                 })
             );
         });
-        View::composer(["components.strand.menu"], function ($view) {
+        View::composer(["components.strand.menu", 'blocks.home-strands'], function ($view) {
             $view->with(
                 "strands",
                 \Cache::rememberForever("strands", function () {
