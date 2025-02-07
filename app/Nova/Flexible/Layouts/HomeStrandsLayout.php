@@ -2,15 +2,8 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Astrotomic\CachableAttributes\CachableAttributes;
-use Astrotomic\CachableAttributes\CachesAttributes;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Laravel\Nova\Fields\Number;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Request;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\File;
-use Outl1ne\MultiselectField\Multiselect;
+use Laravel\Nova\Fields\Text;
 
 class HomeStrandsLayout extends Layout
 {
@@ -35,5 +28,11 @@ class HomeStrandsLayout extends Layout
      *
      * @return array
      */
-    public function fields() {}
+    public function fields()
+    {
+        return [
+            Text::make("Title", "title"),
+            Text::make("Subtitle", "subtitle"),
+        ];
+    }
 }

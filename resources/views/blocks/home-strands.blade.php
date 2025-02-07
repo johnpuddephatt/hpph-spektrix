@@ -35,6 +35,9 @@ slidesPerView:  Math.min(totalSlides, 3),        },
         },
     },
 })" class="py-12 lg:py-16 bg-black relative max-w-none mx-auto">
+<div class="type-xs-mono text-white text-center mb-2">{{ $layout->title }}</div>
+<h2 class="type-regular text-white lg:type-medium mb-8 lg:mb-16 text-center">{{ $layout->subtitle }}</a>
+            </h2>
     <div class="swiper-container container border-t border-gray-dark pt-10 lg:pt-16 w-full overflow-hidden" x-ref="container">
         <div  x-ref="wrapper" class=" swiper-wrapper w-full">
             @foreach ($strands as $strand)
