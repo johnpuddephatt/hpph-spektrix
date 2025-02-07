@@ -1,4 +1,4 @@
-             <div class="pb-12" x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($strands) }}, }" x-init="
+             <div  x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($strands) }}, }" x-init="
              [...$refs.wrapper.querySelectorAll('.swiper-slide')]
   .sort((a, b) => Math.random() > 0.5 ? 1 : -1)
   .forEach(node => $refs.wrapper.appendChild(node));
@@ -34,7 +34,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
             slidesPerView:  Math.min(totalSlides, 4),
         },
     },
-})" class="mt-12 lg:mt-24 relative max-w-none mx-auto">
+})" class="py-12 lg:py-16 bg-black relative max-w-none mx-auto">
     <div class="swiper-container container border-t border-gray-dark pt-10 lg:pt-16 w-full overflow-hidden" x-ref="container">
         <div  x-ref="wrapper" class=" swiper-wrapper w-full">
             @foreach ($strands as $strand)
