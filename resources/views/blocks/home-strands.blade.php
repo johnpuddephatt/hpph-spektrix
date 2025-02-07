@@ -40,7 +40,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
         <div class="type-xs-mono text-white text-center mb-2">{{ $layout->title }}</div>
     @endif
     @if($layout->subtitle)
-        <h2 class="type-regular text-white lg:type-medium mb-4 lg:mb-6 text-center">{{ $layout->subtitle }}</a></h2>
+        <h2 class="type-regular text-white lg:type-medium mb-6 lg:mb-12 text-center">{{ $layout->subtitle }}</a></h2>
     @endif
 
     <div class="swiper-container container border-t border-gray-dark pt-10 lg:pt-16 w-full overflow-hidden" x-ref="container">
