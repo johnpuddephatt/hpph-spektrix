@@ -1,7 +1,9 @@
              <div  x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($strands) }}, }" x-init="
+             @if($layout->randomize)
              [...$refs.wrapper.querySelectorAll('.swiper-slide')]
-  .sort((a, b) => Math.random() > 0.5 ? 1 : -1)
-  .forEach(node => $refs.wrapper.appendChild(node));
+            .sort((a, b) => Math.random() > 0.5 ? 1 : -1)
+            .forEach(node => $refs.wrapper.appendChild(node));
+            @endif
              swiper = new Swiper($refs.container, {
     loop: false,
 

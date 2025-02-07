@@ -2,6 +2,7 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use Laravel\Nova\Fields\Boolean;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
 
@@ -33,6 +34,7 @@ class HomeStrandsLayout extends Layout
         return [
             Text::make("Title", "title"),
             Text::make("Subtitle", "subtitle"),
+            Boolean::make("Randomise order", "randomize"),
         ];
     }
 }
