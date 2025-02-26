@@ -86,7 +86,7 @@
                         {!! $event->description !!}
                     </div>
                     
-                    <div class="lg:flex gap-4 justify-between items-center">
+                    <div class="lg:flex gap-4 justify-between items-center max-w-xl">
                     <x-genres-vibes-badge :values="$event->genres_and_vibes" />
                     @if($event->f_rating == 'F-Rated')
                         <img src="{{ asset('single-f-rated.png') }}" alt="Single F-Rating" class="w-12 h-auto" />
