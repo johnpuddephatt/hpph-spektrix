@@ -860,3 +860,7 @@
 1738963584-4205-698532196,1738963584.3551,GET,/storage/70/responsive-images/41-COLOUR%402x___landscape_685_411.jpg,App\Http\Controllers\PageController@show,404,325.82712173462,request
 1739006355-5394-2009900603,1739006355.3975,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,401,474.53808784485,request
 1739006355-9337-1327728415,1739006355.8922,GET,/nova/login,Laravel\Nova\Http\Controllers\LoginController@showLoginForm,200,129.61006164551,request
+1740568548-7319-262351536,1740568548.5215,GET,/images/triple-f-rating.png,App\Http\Controllers\PageController@show,404,713.60397338867,request
+1740568549-4020-270855249,1740568549.3667,GET,/storage/112/The-Chase-locations-044.jpg,App\Http\Controllers\PageController@show,404,80.594062805176,request
+1740568549-4004-1330023540,1740568549.3841,GET,/livewire/livewire.js?id=90730a3b0e7144480175,Livewire\Controllers\LivewireJavaScriptAssets@source,200,33.305168151855,request
+1740568564-5306-677982516,1740568564.5195,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,82.620143890381,request

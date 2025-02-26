@@ -85,6 +85,11 @@
                     <div class="type-regular lg:type-medium py-20 max-w-xl">
                         {!! $event->description !!}
                     </div>
+                    @if($event->f_rating == 'F-Rated')
+                        <img src="{{ asset('images/single-f-rated.png') }}" alt="Single F-Rating" class="w-12 h-auto" />
+                        @elseif($event->f_rating == 'Triple F-Rating')
+                        <img src="{{ asset('images/triple-f-rated.png') }}" alt="Triple F-Rating" class="w-12 h-auto" /> 
+                    @endif
                     <x-genres-vibes-badge :values="$event->genres_and_vibes" />
                 </div>
 
