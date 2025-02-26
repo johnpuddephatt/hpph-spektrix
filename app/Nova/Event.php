@@ -204,7 +204,7 @@ class Event extends Resource
                 // Boolean::make("Non-specialist film")->onlyOnDetail(),
                 Text::make("Country of origin")->onlyOnDetail(),
                 Text::make("Director")->onlyOnDetail(),
-                Text::make("F-Rating")->onlyOnDetail(),
+                Text::make("F-Rating", 'f_rating')->onlyOnDetail(),
                 Text::make("Distributor")->onlyOnDetail(),
                 Text::make("Genres")->onlyOnDetail(),
                 Text::make("Vibes")->onlyOnDetail(),
