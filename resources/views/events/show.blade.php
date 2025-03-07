@@ -95,7 +95,7 @@
                         @elseif($event->f_rating == 'Triple F-Rating')
                         <img src="{{ asset('triple-f-rated.png') }}" alt="Triple F-Rated" title="Triple F-Rated" class="w-12 h-auto mx-auto" /> 
                     @endif
-                        <div class="type-xs-mono underling mt-1 text-center">Learn more</div>
+                        <div class="type-xs-mono underline mt-1 text-center">Learn more</div>
                         </a> 
                     @endif
                     </div>
