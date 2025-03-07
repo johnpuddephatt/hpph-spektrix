@@ -91,11 +91,11 @@
                     @if(($event->f_rating == 'F-Rated' || $event->f_rating == 'Triple F-Rating') && nova_get_setting('f_rating_info'))
                     <a href="{{ nova_get_setting('f_rating_info')}}" target="_blank">
                     @if($event->f_rating == 'F-Rated')
-                        <img src="{{ asset('single-f-rated.png') }}" alt="F-Rated" title="F-Rated" class="w-12 h-auto" />
+                        <img src="{{ asset('single-f-rated.png') }}" alt="F-Rated" title="F-Rated" class="w-12 h-auto mx-auto" />
                         @elseif($event->f_rating == 'Triple F-Rating')
-                        <img src="{{ asset('triple-f-rated.png') }}" alt="Triple F-Rated" title="Triple F-Rated" class="w-12 h-auto" /> 
+                        <img src="{{ asset('triple-f-rated.png') }}" alt="Triple F-Rated" title="Triple F-Rated" class="w-12 h-auto mx-auto" /> 
                     @endif
-                        <div class="type-xs-mono">Learn more</div>
+                        <div class="type-xs-mono underling mt-1 text-center">Learn more</div>
                         </a> 
                     @endif
                     </div>
