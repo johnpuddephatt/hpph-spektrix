@@ -42,10 +42,10 @@ class System
                         "alphabetical" => "Alphabetical (A-Z)",
                     ]
                 ),
-
                 NovaSwitcher::make("Display availabilty badge", "display_availability_badge"),
                 Number::make('Availability threshold', 'availability_threshold')
                     ->help('Set the availability below which to show the "Last few" badge. Enter 0.1 for 10%, 0.2 for 20%, etc.')->step(0.01),
+                Text::make('F-Rating info', 'f_rating_info')->help('Link to F-Rating info page displayed on the event page'),
             ]),
         ];
     }
