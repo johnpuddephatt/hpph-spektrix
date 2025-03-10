@@ -1,6 +1,6 @@
 @php($slug = Str::of($layout->question)->slug('-'))
 
-<details  :open="'{{ $slug }}' === open"
+<details  :open="'{{ $slug }}' === open ? 'open' : null"
     class="@if ($dark) border-gray-dark @else border-sand-dark @endif border-t first:border-t-0 ">
     <summary  id="{{ $slug }}" style="color: @yield('color')"
     @click.prevent="open = (open ==='{{ $slug }}') ?  null : '{{ $slug }}'; window.location.hash = '{{ $slug }}' "  
