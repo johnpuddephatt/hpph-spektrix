@@ -9,8 +9,10 @@
     @include('sections.pageheader')
 
     @if ($page->content)
+        <div x-data="{ open: null}" x-init="open =  window.location.hash.replace('#', '') ">
         @foreach ($page->content as $layout)
             @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => false])
         @endforeach
+        </div>
     @endif
 @endsection

@@ -51,7 +51,7 @@
                         @endif
                     </div>
 
-                    <div x-intersect:enter="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'">
+                    <div  x-data="{ open: null}" x-init="open =  window.location.hash.replace('#', '') " x-intersect:enter="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'">
                         <h2 class="type-medium mb-8" id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}">
                             {!! $layout->title !!}</h2>
 

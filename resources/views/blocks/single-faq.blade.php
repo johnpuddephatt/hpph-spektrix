@@ -7,7 +7,7 @@
         class="scroll-my-32 group lg:type-regular @if ($dark) focus:bg-white text-yellow @else focus:bg-sand-dark @endif focus-visible:outline-none focus:outline-none focus:bg-opacity-10 leading-tight font-bold py-6 flex items-center justify-between gap-2">
         <div class="@if ($dark) group-hover:text-[inherit] text-white @endif">
             {{ $layout->question }}</div>
-        @svg('plus', 'block text-inherit w-6 h-6')
+        @svg('plus', 'flex-none block text-inherit w-6 h-6')
 
     </summary>
     @if ($layout->answer)
