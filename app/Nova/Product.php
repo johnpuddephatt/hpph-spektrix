@@ -71,6 +71,7 @@ class Product extends Resource
                 ->hideFromIndex()
                 ->rules([Rule::requiredIf(fn() => $request->published)]),
             Text::make("Price")->readOnly(),
+            Text::make("Type")->readOnly(),
             Text::make("Postage")->readOnly(),
             Boolean::make("Synced", "enabled")
                 ->readonly()
