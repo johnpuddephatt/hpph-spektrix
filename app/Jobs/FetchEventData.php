@@ -44,7 +44,11 @@ class FetchEventData implements ShouldQueue
     public function handle()
     {
         Schema::disableForeignKeyConstraints();
-        $events = $this->getEvents();
+
+        $hpph_events = $this->getEvents('HPPH');
+        $both_events = $this->getEvents('Both');
+
+        $events = array_merge($hpph_events, $both_events);
         $instances = $this->getInstances($events);
         $this->getInstancesVenues($instances);
 
@@ -60,7 +64,7 @@ class FetchEventData implements ShouldQueue
         Log::channel("spektrix")->info("Imported " . count($events) . " events (" . count($instances) . " instances)");
     }
 
-    public function getEvents()
+    public function getEvents($website = "HPPH")
     {
         return $this->fetch(
             "https://system.spektrix.com/" .
@@ -69,7 +73,7 @@ class FetchEventData implements ShouldQueue
                 \Carbon\Carbon::now()
                 ->subDay()
                 ->format("Y-m-d") .
-                "&attribute_Website=HPPH"
+                "&attribute_Website=" . $website
         );
     }
 
