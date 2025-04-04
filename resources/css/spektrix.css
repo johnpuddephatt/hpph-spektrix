@@ -832,3 +832,7 @@ h1.AddCardHeading {
 .MyPaymentCards hr {
     @apply my-4;
 }
+
+#ctl00_ContentPlaceHolder_OptionalMessageWikiText a {
+    @apply underline;
+}
