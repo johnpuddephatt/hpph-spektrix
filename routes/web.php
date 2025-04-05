@@ -40,6 +40,10 @@ Route::middleware(["spektrix"])->group(function () {
         return view("brand");
     });
 
+    Route::get("checkout-test", function () {
+        return view("checkout-test");
+    });
+
     Route::get("email/{email}", [
         \App\Http\Controllers\EmailController::class,
         "show",
