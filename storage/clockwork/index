@@ -104,3 +104,15 @@
 1743864577-6311-598456813,1743864577.549,GET,/livewire/livewire.js.map,Livewire\Controllers\LivewireJavaScriptAssets@maps,200,172.64199256897,request
 1743864582-5228-1095430063,1743864582.4308,GET,/whats-on,App\Http\Controllers\PageController@show,200,2611.5009784698,request
 1743864585-1591-412168476,1743864585.1147,GET,/livewire/livewire.js?id=90730a3b0e7144480175,Livewire\Controllers\LivewireJavaScriptAssets@source,200,127.42805480957,request
+1743865478-4999-901232769,1743865478.3111,GET,/well-known/apple-developer-merchantid-domain-association,Closure,200,506.15382194519,request
+1743865479-1034-1683896027,1743865479.0293,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,292.20104217529,request
+1743865490-1753-713351967,1743865490.0218,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,354.30216789246,request
+1743865501-5594-1532433501,1743865501.4265,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,323.51207733154,request
+1743865510-6894-766323666,1743865510.4959,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,410.56203842163,request
+1743865512-3019-1131267415,1743865512.2144,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,146.63505554199,request
+1743865513-3783-895676909,1743865513.3455,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,85.652828216553,request
+1743865513-5375-1099324115,1743865513.4988,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,120.86796760559,request
+1743865515-3052-1461552439,1743865515.224,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,143.20802688599,request
+1743865517-9841-264590127,1743865517.8983,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,142.5609588623,request
+1743865522-6254-2053433438,1743865522.5465,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,138.25607299805,request
+1743865526-4842-99614359,1743865526.403,GET,/.well-known/apple-developer-merchantid-domain-association,Closure,200,140.50483703613,request
