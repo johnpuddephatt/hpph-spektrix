@@ -69,14 +69,14 @@
 
     <mj-body padding="0">
        
-        <mj-wrapper background-color="#000" padding="5px 0 15px" full-width="full-width">
+        <mj-wrapper background-color="#000" padding="5px 0 25px" full-width="full-width">
             <mj-section  full-width="full-width" padding="0px 0 0px ">
 
                 <mj-image align="center" padding="0" src="https://hpph.ams3.cdn.digitaloceanspaces.com/hpph.gif" />
                 @if($email->title)
                   
 
-                    <x-email.heading type="regular" align="center" color="#fff">
+                    <x-email.heading type="medium" align="center" color="#fff">
                     {{ $email->title }}
                     </x-email.heading>
                     @endif

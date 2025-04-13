@@ -45,7 +45,4 @@ $arr = match ($type) {
     font-family="{{ $arr['font-family'] ?? 'BasisGrotesque'}}" 
     text-transform="{{ $arr['text-transform'] ?? ''}}"
     line-height="{{ isset($arr['line-height']) ? ($arr['line-height'] . 'px') : 1  }}" 
-    letter-spacing="{{ $arr['letter-spacing'] ?? 0  }}px">
-[{{ $type }}]
-{!! $slot !!}
-</mj-text>
+    letter-spacing="{{ $arr['letter-spacing'] ?? 0  }}px">{!! $slot !!}</mj-text>

@@ -4,7 +4,7 @@ $pick = \App\Models\Post::withoutGlobalScopes()->find($section->pick);
 
 @if ($pick)
     {{-- prettier-ignore-start --}}
-<mj-wrapper background-color="#f8f7ef" full-width="full-width">
+<mj-wrapper background-color="#ffda3d" full-width="full-width">
 <mj-section padding="25px 0">
 
 
@@ -16,7 +16,7 @@ $pick = \App\Models\Post::withoutGlobalScopes()->find($section->pick);
 
  <mj-hero full-width="full-width" css-class="film-column-hero" border-radius="5px" vertical-align="middle"
         mode="fluid-height" background-width="1200px" background-height="720px"
-        background-url="{{ $pick->featuredImage?->getUrl('landscape')  }}"
+        background-url="{{ $pick->featuredImage?->getUrl('square')  }}"
         background-color="#2a3448" padding="0px 0px">
         <mj-text padding="10px" color="#ffda3d" align="center" font-size="30px" line-height="30px"
 letter-spacing="10px" font-weight="600">
@@ -35,7 +35,7 @@ HYDE PARK PICK</mj-text>
 
 <mj-text padding="0 0 0px 0">{!! $pick->introduction !!}</mj-text>
 <mj-button padding="15px 0 0 0" inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
-background-color="#ffda3d" color="#000000" href="{{ $pick->url }}">Read more
+background-color="#ffffff" color="#000000" href="{{ $pick->url }}">Read more
 </mj-button>
 </mj-column>
 </mj-section>

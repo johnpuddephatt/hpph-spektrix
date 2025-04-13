@@ -204,10 +204,10 @@ class Event extends Model implements HasMedia, CachableAttributes
 
         $this->addMediaConversion("square")
             ->quality(80)
-            ->width(1360)
-            ->height(1600)
+            ->width(800)
+            ->height(800)
             ->sharpen(10)
-            ->crop("crop-center", 1360, 1600)
+            ->crop("crop-center", 800, 800)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
