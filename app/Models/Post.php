@@ -102,6 +102,13 @@ class Post extends Model implements HasMedia, CachableAttributes
             ->crop("crop-center", 1200, 800)
             ->withResponsiveImages()
             ->performOnCollections("main");
+
+        $this->addMediaConversion("square")
+            ->quality(80)
+            ->sharpen(10)
+            ->crop("crop-center", 800, 800)
+            ->withResponsiveImages()
+            ->performOnCollections("main");
     }
 
     public function getDateAttribute()
