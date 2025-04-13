@@ -30,7 +30,7 @@ HYDE PARK PICK</mj-text>
 <x-email.heading type="xs-mono" padding="5px 0 10px 0">This week’s Hyde Park Pick</x-email.heading>
 
 <x-email.heading type="medium" padding="5px 0 10px 0">
-{{ Str::of($pick->title)->replace('Hyde Park Pick… ', '') }}
+{{ Str::of($pick->title)->replace('Hyde Park Pick… ', '')->replace('Hyde Park Pick: ', '') }}
 </x-email.heading>
 
 <mj-text padding="0 0 0px 0">{!! $pick->introduction !!}</mj-text>
