@@ -15,7 +15,7 @@ $pick = \App\Models\Post::withoutGlobalScopes()->find($section->pick);
 
 
  <mj-hero full-width="full-width" css-class="film-column-hero" border-radius="5px" vertical-align="middle"
-        mode="fluid-height" background-width="1200px" background-height="720px"
+        mode="fluid-height" background-width="800px" background-height="800px"
         background-url="{{ $pick->featuredImage?->getUrl('square')  }}"
         background-color="#2a3448" padding="0px 0px">
         <mj-text padding="10px" color="#ffda3d" align="center" font-size="30px" line-height="30px"
