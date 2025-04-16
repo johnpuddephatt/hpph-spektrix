@@ -1,5 +1,7 @@
 @extends('layouts.default', ['edit_link' => route('nova.pages.edit', ['resource' => 'seasons', 'resourceId' => $season->id])])
 @section('title', $season->name)
+@section('color', '#ffda3d')
+
 @section('description', $season->short_description)
 @section('image', $season->featuredImage?->getUrl('landscape'))
 
