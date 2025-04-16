@@ -11,8 +11,8 @@
         @foreach ($layout->merchandise as $merchandise)
         
             @php($merchandise = $merchandise->merchandise)
-            <div class="bg-black-light overflow-hidden md:w-2/5 rounded  text-white">
-                <spektrix-merchandise class="relative" client-name="{{ $settings['spektrix_client_name'] }}" merchandise-quantity="1"
+            <div class="bg-black-light  overflow-hidden md:w-2/5 rounded  text-white">
+                <spektrix-merchandise client-name="{{ $settings['spektrix_client_name'] }}" merchandise-quantity="1"
                     custom-domain="{{ $settings['spektrix_custom_domain'] }}" merchandise-item-id="{{ $merchandise->id }}">
 
 @if($layout->display_images)
@@ -34,16 +34,19 @@
                             <button  style="color: @yield('color'); border-color: @yield('color')" class="text-black border leading-none type-regular bg-transparent rounded  py-1 px-2.5" data-increment-quantity> + </button>
                         </div>
                         @endif
+
+                        <div class="relative">
                         <button style="background-color: @yield('color')" data-submit-merchandise class="mt-4 w-full border type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-4')</button>
+                        </div>
                     </div>
-                    <div class="mt-4 absolute left-0 right-0 top-full type-regular text-yellow leading-tight py-6 px-6  bg-black "
+                    <div class="absolute left-0 right-0 inset-0 top-full type-regular text-yellow leading-tight py-6 px-6  bg-black "
                         data-success-container style="display: none;">
                         <div class="flex justify-between">
                             <div>Added to basket</div>
                             <a href="/checkout" class="text-white underline">Go to checkout</a> 
                         </div>
                     </div>
-                    <div class=" mt-4  absolute left-0 right-0 top-full text-yellow font-bold leading-tight py-4 px-6 bg-black text-center"
+                    <div class="  absolute left-0 inset-0  right-0 top-full text-yellow font-bold leading-tight py-4 px-6 bg-black text-center"
                         data-fail-container style="display: none;">Something went wrong.</div>
                 </spektrix-merchandise>
 
