@@ -36,10 +36,13 @@
                         @endif
                         <button style="background-color: @yield('color')" data-submit-merchandise class="mt-4 w-full border type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-auto')</button>
                     </div>
-                    <div class="mt-4 type-regular text-yellow leading-tight py-6 px-6  bg-black flex justify-between"
-                        data-success-container style="display: none;"><div>Added to basket</div>
-                        <a href="/basket" class="text-white underline">View basket</a> 
+                    <div class="mt-4 type-regular text-yellow leading-tight py-6 px-6  bg-black "
+                        data-success-container style="display: none;">
+                        <div class="flex justify-between">
+                            <div>Added to basket</div>
+                            <a href="/checkout" class="text-white underline">Go to checkout</a> 
                         </div>
+                    </div>
                     <div class=" mt-4 text-yellow font-bold leading-tight py-4 px-6 bg-black text-center"
                         data-fail-container style="display: none;">Something went wrong.</div>
                 </spektrix-merchandise>
