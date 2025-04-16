@@ -37,7 +37,7 @@
 
                         <div class="relative mt-4" >
                             <button style="background-color: @yield('color')" data-submit-merchandise class="w-full border type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-4')</button>
-                            <div class="absolute rounded left-0 right-0 inset-0 top-full type-regular text-yellow leading-tight py-6 px-6  bg-black "
+                            <div class="absolute rounded left-0 right-0 inset-0 top-0 type-regular text-yellow leading-tight py-3 px-6  bg-black "
                             data-success-container style="display: none;">
                                 <div class="flex justify-between">
                                     <div>Added to basket</div>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                     
-                            <div class="  absolute rounded left-0 inset-0  right-0 top-0 text-yellow font-bold leading-tight py-4 px-6 bg-black text-center"
+                            <div class="  absolute rounded left-0 inset-0  right-0 top-0 type-regular text-yellow leading-tight py-3 px-6 bg-black text-center"
                                 data-fail-container style="display: none;">Something went wrong.
                             </div>
                         </div>
