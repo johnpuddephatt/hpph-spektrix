@@ -32,13 +32,13 @@ class MerchandiseLayout extends Layout
     {
         return [
             Select::make("", "merchandise_name")
-                ->options(\App\Models\Product::pluck("name", "id"))
+                ->options(\App\Models\Product::withoutGlobalScope('published')->whereNotNull('name')->pluck("name", "id"))
                 ->searchable(),
         ];
     }
 
     public function getMerchandiseAttribute()
     {
-        return \App\Models\Product::find($this->merchandise_name);
+        return \App\Models\Product::withoutGlobalScope('published')->find($this->merchandise_name);
     }
 }
