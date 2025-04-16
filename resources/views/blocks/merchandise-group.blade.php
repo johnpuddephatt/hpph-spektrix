@@ -4,7 +4,7 @@
 
     <h2 class="type-medium mb-8" style="color: @yield('color')">{{ $layout->title }}</h2>
 
-    <div class="mt-8 flex justify-around flex-wrap gap-6 lg:gap-12">
+    <div class="mt-8 flex justify-center flex-wrap gap-6 lg:gap-12">
         @foreach ($layout->merchandise as $merchandise)
         
             @php($merchandise = $merchandise->merchandise)
