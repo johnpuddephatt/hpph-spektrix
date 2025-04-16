@@ -4,11 +4,11 @@
 
     <h2 class="type-medium mb-8" style="color: @yield('color')">{{ $layout->title }}</h2>
 
-    <div class="mt-8 flex justify-center flex-wrap gap-6 lg:gap-12">
+    <div class="mt-8 flex justify-around flex-wrap gap-6 lg:gap-12">
         @foreach ($layout->merchandise as $merchandise)
         
             @php($merchandise = $merchandise->merchandise)
-            <div class="bg-black-light overflow-hidden w-2/5 rounded  text-white">
+            <div class="bg-black-light overflow-hidden md:w-2/5 rounded  text-white">
                 <spektrix-merchandise class="relative" client-name="{{ $settings['spektrix_client_name'] }}" merchandise-quantity="1"
                     custom-domain="{{ $settings['spektrix_custom_domain'] }}" merchandise-item-id="{{ $merchandise->id }}">
 
