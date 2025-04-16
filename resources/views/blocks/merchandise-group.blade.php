@@ -1,6 +1,6 @@
 @push('webComponents', '#spektrix-merchandise')
 
-<div class="bg-black py-20 container max-w-6xl px-4 text-white text-center">
+<div class="bg-black py-20 container max-w-7xl px-4 text-white text-center">
 
     <h2 class="type-medium mb-8" style="color: @yield('color')">{{ $layout->title }}</h2>
 
@@ -8,7 +8,7 @@
         @foreach ($layout->merchandise as $merchandise)
         
             @php($merchandise = $merchandise->merchandise)
-            <div class="bg-black-light overflow-hidden basis-1/2 rounded  text-white">
+            <div class="bg-black-light overflow-hidden w-2/5 rounded  text-white">
                 <spektrix-merchandise class="relative" client-name="{{ $settings['spektrix_client_name'] }}" merchandise-quantity="1"
                     custom-domain="{{ $settings['spektrix_custom_domain'] }}" merchandise-item-id="{{ $merchandise->id }}">
 
