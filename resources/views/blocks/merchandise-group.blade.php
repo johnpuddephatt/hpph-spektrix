@@ -11,8 +11,8 @@
         @foreach ($layout->merchandise as $merchandise)
         
             @php($merchandise = $merchandise->merchandise)
-            <div class="bg-black-light  overflow-hidden md:w-2/5 rounded  text-white">
-                <spektrix-merchandise client-name="{{ $settings['spektrix_client_name'] }}" merchandise-quantity="1"
+            
+                <spektrix-merchandise class="bg-black-light flex flex-col overflow-hidden md:w-2/5 rounded  text-white" client-name="{{ $settings['spektrix_client_name'] }}" merchandise-quantity="1"
                     custom-domain="{{ $settings['spektrix_custom_domain'] }}" merchandise-item-id="{{ $merchandise->id }}">
 
 @if($layout->display_images)
@@ -55,7 +55,7 @@
                     
                 </spektrix-merchandise>
 
-            </div>
+            
         @endforeach
     </div>
     </div>
