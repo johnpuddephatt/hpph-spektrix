@@ -44,7 +44,8 @@ class MerchandiseGroupLayout extends Layout
     public function fields()
     {
         return [
-            Text::make("Merchandise group title", "title"),
+            Text::make("Merchandise group pre-title", "pretitle"),
+            Text::make("Merchandise group title", "title")->required(),
             NovaSwitcher::make("Display merchandise images", 'display_images'),
             NovaSwitcher::make("Display quantity controls", 'display_quantity_controls'),
             Flexible::make("Merchandise", "merchandise")

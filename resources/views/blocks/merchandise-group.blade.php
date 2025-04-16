@@ -1,10 +1,12 @@
 @push('webComponents', '#spektrix-merchandise')
 
-<div class="bg-black py-20 container max-w-7xl px-4 text-white text-center">
+<div class="bg-black py-24 container max-w-7xl px-4 text-white text-center">
+    @if($layout->pretitle)
+    <p class="type-xs-mono text-center container mb-2">{{ $layout->pretitle }}</p>
+    @endif
+    <h2 class="type-medium" style="color: @yield('color')">{{ $layout->title }}</h2>
 
-    <h2 class="type-medium mb-16" style="color: @yield('color')">{{ $layout->title }}</h2>
-
-    <div class="mt-8 flex justify-center flex-wrap gap-6 lg:gap-12">
+    <div class="mt-16 flex justify-center flex-wrap gap-6 lg:gap-12">
         @foreach ($layout->merchandise as $merchandise)
         
             @php($merchandise = $merchandise->merchandise)
@@ -33,8 +35,10 @@
                         @endif
                         <button style="background-color: @yield('color')" data-submit-merchandise class="mt-4 w-full type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-auto')</button>
                     </div>
-                    <div class="mt-4 type-regular text-yellow leading-tight py-6 px-6  bg-black text-center"
-                        data-success-container style="display: none;">Added to basket</div>
+                    <div class="mt-4 type-regular text-yellow leading-tight py-6 px-6  bg-black flex justify-between"
+                        data-success-container style="display: none;"><div>Added to basket</div>
+                        <a href="/basket" class="text-white underline">View basket</a> 
+                        </div>
                     <div class=" mt-4 text-yellow font-bold leading-tight py-4 px-6 bg-black text-center"
                         data-fail-container style="display: none;">Something went wrong.</div>
                 </spektrix-merchandise>
