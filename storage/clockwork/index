@@ -731,3 +731,6 @@
 1744822869-7208-2093608993,1744822869.6614,GET,/storage/Bt2jYfbF9OdBPHGWtcmqqFOVvrQZwRx93eRafSDm.svg,App\Http\Controllers\PageController@show,404,282.64498710632,request
 1744822869-9453-2048818940,1744822869.8781,GET,/storage/86/conversions/hydeseek-loop-thumb.jpg,App\Http\Controllers\PageController@show,404,266.48998260498,request
 1744822870-0517-1197542164,1744822869.9585,GET,/storage/84/IMG_5298.jpeg,App\Http\Controllers\PageController@show,404,226.44996643066,request
+1744823086-8883-539498337,1744823086.7217,GET,/storage/123/responsive-images/Abi-Hynes-headshot-2___landscape_587_391.jpg,App\Http\Controllers\PageController@show,404,663.78903388977,request
+1744823107-4632-1712594005,1744823107.3264,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,406.52799606323,request
+1744823215-2120-1022740353,1744823215.0501,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,514.05191421509,request

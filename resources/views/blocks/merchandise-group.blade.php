@@ -34,7 +34,7 @@
                             <button  style="color: @yield('color'); border-color: @yield('color')" class="text-black border leading-none type-regular bg-transparent rounded  py-1 px-2.5" data-increment-quantity> + </button>
                         </div>
                         @endif
-                        <button style="background-color: @yield('color')" data-submit-merchandise class="mt-4 w-full border type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-auto')</button>
+                        <button style="background-color: @yield('color')" data-submit-merchandise class="mt-4 w-full border type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-4')</button>
                     </div>
                     <div class="mt-4 type-regular text-yellow leading-tight py-6 px-6  bg-black "
                         data-success-container style="display: none;">
