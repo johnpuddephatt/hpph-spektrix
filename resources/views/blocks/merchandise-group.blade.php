@@ -1,6 +1,6 @@
 @push('webComponents', '#spektrix-merchandise')
 
-<div class="bg-black border-t border-gray-light py-24  text-white text-center">
+<div class="bg-black border-t border-gray-dark py-24  text-white text-center">
 <div class="container max-w-7xl px-4">
     @if($layout->pretitle)
     <p class="type-xs-mono text-center container mb-2">{{ $layout->pretitle }}</p>
