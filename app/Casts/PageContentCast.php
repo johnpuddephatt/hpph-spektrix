@@ -38,6 +38,9 @@ class PageContentCast extends FlexibleCast
         "link-banner" => \App\Nova\Flexible\Layouts\LinkBannerLayout::class,
         "quote" => \App\Nova\Flexible\Layouts\QuoteLayout::class,
 
+
+        "merchandise-group" => \App\Nova\Flexible\Layouts\MerchandiseGroupLayout::class,
+        "merchandise" => \App\Nova\Flexible\Layouts\MerchandiseLayout::class,
         // "feature" => \App\Nova\Flexible\Layouts\FeatureLayout::class,
         // "single-faq" => \App\Nova\Flexible\Layouts\SingleFaqLayout::class,
         // "child-page" => \App\Nova\Flexible\Layouts\ChildPageLayout::class,
