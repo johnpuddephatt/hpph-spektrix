@@ -6,8 +6,7 @@ use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
-use Illuminate\Support\Facades\Cache;
-use Outl1ne\MultiselectField\Multiselect;
+use Illuminate\Database\Eloquent\Builder;
 
 class HomeInstancesLayout extends Layout implements CachableAttributes
 {
@@ -39,8 +38,8 @@ class HomeInstancesLayout extends Layout implements CachableAttributes
     {
 
         return \App\Models\Instance::take(16)
-            ->whereHas("event", function ($event) {
-                return $event->shownInProgramme();
+            ->whereHas("event", function (Builder $query) {
+                return $query->shownInProgramme();
             })
             ->with("event.featuredImage", "strand")
             ->get();

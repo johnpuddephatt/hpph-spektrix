@@ -234,7 +234,7 @@ class Instance extends Model
     {
         return Instance::withoutGlobalScope('not_coming_soon')
             ->whereHas('event', function (Builder $query) {
-                $query->where('show_in_programme', true);
+                return $query->shownInProgramme();
             })
             ->where($type . '_name', $name)
             ->with('event')
