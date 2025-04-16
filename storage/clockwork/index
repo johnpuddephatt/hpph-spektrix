@@ -638,3 +638,9 @@
 1744821430-7611-250842001,1744821430.6741,GET,/storage/86/video-conversions/hydeseek-loop.mp4.mp4,App\Http\Controllers\PageController@show,404,304.43120002747,request
 1744821430-9917-1863294290,1744821430.9385,GET,/storage/123/responsive-images/Abi-Hynes-headshot-2___landscape_1200_800.jpg,App\Http\Controllers\PageController@show,404,246.94895744324,request
 1744821431-0305-297484183,1744821430.986,GET,/storage/86/video-conversions/hydeseek-loop.mp4.webm,App\Http\Controllers\PageController@show,404,235.91208457947,request
+1744821764-4541-79379304,1744821764.2748,GET,/storage/TUuEYGyDBFaizMXmcdcVErtBLZdHrDe3zgw5yN3e.svg,App\Http\Controllers\PageController@show,404,658.87522697449,request
+1744821764-4541-573895010,1744821764.3755,GET,/storage/image/tEDO0c2HbdhdCBlJ8HGSVY8eZoVfgBBDkkSBKMWp.jpg,App\Http\Controllers\PageController@show,404,558.34698677063,request
+1744821764-4541-1059627871,1744821764.3255,GET,/storage/Bt2jYfbF9OdBPHGWtcmqqFOVvrQZwRx93eRafSDm.svg,App\Http\Controllers\PageController@show,404,608.25991630554,request
+1744821764-8892-838358027,1744821764.8446,GET,/storage/86/conversions/hydeseek-loop-thumb.jpg,App\Http\Controllers\PageController@show,404,192.98887252808,request
+1744821765-0123-694222551,1744821764.9628,GET,/storage/84/IMG_5298.jpeg,App\Http\Controllers\PageController@show,404,162.95385360718,request
+1744821765-2031-1503143660,1744821765.161,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,153.04899215698,request
