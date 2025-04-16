@@ -20,25 +20,24 @@
                         {!! $merchandise->featuredImage->img('landscape')->attributes(['class' => 'group-hover:scale-105 transition duration-500 rounded w-full block']) !!}
                     </div>
                     @endif
-                    <div class="p-8">
-                        <h3 class="type-regular mb-4">{{ $merchandise->name }}</h3>     
-                        <div>{{ $merchandise->description}}</div>
-                        @if($layout->display_quantity_controls)
+                    <div class="p-8 flex-1 flex flex-col">
+                        <div class="mb-4">
+                            <h3 class="type-regular mb-4">{{ $merchandise->name }}</h3>     
+                            <div>{{ $merchandise->description}}</div>
+                            @if($layout->display_quantity_controls)
 
-                        <div class="flex gap-2 mt-4 justify-center items-center">                    
-                            <button  style="color: @yield('color'); border-color: @yield('color')" class="text-black border leading-none  type-regular rounded bg-transparent py-1 px-2.5" data-decrement-quantity> - </button>
-                            <label for="quantity">
-                                Quantity:
-                                <span data-display-quantity></span>   
-                            </label>
-                            <button  style="color: @yield('color'); border-color: @yield('color')" class="text-black border leading-none type-regular bg-transparent rounded  py-1 px-2.5" data-increment-quantity> + </button>
+                            <div class="flex gap-2 mt-4 justify-center items-center">                    
+                                <button  style="color: @yield('color'); border-color: @yield('color')" class="text-black border leading-none  type-regular rounded bg-transparent py-1 px-2.5" data-decrement-quantity> - </button>
+                                <label for="quantity">
+                                    Quantity:
+                                    <span data-display-quantity></span>   
+                                </label>
+                                <button  style="color: @yield('color'); border-color: @yield('color')" class="text-black border leading-none type-regular bg-transparent rounded  py-1 px-2.5" data-increment-quantity> + </button>
+                            </div>
+                            @endif
                         </div>
-                        @endif
 
-                        
-                    </div>
-                    
-                    <div class="relative mt-4" >
+                        <div class="relative mt-auto">
                             <button style="background-color: @yield('color')" data-submit-merchandise class="w-full border type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-4')</button>
                             <div class="absolute rounded left-0 right-0 inset-0 top-0 type-regular text-yellow leading-tight py-3 px-6  bg-black "
                             data-success-container style="display: none;">
@@ -52,6 +51,8 @@
                                 data-fail-container style="display: none;">Something went wrong.
                             </div>
                         </div>
+                    </div>
+                    
                 </spektrix-merchandise>
 
             </div>
