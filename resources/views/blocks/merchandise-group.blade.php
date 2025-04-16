@@ -2,7 +2,7 @@
 
 <div class="bg-black py-20 container max-w-7xl px-4 text-white text-center">
 
-    <h2 class="type-medium mb-8" style="color: @yield('color')">{{ $layout->title }}</h2>
+    <h2 class="type-medium mb-16" style="color: @yield('color')">{{ $layout->title }}</h2>
 
     <div class="mt-8 flex justify-center flex-wrap gap-6 lg:gap-12">
         @foreach ($layout->merchandise as $merchandise)
