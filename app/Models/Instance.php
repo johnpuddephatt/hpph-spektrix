@@ -233,6 +233,9 @@ class Instance extends Model
     public static function getInstancesForSlider($type, $name, $exclude = [])
     {
         return Instance::withoutGlobalScope('not_coming_soon')
+            ->whereHas('event', function (Builder $query) {
+                $query->where('show_in_programme', true);
+            })
             ->where($type . '_name', $name)
             ->with('event')
             ->whereNotIn('id', $exclude)

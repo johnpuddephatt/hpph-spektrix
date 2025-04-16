@@ -23,7 +23,7 @@
                 
                     {{ $film->name }}
                     @if ($film->certificate_age_guidance)
-                        @include('emails.components.accessibility_icon', [
+                        @include('emails.components.certificate_icon', [
                             'label' => 'Certificate ' . $film->certificate_age_guidance,
                             'abbreviation' => $film->certificate_age_guidance,
                         ])
