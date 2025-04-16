@@ -46,11 +46,10 @@
                             </div>
                     
                             <div class="  absolute rounded left-0 inset-0  right-0 top-0 text-yellow font-bold leading-tight py-4 px-6 bg-black text-center"
-                                data-fail-container style="display: none;">Something went wrong.</div>
-                                </div>
+                                data-fail-container style="display: none;">Something went wrong.
                             </div>
                         </div>
-
+                    </div>
                     
                 </spektrix-merchandise>
 
