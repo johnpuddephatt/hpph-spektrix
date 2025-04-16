@@ -1,6 +1,6 @@
 @push('webComponents', '#spektrix-merchandise')
 
-<div class="bg-black border-y border-gray-dark py-24  text-white text-center">
+<div class="bg-black relative border-y border-gray-dark py-24  text-white text-center">
 <div class="container max-w-7xl px-4">
     @if($layout->pretitle)
     <p class="type-xs-mono text-center container mb-2">{{ $layout->pretitle }}</p>
@@ -36,14 +36,14 @@
                         @endif
                         <button style="background-color: @yield('color')" data-submit-merchandise class="mt-4 w-full border type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-4')</button>
                     </div>
-                    <div class="mt-4 type-regular text-yellow leading-tight py-6 px-6  bg-black "
+                    <div class="mt-4 absolute left-0 right-0 top-full type-regular text-yellow leading-tight py-6 px-6  bg-black "
                         data-success-container style="display: none;">
                         <div class="flex justify-between">
                             <div>Added to basket</div>
                             <a href="/checkout" class="text-white underline">Go to checkout</a> 
                         </div>
                     </div>
-                    <div class=" mt-4 text-yellow font-bold leading-tight py-4 px-6 bg-black text-center"
+                    <div class=" mt-4  absolute left-0 right-0 top-full text-yellow font-bold leading-tight py-4 px-6 bg-black text-center"
                         data-fail-container style="display: none;">Something went wrong.</div>
                 </spektrix-merchandise>
 
