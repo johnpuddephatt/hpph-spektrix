@@ -35,7 +35,10 @@
                         </div>
                         @endif
 
-                        <div class="relative mt-4" >
+                        
+                    </div>
+                    
+                    <div class="relative mt-4" >
                             <button style="background-color: @yield('color')" data-submit-merchandise class="w-full border type-regular flex-grow text-black rounded py-3 pl-4 pr-3">Add to basket @svg('arrow-right', 'inline-block h-4 w-4 ml-4')</button>
                             <div class="absolute rounded left-0 right-0 inset-0 top-0 type-regular text-yellow leading-tight py-3 px-6  bg-black "
                             data-success-container style="display: none;">
@@ -49,8 +52,6 @@
                                 data-fail-container style="display: none;">Something went wrong.
                             </div>
                         </div>
-                    </div>
-                    
                 </spektrix-merchandise>
 
             </div>
