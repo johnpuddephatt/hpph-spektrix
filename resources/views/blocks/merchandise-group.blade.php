@@ -21,7 +21,7 @@
                     </div>
                     @endif
                     <div class="p-8 flex-1 flex flex-col">
-                        <div class="mb-4">
+                        <div class="mb-8">
                             <h3 class="type-regular mb-4">{{ $merchandise->name }}</h3>     
                             <div>{{ $merchandise->description}}</div>
                             @if($layout->display_quantity_controls)
