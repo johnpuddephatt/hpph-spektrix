@@ -26,7 +26,7 @@
         <div class="container pt-6 pb-24 min-h-screen">
             <iframe
                 allow="payment"
-                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/secure/checkout.aspx?resize=true"
+                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/secure/checkout.aspx?resize=true&stylesheet=hpph-spektrix-2.css"
                 class="w-full lg:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
         </div>
 
