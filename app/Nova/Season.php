@@ -13,6 +13,8 @@ use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
@@ -76,10 +78,10 @@ class Season extends Resource
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
-            Boolean::make("Force synced", "force_enabled")
-                ->help("Enable this season to be shown, even if it is not appearing in the Spektrix import. You will need to manually disable this option when the season has finished.")
+            DateTime::make("Force sync until", "force_enabled_until")
+                ->help("This will force the season to be displayed until this date, even it does not appear in the Spektrix import.")
                 ->showOnPreview()
-                ->filterable(),
+                ->nullable(),
             Select::make("Display type", "display_type")->options([
                 "instances" => "Instances (default)",
                 "events" => "Events",
