@@ -76,6 +76,10 @@ class Season extends Resource
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
+            Boolean::make("Force synced", "force_enabled")
+                ->help("Enable this season to be shown, even if it is not appearing in the Spektrix import. You will need to manually disable this option when the season has finished.")
+                ->showOnPreview()
+                ->filterable(),
             Select::make("Display type", "display_type")->options([
                 "instances" => "Instances (default)",
                 "events" => "Events",

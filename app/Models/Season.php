@@ -38,6 +38,7 @@ class Season extends Model implements HasMedia, CachableAttributes
         "logo",
         "content",
         "enabled",
+        "force_enabled",
         "published",
         "additional_description",
         "funders_logo",
@@ -48,6 +49,7 @@ class Season extends Model implements HasMedia, CachableAttributes
         "content" => PageContentCast::class,
         "enabled" => "boolean",
         "published" => "boolean",
+        "force_enabled" => "boolean",
     ];
 
     public function sluggable(): array
@@ -66,7 +68,7 @@ class Season extends Model implements HasMedia, CachableAttributes
         });
 
         static::addGlobalScope("enabled", function (Builder $builder) {
-            $builder->where("enabled", true);
+            $builder->where("enabled", true)->orWhere('force_enabled', true);
         });
 
         static::addGlobalScope("order", function (Builder $builder) {
