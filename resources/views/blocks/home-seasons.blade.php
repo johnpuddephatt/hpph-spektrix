@@ -77,7 +77,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                     @endif
                    
                          <h3
-                             class="type-large min-h-[6.25rem] mb-4">
+                             class="type-medium min-h-[6.25rem] mb-4">
                              {{ $season->name }}</h3>
 
                      <p
@@ -85,7 +85,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                          {{ $season->short_description }}</p>
 </div>
 
-<span class="inline-block transition rounded group-hover:bg-yellow group-hover:text-black border border-yellow text-yellow type-regular px-12 py-3">Learn more</span>
+<span class="inline-block transition ml-px rounded group-hover:bg-yellow group-hover:text-black border border-yellow text-yellow type-regular px-12 py-3">Learn more</span>
 
                  </a>
 
