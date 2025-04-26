@@ -52,7 +52,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
             @foreach ($seasons as $season)
                  <a style="color: {{ $season->color }} !important;"
                      href="{{ route('season.show', ['season' => $season->slug]) }}"
-                     class="swiper-slide text-white rounded   group   block relative overflow-hidden">
+                     class="!h-auto swiper-slide flex flex-col text-white rounded   group  items-start relative overflow-hidden">
                      @if ($season->featuredImage)
                      <div class="overflow-hidden">
                          {!! $season->featuredImage->img('landscape')->attributes([
@@ -81,11 +81,11 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                              {{ $season->name }}</h3>
 
                      <p
-                         class="type-xs-mono mb-6">
+                         class="type-xs-mono max-w-sm mb-6">
                          {{ $season->short_description }}</p>
 
 
-<span class="inline-block rounded group-hover:bg-yellow group-hover:text-black border border-yellow text-yellow type-regular px-12 py-3">Learn more</span>
+<span class="mt-auto inline-block transition rounded group-hover:bg-yellow group-hover:text-black border border-yellow text-yellow type-regular px-12 py-3">Learn more</span>
 
                  </a>
 
