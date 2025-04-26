@@ -77,7 +77,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                     @endif
                    
                          <h3
-                             class="type-large  mb-4">
+                             class="type-medium  mb-4">
                              {{ $season->name }}</h3>
 
                      <p
