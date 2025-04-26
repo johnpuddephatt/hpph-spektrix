@@ -36,7 +36,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
             slidesPerView:  Math.min(totalSlides, 4),
         },
     },
-})" class="py-12 lg:py-24 bg-black relative max-w-none mx-auto">
+})" class="py-12 lg:py-16 bg-black relative max-w-none mx-auto">
 
     @if($layout->title)    
         <div class="type-xs-mono text-white text-center mb-2">{{ $layout->title }}</div>
