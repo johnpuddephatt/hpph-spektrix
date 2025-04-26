@@ -52,7 +52,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
             @foreach ($seasons as $season)
                  <a style="color: {{ $season->color }} !important;"
                      href="{{ route('season.show', ['season' => $season->slug]) }}"
-                     class="!h-auto swiper-slide  text-white rounded   group   flex flex-col items-start relative overflow-hidden">
+                     class="!h-auto swiper-slide  text-white rounded   group  !flex flex-col items-start relative overflow-hidden">
                      @if ($season->featuredImage)
                      <div class="overflow-hidden">
                          {!! $season->featuredImage->img('landscape')->attributes([
