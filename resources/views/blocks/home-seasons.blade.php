@@ -54,8 +54,8 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                      href="{{ route('season.show', ['season' => $season->slug]) }}"
                      class="!h-auto swiper-slide  text-white rounded   group  !flex flex-col items-start relative overflow-hidden">
                      @if ($season->featuredImage)
-                     <div class="overflow-hidden rounded  bg-gray-dark">
-                     <div class="aspect-[1.66667]">
+                     <div class="overflow-hidden w-full rounded  bg-gray-dark">
+                     <div class="aspect-[1.66667] relative">
                          {!! $season->featuredImage->img('landscape')->attributes([
                              'data-width' => '600px',
                              'loading' => 'lazy',
