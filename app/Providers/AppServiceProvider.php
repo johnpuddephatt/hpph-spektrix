@@ -57,6 +57,24 @@ class AppServiceProvider extends ServiceProvider
                 })
             );
         });
+        View::composer(
+            ["sections.navigation", 'blocks.home-seasons'],
+            function ($view) {
+
+                $view->with(
+                    "seasons",
+                    \Cache::rememberForever("seasons", function () {
+                        return \App\Models\Season::select(
+                            "id",
+                            "name",
+                            "slug",
+                            "short_description",
+                        )->get();
+                    })
+                );
+            }
+        );
+
 
         View::composer("sections.header", function ($view) {
             $view->with(
@@ -84,16 +102,7 @@ class AppServiceProvider extends ServiceProvider
                         : [];
                 })
             );
-            $view->with(
-                "seasons",
-                \Cache::rememberForever("seasons", function () {
-                    return \App\Models\Season::select(
-                        "id",
-                        "name",
-                        "slug"
-                    )->get();
-                })
-            );
+
 
             $view->with(
                 "tertiary_menu",

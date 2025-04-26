@@ -56,6 +56,9 @@ class HomePageTemplate
                     )
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\HomeStrandsLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\HomeSeasonsLayout::class
                     ),
             ]),
         ];

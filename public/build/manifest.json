@@ -1,25 +1,66 @@
 {
-  "resources/js/app.js": {
-    "file": "assets/app.18ddcbdf.js",
-    "src": "resources/js/app.js",
-    "isEntry": true,
-    "css": [
-      "assets/app.6774ce01.css"
-    ]
-  },
-  "resources/css/fonts.css": {
-    "file": "assets/fonts.00c082de.css",
-    "src": "resources/css/fonts.css",
-    "isEntry": true
-  },
   "resources/css/app.css": {
-    "file": "assets/app.c8151c33.css",
+    "file": "assets/app-B8Zl4Lf9.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
+  "resources/css/fonts.css": {
+    "file": "assets/fonts-BFGKIjQO.css",
+    "src": "resources/css/fonts.css",
+    "isEntry": true
+  },
   "resources/css/spektrix.css": {
-    "file": "assets/spektrix.7629159d.css",
+    "file": "assets/spektrix-BvU6rp9T.css",
     "src": "resources/css/spektrix.css",
     "isEntry": true
+  },
+  "resources/fonts/BasisGrotesqueMonoPro-Regular.woff": {
+    "file": "assets/BasisGrotesqueMonoPro-Regular-Bs6lUYcN.woff",
+    "src": "resources/fonts/BasisGrotesqueMonoPro-Regular.woff"
+  },
+  "resources/fonts/BasisGrotesqueMonoPro-Regular.woff2": {
+    "file": "assets/BasisGrotesqueMonoPro-Regular-CUHBlWhm.woff2",
+    "src": "resources/fonts/BasisGrotesqueMonoPro-Regular.woff2"
+  },
+  "resources/fonts/BasisGrotesquePro-Black.woff": {
+    "file": "assets/BasisGrotesquePro-Black-DyDYBX-z.woff",
+    "src": "resources/fonts/BasisGrotesquePro-Black.woff"
+  },
+  "resources/fonts/BasisGrotesquePro-Black.woff2": {
+    "file": "assets/BasisGrotesquePro-Black-D8kxT7DC.woff2",
+    "src": "resources/fonts/BasisGrotesquePro-Black.woff2"
+  },
+  "resources/fonts/BasisGrotesquePro-BlackItalic.woff": {
+    "file": "assets/BasisGrotesquePro-BlackItalic-C7i5oLew.woff",
+    "src": "resources/fonts/BasisGrotesquePro-BlackItalic.woff"
+  },
+  "resources/fonts/BasisGrotesquePro-BlackItalic.woff2": {
+    "file": "assets/BasisGrotesquePro-BlackItalic-BOEx4RuB.woff2",
+    "src": "resources/fonts/BasisGrotesquePro-BlackItalic.woff2"
+  },
+  "resources/fonts/BasisGrotesquePro-Italic.woff": {
+    "file": "assets/BasisGrotesquePro-Italic-bA1yPtqL.woff",
+    "src": "resources/fonts/BasisGrotesquePro-Italic.woff"
+  },
+  "resources/fonts/BasisGrotesquePro-Italic.woff2": {
+    "file": "assets/BasisGrotesquePro-Italic-Ch51KkLV.woff2",
+    "src": "resources/fonts/BasisGrotesquePro-Italic.woff2"
+  },
+  "resources/fonts/BasisGrotesquePro-Regular.woff": {
+    "file": "assets/BasisGrotesquePro-Regular-fM5k6yF8.woff",
+    "src": "resources/fonts/BasisGrotesquePro-Regular.woff"
+  },
+  "resources/fonts/BasisGrotesquePro-Regular.woff2": {
+    "file": "assets/BasisGrotesquePro-Regular-DvSXiwC5.woff2",
+    "src": "resources/fonts/BasisGrotesquePro-Regular.woff2"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-C3C6WvbH.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-DV8PrLMj.css"
+    ]
   }
 }

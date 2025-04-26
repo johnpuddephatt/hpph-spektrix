@@ -125,6 +125,22 @@ class Season extends Model implements HasMedia, CachableAttributes
         );
     }
 
+    public function getDateRangeAttribute()
+    {
+        $dates = $this->hasMany(Instance::class, "season_name", "name")->orderBy('start')->withoutGlobalScopes()
+            ->pluck("start");
+
+        if ($dates->isEmpty()) {
+            return 'Coming soon';
+        } elseif ($dates->count() == 1) {
+            return $dates->first()->format("d M Y");
+        } else {
+            return $dates->first()->format("d M Y") . ' - ' . $dates->last()->format("d M Y");
+        }
+        // return $instances;
+        // return [];
+    }
+
     public function instances()
     {
         return $this->hasMany(Instance::class, "season_name", "name")->whereHas(
