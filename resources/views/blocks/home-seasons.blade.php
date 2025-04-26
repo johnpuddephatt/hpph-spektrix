@@ -68,7 +68,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                          </div>
                      @endif
 
-                         <div class="min-h-[10rem] mb-6">
+                         <div class=" mb-6">
                          @if ($season->date_range)
                            <p
                          class="type-xs-mono my-4">
@@ -77,7 +77,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                     @endif
                    
                          <h3
-                             class="type-medium min-h-[4.35rem] mb-4">
+                             class="type-large  mb-4">
                              {{ $season->name }}</h3>
 
                      <p
