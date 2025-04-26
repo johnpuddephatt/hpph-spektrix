@@ -85,7 +85,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                          {{ $season->short_description }}</p>
 </div>
 
-<span class="inline-block transition ml-px rounded group-hover:bg-yellow group-hover:text-black border border-yellow text-yellow type-regular px-12 py-3">Learn more</span>
+<span class="inline-block transition ml-px rounded group-hover:bg-yellow group-hover:text-black border border-yellow text-yellow type-regular px-10 py-3">Learn more</span>
 
                  </a>
 
