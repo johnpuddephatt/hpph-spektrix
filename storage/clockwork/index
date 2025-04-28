@@ -2345,3 +2345,6 @@
 1745694533-1463-527093201,1745694533.1259,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,68.014860153198,request
 1745694540-1475-1452193117,1745694540.125,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,69.854021072388,request
 1745694547-1390-2104091715,1745694547.1242,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,61.789035797119,request
+1745706685-8284-44742375,1745706685.7606,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,401,300.2941608429,request
+1745706686-0916-1424159731,1745706686.0844,GET,/nova/login,Laravel\Nova\Http\Controllers\LoginController@showLoginForm,200,42.876958847046,request
+1745706686-4076-605634874,1745706686.3963,GET,/favicon.ico,App\Http\Controllers\PageController@show,404,144.18911933899,request

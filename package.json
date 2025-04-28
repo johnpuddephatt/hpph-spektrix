@@ -3,10 +3,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build && npm run spektrixcss && npm run fontcss",
+        "build": "vite build",
         "build:mix": "npx mix",
-        "spektrixcss": "find ./public/build/assets -name 'spektrix.*.css' -execdir mv {} spektrix.css \\;",
-        "fontcss": "find ./public/build/assets -name 'fonts.*.css' -execdir mv {} fonts.css \\;",
         "build-preview": "cd nova-components/Preview && npm run dev",
         "build-preview-prod": "cd nova-components/Preview && npm run prod"
     },
