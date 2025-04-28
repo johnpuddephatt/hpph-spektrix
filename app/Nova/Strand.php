@@ -8,12 +8,9 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Textarea;
-use Advoor\NovaEditorJs\NovaEditorJs;
-use Advoor\NovaEditorJs\NovaEditorJsField;
-use Alexwenzel\DependencyContainer\DependencyContainer;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
-
+use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use Laravel\Nova\Fields\Color;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\FormData;
@@ -21,11 +18,14 @@ use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Tag;
 use Laravel\Nova\Panel;
-use Trin4ik\NovaSwitcher\NovaSwitcher;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class Strand extends Resource
 {
+    use HasSortableRows {
+        indexQuery as indexSortableQuery;
+    }
+
     public static $group = "Programme";
 
     /**
@@ -51,7 +51,11 @@ class Strand extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScopes(["published", "enabled"]);
+        $query->withoutGlobalScopes(["published", "enabled"])->orderBy(
+            "name",
+            "asc"
+        );
+        return parent::indexQuery($request, static::indexSortableQuery($request, $query));
     }
 
     /**

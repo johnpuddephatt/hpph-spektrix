@@ -21,19 +21,20 @@
 
     breakpoints: {
         640: {
-            slidesPerView: Math.min(totalSlides, 1.5),
+            slidesPerView: Math.min(totalSlides, 2.5),
         },
         768: {
-            slidesPerView: Math.min(totalSlides, 2),
+            slidesPerView: Math.min(totalSlides, 3),
 
         },
         1024: {
-            slidesPerView:  Math.min(totalSlides, 3),
+            slidesPerView:  Math.min(totalSlides, 4),
         },
         1280: {
-slidesPerView:  Math.min(totalSlides, 3),        },
+            slidesPerView:  Math.min(totalSlides, 5),
+        },
         1536: {
-            slidesPerView:  Math.min(totalSlides, 4),
+            slidesPerView:  Math.min(totalSlides, 6),
         },
     },
 })" class="py-12 lg:py-16 bg-black relative max-w-none mx-auto">

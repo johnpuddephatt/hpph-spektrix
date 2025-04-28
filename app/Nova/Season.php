@@ -22,9 +22,14 @@ use Laravel\Nova\Fields\Tag;
 use Laravel\Nova\Panel;
 use Trin4ik\NovaSwitcher\NovaSwitcher;
 use Whitecube\NovaFlexibleContent\Flexible;
+use Outl1ne\NovaSortable\Traits\HasSortableRows;
 
 class Season extends Resource
 {
+    use HasSortableRows {
+        indexQuery as indexSortableQuery;
+    }
+
     public static $group = "Programme";
 
     /**
@@ -50,7 +55,11 @@ class Season extends Resource
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScopes(["published", "enabled"]);
+        $query->withoutGlobalScopes(["published", "enabled"])->orderBy(
+            "name",
+            "asc"
+        );
+        return parent::indexQuery($request, static::indexSortableQuery($request, $query));
     }
 
     /**
@@ -85,7 +94,7 @@ class Season extends Resource
             Select::make("Display type", "display_type")->options([
                 "instances" => "Instances (default)",
                 "events" => "Events",
-            ])->displayUsingLabels(),
+            ])->displayUsingLabels()->hideFromIndex(),
             // Image::make("Logo")
             //     ->acceptedTypes(".svg")
             //     ->disableDownload(),
@@ -109,8 +118,8 @@ class Season extends Resource
                 ->hideFromIndex()
                 ->maxLength(800)
                 ->enforceMaxlength(),
-            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 300-400px wide. Multiple logos can be artworked on a canvas 800px wide.'),
-            Tag::make("Posts")->displayAsList(),
+            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 300-400px wide. Multiple logos can be artworked on a canvas 800px wide.')->hideFromIndex(),
+            Tag::make("Posts")->displayAsList()->hideFromIndex(),
 
             new Panel("Content", [
                 Flexible::make("Content", "content")

@@ -60,7 +60,7 @@ slidesPerView:  Math.min(totalSlides, 3),        },
                              'data-width' => '600px',
                              'loading' => 'lazy',
                              'class' =>
-                                 ' absolute inset-0 block w-full   bg-gray opacity-50 group-hover:scale-105 lg:group-hover:opacity-20 duration-500 transition',
+                                 ' absolute inset-0 block w-full   bg-gray  group-hover:scale-105 duration-500 transition',
                          ]) !!}
                          </div>
                          </div>

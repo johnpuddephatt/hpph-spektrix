@@ -17,16 +17,18 @@ use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
 use App\Casts\PageContentCast;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
 
-class Season extends Model implements HasMedia, CachableAttributes
+class Season extends Model implements HasMedia, CachableAttributes, Sortable
 {
     use HasFactory;
     use Sluggable;
     use InteractsWithMedia;
     use CachesAttributes;
     use SoftDeletes;
+    use SortableTrait;
 
     public $timestamps = false;
 
@@ -42,7 +44,8 @@ class Season extends Model implements HasMedia, CachableAttributes
         "published",
         "additional_description",
         "funders_logo",
-        'display_type'
+        'display_type',
+        'sort_order',
     ];
 
     protected $casts = [
@@ -50,6 +53,11 @@ class Season extends Model implements HasMedia, CachableAttributes
         "enabled" => "boolean",
         "published" => "boolean",
         "force_enabled_until" => "datetime",
+    ];
+
+    public $sortable = [
+        'order_column_name' => 'sort_order',
+        'sort_when_creating' => true,
     ];
 
     public function sluggable(): array
@@ -72,7 +80,7 @@ class Season extends Model implements HasMedia, CachableAttributes
         });
 
         static::addGlobalScope("order", function (Builder $builder) {
-            $builder->orderBy("id", "desc");
+            $builder->orderBy("sort_order", "desc");
         });
     }
 

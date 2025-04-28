@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ad98d9f170fbfbdd00c5f5b0af51928",
+    "content-hash": "967efcbebeebae1b92f14cc6207ed530",
     "packages": [
         {
             "name": "advoor/nova-editor-js",
@@ -5327,6 +5327,63 @@
                 "source": "https://github.com/outl1ne/nova-simple-repeatable/tree/2.2.4"
             },
             "time": "2024-10-30T14:19:51+00:00"
+        },
+        {
+            "name": "outl1ne/nova-sortable",
+            "version": "3.4.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/outl1ne/nova-sortable.git",
+                "reference": "e17d57b6da863adf0e0a7447fc5723d51dacb851"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/outl1ne/nova-sortable/zipball/e17d57b6da863adf0e0a7447fc5723d51dacb851",
+                "reference": "e17d57b6da863adf0e0a7447fc5723d51dacb851",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.24.0",
+                "outl1ne/nova-translations-loader": "^5.0",
+                "php": ">=8.0",
+                "spatie/eloquent-sortable": "^3.10.0|^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Outl1ne\\NovaSortable\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Outl1ne\\NovaSortable\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "This Laravel Nova package allows you to reorder models in a Nova resource's index view using drag & drop.",
+            "keywords": [
+                "eloquent-sortable",
+                "laravel",
+                "nova",
+                "optimistdigital",
+                "outl1ne"
+            ],
+            "support": {
+                "issues": "https://github.com/outl1ne/nova-sortable/issues",
+                "source": "https://github.com/outl1ne/nova-sortable/tree/3.4.7"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/outl1ne",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-11-27T13:40:15+00:00"
         },
         {
             "name": "outl1ne/nova-translations-loader",
