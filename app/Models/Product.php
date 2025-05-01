@@ -96,6 +96,11 @@ class Product extends Model implements HasMedia
         );
     }
 
+    public function getNameAttribute()
+    {
+        return $this->getRawOriginal('name') ?? $this->spektrix_name;
+    }
+
     public function getUrlAttribute()
     {
         return route("product.show", ["product" => $this->slug]);
