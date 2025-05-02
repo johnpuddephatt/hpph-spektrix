@@ -5,7 +5,7 @@
         showPreviousControl = !(scrollPosition == 0);
         showNextControl = !(scrollPosition >= $refs.scroller.scrollWidth - $refs.scroller.clientWidth);
     }, 2000)">
-    <div class="{{ $width != 'full' ? '-mx-4' : '' }} relative overflow-hidden bg-sand-light px-4 py-6">
+    <div class="{{ $blockwidth != 'full' ? '-mx-4' : '' }} relative overflow-hidden bg-sand-light px-4 py-6">
 
         {{-- prettier-ignore-start --}}
         <div x-ref="scroller"
@@ -19,7 +19,7 @@
                 flex-row gap-5
             @endif 
             
-            @if($width == 'full') 
+            @if($blockwidth == 'full') 
                 ml-[calc((100vw-100%)/-2)] px-[calc((100vw-100%)/2)] w-screen
             @endif ">
             @foreach ($images as $image)
