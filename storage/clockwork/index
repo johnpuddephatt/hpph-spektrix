@@ -3719,3 +3719,9 @@
 1746097941-3137-248029864,1746097941.2924,GET,/nova-api/seasons/1/update-fields?editing=true&editMode=update&viaResource=&viaResourceId=&viaRelationship=,Laravel\Nova\Http\Controllers\UpdateFieldController,200,143.23091506958,request
 1746097948-2968-674977503,1746097948.2799,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,62.180995941162,request
 1746097955-3109-262257017,1746097955.2873,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,77.703952789307,request
+1746097976-3799-107997500,1746097976.3409,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,150.19416809082,request
+1746098181-4049-1528726531,1746098181.3822,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,68.770885467529,request
+1746098193-3021-884089075,1746098193.2841,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,64.13197517395,request
+1746098249-3626-140882304,1746098249.3338,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,77.798128128052,request
+1746098357-3098-1700424847,1746098357.2853,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,73.133945465088,request
+1746098462-3050-871239553,1746098462.2749,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,137.64595985413,request
