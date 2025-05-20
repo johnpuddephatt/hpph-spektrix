@@ -9,6 +9,7 @@ class Alphabetical extends Component
 {
     use WithPagination;
 
+    public $type = 'alphabetical';
 
     public function paginationView()
     {
@@ -21,20 +22,20 @@ class Alphabetical extends Component
         $this->emit('scrollToTop');
     }
 
-    public $past = false;
+    // public $past = false;
 
-    protected $queryString = [
-        "past" => ["except" => false]
-    ];
+    // protected $queryString = [
+    //     "past" => ["except" => false]
+    // ];
 
     public function render()
     {
+
         $events = \App\Models\Event::shownInProgramme()
             ->orderBy("name")
             ->with("featuredImage", "instances.strand");
 
-
-        if ($this->past == false) {
+        if ($this->type !== 'past') {
             $events = $events->hasFutureInstances();
         }
 

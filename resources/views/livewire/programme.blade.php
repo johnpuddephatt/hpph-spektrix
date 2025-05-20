@@ -2,7 +2,7 @@
 
  <div>
      <div class="bg-sand container pt-36 pb-6 flex flex-row items-end justify-between">
-         @if ($past)
+                @if (!$type === 'past')
              <h1 class="type-medium lg:type-large">
                  Past screenings
              </h1>
@@ -18,12 +18,14 @@
      </div>
 
      <div class="flex flex-col lg:block">
-         @if (!$past)
 
              <div
                  class="bg-sand-light z-10 sticky bottom-0 lg:static lg:bottom-auto lg:container lg:flex flex-row-reverse justify-between border-b border-yellow-dark lg:border-sand lg:py-2.5">
+                
 
                  <div class="grid grid-cols-3 px-4 py-3 lg:p-0 lg:flex flex-row items-center gap-4 lg:gap-2.5">
+                @if (!$type === 'past')
+
                      <div class="type-xs-mono hidden lg:block">Filter:</div>
 
                      @if ($strand)
@@ -149,19 +151,23 @@
 
                          </dialog>
                      @endif
+                @endif
                  </div>
+
                  <div class="grid grid-cols-2 lg:flex flex-row items-center lg:gap-2.5">
                      <div class="type-xs-mono hidden lg:block">View:</div>
                      <x-programme-button :selected="$type" type="alphabetical">A&ndash;Z</x-programme-button>
                      <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
+                     <x-programme-button class="hidden lg:block " :selected="$type" type="past" >Archive</x-programme-button>
                  </div>
              </div>
 
-         @endif
 
          <div class="bg-sand -order-1">
              @if ($type == 'alphabetical')
-                 <livewire:programme.alphabetical wire-key="alphabetical" />
+                 <livewire:programme.alphabetical wire-key="alphabetical" :type="$type" />
+            @elseif($type == 'past')
+                 <livewire:programme.alphabetical wire-key="past" :type="$type" />
              @elseif ($type == 'schedule')
                  <livewire:programme.instances wire-key="instances" :show_header="false" :show_load_more="true"
                      :options="[(array) ['limit' => 10]]" />
