@@ -34,7 +34,7 @@
                 <ul class="">
                     @foreach ($secondary_menu as $menu_item)
                         <li>
-                            <a class="type-mono antialiased text-white hover:text-yellow transition"
+                            <a class="type-mono antialiased text-white py-2 inline-block hover:text-yellow transition"
                                 href="{{ $menu_item['value'] }}">{{ $menu_item['name'] }}</a>
                         </li>
                     @endforeach
