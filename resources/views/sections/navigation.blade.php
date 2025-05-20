@@ -3,7 +3,7 @@
     x-transition:enter-end="translate-x-0" x-transition:leave="transition" x-transition:leave-start="translate-x-0"
     x-transition:leave-end="translate-x-full" @keyup.escape.window="nav_open = false">
 
-    <div class="h-screen overflow-auto  md:w-1/2 lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
+    <div class="h-screen overflow-y-auto  md:w-1/2 lg:w-4/12 py-8 px-6 lg:px-12 flex flex-col flex-grow">
         @if ($primary_menu)
             <nav class="mb-8 lg:mb-24">
                 <ul class="text-[3.75rem] font-bold leading-[108%] tracking-[-0.050em] text-white">
@@ -43,7 +43,7 @@
         @endif
 
         @if ($seasons->count())
-            <div class="flex flex-col gap-4 lg:w-[125%]">
+            <div class="flex flex-col gap-4">
                 @foreach ($seasons as $season)
                     <a href="{{ $season->url }}"
                         class="truncate max-w-full float-left mr-auto text-yellow clear-both border border-yellow rounded py-1.5 pl-1 pr-2">
