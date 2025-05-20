@@ -275,3 +275,14 @@
 1747748548-0428-151071134,1747748547.9453,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_1600_1600.jpg,App\Http\Controllers\PageController@show,404,256.72006607056,request
 1747748548-1332-1249773417,1747748548.0835,GET,/storage/134/responsive-images/placeholder___square_1600_1600.jpg,App\Http\Controllers\PageController@show,404,186.49196624756,request
 1747748548-2249-2035022846,1747748548.1801,GET,/storage/136/responsive-images/Screenshot-2023-03-16-at-11.44.43-%282%29___square_1600_1600.jpg,App\Http\Controllers\PageController@show,404,156.57615661621,request
+1747748832-5105-2120364599,1747748832.4122,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,606.00805282593,request
+1747748832-5105-341985749,1747748832.3492,GET,/storage/134/responsive-images/placeholder___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,669.05999183655,request
+1747748832-7916-1345665330,1747748832.7323,GET,/storage/138/responsive-images/Screenshot-2023-03-17-at-21.29.20___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,286.50403022766,request
+1747748833-2085-84649290,1747748833.0932,GET,/storage/133/responsive-images/Screenshot-2023-03-16-at-19.51.46___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,316.37501716614,request
+1747748833-2125-1567983285,1747748833.1058,GET,/storage/132/responsive-images/Screenshot-2023-03-03-at-22.03.39___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,314.85509872437,request
+1747748833-2164-2058349089,1747748833.1187,GET,/storage/136/responsive-images/Screenshot-2023-03-16-at-11.44.43-%282%29___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,313.61985206604,request
+1747748833-3339-662974363,1747748833.2459,GET,/storage/81/responsive-images/IMG_2037___landscape_1003_669.jpg,App\Http\Controllers\PageController@show,404,288.81812095642,request
+1747748833-4862-780920145,1747748833.4279,GET,/storage/135/responsive-images/Screenshot-2023-03-23-at-20.07.52___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,188.76194953918,request
+1747748833-4964-559054201,1747748833.4477,GET,/storage/157/responsive-images/InTheClub2-copy___landscape_1003_669.jpg,App\Http\Controllers\PageController@show,404,172.61004447937,request
+1747748833-5064-65537127,1747748833.4654,GET,/storage/95/responsive-images/Black-History-Month-2%402x___wide_1050_439.jpg,App\Http\Controllers\PageController@show,404,169.80314254761,request
+1747748833-5962-985253656,1747748833.5575,GET,/storage/137/responsive-images/Screenshot-2023-03-23-at-13.15.47___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,163.69485855103,request
