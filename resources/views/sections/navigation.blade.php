@@ -72,14 +72,14 @@
         </div>
     </div>
 
-    <div class="hidden lg:flex flex-col py-8 lg:px-12 lg:w-3/12">
+    <div class="hidden lg:flex flex-col py-8 lg:py-12  lg:px-12  lg:w-1/4">
 
         @if ($secondary_menu)
             <nav>
                 <ul class="">
                     @foreach ($secondary_menu as $menu_item)
                         <li>
-                            <a class="type-xs-mono antialiased text-gray-medium hover:text-yellow transition"
+                            <a class="type-mono antialiased inline-block text-white hover:text-yellow transition py-2"
                                 href="{{ $menu_item['value'] }}">{{ $menu_item['name'] }}</a>
                         </li>
                     @endforeach

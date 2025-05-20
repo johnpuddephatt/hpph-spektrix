@@ -23,6 +23,10 @@
         @apply text-[0.875rem] md:text-[0.9375rem] font-bold leading-[120%] tracking-[-0.015em];
     }
 
+    .type-mono {
+        @apply text-[1.125rem] uppercase font-mono leading-[134%] tracking-[-0.012em];
+    }
+
     .type-xs-mono {
         @apply text-[0.75rem] uppercase font-mono leading-[134%] tracking-[-0.012em];
     }
