@@ -86,7 +86,7 @@ class Strand extends Resource
             Select::make("Display type", "display_type")->options([
                 "instances" => "Instances (default)",
                 "events" => "Events",
-            ])->displayUsingLabels(),
+            ])->default('instances')->displayUsingLabels(),
             Color::make("Color"),
             Image::make("Logo")
                 ->acceptedTypes(".svg")

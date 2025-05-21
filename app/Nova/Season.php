@@ -94,7 +94,7 @@ class Season extends Resource
             Select::make("Display type", "display_type")->options([
                 "instances" => "Instances (default)",
                 "events" => "Events",
-            ])->displayUsingLabels()->hideFromIndex(),
+            ])->displayUsingLabels()->default('instances')->hideFromIndex(),
             // Image::make("Logo")
             //     ->acceptedTypes(".svg")
             //     ->disableDownload(),
