@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class PrecacheRoutes extends Command
 {
@@ -34,5 +35,7 @@ class PrecacheRoutes extends Command
         }
 
         $this->info('Pre-caching complete!');
+
+        Log::info('Pre-caching complete!');
     }
 }
