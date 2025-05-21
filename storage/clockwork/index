@@ -513,3 +513,8 @@
 1747823882-6894-1044495631,1747823882.6387,GET,/storage/136/responsive-images/Screenshot-2023-03-16-at-11.44.43-%282%29___square_1600_1600.jpg,App\Http\Controllers\PageController@show,404,183.20107460022,request
 1747823882-7176-1808447747,1747823882.6772,GET,/storage/134/responsive-images/placeholder___square_1600_1600.jpg,App\Http\Controllers\PageController@show,404,185.00113487244,request
 1747823883-5687-716211130,1747823883.5037,GET,/whats-on,App\Http\Controllers\PageController@show,200,302.36601829529,request
+1747824553-9730-793682355,1747824553.7761,GET,/whats-on,App\Http\Controllers\PageController@show,200,924.10898208618,request
+1747824557-3294-3179058,1747824557.2477,POST,/livewire/message/programme,Livewire\Controllers\HttpConnectionHandler,200,395.47204971313,request
+1747824591-9299-1997508,1747824591.8628,GET,/,App\Http\Controllers\PageController@home,200,444.98610496521,request
+1747824592-3895-1183737439,1747824592.3391,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,200,235.34083366394,request
+1747824592-6423-1696214393,1747824592.6011,GET,/whats-on?type=alphabetical,App\Http\Controllers\PageController@show,200,335.04390716553,request
