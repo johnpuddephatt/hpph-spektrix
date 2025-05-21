@@ -24,7 +24,7 @@
                 
 
                  <div class="grid grid-cols-3 px-4 py-3 lg:p-0 lg:flex flex-row items-center gap-4 lg:gap-2.5">
-                @if (!$type === 'past')
+                @if ($type !== 'past')
 
                      <div class="type-xs-mono hidden lg:block">Filter:</div>
 

@@ -498,3 +498,4 @@
 1747760341-8502-1539540086,1747760341.798,GET,/storage/153/responsive-images/burial___wide_1400_840.webp,App\Http\Controllers\PageController@show,404,229.15410995483,request
 1747760342-4618-75225148,1747760342.3943,POST,/livewire/message/programme,Livewire\Controllers\HttpConnectionHandler,200,323.7829208374,request
 1747760343-3737-1851469169,1747760343.3044,POST,/livewire/message/programme,Livewire\Controllers\HttpConnectionHandler,200,207.17597007751,request
+1747760360-6003-1102604708,1747760360.4812,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,200,534.09695625305,request
