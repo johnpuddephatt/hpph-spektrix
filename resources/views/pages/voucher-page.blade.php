@@ -13,7 +13,9 @@
         @endif
     </div>
 
-    <div class="mt-[75vh] lg:mt-0 lg:ml-[50%] min-h-screen bg-sand relative">
+    
+
+    <div x-data="{ deliveryType: 'CustomerEmail' }" class="mt-[75vh] lg:mt-0 lg:ml-[50%] min-h-screen bg-sand relative">
 
         <div class="bg-sand-light pt-6 pb-12 lg:h-[66.6vh] flex flex-col">
             <div class="container">
@@ -30,7 +32,8 @@
             </div>
         </div>
 
-        <spektrix-gift-vouchers x-data="{ deliveryType: 'CustomerEmail' }" client-name="{{ $settings['spektrix_client_name'] }}"
+
+        <spektrix-gift-vouchers  client-name="{{ $settings['spektrix_client_name'] }}"
             custom-domain="{{ $settings['spektrix_custom_domain'] }}">
 
             <div class="container py-4 lg:pb-24">
@@ -43,9 +46,9 @@
 
                     <div class="relative z-0 mt-6 max-w-lg">
 
-                        <input type="text" id="amount" name="amount" data-amount
+                        <input type="number" id="amount" name="amount" data-amount 
                             class="peer block w-full bg-sand-light pl-7 pt-6 pb-2 px-4 rounded border border-transparent focus-within:border-white focus-within:outline-none"
-                            placeholder=" " value="25" />
+                            placeholder=" "  />
 
                         <label for="amount"
                             class="scale-75 peer-focus:scale-75 peer-placeholder-shown:scale-100 pointer-events-none text-gray-medium absolute duration-300 transform py-4 top-0 z-10 left-4 origin-top-left peer-placeholder-shown:translate-y-0.5 -translate-y-0.5 peer-focus:-translate-y-0.5">Voucher
@@ -87,7 +90,8 @@
                         <select
                             class="peer block w-full bg-sand-light pt-6 pb-2 px-3 rounded border border-transparent focus-within:border-white focus-within:outline-none"
                             @change="deliveryType = $event.target.value" name="deliveryType" data-delivery-type>
-                            <option value="CustomerEmail" selected>Your Email address</option>
+                            <option disabled selected value="">Select delivery type</option>
+                            <option value="CustomerEmail">Your Email address</option>
                             <option value="OtherEmail">Another Email address</option>
                         </select>
                     </div>
