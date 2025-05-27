@@ -730,3 +730,4 @@
 1747932702-8060-786990918,1747932702.63,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,App\Http\Controllers\PageController@show,404,502.28500366211,request
 1747932726-8988-228292559,1747932726.7868,GET,/vouchers,App\Http\Controllers\PageController@show,200,470.34788131714,request
 1747932727-4975-204254225,1747932727.4022,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,App\Http\Controllers\PageController@show,404,250.72312355042,request
+1747933300-8734-846120613,1747933300.6648,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,605.21292686462,request
