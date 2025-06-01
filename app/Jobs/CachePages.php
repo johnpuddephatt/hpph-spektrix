@@ -56,7 +56,7 @@ class CachePages implements ShouldQueue
 
             sleep(5);
         }
-
+        Log::channel("spektrix")->info("Cached response data for " . count($routes) . " routes.");
         Log::info('Pre-caching complete!');
     }
 }

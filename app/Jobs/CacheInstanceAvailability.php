@@ -12,6 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class CacheInstanceAvailability implements ShouldQueue
 {
@@ -39,5 +40,6 @@ class CacheInstanceAvailability implements ShouldQueue
                 return $instance->availability;
             });
         });
+        Log::channel("spektrix")->info("Cached availability data for " . Instance::count() . " instances.");
     }
 }
