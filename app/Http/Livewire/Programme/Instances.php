@@ -136,7 +136,7 @@ class Instances extends Component
     public function render()
     {
         return view("livewire.programme.instances", [
-            "instances" => $this->instances()->paginate(250),
+            "instances" => $this->instances()->paginate(50),
         ]);
     }
 }
