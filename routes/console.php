@@ -49,3 +49,7 @@ Artisan::command("fetch:shop", function () {
 Artisan::command("cache:availability", function () {
     dispatch(new \App\Jobs\CacheInstanceAvailability());
 })->purpose("Caches availability data for all instances");
+
+Artisan::command("cache:pages", function () {
+    dispatch(new \App\Jobs\CachePages());
+})->purpose("Visits key pages to cache them for faster access");
