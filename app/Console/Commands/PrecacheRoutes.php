@@ -15,6 +15,7 @@ class PrecacheRoutes extends Command
     {
         $routes = [
             url('/'),
+            url('/whats-on'),
             url('/whats-on?type=schedule'),
             url('/whats-on?type=alphabetical'),
         ];
