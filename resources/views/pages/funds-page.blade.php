@@ -42,7 +42,7 @@
                                             <input type="number" id="amount" name="amount" data-custom-donation-input
                                                 class="peer block w-full bg-sand-light pl-7 pt-6 pb-2 px-4 rounded border border-transparent focus-within:border-white focus-within:outline-none"
                                                 placeholder=" " min="{{ $fund->default_donation_amount }}"
-                                                data-donate-amount="{{ $fund->default_donation_amount }}" />
+                                                 />
 
                                             <label for="amount"
                                                 class="scale-75 peer-focus:scale-75 peer-placeholder-shown:scale-100 pointer-events-none text-gray-medium absolute duration-300 transform py-4 top-0 z-10 left-4 origin-top-left peer-placeholder-shown:translate-y-0.5 -translate-y-0.5 peer-focus:-translate-y-0.5">Donation
