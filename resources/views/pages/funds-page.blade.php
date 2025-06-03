@@ -32,15 +32,16 @@
                                     <h3 class="type-regular mb-4 max-w-xs">{{ $fund->name }}</h3>
                                     <div class="max-w-lg lg:col-span-2 mb-4">{{ $fund->description }}</div>
                                 </div>
-                                <spektrix-donate class="mt-auto block border-t border-sand-dark pt-4"
-                                donation-amount="{{ $fund->default_donation_amount }}"
+                                <spektrix-donate x-data="{ amount: {{ $fund->default_donation_amount }}}"class="mt-auto block border-t border-sand-dark pt-4"
+                                x-effect="$el.donateAmount = amount"
                                     client-name="{{ $settings['spektrix_client_name'] }}"
                                     custom-domain="{{ $settings['spektrix_custom_domain'] }}" fund-id="{{ $fund->id }}">
 
                                     <div class="gap-2 flex flex-col lg:flex-row mb-6 lg:mb-0 lg:mt-6">
                                         <div class="relative z-0">
 
-                                            <input type="number" id="amount" name="amount" data-custom-donation-input
+                                            <input type="number" id="amount" name="amount" 
+                                                x-model="amount"
                                                 class="peer block w-full bg-sand-light pl-7 pt-6 pb-2 px-4 rounded border border-transparent focus-within:border-white focus-within:outline-none"
                                                 placeholder=" " min="{{ $fund->default_donation_amount }}"
                                                  />
