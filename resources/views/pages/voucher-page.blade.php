@@ -33,7 +33,7 @@
         </div>
 
 
-        <spektrix-gift-vouchers  client-name="{{ $settings['spektrix_client_name'] }}"
+        <spektrix-gift-vouchers x-data="{amount : 25}" x-init="$el.donationAmount = amount" x-effect="$el.donationAmount = amount"  client-name="{{ $settings['spektrix_client_name'] }}"
             custom-domain="{{ $settings['spektrix_custom_domain'] }}">
 
             <div class="container py-4 lg:pb-24">
@@ -46,7 +46,7 @@
 
                     <div class="relative z-0 mt-6 max-w-lg">
 
-                        <input type="number" id="amount" name="amount" data-amount 
+                        <input type="number" id="amount" name="amount" x-model="amount" 
                             class="peer block w-full bg-sand-light pl-7 pt-6 pb-2 px-4 rounded border border-transparent focus-within:border-white focus-within:outline-none"
                             placeholder=" "  />
 
