@@ -33,6 +33,7 @@
                                     <div class="max-w-lg lg:col-span-2 mb-4">{{ $fund->description }}</div>
                                 </div>
                                 <spektrix-donate class="mt-auto block border-t border-sand-dark pt-4"
+                                donation-amount="{{ $fund->default_donation_amount }}"
                                     client-name="{{ $settings['spektrix_client_name'] }}"
                                     custom-domain="{{ $settings['spektrix_custom_domain'] }}" fund-id="{{ $fund->id }}">
 
