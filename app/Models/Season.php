@@ -135,7 +135,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
 
     public function getDateRangeAttribute()
     {
-        $dates = $this->hasMany(Instance::class, "season_name", "name")->orderBy('start')->withoutGlobalScopes()
+        $dates = $this->hasMany(Instance::class, "season_name", "name")->orderBy('start')
             ->pluck("start");
 
         if ($dates->isEmpty()) {
