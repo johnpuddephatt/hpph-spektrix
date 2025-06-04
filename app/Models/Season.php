@@ -46,6 +46,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         "funders_logo",
         'display_type',
         'sort_order',
+        'show_in_programme'
     ];
 
     protected $casts = [
@@ -53,6 +54,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         "enabled" => "boolean",
         "published" => "boolean",
         "force_enabled_until" => "datetime",
+        "show_in_programme" => "boolean",
     ];
 
     public $sortable = [
@@ -167,6 +169,11 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
     public function getLatestPostAttribute()
     {
         return $this->posts->first();
+    }
+
+    public function scopeShowInProgramme(Builder $query)
+    {
+        return $query->where("show_in_programme", true);
     }
 
     public function getUrlAttribute()

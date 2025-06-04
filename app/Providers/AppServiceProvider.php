@@ -52,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
                         "color",
                         "logo"
                     )
+                        ->showInProgramme()
                         ->with("featuredImage")
                         ->get();
                 })
@@ -69,7 +70,7 @@ class AppServiceProvider extends ServiceProvider
                             "name",
                             "slug",
                             "short_description",
-                        )->get();
+                        )->showInProgramme()->get();
                     })
                 );
             }

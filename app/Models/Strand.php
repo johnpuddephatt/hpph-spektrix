@@ -58,6 +58,7 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
         "funders_logo",
         'display_type',
         'sort_order',
+        'show_in_programme'
     ];
 
     protected $casts = [
@@ -67,6 +68,7 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
         "show_on_event_card" => "boolean",
         "show_on_instance_card" => "boolean",
         "show_in_booking_path" => "boolean",
+        "show_in_programme" => "boolean",
     ];
 
     public function sluggable(): array
@@ -170,6 +172,11 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
     public function getLatestPostAttribute()
     {
         return $this->posts->first();
+    }
+
+    public function scopeShowInProgramme(Builder $query)
+    {
+        return $query->where("show_in_programme", true);
     }
 
     public function getUrlAttribute()

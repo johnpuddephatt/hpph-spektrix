@@ -87,6 +87,9 @@ class Season extends Resource
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
+            Boolean::make("Programme?", "show_in_programme")
+                ->showOnPreview()
+                ->filterable(),
             DateTime::make("Force sync until", "force_enabled_until")
                 ->help("This will force the season to be displayed until this date, even it does not appear in the Spektrix import.")
                 ->showOnPreview()

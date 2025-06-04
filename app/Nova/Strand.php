@@ -79,6 +79,9 @@ class Strand extends Resource
                     return $request->isUpdateOrUpdateAttachedRequest();
                 }),
             Boolean::make("Published"),
+            Boolean::make("Programme?", "show_in_programme")
+                ->showOnPreview()
+                ->filterable(),
             Boolean::make("Synced", "enabled")
                 ->readonly()
                 ->showOnPreview()
