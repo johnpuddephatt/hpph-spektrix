@@ -47,7 +47,7 @@
                 </div>
                 <iframe x-on:load="iFrameLoading = false" class="w-full transition-all"
                     :class="{ 'opacity-0': iFrameLoading }" id="SpektrixIFrame" name="SpektrixIFrame"
-                    :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/Basket2.aspx?resize=true`"></iframe>
+                    :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/Basket2.aspx?resize=true&stylesheet=hpph-spektrix-2.css`"></iframe>
             </div>
         </template>
 
