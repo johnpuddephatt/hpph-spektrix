@@ -20,6 +20,7 @@
         {{-- previously had delay-[3500ms] on it, to bring video in after the animation finishes. --}}
         <div class="inset-0 absolute duration-[2000ms] opacity-0 delay-500"
             x-bind:class="{ '!opacity-100': loaded }" x-data="{ loaded: false }" x-init="loaded = true">
+            
             @if ($event->featuredVideo)
                 {!! $event->featuredVideo->img('thumb', [
                     'id' => $event->id,
