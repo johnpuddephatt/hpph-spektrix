@@ -701,8 +701,8 @@ input[value="Continue"] {
     @apply block my-4;
 }
 
-.Membership {
-    @apply bg-sand-light p-4 rounded;
+dd.Membership {
+    @apply my-4 bg-sand-light p-4 rounded;
 }
 
 .Membership .Info span {
