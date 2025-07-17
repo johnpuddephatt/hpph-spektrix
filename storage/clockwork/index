@@ -1559,3 +1559,4 @@
 1749063619-6601-2124201859,1749063619.6511,GET,/strands/creatures-of-the-night,App\Http\Controllers\StrandController@show,200,147.67789840698,request
 1749063619-8993-2062298647,1749063619.8965,GET,/storage/70/responsive-images/41-COLOUR%402x___landscape_1400_840.jpg,App\Http\Controllers\PageController@show,404,59.724807739258,request
 1749063619-8980-550178228,1749063619.8945,GET,/storage/84/responsive-images/IMG_5298___landscape_1400_840.jpg,App\Http\Controllers\PageController@show,404,61.85507774353,request
+1749063942-4657-510274022,1749063942.4338,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,144.14501190186,request
