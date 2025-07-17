@@ -20,12 +20,9 @@
                 @else
                     <a class="group w-full lg:w-1/2 relative block bg-black-light" href="{{ $child->url }}"
                         target="_blank">
-                        @if($child->image)
                         <img src="{{ Storage::url($child->image) }}"
                             class="aspect-square lg:aspect-auto object-cover max-w-none w-full opacity-60 transition group-hover:opacity-90" />
-                        @else
-                            <div class="aspect-square lg:aspect-auto object-cover max-w-none w-full opacity-60 transition group-hover:opacity-90 bg-gray-dark"></div>
-                        @endif
+
                         <div class="p-4 inset-0 absolute text-center items-center justify-center flex flex-col">
 
                             <div class="my-auto pt-16 transition group-hover:-translate-y-4">
