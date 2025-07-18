@@ -140,13 +140,13 @@ class Event extends Resource
                     Rule::requiredIf(fn() => $request->published),
                 ]),
                 Images::make("Image gallery", "gallery")
-                    ->singleMediaRules("dimensions:min_width=800")
+                    ->singleMediaRules("dimensions:min_width=800,min_height=600")
                     ->rules("max:4")
                     ->customPropertiesFields([Markdown::make("Description")])
                     ->fullWidth()
                     ->hideFromIndex()
                     ->help(
-                        "Maximum four images, minimum width per image 800px"
+                        "Maximum four images, minimum width per image 800px, minimum height 600px."
                     ),
                 Url::make("Trailer")
                     ->placeholder(
