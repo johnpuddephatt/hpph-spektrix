@@ -35,6 +35,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
     protected $fillable = [
         "name",
         "slug",
+        'hpph_presents',
         "short_description",
         "description",
         "logo",
@@ -53,6 +54,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         "content" => PageContentCast::class,
         "enabled" => "boolean",
         "published" => "boolean",
+        "hpph_presents" => "boolean",
         "force_enabled_until" => "datetime",
         "show_in_programme" => "boolean",
     ];
