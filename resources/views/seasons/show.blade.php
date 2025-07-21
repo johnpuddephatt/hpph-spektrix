@@ -51,7 +51,7 @@
         @endif
         @if ($season->funders_logo)
             <img onload="this.style.width = this.clientWidth/2 + 'px'; this.classList.add('max-w-sm'); this.classList.remove('opacity-0')" src="{{ Storage::url($season->funders_logo) }}"
-                alt="" class="px-4 mt-6 mx-auto w-auto h-auto opacity-0 ">
+                alt="" class="px-4 mt-8 mx-auto w-auto h-auto opacity-0 ">
         @endif
     </div>
 
