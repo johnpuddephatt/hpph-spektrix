@@ -246,3 +246,4 @@
 1752881404-8677-1780763052,1752881404.6975,GET,/storage/124/responsive-images/50-COLOUR___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,369.69399452209,request
 1752881404-9215-562740552,1752881404.8337,GET,/storage/84/responsive-images/IMG_5298___landscape_1400_840.jpg,App\Http\Controllers\PageController@show,404,263.20195198059,request
 1752881404-9326-1954442578,1752881404.8524,GET,/storage/70/responsive-images/41-COLOUR%402x___landscape_1400_840.jpg,App\Http\Controllers\PageController@show,404,244.82393264771,request
+1752881423-0797-1662473123,1752881422.9759,GET,/,App\Http\Controllers\PageController@home,200,645.21598815918,request
