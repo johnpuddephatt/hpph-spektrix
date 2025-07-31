@@ -9,11 +9,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use GuzzleHttp\Client;
 
 class CachePages implements ShouldQueue
 {
@@ -48,7 +48,16 @@ class CachePages implements ShouldQueue
         foreach ($routes as $route) {
 
             try {
-                $response = Http::get($route);
+                // $response = Http::get($route);
+                $client = new Client();
+                $response = $client->get($route, [
+                    'headers' => [
+                        'User-Agent' => 'Mozilla/5.0 (compatible; CacheWarmer)',
+                        'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                        // Add other headers that match your typical requests
+                    ]
+                ]);
+
                 echo "{$route} –––– Status: {$response->status()} \n";
             } catch (\Exception $e) {
                 echo "{$route} –––– Failed: {$e->getMessage()} \n";
@@ -56,7 +65,7 @@ class CachePages implements ShouldQueue
 
             sleep(5);
         }
-        Log::channel("spektrix")->info("Cached response data for " . count($routes) . " routes.");
+        Log::info("Cached response data for " . count($routes) . " routes.");
         Log::info('Pre-caching complete!');
     }
 }
