@@ -79,12 +79,12 @@ class CachePages implements ShouldQueue
                 curl_close($ch);
 
 
-                echo "{$route} –––– Status: {$response->status()} \n";
+                echo "{$route} –––– Status: {$httpCode} \n";
             } catch (\Exception $e) {
                 echo "{$route} –––– Failed: {$e->getMessage()} \n";
             }
 
-            sleep(5);
+            sleep(3);
         }
         Log::info("Cached response data for " . count($routes) . " routes.");
         Log::info('Pre-caching complete!');
