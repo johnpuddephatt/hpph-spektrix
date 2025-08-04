@@ -7,14 +7,14 @@
 @section('content')
     <livewire:programme />
 
-    <script>
-        
-        
-        document.addEventListener('livewire:navigated', () => {
-            console.log('Livewire navigated');
-            Alpine.start();
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Livewire.hook('element.updated', (el, component) => {
+            console.log('Element updated:', el);
+            Alpine.initTree(el);
         });
-    </script>
+    });
+</script>
 
 
 @endsection
