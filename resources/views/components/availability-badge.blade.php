@@ -1,4 +1,4 @@
-<div x-show="(instance.availability.seats / instance.availability.capacity) <= {{ nova_get_setting('availability_threshold', 0.15) }}"
+<div x-cloak x-show="(instance.availability.seats / instance.availability.capacity) <= {{ nova_get_setting('availability_threshold', 0.15) }}"
     class="type-xs-mono type-xs-mono text-black ml-auto flex items-center rounded flex-row bg-gray border border-sand-dark px-2"
     :title="instance.availability.seats ?
         `There are ${instance.availability.seats} regular seats and ${instance.availability.accessible_seats} wheelchair seats available for this screening.` :

@@ -7,14 +7,6 @@
 @section('content')
     <livewire:programme />
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        Livewire.hook('element.updated', (el, component) => {
-            console.log('Element updated:', el);
-            Alpine.initTree(el);
-        });
-    });
-</script>
 
 
 @endsection
