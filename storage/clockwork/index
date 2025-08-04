@@ -27,3 +27,11 @@
 1754312869-6180-55470205,1754312869.6143,GET,/storage/animation.json,App\Http\Controllers\PageController@show,404,109.80987548828,request
 1754312870-1478-1068994903,1754312870.1391,GET,/whats-on,App\Http\Controllers\PageController@show,200,211.0869884491,request
 1754313346-4271-359678094,1754313346.3194,GET,/livewire/livewire.js.map,Livewire\Controllers\LivewireJavaScriptAssets@maps,200,246.62303924561,request
+1754314766-9634-1162670328,1754314766.8652,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,200,482.90395736694,request
+1754314952-1393-1826456217,1754314952.1014,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,889.53709602356,request
+1754314954-2314-1765912832,1754314954.2053,GET,/favicon.ico,App\Http\Controllers\PageController@show,500,470.79682350159,request
+1754314966-6942-198265250,1754314966.6735,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,3075.4570960999,request
+1754315026-3729-1004903913,1754315026.3425,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,1403.7439823151,request
+1754315053-7939-68882745,1754315053.7445,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,1243.2591915131,request
+1754315494-0670-1893004081,1754315494.0005,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,1243.7400817871,request
+1754315522-0321-1182602769,1754315522.0037,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,200,1873.2490539551,request

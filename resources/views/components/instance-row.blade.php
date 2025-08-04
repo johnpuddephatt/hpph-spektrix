@@ -48,7 +48,9 @@
                 <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description" :autism_friendly="$instance->autism_friendly" :toddler_friendly="$instance->toddler_friendly" />
 
                 @if (nova_get_setting('display_availability_badge', false))
-                    <div x-ref="{{  $instance->id }}-availability" x-cloak x-data='{ instance: { availability: @json($instance->availability) } }'>
+                    <div x-cloak x-data='{ instance: { availability: @json($instance->availability) } }'
+                    x-ref="{{  $instance->id }}-availability" x-cloak
+                        >
                         <x-availability-badge />
                     </div>
                 @endif
