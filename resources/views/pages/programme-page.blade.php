@@ -8,7 +8,7 @@
     <livewire:programme />
 
     <script>
-        );
+        
         
         document.addEventListener('livewire:navigated', () => {
             console.log('Livewire navigated');
