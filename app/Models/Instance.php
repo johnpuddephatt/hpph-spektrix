@@ -91,7 +91,7 @@ class Instance extends Model
         "toddler_friendly" => "boolean",
     ];
 
-    protected $appends = ["start_date", "start_time", "url", "short_id", "format"];
+    protected $appends = ["start_date", "start_time", "url", "short_id", "format", "availability"];
 
     public function event()
     {
