@@ -26,3 +26,4 @@
 1754312869-5897-65234899,1754312869.5849,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,51.654100418091,request
 1754312869-6180-55470205,1754312869.6143,GET,/storage/animation.json,App\Http\Controllers\PageController@show,404,109.80987548828,request
 1754312870-1478-1068994903,1754312870.1391,GET,/whats-on,App\Http\Controllers\PageController@show,200,211.0869884491,request
+1754313346-4271-359678094,1754313346.3194,GET,/livewire/livewire.js.map,Livewire\Controllers\LivewireJavaScriptAssets@maps,200,246.62303924561,request

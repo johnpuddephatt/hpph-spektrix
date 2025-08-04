@@ -6,4 +6,15 @@
 
 @section('content')
     <livewire:programme />
+
+    <script>
+        );
+        
+        document.addEventListener('livewire:navigated', () => {
+            console.log('Livewire navigated');
+            Alpine.start();
+        });
+    </script>
+
+
 @endsection
