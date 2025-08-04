@@ -35,3 +35,6 @@
 1754315053-7939-68882745,1754315053.7445,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,1243.2591915131,request
 1754315494-0670-1893004081,1754315494.0005,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,1243.7400817871,request
 1754315522-0321-1182602769,1754315522.0037,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,200,1873.2490539551,request
+1754316015-0196-1841244985,1754316014.945,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,887.44688034058,request
+1754316025-2847-911461896,1754316025.2482,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,500,2995.2070713043,request
+1754316083-1688-422511920,1754316083.1203,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,200,318.71104240417,request
