@@ -47,7 +47,8 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         "funders_logo",
         'display_type',
         'sort_order',
-        'show_in_programme'
+        'show_in_programme',
+        'show_header'
     ];
 
     protected $casts = [
@@ -57,6 +58,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         "hpph_presents" => "boolean",
         "force_enabled_until" => "datetime",
         "show_in_programme" => "boolean",
+        "show_header" => "boolean",
     ];
 
     public $sortable = [

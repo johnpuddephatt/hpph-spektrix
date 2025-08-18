@@ -111,6 +111,8 @@ class Season extends Resource
                 ->default(true)
                 ->hideFromIndex()
                 ->nullable(),
+            NovaSwitcher::make("Show header", "show_header")
+                ->help('Enable to show the season name and short description in the header.'),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex()
