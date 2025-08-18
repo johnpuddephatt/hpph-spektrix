@@ -1,5 +1,6 @@
 @props(['captioned' => false, 'signedbsl' => false, 'audiodescribed' => false, 'autism_friendly' => false, 'toddler_friendly' => false])
 
+@if($captioned || $signedbsl || $audiodescribed || $autism_friendly || $toddler_friendly)
 <div {{ $attributes->class(['flex flex-row gap-0.5']) }}>
 
     @if ($captioned)
@@ -18,3 +19,4 @@
         <x-accessibilities.badge title="Toddler-friendly screening">Toddler</x-accessibilities.badge>
     @endif
 </div>
+@endif

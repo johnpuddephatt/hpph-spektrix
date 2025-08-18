@@ -24,7 +24,7 @@
     }
 
     .type-mono {
-        @apply text-[1.125rem] uppercase font-mono leading-[134%] tracking-[-0.012em];
+        @apply text-[1rem] uppercase font-mono leading-[134%] tracking-[-0.012em];
     }
 
     .type-xs-mono {

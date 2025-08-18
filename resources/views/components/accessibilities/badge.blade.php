@@ -1,13 +1,16 @@
 @props(['title' => ''])
 
 <abbr title="{{ $title }}" @class([
-    'bg-gray-dark',
-    'rounded-full',
+    'bg-black',
+    'rounded',
     'text-white',
-    'type-xs-mono',
+    'font-bold',
+    'type-xs',
+    'uppercase',
     'block',
     'no-underline',
-    'px-2',
+    'px-2.5',
+    'py-0.5',
     'text-center',
     'cursor-default',
     'z-[2]',

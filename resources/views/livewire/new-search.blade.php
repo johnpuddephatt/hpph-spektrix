@@ -1,6 +1,6 @@
 <div @keyup.escape.window="open = false" class="" x-data="{ open: false }">
     <button aria-label="Search for a film" title="Search for a film"
-        class="hover:text-yellow transition relative block rounded" :class="{ 'max-lg:hidden': scrolled && !nav_open }"
+        class="hover:text-yellow transition relative block rounded" :class="{ 'hidden': scrolled && !nav_open }"
         @click="open = !open; $nextTick(() => $refs.searchInput.focus()); $dispatch('searchtoggled', open)">
 
         @svg('search', 'w-6 h-6 p-0.5')</button>

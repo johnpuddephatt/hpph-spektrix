@@ -1,5 +1,5 @@
 <header x-cloak class="{{ $header_class ?? 'text-white' }} z-20 fixed left-0 right-0 top-0">
-    <div class="container flex flex-row items-center py-3 2xl:py-6">
+    <div class="container flex flex-row items-center py-3">
         <a title="Navigate to homepage" aria-label="Navigate to homepage" class="relative z-20 lg:-ml-2 mr-3 text-yellow"
             style="color: @yield('color')" href="/">
             @svg('logo-compact', 'h-[2.35rem] w-auto')</a>
@@ -37,8 +37,9 @@
             @include('spektrix-components.login-status')
 
             @if (\Auth::user() && isset($edit_link))
+            <!-- !hidden should be max-lg:!hidden if we don't want the edit link to hide on desktop -->
                 <a aria-label="Edit page" title="Edit page" class="inline-block hover:text-yellow transition"
-                    :class="{ 'max-lg:!hidden': scrolled && !nav_open }"
+                    :class="{ '!hidden': scrolled && !nav_open }"
                     href="{{ $edit_link }}">@svg('edit', 'h-6 w-6 pb-0.5')</a>
             @endif
 

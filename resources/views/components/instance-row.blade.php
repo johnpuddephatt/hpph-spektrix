@@ -2,22 +2,22 @@
 
 <div {{ $attributes->class(['group cursor-default relative container transition duration-500']) }}>
     <div
-        class="border-b-[0.5px] border-gray-light py-4 relative flex flex-wrap lg:flex-nowrap flex-row items-start lg:gap-6">
+        class="border-b-[0.5px] border-gray-light  py-4 relative flex flex-wrap lg:flex-nowrap flex-row items-start lg:gap-6">
 
-        @if ($instance->event->featuredImage)
-            <div class="w-1/2 md:w-1/4 md:ml-[25%] lg:ml-0 lg:w-2/12 relative aspect-video flex flex-col">
-                <div class="w-full relative flex-1 rounded overflow-hidden">
+        <div class="w-1/2 md:w-1/4 md:ml-[25%] lg:ml-0  lg:w-2/12 relative aspect-video flex flex-col">
+            <div class="w-full bg-sand-dark relative flex-1 rounded overflow-hidden">
+                    @if ($instance->event->featuredImage)
                     {!! $instance->event->featuredImage->img('wide')->attributes([
                         'class' => 'group-hover:scale-105 transition duration-500 block w-full absolute max-w-none inset-0',
                         'loading' => 'lazy',
                     ]) !!}
+                @endif
                 </div>
                 @if ($instance->strand?->show_on_instance_card)
                     <x-strand.badge :dark="false" class="mt-2" :strand="$instance->strand" />
                 @endif
 
             </div>
-        @endif
 
         <div class="max-lg:-order-1 flex w-1/2 pr-4 lg:pr-0 flex-col self-stretch items-start lg:w-4/12">
             <h4 class="type-regular mb-auto overflow-hidden text-ellipsis">
@@ -48,11 +48,7 @@
                 <x-accessibilities :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description" :autism_friendly="$instance->autism_friendly" :toddler_friendly="$instance->toddler_friendly" />
 
                 @if (nova_get_setting('display_availability_badge', false))
-                    <div x-cloak x-data='{ instance: { availability: @json($instance->availability) } }'
-                    x-ref="{{  $instance->id }}-availability" x-cloak
-                        >
-                        <x-availability-badge />
-                    </div>
+                    <x-availability-badge :instance="$instance" />
                 @endif
             </div>
 
