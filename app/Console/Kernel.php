@@ -21,9 +21,8 @@ class Kernel extends ConsoleKernel
             ->daily();
 
         $schedule->command("fetch:all")->hourly();
-        $schedule->command("fetch:shop")->hourly();
         $schedule->command("cache:availability")->everyFiveMinutes();
-        $schedule->command("cache:pages")->everyFiveMinutes();
+        // $schedule->command("cache:pages")->everyFiveMinutes();
     }
 
     /**

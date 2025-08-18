@@ -2,7 +2,6 @@
     @booking.window="eventID = $event.detail.eventID; instanceID = $event.detail.instanceID; event = $event.detail.event; certificate = $event.detail.certificate"
     @keyup.escape.window="closeBooking" x-data="{
         iFrameLoading: true,
-        displayAvailabilityBadge: {{ nova_get_setting('display_availability_badge', false) }},
         eventID: null,
         event: null,
         certificate: null,
@@ -33,22 +32,22 @@
     ">
 
     <div x-show="eventID" x-on:click="closeBooking"
-        class="bg-black backdrop-blur-lg bg-opacity-60 duration-150 fixed inset-0 z-30"
+        class="fixed inset-0 z-30 bg-black bg-opacity-60 backdrop-blur-lg duration-150"
         x-transition:enter-start="opacity-0" x-transition:leave-end="opacity-0">
     </div>
 
     <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full" x-show="eventID"
-        class="bg-sand flex flex-col h-screen transition fixed z-50 top-0 bottom-0 right-0 w-full lg:w-[90vw] xl:w-[75vw]">
+        class="fixed bottom-0 right-0 top-0 z-50 flex h-screen w-full flex-col bg-sand transition lg:w-[90vw] xl:w-[75vw]">
         <button x-on:click="closeBooking" aria-label="Close booking options"
-            class="z-30 top-5 lg:top-[2.5rem] absolute lg:mr-10 right-4 lg:right-full">@svg('plus', 'h-6 w-6 text-black lg:text-white rotate-45 transform origin-center')</button>
+            class="absolute right-4 top-5 z-30 lg:right-full lg:top-[2.5rem] lg:mr-10">@svg('plus', 'h-6 w-6 text-black lg:text-white rotate-45 transform origin-center')</button>
         <h2 x-on:click="instanceID = null"
-            class="type-regular lg:type-medium lg:justify-between gap-4 flex items-center flex-row cursor-pointer z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-4 lg:px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap"
+            class="type-regular lg:type-medium z-10 flex transform cursor-pointer flex-row items-center gap-4 whitespace-nowrap px-4 py-3 lg:absolute lg:right-full lg:w-[100vh] lg:origin-top-right lg:-rotate-90 lg:justify-between lg:p-10 lg:px-6 lg:text-right"
             :class="instanceID ? 'bg-yellow-dark cursor-pointer' : 'cursor-default bg-sand-dark lg:bg-sand'">
             <span>Showtimes</span> <span
-                class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">1</span>
+                class="type-regular lg:type-medium order-first inline-block h-12 w-12 rounded-full bg-yellow py-3.5 text-center align-middle !leading-none lg:order-last lg:ml-4 lg:h-16 lg:w-16 lg:rotate-90 lg:py-5">1</span>
         </h2>
-        <div class="container flex-grow overflow-y-auto flex flex-col relative pt-4 lg:pt-12 lg:pl-48" x-show="eventID">
+        <div class="container relative flex flex-grow flex-col overflow-y-auto pt-4 lg:pl-48 lg:pt-12" x-show="eventID">
 
             <div class="type-medium !font-normal">Select a showtime</div>
 
@@ -57,44 +56,45 @@
             </div>
 
             <div x-show="instances && !instances.length" x-transition
-                class="rounded max-w-md bg-sand-light mt-4 px-6 py-2 font-semibold">
+                class="mt-4 max-w-md rounded bg-sand-light px-6 py-2 font-semibold">
 
                 {!! $settings['no_scheduled_screenings'] ?? 'No scheduled screenings' !!}
             </div>
 
             <template x-if="instances && instances.length">
-                <div class="gap-8 lg:flex-1 flex flex-col lg:flex-row lg:gap-12">
-                    <div class="max-w-xl w-full flex flex-col lg:h-full">
-                        <div class="mt-1 mb-8"><span class="font-bold" x-html="event"></span> <span
-                                class="type-xs-mono bg-gray-dark inline-block min-w-[2em] text-center rounded-full align-middle px-1 text-white"
+                <div class="flex flex-col gap-8 lg:flex-1 lg:flex-row lg:gap-12">
+                    <div class="flex w-full max-w-xl flex-col lg:h-full">
+                        <div class="mb-8 mt-1"><span class="font-bold" x-html="event"></span> <span
+                                class="type-xs-mono inline-block min-w-[2em] rounded-full bg-gray-dark px-1 text-center align-middle text-white"
                                 x-html="certificate"></span></div>
 
-                        <div class="pb-4 lg:pr-12 flex-1">
+                        <div class="flex-1 pb-4 lg:pr-12">
                             <template x-for="(instance, key) in instances">
                                 <div>
                                     <h3 x-show="key == 0 ||
                             instances[key - 1].start_date !== instance.start_date"
-                                        class="type-small mt-12 mb-3" x-text="instance.start_date"></h3>
+                                        class="type-small mb-3 mt-12" x-text="instance.start_date"></h3>
                                     <button aria-label="Buy tickets for this screening"
                                         x-on:click="instance.external_ticket_link ? (window.location.href = instance.external_ticket_link) : instanceID = instance.short_id"
                                         :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
-                                        class="group border-t transition w-full flex flex-row items-center gap-2 lg:gap-4 border-gray-light py-2">
-                                        <div class="type-xs-mono !text-base rounded bg-black py-1.5 px-4 text-white"
+                                        class="group flex w-full flex-row items-center gap-2 border-t border-gray-light py-2 transition lg:gap-4">
+                                        <div class="type-xs-mono rounded bg-black px-4 py-1.5 !text-base text-white"
                                             x-text="instance.start_time">
                                         </div>
 
-                                        <div class="flex sm:items-center flex-col sm:flex-row gap-x-2 gap-y-0.5">
+                                        <div class="flex flex-col gap-x-2 gap-y-0.5 sm:flex-row sm:items-center">
                                             <x-strand.booking-path />
                                             <span
                                                 x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.toddler_friendly) "
-                                                class="hidden sm:inline-block text-2xl">&middot;</span>
+                                                class="hidden text-2xl sm:inline-block">&middot;</span>
                                             <x-accessibilities.booking-path />
 
                                         </div>
 
                                         <div class="ml-auto flex flex-row items-center gap-3">
-
-                                            <x-availability-badge x-show="displayAvailabilityBadge" />
+                                            @if (nova_get_setting('display_availability_badge', false))
+                                                <x-availability-badge />
+                                            @endif
 
                                             @svg('arrow-right', 'bg-sand-light flex-shrink-0 group-hover:bg-yellow rounded-full p-3 h-12 w-12')
                                         </div>
@@ -111,31 +111,36 @@
 
                     </div>
                     <div x-show="instances && instances.length && instances.some((instance) => instance.event.audio_description || instance.captioned || instance.autism_friendly || instance.toddler_friendly)"
-                        class="pb-8 lg:text-center max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[6.9rem]">
+                        class="max-w-lg pb-8 lg:w-1/3 lg:max-w-xs lg:pt-[6.9rem] lg:text-center">
                         <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
 
                         <div x-show="instances.some((instance) => instance.special_event == 'Pay What You Can')"
-                            class="border-t last:border-b border-gray-light py-4">
+                            class="border-t border-gray-light py-4 last:border-b">
                             <span
-                                class="type-xs py-0.5 text-black uppercase inline-block rounded px-2 bg-sand-light !font-bold !no-underline z-[2]">Pay What You Can</span>
-                            <p class="type-small mt-2 !font-normal">This screening allows you to choose the ticket price you’re able to afford.</p>
-                            <p class="type-small mt-2 !font-normal">Those unable to pay can obtain free tickets 48hrs before the screening. <a target="_blank" href="https://hpph.co.uk/strands/hyde-seek#how-do-i-access-free-pay-what-you-can-tickets" class="underline">Learn more</a>.</p>
+                                class="type-xs z-[2] inline-block rounded bg-sand-light px-2 py-0.5 !font-bold uppercase text-black !no-underline">Pay
+                                What You Can</span>
+                            <p class="type-small mt-2 !font-normal">This screening allows you to choose the ticket price
+                                you’re able to afford.</p>
+                            <p class="type-small mt-2 !font-normal">Those unable to pay can obtain free tickets 48hrs
+                                before the screening. <a target="_blank"
+                                    href="https://hpph.co.uk/strands/hyde-seek#how-do-i-access-free-pay-what-you-can-tickets"
+                                    class="underline">Learn more</a>.</p>
 
                         </div>
 
                         <div x-show="instances.some((instance) => instance.event.audio_description)"
-                            class="border-t last:border-b border-gray-light py-4">
+                            class="border-t border-gray-light py-4 last:border-b">
                             <span
-                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">AD</span>
+                                class="type-xs-mono z-[2] inline-block cursor-default rounded-full bg-gray-dark px-2 text-center text-white no-underline">AD</span>
                             <p class="type-small mt-2 !font-normal">Audio Description available via headsets. These can
                                 be
                                 reserved in next booking stage.</p>
 
                         </div>
                         <div x-show="instances.some((instance) => instance.captioned)"
-                            class="border-t last:border-b border-gray-light py-4">
+                            class="border-t border-gray-light py-4 last:border-b">
                             <span
-                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Captioned</span>
+                                class="type-xs-mono z-[2] inline-block cursor-default rounded-full bg-gray-dark px-2 text-center text-white no-underline">Captioned</span>
                             <p class="type-small mt-2 !font-normal">Descriptive subtitles for the benefit of audiences
                                 who
                                 are Deaf or Hard of Hearing.</p>
@@ -143,23 +148,26 @@
                         </div>
 
                         <div x-show="instances.some((instance) => instance.autism_friendly)"
-                            class="border-t last:border-b border-gray-light py-4">
+                            class="border-t border-gray-light py-4 last:border-b">
                             <span
-                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Autism</span>
-                            <p class="type-small mt-2 !font-normal">Autism-friendly. Designed for neurodiverse audiences, these
+                                class="type-xs-mono z-[2] inline-block cursor-default rounded-full bg-gray-dark px-2 text-center text-white no-underline">Autism</span>
+                            <p class="type-small mt-2 !font-normal">Autism-friendly. Designed for neurodiverse
+                                audiences, these
                                 screenings feature prompt start times, raised lighting and reduced volume. Capacity is
                                 reduced and audiences can make noise and move around.</p>
                         </div>
 
                         <div x-show="instances.some((instance) => instance.toddler_friendly)"
-                            class="border-t last:border-b border-gray-light py-4">
+                            class="border-t border-gray-light py-4 last:border-b">
                             <span
-                                class="type-xs-mono inline-block bg-gray-dark rounded-full text-white no-underline px-2 text-center cursor-default z-[2]">Toddler</span>
-                            <p class="type-small mt-2 !font-normal">Toddler-friendly. Designed for younger audiences, in particular those who are too old for our Bring Your Own Baby screenings but too young to stay seated! These
+                                class="type-xs-mono z-[2] inline-block cursor-default rounded-full bg-gray-dark px-2 text-center text-white no-underline">Toddler</span>
+                            <p class="type-small mt-2 !font-normal">Toddler-friendly. Designed for younger audiences, in
+                                particular those who are too old for our Bring Your Own Baby screenings but too young to
+                                stay seated! These
                                 screenings feature shorter run times and audiences can make noise and move around.</p>
                         </div>
 
-                        <p class="underline mt-6"><a href="/access#accessible-screenings">Learn
+                        <p class="mt-6 underline"><a href="/access#accessible-screenings">Learn
                                 about
                                 accessible screenings</a></p>
 
@@ -170,17 +178,17 @@
     </div>
     <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full"
-        class="w-full flex flex-col lg:w-[calc(90vw-9rem)] xl:w-[calc(75vw-9rem)] z-[60] bg-sand lg:min-h-screen transition fixed top-[4.5rem] lg:top-0 bottom-0 right-0"
+        class="fixed bottom-0 right-0 top-[4.5rem] z-[60] flex w-full flex-col bg-sand transition lg:top-0 lg:min-h-screen lg:w-[calc(90vw-9rem)] xl:w-[calc(75vw-9rem)]"
         x-show="instanceID && eventID">
         <h2
-            class="type-regular lg:type-medium bg-sand-dark lg:bg-transparent lg:justify-between gap-4 flex items-center flex-row z-10 lg:absolute lg:w-[100vh] lg:right-full lg:text-right py-3 px-4 lg:px-6 lg:p-10 lg:origin-top-right lg:-rotate-90 transform whitespace-nowrap">
+            class="type-regular lg:type-medium z-10 flex transform flex-row items-center gap-4 whitespace-nowrap bg-sand-dark px-4 py-3 lg:absolute lg:right-full lg:w-[100vh] lg:origin-top-right lg:-rotate-90 lg:justify-between lg:bg-transparent lg:p-10 lg:px-6 lg:text-right">
             <span>Tickets &amp; extras</span> <span
-                class="type-regular lg:type-medium lg:order-last lg:rotate-90 order-first lg:ml-4 inline-block w-12 h-12 py-3.5 lg:w-16 lg:h-16 lg:py-5 !leading-none rounded-full bg-yellow align-middle text-center">2</span>
+                class="type-regular lg:type-medium order-first inline-block h-12 w-12 rounded-full bg-yellow py-3.5 text-center align-middle !leading-none lg:order-last lg:ml-4 lg:h-16 lg:w-16 lg:rotate-90 lg:py-5">2</span>
         </h2>
-        <div class="flex-grow container overflow-y-auto relative pt-4 lg:pt-12 lg:pl-40" x-show="instanceID">
+        <div class="container relative flex-grow overflow-y-auto pt-4 lg:pl-40 lg:pt-12" x-show="instanceID">
 
             <template x-if="instanceID">
-                <div class="gap-8 flex-1 flex flex-col lg:flex-row lg:gap-12">
+                <div class="flex flex-1 flex-col gap-8 lg:flex-row lg:gap-12">
 
                     <div class="w-full max-w-xl">
                         <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 lg:pl-32">
@@ -193,23 +201,23 @@
 
                     </div>
 
-                    <div class="-mt-8 lg:mt-0 pb-8 max-w-lg lg:max-w-xs lg:w-1/3 lg:pt-[8.9rem] lg:mr-4">
+                    <div class="-mt-8 max-w-lg pb-8 lg:mr-4 lg:mt-0 lg:w-1/3 lg:max-w-xs lg:pt-[8.9rem]">
 
                         <div class="mb-8">
                             <h3 class="type-small mb-3">Seating plan key</h3>
-                            <div class="border-t border-b border-gray-light py-4">
+                            <div class="border-b border-t border-gray-light py-4">
                                 <p class="type-xs"><span
-                                        class="inline-block mr-1 translate-y-1/4 w-4 h-4 rounded-full bg-black"></span>
+                                        class="mr-1 inline-block h-4 w-4 translate-y-1/4 rounded-full bg-black"></span>
                                     Seat
                                     available
                                 </p>
                                 <p class="type-xs"><span
-                                        class="inline-block mr-1 translate-y-1/4 w-4 h-4 rounded-full bg-[#b9b6b2]"></span>
+                                        class="mr-1 inline-block h-4 w-4 translate-y-1/4 rounded-full bg-[#b9b6b2]"></span>
                                     Seat
                                     unavailable
                                 </p>
                                 <p class="type-xs mt-0.5 flex items-center gap-1">
-                                    <svg class="mr-0.5 w-4 h-auto" xmlns="http://www.w3.org/2000/svg"
+                                    <svg class="mr-0.5 h-auto w-4" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
                                         width="483.2226563" height="551.4306641"
                                         viewBox="0 0 483.2226563 551.4306641" overflow="visible"
@@ -227,7 +235,7 @@
                         </div>
 
                         <h3 class="type-small mb-3">{{ $settings['members_basket_heading'] ?? 'Members' }}</h3>
-                        <div class="type-xs prose border-t last:border-b border-gray-light py-4">
+                        <div class="type-xs prose border-t border-gray-light py-4 last:border-b">
                             {!! $settings['members_basket_text'] ??
                                 'Please select a full-price ticket, any discounts will be applied at checkout after you have signed into your account' !!}
                         </div>

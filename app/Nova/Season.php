@@ -106,7 +106,7 @@ class Season extends Resource
                 ->conversionOnDetailView("thumb")
                 ->conversionOnIndexView("thumb"),
             Images::make("Main image", "main"),
-            Boolean::make("HPPH Presents", 'hpph_presents')
+            NovaSwitcher::make("HPPH Presents", 'hpph_presents')
                 ->help('Enable the HPPH presents text above the season title.')
                 ->default(true)
                 ->hideFromIndex()
