@@ -251,7 +251,6 @@ class Instance extends Model
     {
         $cacheKey = "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date;
 
-        Log::info($overwriteCache ? "Forcing cache refresh for key: " . $cacheKey : "Requesting instances with cache key: " . $cacheKey);
 
         $queryBuilder = function () use ($past, $strand, $accessibility, $date) {
             $instances = \App\Models\Instance::whereHas("event", function ($event) {
@@ -301,9 +300,10 @@ class Instance extends Model
         if ($overwriteCache) {
             $result = $queryBuilder();
             Cache::put($cacheKey, $result, 300);
+            Log::info("Forcing cache refresh for key: " . $cacheKey);
             return $result;
         }
-
+        Log::info("Requesting instances with cache key: " . $cacheKey);
         return Cache::remember($cacheKey, 300, $queryBuilder);
     }
 }
