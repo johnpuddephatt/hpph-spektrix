@@ -249,56 +249,53 @@ class Instance extends Model
 
     public static function getInstancesForProgramme($past, $strand, $accessibility, $date)
     {
-        $instances = \App\Models\Instance::whereHas("event", function ($event) {
-            return $event->shownInProgramme();
-        })
-            ->with(
-                "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
-                "event.featuredImage",
-                "strand:slug,name,color,show_on_instance_card",
-
-            )
-            ->select(
-                "id",
-                "event_id",
-                "start",
-                "captioned",
-                "relaxed",
-                "autism_friendly",
-                "toddler_friendly",
-                "signed_bsl",
-                "analogue",
-                "strand_name",
-                "special_event",
-                "external_ticket_link"
-            );
-
-        if ($past == true) {
-            $instances->withoutGlobalScope("future");
-        }
-
-        if ($strand) {
-
-            $instances->whereHas("strand", function (Builder $query) use (
-                $strand
-            ) {
-                $query->where("strands.slug", $strand);
-            });
-        }
-
-        if ($accessibility) {
-            $instances->{Str::camel($accessibility)}();
-        }
-
-        if ($date) {
-            $instances->whereDate("start", $date);
-        }
-
-
         return Cache::remember(
             "instances_for_listings_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
             60 * 10, // Cache for 10 minutes
-            function () use ($instances) {
+            function () use ($past, $strand, $accessibility, $date) {
+                $instances = \App\Models\Instance::whereHas("event", function ($event) {
+                    return $event->shownInProgramme();
+                })
+                    ->with(
+                        "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
+                        "event.featuredImage",
+                        "strand:slug,name,color,show_on_instance_card",
+
+                    )
+                    ->select(
+                        "id",
+                        "event_id",
+                        "start",
+                        "captioned",
+                        "relaxed",
+                        "autism_friendly",
+                        "toddler_friendly",
+                        "signed_bsl",
+                        "analogue",
+                        "strand_name",
+                        "special_event",
+                        "external_ticket_link"
+                    );
+
+                if ($past == true) {
+                    $instances->withoutGlobalScope("future");
+                }
+
+                if ($strand) {
+                    $instances->whereHas("strand", function (Builder $query) use (
+                        $strand
+                    ) {
+                        $query->where("strands.slug", $strand);
+                    });
+                }
+
+                if ($accessibility) {
+                    $instances->{Str::camel($accessibility)}();
+                }
+
+                if ($date) {
+                    $instances->whereDate("start", $date);
+                }
                 return $instances->get();
             }
         );

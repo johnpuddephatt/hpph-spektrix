@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Models\Instance;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -61,6 +62,8 @@ class FetchEventData implements ShouldQueue
         ResponseCache::clear();
         Cache::flush();
 
+        Instance::getInstancesForProgramme(false, null, null, null);
+
         Log::channel("spektrix")->info("Imported " . count($events) . " events (" . count($instances) . " instances)");
     }
 
@@ -104,24 +107,16 @@ class FetchEventData implements ShouldQueue
                 ["id" => $event->id],
                 [
                     "enabled" => true,
-                    // "description" => $event->description ?? null, // we don't want to use the Spektrix description
                     "duration" => $event->duration ?? null,
                     "is_on_sale" => $event->isOnSale ?? false,
                     "name" => $event->name ?? null,
                     "subtitle" => $event->attribute_Subtitle ?? null,
-                    "instance_dates" => $event->instanceDates ?? null,
                     "first_instance_date_time" =>
                     $event->firstInstanceDateTime ?? null,
                     "last_instance_date_time" =>
                     $event->lastInstanceDateTime ?? null,
-                    "alternative_content" =>
-                    $event->attribute_AlternativeContent ?? false,
-                    "archive_film" => $event->attribute_ArchiveFilm ?? false,
                     "audio_description" =>
                     $event->attribute_AudioDescription ?? false,
-                    "mubigo" => $event->attribute_MUBIGO ?? false,
-                    "non_specialist_film" =>
-                    $event->attribute_NonSpecialistFilm ?? false,
                     "country_of_origin" =>
                     $event->attribute_CountryOfOrigin ?? null,
                     "director" => $event->attribute_Director ?? null,
@@ -165,13 +160,25 @@ class FetchEventData implements ShouldQueue
                             $event->attribute_ContentGuidance3 ?? null,
                         ])
                     ),
-                    "members_offer_available" =>
-                    $event->attribute_MembersOfferAvailable ?? false,
                     "certificate_age_guidance" =>
                     $event->attribute_CertificateAgeGuidance ?? null,
-                    "live_or_film" => $event->attribute_LiveOrFilm ?? null,
-                    // "website" => $event->attribute_Website ?? null,
                     "coming_soon" => $event->attribute_ComingSoon ?: null,
+
+                    // Unused (checked August 2025)
+
+                    // "website" => $event->attribute_Website ?? null,
+                    // "description" => $event->description ?? null, // we don't want to use the Spektrix description
+                    "members_offer_available" =>
+                    $event->attribute_MembersOfferAvailable ?? false,
+                    "live_or_film" => $event->attribute_LiveOrFilm ?? null,
+                    "non_specialist_film" =>
+                    $event->attribute_NonSpecialistFilm ?? false,
+                    "mubigo" => $event->attribute_MUBIGO ?? false,
+                    "archive_film" => $event->attribute_ArchiveFilm ?? false,
+                    "alternative_content" =>
+                    $event->attribute_AlternativeContent ?? false,
+                    "instance_dates" => $event->instanceDates ?? null,
+
                 ]
             );
             // });
