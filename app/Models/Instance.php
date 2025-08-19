@@ -247,69 +247,60 @@ class Instance extends Model
             ]);
     }
 
-    public static function getInstancesForProgramme($past = false, $strand = null, $accessibility = null, $date = null, $overwriteCache = false)
+    public static function getInstancesForProgramme($past = false, $strand = null, $accessibility = null, $date = null, $force = false)
     {
-        $instances = \App\Models\Instance::whereHas("event", function ($event) {
-            return $event->shownInProgramme();
-        })
-            ->with(
-                "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
-                "event.featuredImage",
-                "strand:slug,name,color,show_on_instance_card",
-
-            )
-            ->select(
-                "id",
-                "event_id",
-                "start",
-                "captioned",
-                "relaxed",
-                "autism_friendly",
-                "toddler_friendly",
-                "signed_bsl",
-                "analogue",
-                "strand_name",
-                "special_event",
-                "external_ticket_link"
-            );
-
-        if ($past == true) {
-            $instances->withoutGlobalScope("future");
+        if ($force) {
+            Cache::forget("instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date);
         }
+        return Cache::remember(
+            "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
+            300, // Cache for 5 minutes
+            function () use ($past, $strand, $accessibility, $date) {
+                $instances = \App\Models\Instance::whereHas("event", function ($event) {
+                    return $event->shownInProgramme();
+                })
+                    ->with(
+                        "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
+                        "event.featuredImage",
+                        "strand:slug,name,color,show_on_instance_card",
 
-        if ($strand) {
-            $instances->whereHas("strand", function (Builder $query) use (
-                $strand
-            ) {
-                $query->where("strands.slug", $strand);
-            });
-        }
+                    )
+                    ->select(
+                        "id",
+                        "event_id",
+                        "start",
+                        "captioned",
+                        "relaxed",
+                        "autism_friendly",
+                        "toddler_friendly",
+                        "signed_bsl",
+                        "analogue",
+                        "strand_name",
+                        "special_event",
+                        "external_ticket_link"
+                    );
 
-        if ($accessibility) {
-            $instances->{Str::camel($accessibility)}();
-        }
-
-        if ($date) {
-            $instances->whereDate("start", $date);
-        }
-
-
-        if ($overwriteCache) {
-            Log::info('Overwriting cache for instances');
-            $data = $instances->get();
-            return Cache::put(
-                "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
-                $data,
-                300 // Cache for 5 minutes
-            );
-        } else {
-            return Cache::remember(
-                "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
-                300, // Cache for 5 minutes
-                function () use ($instances) {
-                    return $instances->get();
+                if ($past == true) {
+                    $instances->withoutGlobalScope("future");
                 }
-            );
-        }
+
+                if ($strand) {
+                    $instances->whereHas("strand", function (Builder $query) use (
+                        $strand
+                    ) {
+                        $query->where("strands.slug", $strand);
+                    });
+                }
+
+                if ($accessibility) {
+                    $instances->{Str::camel($accessibility)}();
+                }
+
+                if ($date) {
+                    $instances->whereDate("start", $date);
+                }
+                return $instances->get();
+            }
+        );
     }
 }

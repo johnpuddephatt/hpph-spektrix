@@ -472,3 +472,17 @@
 1755621472-4101-82679490,1755621472.407,GET,/nova-vendor/logs?log=laravel-spektrix.log&lastLine=0,Laravel\Nova\LogViewer\Http\Controllers\Pages\LogViewerController@fetch,200,34.531116485596,request
 1755621479-3856-974866563,1755621479.3668,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,75.150966644287,request
 1755621486-3620-1985360327,1755621486.3429,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,63.901901245117,request
+1755622819-2321-976963374,1755622819.2053,GET,/,App\Http\Controllers\PageController@home,200,3953.0749320984,request
+1755622823-4074-1979476842,1755622823.3916,GET,/storage/animation.json,App\Http\Controllers\PageController@show,404,83.117008209229,request
+1755622823-4459-1823482317,1755622823.4411,GET,/storage/95/responsive-images/Black-History-Month-2%402x___wide_1500_627.jpg,App\Http\Controllers\PageController@show,404,54.463148117065,request
+1755622823-4480-589774733,1755622823.4452,GET,/storage/157/responsive-images/InTheClub2-copy___landscape_1003_669.jpg,App\Http\Controllers\PageController@show,404,49.899816513062,request
+1755622823-5003-1657553975,1755622823.4937,GET,/storage/81/responsive-images/IMG_2037___landscape_1003_669.jpg,App\Http\Controllers\PageController@show,404,57.340860366821,request
+1755622823-5347-529690194,1755622823.5318,GET,/storage/133/responsive-images/Screenshot-2023-03-16-at-19.51.46___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,46.879053115845,request
+1755622823-5449-1972808147,1755622823.5415,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,42.389869689941,request
+1755622823-5571-530352744,1755622823.5547,GET,/storage/135/responsive-images/Screenshot-2023-03-23-at-20.07.52___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,57.186126708984,request
+1755622823-5668-1447096329,1755622823.5641,GET,/storage/134/responsive-images/placeholder___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,57.294845581055,request
+1755622823-6068-920425480,1755622823.5995,GET,/storage/137/responsive-images/Screenshot-2023-03-23-at-13.15.47___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,62.675952911377,request
+1755622823-6297-1410200051,1755622823.6233,GET,/storage/136/responsive-images/Screenshot-2023-03-16-at-11.44.43-%282%29___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,54.047107696533,request
+1755622823-6482-1822995676,1755622823.6446,GET,/storage/138/responsive-images/Screenshot-2023-03-17-at-21.29.20___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,44.421195983887,request
+1755622823-6603-1427617066,1755622823.6574,GET,/storage/132/responsive-images/Screenshot-2023-03-03-at-22.03.39___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,41.779041290283,request
+1755622824-5449-1548958344,1755622824.5379,GET,/whats-on,App\Http\Controllers\PageController@show,200,229.9919128418,request
