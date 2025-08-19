@@ -37,7 +37,7 @@ class CacheProgramme implements ShouldQueue
     public function handle()
     {
 
-        Instance::getInstancesForProgramme(false, false, false, false);
+        Instance::getInstancesForProgramme(false, null, null, null);
         Log::info("Caching programme instances");
 
         // $routes = [

@@ -311,3 +311,4 @@
 1755601200-9814-320428000,1755601200.9784,GET,/storage/134/responsive-images/placeholder___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,56.851148605347,request
 1755601201-0117-418712056,1755601201.0062,GET,/storage/138/responsive-images/Screenshot-2023-03-17-at-21.29.20___square_1120_1120.jpg,App\Http\Controllers\PageController@show,404,60.299873352051,request
 1755601201-3546-1070126786,1755601201.3474,GET,/whats-on,App\Http\Controllers\PageController@show,200,184.74793434143,request
+1755601870-4658-340902466,1755601870.4097,GET,/whats-on?type=schedule,App\Http\Controllers\PageController@show,200,4056.2319755554,request
