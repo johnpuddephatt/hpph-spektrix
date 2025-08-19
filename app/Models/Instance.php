@@ -295,6 +295,7 @@ class Instance extends Model
 
 
         if ($overwriteCache) {
+            Log::info('Overwriting cache for instances');
             $data = $instances->get();
             return Cache::put(
                 "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
