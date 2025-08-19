@@ -250,8 +250,8 @@ class Instance extends Model
     public static function getInstancesForProgramme($past, $strand, $accessibility, $date)
     {
         return Cache::remember(
-            "instances_for_listings_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
-            60 * 10, // Cache for 10 minutes
+            "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
+            300, // Cache for 5 minutes
             function () use ($past, $strand, $accessibility, $date) {
                 $instances = \App\Models\Instance::whereHas("event", function ($event) {
                     return $event->shownInProgramme();
