@@ -249,11 +249,15 @@ class Instance extends Model
 
     public static function getInstancesForProgramme($past = false, $strand = null, $accessibility = null, $date = null, $overwriteCache = false)
     {
+        $cacheKey = "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date;
+
+        Log::info($overwriteCache ? "Forcing cache refresh for key: " . $cacheKey : "Requesting instances with cache key: " . $cacheKey);
+
         if ($overwriteCache) {
-            Cache::forget("instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date);
+            Cache::forget($cacheKey);
         }
         return Cache::remember(
-            "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
+            $cacheKey,
             300, // Cache for 5 minutes
             function () use ($past, $strand, $accessibility, $date) {
                 $instances = \App\Models\Instance::whereHas("event", function ($event) {
