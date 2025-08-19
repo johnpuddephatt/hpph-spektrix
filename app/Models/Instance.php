@@ -247,9 +247,9 @@ class Instance extends Model
             ]);
     }
 
-    public static function getInstancesForProgramme($past = false, $strand = null, $accessibility = null, $date = null, $force = false)
+    public static function getInstancesForProgramme($past = false, $strand = null, $accessibility = null, $date = null, $overwriteCache = false)
     {
-        if ($force) {
+        if ($overwriteCache) {
             Cache::forget("instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date);
         }
         return Cache::remember(
