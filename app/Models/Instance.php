@@ -298,9 +298,7 @@ class Instance extends Model
             $data = $instances->get();
             return Cache::put(
                 "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
-                function () use ($data) {
-                    return $data;
-                },
+                $data,
                 300 // Cache for 5 minutes
             );
         } else {
