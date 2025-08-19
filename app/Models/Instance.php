@@ -300,10 +300,8 @@ class Instance extends Model
         if ($overwriteCache) {
             $result = $queryBuilder();
             Cache::put($cacheKey, $result, 300);
-            Log::info("Forcing cache refresh for key: " . $cacheKey);
             return $result;
         }
-        Log::info("Requesting instances with cache key: " . $cacheKey);
         return Cache::remember($cacheKey, 300, $queryBuilder);
     }
 }
