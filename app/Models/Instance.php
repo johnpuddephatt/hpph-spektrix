@@ -297,10 +297,10 @@ class Instance extends Model
         if ($overwriteCache) {
             return Cache::put(
                 "instances_for_programme_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
-                300, // Cache for 5 minutes
                 function () use ($instances) {
                     return $instances->get();
-                }
+                },
+                300 // Cache for 5 minutes
             );
         } else {
             return Cache::remember(
