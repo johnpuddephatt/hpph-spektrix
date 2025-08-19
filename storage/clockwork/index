@@ -535,3 +535,4 @@
 1755623386-2836-1177830273,1755623386.2705,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,61.709880828857,request
 1755623393-2868-642616134,1755623393.2698,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,63.184976577759,request
 1755623400-2958-1312495948,1755623400.278,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,66.397905349731,request
+1755623522-4736-293835545,1755623522.4506,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,80.47080039978,request

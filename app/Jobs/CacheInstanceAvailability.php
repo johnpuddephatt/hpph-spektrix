@@ -36,9 +36,11 @@ class CacheInstanceAvailability implements ShouldQueue
     public function handle()
     {
         Instance::all()->each(function ($instance) {
-            Cache::put("instance_availability_" . $instance->id, 299, function () use ($instance) {
-                return $instance->availability;
-            });
+            Cache::put(
+                "instance_availability_" . $instance->id,
+                $instance->availability,
+                299
+            );
         });
         Log::channel("spektrix")->info("Cached availability data for " . Instance::count() . " instances.");
     }
