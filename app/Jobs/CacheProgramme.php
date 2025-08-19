@@ -36,8 +36,6 @@ class CacheProgramme implements ShouldQueue
      */
     public function handle()
     {
-
-
         Instance::getInstancesForProgramme(overwriteCache: true);
         Log::info("Caching programme instances");
 

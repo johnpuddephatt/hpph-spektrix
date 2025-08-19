@@ -61,8 +61,7 @@ class FetchEventData implements ShouldQueue
 
         ResponseCache::clear();
         Cache::flush();
-
-        Instance::getInstancesForProgramme(false, null, null, null);
+        Instance::getInstancesForProgramme(false, null, null, null, true);
 
         Log::channel("spektrix")->info("Imported " . count($events) . " events (" . count($instances) . " instances)");
     }
