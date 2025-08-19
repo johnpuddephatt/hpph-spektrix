@@ -277,8 +277,6 @@ class Instance extends Model
             $instances->withoutGlobalScope("future");
         }
 
-        $filtered = false;
-
         if ($strand) {
 
             $instances->whereHas("strand", function (Builder $query) use (
@@ -286,29 +284,22 @@ class Instance extends Model
             ) {
                 $query->where("strands.slug", $strand);
             });
-            $filtered = true;
         }
 
         if ($accessibility) {
             $instances->{Str::camel($accessibility)}();
-            $this->filtered = true;
         }
 
         if ($date) {
             $instances->whereDate("start", $date);
-            $filtered = true;
         }
 
 
         return Cache::remember(
             "instances_for_listings_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
             60 * 10, // Cache for 10 minutes
-            function () use ($instances, $filtered) {
-                if ($filtered) {
-                    return $instances->get();
-                } else {
-                    return $instances->get();
-                }
+            function () use ($instances) {
+                return $instances->get();
             }
         );
     }
