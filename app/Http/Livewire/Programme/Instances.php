@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Programme;
 
+use App\Models\Instance;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Carbon\Carbon;
@@ -38,62 +39,6 @@ class Instances extends Component
 
     public $past = false;
 
-
-    public function instances()
-    {
-        $instances = \App\Models\Instance::whereHas("event", function ($event) {
-            return $event->shownInProgramme();
-        })
-            ->with(
-                "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
-                "event.featuredImage",
-                "strand:slug,name,color,show_on_instance_card",
-
-            )
-            ->select(
-                "id",
-                "event_id",
-                "start",
-                "captioned",
-                "relaxed",
-                "autism_friendly",
-                "toddler_friendly",
-                "signed_bsl",
-                "analogue",
-                "strand_name",
-                "special_event",
-                "external_ticket_link"
-            );
-
-        if ($this->past == true) {
-            $instances->withoutGlobalScope("future");
-        }
-
-        $this->filtered = false;
-
-        if ($this->strand) {
-            $strand = $this->strand;
-            $instances->whereHas("strand", function (Builder $query) use (
-                $strand
-            ) {
-                $query->where("strands.slug", $strand);
-            });
-            $this->filtered = true;
-        }
-
-        if ($this->accessibility) {
-            $instances->{Str::camel($this->accessibility)}();
-            $this->filtered = true;
-        }
-
-        if ($this->date) {
-            $instances->whereDate("start", $this->date);
-            $this->filtered = true;
-        }
-
-        return $instances;
-    }
-
     protected $queryString = ["accessibility", "strand", "date", "past" => ["except" => false]];
 
     protected $listeners = [
@@ -113,6 +58,7 @@ class Instances extends Component
     {
         // $this->clearFilters();
         $this->resetPage();
+        $this->filtered = true;
 
         $this->strand = $value;
     }
@@ -121,7 +67,7 @@ class Instances extends Component
     {
         // $this->clearFilters();
         $this->resetPage();
-
+        $this->filtered = true;
         $this->accessibility = $value;
     }
 
@@ -129,6 +75,7 @@ class Instances extends Component
     {
         // $this->clearFilters();
         $this->resetPage();
+        $this->filtered = true;
 
         $this->date = $value;
     }
@@ -136,7 +83,12 @@ class Instances extends Component
     public function render()
     {
         return view("livewire.programme.instances", [
-            "instances" => $this->instances()->get(),
+            "instances" => Instance::getInstancesForProgramme(
+                $this->past,
+                $this->strand,
+                $this->accessibility,
+                $this->date
+            ),
         ]);
     }
 }

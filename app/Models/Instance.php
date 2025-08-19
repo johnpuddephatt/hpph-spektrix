@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
@@ -244,5 +245,71 @@ class Instance extends Model
                 fn($a) => $a->event->coming_soon ? 1 : 0,
                 ['start', 'asc'],
             ]);
+    }
+
+    public static function getInstancesForProgramme($past, $strand, $accessibility, $date)
+    {
+        $instances = \App\Models\Instance::whereHas("event", function ($event) {
+            return $event->shownInProgramme();
+        })
+            ->with(
+                "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
+                "event.featuredImage",
+                "strand:slug,name,color,show_on_instance_card",
+
+            )
+            ->select(
+                "id",
+                "event_id",
+                "start",
+                "captioned",
+                "relaxed",
+                "autism_friendly",
+                "toddler_friendly",
+                "signed_bsl",
+                "analogue",
+                "strand_name",
+                "special_event",
+                "external_ticket_link"
+            );
+
+        if ($past == true) {
+            $instances->withoutGlobalScope("future");
+        }
+
+        $filtered = false;
+
+        if ($strand) {
+
+            $instances->whereHas("strand", function (Builder $query) use (
+                $strand
+            ) {
+                $query->where("strands.slug", $strand);
+            });
+            $filtered = true;
+        }
+
+        if ($accessibility) {
+            $instances->{Str::camel($accessibility)}();
+            $this->filtered = true;
+        }
+
+        if ($date) {
+            $instances->whereDate("start", $date);
+            $filtered = true;
+        }
+
+
+        return Cache::remember(
+            "instances_for_listings_" . $past . "_" . $strand . "_" . $accessibility . "_" . $date,
+            60 * 10, // Cache for 10 minutes
+            function () use ($instances, $filtered) {
+                if ($filtered) {
+                    return $instances->get();
+                } else {
+                    return $instances->get();
+                }
+            }
+        );
     }
 }

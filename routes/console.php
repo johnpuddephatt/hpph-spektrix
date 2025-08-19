@@ -50,6 +50,6 @@ Artisan::command("cache:availability", function () {
     dispatch(new \App\Jobs\CacheInstanceAvailability());
 })->purpose("Caches availability data for all instances");
 
-Artisan::command("cache:pages", function () {
-    dispatch(new \App\Jobs\CachePages());
-})->purpose("Visits key pages to cache them for faster access");
+Artisan::command("cache:programme", function () {
+    dispatch(new \App\Jobs\CacheProgramme());
+})->purpose("Cache intensive listings queries");

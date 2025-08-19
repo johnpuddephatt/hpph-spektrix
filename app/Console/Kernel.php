@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->command("fetch:all")->hourly();
         $schedule->command("cache:availability")->everyFiveMinutes();
-        // $schedule->command("cache:pages")->everyFiveMinutes();
+        $schedule->command("cache:programme")->everyFiveMinutes();
     }
 
     /**
