@@ -579,3 +579,5 @@
 1755624026-1799-1508075296,1755624026.1601,GET,/nova-vendor/logs?log=laravel.log&lastLine=0,Laravel\Nova\LogViewer\Http\Controllers\Pages\LogViewerController@fetch,200,76.89094543457,request
 1755624030-2699-606626317,1755624030.2551,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,64.121007919312,request
 1755624037-2727-2101423630,1755624037.2545,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,61.728000640869,request
+1755625429-8929-99020977,1755625429.8296,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,225.57210922241,request
+1755625430-2220-492237260,1755625430.2135,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,52.188873291016,request

@@ -5,6 +5,7 @@
 @section('description', $season->short_description)
 @section('image', $season->featuredImage?->getUrl('landscape'))
 
+@php($opacity = $season->hpph_presents || $season->show_header ? 'opacity-50' : 'opacity-100')
 @section('content')
     <div class="fixed inset-0 -z-10 h-[calc(100vh-1rem)] w-full overflow-hidden bg-black">
         @if ($season->featuredVideo && $season->featuredVideo->video_conversions)
@@ -12,16 +13,16 @@
             {!! $season->featuredVideo->img('thumb', ['class' => 'w-full absolute h-full inset-0 object-cover'])->toHtml() !!}
 
             <video
-                onplay="(function(e){e.previousElementSibling.classList.add('opacity-0'); e.classList.remove('opacity-0'); e.classList.add('opacity-50') })(this)"
+                onplay="(function(e){e.previousElementSibling.classList.add('opacity-0'); e.classList.remove('opacity-0'); e.classList.add($opacity) })(this)"
                 class="absolute inset-0 h-full w-full object-cover opacity-0" playsinline muted autoplay loop>
                 @foreach ($video_conversions->{'1280x720'} as $format => $url)
                     <source src="{{ Storage::url($url) }}" type="video/{{ $format }}">
                 @endforeach
             </video>
         @elseif ($season->featuredVideo)
-            {!! $season->featuredVideo->img('thumb', ['class' => 'w-full absolute h-full opacity-50 inset-0 object-cover'])->toHtml() !!}
+            {!! $season->featuredVideo->img('thumb', ['class' => 'w-full absolute h-full ' . $opacity . ' inset-0 object-cover'])->toHtml() !!}
         @elseif($season->featuredImage)
-            {!! $season->featuredImage->img('landscape', ['class' => 'w-full absolute h-full opacity-50  inset-0 object-cover'])->toHtml() !!}
+            {!! $season->featuredImage->img('landscape', ['class' => 'w-full absolute h-full ' . $opacity . ' inset-0 object-cover'])->toHtml() !!}
         @endif
 
         <div class="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 transform text-center text-white">
