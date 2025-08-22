@@ -35,7 +35,7 @@
 
             @if ($season->hero_overlay_image)
                 <img src="{{ Storage::url($season->hero_overlay_image) }}" alt="{{ $season->name }}"
-                    class="mx-auto w-[48rem] max-w-full">
+                    class="mx-auto mb-32 w-[48rem] max-w-full">
             @else
                 @if ($season->show_header)
                     <h1 class="type-medium lg:type-large mx-auto max-w-sm">{{ $season->name }}</h1>
