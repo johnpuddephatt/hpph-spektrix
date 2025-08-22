@@ -657,3 +657,5 @@
 1755904346-6644-2089265680,1755904346.6514,PUT,/nova-api/seasons/12?viaResource=&viaResourceId=&viaRelationship=&editing=true&editMode=update,Laravel\Nova\Http\Controllers\ResourceUpdateController,200,115.46897888184,request
 1755904346-7848-1951752884,1755904346.7764,GET,/nova-api/seasons/12/update-fields?editing=true&editMode=update&viaResource=&viaResourceId=&viaRelationship=,Laravel\Nova\Http\Controllers\UpdateFieldController,200,55.541038513184,request
 1755904347-7985-786261913,1755904347.7894,GET,/seasons/heritage-is-open,App\Http\Controllers\SeasonController@show,200,1790.8399105072,request
+1755904432-5012-2038271392,1755904432.4738,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,148.65779876709,request
+1755904494-3351-1887860716,1755904494.2967,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,219.32101249695,request

@@ -5,7 +5,8 @@
 @section('description', $season->short_description)
 @section('image', $season->featuredImage?->getUrl('landscape'))
 
-@php($opacity = $season->hpph_presents || $season->show_header ? 'opacity-50' : 'opacity-100')
+{{-- @php($opacity = $season->hpph_presents || $season->show_header ? 'opacity-50' : 'opacity-100') --}}
+@php($opacity = 'opacity-50')
 @section('content')
     <div class="fixed inset-0 -z-10 h-[calc(100vh-1rem)] w-full overflow-hidden bg-black">
         @if ($season->featuredVideo && $season->featuredVideo->video_conversions)
