@@ -27,14 +27,16 @@
         @endif
 
         <div class="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 transform text-center text-white">
+
+            @if ($season->hpph_presents)
+                @svg('logo-hpph-without-est', 'w-20 mb-2 mx-auto text-yellow')
+                <div class="type-xs-mono mb-8 mt-1">presents</div>
+            @endif
+
             @if ($season->hero_overlay_image)
                 <img src="{{ Storage::url($season->hero_overlay_image) }}" alt="{{ $season->name }}"
                     class="mx-auto w-[48rem] max-w-full">
             @else
-                @if ($season->hpph_presents)
-                    @svg('logo-hpph-without-est', 'w-20 mb-2 mx-auto text-yellow')
-                    <div class="type-xs-mono mb-8 mt-1">presents</div>
-                @endif
                 @if ($season->show_header)
                     <h1 class="type-medium lg:type-large mx-auto max-w-sm">{{ $season->name }}</h1>
                     <div
