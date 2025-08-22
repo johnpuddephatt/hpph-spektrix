@@ -48,7 +48,8 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         'display_type',
         'sort_order',
         'show_in_programme',
-        'show_header'
+        'show_header',
+        'hero_overlay_image',
     ];
 
     protected $casts = [

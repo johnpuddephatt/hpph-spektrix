@@ -106,6 +106,7 @@ class Season extends Resource
                 ->conversionOnDetailView("thumb")
                 ->conversionOnIndexView("thumb"),
             Images::make("Main image", "main"),
+            Image::make("Hero overlay image", "hero_overlay_image"),
             NovaSwitcher::make("HPPH Presents", 'hpph_presents')
                 ->help('Enable the HPPH presents text above the season title.')
                 ->default(true)
