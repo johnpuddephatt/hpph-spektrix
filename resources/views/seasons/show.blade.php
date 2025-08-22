@@ -28,7 +28,7 @@
 
         <div class="absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 transform text-center text-white">
             @if ($season->hero_overlay_image)
-                <img src="{{ Storage::url($season->hero_overlay_image) }}" alt="Hero Overlay"
+                <img src="{{ Storage::url($season->hero_overlay_image) }}" alt="{{ $season->name }}"
                     class="mx-auto w-[48rem] max-w-full">
             @else
                 @if ($season->hpph_presents)
