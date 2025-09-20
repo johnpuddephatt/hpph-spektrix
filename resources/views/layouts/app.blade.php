@@ -33,7 +33,6 @@
         </script>
     @endif
 
-    @livewireStyles
     @stack('head')
 </head>
 
@@ -43,7 +42,6 @@
     @booking.window="console.log('booking event on window');booking_path_open = $event.detail"
     @scrolled.window="scrolled =  $event.detail;">
     @yield('templatecontent')
-    @livewireScripts
     @stack('footer')
 
 </body>

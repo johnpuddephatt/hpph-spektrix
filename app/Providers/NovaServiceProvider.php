@@ -227,6 +227,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     ),
                     MenuItem::resource(\App\Nova\Strand::class),
                     MenuItem::resource(\App\Nova\Season::class),
+                    MenuItem::resource(\App\Nova\AccessTag::class),
                     MenuGroup::make("Programme", []),
 
                     MenuGroup::make("", [

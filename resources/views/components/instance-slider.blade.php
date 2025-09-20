@@ -1,4 +1,12 @@
-@props(['entries' => [], 'type' => 'instances', 'layout' => 'default', 'show_strand' => true, 'color' => null, 'strand' => null, 'season' => null])
+@props([
+    'entries' => [],
+    'type' => 'instances',
+    'layout' => 'default',
+    'show_strand' => true,
+    'color' => null,
+    'strand' => null,
+    'season' => null,
+])
 
 <div x-cloak x-data="{ swiper: null, showControls: false, showPreviousControl: true, showNextControl: true, totalSlides: {{ count($entries) + ($strand || $season ? 1 : 0) }}, }" x-init="swiper = new Swiper($refs.container, {
     loop: false,
@@ -33,8 +41,8 @@
             slidesPerView: @if ($layout == 'home') 6 @else Math.min(totalSlides, 4) @endif,
         },
     },
-})" class="mt-12 lg:mt-24 relative max-w-none mx-auto">
-    <div class="swiper-container border-t border-gray-dark pt-10 lg:pt-16 w-full overflow-hidden" x-ref="container">
+})" class="relative mx-auto mt-12 max-w-none lg:mt-24">
+    <div class="swiper-container w-full overflow-hidden border-t border-gray-dark pt-10 lg:pt-16" x-ref="container">
         <div class="swiper-wrapper w-full">
             @if ($strand)
                 <div class="swiper-slide">
@@ -47,29 +55,28 @@
             @endif
 
             @foreach ($entries as $entry)
-
-            @if($type == 'instances')
-                <x-instance-card @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
-                    x-data="{ shown: true }" class="hover:opacity-60 !transition !duration-500" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
-                    x-intersect:enter.full.margin.500.0="shown = true"
-                    x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
-                    :color="$color" :instance="$entry" />
-            @elseif($type == 'events')
-                <x-event-card-responsive @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
-                    x-data="{ shown: true }" class="hover:opacity-60 !transition !duration-500" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
-                    x-intersect:enter.full.margin.500.0="shown = true"
-                    x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
-                    :color="$color" :event="$entry" />
-            @endif
-
+                @if ($type == 'instances')
+                    <x-instance-card
+                        @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
+                        x-data="{ shown: true }" class="!transition !duration-500 hover:opacity-60" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
+                        x-intersect:enter.full.margin.500.0="shown = true"
+                        x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
+                        :color="$color" :instance="$entry" />
+                @elseif($type == 'events')
+                    <x-event-card-responsive
+                        @click="if(!shown) { swiper.slideTo({{ $loop->index }}); $event.preventDefault(); }"
+                        x-data="{ shown: true }" class="!transition !duration-500 hover:opacity-60" ::class="{ 'max-lg:opacity-30': !shown, '!opacity-100': shown }"
+                        x-intersect:enter.full.margin.500.0="shown = true"
+                        x-intersect:leave.full.margin.500.0="shown = false" :layout="$layout" :show_strand="$show_strand"
+                        :color="$color" :event="$entry" />
+                @endif
             @endforeach
-
 
         </div>
     </div>
 
-    <div class="mt-20 lg:mt-24 justify-center flex flex-row gap-4 border-t border-gray-dark text-white">
-        <div x-show="showControls" class="-mt-7 bg-black border border-gray-dark rounded-full">
+    <div class="mt-20 flex flex-row justify-center gap-4 border-t border-gray-dark text-white lg:mt-24">
+        <div x-show="showControls" class="-mt-7 rounded-full border border-gray-dark bg-black">
             <button :class="{ 'opacity-25': !showPreviousControl }" :disabled="!showPreviousControl"
                 @click="swiper.slidePrev()" class="py-1 pl-6 pr-2">
                 @svg('chevron-right', 'rotate-180 h-8 w-8')

@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Nova\Actions;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as InterventionImage;
 
-class SaveAndResizeFullWidthImage
+class SaveAndResizeFullwidthImage
 {
     /**
      * Store the incoming file upload.

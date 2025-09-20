@@ -17,7 +17,7 @@
             <h2 class="type-medium mb-8">Search</h2>
             <input x-ref="searchInput"
                 class="type-xs-mono w-full border-b-2 border-sand-dark bg-transparent py-6 focus-visible:outline-none"
-                wire:model="search" type="text" placeholder="Search for a film" />
+                wire:model.live="search" type="text" placeholder="Search for a film" />
 
             <ul class="h-64 flex-1 divide-y divide-sand-dark overflow-y-auto">
                 @foreach ($results as $result)

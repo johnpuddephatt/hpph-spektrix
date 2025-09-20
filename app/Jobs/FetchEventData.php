@@ -270,14 +270,7 @@ class FetchEventData implements ShouldQueue
                     "stop_selling_at_web" =>
                     $instance->stopSellingAtWeb ?? null,
                     "cancelled" => $instance->cancelled ?? null,
-                    "audio_described" =>
-                    $instance->attribute_AudioDescribed ?? null,
-                    "captioned" => $instance->attribute_Captioned ?? null,
-                    "relaxed" =>
-                    $instance->attribute_RelaxedPerformance ?? null,
-                    "autism_friendly" => $instance->attribute_AutismFriendlyScreening ?? null,
-                    "toddler_friendly" => $instance->attribute_ToddlerFriendlyScreening ?? null,
-                    "signed_bsl" => $instance->attribute_SignedBSL ?? null,
+
                     "special_event" =>
                     $instance->attribute_CinemaSpecialEvent ?? null,
                     "analogue" => $instance->attribute_Analogue ?? null,
@@ -286,6 +279,15 @@ class FetchEventData implements ShouldQueue
                     "season_name" => $instance->attribute_Season ?: null,
                     "strand_name" => $instance->attribute_Strand ?: null,
                     "external_ticket_link" => $instance->attribute_ExternalTicketLink ?: null,
+
+                    "audio_described" =>
+                    $instance->attribute_AudioDescribed ?? null,
+                    "captioned" => $instance->attribute_Captioned ?? null,
+                    "relaxed" =>
+                    $instance->attribute_RelaxedPerformance ?? null,
+                    "autism_friendly" => $instance->attribute_AutismFriendlyScreening ?? null,
+                    "toddler_friendly" => $instance->attribute_ToddlerFriendlyScreening ?? null,
+                    "signed_bsl" => $instance->attribute_SignedBSL ?? null,
                 ]
             );
         }

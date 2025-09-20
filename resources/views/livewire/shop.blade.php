@@ -18,11 +18,11 @@
                 <div class="type-xs-mono hidden md:block">Filter:</div>
                 <button
                     class="type-xs-mono {{ !$selected_type ? 'bg-yellow ' : 'hover:bg-sand-dark bg-sand' }} flex-grow cursor-default rounded pt-2 py-1.5 px-3"
-                    wire:click="$emit('updateType', '')">All</button>
+                    wire:click="$dispatch('updateType', '')">All</button>
                 @foreach ($types as $type)
                     <button
                         class="type-xs-mono {{ $selected_type == $type ? 'bg-yellow ' : 'hover:bg-sand-dark bg-sand' }} flex-grow cursor-default rounded pt-2 py-1.5 px-3"
-                        wire:click="$emit('updateType', '{{ $type }}')">{{ $type }}</button>
+                        wire:click="$dispatch('updateType', '{{ $type }}')">{{ $type }}</button>
                 @endforeach
             </div>
         </div>

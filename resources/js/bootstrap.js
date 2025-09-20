@@ -1,7 +1,8 @@
 // import _ from "lodash";
 // window._ = _;
 
-import Alpine from "alpinejs";
+// import Alpine from "alpinejs";
+
 import intersect from "@alpinejs/intersect";
 import carousel from "./carousel.js";
 import focus from "@alpinejs/focus";
@@ -14,13 +15,24 @@ import lottie from "lottie-web";
 
 window.lottie = lottie;
 
-Alpine.plugin(intersect);
-Alpine.plugin(focus);
+// Register Alpine plugins and data whether Alpine is already loaded or not
+function registerAlpineStuff() {
+    window.Alpine.plugin(intersect);
+    window.Alpine.plugin(focus);
+    window.Alpine.data("carousel", carousel);
+}
 
-window.Alpine = Alpine;
-Alpine.data("carousel", carousel);
+if (window.Alpine) {
+    registerAlpineStuff();
+} else {
+    document.addEventListener("livewire:initialized", registerAlpineStuff);
+}
+// Alpine.plugin(intersect);
+// Alpine.plugin(focus);
 
-Alpine.start();
+// window.Alpine = Alpine;
+
+// Alpine.start();
 
 import { format, compareAsc } from "date-fns";
 window.format = format;

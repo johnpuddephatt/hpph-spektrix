@@ -84,10 +84,13 @@
 
                                         <div class="flex flex-col gap-x-2 gap-y-0.5 sm:flex-row sm:items-center">
                                             <x-strand.booking-path />
-                                            <span
-                                                x-show="instance.strand && instance.strand.show_in_booking_path && (instance.captioned || instance.event.audio_description || instance.signed_bsl || instance.toddler_friendly) "
-                                                class="hidden text-2xl sm:inline-block">&middot;</span>
-                                            <x-accessibilities.booking-path />
+
+                                            <template x-for="tag in instance.access_tags">
+
+                                                <x-accessibilities.badge ::title="tag.label">
+                                                    <span x-text="tag.abbreviation"></span>
+                                                </x-accessibilities.badge>
+                                            </template>
 
                                         </div>
 
@@ -110,62 +113,22 @@
                         </div>
 
                     </div>
-                    <div x-show="instances && instances.length && instances.some((instance) => instance.event.audio_description || instance.captioned || instance.autism_friendly || instance.toddler_friendly)"
+                    <div x-show="instances && instances.length && instances.some((instance) =>                         
+                        {{ $access_tags->map(fn($tag) => $tag->slug ? "instance.{$tag->slug}" : null)->filter()->join(' || ') }}
+                    )"
                         class="max-w-lg pb-8 lg:w-1/3 lg:max-w-xs lg:pt-[6.9rem] lg:text-center">
                         <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
 
-                        <div x-show="instances.some((instance) => instance.special_event == 'Pay What You Can')"
-                            class="border-t border-gray-light py-4 last:border-b">
-                            <span
-                                class="type-xs z-[2] inline-block rounded bg-sand-light px-2 py-0.5 !font-bold uppercase text-black !no-underline">Pay
-                                What You Can</span>
-                            <p class="type-small mt-2 !font-normal">This screening allows you to choose the ticket price
-                                you’re able to afford.</p>
-                            <p class="type-small mt-2 !font-normal">Those unable to pay can obtain free tickets 48hrs
-                                before the screening. <a target="_blank"
-                                    href="https://hpph.co.uk/strands/hyde-seek#how-do-i-access-free-pay-what-you-can-tickets"
-                                    class="underline">Learn more</a>.</p>
+                        @foreach ($access_tags as $tag)
+                            <div x-show="{{ $tag->slug ? 'instances.some((instance) => instance.' . $tag->slug . ')' : 'false' }}"
+                                class="border-t border-gray-light py-4 last:border-b">
 
-                        </div>
+                                <x-accessibilities.badge
+                                    :title="$tag->name">{{ $tag->abbreviation }}</x-accessibilities.badge>
+                                <p class="type-small mt-2 !font-normal">{{ $tag->description }}</p>
 
-                        <div x-show="instances.some((instance) => instance.event.audio_description)"
-                            class="border-t border-gray-light py-4 last:border-b">
-                            <span
-                                class="type-xs-mono z-[2] inline-block cursor-default rounded-full bg-gray-dark px-2 text-center text-white no-underline">AD</span>
-                            <p class="type-small mt-2 !font-normal">Audio Description available via headsets. These can
-                                be
-                                reserved in next booking stage.</p>
-
-                        </div>
-                        <div x-show="instances.some((instance) => instance.captioned)"
-                            class="border-t border-gray-light py-4 last:border-b">
-                            <span
-                                class="type-xs-mono z-[2] inline-block cursor-default rounded-full bg-gray-dark px-2 text-center text-white no-underline">Captioned</span>
-                            <p class="type-small mt-2 !font-normal">Descriptive subtitles for the benefit of audiences
-                                who
-                                are Deaf or Hard of Hearing.</p>
-
-                        </div>
-
-                        <div x-show="instances.some((instance) => instance.autism_friendly)"
-                            class="border-t border-gray-light py-4 last:border-b">
-                            <span
-                                class="type-xs-mono z-[2] inline-block cursor-default rounded-full bg-gray-dark px-2 text-center text-white no-underline">Autism</span>
-                            <p class="type-small mt-2 !font-normal">Autism-friendly. Designed for neurodiverse
-                                audiences, these
-                                screenings feature prompt start times, raised lighting and reduced volume. Capacity is
-                                reduced and audiences can make noise and move around.</p>
-                        </div>
-
-                        <div x-show="instances.some((instance) => instance.toddler_friendly)"
-                            class="border-t border-gray-light py-4 last:border-b">
-                            <span
-                                class="type-xs-mono z-[2] inline-block cursor-default rounded-full bg-gray-dark px-2 text-center text-white no-underline">Toddler</span>
-                            <p class="type-small mt-2 !font-normal">Toddler-friendly. Designed for younger audiences, in
-                                particular those who are too old for our Bring Your Own Baby screenings but too young to
-                                stay seated! These
-                                screenings feature shorter run times and audiences can make noise and move around.</p>
-                        </div>
+                            </div>
+                        @endforeach
 
                         <p class="mt-6 underline"><a href="/access#accessible-screenings">Learn
                                 about
@@ -219,9 +182,9 @@
                                 <p class="type-xs mt-0.5 flex items-center gap-1">
                                     <svg class="mr-0.5 h-auto w-4" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
-                                        width="483.2226563" height="551.4306641"
-                                        viewBox="0 0 483.2226563 551.4306641" overflow="visible"
-                                        enable-background="new 0 0 483.2226563 551.4306641" xml:space="preserve">
+                                        width="483.2226563" height="551.4306641" viewBox="0 0 483.2226563 551.4306641"
+                                        overflow="visible" enable-background="new 0 0 483.2226563 551.4306641"
+                                        xml:space="preserve">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
                                             d="M161.9882813,98.1240234  c24.9628906-2.3046875,44.3574219-23.8110352,44.3574219-48.9658203C206.3457031,22.0830078,184.2626953,0,157.1875,0  s-49.1572266,22.0830078-49.1572266,49.1582031c0,8.2568359,2.3037109,16.7055664,6.1445313,23.8105469l17.515625,246.4667969  l180.3964844,0.0488281l73.9912109,173.3652344l97.1445313-38.0976563l-15.0429688-35.8203125l-54.3662109,19.625  l-71.5908203-165.2802734l-167.7294922,1.1269531l-2.3027344-31.2128906l121.4228516,0.0483398v-46.1831055l-126.0546875-0.0493164  L161.9882813,98.1240234z" />
                                         <path fill-rule="evenodd" clip-rule="evenodd"

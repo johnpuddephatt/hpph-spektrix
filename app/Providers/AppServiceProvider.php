@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\AccessTag;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
@@ -40,6 +41,15 @@ class AppServiceProvider extends ServiceProvider
                 })
             );
         });
+
+        View::share(
+            "access_tags",
+            \Cache::rememberForever("access_tags", function () {
+                return AccessTag::all();
+            })
+        );
+
+
         View::composer(["components.strand.menu", 'blocks.home-strands'], function ($view) {
             $view->with(
                 "strands",

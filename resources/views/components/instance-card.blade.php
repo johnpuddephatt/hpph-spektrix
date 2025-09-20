@@ -12,9 +12,9 @@
             {{ $instance->event->coming_soon ? $instance->event->coming_soon : $instance->start_date }}</div>
     </div>
 
-    <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 lg:max-w-lg @endif md:justify-self-center w-full">
-        <div class="relative aspect-video flex flex-col">
-            <div class="w-full relative bg-black-light flex-1 rounded overflow-hidden">
+    <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 lg:max-w-lg @endif w-full md:justify-self-center">
+        <div class="relative flex aspect-video flex-col">
+            <div class="relative w-full flex-1 overflow-hidden rounded bg-black-light">
                 @if ($instance->event->featuredImage)
                     {!! $instance->event->featuredImage->img('wide')->attributes([
                         'loading' => 'lazy',
@@ -24,12 +24,14 @@
             </div>
 
             @if (nova_get_setting('display_availability_badge', false))
-                
-                    <x-availability-badge class="absolute top-2 left-1.5"  :instance="$instance" />
-                
+                <x-availability-badge class="absolute left-1.5 top-2" :instance="$instance" />
             @endif
-            <x-accessibilities class="absolute top-2 right-1.5" :captioned="$instance->captioned" :signedbsl="$instance->signed_bsl" :audiodescribed="$instance->event->audio_description"
-                :autism_friendly="$instance->autism_friendly" :toddler_friendly="$instance->toddler_friendly" />
+
+            <div class="absolute right-1.5 top-1">
+                @foreach ($instance->access_tags as $tag)
+                    <x-accessibilities.badge :title="$tag->label">{{ $tag->abbreviation }}</x-accessibilities.badge>
+                @endforeach
+            </div>
 
             @if ($show_strand && $instance->strand?->show_on_instance_card)
                 <x-strand.badge :dark="$dark" class="mt-2" :strand="$instance->strand" />
@@ -69,17 +71,17 @@
                 </div>
 
                 <div>
-                    <a class="type-small hover:text-gray-dark border-gray-dark hover:bg-white border before:absolute before:inset-0 inline-block py-0 bg-gray-dark text-white rounded-full px-2"
+                    <a class="type-small inline-block rounded-full border border-gray-dark bg-gray-dark px-2 py-0 text-white before:absolute before:inset-0 hover:bg-white hover:text-gray-dark"
                         href="{{ $instance->url }}">Info</a>
                     @if (!$instance->event->coming_soon) /
 
                         @if ($instance->external_ticket_link)
                             <a href="{{ $instance->external_ticket_link }}" target="_blank"
-                                class="type-small border border-yellow hover:!bg-black hover:text-current relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
+                                class="type-small relative z-[1] inline-block rounded-full border border-yellow bg-yellow px-2 py-0 text-black hover:!bg-black hover:text-current"
                                 @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif>Book</a>
                         @else
                             <button
-                                class="type-small border border-yellow hover:!bg-black hover:text-current relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
+                                class="type-small relative z-[1] inline-block rounded-full border border-yellow bg-yellow px-2 py-0 text-black hover:!bg-black hover:text-current"
                                 @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
                                 @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
                         @endif

@@ -92,7 +92,12 @@ class Instance extends Model
         "toddler_friendly" => "boolean",
     ];
 
-    protected $appends = ["start_date", "start_time", "url", "short_id", "format", "availability"];
+    protected $appends = ["start_date", "start_time", "url", "short_id", "format", "availability", "access_tags"];
+
+    public function getAccessTagsAttribute()
+    {
+        return AccessTag::all()->filter(fn($tag) => $this->{$tag->slug} ?? false)->values();
+    }
 
     public function event()
     {

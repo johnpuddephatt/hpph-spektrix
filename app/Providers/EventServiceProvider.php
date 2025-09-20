@@ -46,5 +46,7 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Page::observe(\App\Observers\ModelObserver::class);
         \App\Models\Event::observe(\App\Observers\ModelObserver::class);
         \App\Models\Post::observe(\App\Observers\ModelObserver::class);
+
+        \App\Models\AccessTag::observe(\App\Observers\AccessTagsObserver::class);
     }
 }
