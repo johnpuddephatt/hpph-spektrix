@@ -124,6 +124,11 @@ class Instance extends Model
         return $this->event->url;
     }
 
+    public function getAudioDescriptionAttribute()
+    {
+        return $this->event->audio_description;
+    }
+
     public function getSpektrixApiLinkAttribute(): string
     {
         return 'https://system.spektrix.com/' . nova_get_setting('spektrix_client_name') .  '/api/v3/instances/' . $this->id;

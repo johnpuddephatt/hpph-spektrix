@@ -43,7 +43,7 @@
         <div
             class="mt-4 flex flex-grow flex-row gap-2 self-stretch rounded-l-full bg-yellow p-1 pl-2.5 lg:mt-0 lg:w-4/12 lg:flex-grow-0 lg:flex-col lg:rounded-none lg:border-l lg:border-gray-light lg:bg-transparent lg:p-0 lg:pl-4">
 
-            <div class="flex flex-row items-center gap-1.5">@svg('clock', ' w-4 h-4')
+            <div class="flex flex-row items-center gap-1.5">@svg('clock', ' flex-0 w-4 h-4')
                 <div class="type-regular">{{ $instance->start->format('H:i') }}</div>
                 @foreach ($instance->access_tags as $tag)
                     <x-accessibilities.badge :title="$tag->label">{{ $tag->abbreviation }}</x-accessibilities.badge>
