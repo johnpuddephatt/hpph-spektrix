@@ -275,15 +275,17 @@ class Instance extends Model
                     "id",
                     "event_id",
                     "start",
-                    "captioned",
-                    "relaxed",
-                    "autism_friendly",
-                    "toddler_friendly",
-                    "signed_bsl",
                     "analogue",
                     "strand_name",
                     "special_event",
-                    "external_ticket_link"
+                    "external_ticket_link",
+                    //     "free",
+                    //     "pwyc",
+                    // "captioned",
+                    // "relaxed",
+                    // "autism_friendly",
+                    // "toddler_friendly",
+                    // "signed_bsl",
                 );
 
             if ($past == true) {

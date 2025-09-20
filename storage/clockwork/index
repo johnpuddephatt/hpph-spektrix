@@ -1243,3 +1243,5 @@
 1758400027-8381-1801125626,1758400027.8281,GET,/nova-api/access-tags?search=&filters=W10%3D&orderBy=&perPage=25&trashed=&page=1&relationshipType=,Laravel\Nova\Http\Controllers\ResourceIndexController,200,35.945892333984,request
 1758400197-9300-2072342175,1758400197.8909,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,183.20298194885,request
 1758401264-1751-122850561,1758401264.1383,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,177.83308029175,request
+1758401733-4885-1278899426,1758401733.4548,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,163.71393203735,request
+1758401734-3036-937751394,1758401734.287,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,66.075086593628,request
