@@ -97,7 +97,7 @@ class Instance extends Model
         "pwyc" => "boolean",
     ];
 
-    protected $appends = ["start_date", "start_time", "url", "short_id", "format", "availability", "access_tags"];
+    protected $appends = ["start_date", "start_time", "url", "short_id", "format", "availability", "access_tags", "audio_description"];
 
     public function getAccessTagsAttribute()
     {
