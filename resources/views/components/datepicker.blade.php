@@ -4,12 +4,12 @@
         <input type="hidden" name="date" x-ref="date">
         <input type="hidden" x-model="datepickerValue">
 
-        <div class="border border-gray-light rounded py-4 pb-10 px-6 w-full max-w-sm mx-auto"
+        <div class="mx-auto w-full max-w-sm rounded border border-gray-light px-6 py-4 pb-10"
             x-show.transition="showDatepicker">
 
             <div>
                 <button type="button"
-                    class="right-full top-1/2 absolute inline-flex cursor-pointer rounded-full p-1 transition"
+                    class="absolute right-full top-1/2 inline-flex cursor-pointer rounded-full p-1 transition"
                     :class="{ 'cursor-not-allowed opacity-25': month == 0 }" :disabled="month == 0 ? true : false"
                     @click="month--; getNoOfDays()">
                     <svg class="inline-flex h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -17,7 +17,7 @@
                     </svg>
                 </button>
                 <button type="button"
-                    class="hover:bg-gray-200 left-full top-1/2 absolute inline-flex cursor-pointer rounded-full p-1 transition"
+                    class="hover:bg-gray-200 absolute left-full top-1/2 inline-flex cursor-pointer rounded-full p-1 transition"
                     :class="{ 'cursor-not-allowed opacity-25': month == 11 }" :disabled="month == 11 ? true : false"
                     @click="month++; getNoOfDays()">
                     <svg class="inline-flex h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -32,7 +32,7 @@
 
             </div>
 
-            <div class="-mx-1 mb-3 flex flex-wrap bg-sand-dark py-0.5 rounded-full">
+            <div class="-mx-1 mb-3 flex flex-wrap rounded-full bg-sand-dark py-0.5">
                 <template x-for="(day, index) in DAYS" :key="index">
                     <div style="width: 14.26%" class="px-1">
                         <div x-text="day" class="text-center"></div>
@@ -47,7 +47,7 @@
                 <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
                     <div style="width: 14.28%" class="mb-1 px-0.5">
                         <button @click="getDateValue(date)" x-text="date"
-                            class="cursor-pointer rounded-full text-center px-2 py-1 transition"
+                            class="cursor-pointer rounded-full px-2 py-1 text-center transition"
                             :class="{
                                 'bg-yellow font-bold ': isToday(date) ==
                                     true,
@@ -101,7 +101,9 @@
                         2) +
                     "-" + ('0' + selectedDate.getDate()).slice(-2);
 
-                Livewire.emit('updateDate', this.$refs.date.value);
+                window.Livewire.dispatch('updateDate', {
+                    date: this.$refs.date.value
+                });
             },
 
             getNoOfDays() {

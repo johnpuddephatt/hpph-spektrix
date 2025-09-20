@@ -31,7 +31,7 @@
                          @if ($strand)
                              <button wire:key="remove-strand-filter" aria-label="Remove filter for {{ $strand }}"
                                  class="type-xs-mono cursor-default rounded bg-yellow px-3 py-1.5 pt-2 hover:bg-yellow-dark"
-                                 wire:click="$dispatch('updateStrand', null)">
+                                 wire:click="$dispatch('updateStrand', {slug: null})">
 
                                  {{ $strands_with_showings->firstWhere('slug', $strand)->name }}
                                  @svg('plus', 'rotate-45 align-top inline-block ml-1 w-3 h-3')</button>
@@ -53,7 +53,7 @@
                                              <div class="grid grid-cols-3 gap-4">
                                                  @foreach ($strands_with_showings as $strand)
                                                      <button aria-label="Filter to show {{ $strand->name }} screenings"
-                                                         wire:click="$dispatch('updateStrand', '{{ $strand->slug }}' )"
+                                                         wire:click="$dispatch('updateStrand', {slug: '{{ $strand->slug }}'} )"
                                                          style="color: {{ $strand->color }}"
                                                          class="type-xs-mono flex h-20 flex-row items-center rounded-full bg-sand-dark hover:bg-current">
                                                          @if ($strand->logo_simple)
@@ -83,7 +83,7 @@
                              @if ($accessibility)
                                  <button aria-label="Remove accessibility filter" wire:key="remove-accessibility"
                                      class="type-xs-mono cursor-default rounded bg-yellow px-3 py-1.5 pt-2 hover:bg-yellow-dark"
-                                     wire:click="$dispatch('updateAccessibility', null)">
+                                     wire:click="$dispatch('updateAccessibility', {slug: null})">
                                      {{ $accessibilities_with_showings->firstWhere('slug', $accessibility)['label'] }}
                                      @svg('plus', 'rotate-45 align-top inline-block ml-1 w-3 h-3')</button>
                              @else
@@ -102,7 +102,7 @@
                                          <div class="grid gap-2 md:grid-cols-2 md:gap-4">
                                              @foreach ($accessibilities_with_showings as $accessibility)
                                                  <button
-                                                     wire:click="$dispatch('updateAccessibility', '{{ $accessibility['slug'] }}' )"
+                                                     wire:click="$dispatch('updateAccessibility', {slug: '{{ $accessibility['slug'] }}'})"
                                                      class="type-xs-mono group flex-row-reverse items-center justify-between gap-4 whitespace-nowrap rounded bg-sand-dark p-4 px-4 text-center transition hover:bg-yellow max-md:flex md:py-8">
                                                      <span
                                                          class="type-xs-mono inline-block rounded-full bg-white px-2 text-center transition group-hover:bg-black group-hover:text-white">{{ $accessibility['abbreviation'] }}</span>
@@ -126,7 +126,7 @@
                          @if ($date)
                              <button wire:key="remove-date-filter" aria-label="Remove date filter"
                                  class="type-xs-mono cursor-default rounded bg-yellow px-3 py-1.5 pt-2 hover:bg-yellow-dark"
-                                 wire:click="$dispatch('updateDate', null)">
+                                 wire:click="$dispatch('updateDate', { date: null})">
                                  {{ date('d M', strtotime($date)) }}
                                  @svg('plus', 'rotate-45 inline-block ml-1 align-top w-3 h-3')</button>
                          @else

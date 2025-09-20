@@ -49,29 +49,30 @@ class Programme extends Component
 
 
 
-    public function setStrand($value)
+    public function setStrand($slug)
     {
-        // $this->reset();
+
+        $this->reset();
         $this->type = "schedule";
-        $this->strand = $value;
-        $this->dispatch("scrollToTop");
-        $this->dispatch("updateStrand2", $this->strand);
+        $this->strand = $slug;
+        // $this->dispatch("scrollToTop");
+        $this->dispatch("updateStrand2", slug: $this->strand);
     }
 
-    public function setAccessibility($value)
+    public function setAccessibility($slug)
     {
         $this->type = "schedule";
-        $this->accessibility = $value;
+        $this->accessibility = $slug;
         $this->dispatch("scrollToTop");
-        $this->dispatch("updateAccessibility2", $this->accessibility);
+        $this->dispatch("updateAccessibility2", slug: $this->accessibility);
     }
 
-    public function setDate($value)
+    public function setDate($date)
     {
         $this->type = "schedule";
-        $this->date = $value;
+        $this->date = $date;
         $this->dispatch("scrollToTop");
-        $this->dispatch("updateDate2", $this->date);
+        $this->dispatch("updateDate2", date: $this->date);
     }
 
     public function render()
@@ -79,14 +80,8 @@ class Programme extends Component
         $strands_with_showings = \App\Models\Strand::whereHas("instances")
             ->select("name", "slug", "logo_simple", "color")
             ->get();
-
-        // dd(AccessTag::all());
-        // dd(Instance::first());
-        // $accessibilities_with_showings = AccessTag::all()->filter(fn($tag) => $tag->slug == 'audio_description' || (($tag->slug && in_array($tag->slug, Schema::getColumnListing('instances'))) ? Instance::where($tag->slug, true)->exists() : false));
-        $accessibilities_with_showings = AccessTag::all()->filter(fn($tag) => (($tag->slug && in_array($tag->slug, Schema::getColumnListing('instances'))) ? Instance::where($tag->slug, true)->exists() : false));
-
+        $accessibilities_with_showings = AccessTag::all()->filter(fn($tag) => $tag->slug == 'audio_description' || (($tag->slug && in_array($tag->slug, Schema::getColumnListing('instances'))) ? Instance::where($tag->slug, true)->exists() : false));
         // $past = $this->past;
-
         return view(
             "livewire.programme",
             compact("strands_with_showings", "accessibilities_with_showings")

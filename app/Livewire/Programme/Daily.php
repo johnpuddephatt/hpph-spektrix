@@ -109,28 +109,29 @@ class Daily extends Component
         $this->reset("date");
     }
 
-    public function setStrand($value)
+    public function setStrand($slug)
     {
+
         // $this->clearFilters();
         $this->resetPage();
 
-        $this->strand = $value;
+        $this->strand = $slug;
     }
 
-    public function setAccessibility($value)
+    public function setAccessibility($slug)
     {
         // $this->clearFilters();
         $this->resetPage();
 
-        $this->accessibility = $value;
+        $this->accessibility = $slug;
     }
 
-    public function setDate($value)
+    public function setDate($date)
     {
         // $this->clearFilters();
         $this->resetPage();
 
-        $this->date = $value;
+        $this->date = $date;
     }
 
     public function render()
