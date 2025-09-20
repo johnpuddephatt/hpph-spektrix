@@ -82,7 +82,7 @@ class Programme extends Component
 
         // dd(AccessTag::all());
         // dd(Instance::first());
-        $accessibilities_with_showings = AccessTag::all()->filter(fn($tag) => ($tag->slug && in_array($tag->slug, Schema::getColumnListing('instances'))) ? Instance::where($tag->slug, true)->exists() : false);
+        $accessibilities_with_showings = AccessTag::all()->filter(fn($tag) => $tag->slug == 'audio_description' || ($tag->slug && in_array($tag->slug, Schema::getColumnListing('instances'))) ? Instance::where($tag->slug, true)->exists() : false);
         // $past = $this->past;
 
         return view(
