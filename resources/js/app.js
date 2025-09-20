@@ -42,7 +42,7 @@ window.addEventListener("scroll", function (e) {
     }
 });
 
-Livewire.on("scrollToTop", () => {
+window.Livewire.on("scrollToTop", () => {
     window.scrollTo({
         top: 0,
         left: 0,

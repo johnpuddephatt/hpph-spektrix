@@ -189,3 +189,4 @@
 1758406456-6524-1767920778,1758406456.6425,POST,/livewire/update,Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate,200,50.615072250366,request
 1758406457-6899-229413649,1758406457.6799,POST,/livewire/update,Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate,200,136.16108894348,request
 1758406457-8667-1928979654,1758406457.8561,POST,/livewire/update,Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate,200,71.907997131348,request
+1758406481-0178-20705079,1758406480.9953,GET,/whats-on?strand=&accessibility=,App\Http\Controllers\PageController@show,200,221.61817550659,request
