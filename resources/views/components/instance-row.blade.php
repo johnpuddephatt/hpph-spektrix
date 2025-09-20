@@ -45,7 +45,7 @@
 
             <div class="flex flex-row items-center gap-1.5">@svg('clock', ' w-4 h-4')
                 <div class="type-regular">{{ $instance->start->format('H:i') }}</div>
-
+                @dump($instance->access_tags)
                 @foreach ($instance->access_tags as $tag)
                     <x-accessibilities.badge :title="$tag->label">{{ $tag->abbreviation }}</x-accessibilities.badge>
                 @endforeach
