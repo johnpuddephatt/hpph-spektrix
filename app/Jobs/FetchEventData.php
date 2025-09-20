@@ -288,6 +288,9 @@ class FetchEventData implements ShouldQueue
                     "autism_friendly" => $instance->attribute_AutismFriendlyScreening ?? null,
                     "toddler_friendly" => $instance->attribute_ToddlerFriendlyScreening ?? null,
                     "signed_bsl" => $instance->attribute_SignedBSL ?? null,
+
+                    "free" => $instance->attribute_AffordableTickets === "Free" ? true : false,
+                    "pwyc" => $instance->attribute_AffordableTickets === "Pay What You Can" ? true : false,
                 ]
             );
         }

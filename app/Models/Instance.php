@@ -80,6 +80,9 @@ class Instance extends Model
         "season_name",
         "strand_name",
         "external_ticket_link",
+
+        "free",
+        "pwyc",
     ];
 
     protected $casts = [
@@ -90,6 +93,8 @@ class Instance extends Model
         "signed_bsl" => "boolean",
         "autism_friendly" => "boolean",
         "toddler_friendly" => "boolean",
+        "free" => "boolean",
+        "pwyc" => "boolean",
     ];
 
     protected $appends = ["start_date", "start_time", "url", "short_id", "format", "availability", "access_tags"];
