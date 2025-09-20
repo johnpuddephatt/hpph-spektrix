@@ -279,13 +279,13 @@ class Instance extends Model
                     "strand_name",
                     "special_event",
                     "external_ticket_link",
-                    //     "free",
-                    //     "pwyc",
-                    // "captioned",
-                    // "relaxed",
-                    // "autism_friendly",
-                    // "toddler_friendly",
-                    // "signed_bsl",
+                    "free",
+                    "pwyc",
+                    "captioned",
+                    "relaxed",
+                    "autism_friendly",
+                    "toddler_friendly",
+                    "signed_bsl",
                 );
 
             if ($past == true) {
