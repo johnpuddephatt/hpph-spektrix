@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
 class Instances extends Component
 {
     use WithPagination;
-
 
     public function paginationView()
     {

@@ -14,7 +14,8 @@ use Livewire\Attributes\Url;
 class Programme extends Component
 {
 
-    public $type = "schedule";
+    #[Url]
+    public ?string $type = "schedule";
 
     public $strand = null;
     public $accessibility = null;
@@ -37,6 +38,10 @@ class Programme extends Component
     {
         if (nova_get_setting("default_programme_view")) {
             $this->type = nova_get_setting("default_programme_view");
+        }
+
+        if (request()->has("type") && in_array(request()->type, ["schedule", "alphabetical", "daily", "past"])) {
+            $this->type = request()->type;
         }
     }
 

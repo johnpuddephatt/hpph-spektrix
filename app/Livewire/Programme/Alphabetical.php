@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Programme;
 
+use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -9,7 +10,8 @@ class Alphabetical extends Component
 {
     use WithPagination;
 
-    public $type = 'alphabetical';
+
+    public  $type = "alphabetical";
 
     public function paginationView()
     {
