@@ -1,17 +1,18 @@
 <div x-trap="eventID" x-cloak
-    @booking.window="eventID = $event.detail.eventID; instanceID = $event.detail.instanceID; event = $event.detail.event; certificate = $event.detail.certificate"
+    @booking.window="eventID = $event.detail.eventID; instance = {short_id: $event.detail.instanceID}; event = $event.detail.event; certificate = $event.detail.certificate"
     @keyup.escape.window="closeBooking" x-data="{
         iFrameLoading: true,
         eventID: null,
         event: null,
         certificate: null,
-        instanceID: null,
+        selectedInstance: null,
+        showModal: true,
     
         instances: null,
     
         closeBooking() {
             this.eventID = null;
-            this.instanceID = null;
+            this.selectedInstance = null;
             this.instances = null;
             $dispatch('booking', false)
         },
@@ -41,9 +42,9 @@
         class="fixed bottom-0 right-0 top-0 z-50 flex h-screen w-full flex-col bg-sand transition lg:w-[90vw] xl:w-[75vw]">
         <button x-on:click="closeBooking" aria-label="Close booking options"
             class="absolute right-4 top-5 z-30 lg:right-full lg:top-[2.5rem] lg:mr-10">@svg('plus', 'h-6 w-6 text-black lg:text-white rotate-45 transform origin-center')</button>
-        <h2 x-on:click="instanceID = null"
+        <h2 x-on:click="selectedInstance = null"
             class="type-regular lg:type-medium z-10 flex transform cursor-pointer flex-row items-center gap-4 whitespace-nowrap px-4 py-3 lg:absolute lg:right-full lg:w-[100vh] lg:origin-top-right lg:-rotate-90 lg:justify-between lg:p-10 lg:px-6 lg:text-right"
-            :class="instanceID ? 'bg-yellow-dark cursor-pointer' : 'cursor-default bg-sand-dark lg:bg-sand'">
+            :class="selectedInstance ? 'bg-yellow-dark cursor-pointer' : 'cursor-default bg-sand-dark lg:bg-sand'">
             <span>Showtimes</span> <span
                 class="type-regular lg:type-medium order-first inline-block h-12 w-12 rounded-full bg-yellow py-3.5 text-center align-middle !leading-none lg:order-last lg:ml-4 lg:h-16 lg:w-16 lg:rotate-90 lg:py-5">1</span>
         </h2>
@@ -75,7 +76,7 @@
                             instances[key - 1].start_date !== instance.start_date"
                                         class="type-small mb-3 mt-12" x-text="instance.start_date"></h3>
                                     <button aria-label="Buy tickets for this screening"
-                                        x-on:click="instance.external_ticket_link ? (window.location.href = instance.external_ticket_link) : instanceID = instance.short_id"
+                                        x-on:click="instance.external_ticket_link ? (window.location.href = instance.external_ticket_link) : showModal = true; selectedInstance  = instance"
                                         :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
                                         class="group flex w-full flex-row items-center gap-2 border-t border-gray-light py-2 transition lg:gap-4">
                                         <div class="type-xs-mono rounded bg-black px-4 py-1.5 !text-base text-white"
@@ -142,15 +143,41 @@
     <div x-transition:enter-start="translate-y-full lg:translate-y-0 lg:translate-x-full"
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full"
         class="fixed bottom-0 right-0 top-[4.5rem] z-[60] flex w-full flex-col bg-sand transition lg:top-0 lg:min-h-screen lg:w-[calc(90vw-9rem)] xl:w-[calc(75vw-9rem)]"
-        x-show="instanceID && eventID">
+        x-show="selectedInstance && eventID">
+
+        {{-- <dialog
+            x-show="showModal && ({{ $access_tags->map(fn($tag) => 'selectedInstance.' . $tag->slug . ' && ' . ($tag->booking_warning ? 'true' : 'false'))->join(' || ') }})"
+            open>
+            <div class="fixed inset-0 z-40 bg-black bg-opacity-60 backdrop-blur-lg duration-150"></div>
+            <div
+                class="fixed left-1/2 top-1/2 z-50 max-w-lg -translate-x-1/2 -translate-y-1/2 transform rounded bg-sand-light p-12">
+                <h3 class="type-regular">Important information about your selected screening</h3>
+
+                <div class="py-12">
+                    @foreach ($access_tags as $tag)
+                        <div x-show="selectedInstance.{{ $tag->slug }}  && {{ $tag->booking_warning ? 'true' : 'false' }}"
+                            class="py-4 last:border-b">
+
+                            <x-accessibilities.badge
+                                :title="$tag->name">{{ $tag->abbreviation }}</x-accessibilities.badge>
+                            <p class="type-small mt-2 !font-normal">{{ $tag->booking_warning }}</p>
+
+                        </div>
+                    @endforeach
+                </div>
+                <button class="type-small rounded bg-sand-dark px-4 py-2" @click="selectedInstance = null">Back</button>
+                <button class="type-small rounded bg-yellow px-8 py-2" @click="showModal = false">Continue</button>
+            </div>
+        </dialog> --}}
+
         <h2
             class="type-regular lg:type-medium z-10 flex transform flex-row items-center gap-4 whitespace-nowrap bg-sand-dark px-4 py-3 lg:absolute lg:right-full lg:w-[100vh] lg:origin-top-right lg:-rotate-90 lg:justify-between lg:bg-transparent lg:p-10 lg:px-6 lg:text-right">
             <span>Tickets &amp; extras</span> <span
                 class="type-regular lg:type-medium order-first inline-block h-12 w-12 rounded-full bg-yellow py-3.5 text-center align-middle !leading-none lg:order-last lg:ml-4 lg:h-16 lg:w-16 lg:rotate-90 lg:py-5">2</span>
         </h2>
-        <div class="container relative flex-grow overflow-y-auto pt-4 lg:pl-40 lg:pt-12" x-show="instanceID">
+        <div class="container relative flex-grow overflow-y-auto pt-4 lg:pl-40 lg:pt-12" x-show="selectedInstance">
 
-            <template x-if="instanceID">
+            <template x-if="selectedInstance">
                 <div class="flex flex-1 flex-col gap-8 lg:flex-row lg:gap-12">
 
                     <div class="w-full max-w-xl">
@@ -160,7 +187,7 @@
                         </div>
                         <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
                             style="height: 90vh;" name="SpektrixIFrame"
-                            :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ instanceID }&resize=true&stylesheet=hpph-spektrix-2.css`"></iframe>
+                            :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ selectedInstance.short_id }&resize=true&stylesheet=hpph-spektrix-2.css`"></iframe>
 
                     </div>
 

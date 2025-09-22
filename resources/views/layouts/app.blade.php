@@ -8,7 +8,7 @@
         @includeWhen(isset($settings['google_analytics']), 'analytics')
     @endproduction
 
-    <title>@yield('title', config('app.description'))</title>
+    <title>@yield('title', config('app.description')) | Hyde Park Picture House (HPPH) Leeds</title>
     <meta name="description" content="@yield('description', config('app.description'))" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,6 +17,21 @@
     <meta property="og:image" content="@yield('image')" />
     <meta property="og:title" content="@yield('title')" />
     <meta property="og:description" content="@yield('description')" />
+    <script type="application/ld+json">
+    {
+        "@type": "MovieTheater",
+        "name": "Hyde Park Picture House",
+        "alternateName": ["HPPH", "Hyde Park Picture House HPPH"],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "73 Brudenell Road",
+            "addressLocality": "Leeds",
+            "addressRegion": "West Yorkshire",
+            "postalCode": "LS6 1JD",
+            "addressCountry": "GB"
+        }
+    }
+    </script>
 
     <link rel="shortcut icon" type="image/png" href="{{ Storage::disk('digitalocean')->url('favicon.png') }}" />
 
