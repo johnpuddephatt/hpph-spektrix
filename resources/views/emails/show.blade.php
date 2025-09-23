@@ -32,5 +32,7 @@
 
 </div>
 
-<iframe class="block mx-auto" frameborder="0" id="iframe" style="width:100%; height: 7000px;"
+<textarea style="width: 100%; height: 100vh">{{ $email_content_plain }}</textarea>
+
+<iframe class="mx-auto block" frameborder="0" id="iframe" style="width:100%; height: 7000px;"
     srcdoc="<body style='margin: 0'>{{ $email_content }}</body>"></iframe>

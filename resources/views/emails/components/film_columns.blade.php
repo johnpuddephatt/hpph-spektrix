@@ -6,6 +6,8 @@
     <mj-section padding="15px 0px">
         @foreach ($chunk as $film)
             <mj-column padding="15px 7.5px " css-class="pb0-on-desktop" width="{{ 100 / $section->layout }}%">
+<mj-image border-radius="5px" src="{{ $film->featuredImage?->getUrl('wide') }}" alt="{{ $film->name }}"  padding="0px 0px 10px 0px"></mj-image>
+
                 <mj-hero css-class="film-column-hero" border-radius="5px" vertical-align="bottom" mode="fluid-height"
                     background-width="1200px" background-height="720px"
                     background-url="{{ $film->featuredImage?->getUrl('wide') }}" background-color="#2a3448"

@@ -304,7 +304,12 @@ class Instance extends Model
             }
 
             if ($accessibility) {
-                $instances->{Str::camel($accessibility)}();
+                if ($accessibility == 'audio_description') {
+                    $instances->audioDescribed();
+                } else {
+                    // $instances->{Str::camel($accessibility)}();
+                    $instances->where($accessibility, true);
+                }
             }
 
             if ($date) {

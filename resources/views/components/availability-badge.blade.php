@@ -1,26 +1,24 @@
 @props(['instance'])
-<div {{  $attributes->class('uppercase type-xs font-bold px-2.5 py-0.5 text-black ml-auto flex items-center rounded flex-row bg-sand-light') }} x-cloak 
-    @if($instance ?? false)
-    x-data='{ instance: { availability: @json($instance->availability) } }'
-    @endif
-    
+
+<div {{ $attributes->class('uppercase type-xs font-bold px-2.5 py-0.5 text-black ml-auto flex items-center rounded flex-row bg-sand-light') }}
+    x-cloak
     x-show="(instance.availability.seats / instance.availability.capacity) <= {{ nova_get_setting('availability_threshold', 0.15) }}"
-    
     :title="instance.availability.seats ?
         `There are ${instance.availability.seats} regular seats and ${instance.availability.accessible_seats} wheelchair seats available for this screening.` :
         `Regular seating for this screening has sold out. There are ${instance.availability.accessible_seats} wheelchair seats available.`"
     :aria-label="instance.availability.seats ?
         `There are ${instance.availability.seats} regular seats and ${instance.availability.accessible_seats} wheelchair seats available for this screening.` :
-        `Regular seating for this screening has sold out. There are ${instance.availability.accessible_seats} wheelchair seats available.`">
+        `Regular seating for this screening has sold out. There are ${instance.availability.accessible_seats} wheelchair seats available.`"
+    @if ($instance ?? false) x-data='{ instance: { availability: @json($instance->availability) } }' @endif>
 
+    <span class="pt-0.5 leading-none"
+        x-html="instance.availability.seats > 0  ? '<span class=\'rounded-full text-center bg-black mr-1 size-3 -mt-0.5 inline-block text-white font-bold\'>!</span>Last few' : 'Sold out'"></span>
 
-    <span class="pt-0.5 leading-none" x-html="instance.availability.seats > 0  ? '<span class=\'rounded-full text-center bg-black mr-1 size-3 -mt-0.5 inline-block text-white font-bold\'>!</span>Last few' : 'Sold out'"></span>
-
-    <div class="pt-0.5 font-normal leading-none flex items-center"
+    <div class="flex items-center pt-0.5 font-normal leading-none"
         x-show="instance.availability.seats == 0 && instance.availability.accessible_seats > 0">
         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
-            width="483.223" height="551.431" class="w-5 text-black -mt-0.5 pl-2 h-auto"
-            overflow="visible" viewBox="0 0 483.223 551.431">
+            width="483.223" height="551.431" class="-mt-0.5 h-auto w-5 pl-2 text-black" overflow="visible"
+            viewBox="0 0 483.223 551.431">
             <path fill-rule="evenodd" fill="currentColor"
                 d="M161.988 98.124c24.963-2.305 44.358-23.811 44.358-48.966C206.346 22.083 184.263 0 157.187 0S108.03 22.083 108.03 49.158c0 8.257 2.304 16.706 6.145 23.81l17.515 246.468 180.397.048 73.991 173.366 97.145-38.098-15.043-35.82-54.367 19.625-71.59-165.28-167.73 1.126-2.303-31.213 121.423.049v-46.183l-126.054-.05-5.57-98.882z"
                 clip-rule="evenodd" />
@@ -29,7 +27,7 @@
                 clip-rule="evenodd" />
         </svg>
         ×
-        <span class=" leading-none font-bold" x-text="instance.availability.accessible_seats"></span>
+        <span class="font-bold leading-none" x-text="instance.availability.accessible_seats"></span>
     </div>
 
 </div>

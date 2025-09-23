@@ -10,4 +10,5 @@
     </main>
 
     @include('sections.footer')
+    <x-alert />
 @endsection

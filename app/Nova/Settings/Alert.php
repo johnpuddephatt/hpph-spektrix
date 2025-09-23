@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Nova\Settings;
 
 use Laravel\Nova\Fields\Text;
@@ -16,6 +17,7 @@ class Alert
             Text::make("Link", "alert_url"),
             Boolean::make("Enabled?", "alert_enabled"),
             DateTime::make("Display until", "alert_display_until"),
+            Boolean::make("Replace entire site?", "alert_takeover")->help("If enabled, the alert will replace the entire site content with just the alert message."),
         ];
     }
 
