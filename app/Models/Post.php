@@ -20,6 +20,7 @@ use Astrotomic\CachableAttributes\CachesAttributes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Enums\CropPosition;
 
 class Post extends Model implements HasMedia, CachableAttributes
 {
@@ -87,26 +88,26 @@ class Post extends Model implements HasMedia, CachableAttributes
         $this->addMediaCollection("main")->singleFile();
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion("wide")
             ->quality(80)
             ->sharpen(10)
-            ->crop("crop-center", 1500, 627)
+            ->crop(1500, 627, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
         $this->addMediaConversion("landscape")
             ->quality(80)
             ->sharpen(10)
-            ->crop("crop-center", 1200, 800)
+            ->crop(1200, 800, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
         $this->addMediaConversion("square")
             ->quality(80)
             ->sharpen(10)
-            ->crop("crop-center", 800, 800)
+            ->crop(800, 800, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
     }

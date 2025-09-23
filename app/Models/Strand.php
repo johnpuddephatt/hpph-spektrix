@@ -22,6 +22,7 @@ use Advoor\NovaEditorJs\NovaEditorJsCast;
 use App\Casts\PageContentCast;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
+use Spatie\Image\Enums\CropPosition;
 
 class Strand extends Model implements HasMedia, CachableAttributes, Sortable
 {
@@ -95,11 +96,11 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
         // });
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion("landscape")
             ->quality(80)
-            ->crop("crop-center", 2000, 1200)
+            ->crop(2000, 1200, CropPosition::Center)
             ->sharpen(10)
             ->format("jpg")
             ->withResponsiveImages()
@@ -113,7 +114,7 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
 
         $this->addMediaConversion("wide")
             ->quality(80)
-            ->crop("crop-center", 1500, 627)
+            ->crop(1500, 627, CropPosition::Center)
             ->sharpen(10)
             ->format("jpg")
             ->withResponsiveImages()

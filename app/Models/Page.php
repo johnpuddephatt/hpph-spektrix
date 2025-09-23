@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Cache;
+use Spatie\Image\Enums\CropPosition;
 
 class Page extends Model implements HasMedia
 {
@@ -63,14 +64,14 @@ class Page extends Model implements HasMedia
         ];
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion("wide")
             ->quality(80)
             // ->width(1920)
             // ->height(1080)
             ->sharpen(10)
-            ->crop("crop-center", 1500, 627)
+            ->crop(1500, 627, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
@@ -79,7 +80,7 @@ class Page extends Model implements HasMedia
             // ->width(1920)
             // ->height(1080)
             ->sharpen(10)
-            ->crop("crop-center", 1200, 800)
+            ->crop(1200, 800, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main", "gallery");
 
@@ -87,7 +88,7 @@ class Page extends Model implements HasMedia
         $this->addMediaConversion("square")
             ->quality(80)
             ->sharpen(10)
-            ->crop("crop-center", 1600, 1600)
+            ->crop(1600, 1600, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("gallery", "main");
 
@@ -96,7 +97,7 @@ class Page extends Model implements HasMedia
             $this->addMediaConversion("square")
                 ->quality(80)
                 ->sharpen(10)
-                ->crop("crop-center", 1600, 1600)
+                ->crop(1600, 1600, CropPosition::Center)
                 ->withResponsiveImages()
                 ->performOnCollections($media->collection_name);
         }
@@ -107,7 +108,7 @@ class Page extends Model implements HasMedia
         $this->addMediaCollection("main")->singleFile();
         $this->addMediaCollection("gallery"); // MOVE TO FLEXIBLE
         // $this->addMediaCollection("banner")->singleFile(); // a block with an image background and overlaid text - MOVE TO FLEXIBLE
-        
+
     }
 
     public function mainImage(): MorphOne
@@ -156,10 +157,10 @@ class Page extends Model implements HasMedia
 
     public function scopeOrderPagesByUrl($query)
     {
-       
+
         $ids_ordered = implode(
             ",",
-            \App\Models\Page::withoutGlobalScopes()->select("id","name","parent_id", "slug")->get()
+            \App\Models\Page::withoutGlobalScopes()->select("id", "name", "parent_id", "slug")->get()
                 ->sortBy("URL")
                 ->pluck("id")
                 ->toArray()
@@ -171,27 +172,28 @@ class Page extends Model implements HasMedia
         return $query;
     }
 
-    public static function getAvailableTemplates($show_all) {
+    public static function getAvailableTemplates($show_all)
+    {
         return Arr::map(
-            $show_all ? config("page-templates") : array_filter(config("page-templates"), function($item, $key) {
+            $show_all ? config("page-templates") : array_filter(config("page-templates"), function ($item, $key) {
                 return !$item['unique'] || !\App\Models\Page::where('template', $key)->count();
             }, ARRAY_FILTER_USE_BOTH),
-            function($value) {
+            function ($value) {
                 return (new $value['class'])->name();
             }
         );
     }
 
-    public static function getTemplateUrl($template) {
+    public static function getTemplateUrl($template)
+    {
         return \App\Models\Page::firstWhere('template', $template)?->url;
     }
 
-    public function resolveContent() {
+    public function resolveContent()
+    {
 
-        $this->content = (new (config("page-templates")[$this->template][
-                    "class"
-                ]
-                ))->resolve($this);
+        $this->content = (new (config("page-templates")[$this->template]["class"]
+        ))->resolve($this);
 
         return $this;
     }

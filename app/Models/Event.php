@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Cohensive\OEmbed\Facades\OEmbed;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Spatie\Image\Enums\CropPosition;
 
 class Event extends Model implements HasMedia, CachableAttributes
 {
@@ -175,12 +176,12 @@ class Event extends Model implements HasMedia, CachableAttributes
         return LogOptions::defaults()->logOnly(["name"]);
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion("thumb")
             ->width(1920)
             ->height(1080)
-            ->crop("crop-center", 1920, 1080)
+            ->crop(1920, 1080, CropPosition::Center)
             ->extractVideoFrameAtSecond(0);
         // ->performOnCollections("video");
 
@@ -189,13 +190,13 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->width(800)
             ->height(800)
             ->sharpen(10)
-            ->crop("crop-center", 800, 800)
+            ->crop(800, 800, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
         $this->addMediaConversion("wide")
             ->quality(80)
-            ->crop("crop-center", 2000, 1200)
+            ->crop(2000, 1200, CropPosition::Center)
             ->sharpen(10)
             ->format("webp")
             ->withResponsiveImages()

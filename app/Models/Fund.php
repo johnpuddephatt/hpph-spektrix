@@ -11,6 +11,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Enums\CropPosition;
 
 class Fund extends Model implements HasMedia
 {
@@ -37,14 +38,14 @@ class Fund extends Model implements HasMedia
         "default_donation_amount",
     ];
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion("landscape")
             ->quality(80)
             // ->width(1920)
             // ->height(1080)
             ->sharpen(10)
-            ->crop("crop-center", 1200, 800)
+            ->crop(1200, 800, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
     }

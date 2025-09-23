@@ -12,6 +12,7 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Spatie\Image\Enums\CropPosition;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -43,14 +44,14 @@ class User extends Authenticatable implements HasMedia
         ];
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion("portrait")
             ->quality(80)
             ->width(1600)
             ->height(1200)
             ->sharpen(10)
-            ->crop("crop-center", 1200, 1600)
+            ->crop(1200, 1600, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
     }
