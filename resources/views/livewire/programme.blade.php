@@ -20,7 +20,7 @@
 
      <div class="flex flex-col bg-sand lg:block">
          <div
-             class="sticky bottom-0 z-[11] mb-8 flex-row-reverse justify-between border-yellow-dark bg-sand-light lg:container before:absolute before:bottom-full before:left-0 before:right-0 before:-z-10 before:hidden before:h-[3.75rem] before:bg-sand lg:bottom-auto lg:top-[3.75rem] lg:mb-0 lg:flex lg:border-b lg:border-sand lg:py-2.5 lg:before:block">
+             class="sticky bottom-0 z-[11] mb-8 flex-row-reverse justify-between border-yellow-dark bg-sand-light lg:container before:absolute before:bottom-full before:left-0 before:right-0 before:-z-10 before:hidden before:h-[3.75rem] before:bg-sand lg:bottom-auto lg:top-[3.75rem] lg:mb-0 lg:flex lg:border-b lg:border-sand lg:py-2.5 lg:pr-14 lg:before:block">
 
              <div class="flex-row items-center lg:flex lg:gap-2.5">
                  @if ($type !== 'past')
