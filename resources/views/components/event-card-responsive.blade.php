@@ -12,25 +12,25 @@
             {!! $event->coming_soon ?? $event->date_range !!}</div>
     </div>
 
-    <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 lg:max-w-lg @endif md:justify-self-center w-full">
-        <div class="relative aspect-video flex flex-col">
-            <div class="w-full relative bg-black-light flex-1 rounded overflow-hidden">
+    <div class="@if ($layout == 'extra-wide') md:px-8 md:my-16 lg:max-w-lg @endif w-full md:justify-self-center">
+        <div class="relative flex aspect-video flex-col">
+            <div class="relative w-full flex-1 overflow-hidden rounded bg-black-light">
                 @if ($event->featuredImage)
-                    {!! $event->featuredImage->img('wide')->attributes([ 
+                    {!! $event->featuredImage->img('wide')->attributes([
                         'loading' => 'lazy',
                         'class' => 'group-hover:scale-105 transition duration-500 block w-full absolute max-w-none inset-0',
                     ]) !!}
                 @endif
             </div>
 
-
-             <x-accessibilities class="absolute top-2 right-1.5" :audiodescribed="$event->audio_description" />
-            @if ($show_strand && $event->strand?->show_on_event_card)
-                <x-strand.badge  :dark="$dark" class="mt-2"
-                    :strand="$event->strand" />
+            @if ($event->audio_description)
+                <x-accessibilities.badge class="absolute right-1.5 top-2" ::title="Audio description">AD</x-accessibilities.badge>
             @endif
 
-       
+            @if ($show_strand && $event->strand?->show_on_event_card)
+                <x-strand.badge :dark="$dark" class="mt-2" :strand="$event->strand" />
+            @endif
+
         </div>
     </div>
 
@@ -57,17 +57,16 @@
                         <p class="pt-1 leading-none">{{ $event->subtitle }}</p>
                     @endif
 
-                
                 </div>
 
                 <div>
-                    <a class="type-small hover:text-gray-dark border-gray-dark hover:bg-white border before:absolute before:inset-0 inline-block py-0 bg-gray-dark text-white rounded-full px-2"
+                    <a class="type-small inline-block rounded-full border border-gray-dark bg-gray-dark px-2 py-0 text-white before:absolute before:inset-0 hover:bg-white hover:text-gray-dark"
                         href="{{ $event->url }}">Info</a>
-                    @if (!$event->coming_soon) / 
-                            <button
-                                class="type-small border border-yellow hover:!bg-black hover:text-current relative z-[1] inline-block py-0 bg-yellow text-black rounded-full px-2"
-                                @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
-                                @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
+                    @if (!$event->coming_soon) /
+                        <button
+                            class="type-small relative z-[1] inline-block rounded-full border border-yellow bg-yellow px-2 py-0 text-black hover:!bg-black hover:text-current"
+                            @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
+                            @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
                     @endif
                 </div>
             </div>

@@ -6,14 +6,26 @@
     <mj-section padding="15px 0px">
         @foreach ($chunk as $film)
             <mj-column padding="15px 7.5px " css-class="pb0-on-desktop" width="{{ 100 / $section->layout }}%">
-<mj-image border-radius="5px" src="{{ $film->featuredImage?->getUrl('wide') }}" alt="{{ $film->name }}"  padding="0px 0px 10px 0px"></mj-image>
+{{-- <mj-image href="{{  $film->url }}" fluid-on-mobile="true" height="{{  $film->strand && $film->strand->name !== 'Bring Your Own Baby' ? '165px' : '185px' }}" border-radius="5px" src="{{ $film->featuredImage?->getUrl('wide') }}" alt="{{ $film->name }}"  padding="0px 0px 0px 0px"></mj-image>
+  @if ($film->strand && $film->strand->name !== 'Bring Your Own Baby')
+                        <mj-button color="#000000" background-color="{{ $film->strand->color }}" width="100%"
+                            line-height="1" padding="0px" font-size="11px" font-weight="bold" inner-padding="4px 0"
+                            align="center">
+
+                            {{ strtoupper($film->strand->name) }}
+                        </mj-button>
+                    @endif --}}
 
                 <mj-hero css-class="film-column-hero" border-radius="5px" vertical-align="bottom" mode="fluid-height"
                     background-width="1200px" background-height="720px"
                     background-url="{{ $film->featuredImage?->getUrl('wide') }}" background-color="#2a3448"
+
+                    href="{{  $film->url }}"
+                    url="{{  $film->url }}"
                     padding="0px 0px">
+                   
                     @if ($film->strand && $film->strand->name !== 'Bring Your Own Baby')
-                        <mj-button color="#000000" background-color="{{ $film->strand->color }}" width="100%"
+                        <mj-button  color="#000000" background-color="{{ $film->strand->color }}" width="100%"
                             line-height="1" padding="0px" font-size="11px" font-weight="bold" inner-padding="4px 0"
                             align="center">
 
@@ -21,6 +33,9 @@
                         </mj-button>
                     @endif
                 </mj-hero>
+
+
+              
                 <x-email.heading type="regular" padding="10px 0">
                 
 
@@ -73,7 +88,7 @@
     <mj-section css-class="hidden-on-mobile" padding="0 0 25px">
         @foreach ($chunk as $film)
             <mj-column padding="0 7.5px " width="{{ 100 / $section->layout }}%">
-                <mj-button inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
+                <mj-button inner-padding="7px 10px" font-weight="bold" width="100%" padding="0"
                     background-color="#ffda3d" color="#000000" href="{{ $film->url }}">More
                     info &amp; tickets
                 </mj-button>

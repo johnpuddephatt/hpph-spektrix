@@ -2,7 +2,7 @@
      <mj-section padding="0">
          
 <x-email.heading align="center" type="xs-mono">             
-                 Key:  &nbsp;&nbsp;<a style="color: black; text-decoration: none;"
+                 Key:&nbsp;&nbsp;<a style="color: black; text-decoration: none;"
                      href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
                          'label' => 'Captioned',
                          'abbreviation' => 'C',
@@ -15,7 +15,7 @@
                      href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
                          'label' => 'Autism-friendly',
                          'abbreviation' => 'Autism',
-                     ]) Autism-friendly</a>&nbsp;&nbsp;<a style="color: black;text-decoration: none;"
+                     ]) Autism-friendly</a>&nbsp;&nbsp;<br><a style="color: black;text-decoration: none;"
                      href="https://hpph.co.uk/access#accessible-screenings">@include('emails.components.accessibility_icon', [
                          'label' => 'Toddler-friendly',
                          'abbreviation' => 'Toddler',

@@ -86,6 +86,14 @@
                                         <div class="flex flex-col gap-x-2 gap-y-0.5 sm:flex-row sm:items-center">
                                             <x-strand.booking-path />
 
+                                            <x-special-event-badge x-show="instance.special_event">
+                                                <span x-text="instance.special_event"></span>
+                                            </x-special-event-badge>
+
+                                            <x-special-event-badge x-show="instance.format">
+                                                <span x-text="instance.format"></span>
+                                            </x-special-event-badge>
+
                                             <template x-for="tag in instance.access_tags">
 
                                                 <x-accessibilities.badge ::title="tag.label">

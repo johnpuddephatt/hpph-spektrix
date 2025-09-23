@@ -5,7 +5,7 @@
 
         <mj-attributes>
 
-            <mj-all line-height="17px" letter-spacing="-0.21px" font-size="14px" font-family="BasisGrotesque, sans-serif" />
+            <mj-all line-height="20px" letter-spacing="-0.25px" font-size="14px" font-family="BasisGrotesque, sans-serif" />
             <mj-accordion padding="0 0 0 0" border="none" />
             <mj-accordion-element icon-unwrapped-url="https://hpph.ams3.cdn.digitaloceanspaces.com/plus.png"
                 icon-wrapped-url="https://hpph.ams3.cdn.digitaloceanspaces.com/plus.png" icon-height="16px"
@@ -90,13 +90,22 @@
             </mj-section>
         </mj-wrapper>
 
-        @if ($email->settings['key'])
-            @include('emails.components.key')
-        @endif
+    
 
         @if (is_iterable($email->content))
+            @php
+                $key_shown = false;
+            @endphp
             @foreach ($email->content as $section)
                 @include('emails.sections.' . $section->name(), ['section' => $section])
+
+
+                @if(($section->name() == 'email_events_section' ) && $email->settings['key'] && !$key_shown)
+                    @include('emails.components.key')
+                    @php
+                        $key_shown = true;
+                    @endphp
+                @endif
             @endforeach
         @endif
 

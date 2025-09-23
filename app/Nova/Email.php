@@ -57,7 +57,7 @@ class Email extends Resource
         return [
             ID::make()->sortable(),
             Text::make('Title')->required()->default('This week from HPPH'),
-            Date::make('Date')->required(),
+            Date::make('Date')->required()->help('This should be the date the email will be sent out. It is used to determine which screening times to show in the email.'),
             Flexible::make('Email sections', 'content')
                 // ->addLayout('Email Featured Section', 'email_featured_section', [
                 //      Boolean::make('Include all dates', 'include_all_dates')->help('If enabled, all future screenings dates will be shown in this block. The default is to only show the next 7 days'),
@@ -87,13 +87,21 @@ class Email extends Resource
                 ])
                 ->addLayout('Email Pick Section', 'email_pick_section', [
                     Select::make('Pick')->fullWidth()->stacked()->searchable()->options(
-                        \App\Models\Post::all()->pluck('title', 'id')
+                        \App\Models\Post::all()->sortByDesc('created_at')->mapWithKeys(function ($post) {
+                            return [
+                                $post->id => $post->title . ' (' . ($post->date ?? $post->created_at?->format('Y-m-d')) . ')'
+                            ];
+                        })
                     )->displayUsingLabels(),
                     Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
                 ])->hideFromDetail()
                 ->addLayout('Email Blog Section', 'email_blog_section', [
                     Select::make('Post')->fullWidth()->stacked()->searchable()->options(
-                        \App\Models\Post::all()->pluck('title', 'id')
+                        \App\Models\Post::all()->sortByDesc('created_at')->mapWithKeys(function ($post) {
+                            return [
+                                $post->id => $post->title . ' (' . ($post->date ?? $post->created_at?->format('Y-m-d')) . ')'
+                            ];
+                        })
                     )->displayUsingLabels(),
                     Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
                 ])
