@@ -71,7 +71,7 @@
             @else
                 <button
                     class="type-regular z-[1] mt-4 flex flex-row items-center justify-between rounded-r-full bg-yellow p-1 pl-4 after:absolute after:bottom-4 after:left-0 after:right-0 after:z-20 after:h-10 lg:mt-0 lg:w-2/12 lg:translate-x-1.5 lg:rounded-full lg:after:hidden hover:lg:bg-yellow-dark"
-                    @click='$dispatch("booking", { eventID: "{{ $instance->event->id }}", instanceID: "{{ $instance->short_id }}", event: {!! json_encode($instance->event->name) !!}, certificate: "{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}" })'>Book
+                    @click='$dispatch("booking", { eventID: "{{ $instance->event->id }}", instanceID: "{{ $instance->short_id }}", event: "{!! htmlentities($instance->event->name, ENT_QUOTES) !!}", certificate: "{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}" })'>Book
                     @svg('arrow-right', 'block text-yellow p-2 ml-2 flex-shrink-0 h-7 w-7 bg-black rounded-full')</button>
             @endif
         @endif
