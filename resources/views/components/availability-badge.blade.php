@@ -1,6 +1,6 @@
 @props(['instance'])
 
-<div {{ $attributes->class('uppercase type-xs font-bold px-2.5 py-0.5 text-black ml-auto flex items-center rounded flex-row bg-sand-light') }}
+<div {{ $attributes->class('uppercase type-xs font-bold px-2.5 py-0.5 text-black flex items-center rounded flex-row bg-sand-light') }}
     x-cloak
     x-show="(instance.availability.seats / instance.availability.capacity) <= {{ nova_get_setting('availability_threshold', 0.15) }}"
     :title="instance.availability.seats ?
