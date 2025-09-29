@@ -15,8 +15,7 @@
                     <div
                         class="container relative flex flex-row flex-wrap items-start border-b-[1rem] border-sand-light py-4 last:border-b-0 lg:flex-nowrap lg:gap-6">
 
-                        <div
-                            class="relative flex aspect-video w-1/2 flex-col pl-2 md:ml-[25%] md:w-1/4 lg:ml-0 lg:w-2/12 lg:pl-0">
+                        <div class="relative flex aspect-video w-1/2 flex-col lg:ml-0 lg:w-2/12 lg:pl-0">
                             <div class="relative w-full flex-1 overflow-hidden rounded bg-sand-dark">
                                 @if ($instances->first()->event->featuredImage)
                                     {!! $instances->first()->event->featuredImage->img('wide')->attributes([
@@ -50,16 +49,16 @@
                         </div>
 
                         <div
-                            class="mt-4 flex flex-grow flex-col gap-2 divide-y divide-gray-light self-stretch lg:mt-0 lg:w-4/12 lg:border-l lg:border-gray-light lg:pl-4">
+                            class="mt-4 flex flex-grow flex-col divide-y divide-gray-light self-stretch lg:mt-0 lg:w-4/12 lg:border-l lg:border-gray-light lg:pl-4">
                             @foreach ($instances as $instance)
-                                <div class="flex flex-row items-start gap-4 py-4 first:pt-0 lg:gap-2">
+                                <div class="flex flex-row items-start py-2 first:pt-0 lg:gap-2 lg:py-4">
 
-                                    <div class="w-1/2">
+                                    <div class="w-1/2 pr-2 lg:pr-0">
                                         <div class="type-mono rounded bg-black px-6 py-2 text-center text-white">
                                             {{ $instance->start->format('H:i') }}</div>
                                     </div>
 
-                                    <div class="flex flex-wrap items-start gap-2">
+                                    <div class="flex flex-wrap items-start gap-x-1 gap-y-2 lg:gap-x-2">
                                         @if (nova_get_setting('display_availability_badge', false))
                                             <x-availability-badge :instance="$instance" />
                                         @endif
