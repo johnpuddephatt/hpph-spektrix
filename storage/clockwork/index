@@ -3297,3 +3297,4 @@
 1759164367-6765-4491913,1759164367.6231,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,295.18890380859,request
 1759164368-0764-1665060697,1759164368.062,GET,/livewire/livewire.js?id=df3a17f2,Livewire\Mechanisms\FrontendAssets\FrontendAssets@returnJavaScriptAsFile,200,33.386945724487,request
 1759164838-9375-701425884,1759164838.8887,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,1072.8530883789,request
+1759164882-7559-197753074,1759164882.704,GET,/films/casper,App\Http\Controllers\EventController@show,200,366.87779426575,request
