@@ -138,7 +138,8 @@ class Event extends Resource
                     ->singleMediaRules("max:15000"),
                 Images::make("Image", "main")->rules([
                     Rule::requiredIf(fn() => $request->published),
-                ]),
+                ])->conversionOnIndexView('square'),
+
                 Images::make("Image gallery", "gallery")
                     ->singleMediaRules("dimensions:min_width=800,min_height=600")
                     ->rules("max:4")

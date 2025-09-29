@@ -24,7 +24,7 @@ class Page extends Resource
 {
 
     use HasDependencies;
-    
+
     public static $group = "Content";
 
     /**
@@ -69,7 +69,7 @@ class Page extends Resource
     public function fields(NovaRequest $request)
     {
         $fields = [
-            
+
             ID::make()
                 ->sortable()
                 ->hide(),
@@ -90,7 +90,7 @@ class Page extends Resource
                 return $this->indented_name();
             })
                 ->asHtml()
-                ->hideFromDetail()                
+                ->hideFromDetail()
                 ->hideFromIndex(function (ResourceIndexRequest $request) {
                     return $request->viaRelationship();
                 }),
@@ -102,7 +102,7 @@ class Page extends Resource
                 ->rules("max:100"),
             Boolean::make("Published")->showOnPreview()
                 ->filterable()->hideWhenCreating(),
-            Images::make("Image", "main"),
+            Images::make("Image", "main")->conversionOnIndexView('square'),
             Textarea::make("Introduction")->maxLength(200)->enforceMaxlength()
                 ->rows(3)
                 ->withMeta([
@@ -113,7 +113,7 @@ class Page extends Resource
                 ])
                 ->alwaysShow()
                 ->rules("required", "max:350"),
-   
+
             Select::make("Template")
                 ->options(
                     \App\Models\Page::getAvailableTemplates($request->resourceId || $request->isResourceIndexRequest())
@@ -133,22 +133,20 @@ class Page extends Resource
                 Textarea::make("SEO description")->rows(2)->hideFromIndex()->help("Optional. Page introduction will be used if not provided")->maxLength(120)->enforceMaxlength()
             ])
         ];
-        
+
         if ($this->template !== 'home-page') {
             $fields = array_merge(
-                            $fields,
-                        [BelongsTo::make("Parent page", "parent", \App\Nova\Page::class)
-                            ->nullable()
-                            ->hideFromIndex()]
+                $fields,
+                [BelongsTo::make("Parent page", "parent", \App\Nova\Page::class)
+                    ->nullable()
+                    ->hideFromIndex()]
             );
         }
 
         if ($request->resourceId && $this->template) {
             $fields = array_merge(
                 $fields,
-                (new (config("page-templates")[$this->template][
-                    "class"
-                ]
+                (new (config("page-templates")[$this->template]["class"]
                 ))->fields($request)
             );
         }
