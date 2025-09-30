@@ -1,3 +1,7 @@
+import {
+    Livewire,
+    Alpine,
+} from "../../vendor/livewire/livewire/dist/livewire.esm";
 // import _ from "lodash";
 // window._ = _;
 
@@ -33,6 +37,7 @@ if (window.Alpine) {
 // window.Alpine = Alpine;
 
 // Alpine.start();
+Livewire.start();
 
 import { format, compareAsc } from "date-fns";
 window.format = format;

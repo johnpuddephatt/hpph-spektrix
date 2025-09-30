@@ -59,6 +59,8 @@
     @yield('templatecontent')
     @stack('footer')
 
+    @livewireScriptConfig
+
 </body>
 
 </html>

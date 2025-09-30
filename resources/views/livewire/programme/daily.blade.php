@@ -58,7 +58,7 @@
                                             {{ $instance->start->format('H:i') }}</div>
                                     </div>
 
-                                    <div class="flex flex-wrap items-start gap-x-1 gap-y-2 lg:gap-x-2">
+                                    <div class="flex flex-wrap items-start gap-1 lg:gap-2">
                                         @if (nova_get_setting('display_availability_badge', false))
                                             <x-availability-badge :instance="$instance" />
                                         @endif
