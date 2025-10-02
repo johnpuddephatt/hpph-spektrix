@@ -93,6 +93,8 @@ class Post extends Model implements HasMedia, CachableAttributes
         $this->addMediaConversion("wide")
             ->quality(80)
             ->sharpen(10)
+            ->width(1500)
+            ->height(627)
             ->crop(1500, 627, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
@@ -100,6 +102,8 @@ class Post extends Model implements HasMedia, CachableAttributes
         $this->addMediaConversion("landscape")
             ->quality(80)
             ->sharpen(10)
+            ->width(1200)
+            ->height(800)
             ->crop(1200, 800, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
@@ -107,6 +111,8 @@ class Post extends Model implements HasMedia, CachableAttributes
         $this->addMediaConversion("square")
             ->quality(80)
             ->sharpen(10)
+            ->width(800)
+            ->height(800)
             ->crop(800, 800, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
