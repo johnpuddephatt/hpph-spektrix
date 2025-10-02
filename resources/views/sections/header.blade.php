@@ -25,8 +25,7 @@
             </div>
         </div>
 
-        <div x-trap="nav_open"
-            class="absolute right-4 top-12 z-30 flex flex-col items-center gap-2.5 max-lg:z-40 lg:mt-0"
+        <div x-trap="nav_open" class="absolute right-4 top-12 z-30 flex flex-col items-center gap-3 max-lg:z-40 lg:mt-0"
             :class="{
                 '!text-white': nav_open,
             }">
