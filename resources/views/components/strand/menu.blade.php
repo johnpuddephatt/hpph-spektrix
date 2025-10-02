@@ -27,7 +27,6 @@
                      @endif
 
                      @if ($strand->logo)
-                         @icon($strand->logo, ' group-hover:delay-[0ms] delay-100 lg:group-hover:opacity-0 lg:group-hover:-translate-y-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 mx-auto w-64 lg:w-72 max-w-full px-8')
                          <img src="{{ Storage::url($strand->logo) }}" alt="{{ $strand->name }} logo" loading="lazy"
                              class="absolute left-1/2 top-1/2 z-10 mx-auto w-64 max-w-full -translate-x-1/2 -translate-y-1/2 transform px-8 delay-100 group-hover:delay-[0ms] lg:w-72 lg:group-hover:-translate-y-full lg:group-hover:opacity-0" />
                      @else
