@@ -707,3 +707,4 @@
 1759426397-6863-1931084177,1759426397.6802,GET,/storage/animation.json,App\Http\Controllers\PageController@show,404,46.430110931396,request
 1759426398-6381-1955938327,1759426398.6209,GET,/whats-on,App\Http\Controllers\PageController@show,200,205.90806007385,request
 1759426448-1472-284848376,1759426448.1325,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,587.05186843872,request
+1759427449-4956-1458176061,1759427449.4352,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,1215.9659862518,request
