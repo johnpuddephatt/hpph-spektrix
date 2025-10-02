@@ -41,7 +41,7 @@
             slidesPerView: @if ($layout == 'home') 6 @else Math.min(totalSlides, 4) @endif,
         },
     },
-})" class="relative mx-auto mt-12 max-w-none lg:mt-24">
+})" class="relative mx-auto mt-12 max-w-none lg:mt-20">
     <div class="swiper-container w-full overflow-hidden border-t border-gray-dark pt-10 lg:pt-16" x-ref="container">
         <div class="swiper-wrapper w-full">
             @if ($strand)
