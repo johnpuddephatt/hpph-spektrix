@@ -83,7 +83,7 @@
                                             x-text="instance.start_time">
                                         </div>
 
-                                        <div class="flex flex-col gap-x-2 gap-y-0.5 sm:flex-row sm:items-center">
+                                        <div class="flex items-center gap-x-2 gap-y-0.5">
                                             <x-strand.booking-path />
 
                                             <x-special-event-badge x-show="instance.special_event">

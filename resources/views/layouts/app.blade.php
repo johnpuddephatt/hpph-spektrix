@@ -51,7 +51,8 @@
     @stack('head')
 </head>
 
-<body class="leading-[162.5%] tracking-normal"
+<body
+    class="{{ $settings['alert_enabled'] && $settings['alert_display_until'] > now() ? 'pt-8 lg:pt-0' : '' }} bg-white leading-[162.5%] tracking-normal text-black transition-colors duration-300 ease-in-out dark:bg-black dark:text-white"
     :class="{ 'overflow-hidden': nav_open || booking_path_open || search_open }" x-data="{ scrolled: false, search_open: false, nav_open: false, booking_path_open: false }"
     @navtoggled.window="nav_open = $event.detail" @searchtoggled.window="search_open = $event.detail"
     @booking.window="console.log('booking event on window');booking_path_open = $event.detail"

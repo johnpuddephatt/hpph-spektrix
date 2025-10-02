@@ -3,6 +3,7 @@
 @section('templatecontent')
     @include('spektrix-components.booking-path')
 
+    <x-alert />
     @include('sections.header')
 
     <main class="relative">
@@ -10,5 +11,4 @@
     </main>
 
     @include('sections.footer')
-    <x-alert />
 @endsection
