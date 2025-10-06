@@ -21,6 +21,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
 
 class Post extends Model implements HasMedia, CachableAttributes
 {
@@ -104,7 +105,11 @@ class Post extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->width(1200)
             ->height(800)
-            ->crop(1200, 800, CropPosition::Center)
+            ->fit(
+                Fit::Crop,
+                1200,
+                800
+            )
             ->withResponsiveImages()
             ->performOnCollections("main");
 
