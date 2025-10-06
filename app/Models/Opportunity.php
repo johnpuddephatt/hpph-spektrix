@@ -14,6 +14,7 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
 
 class Opportunity extends Model implements HasMedia
 {
@@ -72,7 +73,7 @@ class Opportunity extends Model implements HasMedia
             ->width(1600)
             ->height(1200)
             ->sharpen(10)
-            ->crop(1200, 1600, CropPosition::Center)
+            ->fit(Fit::Crop, 1200, 1600)
             ->withResponsiveImages()
             ->performOnCollections("main");
     }

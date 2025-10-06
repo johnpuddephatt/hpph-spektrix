@@ -13,6 +13,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
 
 class Product extends Model implements HasMedia
 {
@@ -69,7 +70,7 @@ class Product extends Model implements HasMedia
             // ->width(1920)
             // ->height(1080)
             ->sharpen(10)
-            ->crop(1200, 800, CropPosition::Center)
+            ->fit(1200, 800, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
@@ -78,7 +79,7 @@ class Product extends Model implements HasMedia
             ->width(1600)
             ->height(1200)
             ->sharpen(10)
-            ->crop(1600, 1600, CropPosition::Center)
+            ->fit(1600, 1600, CropPosition::Center)
             ->withResponsiveImages()
             ->performOnCollections("main");
     }

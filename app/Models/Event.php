@@ -28,6 +28,7 @@ use Cohensive\OEmbed\Facades\OEmbed;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
 
 class Event extends Model implements HasMedia, CachableAttributes
 {
@@ -181,7 +182,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         $this->addMediaConversion("thumb")
             ->width(1920)
             ->height(1080)
-            ->crop(1920, 1080, CropPosition::Center)
+            ->fit(Fit::Crop, 1920, 1080)
             ->extractVideoFrameAtSecond(0);
         // ->performOnCollections("video");
 
@@ -190,13 +191,13 @@ class Event extends Model implements HasMedia, CachableAttributes
             ->width(800)
             ->height(800)
             ->sharpen(10)
-            ->crop(800, 800, CropPosition::Center)
+            ->fit(Fit::Crop, 800, 800)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
         $this->addMediaConversion("wide")
             ->quality(80)
-            ->crop(2000, 1200, CropPosition::Center)
+            ->fit(Fit::Crop, 2000, 1200)
             ->sharpen(10)
             ->format("webp")
             ->withResponsiveImages()

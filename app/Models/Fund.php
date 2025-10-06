@@ -12,6 +12,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
 
 class Fund extends Model implements HasMedia
 {
@@ -45,7 +46,7 @@ class Fund extends Model implements HasMedia
             // ->width(1920)
             // ->height(1080)
             ->sharpen(10)
-            ->crop(1200, 800, CropPosition::Center)
+            ->fit(Fit::Crop, 1200, 800)
             ->withResponsiveImages()
             ->performOnCollections("main");
     }

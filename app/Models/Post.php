@@ -96,7 +96,7 @@ class Post extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->width(1500)
             ->height(627)
-            ->crop(1500, 627, CropPosition::Center)
+            ->fit(Fit::Crop, 1500, 627)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
@@ -105,11 +105,7 @@ class Post extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->width(1200)
             ->height(800)
-            ->fit(
-                Fit::Crop,
-                1200,
-                800
-            )
+            ->fit(Fit::Crop, 1200, 800)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
@@ -118,7 +114,7 @@ class Post extends Model implements HasMedia, CachableAttributes
             ->sharpen(10)
             ->width(800)
             ->height(800)
-            ->crop(800, 800, CropPosition::Center)
+            ->fit(Fit::Crop, 800, 800)
             ->withResponsiveImages()
             ->performOnCollections("main");
     }

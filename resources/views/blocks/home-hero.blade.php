@@ -1,4 +1,4 @@
-<div class="mt-screen block w-screen overflow-hidden">
+<div class="mt-screen pointer-events-none block w-screen overflow-hidden">
 
 </div>
 

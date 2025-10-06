@@ -22,6 +22,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Cache;
 use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
 
 class Page extends Model implements HasMedia
 {
@@ -71,7 +72,7 @@ class Page extends Model implements HasMedia
             // ->width(1920)
             // ->height(1080)
             ->sharpen(10)
-            ->crop(1500, 627, CropPosition::Center)
+            ->fit(Fit::Crop, 1500, 627)
             ->withResponsiveImages()
             ->performOnCollections("main");
 
@@ -80,7 +81,7 @@ class Page extends Model implements HasMedia
             // ->width(1920)
             // ->height(1080)
             ->sharpen(10)
-            ->crop(1200, 800, CropPosition::Center)
+            ->fit(Fit::Crop, 1200, 800)
             ->withResponsiveImages()
             ->performOnCollections("main", "gallery");
 
@@ -88,7 +89,7 @@ class Page extends Model implements HasMedia
         $this->addMediaConversion("square")
             ->quality(80)
             ->sharpen(10)
-            ->crop(1600, 1600, CropPosition::Center)
+            ->fit(Fit::Crop, 1600, 1600)
             ->withResponsiveImages()
             ->performOnCollections("gallery", "main");
 
@@ -97,7 +98,7 @@ class Page extends Model implements HasMedia
             $this->addMediaConversion("square")
                 ->quality(80)
                 ->sharpen(10)
-                ->crop(1600, 1600, CropPosition::Center)
+                ->fit(Fit::Crop, 1600, 1600)
                 ->withResponsiveImages()
                 ->performOnCollections($media->collection_name);
         }

@@ -21,6 +21,7 @@ use App\Casts\PageContentCast;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Image\Enums\CropPosition;
+use Spatie\Image\Enums\Fit;
 
 class Season extends Model implements HasMedia, CachableAttributes, Sortable
 {
@@ -96,7 +97,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
     {
         $this->addMediaConversion("landscape")
             ->quality(80)
-            ->crop(2000, 1200, CropPosition::Center)
+            ->fit(Fit::Crop, 2000, 1200)
             ->sharpen(10)
             ->format("jpg")
             ->withResponsiveImages()
@@ -110,7 +111,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
 
         $this->addMediaConversion("wide")
             ->quality(80)
-            ->crop(1500, 627, CropPosition::Center)
+            ->fit(Fit::Crop, 1500, 627)
             ->sharpen(10)
             ->format("jpg")
             ->withResponsiveImages()
