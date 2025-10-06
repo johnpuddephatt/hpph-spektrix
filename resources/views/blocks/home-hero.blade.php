@@ -2,7 +2,7 @@
 
 </div>
 
-<div class="fixed inset-0 -z-10 h-screen w-full overflow-hidden border-b-[1rem] border-yellow bg-black">
+<div class="fixed inset-0 h-screen w-full overflow-hidden border-b-[1rem] border-yellow bg-black">
     <figure
         class="absolute left-1/2 top-1/2 z-40 mx-auto h-auto w-[48rem] max-w-[150vw] -translate-x-1/2 -translate-y-1/2"
         x-data="{ animation: '' }" x-init="animation = lottie.loadAnimation({

@@ -1,9 +1,9 @@
 @if (count($layout->posts))
 
-    <div class="bg-sand-dark py-16">
+    <div class="relative bg-sand-dark py-16">
         <div class="container">
-            <div class="type-xs-mono text-center mb-2">Latest</div>
-            <h2 class="type-regular lg:type-medium mb-8 lg:mb-16 text-center">Stories from our <a class="underline"
+            <div class="type-xs-mono mb-2 text-center">Latest</div>
+            <h2 class="type-regular lg:type-medium mb-8 text-center lg:mb-16">Stories from our <a class="underline"
                     href="/journal/">journal</a>
             </h2>
 
@@ -32,7 +32,7 @@
                         slidesPerView: 3,
                     },
                 },
-            })" class="relative max-w-none mx-auto">
+            })" class="relative mx-auto max-w-none">
 
                 <div class="swiper-container w-full overflow-hidden" x-ref="container">
                     <div class="swiper-wrapper w-full">
@@ -43,8 +43,8 @@
                 </div>
 
                 <div x-show="showControls"
-                    class="mt-8 lg:mt-24 justify-center flex flex-row gap-4 border-t border-gray-light text-black">
-                    <div class="-mt-6 bg-sand-dark flex flex-row border border-gray-light rounded-full">
+                    class="mt-8 flex flex-row justify-center gap-4 border-t border-gray-light text-black lg:mt-24">
+                    <div class="-mt-6 flex flex-row rounded-full border border-gray-light bg-sand-dark">
                         <button :class="{ 'opacity-25': !showPreviousControl }" :disabled="!showPreviousControl"
                             @click="swiper.slidePrev()" class="block py-1 pl-6 pr-2">
                             @svg('chevron-right', 'rotate-180 h-8 w-8 block')

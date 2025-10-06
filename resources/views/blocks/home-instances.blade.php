@@ -1,5 +1,5 @@
 @if (count($layout->instances))
-    <div class="bg-black pb-16 pt-12 text-white">
+    <div class="relative bg-black pb-16 pt-12 text-white">
         <div class="container">
             <div class="type-xs-mono mb-4 text-center">{{ $layout->title }}</div>
             <div class="type-regular lg:type-medium mb-4 text-center">

@@ -1,6 +1,6 @@
 @if ($layout->statement)
-    <div class="bg-yellow pt-10 pb-16">
-        <div class="container max-w-4xl mx-auto text-center">
+    <div class="relative bg-yellow pb-16 pt-10">
+        <div class="container mx-auto max-w-4xl text-center">
             <p class="type-xs-mono mb-12">{{ $layout->heading }}</p>
             <h2 class="type-regular md:type-medium">{{ $layout->statement }}</h2>
         </div>
@@ -9,7 +9,7 @@
 
 @if ($layout->shuffled_images && count($layout->shuffled_images))
 
-    <div x-data="carousel" class="w-full overflow-hidden bg-black pb-12 lg:pb-36">
+    <div x-data="carousel" class="relative w-full overflow-hidden bg-black pb-12 lg:pb-36">
         <div class="absolute left-0 right-0 h-48 bg-yellow"></div>
         <div :class="{ 'opacity-0': !initialised }" id="carousel-wrapper" x-intersect:enter="config.inView = true"
             x-intersect:leave="config.inView = false" @resize.window="init(); slideCarousel(config);"
