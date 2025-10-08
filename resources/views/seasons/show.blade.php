@@ -58,7 +58,7 @@
         <div class="type-xs-mono pb-12 lg:pb-8">{{ $season->name }}</div>
         <div class="type-regular lg:type-medium container max-w-4xl text-center">{{ $season->description }}</div>
         @if ($season->additional_description)
-            <div class="prose container mt-6 max-w-3xl text-center">{{ $season->additional_description }}</div>
+            <div class="prose container mt-6 max-w-3xl text-center">{!! $season->additional_description !!}</div>
         @endif
         @if ($season->funders_logo)
             <img onload="this.style.width = this.clientWidth/2 + 'px'; this.classList.add('max-w-sm'); this.classList.remove('opacity-0')"

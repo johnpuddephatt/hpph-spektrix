@@ -17,6 +17,7 @@ use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Tag;
+use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Panel;
 use Whitecube\NovaFlexibleContent\Flexible;
 
@@ -112,11 +113,8 @@ class Strand extends Resource
                 ->hideFromIndex()
                 ->maxLength(250)
                 ->enforceMaxlength(),
-            Textarea::make("Additional description")
-                ->rows(3)
-                ->hideFromIndex()
-                ->maxLength(800)
-                ->enforceMaxlength(),
+            Trix::make("Additional description")
+                ->hideFromIndex(),
             Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 300-400px wide. Multiple logos can be artworked on a canvas 800px wide.'),
             Boolean::make("Show on event card")->hideFromIndex(),
             Boolean::make("Show on instance card")->hideFromIndex(),
