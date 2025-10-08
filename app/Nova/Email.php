@@ -18,7 +18,7 @@ use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Select;
 use Outl1ne\MultiselectField\Multiselect;
-use Intervention\Image\Facades\Image as InterventionImage;
+use Intervention\Image\Laravel\Facades\Image as InterventionImage;
 
 class Email extends Resource
 {

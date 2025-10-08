@@ -1,13 +1,8 @@
 <?php
+
 namespace App\Nova\Settings;
 
-use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\DateTime;
-use Laravel\Nova\Fields\Image;
-use Intervention\Image\Facades\Image as LaravelImage;
-use Illuminate\Support\Facades\Storage;
 
 class Newsletter
 {

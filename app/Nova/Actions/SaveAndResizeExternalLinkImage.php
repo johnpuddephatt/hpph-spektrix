@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Nova\Actions;
 
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image as InterventionImage;
+use Intervention\Image\Laravel\Facades\Image as InterventionImage;
 
 class SaveAndResizeExternalLinkImage
 {
@@ -21,9 +22,11 @@ class SaveAndResizeExternalLinkImage
         $filename = $request->$attribute->hashName($attribute);
         Storage::disk($disk)->put(
             $filename,
-            InterventionImage::make($request->$attribute)
-                ->fit(1200, 800)
-                ->encode("jpg", 75)
+            InterventionImage::read($request->file($attribute))
+                ->cover(1200, 800)
+                ->encode(
+                    new \Intervention\Image\Encoders\JpegEncoder(quality: 75),
+                )
         );
 
         return $filename;

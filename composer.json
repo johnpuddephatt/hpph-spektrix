@@ -20,6 +20,7 @@
         "ebess/advanced-nova-media-library": "^4.0",
         "eminiarts/nova-tabs": "^2.1",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image-laravel": "^1.5",
         "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^11.0",
         "laravel/horizon": "^5.15",
