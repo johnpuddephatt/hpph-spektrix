@@ -13,7 +13,7 @@
             <div>
                 @foreach ($events as $eventId => $instances)
                     <div
-                        class="container relative flex flex-wrap items-start border-b-[1rem] border-sand-light py-4 last:border-b-0 lg:flex-row lg:flex-nowrap lg:gap-6">
+                        class="group container relative flex flex-wrap items-start border-b-[1rem] border-sand-light py-4 last:border-b-0 lg:flex-row lg:flex-nowrap lg:gap-6">
 
                         <div class="relative flex aspect-video w-1/2 flex-col pr-4 lg:ml-0 lg:w-2/12 lg:pl-0 lg:pr-0">
                             <div class="relative w-full flex-1 overflow-hidden rounded bg-sand-dark">
@@ -48,7 +48,7 @@
 
                                     <div class="w-1/2 flex-none pr-4 lg:pr-0">
                                         <div
-                                            class="type-mono rounded bg-black px-6 py-2 text-center text-white transition hover:bg-yellow hover:text-black">
+                                            class="type-mono rounded bg-black px-6 py-2 text-center text-white transition group-hover:bg-yellow group-hover:text-black">
                                             {{ $instance->start->format('H:i') }}</div>
                                     </div>
 
