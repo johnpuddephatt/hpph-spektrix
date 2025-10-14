@@ -1140,3 +1140,13 @@
 1759946665-9050-953530936,1759946665.8958,PUT,/nova-api/seasons/1?viaResource=&viaResourceId=&viaRelationship=&editing=true&editMode=update,Laravel\Nova\Http\Controllers\ResourceUpdateController,200,141.63684844971,request
 1759946666-0579-589482779,1759946666.0467,GET,/nova-api/seasons/1/update-fields?editing=true&editMode=update&viaResource=&viaResourceId=&viaRelationship=,Laravel\Nova\Http\Controllers\UpdateFieldController,200,58.494091033936,request
 1759946668-7295-1572538160,1759946668.7098,GET,/seasons/test-season,App\Http\Controllers\SeasonController@show,200,163.98596763611,request
+1759946981-2834-1685713100,1759946981.2365,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,181.12707138062,request
+1760476075-0058-555458553,1760476074.9846,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,183.37392807007,request
+1760476134-7378-1814860744,1760476134.695,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,282.79614448547,request
+1760476172-4579-597026751,1760476172.4377,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,176.79715156555,request
+1760476200-7136-1515201552,1760476200.6937,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,220.98684310913,request
+1760476221-5897-1080862793,1760476221.5521,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,219.11096572876,request
+1760476229-8899-917744159,1760476229.8713,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,168.13707351685,request
+1760476238-0592-257221787,1760476238.0279,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,190.21010398865,request
+1760476255-5607-1917760470,1760476255.5404,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,213.0138874054,request
+1760476277-2800-30472096,1760476277.2488,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,221.82512283325,request
