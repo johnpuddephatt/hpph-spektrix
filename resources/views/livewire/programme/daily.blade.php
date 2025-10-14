@@ -36,13 +36,6 @@
                                 </a>
                             </h4>
 
-                            {{-- @if ($instances->first()->special_event || $instances->first()->format)
-                <div class="lg:hidden mt-2">
-                    <x-special-event-badge>{{ $instances->first()->special_event }}</x-special-event-badge>
-                    <x-special-event-badge>{{ $instances->first()->format }}</x-special-event-badge>
-                </div>
-            @endif --}}
-
                             @if ($instances->first()->event->subtitle)
                                 <p class="pt-2 leading-none">{{ $instances->first()->event->subtitle }}</p>
                             @endif

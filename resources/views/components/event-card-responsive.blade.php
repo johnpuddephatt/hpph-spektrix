@@ -59,14 +59,14 @@
 
                 </div>
 
-                <div>
-                    <a class="type-small inline-block rounded-full border border-gray-dark bg-gray-dark px-2 py-0 text-white before:absolute before:inset-0 hover:bg-white hover:text-gray-dark"
+                <div class="space-x-1">
+                    <a class="type-body inline-block rounded border-sand-light bg-sand-light px-6 py-1 !font-bold text-black transition before:absolute before:inset-0 hover:bg-gray-dark hover:text-sand-light"
                         href="{{ $event->url }}">Info</a>
-                    @if (!$event->coming_soon) /
+                    @if (!$event->coming_soon)
                         <button
-                            class="type-small relative z-[1] inline-block rounded-full border border-yellow bg-yellow px-2 py-0 text-black hover:!bg-black hover:text-current"
                             @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
-                            @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
+                            class="type-body relative z-[1] inline-block rounded border border-yellow bg-yellow px-6 py-1 !font-bold text-black transition hover:bg-black hover:text-yellow"
+                            @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}'  })">Book</button>
                     @endif
                 </div>
             </div>

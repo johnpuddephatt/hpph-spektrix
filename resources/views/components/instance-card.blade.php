@@ -70,18 +70,19 @@
                     @endif
                 </div>
 
-                <div>
-                    <a class="type-small inline-block rounded-full border border-gray-dark bg-gray-dark px-2 py-0 text-white before:absolute before:inset-0 hover:bg-white hover:text-gray-dark"
+                <div class="space-x-1">
+
+                    <a class="type-body inline-block rounded border-gray-dark bg-gray-dark px-6 py-1 !font-bold text-white transition before:absolute before:inset-0 hover:bg-white hover:text-gray-dark"
                         href="{{ $instance->url }}">Info</a>
-                    @if (!$instance->event->coming_soon) /
+                    @if (!$instance->event->coming_soon)
 
                         @if ($instance->external_ticket_link)
                             <a href="{{ $instance->external_ticket_link }}" target="_blank"
-                                class="type-small relative z-[1] inline-block rounded-full border border-yellow bg-yellow px-2 py-0 text-black hover:!bg-black hover:text-current"
+                                class="type-body relative z-[1] inline-block rounded border border-yellow bg-yellow px-6 py-1 !font-bold text-black transition hover:bg-black hover:text-yellow"
                                 @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif>Book</a>
                         @else
                             <button
-                                class="type-small relative z-[1] inline-block rounded-full border border-yellow bg-yellow px-2 py-0 text-black hover:!bg-black hover:text-current"
+                                class="type-body relative z-[1] inline-block rounded border border-yellow bg-yellow px-6 py-1 !font-bold text-black transition hover:bg-black hover:text-yellow"
                                 @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
                                 @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
                         @endif

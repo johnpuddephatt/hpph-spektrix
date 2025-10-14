@@ -38,62 +38,6 @@ class Daily extends Component
 
     public $past = false;
 
-
-    public function instances()
-    {
-        $instances = \App\Models\Instance::whereHas("event", function ($event) {
-            return $event->shownInProgramme();
-        })
-            ->with(
-                "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
-                "event.featuredImage",
-                "strand:slug,name,color,show_on_instance_card",
-
-            )
-            ->select(
-                "id",
-                "event_id",
-                "start",
-                "captioned",
-                "relaxed",
-                "autism_friendly",
-                "toddler_friendly",
-                "signed_bsl",
-                "analogue",
-                "strand_name",
-                "special_event",
-                "external_ticket_link"
-            );
-
-        if ($this->past == true) {
-            $instances->withoutGlobalScope("future");
-        }
-
-        $this->filtered = false;
-
-        if ($this->strand) {
-            $strand = $this->strand;
-            $instances->whereHas("strand", function (Builder $query) use (
-                $strand
-            ) {
-                $query->where("strands.slug", $strand);
-            });
-            $this->filtered = true;
-        }
-
-        if ($this->accessibility) {
-            $instances->{Str::camel($this->accessibility)}();
-            $this->filtered = true;
-        }
-
-        if ($this->date) {
-            $instances->whereDate("start", $this->date);
-            $this->filtered = true;
-        }
-
-        return $instances;
-    }
-
     protected $queryString = ["accessibility", "strand", "date", "past" => ["except" => false]];
 
     protected $listeners = [
@@ -137,7 +81,12 @@ class Daily extends Component
     public function render()
     {
         return view("livewire.programme.daily", [
-            "instances" => $this->instances()->get()->groupBy(['start_date' => function ($date) {
+            "instances" => \App\Models\Instance::getInstancesForProgramme(
+                $this->past,
+                $this->strand,
+                $this->accessibility,
+                $this->date
+            )->groupBy(['start_date' => function ($date) {
                 return Carbon::parse($date->start)->format('Y-m-d');
             }, 'event_id']),
         ]);
