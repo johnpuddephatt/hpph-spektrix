@@ -47,7 +47,8 @@
                                 <div class="flex flex-row items-start py-2 first:pt-0 lg:gap-2 lg:py-4">
 
                                     <div class="w-1/2 flex-none pr-4 lg:pr-0">
-                                        <div class="type-mono rounded bg-black px-6 py-2 text-center text-white">
+                                        <div
+                                            class="type-mono rounded bg-black px-6 py-2 text-center text-white transition hover:bg-yellow hover:text-black">
                                             {{ $instance->start->format('H:i') }}</div>
                                     </div>
 

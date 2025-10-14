@@ -552,3 +552,9 @@
 1760478463-5345-1977078362,1760478463.5292,GET,/storage/137/responsive-images/Screenshot-2023-03-23-at-13.15.47___square_1338_1338.jpg,App\Http\Controllers\PageController@show,404,43.841123580933,request
 1760478464-5490-416673471,1760478464.5362,GET,/storage/70/responsive-images/41-COLOUR%402x___landscape_1400_840.jpg,App\Http\Controllers\PageController@show,404,85.553884506226,request
 1760478464-5490-1407805323,1760478464.534,GET,/storage/84/responsive-images/IMG_5298___landscape_1400_840.jpg,App\Http\Controllers\PageController@show,404,87.862014770508,request
+1760478643-0302-1081974166,1760478642.986,GET,/whats-on,App\Http\Controllers\PageController@show,200,264.36018943787,request
+1760478647-7262-272191901,1760478647.7083,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,166.21494293213,request
+1760478662-1421-1319278051,1760478662.1361,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,92.580080032349,request
+1760478688-8208-308330577,1760478688.8079,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,159.95097160339,request
+1760478704-2860-229143403,1760478704.2712,GET,/films/hundreds-of-beavers,App\Http\Controllers\EventController@show,200,130.82695007324,request
+1760478705-9430-503537400,1760478705.9332,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,143.56899261475,request

@@ -83,7 +83,7 @@
                         @else
                             <button
                                 class="type-body relative z-[1] inline-block rounded border border-yellow bg-yellow px-6 py-1 !font-bold text-black transition hover:bg-black hover:text-yellow"
-                                @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
+                                @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}; color: black;" @endif
                                 @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
                         @endif
                     @endif
