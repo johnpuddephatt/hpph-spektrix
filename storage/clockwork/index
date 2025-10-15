@@ -741,3 +741,7 @@
 1760534838-0466-1280077907,1760534838.0263,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,110.56900024414,request
 1760534859-7135-1908758817,1760534859.6759,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,177.11997032166,request
 1760535156-3817-450581461,1760535156.3379,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,1261.2268924713,request
+1760535188-8559-1608690614,1760535188.8276,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,300.89497566223,request
+1760535189-6162-1456781564,1760535189.604,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,53.585052490234,request
+1760535191-7110-387684019,1760535191.6967,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,56.626081466675,request
+1760535552-0351-1960735273,1760535551.992,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,178.15613746643,request

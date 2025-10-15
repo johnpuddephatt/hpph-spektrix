@@ -1,10 +1,10 @@
 @props(['event'])
 
 <div class="group relative mb-4 flex flex-col border-gray-light px-2 pb-4 md:border-b md:pt-3">
-    <div class="type-xs-mono pb-3 max-md:container max-md:bg-sand-light max-md:pt-3">
+    <div class="type-xs-mono pb-3 max-md:container max-md:pt-3">
         {!! $event->date_range !!}
     </div>
-    <div class="mb-auto aspect-video overflow-hidden md:rounded">
+    <div class="-order-1 mb-auto aspect-video overflow-hidden md:order-none md:rounded">
         <div class="relative flex aspect-video flex-col">
             <div class="relative w-full flex-1 overflow-hidden bg-gray md:rounded">
                 @if ($event->featuredImage)
