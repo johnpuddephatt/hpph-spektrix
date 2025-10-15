@@ -82,7 +82,7 @@
                                 @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}; color: black;" @endif>Book</a>
                         @else
                             <button
-                                class="type-body {{ $color ? 'hover:text-white' : ' hover:text-yellow border-yellow bg-yellow' }} relative z-[1] inline-block rounded border px-6 py-1 !font-bold text-black transition hover:bg-black"
+                                class="type-body {{ $color ? 'hover:!text-white hover:!bg-black' : ' hover:text-yellow border-yellow bg-yellow' }} relative z-[1] inline-block rounded border px-6 py-1 !font-bold text-black transition hover:bg-black"
                                 @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}; color: black;" @endif
                                 @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
                         @endif
