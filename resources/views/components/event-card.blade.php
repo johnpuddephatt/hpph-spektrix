@@ -22,7 +22,7 @@
     </div>
 
     <div class="pb-4 max-md:container">
-        <div class="mb-4 mt-4 lg:mb-2 lg:min-h-[4.5rem]">
+        <div class="mb-4 md:mt-4 lg:mb-2 lg:min-h-[4.5rem]">
             <h2 class="type-regular max-w-xs">{{ $event->name }}
                 <x-certificate :dark="true" :certificate="$event->certificate_age_guidance" />
             </h2>
