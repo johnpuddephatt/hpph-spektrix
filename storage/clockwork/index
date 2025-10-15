@@ -642,3 +642,11 @@
 1760533131-7706-1378329961,1760533131.7612,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,136.42883300781,request
 1760533132-5335-977502482,1760533132.5206,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,149.60503578186,request
 1760533174-0227-217811347,1760533173.9992,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,183.02488327026,request
+1760533380-9867-1025596497,1760533380.9345,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,1163.5751724243,request
+1760533414-1031-1754389386,1760533414.0664,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,204.55121994019,request
+1760533421-1023-715297099,1760533421.0786,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,188.62104415894,request
+1760533426-9768-582227589,1760533426.9694,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,105.68594932556,request
+1760533432-7543-1934799798,1760533432.7275,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,185.28604507446,request
+1760533439-7441-1060558237,1760533439.7248,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,152.87303924561,request
+1760533452-6254-3162749,1760533452.6061,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,161.19599342346,request
+1760533453-2137-652507389,1760533453.2021,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,157.45782852173,request
