@@ -47,9 +47,18 @@
                                 <div class="flex flex-row items-start py-2 first:pt-0 lg:gap-2 lg:py-4">
 
                                     <div class="w-1/2 flex-none pr-4 lg:pr-0">
-                                        <div
-                                            class="type-mono rounded bg-black px-6 py-2 text-center text-white transition group-hover:bg-yellow group-hover:text-black">
-                                            {{ $instance->start->format('H:i') }}</div>
+
+                                        @if ($instance->external_ticket_link)
+                                            <a href="{{ $instance->external_ticket_link }}" target="_blank"
+                                                class="type-mono relative z-10 block w-full rounded bg-black px-6 py-2 text-center text-white transition hover:bg-yellow hover:text-black">
+                                                {{ $instance->start->format('H:i') }}</a>
+                                        @else
+                                            <button
+                                                class="type-mono relative z-10 block w-full rounded bg-black px-6 py-2 text-center text-white transition hover:bg-yellow hover:text-black"
+                                                @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: {{ $instance->short_id }}, event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">
+                                                {{ $instance->start->format('H:i') }}</button>
+                                        @endif
+
                                     </div>
 
                                     <div class="flex flex-wrap items-start gap-1 lg:gap-2">

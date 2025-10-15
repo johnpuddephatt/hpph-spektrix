@@ -1,5 +1,5 @@
 <div x-trap="eventID" x-cloak
-    @booking.window="eventID = $event.detail.eventID; instance = {short_id: $event.detail.instanceID}; event = $event.detail.event; certificate = $event.detail.certificate"
+    @booking.window="eventID = $event.detail.eventID;  selectedInstance = $event.detail.instanceID ? {short_id: $event.detail.instanceID} : null; event = $event.detail.event; certificate = $event.detail.certificate"
     @keyup.escape.window="closeBooking" x-data="{
         iFrameLoading: true,
         eventID: null,
@@ -152,31 +152,33 @@
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full"
         class="fixed bottom-0 right-0 top-[4.5rem] z-[60] flex w-full flex-col bg-sand transition lg:top-0 lg:min-h-screen lg:w-[calc(90vw-9rem)] xl:w-[calc(75vw-9rem)]"
         x-show="selectedInstance && eventID">
+        {{-- <template x-if="selectedInstance && showModal">
+            <dialog
+                x-show="({{ $access_tags->map(fn($tag) => 'selectedInstance.' . $tag->slug . ' && ' . ($tag->booking_warning ? 'true' : 'false'))->join(' || ') }})"
+                open>
+                <div class="fixed inset-0 z-40 bg-black bg-opacity-60 backdrop-blur-lg duration-150"></div>
+                <div
+                    class="fixed left-1/2 top-1/2 z-50 max-w-lg -translate-x-1/2 -translate-y-1/2 transform rounded bg-sand-light p-12">
+                    <h3 class="type-regular">Important information about your selected screening</h3>
 
-        <dialog
-            x-show="showModal && ({{ $access_tags->map(fn($tag) => 'selectedInstance.' . $tag->slug . ' && ' . ($tag->booking_warning ? 'true' : 'false'))->join(' || ') }})"
-            open>
-            <div class="fixed inset-0 z-40 bg-black bg-opacity-60 backdrop-blur-lg duration-150"></div>
-            <div
-                class="fixed left-1/2 top-1/2 z-50 max-w-lg -translate-x-1/2 -translate-y-1/2 transform rounded bg-sand-light p-12">
-                <h3 class="type-regular">Important information about your selected screening</h3>
+                    <div class="py-12">
+                        @foreach ($access_tags as $tag)
+                            <div x-show="selectedInstance.{{ $tag->slug }}  && {{ $tag->booking_warning ? 'true' : 'false' }}"
+                                class="py-4 last:border-b">
 
-                <div class="py-12">
-                    @foreach ($access_tags as $tag)
-                        <div x-show="selectedInstance.{{ $tag->slug }}  && {{ $tag->booking_warning ? 'true' : 'false' }}"
-                            class="py-4 last:border-b">
+                                <x-accessibilities.badge
+                                    :title="$tag->name">{{ $tag->abbreviation }}</x-accessibilities.badge>
+                                <p class="type-small mt-2 !font-normal">{{ $tag->booking_warning }}</p>
 
-                            <x-accessibilities.badge
-                                :title="$tag->name">{{ $tag->abbreviation }}</x-accessibilities.badge>
-                            <p class="type-small mt-2 !font-normal">{{ $tag->booking_warning }}</p>
-
-                        </div>
-                    @endforeach
+                            </div>
+                        @endforeach
+                    </div>
+                    <button class="type-small rounded bg-sand-dark px-4 py-2"
+                        @click="selectedInstance = null">Back</button>
+                    <button class="type-small rounded bg-yellow px-8 py-2" @click="showModal = false">Continue</button>
                 </div>
-                <button class="type-small rounded bg-sand-dark px-4 py-2" @click="selectedInstance = null">Back</button>
-                <button class="type-small rounded bg-yellow px-8 py-2" @click="showModal = false">Continue</button>
-            </div>
-        </dialog>
+            </dialog>
+        </template> --}}
 
         <h2
             class="type-regular lg:type-medium z-10 flex transform flex-row items-center gap-4 whitespace-nowrap bg-sand-dark px-4 py-3 lg:absolute lg:right-full lg:w-[100vh] lg:origin-top-right lg:-rotate-90 lg:justify-between lg:bg-transparent lg:p-10 lg:px-6 lg:text-right">
@@ -217,9 +219,9 @@
                                 <p class="type-xs mt-0.5 flex items-center gap-1">
                                     <svg class="mr-0.5 h-auto w-4" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
-                                        width="483.2226563" height="551.4306641"
-                                        viewBox="0 0 483.2226563 551.4306641" overflow="visible"
-                                        enable-background="new 0 0 483.2226563 551.4306641" xml:space="preserve">
+                                        width="483.2226563" height="551.4306641" viewBox="0 0 483.2226563 551.4306641"
+                                        overflow="visible" enable-background="new 0 0 483.2226563 551.4306641"
+                                        xml:space="preserve">
                                         <path fill-rule="evenodd" clip-rule="evenodd"
                                             d="M161.9882813,98.1240234  c24.9628906-2.3046875,44.3574219-23.8110352,44.3574219-48.9658203C206.3457031,22.0830078,184.2626953,0,157.1875,0  s-49.1572266,22.0830078-49.1572266,49.1582031c0,8.2568359,2.3037109,16.7055664,6.1445313,23.8105469l17.515625,246.4667969  l180.3964844,0.0488281l73.9912109,173.3652344l97.1445313-38.0976563l-15.0429688-35.8203125l-54.3662109,19.625  l-71.5908203-165.2802734l-167.7294922,1.1269531l-2.3027344-31.2128906l121.4228516,0.0483398v-46.1831055l-126.0546875-0.0493164  L161.9882813,98.1240234z" />
                                         <path fill-rule="evenodd" clip-rule="evenodd"
