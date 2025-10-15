@@ -64,8 +64,8 @@
                         href="{{ $event->url }}">Info</a>
                     @if (!$event->coming_soon)
                         <button
-                            @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif
-                            class="type-body relative z-[1] inline-block rounded border border-yellow bg-yellow px-6 py-1 !font-bold text-black transition hover:bg-black hover:text-yellow"
+                            class="type-body {{ $color ? 'hover:text-white' : ' hover:text-yellow border-yellow bg-yellow' }} relative z-[1] inline-block rounded border px-6 py-1 !font-bold text-black transition hover:bg-black"
+                            @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}; color: black;" @endif
                             @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $event->id }}', event: '{{ htmlentities($event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($event->certificate_age_guidance, ENT_QUOTES) }}'  })">Book</button>
                     @endif
                 </div>
