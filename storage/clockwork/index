@@ -632,3 +632,13 @@
 1760532769-3493-521967423,1760532769.3314,GET,/api/event/385601ACTJTMJNLNLQRMCRKKQNHRQMKBM/instances,App\Http\Controllers\EventInstancesController,200,134.69696044922,request
 1760532771-3565-577677476,1760532771.3443,GET,/films/casper,App\Http\Controllers\EventController@show,200,191.65110588074,request
 1760532772-5835-1066862845,1760532772.5622,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,169.55208778381,request
+1760532887-6852-411456773,1760532887.6452,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,1226.4490127563,request
+1760532903-1749-517356041,1760532903.145,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,213.99307250977,request
+1760532943-5051-406010795,1760532943.465,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,250.81419944763,request
+1760532981-7226-1059041549,1760532981.6838,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,275.21586418152,request
+1760533031-4974-1982171036,1760533031.4729,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,170.07112503052,request
+1760533083-1946-777770824,1760533083.1611,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,194.98991966248,request
+1760533110-6902-2032838517,1760533110.6638,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,169.82007026672,request
+1760533131-7706-1378329961,1760533131.7612,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,136.42883300781,request
+1760533132-5335-977502482,1760533132.5206,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,149.60503578186,request
+1760533174-0227-217811347,1760533173.9992,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,183.02488327026,request
