@@ -1,13 +1,13 @@
-<div x-init="$dispatch('eventcount', { number: null })" class="md:container divide-y divide-gray-light pt-3 pb-8">
+<div x-init="$dispatch('eventcount', { number: null })" class="divide-y divide-gray-light pb-8 pt-3 md:container">
     <div class="overflow-hidden">
         @if (count($events))
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 -mx-2 -mb-px">
+            <div class="-mx-2 -mb-px grid bg-sand-light md:grid-cols-2 md:bg-transparent lg:grid-cols-3 xl:grid-cols-4">
                 @foreach ($events as $event)
                     <x-event-card :event="$event" />
                 @endforeach
             </div>
         @else
-            <div class="type-regular text-center py-24">No events found.</div>
+            <div class="type-regular py-24 text-center">No events found.</div>
 
         @endif
         {{ $events->links() }}
