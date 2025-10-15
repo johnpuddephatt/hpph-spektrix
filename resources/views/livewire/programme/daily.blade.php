@@ -1,6 +1,6 @@
 <div x-init="$dispatch('eventcount', { number: {{ $filtered ? $instances->count() : 0 }}, })">
     @foreach ($instances as $date => $events)
-        <div class="first:-mt-6">
+        <div class="first:-mt-7">
             <div id="{{ Str::slug($events->first()->first()->start_date) }}"
                 class="absolute left-0 right-0 h-[4.75rem] bg-sand-light lg:h-0"></div>
             <h3

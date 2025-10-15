@@ -787,3 +787,4 @@
 1760536648-7510-740479962,1760536648.7275,GET,/whats-on?type=alphabetical,App\Http\Controllers\PageController@show,200,333.14299583435,request
 1760536680-6502-924509919,1760536680.6152,GET,/whats-on?type=alphabetical,App\Http\Controllers\PageController@show,200,397.77088165283,request
 1760536711-1058-1034076376,1760536711.0826,GET,/whats-on?type=alphabetical,App\Http\Controllers\PageController@show,200,343.40500831604,request
+1760545116-5982-886296245,1760545116.5789,GET,/whats-on?type=daily,App\Http\Controllers\PageController@show,200,180.10687828064,request
