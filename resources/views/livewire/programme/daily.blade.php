@@ -50,11 +50,11 @@
 
                                         @if ($instance->external_ticket_link)
                                             <a href="{{ $instance->external_ticket_link }}" target="_blank"
-                                                class="type-mono relative z-10 block w-full rounded bg-black px-6 py-2 text-center text-white transition hover:bg-yellow hover:text-black">
+                                                class="type-mono relative block w-full rounded bg-black px-6 py-2 text-center text-white transition hover:bg-yellow hover:text-black">
                                                 {{ $instance->start->format('H:i') }}</a>
                                         @else
                                             <button
-                                                class="type-mono relative z-10 block w-full rounded bg-black px-6 py-2 text-center text-white transition hover:bg-yellow hover:text-black"
+                                                class="type-mono relative block w-full rounded bg-black px-6 py-2 text-center text-white transition hover:bg-yellow hover:text-black"
                                                 @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: {{ $instance->short_id }}, event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">
                                                 {{ $instance->start->format('H:i') }}</button>
                                         @endif
