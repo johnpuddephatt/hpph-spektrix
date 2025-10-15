@@ -78,11 +78,11 @@
 
                         @if ($instance->external_ticket_link)
                             <a href="{{ $instance->external_ticket_link }}" target="_blank"
-                                class="type-body relative z-[1] inline-block rounded border border-yellow bg-yellow px-6 py-1 !font-bold text-black transition hover:bg-black hover:text-yellow"
-                                @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}" @endif>Book</a>
+                                class="type-body {{ $color ? 'hover:text-white' : ' hover:text-yellow border-yellow bg-yellow' }} relative z-[1] inline-block rounded border px-6 py-1 !font-bold text-black transition hover:bg-black"
+                                @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}; color: black;" @endif>Book</a>
                         @else
                             <button
-                                class="type-body relative z-[1] inline-block rounded border border-yellow bg-yellow px-6 py-1 !font-bold text-black transition hover:bg-black hover:text-yellow"
+                                class="type-body {{ $color ? 'hover:text-white' : ' hover:text-yellow border-yellow bg-yellow' }} relative z-[1] inline-block rounded border px-6 py-1 !font-bold text-black transition hover:bg-black"
                                 @if ($color) style="background-color: {{ $color }}; border-color: {{ $color }}; color: black;" @endif
                                 @click="$event.stopPropagation(), $dispatch('booking', { eventID: '{{ $instance->event->id }}', instanceID: '{{ $instance->short_id }}', event: '{{ htmlentities($instance->event->name, ENT_QUOTES) }}', certificate: '{{ htmlentities($instance->event->certificate_age_guidance, ENT_QUOTES) }}' })">Book</button>
                         @endif
