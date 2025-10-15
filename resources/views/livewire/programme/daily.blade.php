@@ -1,10 +1,10 @@
 <div x-init="$dispatch('eventcount', { number: {{ $filtered ? $instances->count() : 0 }}, })">
     @foreach ($instances as $date => $events)
-        <div>
+        <div class="first:-mt-6">
             <div id="{{ Str::slug($events->first()->first()->start_date) }}"
                 class="absolute left-0 right-0 h-[4.75rem] bg-sand-light lg:h-0"></div>
             <h3
-                class="{{ $settings['alert_enabled'] && $settings['alert_display_until'] > now() ? 'top-4' : '-top-5' }} container sticky z-10 flex justify-center border-sand pb-1 pt-8 first:mt-0 lg:top-[6.95rem] lg:block lg:border-b lg:bg-sand-light">
+                class="{{ $settings['alert_enabled'] && $settings['alert_display_until'] > now() ? 'top-4' : '-top-5' }} container sticky z-10 flex justify-center border-sand pb-1 pt-8 lg:top-[5.25rem] lg:block lg:border-b lg:bg-sand-light">
                 <a href="#{{ Str::slug($events->first()->first()->start_date) }}"
                     class="type-small inline-block rounded-full bg-yellow px-6 py-2.5">
                     {{ $events->first()->first()->start_date }}
