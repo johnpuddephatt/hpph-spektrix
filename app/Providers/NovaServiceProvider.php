@@ -98,6 +98,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 .md\:flex-col  > .editor-js, .md\:flex-col  > #editor-js-content {
                     padding-top: 3rem;
+                    padding-bottom: 12rem;
                     border: none;
                     box-shadow: none;
                     width: calc(125% + 4rem);
