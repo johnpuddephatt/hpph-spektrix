@@ -41,7 +41,7 @@
 
      <div class="flex flex-col bg-sand lg:block">
          <div
-             class="z-[11] mb-8 flex-row-reverse justify-between border-yellow-dark bg-sand-light transition lg:container before:absolute before:bottom-full before:left-0 before:right-0 before:-z-10 before:hidden before:h-[3.75rem] before:bg-sand lg:sticky lg:bottom-auto lg:top-[3.75rem] lg:mb-0 lg:flex lg:translate-y-0 lg:border-b lg:border-sand lg:py-2.5 lg:pr-14 lg:before:block">
+             class="z-[11] flex-row-reverse justify-between border-b border-sand border-yellow-dark bg-sand-light transition lg:container before:absolute before:bottom-full before:left-0 before:right-0 before:-z-10 before:hidden before:h-[3.75rem] before:bg-sand lg:sticky lg:bottom-auto lg:top-[3.75rem] lg:flex lg:translate-y-0 lg:py-2.5 lg:pr-14 lg:before:block">
 
              <div x-cloak :class="{ '': filtersOpen, ' max-lg:max-h-0 max-lg:overflow-hidden': !filtersOpen }"
                  class="flex-row items-center lg:flex lg:gap-2.5">
