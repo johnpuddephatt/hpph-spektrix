@@ -16,7 +16,7 @@
          @endif
 
          <button @click="filtersOpen = false; viewOpen = !viewOpen" :class="{ '!bg-sand-dark': viewOpen }"
-             class="type-xs-mono !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z',default => 'Daily'} }}
+             class="type-xs-mono ml-auto !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z',default => 'Daily'} }}
 
              view
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -27,7 +27,7 @@
          </button>
 
          <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
-             class="type-xs-mono ml-auto mr-10 !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
+             class="type-xs-mono mr-10 !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
 
              Filter
 
