@@ -84,3 +84,8 @@
 1762164469-0633-1226803916,1762164468.9863,POST,/livewire/update,Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate,419,251.62887573242,request
 1762164470-6453-1701537243,1762164470.6348,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,193.91107559204,request
 1762164471-3850-2063437010,1762164471.3665,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,141.98398590088,request
+1762164520-7090-935891665,1762164520.6848,GET,/,App\Http\Controllers\PageController@home,200,714.87998962402,request
+1762164521-6063-1422391529,1762164521.5968,GET,/storage/animation.json,App\Http\Controllers\PageController@show,404,73.957920074463,request
+1762164521-6474-102119682,1762164521.6434,GET,/storage/95/responsive-images/Black-History-Month-2%402x___wide_1500_627.jpg,App\Http\Controllers\PageController@show,404,50.405025482178,request
+1762164521-6542-1318415675,1762164521.6495,GET,/storage/157/responsive-images/InTheClub2-copy___landscape_1200_800.jpg,App\Http\Controllers\PageController@show,404,57.1129322052,request
+1762164632-7838-996773076,1762164632.7385,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,244.51804161072,request
