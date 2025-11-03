@@ -90,3 +90,6 @@
 1762164521-6542-1318415675,1762164521.6495,GET,/storage/157/responsive-images/InTheClub2-copy___landscape_1200_800.jpg,App\Http\Controllers\PageController@show,404,57.1129322052,request
 1762164632-7838-996773076,1762164632.7385,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,244.51804161072,request
 1762165181-5835-1574907968,1762165181.5479,GET,/build/assets/app-CqX-rGiZ.css,App\Http\Controllers\PageController@show,404,200.4508972168,request
+1762165268-0905-208464951,1762165268.0518,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,233.5479259491,request
+1762165284-8740-35883861,1762165284.8534,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,148.82183074951,request
+1762165317-7067-738990459,1762165317.6915,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,147.46809005737,request
