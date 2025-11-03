@@ -7,7 +7,7 @@
             </div>
 
             <h3
-                class="type-xs-mono {{ $settings['alert_enabled'] && $settings['alert_display_until'] > now() ? 'top-11' : 'top-3' }} container sticky z-10 flex justify-center border-sand first:mt-0 lg:top-[6.95rem] lg:mt-12 lg:block lg:border-b lg:bg-sand-light">
+                class="type-xs-mono {{ $settings['alert_enabled'] && $settings['alert_display_until'] > now() ? 'top-11' : 'top-3' }} {{ $loop->first ? '' : 'lg:mt-12' }} container sticky z-10 flex justify-center border-sand first:mt-0 lg:top-[6.95rem] lg:block lg:border-b lg:bg-sand-light">
                 <a href="#{{ Str::slug($instance->start_date) }}"
                     class="block rounded-full bg-sand-light px-6 py-2.5 lg:px-0 lg:py-3.5">
 
