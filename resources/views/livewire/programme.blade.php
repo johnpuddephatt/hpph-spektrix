@@ -16,22 +16,22 @@
          @endif
 
          <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
-             class="type-xs-mono ml-auto !rounded bg-sand-light !py-1.5 px-4 !text-black lg:hidden">
+             class="type-xs-mono ml-auto !rounded bg-sand-light !py-1.5 pl-4 pr-2 !text-black lg:hidden">
 
              Filter
 
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor" class="inline-block h-4 w-4 align-middle">
-                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                 stroke="currentColor" class="> <path stroke-linecap= inline-block h-4 w-4 align-sub"round"
+                 stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
              </svg>
 
          </button>
          <button @click="filtersOpen = false; viewOpen = !viewOpen" :class="{ '!bg-sand-dark': viewOpen }"
-             class="type-xs-mono !rounded bg-sand-light !py-1.5 px-4 !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z',default => 'Daily'} }}
+             class="type-xs-mono !rounded bg-sand-light !py-1.5 pl-4 pr-2 !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z',default => 'Daily'} }}
 
              view
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor" class="inline-block h-4 w-4 align-middle">
+                 stroke="currentColor" class="inline-block h-4 w-4 align-sub">
                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
              </svg>
 

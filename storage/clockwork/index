@@ -89,3 +89,4 @@
 1762164521-6474-102119682,1762164521.6434,GET,/storage/95/responsive-images/Black-History-Month-2%402x___wide_1500_627.jpg,App\Http\Controllers\PageController@show,404,50.405025482178,request
 1762164521-6542-1318415675,1762164521.6495,GET,/storage/157/responsive-images/InTheClub2-copy___landscape_1200_800.jpg,App\Http\Controllers\PageController@show,404,57.1129322052,request
 1762164632-7838-996773076,1762164632.7385,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,244.51804161072,request
+1762165181-5835-1574907968,1762165181.5479,GET,/build/assets/app-CqX-rGiZ.css,App\Http\Controllers\PageController@show,404,200.4508972168,request
