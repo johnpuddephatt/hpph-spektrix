@@ -1,6 +1,6 @@
 @props(['type', 'selected'])
 
 <button
-    {{ $attributes->class(($selected == $type ? 'bg-yellow ' : 'bg-black text-white lg:text-black hover:bg-black-light lg:bg-sand lg:hover:bg-sand-dark ') . 'type-xs-mono lg:rounded px-3 py-4 lg:py-1.5') }}
+    {{ $attributes->class(($selected == $type ? 'bg-yellow ' : ' text-black hover:bg-black-light bg-sand hover:bg-sand-dark ') . 'type-xs-mono rounded px-3 py-1.5') }}
     wire:click="$set('type', '{{ $type }}');">
     {{ $slot }}</button>

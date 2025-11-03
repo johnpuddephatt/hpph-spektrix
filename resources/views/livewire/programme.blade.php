@@ -1,8 +1,8 @@
  {{-- Outer wrapper <div> needed for LiveWire --}}
 
- <div>
+ <div x-data="{ filtersOpen: false, viewOpen: false }">
 
-     <div class="container relative z-[14] flex flex-row items-end justify-between gap-4 bg-sand pb-6 pt-36">
+     <div class="container relative z-[14] flex flex-row items-end justify-between gap-2 bg-sand pb-6 pt-36">
          @if (!$type === 'past')
              <h1 class="type-medium lg:type-large">
                  Past screenings
@@ -14,15 +14,37 @@
                      x-text="`[${count} result${count > 1 ? 's' : ''}]`">
              </h1>
          @endif
-         {{-- <x-programme-button class="!rounded !bg-sand-light !py-1 !text-black lg:hidden" :selected="$type"
-             type="past">Archive</x-programme-button> --}}
+
+         <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
+             class="type-xs-mono ml-auto !rounded bg-sand-light !py-1.5 px-4 !text-black lg:hidden">
+
+             Filter
+
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="inline-block h-4 w-4 align-middle">
+                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+             </svg>
+
+         </button>
+         <button @click="filtersOpen = false; viewOpen = !viewOpen" :class="{ '!bg-sand-dark': viewOpen }"
+             class="type-xs-mono !rounded bg-sand-light !py-1.5 px-4 !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z',default => 'Daily'} }}
+
+             view
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="inline-block h-4 w-4 align-middle">
+                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+             </svg>
+
+         </button>
+
      </div>
 
      <div class="flex flex-col bg-sand lg:block">
          <div
-             class="sticky bottom-0 z-[11] mb-8 flex-row-reverse justify-between border-yellow-dark bg-sand-light lg:container before:absolute before:bottom-full before:left-0 before:right-0 before:-z-10 before:hidden before:h-[3.75rem] before:bg-sand lg:bottom-auto lg:top-[3.75rem] lg:mb-0 lg:flex lg:border-b lg:border-sand lg:py-2.5 lg:pr-14 lg:before:block">
+             class="z-[11] mb-8 flex-row-reverse justify-between border-yellow-dark bg-sand-light transition lg:container before:absolute before:bottom-full before:left-0 before:right-0 before:-z-10 before:hidden before:h-[3.75rem] before:bg-sand lg:bottom-auto lg:top-[3.75rem] lg:mb-0 lg:flex lg:translate-y-0 lg:border-b lg:border-sand lg:py-2.5 lg:pr-14 lg:before:block">
 
-             <div class="flex-row items-center lg:flex lg:gap-2.5">
+             <div x-cloak :class="{ '': filtersOpen, ' max-lg:max-h-0 max-lg:overflow-hidden': !filtersOpen }"
+                 class="flex-row items-center lg:flex lg:gap-2.5">
                  @if ($type !== 'past')
                      <div class="type-xs-mono hidden lg:block">Filter:</div>
 
@@ -156,23 +178,21 @@
                  @endif
              </div>
 
-             <div class="hidden flex-row items-center lg:flex lg:gap-2.5">
+             <div x-cloak :class="{ '': viewOpen, ' max-lg:max-h-0 max-lg:overflow-hidden': !viewOpen }">
+                 <div class="grid grid-cols-3 flex-row items-center gap-2.5 px-4 py-3 lg:flex lg:p-0">
 
-                 <div class="type-xs-mono">View:</div>
-                 <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
-                 <x-programme-button :selected="$type" type="alphabetical">A&ndash;Z</x-programme-button>
-                 {{-- <x-programme-button :selected="$type" type="daily">Daily</x-programme-button> --}}
+                     <div class="type-xs-mono hidden lg:block">View:</div>
+                     <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
+                     <x-programme-button :selected="$type" type="alphabetical">A&ndash;Z</x-programme-button>
+                     {{-- <x-programme-button :selected="$type" type="daily">Daily</x-programme-button> --}}
 
-                 <x-programme-button class="hidden lg:block" :selected="$type"
-                     type="past">Archive</x-programme-button>
+                     <x-programme-button :selected="$type" type="past">Archive</x-programme-button>
+                 </div>
              </div>
 
-             <x-programme-button class="w-full lg:hidden" :selected="false" :type="$type == 'alphabetical' ? 'schedule' : 'alphabetical'">
-                 Switch to {{ $type == 'alphabetical' ? 'Schedule' : 'A–Z' }} view
-             </x-programme-button>
          </div>
 
-         <div class="-order-1 bg-sand pb-12">
+         <div class="bg-sand pb-12">
              @if ($type == 'alphabetical')
                  <livewire:programme.alphabetical wire-key="alphabetical" :type="$type" />
              @elseif($type == 'past')

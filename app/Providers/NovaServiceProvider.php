@@ -80,7 +80,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 .editor-js, #editor-js-content {
                     padding-top: 0.5rem;
-                    padding-bottom: 0.5rem;
+                    padding-bottom: 10rem;
+                    margin-bottom: 4rem;
                     border-radius: 0.5rem;
                     box-shadow: none;
                     border: 1px solid rgb(203,213,225);
@@ -98,7 +99,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
                 .md\:flex-col  > .editor-js, .md\:flex-col  > #editor-js-content {
                     padding-top: 3rem;
-                    padding-bottom: 12rem;
                     border: none;
                     box-shadow: none;
                     width: calc(125% + 4rem);
