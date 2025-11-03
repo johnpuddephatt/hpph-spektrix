@@ -15,23 +15,23 @@
              </h1>
          @endif
 
-         <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
-             class="type-xs-mono ml-auto !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
-
-             Filter
-
-             @svg('plus', 'align-top inline-block ml-1 w-3 h-3')</button>
-
          <button @click="filtersOpen = false; viewOpen = !viewOpen" :class="{ '!bg-sand-dark': viewOpen }"
-             class="type-xs-mono mr-10 !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z',default => 'Daily'} }}
+             class="type-xs-mono !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z',default => 'Daily'} }}
 
              view
              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor" class="inline-block h-3 w-3 align-middle">
+                 stroke="currentColor" class="inline-block h-4 w-4 align-middle">
                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
              </svg>
 
          </button>
+
+         <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
+             class="type-xs-mono ml-auto mr-10 !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
+
+             Filter
+
+             @svg('plus', 'align-top inline-block ml-1 w-3 h-3')</button>
 
      </div>
 
