@@ -27,7 +27,7 @@
          </button>
 
          <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
-             class="type-xs-mono mr-10 !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
+             class="type-xs-mono !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
 
              Filter
 
