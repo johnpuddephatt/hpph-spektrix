@@ -117,3 +117,6 @@
 1762165828-1243-895836357,1762165828.1145,GET,/whats-on?type=schedule&accessibility=,App\Http\Controllers\PageController@show,200,121.98305130005,request
 1762165842-5445-1786668537,1762165842.531,POST,/livewire/update,Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate,200,90.953826904297,request
 1762165842-6715-1516652163,1762165842.6604,POST,/livewire/update,Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate,200,35.439014434814,request
+1762166147-7118-2094694353,1762166147.6691,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,251.16205215454,request
+1762166156-3912-1650372690,1762166156.377,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,131.86287879944,request
+1762168439-2324-1040198888,1762168439.1727,GET,/whats-on?type=schedule&accessibility=audio_description,App\Http\Controllers\PageController@show,200,314.42093849182,request
