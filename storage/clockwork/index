@@ -136,3 +136,8 @@
 1762280284-0352-1324993982,1762280284.022,GET,/whats-on,App\Http\Controllers\PageController@show,200,165.7600402832,request
 1762280377-2221-270793628,1762280377.1959,GET,/whats-on,App\Http\Controllers\PageController@show,200,226.84216499329,request
 1762280384-4539-1405744475,1762280384.4332,POST,/livewire/update,Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate,200,317.12603569031,request
+1762280831-5011-1229004665,1762280831.4636,GET,/whats-on?type=alphabetical,App\Http\Controllers\PageController@show,200,316.83301925659,request
+1762280842-1981-2041207268,1762280842.1912,GET,/whats-on?type=alphabetical,App\Http\Controllers\PageController@show,200,190.21987915039,request
+1762280865-9447-981572164,1762280865.9337,GET,/films/anchors-aweigh,App\Http\Controllers\EventController@show,200,105.61108589172,request
+1762280871-4520-502339622,1762280871.4355,GET,/whats-on?type=alphabetical,App\Http\Controllers\PageController@show,200,304.70705032349,request
+1762280873-3361-1864573682,1762280873.3236,GET,/whats-on?type=alphabetical,App\Http\Controllers\PageController@show,200,294.5339679718,request
