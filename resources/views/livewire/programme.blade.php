@@ -14,9 +14,9 @@
                      x-text="`[${count} result${count > 1 ? 's' : ''}]`">
              </h1>
          @endif
-         <div class="ml-auto flex flex-row gap-2">
+         <div class="ml-auto flex flex-row gap-1">
              <button @click="filtersOpen = false; viewOpen = !viewOpen" :class="{ '!bg-sand-dark': viewOpen }"
-                 class="type-xs-mono ml-auto !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z','schedule' => 'Schedule',default => 'Daily'} }}
+                 class="type-xs-mono ml-auto !rounded bg-sand-light px-2 py-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z','schedule' => 'Schedule',default => 'Daily'} }}
 
                  view
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -27,8 +27,7 @@
              </button>
 
              <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
-                 class="type-xs-mono !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
-                 Filter
+                 class="type-xs-mono !rounded bg-sand-light px-2 py-2 leading-none !text-black lg:hidden">Filter
                  @svg('plus', 'align-top inline-block ml-1 w-3 h-3')</button>
          </div>
      </div>
