@@ -28,9 +28,7 @@
 
              <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
                  class="type-xs-mono !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
-
                  Filter
-
                  @svg('plus', 'align-top inline-block ml-1 w-3 h-3')</button>
          </div>
      </div>

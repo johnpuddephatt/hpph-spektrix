@@ -134,3 +134,5 @@
 1762280283-7057-1639236923,1762280283.7005,GET,/storage/137/responsive-images/Screenshot-2023-03-23-at-13.15.47___square_1600_1600.jpg,App\Http\Controllers\PageController@show,404,48.097133636475,request
 1762280283-7101-312122477,1762280283.7059,GET,/storage/139/responsive-images/Screenshot-2023-03-17-at-21.28.50___square_1600_1600.jpg,App\Http\Controllers\PageController@show,404,45.413970947266,request
 1762280284-0352-1324993982,1762280284.022,GET,/whats-on,App\Http\Controllers\PageController@show,200,165.7600402832,request
+1762280377-2221-270793628,1762280377.1959,GET,/whats-on,App\Http\Controllers\PageController@show,200,226.84216499329,request
+1762280384-4539-1405744475,1762280384.4332,POST,/livewire/update,Livewire\Mechanisms\HandleRequests\HandleRequests@handleUpdate,200,317.12603569031,request
