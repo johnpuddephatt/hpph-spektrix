@@ -2,7 +2,7 @@
 
  <div x-data="{ filtersOpen: false, viewOpen: false }">
 
-     <div class="container relative z-[14] flex flex-row items-end justify-between gap-2 bg-sand pb-6 pt-32">
+     <div class="container relative z-[14] flex flex-row flex-wrap items-end justify-between gap-2 bg-sand pb-4 pt-32">
          @if (!$type === 'past')
              <h1 class="type-medium lg:type-large">
                  Past screenings
@@ -14,25 +14,25 @@
                      x-text="`[${count} result${count > 1 ? 's' : ''}]`">
              </h1>
          @endif
+         <div class="ml-auto flex flex-row gap-2">
+             <button @click="filtersOpen = false; viewOpen = !viewOpen" :class="{ '!bg-sand-dark': viewOpen }"
+                 class="type-xs-mono ml-auto !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z','schedule' => 'Schedule',default => 'Daily'} }}
 
-         <button @click="filtersOpen = false; viewOpen = !viewOpen" :class="{ '!bg-sand-dark': viewOpen }"
-             class="type-xs-mono ml-auto !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z','schedule' => 'Schedule',default => 'Daily'} }}
+                 view
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="inline-block h-4 w-4 align-middle">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                 </svg>
 
-             view
-             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                 stroke="currentColor" class="inline-block h-4 w-4 align-middle">
-                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-             </svg>
+             </button>
 
-         </button>
+             <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
+                 class="type-xs-mono !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
 
-         <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
-             class="type-xs-mono !rounded bg-sand-light py-2 pl-4 pr-2 leading-none !text-black lg:hidden">
+                 Filter
 
-             Filter
-
-             @svg('plus', 'align-top inline-block ml-1 w-3 h-3')</button>
-
+                 @svg('plus', 'align-top inline-block ml-1 w-3 h-3')</button>
+         </div>
      </div>
 
      <div class="flex flex-col bg-sand lg:block">
