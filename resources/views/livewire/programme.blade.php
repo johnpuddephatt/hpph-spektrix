@@ -190,11 +190,11 @@
                  <livewire:programme.alphabetical wire-key="alphabetical" :type="$type" />
              @elseif($type == 'past')
                  <livewire:programme.alphabetical wire-key="past" :type="$type" />
-             @elseif ($type == 'daily')
-                 <livewire:programme.daily wire:key="daily" :type="$type" />
              @elseif ($type == 'schedule')
+                 <livewire:programme.daily wire:key="schedule" :type="$type" />
+                 {{-- @elseif ($type == 'schedule')
                  <livewire:programme.instances wire-key="instances" :show_header="false" :show_load_more="true"
-                     :options="[(array) ['limit' => 10]]" />
+                     :options="[(array) ['limit' => 10]]" /> --}}
              @endif
          </div>
 
