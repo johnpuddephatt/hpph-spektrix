@@ -27,7 +27,7 @@
                 <x-availability-badge class="absolute left-1.5 top-2" :instance="$instance" />
             @endif
 
-            <div class="absolute right-1.5 top-1">
+            <div class="absolute right-1.5 top-1 z-10">
                 @foreach ($instance->access_tags as $tag)
                     <x-accessibilities.badge :title="$tag->label">{{ $tag->abbreviation }}</x-accessibilities.badge>
                 @endforeach
