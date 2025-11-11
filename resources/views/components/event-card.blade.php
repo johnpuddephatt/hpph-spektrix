@@ -13,7 +13,8 @@
                 @endif
             </div>
             @if ($event->audio_description)
-                <x-accessibilities.badge class="absolute right-1.5 top-2" ::title="Audio description">AD</x-accessibilities.badge>
+                <x-accessibilities.badge class="absolute right-1.5 top-2"
+                    title="Audio description">AD</x-accessibilities.badge>
             @endif
             @if ($event->strand?->show_on_event_card)
                 <x-strand.badge class="max-md:rounded-none max-md:px-4 max-md:py-2 max-md:text-left md:mt-2"
