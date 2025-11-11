@@ -8,17 +8,17 @@
 
     @include('sections.pageheader_large')
 
-    <div x-data="{ sectionMenuOpen: false, activeSection: null }" class="flex flex-col-reverse lg:flex-row bg-sand">
+    <div x-data="{ sectionMenuOpen: false, activeSection: null }" class="flex flex-col-reverse bg-sand lg:flex-row">
         <div :class="{ 'sticky': !sectionMenuOpen }"
-            class="bg-sand-light lg:bg-transparent bottom-0 lg:container flex flex-col justify-end hover:bg-white transition lg:hover:bg-transparent lg:py-6 lg:w-1/2">
+            class="bottom-0 flex flex-col justify-end bg-sand-light transition lg:container hover:bg-white lg:w-1/2 lg:bg-transparent lg:py-6 lg:hover:bg-transparent">
             <div class="lg:sticky lg:bottom-4 lg:max-w-xl">
                 <h3 @click="sectionMenuOpen = !sectionMenuOpen"
-                    class="type-xs-mono px-4 lg:px-0 lg:py-0 py-6 cursor-pointer lg:block flex items-center justify-between">
+                    class="type-xs-mono flex cursor-pointer items-center justify-between px-4 py-6 lg:block lg:px-0 lg:py-0">
                     Jump to:
                     @svg('arrow-right', 'lg:hidden h-4 w-4 rotate-90')
                 </h3>
                 <nav :class="{ 'translate-y-0': sectionMenuOpen, 'translate-y-full': !sectionMenuOpen }"
-                    class="max-lg:container text-center lg:text-left flex flex-col justify-center z-[999] fixed bg-sand inset-0 transition lg:translate-y-0 lg:static lg:block">
+                    class="fixed inset-0 z-[999] flex flex-col justify-center bg-sand text-center transition max-lg:container lg:static lg:block lg:translate-y-0 lg:text-left">
 
                     <button @click="sectionMenuOpen = false">
                         @svg('plus', 'absolute top-3 right-3 lg:hidden h-10 w-10 rounded-full bg-black p-2 text-white rotate-45')
@@ -26,8 +26,8 @@
                     <h3 class="type-xs-mono mb-4 lg:hidden">Jump to:</h3>
                     @foreach ($page->content as $layout)
                         @if ($layout->title)
-                            <a @click="sectionMenuOpen = false; activeSection = section" x-data="{ section: '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}' }"
-                                class="type-regular text-center lg:text-left mb-2 flex flex-row items-center justify-center lg:justify-between gap-2 lg:bg-sand-light lg:hover:bg-white transition rounded lg:p-4"
+                            <a @click="sectionMenuOpen = false; activeSection = section" x-data="{ section: '{{ Illuminate\Support\Str::of($layout->title)->slug() }}' }"
+                                class="type-regular mb-2 flex flex-row items-center justify-center gap-2 rounded text-center transition lg:justify-between lg:bg-sand-light lg:p-4 lg:text-left lg:hover:bg-white"
                                 :href="`#${section}`" :class="{ '!bg-black !text-white': activeSection == section }">
                                 {!! $layout->title !!}
 
@@ -47,12 +47,13 @@
 
                     <div class="">
                         @if ($layout->banner)
-                            <img class="rounded w-full mb-8 h-auto" src="{{ Storage::url($layout->banner) }}" />
+                            <img class="mb-8 h-auto w-full rounded" src="{{ Storage::url($layout->banner) }}" />
                         @endif
                     </div>
 
-                    <div  x-data="{ open: null}" x-init="open =  window.location.hash.replace('#', '') " x-intersect:enter="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->kebab() }}'">
-                        <h2 class="type-medium mb-8" id="{{ Illuminate\Support\Str::of($layout->title)->kebab() }}">
+                    <div x-data="{ open: null }" x-init="open = window.location.hash.replace('#', '')"
+                        x-intersect:enter="activeSection = '{{ Illuminate\Support\Str::of($layout->title)->slug() }}'">
+                        <h2 class="type-medium mb-8" id="{{ Illuminate\Support\Str::of($layout->title)->slug() }}">
                             {!! $layout->title !!}</h2>
 
                         @foreach ($layout->sectioned_content as $child_layout)
