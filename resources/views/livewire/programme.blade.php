@@ -2,7 +2,7 @@
 
  <div x-data="{ filtersOpen: false, viewOpen: false }">
 
-     <div class="container relative z-[14] flex flex-row flex-wrap items-end justify-between gap-2 bg-sand pb-4 pt-32">
+     <div class="container relative z-[14] bg-sand pb-3 pt-32">
          @if (!$type === 'past')
              <h1 class="type-medium lg:type-large">
                  Past screenings
@@ -14,9 +14,9 @@
                      x-text="`[${count} result${count > 1 ? 's' : ''}]`">
              </h1>
          @endif
-         <div class="ml-auto flex flex-row gap-1">
+         <div class="mt-2 flex flex-row gap-3 lg:hidden">
              <button @click="filtersOpen = false; viewOpen = !viewOpen" :class="{ '!bg-sand-dark': viewOpen }"
-                 class="type-xs-mono ml-auto inline-flex items-center gap-0.5 !rounded bg-sand-light py-2 pl-3 pr-2 leading-none !text-black lg:hidden">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z','schedule' => 'Schedule',default => 'Daily'} }}
+                 class="type-xs-mono inline-flex items-center gap-0.5 !rounded bg-sand-light py-1.5 pl-3 pr-2 leading-none !text-black">{{ match ($type) {'past' => 'Archive','alphabetical' => 'A-Z','schedule' => 'Schedule',default => 'Daily'} }}
 
                  view
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -27,7 +27,7 @@
              </button>
 
              <button @click="viewOpen = false; filtersOpen = !filtersOpen" :class="{ '!bg-sand-dark': filtersOpen }"
-                 class="type-xs-mono inline-flex items-center gap-0.5 !rounded bg-sand-light py-2 pl-3 pr-2 leading-none !text-black lg:hidden">Filter
+                 class="type-xs-mono inline-flex items-center gap-0.5 !rounded bg-sand-light py-1.5 pl-3 pr-2 leading-none !text-black">Filter
                  @svg('plus', ' inline-block ml-1 w-3 h-3')</button>
          </div>
      </div>
@@ -41,7 +41,7 @@
                  @if ($type !== 'past')
                      <div class="type-xs-mono hidden lg:block">Filter:</div>
 
-                     <div class="grid grid-cols-3 flex-row items-center gap-4 px-4 py-3 lg:flex lg:gap-2.5 lg:p-0">
+                     <div class="grid grid-cols-3 flex-row items-center gap-3 px-4 py-3 lg:flex lg:gap-2.5 lg:p-0">
 
                          @if ($strand)
                              <button wire:key="remove-strand-filter" aria-label="Remove filter for {{ $strand }}"
@@ -172,7 +172,7 @@
              </div>
 
              <div x-cloak :class="{ '': viewOpen, ' max-lg:max-h-0 max-lg:overflow-hidden': !viewOpen }">
-                 <div class="grid grid-cols-3 flex-row items-center gap-2.5 px-4 py-3 lg:flex lg:p-0">
+                 <div class="grid grid-cols-3 flex-row items-center gap-3 px-4 py-3 lg:flex lg:p-0">
 
                      <div class="type-xs-mono hidden lg:block">View:</div>
                      <x-programme-button :selected="$type" type="schedule">Schedule</x-programme-button>
