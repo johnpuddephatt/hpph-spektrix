@@ -333,3 +333,7 @@
 1765398184-1932-1545844770,1765398184.1824,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,App\Http\Controllers\PageController@show,404,87.741136550903,request
 1765398199-3140-1424836896,1765398199.2988,GET,/vouchers,App\Http\Controllers\PageController@show,200,112.98513412476,request
 1765398199-5045-765108776,1765398199.4872,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,App\Http\Controllers\PageController@show,404,87.871074676514,request
+1765400124-7217-239844075,1765400124.6147,GET,/vouchers,App\Http\Controllers\PageController@show,200,401.46803855896,request
+1765400125-2568-2064184154,1765400125.2422,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,App\Http\Controllers\PageController@show,404,79.735040664673,request
+1765400126-1468-1658514583,1765400126.1066,GET,/vouchers,App\Http\Controllers\PageController@show,200,219.98190879822,request
+1765400126-4090-2045738732,1765400126.4037,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,App\Http\Controllers\PageController@show,404,163.7909412384,request
