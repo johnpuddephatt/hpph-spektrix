@@ -65,4 +65,8 @@ return [
         "class" => "\App\Nova\Templates\BasketPageTemplate",
         "unique" => true, // Whether more than one page can be created with this template
     ],
+    "ticket-subscriptions-page" => [
+        "class" => "\App\Nova\Templates\TicketSubscriptionsTemplate",
+        "unique" => true, // Whether more than one page can be created with this template
+    ],
 ];

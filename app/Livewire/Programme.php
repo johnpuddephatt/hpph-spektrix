@@ -15,7 +15,7 @@ class Programme extends Component
 {
 
     #[Url]
-    public ?string $type = "daily";
+    public ?string $type = "schedule";
 
     public $strand = null;
     public $accessibility = null;
