@@ -31,7 +31,7 @@
         </div>
 
         <spektrix-gift-vouchers x-data="{ amount: 25 }" x-init="$el.giftVoucherAmount = amount;
-        setTimeout(() => { $el.giftVoucherAmount = amount }, 1000)" x-effect="$el.giftVoucherAmount = amount"
+        setTimeout(() => { $el.giftVoucherAmount = amount }, 3000)" x-effect="$el.giftVoucherAmount = amount"
             client-name="{{ $settings['spektrix_client_name'] }}" custom-domain="{{ $settings['spektrix_custom_domain'] }}">
 
             <div class="container py-4 lg:pb-24">
