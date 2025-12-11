@@ -70,7 +70,8 @@ class Product extends Model implements HasMedia
             // ->width(1920)
             // ->height(1080)
             ->sharpen(10)
-            ->fit(1200, 800, CropPosition::Center)
+            ->fit(Fit::Crop, 1200, 800)
+
             ->withResponsiveImages()
             ->performOnCollections("main");
 
@@ -79,7 +80,7 @@ class Product extends Model implements HasMedia
             ->width(1600)
             ->height(1200)
             ->sharpen(10)
-            ->fit(1600, 1600, CropPosition::Center)
+            ->fit(Fit::Crop, 1600, 1600)
             ->withResponsiveImages()
             ->performOnCollections("main");
     }
