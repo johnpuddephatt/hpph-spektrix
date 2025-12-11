@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use Carbon\Carbon;
 
 class Shop extends Component
@@ -14,10 +15,7 @@ class Shop extends Component
         "selected_type" => ["except" => "", "as" => "type"],
     ];
 
-    protected $listeners = [
-        "updateType" => "setType",
-    ];
-
+    #[On('updateType')]
     public function setType($value)
     {
         $this->selected_type = $value;
