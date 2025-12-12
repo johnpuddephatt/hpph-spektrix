@@ -139,6 +139,9 @@ class Product extends Resource
      */
     public function actions(NovaRequest $request)
     {
-        return [];
+        return [
+            Actions\FetchShopData::make()->standalone(),
+
+        ];
     }
 }
