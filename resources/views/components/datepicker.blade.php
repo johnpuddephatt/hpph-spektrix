@@ -10,7 +10,6 @@
             <div>
                 <button type="button"
                     class="absolute right-full top-1/2 inline-flex cursor-pointer rounded-full p-1 transition"
-                    :class="{ 'cursor-not-allowed opacity-25': month == 0 }" :disabled="month == 0 ? true : false"
                     @click="month--; getNoOfDays()">
                     <svg class="inline-flex h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -18,8 +17,7 @@
                 </button>
                 <button type="button"
                     class="hover:bg-gray-200 absolute left-full top-1/2 inline-flex cursor-pointer rounded-full p-1 transition"
-                    :class="{ 'cursor-not-allowed opacity-25': month == 11 }" :disabled="month == 11 ? true : false"
-                    @click="month++; getNoOfDays()">
+                    @click="month == 11 ? (month = 0, year++) : month++; getNoOfDays()">
                     <svg class="inline-flex h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
