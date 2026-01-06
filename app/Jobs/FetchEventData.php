@@ -109,7 +109,7 @@ class FetchEventData implements ShouldQueue
                     "enabled" => true,
                     "duration" => $event->duration ?? null,
                     "is_on_sale" => $event->isOnSale ?? false,
-                    "name" => $event->name ? Str::limit($event->name, 250) : null,
+                    "name" => $event->name ? Str::limit($event->name, 200) : null,
                     "subtitle" => $event->attribute_Subtitle ?? null,
                     "first_instance_date_time" =>
                     $event->firstInstanceDateTime ?? null,
