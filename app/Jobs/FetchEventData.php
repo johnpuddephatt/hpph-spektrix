@@ -14,6 +14,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
 class FetchEventData implements ShouldQueue
@@ -108,7 +109,7 @@ class FetchEventData implements ShouldQueue
                     "enabled" => true,
                     "duration" => $event->duration ?? null,
                     "is_on_sale" => $event->isOnSale ?? false,
-                    "name" => $event->name ?? null,
+                    "name" => $event->name ? Str::limit($event->name, 255) : null,
                     "subtitle" => $event->attribute_Subtitle ?? null,
                     "first_instance_date_time" =>
                     $event->firstInstanceDateTime ?? null,
