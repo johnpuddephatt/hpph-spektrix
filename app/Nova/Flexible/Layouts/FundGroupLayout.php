@@ -46,6 +46,7 @@ class FundGroupLayout extends Layout
             Text::make("Fund group title"),
             Flexible::make("Funds", "funds")
                 ->addLayout(\App\Nova\Flexible\Layouts\FundLayout::class)
+                ->fullWidth()
                 ->button("Add fund"),
         ];
     }

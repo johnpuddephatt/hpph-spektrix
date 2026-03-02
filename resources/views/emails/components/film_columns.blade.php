@@ -3,9 +3,9 @@
         <mj-divider border-width="1px" border-color="#b5b5b5" />
     @endif
 
-    <mj-section padding="15px 0px">
+    <mj-section padding="15px 5px">
         @foreach ($chunk as $film)
-            <mj-column padding="15px 7.5px " css-class="pb0-on-desktop" width="{{ 100 / $section->layout }}%">
+            <mj-column padding="15px 7.5px " css-class="fullwidth-on-mobile pb0-on-desktop" width="{{ 100 / $section->layout }}%">
 {{-- <mj-image href="{{  $film->url }}" fluid-on-mobile="true" height="{{  $film->strand && $film->strand->name !== 'Bring Your Own Baby' ? '165px' : '185px' }}" border-radius="5px" src="{{ $film->featuredImage?->getUrl('wide') }}" alt="{{ $film->name }}"  padding="0px 0px 0px 0px"></mj-image>
   @if ($film->strand && $film->strand->name !== 'Bring Your Own Baby')
                         <mj-button color="#000000" background-color="{{ $film->strand->color }}" width="100%"

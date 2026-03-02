@@ -122,14 +122,13 @@ class Email extends Resource
                                 : null;
                         })
                         ->store(function (Request $request, $model) {
-                            $resized = InterventionImage::make($request->image)->resize(800, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                            });
+                            $resized = InterventionImage::read($request->image)->scaleDown(width: 800);
                             Storage::disk('digitalocean')->put($request->image->hashName(), (string) $resized->encode());
                             return $request->image->hashName();
                         })->stacked()->fullWidth(),
                     Text::make('URL')->stacked()->fullWidth()
-                ])->hideFromDetail(),
+                ])
+                ->hideFromDetail(),
             BooleanGroup::make('Settings')->options([
                 'faqs' => 'Include FAQs',
                 'key' => 'Include accessibility key',

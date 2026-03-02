@@ -31,6 +31,9 @@ class StandardPageTemplate
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\JournalPostLayout::class
                     )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\SingleMembershipLayout::class
+                    )
                     ->addLayout(\App\Nova\Flexible\Layouts\TeamLayout::class)
                     ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
                     ->addLayout(\App\Nova\Flexible\Layouts\QuoteLayout::class)

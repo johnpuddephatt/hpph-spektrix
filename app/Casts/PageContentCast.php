@@ -28,6 +28,8 @@ class PageContentCast extends FlexibleCast
         \App\Nova\Flexible\Layouts\MembershipComparisonLayout::class,
         "featured-membership" =>
         \App\Nova\Flexible\Layouts\FeaturedMembershipLayout::class,
+        'single-membership' =>
+        \App\Nova\Flexible\Layouts\SingleMembershipLayout::class,
         "simple-text" => \App\Nova\Flexible\Layouts\SimpleTextLayout::class,
         "image" => \App\Nova\Flexible\Layouts\ImageLayout::class,
         "image-pair" => \App\Nova\Flexible\Layouts\ImagePairLayout::class,

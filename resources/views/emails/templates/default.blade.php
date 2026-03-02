@@ -5,7 +5,7 @@
 
         <mj-attributes>
 
-            <mj-all line-height="20px" letter-spacing="-0.25px" font-size="14px" font-family="BasisGrotesque, sans-serif" />
+            <mj-all line-height="20px" letter-spacing="-0.25px" font-size="14px" font-family="BasisGrotesque,Verdana,sans-serif" />
             <mj-accordion padding="0 0 0 0" border="none" />
             <mj-accordion-element icon-unwrapped-url="https://hpph.ams3.cdn.digitaloceanspaces.com/plus.png"
                 icon-wrapped-url="https://hpph.ams3.cdn.digitaloceanspaces.com/plus.png" icon-height="16px"
@@ -45,7 +45,11 @@
                 .film-column-hero {
                     max-width: none !important;
                 }
-            }
+
+                .fullwidth-on-mobile {
+                    width: 100% !important; 
+                }
+            }            
 
             .hidden-on-mobile {
             display: none;
@@ -71,41 +75,32 @@
        
         <mj-wrapper background-color="#000" padding="5px 0 25px" full-width="full-width">
             <mj-section  full-width="full-width" padding="0px 0 0px ">
-
+<mj-column>
                 <mj-image align="center" padding="0" src="https://hpph.ams3.cdn.digitaloceanspaces.com/hpph.gif" />
                 @if($email->title)
-                  
+
+
 
                     <x-email.heading type="medium" align="center" color="#fff">
                     {{ $email->title }}
                     </x-email.heading>
                     @endif
                 
-                    
-
-                      <x-email.heading type="regular" align="center" color="#fff">
+                     <x-email.heading padding="10px 0 0" type="small" align="center" color="#fff" >
                     Showing from {{ $email->date->format('D d M') }}
-                    </x-email.heading>
+                    </x-email.heading> 
+                </mj-column>
+
 
             </mj-section>
         </mj-wrapper>
 
-    
+        @include('emails.components.key')
+
 
         @if (is_iterable($email->content))
-            @php
-                $key_shown = false;
-            @endphp
             @foreach ($email->content as $section)
                 @include('emails.sections.' . $section->name(), ['section' => $section])
-
-
-                @if(($section->name() == 'email_events_section' ) && $email->settings['key'] && !$key_shown)
-                    @include('emails.components.key')
-                    @php
-                        $key_shown = true;
-                    @endphp
-                @endif
             @endforeach
         @endif
 
@@ -134,6 +129,8 @@
         </mj-section>
 
         <mj-section full-width="full-width" padding="10px 0 0 0" background-color="#000000">
+                  
+      <mj-column>
             <mj-text align="center" color="#ffffff">
                 <p class="text-xs">Copyright Hyde Park Picture House {{ date('Y') }}</p>
                 @if (isset($settings['charity_number']))
@@ -145,6 +142,7 @@
                  <mj-text align="center" padding="5px 0" color="#ffffff">
                 <a style="color: white" href="https://$UNSUB$">Unsubscribe from this email</a>
             </mj-text>
+        </mj-column>
         </mj-section>
 
     </mj-body>

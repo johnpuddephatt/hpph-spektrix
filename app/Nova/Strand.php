@@ -131,6 +131,9 @@ class Strand extends Resource
                     ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
                     ->addLayout(\App\Nova\Flexible\Layouts\MerchandiseGroupLayout::class)
                     ->addLayout(
+                        \App\Nova\Flexible\Layouts\SingleMembershipLayout::class
+                    )
+                    ->addLayout(
                         \App\Nova\Flexible\Layouts\LinkBannerLayout::class
                     )
                     ->button("Add a section")

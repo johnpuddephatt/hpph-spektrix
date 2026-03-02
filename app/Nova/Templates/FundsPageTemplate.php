@@ -27,7 +27,28 @@ class FundsPageTemplate
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\FundGroupLayout::class
                     )
-                    ->button("Add new fund group"),
+                    ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\ImagePairLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\JournalPostLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\SingleMembershipLayout::class
+                    )
+                    ->addLayout(\App\Nova\Flexible\Layouts\TeamLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\QuoteLayout::class)
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\LinkBannerLayout::class
+                    )
+
+
+                    ->button("Add new block")
+                    ->fullWidth()
+                    ->stacked(),
             ]),
         ];
     }

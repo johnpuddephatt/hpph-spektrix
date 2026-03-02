@@ -5,10 +5,10 @@ $pick = \App\Models\Post::withoutGlobalScopes()->find($section->pick);
 @if ($pick)
     {{-- prettier-ignore-start --}}
 <mj-wrapper background-color="#ffda3d" full-width="full-width">
-<mj-section padding="25px 0">
+<mj-section padding="25px 10px">
 
 
-<mj-column padding="0 10px" css-class="hpph-pick">
+<mj-column padding="0 7.5px" css-class="hpph-pick">
 
 
 
@@ -20,21 +20,21 @@ $pick = \App\Models\Post::withoutGlobalScopes()->find($section->pick);
         background-color="#2a3448" padding="0px 0px">
         <mj-text padding="10px" color="#ffda3d" align="center" font-size="30px" line-height="30px"
 letter-spacing="10px" font-weight="600">
-HYDE PARK PICK</mj-text>
+P<br>I<br>C<br>K</mj-text>
 
 
     </mj-hero>
 </mj-column>
 <mj-column padding="0 10px">
 
-<x-email.heading type="xs-mono" padding="5px 0 10px 0">This week’s Hyde Park Pick</x-email.heading>
+<x-email.heading type="xs-mono" padding="15px 0 5px 0">This week’s Hyde Park Pick</x-email.heading>
 
 <x-email.heading type="medium" padding="5px 0 10px 0">
 {{ Str::of($pick->title)->replace('Hyde Park Pick… ', '')->replace('Hyde Park Pick: ', '') }}
 </x-email.heading>
 
 <mj-text padding="0 0 0px 0">{!! $pick->introduction !!}</mj-text>
-<mj-button padding="15px 0 0 0" inner-padding="5px 10px" font-weight="bold" width="100%" padding="0"
+<mj-button padding="15px 0 0 0" align="left" inner-padding="5px 10px" font-weight="bold" width="50%" padding="0"
 background-color="#ffffff" color="#000000" href="{{ $pick->url }}">Read more
 </mj-button>
 </mj-column>

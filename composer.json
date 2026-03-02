@@ -30,7 +30,6 @@
         "league/flysystem-aws-s3-v3": "^3.12",
         "livewire/livewire": "^3.4",
         "madewithlove/laravel-nova-uuid-support": "^1.4",
-        "manogi/nova-tiptap": "^3.2",
         "norman-huth/nova-values-field": "^1.0",
         "outl1ne/nova-menu-builder": "7.1.0",
         "outl1ne/nova-multiselect-field": "^4.0",
@@ -46,11 +45,10 @@
         "spatie/laravel-medialibrary": "11.14.0",
         "spatie/laravel-responsecache": "^7.4",
         "spatie/laravel-tags": "^4.3",
-        "spatie/mjml-php": "^1.1",
+        "spatie/mjml-php": "^1.2.5",
         "spatie/nova-backup-tool": "^5.0",
         "stepanenko3/nova-logs-tool": "^1.1",
         "trin4ik/nova-switcher": "^0.3.0",
-        "vormkracht10/laravel-open-graph-image": "^0.7.0",
         "whitecube/nova-flexible-content": "^1.1"
     },
     "require-dev": {

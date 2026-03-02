@@ -19,7 +19,7 @@
             </mj-column>
             <mj-column width="60%" padding="0 10px">
                 
-                <x-email.heading type="regular" padding="5px 0 10px 0">
+                <x-email.heading type="regular" padding="10px 0 10px 0">
                 
                     {{ $film->name }}
                     @if ($film->certificate_age_guidance)
