@@ -3012,3 +3012,5 @@
 1772456797-3802-2146408343,1772456797.365,GET,/storage/114/responsive-images/JLP_GRA3070___landscape_1200_800.jpg,App\Http\Controllers\PageController@show,404,61.806917190552,request
 1772456894-6773-264708011,1772456894.6344,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,188.17591667175,request
 1772456906-1899-643192888,1772456906.1765,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,55.539131164551,request
+1772462663-5856-279479068,1772462663.4925,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,327.78191566467,request
+1772462664-7775-439515117,1772462664.7578,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,61.07497215271,request
