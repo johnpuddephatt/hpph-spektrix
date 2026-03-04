@@ -40,7 +40,7 @@ class TextLayout extends Layout
     {
         return [
             Text::make("Title"),
-            Slug::make("Slug")->from("Title")->hideFromIndex(),
+            Slug::make("Slug")->from("Title")->hideFromIndex()->help('Be careful changing this if you have linked to this section as it will change the anchor link'),
             NovaEditorJsField::make(
                 "Content",
                 "section_content"
