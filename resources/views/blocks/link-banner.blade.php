@@ -1,4 +1,4 @@
-<a href="{{ $layout->url }}" class="bg-yellow transition hover:bg-gray-medium hover:text-yellow block py-4">
+<a href="{{ $layout->url }}" class="block border-t-2 bg-yellow py-4 transition hover:bg-yellow-dark">
     <div class="container flex flex-row items-center">
         <div class="w-1/2">
             @svg('plus', 'h-6 w-6')
