@@ -9,7 +9,7 @@
             </h3>
 
             @if ($layout->subtitle)
-                <p class="">
+                <p class="mt-4 leading-tight">
                     {{ $layout->subtitle }}
                 </p>
             @endif
