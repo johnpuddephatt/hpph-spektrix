@@ -1,4 +1,6 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
+
+namespace App\Nova\Flexible\Layouts;
 
 use Advoor\NovaEditorJs\NovaEditorJsCast;
 use Advoor\NovaEditorJs\NovaEditorJsField;
@@ -6,6 +8,7 @@ use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class LinkBannerLayout extends Layout
@@ -31,6 +34,6 @@ class LinkBannerLayout extends Layout
      */
     public function fields()
     {
-        return [Text::make("Title"), Text::make("URL")];
+        return [Text::make("Title"), Textarea::make("Subtitle"), Text::make("URL")];
     }
 }

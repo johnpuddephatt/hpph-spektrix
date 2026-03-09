@@ -3,8 +3,16 @@
         <div class="lg:w-1/2">
             @svg('plus', 'h-6 w-6')
         </div>
-        <div class="type-small lg:type-regular">
-            {{ $layout->title }}
+        <div>
+            <h3 class="type-small lg:type-regular">
+                {{ $layout->title }}
+            </h3>
+
+            @if ($layout->subtitle)
+                <p class="">
+                    {{ $layout->subtitle }}
+                </p>
+            @endif
 
         </div> @svg('arrow-right', 'ml-auto h-8 w-8 p-2 text-yellow bg-black rounded-full')
 
