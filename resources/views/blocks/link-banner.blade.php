@@ -4,7 +4,7 @@
             @svg('plus', 'h-6 w-6')
         </div>
         <div>
-            <h3 class="type-small lg:type-regular">
+            <h3 class="type-regular">
                 {{ $layout->title }}
             </h3>
 
