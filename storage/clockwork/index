@@ -3174,3 +3174,4 @@
 1773057957-4495-816222555,1773057957.4369,GET,/storage/116/responsive-images/Syndicate_II_Specials-310___wide_1500_627.jpg,App\Http\Controllers\PageController@show,404,81.040859222412,request
 1773057957-4438-2057206254,1773057957.4344,GET,/storage/101/responsive-images/Black-History-Month-2%402x___portrait_588_784.jpg,App\Http\Controllers\PageController@show,404,83.513021469116,request
 1773058120-8900-961268124,1773058120.8542,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,154.43301200867,request
+1773058965-3157-1460283162,1773058965.2622,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,191.84613227844,request
