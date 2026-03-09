@@ -1,5 +1,5 @@
 <a href="{{ $layout->url }}" class="block border-t-2 border-yellow-dark bg-yellow py-4 transition hover:bg-yellow-dark">
-    <div class="container flex flex-row items-start gap-2">
+    <div class="container flex flex-row items-start gap-4 lg:gap-2">
         <div class="flex-none lg:w-1/2">
             @svg('plus', 'h-6 w-6')
         </div>
@@ -9,7 +9,7 @@
             </h3>
 
             @if ($layout->subtitle)
-                <p class="mt-4 leading-tight">
+                <p class="mt-2 leading-tight lg:mt-4">
                     {{ $layout->subtitle }}
                 </p>
             @endif
