@@ -1,10 +1,10 @@
 <a href="{{ $layout->url }}" class="block border-t-2 border-yellow-dark bg-yellow py-4 transition hover:bg-yellow-dark">
     <div class="container flex flex-row items-start gap-4 lg:gap-2">
         <div class="flex-none lg:w-1/2">
-            @svg('plus', 'h-6 w-6')
+            @svg('plus', 'h-5 w-5 lg:h-6 lg:w-6')
         </div>
         <div>
-            <h3 class="type-small lg:type-regular mt-2 lg:mt-1">
+            <h3 class="type-small lg:type-regular mt-1">
                 {{ $layout->title }}
             </h3>
 
