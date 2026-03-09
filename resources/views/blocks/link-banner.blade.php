@@ -1,5 +1,5 @@
 <a href="{{ $layout->url }}" class="block border-t-2 border-yellow-dark bg-yellow py-4 transition hover:bg-yellow-dark">
-    <div class="container flex flex-row items-start">
+    <div class="container flex flex-row items-start gap-2">
         <div class="flex-none pr-4 lg:w-1/2">
             @svg('plus', 'h-6 w-6')
         </div>
