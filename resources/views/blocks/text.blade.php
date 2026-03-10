@@ -13,7 +13,7 @@
             @endif
 
             @if ($layout->subtitle)
-                <h3 class="type-regular mb-8 mt-8 max-w-[39ch]">
+                <h3 class="type-regular mb-8 mt-4 max-w-[39ch]">
 
                     {{ $layout->subtitle }}
                 </h3>
