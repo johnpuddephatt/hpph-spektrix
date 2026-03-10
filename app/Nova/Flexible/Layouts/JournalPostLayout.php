@@ -42,6 +42,9 @@ class JournalPostLayout extends Layout implements CachableAttributes
     public function fields()
     {
         return [
+
+            Text::make("Title"),
+            Boolean::make("Narrow?", "narrow"),
             Select::make("Display", "display")
                 ->options([
                     "featured" => "The newest featured post",
