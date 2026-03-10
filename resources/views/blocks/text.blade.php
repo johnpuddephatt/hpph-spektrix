@@ -1,5 +1,5 @@
 <div
-    class="{{ $layout->background_colour }} {{ $layout->background_colour == 'bg-black' ? 'text-white' : null }} container py-16">
+    class="{{ $layout->background_colour }} {{ $layout->background_colour == 'bg-black' ? 'border-b border-black-light text-white' : null }} container py-16">
     <div
         class="{{ $layout->title ? 'grid lg:grid-cols-2 gap-4' : 'mx-auto max-w-xl' }} {{ $layout->is_centered ? 'text-center' : '' }}">
         <div class="">
