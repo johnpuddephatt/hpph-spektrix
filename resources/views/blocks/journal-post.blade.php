@@ -6,7 +6,7 @@
         @endif
         <div class="{{ $layout->narrow ? 'max-w-4xl' : 'max-w-8xl' }} container relative">
             @if ($layout->title)
-                <h2 class="type-xs-mono {{ $layout->dark ? 'text-white' : '' }} mb-2 text-center">
+                <h2 class="type-xs-mono {{ $layout->dark ? 'text-white' : '' }} mb-4 text-center">
                     {{ $layout->title }}
                 </h2>
             @endif

@@ -43,7 +43,7 @@ class JournalPostLayout extends Layout implements CachableAttributes
     {
         return [
 
-            Text::make("Title"),
+            Text::make("Title")->default('From the HPPH Journal'),
             Boolean::make("Narrow?", "narrow"),
             Select::make("Display", "display")
                 ->options([
