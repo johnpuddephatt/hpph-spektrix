@@ -4,7 +4,7 @@
         @if ($layout->striped)
             <div class="absolute inset-0 h-1/2 bg-black"></div>
         @endif
-        <div class="{{ $layout->narrow ? 'max-w-4xl' : 'max-w-8xl' }} container relative">
+        <div class="{{ $layout->narrow ? 'max-w-5xl' : 'max-w-8xl' }} container relative">
             @if ($layout->title)
                 <h2 class="type-xs-mono {{ $layout->dark ? 'text-white' : '' }} mb-4 text-center">
                     {{ $layout->title }}
