@@ -11,6 +11,13 @@
                     </a>
                 </h2>
             @endif
+
+            @if ($layout->subtitle)
+                <h3 class="type-regular mb-8 mt-8 max-w-[39ch]">
+
+                    {{ $layout->subtitle }}
+                </h3>
+            @endif
         </div>
 
         <x-editorjs class="prose" :content="$layout->section_content" block_class="" />

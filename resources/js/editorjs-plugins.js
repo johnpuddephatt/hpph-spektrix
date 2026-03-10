@@ -6,6 +6,7 @@ import ToggleBlock from "editorjs-toggle-block";
 // import DetailsSummaryBlock from "editorjs-detailssummary";
 import ImageTool from "@editorjs/image";
 import AttachesBlock from "@editorjs/attaches";
+import CardTool from "./card-plugin/index.js";
 
 NovaEditorJS.booting(function (editorConfig, fieldConfig) {
     // REMOVE THIS
@@ -82,6 +83,28 @@ NovaEditorJS.booting(function (editorConfig, fieldConfig) {
             },
         };
     }
+
+    // if (fieldConfig.toolSettings.card.activated === true) {
+    editorConfig.tools.card = {
+        class: CardTool,
+        shortcut: fieldConfig.toolSettings.card.shortcut,
+        toolbox: {
+            icon: "<svg xmlns='http://www.w3.org/2000/svg' width='12' height='9.55' viewBox='0 0 12 9.55'><path d='M10 6.82a1.13 1.13 0 001.1 1.17h.9V4.75l-2 1.28zm-3.54.17l-1.37-1-1.81 1-2.6-2.33-.68.43v2.9h5.37a1.13 1.13 0 001.09-1z' opacity='.19'/><path d='M7.92 6.82V2.73A2.65 2.65 0 005.37 0H0v1.56h5.37a1.14 1.14 0 011.1 1.17V5.2L5.12 4.14l-1.82 1L.71 2.67l-.71.5v1.92l.68-.43 2.6 2.31 1.81-1 1.37 1a1.13 1.13 0 01-1.09 1H0v1.56h5.37a2.64 2.64 0 002.55-2.71zm.63-4.09v4.09a2.64 2.64 0 002.55 2.73h.9V7.99h-.9A1.13 1.13 0 0110 6.82v-.79l2-1.28v-2L10 4.2V2.73a1.14 1.14 0 011.1-1.17h.9V0h-.9a2.65 2.65 0 00-2.55 2.73z'/</svg>",
+            title: "Card",
+        },
+        config: {
+            additionalRequestHeaders: {
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+            },
+            endpoints: {
+                byFile: fieldConfig.uploadImageByFileEndpoint,
+            },
+        },
+    };
+    // }
+
     if (fieldConfig.toolSettings.blockWidthTune.activated === true) {
         editorConfig.tools.blockWidthTune = {
             class: BlockWidthTune,

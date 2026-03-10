@@ -12,7 +12,7 @@
 
             <div class="">
                 <h2 class="type-lg mb-3 mt-3">{{ $meta['title'] }}</h2>
-                <div class="type-sm">
+                <div class="type-sm leading-tight">
                     {{ \Illuminate\Support\Str::limit($meta['description'], 160) }}
                 </div>
             </div>

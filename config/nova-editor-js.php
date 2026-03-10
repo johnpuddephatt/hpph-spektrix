@@ -14,6 +14,10 @@ return [
      * Configure tools
      */
     "toolSettings" => [
+
+        "card" => [
+            "activated" => true,
+        ],
         "blockWidthTune" => [
             "activated" => true,
         ],
@@ -230,7 +234,7 @@ return [
                 "text" => [
                     "type" => "string",
                     "allowedTags" =>
-                        "i,b,u,a[href],span[class],code[class],mark[class]",
+                    "i,b,u,a[href],span[class],code[class],mark[class]",
                 ],
             ],
             "list" => [
@@ -358,7 +362,7 @@ return [
                                 "-" => [
                                     "type" => "string",
                                     "allowedTags" =>
-                                        "i,b,u,a[href],span[class],code[class],mark[class]",
+                                    "i,b,u,a[href],span[class],code[class],mark[class]",
                                 ],
                             ],
                         ],
