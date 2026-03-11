@@ -25,6 +25,8 @@
         border-radius: 8px;
     }
 
+    .button:
+
     .dark {
         background-color: #031017;
         color: white;
