@@ -8,26 +8,26 @@
 
     @include('sections.pageheader')
 
-    {{--
-    
-    Need to add a title field to all blocks for this to work.
-    Not all blocks need title, but without one they can't appear in nav.
-    We should also use layout->key I think for ID/#anchor.
-    
-    <div class="bg-black py-6 text-white">
-        <div class="container flex flex-row justify-center gap-4">
-            <div class="type-xs-mono">On this page:</div>
-            @foreach ($page->content as $layout)
-                @if ($layout->title)
-                    <a @click="sectionMenuOpen = false; activeSection = section" x-data="{ section: '{{ Illuminate\Support\Str::of($layout->title)->slug() }}' }" class="type-small"
-                        :href="`#${section}`" :class="{ '!bg-black !text-white': activeSection == section }">
-                        {!! $layout->title !!}
+    @if (
+        $links = $page->content->filter(function ($item) {
+            return $item instanceof App\Nova\Flexible\Layouts\TextLayout && $item->title;
+        }))
 
-                    </a>
-                @endif
-            @endforeach
-        </div>
-    </div> --}}
+        <div x-data="{ sectionMenuOpen: false, activeSection: null }" x-init="activeSection = window.location.hash.replace('#', '')">
+
+            <div class="bg-black py-6 text-white">
+                <div class="container flex flex-row justify-center gap-4">
+                    <div class="type-xs-mono">Jump to:</div>
+                    @foreach ($links as $layout)
+                        <a @click="sectionMenuOpen = false; activeSection = section" x-data="{ section: '{{ $layout->key() }}' }" class="type-small"
+                            :href="`#${section}`" :class="{ '!bg-black !text-white': activeSection == section }">
+                            {!! Str::of($layout->title)->before(':') !!}
+
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+    @endif
 
     @if ($page->content)
         <div x-data="{ open: null }" x-init="open = window.location.hash.replace('#', '')">

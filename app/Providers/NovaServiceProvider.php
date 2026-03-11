@@ -68,7 +68,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 header {box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px}
 
                 .trix-button-group--block-tools,
-                .trix-button-group--file-tools,
+                .trix-button-group--file-tools, 
                 .trix-button-group--history-tools 
                  {
                     display: none !important;
@@ -213,7 +213,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     padding: 0;
                 }
 
-                :has(> * > * > * > * > [dusk='toggle-layouts-dropdown-or-add-default']) {
+                :has(> * > * > * > * > [dusk='toggle-layouts-dropdown-or-add-default']):not(.overflow-y-scroll) {
                     
                     overflow: visible !important;
                 }
