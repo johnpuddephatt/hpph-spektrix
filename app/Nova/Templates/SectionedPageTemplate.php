@@ -27,8 +27,7 @@ class SectionedPageTemplate
                 Flexible::make("Content", "content")
                     ->addLayout(\App\Nova\Flexible\Layouts\SectionLayout::class)
                     ->button("Add a section")
-                    ->fullWidth()
-                    ->stacked()
+
                     ->drawer(),
             ]),
         ];

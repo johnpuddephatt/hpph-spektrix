@@ -41,7 +41,6 @@ class StandardPageTemplate
                         \App\Nova\Flexible\Layouts\LinkBannerLayout::class
                     )
                     ->button("Add a section")
-                    ->stacked()
                     ->drawer(),
             ]),
         ];

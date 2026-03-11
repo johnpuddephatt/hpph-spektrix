@@ -44,7 +44,8 @@ class SimpleTextLayout extends Layout
             NovaEditorJsField::make(
                 "Content",
                 "section_content"
-            )->hideFromDetail(),
+            )->hideFromDetail()
+                ->fullWidth(),
         ];
     }
 }

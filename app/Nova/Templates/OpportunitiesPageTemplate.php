@@ -31,7 +31,8 @@ class OpportunitiesPageTemplate
                 )
                 ->addLayout(\App\Nova\Flexible\Layouts\KeyFeaturesLayout::class)
                 ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
-                ->addLayout(\App\Nova\Flexible\Layouts\BannerLayout::class),
+                ->addLayout(\App\Nova\Flexible\Layouts\BannerLayout::class)
+                ->drawer(),
         ];
     }
 

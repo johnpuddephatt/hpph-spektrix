@@ -39,8 +39,6 @@ class HomePageTemplate
         return [
             new Panel("Content", [
                 Flexible::make("Content", "content")
-                    ->fullWidth()
-                    ->stacked()
                     ->drawer()
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\HomeHeroLayout::class

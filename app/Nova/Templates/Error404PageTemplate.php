@@ -27,7 +27,8 @@ class Error404PageTemplate
             new Panel("Page content", [
                 Flexible::make("Content", "content")
                     ->addLayout(\App\Nova\Flexible\Layouts\FilmLayout::class)
-                    ->button("Add new film"),
+                    ->button("Add new film")
+                    ->drawer(),
             ]),
         ];
     }

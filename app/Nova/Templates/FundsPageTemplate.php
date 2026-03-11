@@ -47,8 +47,7 @@ class FundsPageTemplate
 
 
                     ->button("Add new block")
-                    ->fullWidth()
-                    ->stacked(),
+                    ->drawer(),
             ]),
         ];
     }

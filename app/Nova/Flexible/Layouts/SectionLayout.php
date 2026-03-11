@@ -55,6 +55,8 @@ class SectionLayout extends Layout implements HasMedia
                 ->store(new \App\Nova\Actions\SaveAndResizeBannerImage()),
             Text::make("Title"),
             Flexible::make("Content", "sectioned_content")
+                ->stacked()
+                ->fullWidth()
                 ->addLayout(\App\Nova\Flexible\Layouts\SimpleTextLayout::class)
                 ->addLayout(\App\Nova\Flexible\Layouts\SingleFaqLayout::class),
         ];
