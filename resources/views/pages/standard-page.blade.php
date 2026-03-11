@@ -8,10 +8,10 @@
 
     @include('sections.pageheader')
 
-    @if (
-        $links = $page->content->filter(function ($item) {
-            return $item instanceof App\Nova\Flexible\Layouts\TextLayout && $item->title;
-        }))
+    @if (Str::of($page->slug)->startsWith('the-history-of') &&
+            ($links = $page->content->filter(function ($item) {
+                return $item instanceof App\Nova\Flexible\Layouts\TextLayout && $item->title;
+            })))
 
         <div x-data="{ sectionMenuOpen: false, activeSection: null }" x-init="activeSection = window.location.hash.replace('#', '')">
 
