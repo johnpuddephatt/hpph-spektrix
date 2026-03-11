@@ -16,6 +16,9 @@ class BannerLayout extends Layout
      */
     protected $name = "banner";
 
+    public $collapsedPreviewAttribute = 'title';
+
+
     /**
      * The displayed title
      *

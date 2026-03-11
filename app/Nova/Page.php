@@ -131,7 +131,7 @@ class Page extends Resource
             Panel::make("SEO", [
                 Text::make("SEO title")->hideFromIndex()->help("Optional. Page name will be used if not provided")->maxLength(45)->enforceMaxlength(),
                 Textarea::make("SEO description")->rows(2)->hideFromIndex()->help("Optional. Page introduction will be used if not provided")->maxLength(120)->enforceMaxlength()
-            ])
+            ])->collapsible()
         ];
 
         if ($this->template !== 'home-page') {

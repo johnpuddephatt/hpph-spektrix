@@ -20,6 +20,9 @@ class TextLayout extends Layout
      */
     protected $name = "text";
 
+    public $collapsedPreviewAttribute = 'title';
+
+
     protected $casts = [
         "section_content" => NovaEditorJsCast::class,
     ];

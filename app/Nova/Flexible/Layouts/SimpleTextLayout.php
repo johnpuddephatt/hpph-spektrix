@@ -1,4 +1,6 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
+
+namespace App\Nova\Flexible\Layouts;
 
 use Advoor\NovaEditorJs\NovaEditorJsCast;
 use Advoor\NovaEditorJs\NovaEditorJsField;
@@ -16,6 +18,9 @@ class SimpleTextLayout extends Layout
      * @var string
      */
     protected $name = "simple-text";
+
+    public $collapsedPreviewAttribute = 'title';
+
 
     protected $casts = [
         "section_content" => NovaEditorJsCast::class,

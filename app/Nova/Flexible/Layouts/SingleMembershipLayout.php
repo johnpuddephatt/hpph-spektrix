@@ -29,6 +29,9 @@ class SingleMembershipLayout extends Layout
      */
     protected $title = "Single membership";
 
+    public $collapsedPreviewAttribute = 'title';
+
+
     /**
      * Get the fields displayed by the layout.
      *

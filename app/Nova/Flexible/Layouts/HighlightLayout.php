@@ -22,6 +22,9 @@ class HighlightLayout extends Layout implements HasMedia
      */
     protected $name = "highlight";
 
+    public $collapsedPreviewAttribute = 'title';
+
+
     /**
      * The displayed title
      *

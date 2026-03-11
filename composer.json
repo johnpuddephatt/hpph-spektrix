@@ -24,7 +24,7 @@
         "itsgoingd/clockwork": "^5.1",
         "laravel/framework": "^11.0",
         "laravel/horizon": "^5.15",
-        "laravel/nova": "^4.34.3",
+        "laravel/nova": "^4.35.11",
         "laravel/nova-log-viewer": "^0.1.4",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^3.12",
@@ -49,7 +49,7 @@
         "spatie/nova-backup-tool": "^5.0",
         "stepanenko3/nova-logs-tool": "^1.1",
         "trin4ik/nova-switcher": "^0.3.0",
-        "whitecube/nova-flexible-content": "^1.1"
+        "whitecube/nova-flexible-content": "dev-master"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -81,6 +81,10 @@
         "laravel-cachable-attributes": {
             "type": "vcs",
             "url": "https://github.com/johnpuddephatt/laravel-cachable-attributes"
+        },
+        "flexible": {
+            "type": "vcs",
+            "url": "git@github.com:johnpuddephatt/nova-flexible-content.git"
         }
     },
     "scripts": {

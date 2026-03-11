@@ -18,6 +18,9 @@ class SingleFaqLayout extends Layout
      */
     protected $name = "single-faq";
 
+    public $collapsedPreviewAttribute = 'question';
+
+
     /**
      * The displayed title
      *

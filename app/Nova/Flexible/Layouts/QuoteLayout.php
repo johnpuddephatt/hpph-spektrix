@@ -1,4 +1,6 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
+
+namespace App\Nova\Flexible\Layouts;
 
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Text;
@@ -14,6 +16,9 @@ class QuoteLayout extends Layout
      * @var string
      */
     protected $name = "quote";
+
+    public $collapsedPreviewAttribute = 'name';
+
 
     /**
      * The displayed title

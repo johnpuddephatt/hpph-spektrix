@@ -22,6 +22,9 @@ class SectionLayout extends Layout implements HasMedia
      */
     protected $name = "section";
 
+    public $collapsedPreviewAttribute = 'title';
+
+
     /**
      * The displayed title
      *

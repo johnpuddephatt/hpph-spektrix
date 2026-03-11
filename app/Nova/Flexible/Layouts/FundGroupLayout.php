@@ -28,6 +28,9 @@ class FundGroupLayout extends Layout
      */
     protected $title = "Fund group layout";
 
+    public $collapsedPreviewAttribute = 'fund_group_title';
+
+
     public function getFundsAttribute($value)
     {
         return $this->flexible("funds", [

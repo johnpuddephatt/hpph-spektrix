@@ -1,4 +1,6 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
+
+namespace App\Nova\Flexible\Layouts;
 
 use Advoor\NovaEditorJs\NovaEditorJsCast;
 use Advoor\NovaEditorJs\NovaEditorJsField;
@@ -17,6 +19,9 @@ class FeaturedMembershipLayout extends Layout
      * @var string
      */
     protected $name = "featured-membership";
+
+    public $collapsedPreviewAttribute = 'title';
+
 
     protected $casts = [];
 

@@ -213,8 +213,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     padding: 0;
                 }
 
-                :has(> * > [dusk='toggle-layouts-dropdown-or-add-default']) {
-                    min-height: 20rem;
+                :has(> * > * > * > * > [dusk='toggle-layouts-dropdown-or-add-default']) {
+                    
+                    overflow: visible !important;
                 }
 }
             </style>";

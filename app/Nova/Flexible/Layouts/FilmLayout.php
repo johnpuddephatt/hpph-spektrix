@@ -23,6 +23,9 @@ class FilmLayout extends Layout implements HasMedia
      */
     protected $name = "film";
 
+    public $collapsedPreviewAttribute = 'title';
+
+
     /**
      * The displayed title
      *

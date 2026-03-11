@@ -20,6 +20,9 @@ class LinkBannerLayout extends Layout
      */
     protected $name = "link-banner";
 
+    public $collapsedPreviewAttribute = 'title';
+
+
     /**
      * The displayed title
      *
