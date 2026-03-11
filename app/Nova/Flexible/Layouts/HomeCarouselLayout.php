@@ -36,6 +36,9 @@ class HomeCarouselLayout extends Layout implements HasMedia
     public function fields()
     {
         return [
+
+            Text::make("Values heading", "heading"),
+            Textarea::make("Values statement", "statement"),
             Images::make("Image gallery", "gallery")->customPropertiesFields([
                 Select::make("Category")->options([
                     "Building",
@@ -43,9 +46,7 @@ class HomeCarouselLayout extends Layout implements HasMedia
                     "People",
                     "Redevelopment",
                 ]),
-            ])->conversionOnForm('square'),
-            Text::make("Values heading", "heading"),
-            Textarea::make("Values statement", "statement"),
+            ])->conversionOnForm('square')->fullWidth(),
         ];
     }
 
