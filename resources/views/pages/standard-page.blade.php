@@ -16,7 +16,7 @@
         <div x-data="{ sectionMenuOpen: false, activeSection: null }" x-init="activeSection = window.location.hash.replace('#', '')">
 
             <div class="overflow-x-scroll border-b border-black-light bg-black py-6 text-white scrollbar-hide">
-                <div class="flex flex-row gap-8">
+                <div class="justify-center-safe flex flex-row gap-8">
                     <div class="type-xs-mono">Jump to:</div>
                     @foreach ($links as $layout)
                         <a @click="sectionMenuOpen = false; activeSection = section" x-data="{ section: '{{ $layout->key() }}' }"

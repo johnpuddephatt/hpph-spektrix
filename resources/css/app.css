@@ -10,6 +10,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.justify-center-safe {
+    justify-content: safe center;
+}
+
 dialog {
     border: none;
 }
