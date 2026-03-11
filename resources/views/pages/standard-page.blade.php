@@ -15,12 +15,13 @@
 
         <div x-data="{ sectionMenuOpen: false, activeSection: null }" x-init="activeSection = window.location.hash.replace('#', '')">
 
-            <div class="border-b border-black-light bg-black py-6 text-white">
+            <div class="overflow-x-scroll border-b border-black-light bg-black py-6 text-white">
                 <div class="container flex flex-row justify-center gap-8">
                     <div class="type-xs-mono">Jump to:</div>
                     @foreach ($links as $layout)
-                        <a @click="sectionMenuOpen = false; activeSection = section" x-data="{ section: '{{ $layout->key() }}' }" class="type-small"
-                            :href="`#${section}`" :class="{ '!bg-black !text-white': activeSection == section }">
+                        <a @click="sectionMenuOpen = false; activeSection = section" x-data="{ section: '{{ $layout->key() }}' }"
+                            class="type-small whitespace-nowrap" :href="`#${section}`"
+                            :class="{ '!bg-black !text-white': activeSection == section }">
                             {!! Str::of($layout->title)->before(':') !!}
 
                         </a>

@@ -1785,3 +1785,7 @@
 1773207280-1266-2034912990,1773207280.1221,GET,/nova-api/pages/soft-deletes,Laravel\Nova\Http\Controllers\SoftDeleteStatusController,200,69.344043731689,request
 1773207280-1170-1580952151,1773207280.1108,GET,/nova-api/pages/associatable/parent?first=false&search=&withTrashed=false&resourceId=5&viaResource=&viaResourceId=&viaRelationship=&component=belongsto.belongs-to-field.parent&dependsOn=eyJwYXJlbnQiOiIifQ%3D%3D&editing=true&editMode=update,Laravel\Nova\Http\Controllers\AssociatableController,200,130.85603713989,request
 1773207281-2441-736527556,1773207281.2348,GET,/Nulla%20obcaecati%20nesc,App\Http\Controllers\PageController@show,200,199.9340057373,request
+1773207612-0864-1820974305,1773207612.0269,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,319.44012641907,request
+1773207655-4783-199805511,1773207655.3639,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,567.08884239197,request
+1773207655-8548-967690209,1773207655.842,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,110.03184318542,request
+1773207656-9036-205702546,1773207656.893,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,65.723896026611,request
