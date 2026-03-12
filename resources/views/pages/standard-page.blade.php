@@ -26,7 +26,7 @@
 
                         </a>
                     @endforeach
-                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
                 </div>
             </div>
         </div>

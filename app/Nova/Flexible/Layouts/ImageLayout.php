@@ -6,6 +6,7 @@ use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Nova\Fields\Boolean;
 
 class ImageLayout extends Layout
 {
@@ -31,6 +32,7 @@ class ImageLayout extends Layout
     public function fields()
     {
         return [
+            Boolean::make('Short height', 'short_height'),
             Image::make("Image", "image")
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
