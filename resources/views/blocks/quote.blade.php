@@ -9,8 +9,7 @@
             </div>
         </div>
         <div class="w-full bg-black-light lg:w-1/2">
-            <img src="{{ Storage::url($layout->image) }}"
-                class="block aspect-[3/2] w-full max-w-none object-cover lg:aspect-auto" />
+            <img src="{{ Storage::url($layout->image) }}" class="block aspect-[3/2] w-full max-w-none object-cover" />
         </div>
 
     </div>
