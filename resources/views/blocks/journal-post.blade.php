@@ -15,12 +15,12 @@
                 @if ($layout->post->featuredImage)
                     <div class="w-full self-stretch overflow-hidden lg:w-1/2">
                         {!! $layout->post->featuredImage->img('wide')->attributes([
-                            'class' => 'h-full group-hover:scale-105 transition duration-500  block  object-cover aspect-video lg:aspect-auto',
+                            'class' => 'h-full group-hover:scale-105 transition duration-500  block  object-cover aspect-[1.5]',
                         ]) !!}
                     </div>
                 @endif
 
-                <div class="mx-auto flex aspect-video flex-col p-8 sm:aspect-auto lg:block lg:w-1/2 lg:max-w-md lg:py-8">
+                <div class="mx-auto flex aspect-[1.5] flex-col p-8 sm:aspect-auto lg:block lg:w-1/2 lg:max-w-md lg:py-8">
                     <div class="lg:min-h-[9rem]">
                         <h2 class="type-regular lg:type-medium">{{ $layout->post->title }}</h2>
                         @if ($layout->post->subtitle)
