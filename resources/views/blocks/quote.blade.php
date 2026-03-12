@@ -1,16 +1,16 @@
     <div class="@if ($dark) bg-black @endif flex flex-col lg:flex-row">
         <div style="background-color: @yield('color')"
-            class="py-24 lg:py-8 flex items-center text-center flex-col justify-center bg-yellow lg:w-1/2">
+            class="flex flex-col items-center justify-center bg-yellow py-24 text-center lg:w-1/2 lg:py-8">
             <div class="container">
-                <div class="text-center lg:hidden text-6xl mb-2 leading-none">&OpenCurlyDoubleQuote;</div>
-                <h2 class="type-regular lg:type-medium max-w-lg mx-auto mb-12 lg:mb-16">“{{ $layout->quote }}”</h2>
+                <div class="mb-2 text-center text-6xl leading-none lg:hidden">&OpenCurlyDoubleQuote;</div>
+                <h2 class="type-regular lg:type-medium mx-auto mb-12 max-w-lg lg:mb-16">“{{ $layout->quote }}”</h2>
                 <p class="type-xs-mono mx-auto max-w-md">{{ $layout->name }}</p>
                 <p class="type-xs-mono mx-auto max-w-md">{{ $layout->role }}</p>
             </div>
         </div>
-        <div class="w-full lg:w-1/2 bg-black-light">
+        <div class="w-full bg-black-light lg:w-1/2">
             <img src="{{ Storage::url($layout->image) }}"
-                class="aspect-[4/3] object-cover lg:aspect-auto block max-w-none w-full" />
+                class="block aspect-[3/2] w-full max-w-none object-cover lg:aspect-auto" />
         </div>
 
     </div>
