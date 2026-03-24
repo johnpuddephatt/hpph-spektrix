@@ -95,7 +95,7 @@
 
                          @if (count($accessibilities_with_showings))
 
-                             @if ($accessibility)
+                             @if ($accessibility && $accessibilities_with_showings->firstWhere('slug', $accessibility))
                                  <button aria-label="Remove accessibility filter" wire:key="remove-accessibility"
                                      class="type-xs-mono cursor-default rounded bg-yellow px-3 py-1.5 pt-2 hover:bg-yellow-dark"
                                      wire:click="$dispatch('updateAccessibility', {slug: null})">

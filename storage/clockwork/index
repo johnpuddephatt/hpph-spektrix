@@ -1975,3 +1975,16 @@
 1773300233-8716-221335412,1773300233.8687,GET,/storage/160/conversions/Screenshot-2023-12-06-at-12.19.36-square.jpg,App\Http\Controllers\PageController@show,404,42.927980422974,request
 1773300233-8816-1339074527,1773300233.8769,GET,/storage/109/conversions/1-Top-image-2.1-100-3-square.jpg,App\Http\Controllers\PageController@show,404,39.834022521973,request
 1773300237-0219-1821065559,1773300237.0113,GET,/nova-api/pages?search=john&filters=W3siQm9vbGVhbjpwdWJsaXNoZWQiOiIifV0%3D&orderBy=&perPage=25&trashed=&page=1&relationshipType=,Laravel\Nova\Http\Controllers\ResourceIndexController,200,57.204961776733,request
+1773300987-8963-1631944752,1773300987.8476,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,184.06414985657,request
+1773301133-1199-760221456,1773301133.0653,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,176.17011070251,request
+1773302165-7807-1138090104,1773302165.7382,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,158.55598449707,request
+1773302362-4430-2061480133,1773302362.4095,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,164.11209106445,request
+1773302460-7436-506351500,1773302460.7248,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,89.155197143555,request
+1773302463-8039-897791488,1773302463.785,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,70.536851882935,request
+1773312345-6871-1231276945,1773312345.5787,GET,/,App\Http\Controllers\PageController@home,200,598.94394874573,request
+1773312346-3690-482340455,1773312346.3654,GET,/storage/TUuEYGyDBFaizMXmcdcVErtBLZdHrDe3zgw5yN3e.svg,App\Http\Controllers\PageController@show,404,49.72505569458,request
+1773312346-3786-1814434403,1773312346.3747,GET,/storage/GGqMiBfgOYr5w6GrazMvVKIwGaPQaMFXMnDlNLaM.svg,App\Http\Controllers\PageController@show,404,50.249099731445,request
+1773312346-7291-1293533591,1773312346.718,GET,/storage/animation.json,App\Http\Controllers\PageController@show,404,72.246074676514,request
+1773371811-3483-177673373,1773371811.2653,GET,/,App\Http\Controllers\PageController@home,200,556.01811408997,request
+1773371812-0017-1721883169,1773371811.9951,GET,/storage/TUuEYGyDBFaizMXmcdcVErtBLZdHrDe3zgw5yN3e.svg,App\Http\Controllers\PageController@show,404,63.137054443359,request
+1773371812-0077-1462156311,1773371812.0015,GET,/storage/GGqMiBfgOYr5w6GrazMvVKIwGaPQaMFXMnDlNLaM.svg,App\Http\Controllers\PageController@show,404,58.276891708374,request
