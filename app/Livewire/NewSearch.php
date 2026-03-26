@@ -13,7 +13,7 @@ class NewSearch extends Component
     {
         return view("livewire.new-search", [
             "results" =>
-            strlen($this->search) > 2
+            is_string($this->search) && strlen($this->search) > 2
                 ? \App\Models\Event::shownInProgramme()
                 ->hasFutureOrRecentInstances()
                 ->where(function (Builder $query) {
