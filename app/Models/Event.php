@@ -497,7 +497,7 @@ class Event extends Model implements HasMedia, CachableAttributes
         $genres = $this->genres ? explode(",", $this->genres) : [];
         $vibes = $this->vibes ? explode(",", $this->vibes) : [];
 
-        return array_merge(array_slice($genres, 0, 1), $vibes);
+        return array_merge($genres, $vibes);
     }
 
     public function getFeaturingStarsAttribute($value): array

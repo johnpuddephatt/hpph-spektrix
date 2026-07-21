@@ -187,7 +187,7 @@ class Instance extends Model
                         'accessible_seats' => $collection->firstWhere('lockType.name', 'HPPH Wheelchair space')['quantity'] ?? 0
                     ];
                 } catch (\Exception $e) {
-                    Log::error($e);
+                    Log::error("Error fetching availability for instance {$this->id}: " . $e->getMessage());
                     return [
                         'seats' => -1,
                         'accessible_seats' => -1

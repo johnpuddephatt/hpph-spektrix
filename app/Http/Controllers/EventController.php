@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\Instance;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class EventController extends Controller
 {
@@ -48,24 +47,23 @@ class EventController extends Controller
      */
     public function show($event)
     {
-        $event = Event::where("slug", $event)
+        $event = Event::where('slug', $event)
             ->with(
-                "featuredVideo",
-                "featuredImage",
-                "gallery",
-                "latest_post.tags",
-                "related_event.featuredImage",
-                "latest_post.featuredImage",
+                'featuredVideo',
+                'featuredImage',
+                'gallery',
+                'latest_post.tags',
+                'related_event.featuredImage',
+                'latest_post.featuredImage',
             )
             ->firstOrFail();
 
         $current_event_instance_ids = $event->instances()->pluck('id');
 
-        return view("events.show", [
+        return view('events.show', [
             'event' => $event,
-            "strand_related" =>
-            $event->strand ? ($event->strand->display_type == 'events' ? Event::getEventsForSlider('strand', $event->strand->name, $current_event_instance_ids) : Instance::getInstancesForSlider('strand', $event->strand->name, $current_event_instance_ids)) : [],
-            "season_related" => $event->season ? ($event->season->display_type == 'events' ? Event::getEventsForSlider('season', $event->season->name, $current_event_instance_ids) :
+            'strand_related' => $event->strand ? ($event->strand->display_type == 'events' ? Event::getEventsForSlider('strand', $event->strand->name, $current_event_instance_ids) : Instance::getInstancesForSlider('strand', $event->strand->name, $current_event_instance_ids)) : [],
+            'season_related' => $event->season ? ($event->season->display_type == 'events' ? Event::getEventsForSlider('season', $event->season->name, $current_event_instance_ids) :
                 Instance::getInstancesForSlider('season', $event->season->name, $current_event_instance_ids)) : [],
         ]);
     }
