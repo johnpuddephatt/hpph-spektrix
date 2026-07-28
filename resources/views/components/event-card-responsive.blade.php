@@ -27,8 +27,10 @@
                 <x-accessibilities.badge class="absolute right-1.5 top-2" ::title="Audio description">AD</x-accessibilities.badge>
             @endif
 
-            @if ($show_strand && $event->strand?->show_on_event_card)
-                <x-strand.badge :dark="$dark" class="mt-2" :strand="$event->strand" />
+            @if ($show_strand)
+                @foreach ($event->strands->where('show_on_event_card', true) as $strand)
+                    <x-strand.badge :dark="$dark" class="mt-2" :strand="$strand" />
+                @endforeach
             @endif
 
         </div>

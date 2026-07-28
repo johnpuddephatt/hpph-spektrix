@@ -94,8 +94,8 @@ class Instance extends Resource
             Text::make("Partnership")->onlyOnDetail(),
             Text::make("External ticket link")->onlyOnDetail(),
 
-            BelongsTo::make("Season")->exceptOnForms(),
-            BelongsTo::make("Strand")->exceptOnForms(),
+            Text::make("Seasons", fn() => $this->seasons->pluck("name")->join(", "))->exceptOnForms(),
+            Text::make("Strands", fn() => $this->strands->pluck("name")->join(", "))->exceptOnForms(),
         ];
     }
 

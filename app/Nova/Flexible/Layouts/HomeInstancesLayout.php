@@ -41,7 +41,7 @@ class HomeInstancesLayout extends Layout implements CachableAttributes
             ->whereHas("event", function (Builder $query) {
                 return $query->shownInProgramme();
             })
-            ->with("event.featuredImage", "strand")
+            ->with("event.featuredImage", "strands")
             ->get();
     }
 }

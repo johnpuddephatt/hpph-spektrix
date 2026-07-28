@@ -20,8 +20,12 @@ class NewSearch extends Component
                     $query->where("name", "like", "%" . $this->search . "%")
                         ->orWhere("subtitle", "like", "%" . $this->search . "%")
                         ->orWhere("director", "like", "%" . $this->search . "%")
-                        ->orWhereRelation('instances', 'strand_name', 'like', "%" . $this->search . "%")
-                        ->orWhereRelation('instances', 'season_name', 'like', "%" . $this->search . "%");
+                        ->orWhereHas('instances.strands', function (Builder $query) {
+                            $query->where('name', 'like', "%" . $this->search . "%");
+                        })
+                        ->orWhereHas('instances.seasons', function (Builder $query) {
+                            $query->where('name', 'like', "%" . $this->search . "%");
+                        });
                 })
                 ->with("featuredImage")
                 ->get()

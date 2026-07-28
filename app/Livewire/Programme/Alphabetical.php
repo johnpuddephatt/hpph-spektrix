@@ -35,7 +35,7 @@ class Alphabetical extends Component
 
         $events = \App\Models\Event::shownInProgramme()
             ->orderBy("name")
-            ->with("featuredImage", "instances.strand");
+            ->with("featuredImage", "instances.strands");
 
         if ($this->type !== 'past') {
             $events = $events->hasFutureInstances();

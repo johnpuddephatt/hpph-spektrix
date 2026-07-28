@@ -16,10 +16,10 @@
                 <x-accessibilities.badge class="absolute right-1.5 top-2 z-10"
                     title="Audio description available via headsets">AD</x-accessibilities.badge>
             @endif
-            @if ($event->strand?->show_on_event_card)
+            @foreach ($event->strands->where('show_on_event_card', true) as $strand)
                 <x-strand.badge class="max-md:rounded-none max-md:px-4 max-md:py-2 max-md:text-left md:mt-2"
-                    :partof="true" :strand="$event->strand" />
-            @endif
+                    :partof="true" :strand="$strand" />
+            @endforeach
         </div>
     </div>
 

@@ -46,7 +46,7 @@
 
 @if($film->instances->count())
 @foreach ($film->instances as $instance)
-{{ $instance->start->format('D d M') }}: {{ $instance->start->format('H:i') }} @if ($instance->special_event){{ $instance->special_event }} @endif @if ($instance->captioned)[Captioned] @endif @if ($instance->autism_friendly)[Autism friendly] @endif @if ($instance->toddler_friendly)[Toddler friendly] @endif @if ($instance->strand_name == 'Bring Your Own Baby')[Bring Your Own Baby] @endif 
+{{ $instance->start->format('D d M') }}: {{ $instance->start->format('H:i') }} @if ($instance->special_event){{ $instance->special_event }} @endif @if ($instance->captioned)[Captioned] @endif @if ($instance->autism_friendly)[Autism friendly] @endif @if ($instance->toddler_friendly)[Toddler friendly] @endif @if ($instance->strands->contains('name', 'Bring Your Own Baby'))[Bring Your Own Baby] @endif
 @endforeach
 
 @endif

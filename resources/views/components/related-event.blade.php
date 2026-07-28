@@ -13,9 +13,11 @@
                 @else
                     <div class="w-64 aspect-video rounded bg-gray-light"></div>
                 @endif
-                <x-strand.badge
-                    class="max-w-full max-md:px-4 w-64 max-md:text-left max-md:py-2 max-md:rounded-none md:mt-2"
-                    :partof="false" :strand="$event->strand" />
+                @foreach ($event->strands as $strand)
+                    <x-strand.badge
+                        class="max-w-full max-md:px-4 w-64 max-md:text-left max-md:py-2 max-md:rounded-none md:mt-2"
+                        :partof="false" :strand="$strand" />
+                @endforeach
 
                 <div class="">
                     <h2 class="type-regular mb-1 mt-3">{{ $event->name }}</h2>

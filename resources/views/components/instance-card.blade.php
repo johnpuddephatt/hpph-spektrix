@@ -33,8 +33,10 @@
                 @endforeach
             </div>
 
-            @if ($show_strand && $instance->strand?->show_on_instance_card)
-                <x-strand.badge :dark="$dark" class="mt-2" :strand="$instance->strand" />
+            @if ($show_strand)
+                @foreach ($instance->strands->where('show_on_instance_card', true) as $strand)
+                    <x-strand.badge :dark="$dark" class="mt-2" :strand="$strand" />
+                @endforeach
             @endif
         </div>
     </div>

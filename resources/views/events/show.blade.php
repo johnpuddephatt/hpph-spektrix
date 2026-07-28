@@ -106,7 +106,11 @@
                 @foreach ($event->strands as $strand)
                     <x-strand.strip :strand="$strand" />
                 @endforeach
-                <x-season.strip :season="$event->season" />
+                <div class=" divide-y-sand-light">
+                @foreach ($event->seasons as $season)
+                    <x-season.strip :season="$season" />
+                @endforeach
+                </div>
 
                 <div class="max-w-4xl lg:pr-16 xl:pr-32">
 
@@ -149,26 +153,26 @@
         {{-- <x-strand.card :strand="$event->strand" />
         <x-season.card :season="$event->season" /> --}}
 
-        @if ($event->strand)
+        @foreach ($strand_sliders as $strand_slider)
             <div class="container mb-8 mt-0">
-                <x-instance-slider :layout="match (count($strand_related) + 1) {
+                <x-instance-slider :layout="match (count($strand_slider['entries']) + 1) {
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',
-                }" :strand="$event->strand" :color="$event->strand->color" :show_strand="false"
-                    :entries="$strand_related" :type="$event->strand->display_type" />
+                }" :strand="$strand_slider['strand']" :color="$strand_slider['color']" :show_strand="false"
+                    :entries="$strand_slider['entries']" :type="$strand_slider['type']" />
             </div>
-        @endif
-        @if ($event->season)
+        @endforeach
+        @foreach ($season_sliders as $season_slider)
             <div class="container my-8">
-                <x-instance-slider :layout="match (count($season_related) + 1) {
+                <x-instance-slider :layout="match (count($season_slider['entries']) + 1) {
                     1 => 'extra-wide',
                     2 => 'wide',
                     default => 'default',
-                }" x-show="count($season_related)" color="#FFDA3D" :season="$event->season"
-                    :show_strand="false" :type="$event->season->display_type" :entries="$season_related" />
+                }" color="#FFDA3D" :season="$season_slider['season']"
+                    :show_strand="false" :type="$season_slider['type']" :entries="$season_slider['entries']" />
             </div>
-        @endif
+        @endforeach
 
         @if ($event->coming_soon)
             <div class="sticky bottom-0 z-10 block w-full bg-yellow py-5">

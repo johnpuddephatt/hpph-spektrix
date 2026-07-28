@@ -66,9 +66,9 @@
                                             <x-availability-badge :instance="$instance" />
                                         @endif
 
-                                        @if ($instance->strand)
-                                            <x-strand.badge :dark="false" class="" :strand="$instance->strand" />
-                                        @endif
+                                        @foreach ($instance->strands as $strand)
+                                            <x-strand.badge :dark="false" class="" :strand="$strand" />
+                                        @endforeach
 
                                         @if ($instance->format)
                                             <x-special-event-badge>{{ $instance->format }}</x-special-event-badge>

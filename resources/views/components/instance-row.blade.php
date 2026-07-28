@@ -13,9 +13,9 @@
                     ]) !!}
                 @endif
             </div>
-            @if ($instance->strand?->show_on_instance_card)
-                <x-strand.badge :dark="false" class="mt-2" :strand="$instance->strand" />
-            @endif
+            @foreach ($instance->strands->where('show_on_instance_card', true) as $strand)
+                <x-strand.badge :dark="false" class="mt-2" :strand="$strand" />
+            @endforeach
 
         </div>
 

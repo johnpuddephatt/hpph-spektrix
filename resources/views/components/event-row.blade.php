@@ -15,9 +15,9 @@
         @if ($event->audio_description)
             <x-accessibilities.badge class="absolute right-1.5 top-2" ::title="Audio description">AD</x-accessibilities.badge>
         @endif
-        @if ($event->strand?->show_on_event_card)
-            <x-strand.badge :partof="true" class="md:mt-2" :strand="$event->strand" />
-        @endif
+        @foreach ($event->strands->where('show_on_event_card', true) as $strand)
+            <x-strand.badge :partof="true" class="md:mt-2" :strand="$strand" />
+        @endforeach
     </div>
 
     <div class="flex flex-col max-md:container">

@@ -77,8 +77,6 @@ class Instance extends Model
         "door_time",
         "partnership",
 
-        "season_name",
-        "strand_name",
         "external_ticket_link",
 
         "free",
@@ -109,14 +107,28 @@ class Instance extends Model
         return $this->belongsTo(Event::class, "event_id", "id");
     }
 
-    public function season()
+    public function seasons()
     {
-        return $this->belongsTo(Season::class, "season_name", "name");
+        return $this->belongsToMany(Season::class)
+            ->withPivot("position")
+            ->orderByPivot("position");
     }
 
-    public function strand()
+    public function strands()
     {
-        return $this->belongsTo(Strand::class, "strand_name", "name");
+        return $this->belongsToMany(Strand::class)
+            ->withPivot("position")
+            ->orderByPivot("position");
+    }
+
+    public function getSeasonAttribute()
+    {
+        return $this->seasons->first();
+    }
+
+    public function getStrandAttribute()
+    {
+        return $this->strands->first();
     }
 
     public function getUrlAttribute()
@@ -252,7 +264,9 @@ class Instance extends Model
             ->whereHas('event', function (Builder $query) {
                 return $query->shownInProgramme();
             })
-            ->where($type . '_name', $name)
+            ->whereHas($type . 's', function (Builder $query) use ($name) {
+                $query->where('name', $name);
+            })
             ->with('event')
             ->whereNotIn('id', $exclude)
             ->get()
@@ -274,14 +288,13 @@ class Instance extends Model
                 ->with(
                     "event:id,slug,name,subtitle,description,certificate_age_guidance,duration,audio_description",
                     "event.featuredImage",
-                    "strand:slug,name,color,show_on_instance_card",
+                    "strands:id,slug,name,color,show_on_instance_card",
                 )
                 ->select(
                     "id",
                     "event_id",
                     "start",
                     "analogue",
-                    "strand_name",
                     "special_event",
                     "external_ticket_link",
                     "free",
@@ -298,7 +311,7 @@ class Instance extends Model
             }
 
             if ($strand) {
-                $instances->whereHas("strand", function (Builder $query) use ($strand) {
+                $instances->whereHas("strands", function (Builder $query) use ($strand) {
                     $query->where("strands.slug", $strand);
                 });
             }

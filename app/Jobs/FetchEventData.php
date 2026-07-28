@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Instance;
+use App\Support\ColumnLimits;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -54,6 +55,10 @@ class FetchEventData implements ShouldQueue
         $instances = $this->getInstances($events);
         $this->getInstancesVenues($instances);
 
+        // Strand/season names are both the upsert key and the pivot lookup key, so
+        // truncate them once, up front, keeping row creation and pivot syncing consistent.
+        $this->truncateNameAttributes($instances);
+
         $this->updateOrCreateEvents($events);
         $this->updateOrCreateSeasons($instances);
         $this->updateOrCreateStrands($instances);
@@ -65,6 +70,26 @@ class FetchEventData implements ShouldQueue
         Instance::getInstancesForProgramme(false, null, null, null, true);
 
         Log::channel("spektrix")->info("Imported " . count($events) . " events (" . count($instances) . " instances)");
+    }
+
+    /**
+     * Truncate the strand/season name attributes on each instance to the name
+     * column limit, before they are used as upsert keys and pivot lookup keys.
+     */
+    public function truncateNameAttributes($instances)
+    {
+        foreach ($instances as $instance) {
+            foreach (["attribute_Strand", "attribute_Strand2"] as $attribute) {
+                if (! empty($instance->{$attribute})) {
+                    $instance->{$attribute} = ColumnLimits::fitValue("strands", "name", $instance->{$attribute});
+                }
+            }
+            foreach (["attribute_Season", "attribute_Season2"] as $attribute) {
+                if (! empty($instance->{$attribute})) {
+                    $instance->{$attribute} = ColumnLimits::fitValue("seasons", "name", $instance->{$attribute});
+                }
+            }
+        }
     }
 
     public function getEvents($website = "HPPH")
@@ -105,7 +130,7 @@ class FetchEventData implements ShouldQueue
             // \App\Models\Event::withoutEvents(function () use ($event) {
             \App\Models\Event::withoutGlobalScopes()->updateOrCreate(
                 ["id" => $event->id],
-                [
+                ColumnLimits::fit("events", [
                     "enabled" => true,
                     "duration" => $event->duration ?? null,
                     "is_on_sale" => $event->isOnSale ?? false,
@@ -179,7 +204,7 @@ class FetchEventData implements ShouldQueue
                     $event->attribute_AlternativeContent ?? false,
                     "instance_dates" => $event->instanceDates ?? null,
 
-                ]
+                ])
             );
             // });
         }
@@ -215,7 +240,10 @@ class FetchEventData implements ShouldQueue
         \App\Models\Strand::query()->update(["enabled" => false]);
 
         foreach (
-            array_unique(Arr::pluck($instances, "attribute_Strand"))
+            array_unique(array_merge(
+                Arr::pluck($instances, "attribute_Strand"),
+                Arr::pluck($instances, "attribute_Strand2")
+            ))
             as $strand
         ) {
             if ($strand) {
@@ -237,7 +265,10 @@ class FetchEventData implements ShouldQueue
         \App\Models\Season::query()->update(["enabled" => false]);
 
         foreach (
-            array_unique(Arr::pluck($instances, "attribute_Season"))
+            array_unique(array_merge(
+                Arr::pluck($instances, "attribute_Season"),
+                Arr::pluck($instances, "attribute_Season2")
+            ))
             as $season
         ) {
             if ($season) {
@@ -256,11 +287,14 @@ class FetchEventData implements ShouldQueue
 
     public function updateOrCreateInstances($instances)
     {
+        // Resolve strand/season names → ids once for pivot syncing.
+        $strandIds = \App\Models\Strand::withoutGlobalScopes()->pluck("id", "name");
+        $seasonIds = \App\Models\Season::withoutGlobalScopes()->pluck("id", "name");
 
         foreach ($instances as $instance) {
-            \App\Models\Instance::withoutGlobalScopes()->updateOrCreate(
+            $model = \App\Models\Instance::withoutGlobalScopes()->updateOrCreate(
                 ["id" => $instance->id],
-                [
+                ColumnLimits::fit("instances", [
                     "enabled" => true,
                     "is_on_sale" => $instance->isOnSale ?? null,
                     "event_id" => $instance->event->id ?? null,
@@ -277,8 +311,6 @@ class FetchEventData implements ShouldQueue
                     "analogue" => $instance->attribute_Analogue ?? null,
                     "door_time" => $instance->attribute_DoorTime ?? null,
                     "partnership" => $instance->attribute_Partnership ?? null,
-                    "season_name" => $instance->attribute_Season ?: null,
-                    "strand_name" => $instance->attribute_Strand ?: null,
                     "external_ticket_link" => $instance->attribute_ExternalTicketLink ?: null,
 
                     "audio_described" =>
@@ -292,10 +324,35 @@ class FetchEventData implements ShouldQueue
 
                     "free" => $instance->attribute_AffordableTickets === "Free" ? true : false,
                     "pwyc" => $instance->attribute_AffordableTickets === "Pay What You Can" ? true : false,
-                ]
+                ])
             );
+
+            $model->strands()->sync($this->syncMap(
+                [$instance->attribute_Strand ?? null, $instance->attribute_Strand2 ?? null],
+                $strandIds
+            ));
+
+            $model->seasons()->sync($this->syncMap(
+                [$instance->attribute_Season ?? null, $instance->attribute_Season2 ?? null],
+                $seasonIds
+            ));
         }
 
         \App\Models\Instance::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($instances, 'id'))->update(["enabled" => false]);
+    }
+
+    /**
+     * Build a belongsToMany sync map [id => ['position' => n]] from an ordered
+     * list of names, resolving each against the given name→id lookup.
+     */
+    private function syncMap(array $names, $ids): array
+    {
+        $sync = [];
+        foreach ($names as $index => $name) {
+            if ($name && isset($ids[$name])) {
+                $sync[$ids[$name]] = ["position" => $index + 1];
+            }
+        }
+        return $sync;
     }
 }

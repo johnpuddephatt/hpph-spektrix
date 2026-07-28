@@ -146,9 +146,9 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
         );
     }
 
-    public function instances(): HasMany
+    public function instances(): BelongsToMany
     {
-        return $this->hasMany(Instance::class, "strand_name", "name")->whereHas(
+        return $this->belongsToMany(Instance::class)->whereHas(
             "event",
             function ($event) {
                 return $event->shownInProgramme();
@@ -156,9 +156,9 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
         );
     }
 
-    public function allFutureInstances(): HasMany
+    public function allFutureInstances(): BelongsToMany
     {
-        return $this->hasMany(Instance::class)->withoutGlobalScope('not_coming_soon')->whereHas(
+        return $this->belongsToMany(Instance::class)->withoutGlobalScope('not_coming_soon')->whereHas(
             "event",
             function ($event) {
                 return $event->shownInProgramme();

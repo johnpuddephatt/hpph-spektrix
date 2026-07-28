@@ -62,9 +62,25 @@ class EventController extends Controller
 
         return view('events.show', [
             'event' => $event,
-            'strand_related' => $event->strand ? ($event->strand->display_type == 'events' ? Event::getEventsForSlider('strand', $event->strand->name, $current_event_instance_ids) : Instance::getInstancesForSlider('strand', $event->strand->name, $current_event_instance_ids)) : [],
-            'season_related' => $event->season ? ($event->season->display_type == 'events' ? Event::getEventsForSlider('season', $event->season->name, $current_event_instance_ids) :
-                Instance::getInstancesForSlider('season', $event->season->name, $current_event_instance_ids)) : [],
+            'strand_sliders' => $event->strands->map(function ($strand) use ($current_event_instance_ids) {
+                return [
+                    'strand' => $strand,
+                    'color' => $strand->color,
+                    'type' => $strand->display_type,
+                    'entries' => $strand->display_type == 'events'
+                        ? Event::getEventsForSlider('strand', $strand->name, $current_event_instance_ids)
+                        : Instance::getInstancesForSlider('strand', $strand->name, $current_event_instance_ids),
+                ];
+            }),
+            'season_sliders' => $event->seasons->map(function ($season) use ($current_event_instance_ids) {
+                return [
+                    'season' => $season,
+                    'type' => $season->display_type,
+                    'entries' => $season->display_type == 'events'
+                        ? Event::getEventsForSlider('season', $season->name, $current_event_instance_ids)
+                        : Instance::getInstancesForSlider('season', $season->name, $current_event_instance_ids),
+                ];
+            }),
         ]);
     }
 

@@ -160,7 +160,9 @@ class Event extends Model implements HasMedia, CachableAttributes
     public static function getEventsForSlider($type, $name, $exclude = [])
     {
         return Event::shownInProgramme()->whereHas('allFutureInstances', function (Builder $query) use ($name, $type) {
-            $query->where($type . '_name', $name);
+            $query->whereHas($type . 's', function (Builder $q) use ($name) {
+                $q->where('name', $name);
+            });
         })
             ->whereNotIn('id', $exclude)
             ->get()
@@ -392,41 +394,38 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function getStrandAttribute($value)
     {
         return $this->remember("strand", 3600, function () {
-            $strand = $this->allFutureInstances
-                ->pluck("strand")
-                ->unique()
-                ->flatten()
-                ->filter()
-                ->first();
-
-            return $strand;
+            return $this->strands->first();
         });
     }
 
     public function getStrandsAttribute($value)
     {
         return $this->remember("strands", 3600, function () {
-            $strands = $this->allFutureInstances
-                ->pluck("strand")
-                ->unique()
+            return $this->allFutureInstances
+                ->pluck("strands")
                 ->flatten()
-                ->filter();
-
-            return $strands;
+                ->filter()
+                ->unique("id")
+                ->values();
         });
     }
 
     public function getSeasonAttribute($value)
     {
         return $this->remember("season", 3600, function () {
-            $season = $this->allFutureInstances
-                ->pluck("season")
-                ->unique()
+            return $this->seasons->first();
+        });
+    }
+
+    public function getSeasonsAttribute($value)
+    {
+        return $this->remember("seasons", 3600, function () {
+            return $this->allFutureInstances
+                ->pluck("seasons")
                 ->flatten()
                 ->filter()
-                ->first();
-
-            return $season;
+                ->unique("id")
+                ->values();
         });
     }
 
