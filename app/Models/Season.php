@@ -67,6 +67,11 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
     public $sortable = [
         'order_column_name' => 'sort_order',
         'sort_when_creating' => true,
+        // The public season menu and homepage carousel read this list in
+        // descending order, so Nova has to drag in the same direction —
+        // otherwise dragging a season to the top sends it to the bottom of
+        // the site.
+        'nova_order_by' => 'desc',
     ];
 
     public function sluggable(): array
@@ -78,6 +83,17 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         ];
     }
 
+    /**
+     * Sortable works out the next `sort_order` from max() over this query. The
+     * default is `static::query()`, which still carries the published/enabled
+     * global scopes — so an import that creates a season while nothing matching
+     * is published gets max() = null and every new season lands on 1.
+     */
+    public function buildSortQuery(): Builder
+    {
+        return static::query()->withoutGlobalScopes();
+    }
+
     protected static function booted()
     {
         static::addGlobalScope("published", function (Builder $builder) {
@@ -85,7 +101,11 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         });
 
         static::addGlobalScope("enabled", function (Builder $builder) {
-            $builder->where("enabled", true)->orWhere('force_enabled_until', '>=', now());
+            $builder->where(function (Builder $query) {
+                $query
+                    ->where("enabled", true)
+                    ->orWhere("force_enabled_until", ">=", now());
+            });
         });
 
         static::addGlobalScope("order", function (Builder $builder) {
@@ -166,6 +186,16 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
                 return $event->shownInProgramme();
             }
         );
+    }
+
+    /**
+     * Every attached screening, past and cancelled ones included. `instances()`
+     * only ever returns future, on-sale screenings, so it can't be used to work
+     * out when a season actually ran.
+     */
+    public function allInstances(): BelongsToMany
+    {
+        return $this->belongsToMany(Instance::class)->withoutGlobalScopes();
     }
 
     public function posts(): BelongsToMany

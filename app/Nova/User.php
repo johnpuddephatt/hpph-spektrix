@@ -101,6 +101,7 @@ class User extends Resource
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\SimpleTextLayout::class
                     )
+                    ->hideFromIndex()
                     ->button("Add section"),
             ]),
         ];

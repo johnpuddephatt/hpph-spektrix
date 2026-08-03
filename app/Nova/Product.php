@@ -93,6 +93,7 @@ class Product extends Resource
                         \App\Nova\Flexible\Layouts\ImagePairLayout::class
                     )
                     ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
+                    ->hideFromIndex()
                     ->button("Add section"),
             ]),
         ];

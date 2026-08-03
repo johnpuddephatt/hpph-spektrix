@@ -4,6 +4,7 @@ namespace App\Nova\Flexible\Layouts;
 
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
@@ -12,6 +13,8 @@ use Outl1ne\MultiselectField\Multiselect;
 
 class JournalPostsLayout extends Layout implements CachableAttributes
 {
+    use CachesOptions;
+
     use CachesAttributes;
     /**
      * The layout's unique identifier
@@ -43,10 +46,11 @@ class JournalPostsLayout extends Layout implements CachableAttributes
             Multiselect::make("Tags to include")
                 ->saveAsJSON()
                 ->options(
-                    array_combine(
-                        \Spatie\Tags\Tag::pluck("name")->toArray(),
-                        \Spatie\Tags\Tag::pluck("name")->toArray()
-                    )
+                    static::cachedOptions("tags", function () {
+                        $tags = \Spatie\Tags\Tag::pluck("name")->toArray();
+
+                        return array_combine($tags, $tags);
+                    })
                 )
                 ->help("Posts with any of the selected tags will be shown."),
         ];

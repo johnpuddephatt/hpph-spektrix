@@ -5,6 +5,7 @@ namespace App\Nova\Flexible\Layouts;
 use Alexwenzel\DependencyContainer\DependencyContainer;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Heading;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
@@ -18,6 +19,8 @@ use Astrotomic\CachableAttributes\CachableAttributes;
 
 class JournalPostLayout extends Layout implements CachableAttributes
 {
+    use CachesOptions;
+
     use CachesAttributes;
 
     /**
@@ -56,7 +59,7 @@ class JournalPostLayout extends Layout implements CachableAttributes
                 ->displayUsingLabels(),
 
             Select::make("Post", "post_id")
-                ->options(\App\Models\Post::pluck("title", "id"))
+                ->options(static::cachedOptions("posts", fn() => \App\Models\Post::pluck("title", "id")))
                 ->searchable()
                 ->help(
                     'The selected post will be shown if "a specific post" is selected above'
@@ -65,10 +68,11 @@ class JournalPostLayout extends Layout implements CachableAttributes
             Multiselect::make("Tags to include")
                 ->saveAsJSON()
                 ->options(
-                    array_combine(
-                        \Spatie\Tags\Tag::pluck("name")->toArray(),
-                        \Spatie\Tags\Tag::pluck("name")->toArray()
-                    )
+                    static::cachedOptions("tags", function () {
+                        $tags = \Spatie\Tags\Tag::pluck("name")->toArray();
+
+                        return array_combine($tags, $tags);
+                    })
                 )
                 ->help(
                     'A post with any of the selected tags will be shown if "tagged" is selected above'

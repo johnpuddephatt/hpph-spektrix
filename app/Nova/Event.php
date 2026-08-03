@@ -16,6 +16,7 @@ use Laravel\Nova\Panel;
 
 use Advoor\NovaEditorJs\NovaEditorJsField;
 use Alexwenzel\DependencyContainer\DependencyContainer;
+use App\Nova\Filters\EventStatus;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
@@ -56,6 +57,12 @@ class Event extends Resource
     public static $search = ["name"];
 
     public static $orderBy = ["first_instance_date_time" => "desc"];
+
+    /**
+     * The index renders a poster, a screening count and a date range per row,
+     * all of which hit a relation. Eager loading turns ~75 queries into two.
+     */
+    public static $with = ["instances", "media"];
 
     public static function indexQuery(NovaRequest $request, $query)
     {
@@ -124,15 +131,15 @@ class Event extends Resource
             //     "Tabs",
             //     [
             Panel::make("Overview", [
-                Trix::make("Description")->rules([
-                    Rule::requiredIf(fn() => $request->published),
-                ]),
+                Trix::make("Description")
+                    ->rules([Rule::requiredIf(fn() => $request->published)])
+                    ->hideFromIndex(),
                 NovaEditorJsField::make("Long description")->hideFromIndex(),
             ]),
 
             Panel::make("Media", [
                 Media::make("Video")
-                    ->conversionOnIndexView("thumb")
+                    ->hideFromIndex()
                     ->help("Maximum file size is 15MB")
                     // File size is set in config/media-library.php
                     ->singleMediaRules("max:15000"),
@@ -175,6 +182,7 @@ class Event extends Resource
                         URL::make("URL"),
                     ])
                     ->fullWidth()
+                    ->hideFromIndex()
                     ->button("Add a review"),
             ]),
 
@@ -256,7 +264,7 @@ class Event extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [new EventStatus()];
     }
 
     /**

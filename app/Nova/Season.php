@@ -23,10 +23,13 @@ use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Panel;
 use Trin4ik\NovaSwitcher\NovaSwitcher;
 use Whitecube\NovaFlexibleContent\Flexible;
+use App\Nova\Concerns\ShowsScreeningDates;
+use App\Nova\Filters\SyncStatus;
 use Outl1ne\NovaSortable\Traits\HasSortableRows;
 
 class Season extends Resource
 {
+    use ShowsScreeningDates;
     use HasSortableRows {
         indexQuery as indexSortableQuery;
     }
@@ -54,13 +57,20 @@ class Season extends Resource
      */
     public static $search = ["name"];
 
+    /**
+     * Drag order: `sort_order` is what orders the season menu and the homepage
+     * carousel on the public site, so the index has to show that order for
+     * dragging to mean anything. The `order` global scope is dropped so it can't
+     * fight the ordering nova-sortable applies.
+     */
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query->withoutGlobalScopes(["published", "enabled"])->orderBy(
-            "name",
-            "asc"
+        return static::indexSortableQuery(
+            $request,
+            static::withScreeningAggregates(
+                $query->withoutGlobalScopes(["published", "enabled", "order"])
+            )
         );
-        return parent::indexQuery($request, static::indexSortableQuery($request, $query));
     }
 
     /**
@@ -84,6 +94,9 @@ class Season extends Resource
                     "Only change the capitalisation. The name is what links this season to Spektrix, " .
                         "so any other edit will stop screenings being attached to it."
                 ),
+
+            ...$this->screeningDateFields(),
+
             Boolean::make("Published"),
             Boolean::make("Synced", "enabled")
                 ->readonly()
@@ -95,6 +108,7 @@ class Season extends Resource
             DateTime::make("Force sync until", "force_enabled_until")
                 ->help("This will force the season to be displayed until this date, even it does not appear in the Spektrix import.")
                 ->showOnPreview()
+                ->hideFromIndex()
                 ->nullable(),
             Select::make("Display type", "display_type")->options([
                 "instances" => "Instances (default)",
@@ -106,16 +120,17 @@ class Season extends Resource
             Media::make("Video")
                 ->conversionOnForm("thumb")
                 ->conversionOnDetailView("thumb")
-                ->conversionOnIndexView("thumb"),
-            Images::make("Main image", "main"),
-            Image::make("Hero overlay image", "hero_overlay_image"),
+                ->hideFromIndex(),
+            Images::make("Main image", "main")->hideFromIndex(),
+            Image::make("Hero overlay image", "hero_overlay_image")->hideFromIndex(),
             NovaSwitcher::make("HPPH Presents", 'hpph_presents')
                 ->help('Enable the HPPH presents text above the season title.')
                 ->default(true)
                 ->hideFromIndex()
                 ->nullable(),
             NovaSwitcher::make("Show header", "show_header")
-                ->help('Enable to show the season name and short description in the header.'),
+                ->help('Enable to show the season name and short description in the header.')
+                ->hideFromIndex(),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex()
@@ -147,7 +162,8 @@ class Season extends Resource
                         \App\Nova\Flexible\Layouts\LinkBannerLayout::class
                     )
                     ->button("Add a section")
-                    ->stacked(),
+                    ->stacked()
+                    ->hideFromIndex(),
             ]),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];
@@ -172,7 +188,7 @@ class Season extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [new SyncStatus(forceable: true)];
     }
 
     /**

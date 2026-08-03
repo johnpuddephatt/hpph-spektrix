@@ -3,12 +3,15 @@
 namespace App\Nova\Flexible\Layouts;
 
 use Laravel\Nova\Fields\Select;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class FundLayout extends Layout
 {
+    use CachesOptions;
+
     /**
      * The layout's unique identifier
      *
@@ -32,7 +35,7 @@ class FundLayout extends Layout
     {
         return [
             Select::make("", "fund_name")
-                ->options(\App\Models\Fund::pluck("name", "id"))
+                ->options(static::cachedOptions("funds", fn() => \App\Models\Fund::pluck("name", "id")))
                 ->searchable(),
         ];
     }

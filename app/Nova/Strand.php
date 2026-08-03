@@ -10,6 +10,8 @@ use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Textarea;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
+use App\Nova\Concerns\ShowsScreeningDates;
+use App\Nova\Filters\SyncStatus;
 use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use Laravel\Nova\Fields\Color;
 use Laravel\Nova\Fields\Boolean;
@@ -23,6 +25,7 @@ use Whitecube\NovaFlexibleContent\Flexible;
 
 class Strand extends Resource
 {
+    use ShowsScreeningDates;
     use HasSortableRows {
         indexQuery as indexSortableQuery;
     }
@@ -50,13 +53,20 @@ class Strand extends Resource
      */
     public static $search = ["name"];
 
+    /**
+     * Drag order, not date order: this list is short enough to curate by hand
+     * and its `sort_order` is what orders the strand menu and the programme
+     * filters on the public site. The `order` global scope is dropped so it
+     * can't fight the ordering nova-sortable applies.
+     */
     public static function indexQuery(NovaRequest $request, $query)
     {
-        $query->withoutGlobalScopes(["published", "enabled"])->orderBy(
-            "name",
-            "asc"
+        return static::indexSortableQuery(
+            $request,
+            static::withScreeningAggregates(
+                $query->withoutGlobalScopes(["published", "order"])
+            )
         );
-        return parent::indexQuery($request, static::indexSortableQuery($request, $query));
     }
 
     /**
@@ -80,6 +90,9 @@ class Strand extends Resource
                     "Only change the capitalisation. The name is what links this strand to Spektrix, " .
                         "so any other edit will stop screenings being attached to it."
                 ),
+
+            ...$this->screeningDateFields(),
+
             Boolean::make("Published"),
             Boolean::make("Programme?", "show_in_programme")
                 ->showOnPreview()
@@ -91,19 +104,21 @@ class Strand extends Resource
             Select::make("Display type", "display_type")->options([
                 "instances" => "Instances (default)",
                 "events" => "Events",
-            ])->default('instances')->displayUsingLabels(),
+            ])->default('instances')->displayUsingLabels()->hideFromIndex(),
             Color::make("Color"),
             Image::make("Logo")
                 ->acceptedTypes(".svg")
-                ->disableDownload(),
+                ->disableDownload()
+                ->hideFromIndex(),
             Image::make("Simplified logo", "logo_simple")
                 ->acceptedTypes(".svg")
-                ->disableDownload(),
+                ->disableDownload()
+                ->hideFromIndex(),
             Media::make("Video")
                 ->conversionOnForm("thumb")
                 ->conversionOnDetailView("thumb")
-                ->conversionOnIndexView("thumb"),
-            Images::make("Main image", "main"),
+                ->hideFromIndex(),
+            Images::make("Main image", "main")->hideFromIndex(),
             Textarea::make("Short description")
                 ->rows(2)
                 ->hideFromIndex()
@@ -116,11 +131,11 @@ class Strand extends Resource
                 ->enforceMaxlength(),
             Trix::make("Additional description")
                 ->hideFromIndex(),
-            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 300-400px wide. Multiple logos can be artworked on a canvas 800px wide.'),
+            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 300-400px wide. Multiple logos can be artworked on a canvas 800px wide.')->hideFromIndex(),
             Boolean::make("Show on event card")->hideFromIndex(),
             Boolean::make("Show on instance card")->hideFromIndex(),
             Boolean::make("Show in booking path")->hideFromIndex(),
-            Tag::make("Posts")->displayAsList(),
+            Tag::make("Posts")->displayAsList()->hideFromIndex(),
 
             new Panel("Content", [
                 Flexible::make("Content", "content")
@@ -138,7 +153,8 @@ class Strand extends Resource
                         \App\Nova\Flexible\Layouts\LinkBannerLayout::class
                     )
                     ->button("Add a section")
-                    ->stacked(),
+                    ->stacked()
+                    ->hideFromIndex(),
             ]),
             HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
         ];
@@ -163,7 +179,7 @@ class Strand extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [new SyncStatus()];
     }
 
     /**

@@ -82,6 +82,17 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
         ];
     }
 
+    /**
+     * Sortable works out the next `sort_order` from max() over this query. The
+     * default is `static::query()`, which still carries the published global
+     * scope — so an import that creates a strand while nothing published exists
+     * gets max() = null and every new strand lands on 1.
+     */
+    public function buildSortQuery(): Builder
+    {
+        return static::query()->withoutGlobalScopes();
+    }
+
     protected static function booted()
     {
         static::addGlobalScope("published", function (Builder $builder) {
@@ -164,6 +175,16 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
                 return $event->shownInProgramme();
             }
         );
+    }
+
+    /**
+     * Every attached screening, past and cancelled ones included. `instances()`
+     * only ever returns future, on-sale screenings, so it can't be used to work
+     * out when a strand actually ran.
+     */
+    public function allInstances(): BelongsToMany
+    {
+        return $this->belongsToMany(Instance::class)->withoutGlobalScopes();
     }
 
     public function posts(): BelongsToMany

@@ -9,10 +9,13 @@ use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class SingleMembershipLayout extends Layout
 {
+    use CachesOptions;
+
     /**
      * The layout's unique identifier
      *
@@ -43,7 +46,7 @@ class SingleMembershipLayout extends Layout
             Text::make("Title"),
             Text::make("Subtitle"),
             Select::make("Membership", "membership_id")
-                ->options(\App\Models\Membership::pluck("name", "id"))
+                ->options(static::cachedOptions("memberships", fn() => \App\Models\Membership::pluck("name", "id")))
                 ->searchable()
                 ->displayUsingLabels(),
         ];

@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\ScreeningDate;
+use App\Nova\Filters\SyncStatus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
@@ -26,9 +28,33 @@ class Instance extends Resource
         return "Screenings";
     }
 
+    /**
+     * Nova falls back to ordering by primary key, and these are opaque Spektrix
+     * IDs, so without this the listing looks unordered.
+     */
+    public static $orderBy = ["start" => "asc"];
+
+    /**
+     * Every row renders its event, seasons and strands, which is three queries
+     * per row without this.
+     */
+    public static $with = ["event", "seasons", "strands"];
+
+    /**
+     * Admin needs to see screenings the public listings deliberately hide:
+     * cancelled ones (otherwise the Cancelled column is always false), past ones
+     * and those belonging to coming-soon events. The `future` scope is put back
+     * by the ScreeningDate filter's default, so the listing still opens on
+     * upcoming screenings only.
+     */
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScopes(["enabled"]);
+        return $query->withoutGlobalScopes([
+            "enabled",
+            "future",
+            "not_cancelled",
+            "not_coming_soon",
+        ]);
     }
 
     /**
@@ -73,7 +99,7 @@ class Instance extends Resource
                 ->asHtml()
                 ->onlyOnDetail(),
 
-            DateTime::make("Start"),
+            DateTime::make("Start")->sortable(),
             Boolean::make("On sale", "is_on_sale"),
             Boolean::make("Cancelled"),
             Boolean::make("Synced", "enabled"),
@@ -118,7 +144,7 @@ class Instance extends Resource
      */
     public function filters(NovaRequest $request)
     {
-        return [];
+        return [new ScreeningDate(), new SyncStatus(defaultValue: "all")];
     }
 
     /**

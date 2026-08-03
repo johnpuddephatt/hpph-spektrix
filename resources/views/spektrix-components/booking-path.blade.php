@@ -152,7 +152,7 @@
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full"
         class="fixed bottom-0 right-0 top-[4.5rem] z-[60] flex w-full flex-col bg-sand transition lg:top-0 lg:min-h-screen lg:w-[calc(90vw-9rem)] xl:w-[calc(75vw-9rem)]"
         x-show="selectedInstance && eventID">
-        {{-- <template x-if="selectedInstance && showModal">
+        <template x-if="selectedInstance && showModal">
             <dialog
                 x-show="({{ $access_tags->map(fn($tag) => 'selectedInstance.' . $tag->slug . ' && ' . ($tag->booking_warning ? 'true' : 'false'))->join(' || ') }})"
                 open>
@@ -178,7 +178,7 @@
                     <button class="type-small rounded bg-yellow px-8 py-2" @click="showModal = false">Continue</button>
                 </div>
             </dialog>
-        </template> --}}
+        </template>
 
         <h2
             class="type-regular lg:type-medium z-10 flex transform flex-row items-center gap-4 whitespace-nowrap bg-sand-dark px-4 py-3 lg:absolute lg:right-full lg:w-[100vh] lg:origin-top-right lg:-rotate-90 lg:justify-between lg:bg-transparent lg:p-10 lg:px-6 lg:text-right">

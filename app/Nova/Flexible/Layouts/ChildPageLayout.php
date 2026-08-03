@@ -4,10 +4,13 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class ChildPageLayout extends Layout
 {
+    use CachesOptions;
+
     /**
      * The layout's unique identifier
      *
@@ -31,11 +34,12 @@ class ChildPageLayout extends Layout
     {
         return [
             Select::make("Page", "page_id")->options(
-                \App\Models\Page::find(request()->resourceId)
-                    ? \App\Models\Page::find(request()->resourceId)
-                        ->children()
-                        ->pluck("name", "id")
-                    : []
+                static::cachedOptions(
+                    "children:" . request()->resourceId,
+                    fn() => \App\Models\Page::find(request()->resourceId)
+                        ?->children()
+                        ->pluck("name", "id") ?? []
+                )
             ),
         ];
     }

@@ -4,10 +4,13 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class PageLayout extends Layout
 {
+    use CachesOptions;
+
     /**
      * The layout's unique identifier
      *
@@ -31,7 +34,7 @@ class PageLayout extends Layout
     {
         return [
             Select::make("Page", "page_id")
-                ->options(\App\Models\Page::pluck("name", "id") ?? [])
+                ->options(static::cachedOptions("pages", fn() => \App\Models\Page::pluck("name", "id") ?? []))
                 ->searchable(),
         ];
     }

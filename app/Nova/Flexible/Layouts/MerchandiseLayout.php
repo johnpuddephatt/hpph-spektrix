@@ -3,12 +3,15 @@
 namespace App\Nova\Flexible\Layouts;
 
 use Laravel\Nova\Fields\Select;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class MerchandiseLayout extends Layout
 {
+    use CachesOptions;
+
     /**
      * The layout's unique identifier
      *
@@ -32,7 +35,7 @@ class MerchandiseLayout extends Layout
     {
         return [
             Select::make("", "merchandise_name")
-                ->options(\App\Models\Product::withoutGlobalScope('published')->get()->pluck("name", "id"))
+                ->options(static::cachedOptions("products", fn() => \App\Models\Product::withoutGlobalScope('published')->get()->pluck("name", "id")))
                 ->searchable(),
         ];
     }

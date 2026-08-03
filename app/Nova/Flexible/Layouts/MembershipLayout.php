@@ -7,10 +7,13 @@ use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Whitecube\NovaFlexibleContent\Flexible;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class MembershipLayout extends Layout
 {
+    use CachesOptions;
+
     /**
      * The layout's unique identifier
      *
@@ -34,7 +37,7 @@ class MembershipLayout extends Layout
     {
         return [
             Select::make("Membership", "membership_name")
-                ->options(\App\Models\Membership::pluck("name", "id"))
+                ->options(static::cachedOptions("memberships", fn() => \App\Models\Membership::pluck("name", "id")))
                 ->searchable(),
         ];
     }
