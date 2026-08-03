@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
@@ -12,7 +11,6 @@ class AccessTagsObserver
     public function clearCache()
     {
         Cache::forget("access_tags");
-        Artisan::call('route:cache');
         ResponseCache::clear();
     }
     /**

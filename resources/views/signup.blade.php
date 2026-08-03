@@ -18,6 +18,21 @@
                 </div>
             @endif
 
+            @if (session('error'))
+                <div class="bg-yellow border px-4 py-3 rounded relative my-8 max-w-lg" role="alert">
+                    <strong class="font-bold">Sorry.</strong>
+                    <span class="block sm:inline">{{ session('error') }}</span>
+                </div>
+            @endif
+
+            @if ($errors->any())
+                <ul class="bg-yellow border px-4 py-3 rounded relative my-8 max-w-lg" role="alert">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
+
             <label for="firstName" class="block">First name
                 <input type="text" name="firstName" id="firstName" class="max-w-full block border p-4 w-64 mt-2">
             </label>

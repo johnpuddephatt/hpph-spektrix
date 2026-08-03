@@ -1,35 +1,92 @@
-<div x-trap="eventID" x-cloak
-    @booking.window="eventID = $event.detail.eventID;  selectedInstance = $event.detail.instanceID ? {short_id: $event.detail.instanceID} : null; event = $event.detail.event; certificate = $event.detail.certificate"
-    @keyup.escape.window="closeBooking" x-data="{
+{{-- Escape is handled here rather than on the dialog: the dialog's own `cancel`
+     event fires on keydown, so by the time the keyup arrives the dialog is no
+     longer in the event path and can't stop it reaching this handler. --}}
+<div x-trap="eventID" x-cloak @booking.window="openBooking($event.detail)"
+    @keyup.escape.window="showWarning ? dismissWarning() : closeBooking()" x-data="{
         iFrameLoading: true,
         eventID: null,
         event: null,
         certificate: null,
         selectedInstance: null,
-        showModal: true,
-    
+        warningAcknowledged: false,
+
         instances: null,
-    
+        warningTags: @js($booking_warning_tags),
+
+        get activeWarnings() {
+            if (!this.selectedInstance) {
+                return [];
+            }
+            return this.warningTags.filter((tag) => this.selectedInstance[tag.column]);
+        },
+
+        get showWarning() {
+            return !this.warningAcknowledged && this.activeWarnings.length > 0;
+        },
+
+        // A deep-linked instance is just an id until the instances have loaded,
+        // so its access tags — and any warning — aren't known yet. Hold the
+        // booking back rather than let seat selection load behind the visitor.
+        get awaitingInstance() {
+            return !!this.selectedInstance?.unresolved;
+        },
+
+        openBooking(detail) {
+            this.eventID = detail.eventID;
+            this.event = detail.event;
+            this.certificate = detail.certificate;
+            this.warningAcknowledged = false;
+            this.iFrameLoading = true;
+            // Deep links (from Google, listing cards, the daily programme) only
+            // carry an instance id. resolveSelectedInstance() swaps in the real
+            // instance once loaded, so its access tags can raise a warning.
+            this.selectedInstance = detail.instanceID ? { short_id: detail.instanceID, unresolved: true } : null;
+        },
+
+        selectInstance(instance) {
+            this.warningAcknowledged = false;
+            this.iFrameLoading = true;
+            this.selectedInstance = instance;
+        },
+
+        resolveSelectedInstance() {
+            this.selectedInstance = this.instances.find(
+                (instance) => instance.short_id == this.selectedInstance.short_id
+            ) ?? { ...this.selectedInstance, unresolved: false };
+        },
+
+        dismissWarning() {
+            this.selectedInstance = null;
+        },
+
         closeBooking() {
             this.eventID = null;
             this.selectedInstance = null;
             this.instances = null;
+            this.warningAcknowledged = false;
+            this.iFrameLoading = true;
             $dispatch('booking', false)
         },
-    
+
         getInstances(eventID) {
             if (!eventID) {
                 return false;
             }
             fetch(`/api/event/${ this.eventID }/instances`)
                 .then((response) => response.json())
-                .then((json) => this.instances = json);
-            console.log('instances', this.instances)
+                .then((json) => this.instances = json)
+                // Don't strand a deep link on a spinner if the lookup fails —
+                // fall through to booking without a warning we can't confirm.
+                .catch(() => this.instances = []);
         },
     }"
     x-effect="
     if(instances === null && eventID) {
-        getInstances(eventID);}
+        getInstances(eventID);
+    }
+    if(instances && selectedInstance?.unresolved) {
+        resolveSelectedInstance();
+    }
     ">
 
     <div x-show="eventID" x-on:click="closeBooking"
@@ -76,7 +133,7 @@
                             instances[key - 1].start_date !== instance.start_date"
                                         class="type-small mb-3 mt-12" x-text="instance.start_date"></h3>
                                     <button aria-label="Buy tickets for this screening"
-                                        x-on:click="instance.external_ticket_link ? (window.location.href = instance.external_ticket_link) : showModal = true; selectedInstance  = instance"
+                                        x-on:click="instance.external_ticket_link ? (window.location.href = instance.external_ticket_link) : selectInstance(instance)"
                                         :class="instances[key + 1]?.start_date !== instance.start_date ? 'border-b' : ''"
                                         class="group flex w-full flex-row items-center gap-2 border-t border-gray-light py-2 transition lg:gap-4">
                                         <div class="type-xs-mono rounded bg-black px-4 py-1.5 !text-base text-white"
@@ -122,18 +179,18 @@
                         </div>
 
                     </div>
-                    <div x-show="instances && instances.length && instances.some((instance) =>                         
-                        {{ $access_tags->map(fn($tag) => $tag->slug ? "instance.{$tag->slug}" : null)->filter()->join(' || ') }}
+                    <div x-show="instances && instances.length && instances.some((instance) =>
+                        {{ $access_tags->map(fn($tag) => $tag->column ? "instance['{$tag->column}']" : null)->filter()->join(' || ') ?: 'false' }}
                     )"
                         class="max-w-lg pb-8 lg:w-1/3 lg:max-w-xs lg:pt-[6.9rem] lg:text-center">
                         <h3 class="type-small mb-3">{{ $settings['access_key'] ?? 'Key' }}</h3>
 
                         @foreach ($access_tags as $tag)
-                            <div x-show="{{ $tag->slug ? 'instances.some((instance) => instance.' . $tag->slug . ')' : 'false' }}"
+                            <div x-show="{{ $tag->column ? "instances.some((instance) => instance['{$tag->column}'])" : 'false' }}"
                                 class="border-t border-gray-light py-4 last:border-b">
 
                                 <x-accessibilities.badge
-                                    :title="$tag->name">{{ $tag->abbreviation }}</x-accessibilities.badge>
+                                    :title="$tag->label">{{ $tag->abbreviation }}</x-accessibilities.badge>
                                 <p class="type-small mt-2 !font-normal">{{ $tag->description }}</p>
 
                             </div>
@@ -152,33 +209,6 @@
         x-transition:leave="translate-y-full lg:translate-y-0 lg:translate-x-full"
         class="fixed bottom-0 right-0 top-[4.5rem] z-[60] flex w-full flex-col bg-sand transition lg:top-0 lg:min-h-screen lg:w-[calc(90vw-9rem)] xl:w-[calc(75vw-9rem)]"
         x-show="selectedInstance && eventID">
-        <template x-if="selectedInstance && showModal">
-            <dialog
-                x-show="({{ $access_tags->map(fn($tag) => 'selectedInstance.' . $tag->slug . ' && ' . ($tag->booking_warning ? 'true' : 'false'))->join(' || ') }})"
-                open>
-                <div class="fixed inset-0 z-40 bg-black bg-opacity-60 backdrop-blur-lg duration-150"></div>
-                <div
-                    class="fixed left-1/2 top-1/2 z-50 max-w-lg -translate-x-1/2 -translate-y-1/2 transform rounded bg-sand-light p-12">
-                    <h3 class="type-regular">Important information about your selected screening</h3>
-
-                    <div class="py-12">
-                        @foreach ($access_tags as $tag)
-                            <div x-show="selectedInstance.{{ $tag->slug }}  && {{ $tag->booking_warning ? 'true' : 'false' }}"
-                                class="py-4 last:border-b">
-
-                                <x-accessibilities.badge
-                                    :title="$tag->name">{{ $tag->abbreviation }}</x-accessibilities.badge>
-                                <p class="type-small mt-2 !font-normal">{{ $tag->booking_warning }}</p>
-
-                            </div>
-                        @endforeach
-                    </div>
-                    <button class="type-small rounded bg-sand-dark px-4 py-2"
-                        @click="selectedInstance = null">Back</button>
-                    <button class="type-small rounded bg-yellow px-8 py-2" @click="showModal = false">Continue</button>
-                </div>
-            </dialog>
-        </template>
 
         <h2
             class="type-regular lg:type-medium z-10 flex transform flex-row items-center gap-4 whitespace-nowrap bg-sand-dark px-4 py-3 lg:absolute lg:right-full lg:w-[100vh] lg:origin-top-right lg:-rotate-90 lg:justify-between lg:bg-transparent lg:p-10 lg:px-6 lg:text-right">
@@ -191,13 +221,19 @@
                 <div class="flex flex-1 flex-col gap-8 lg:flex-row lg:gap-12">
 
                     <div class="w-full max-w-xl">
-                        <div x-show="iFrameLoading" x-transition class="absolute inset-0 bg-sand py-12 lg:pl-32">
+                        <div x-show="iFrameLoading || showWarning || awaitingInstance" x-transition
+                            class="absolute inset-0 bg-sand py-12 lg:pl-32">
                             @svg('loading', 'w-32 mx-auto lg:ml-36 block pt-24 text-sand-dark')
 
                         </div>
-                        <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
-                            style="height: 90vh;" name="SpektrixIFrame"
-                            :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ selectedInstance.short_id }&resize=true&stylesheet=hpph-spektrix-2.css`"></iframe>
+                        {{-- Held back until the instance is known and any booking warning has
+                             been acknowledged, so seat selection isn't requested for a screening
+                             the visitor hasn't seen the warning for (or may reject). --}}
+                        <template x-if="!showWarning && !awaitingInstance">
+                            <iframe x-on:load="iFrameLoading = false" class="w-full transition-all" id="SpektrixIFrame"
+                                style="height: 90vh;" name="SpektrixIFrame"
+                                :src="`https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/ChooseSeats.aspx?EventInstanceId=${ selectedInstance.short_id }&resize=true&stylesheet=hpph-spektrix-2.css`"></iframe>
+                        </template>
 
                     </div>
 
@@ -245,5 +281,44 @@
         </div>
 
     </div>
+
+    {{-- Kept outside the booking panels so it is never clipped by their transforms.
+         Opened as a native modal, which puts it in the top layer and makes the rest
+         of the page inert. Escape and backdrop clicks send the visitor back to the
+         showtimes list rather than into a booking they haven't acknowledged. --}}
+    <dialog x-trap="showWarning"
+        x-effect="showWarning ? ($el.open || $el.showModal()) : ($el.open && $el.close())"
+        @cancel.prevent x-on:click.self="dismissWarning()"
+        aria-labelledby="booking-warning-heading"
+        class="fixed left-1/2 top-1/2 z-40 m-0 w-[34rem] max-w-[90%] -translate-x-1/2 -translate-y-1/2 transform rounded bg-sand-light p-0 opacity-0 transition backdrop:bg-black backdrop:bg-opacity-60 backdrop:backdrop-blur-lg open:opacity-100">
+        <div class="p-8 md:p-12">
+            <h3 id="booking-warning-heading" class="type-regular">
+                {{ $settings['booking_warning_heading'] ?? 'Important information about your selected screening' }}
+            </h3>
+
+            <div class="my-8">
+                <template x-for="tag in activeWarnings" :key="tag.column">
+                    <div class="border-t border-gray-light py-4 last:border-b">
+
+                        <x-accessibilities.badge ::title="tag.label">
+                            <span x-text="tag.abbreviation"></span>
+                        </x-accessibilities.badge>
+                        <p class="type-small mt-2 whitespace-pre-line !font-normal" x-text="tag.warning"></p>
+                        <p class="type-small mt-2" x-show="tag.link">
+                            <a class="underline" :href="tag.link"
+                                x-text="`Find out more about ${ tag.label.toLowerCase() } screenings`"></a>
+                        </p>
+
+                    </div>
+                </template>
+            </div>
+
+            <div class="flex flex-row flex-wrap gap-3">
+                <button class="type-small rounded bg-sand-dark px-4 py-2" @click="dismissWarning()">Back to
+                    showtimes</button>
+                <button class="type-small rounded bg-yellow px-8 py-2" @click="warningAcknowledged = true">Continue</button>
+            </div>
+        </div>
+    </dialog>
 
 </div>

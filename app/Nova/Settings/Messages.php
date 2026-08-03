@@ -55,6 +55,12 @@ class Messages
                 Trix::make("Memberships text", "members_basket_text")->help(
                     "Displayed next to the booking path"
                 ),
+                Text::make(
+                    "Booking warning heading",
+                    "booking_warning_heading"
+                )->help(
+                    "Heading of the warning shown when a selected screening has an access tag with a booking warning"
+                ),
             ]),
 
         ];

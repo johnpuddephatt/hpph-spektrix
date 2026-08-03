@@ -37,8 +37,14 @@ Route::middleware(["spektrix"])->group(function () {
     }
 
 
-    Route::get("signup-test", [\App\Http\Controllers\SignupController::class, 'form'])->name('signup.form');
-    Route::post("signup-test", [\App\Http\Controllers\SignupController::class, 'submit'])->name('signup.submit');
+    // Not response-cached: the form carries a CSRF token and renders flash
+    // messages, neither of which survives being served from cache.
+    Route::get("signup-test", [\App\Http\Controllers\SignupController::class, 'form'])
+        ->middleware('doNotCacheResponse')
+        ->name('signup.form');
+    Route::post("signup-test", [\App\Http\Controllers\SignupController::class, 'submit'])
+        ->middleware('throttle:5,1')
+        ->name('signup.submit');
 
     Route::get("brand", function () {
         return view("brand");

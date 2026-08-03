@@ -30,4 +30,20 @@ class AccessTag extends Model
     {
         return $this->slug ? str_replace('-', '_', $this->slug) : null;
     }
+
+    /**
+     * The shape the booking path's Alpine component consumes. Passing these as
+     * data rather than interpolating slugs into JS expressions keeps a stray
+     * slug from breaking (or injecting into) the booking path.
+     */
+    public function toBookingWarningArray(): array
+    {
+        return [
+            'column' => $this->column,
+            'label' => $this->label,
+            'abbreviation' => $this->abbreviation,
+            'warning' => $this->booking_warning,
+            'link' => $this->read_more_link,
+        ];
+    }
 }

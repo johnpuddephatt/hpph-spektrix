@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AccessTag;
+use App\Services\SpektrixApi;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
@@ -22,7 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(
+            SpektrixApi::class,
+            fn() => new SpektrixApi(
+                config("services.spektrix.user"),
+                config("services.spektrix.key")
+            )
+        );
     }
 
     /**
@@ -43,11 +50,22 @@ class AppServiceProvider extends ServiceProvider
             );
         });
 
+        $access_tags = \Cache::rememberForever("access_tags", function () {
+            return AccessTag::all();
+        });
+
+        View::share("access_tags", $access_tags);
+
+        // Passed to the booking path as data, so a malformed slug can't break
+        // (or inject into) the Alpine expressions that drive the warning modal.
         View::share(
-            "access_tags",
-            \Cache::rememberForever("access_tags", function () {
-                return AccessTag::all();
-            })
+            "booking_warning_tags",
+            $access_tags
+                ->filter(
+                    fn($tag) => $tag->column && filled($tag->booking_warning)
+                )
+                ->map->toBookingWarningArray()
+                ->values()
         );
 
 

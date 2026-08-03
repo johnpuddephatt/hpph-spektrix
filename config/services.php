@@ -28,4 +28,11 @@ return [
         "secret" => env("AWS_SECRET_ACCESS_KEY"),
         "region" => env("AWS_DEFAULT_REGION", "us-east-1"),
     ],
+
+    // Credentials for signed Spektrix API writes. The client name itself is a
+    // Nova setting, not an env var — see App\Services\SpektrixApi.
+    "spektrix" => [
+        "user" => env("SPEKTRIX_API_USER"),
+        "key" => env("SPEKTRIX_API_KEY"),
+    ],
 ];
