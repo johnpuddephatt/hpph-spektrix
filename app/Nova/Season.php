@@ -80,9 +80,10 @@ class Season extends Resource
                         "maxlength" => 50,
                     ],
                 ])
-                ->readOnly(function ($request) {
-                    return $request->isUpdateOrUpdateAttachedRequest();
-                }),
+                ->help(
+                    "Only change the capitalisation. The name is what links this season to Spektrix, " .
+                        "so any other edit will stop screenings being attached to it."
+                ),
             Boolean::make("Published"),
             Boolean::make("Synced", "enabled")
                 ->readonly()

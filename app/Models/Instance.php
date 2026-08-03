@@ -13,6 +13,7 @@ use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 
 class Instance extends Model
 {
@@ -99,7 +100,7 @@ class Instance extends Model
 
     public function getAccessTagsAttribute()
     {
-        return AccessTag::all()->filter(fn($tag) => $this->{$tag->slug} ?? false)->values();
+        return AccessTag::all()->filter(fn($tag) => $tag->column ? ($this->{$tag->column} ?? false) : false)->values();
     }
 
     public function event()
@@ -320,8 +321,13 @@ class Instance extends Model
                 if ($accessibility == 'audio_description') {
                     $instances->audioDescribed();
                 } else {
-                    // $instances->{Str::camel($accessibility)}();
-                    $instances->where($accessibility, true);
+                    // Slugs come from the URL / access tags, so only allow ones
+                    // that actually map to a column on instances.
+                    $column = str_replace("-", "_", $accessibility);
+
+                    if (in_array($column, Schema::getColumnListing("instances"), true)) {
+                        $instances->where($column, true);
+                    }
                 }
             }
 

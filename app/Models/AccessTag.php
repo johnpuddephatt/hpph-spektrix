@@ -21,4 +21,13 @@ class AccessTag extends Model
 
     // If you want timestamps, uncomment the following line:
     public $timestamps = false;
+
+    /**
+     * The instances column this tag maps to. Slugs are entered by hand in Nova,
+     * so tolerate hyphens where the column uses underscores.
+     */
+    public function getColumnAttribute(): ?string
+    {
+        return $this->slug ? str_replace('-', '_', $this->slug) : null;
+    }
 }

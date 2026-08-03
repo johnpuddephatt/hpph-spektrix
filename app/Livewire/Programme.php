@@ -85,7 +85,8 @@ class Programme extends Component
         $strands_with_showings = \App\Models\Strand::whereHas("instances")
             ->select("name", "slug", "logo_simple", "color")
             ->get();
-        $accessibilities_with_showings = AccessTag::all()->filter(fn($tag) => $tag->slug == 'audio_description' || (($tag->slug && in_array($tag->slug, Schema::getColumnListing('instances'))) ? Instance::where($tag->slug, true)->exists() : false));
+        $instance_columns = Schema::getColumnListing('instances');
+        $accessibilities_with_showings = AccessTag::all()->filter(fn($tag) => $tag->slug == 'audio_description' || (($tag->column && in_array($tag->column, $instance_columns, true)) ? Instance::where($tag->column, true)->exists() : false));
         // $past = $this->past;
         return view(
             "livewire.programme",

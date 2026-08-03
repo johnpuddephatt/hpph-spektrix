@@ -73,20 +73,21 @@ class FetchEventData implements ShouldQueue
     }
 
     /**
-     * Truncate the strand/season name attributes on each instance to the name
-     * column limit, before they are used as upsert keys and pivot lookup keys.
+     * Trim and truncate the strand/season name attributes on each instance
+     * before they are used as upsert keys and pivot lookup keys. Names are typed
+     * by hand in Spektrix, so stray leading/trailing spaces are common.
      */
     public function truncateNameAttributes($instances)
     {
         foreach ($instances as $instance) {
             foreach (["attribute_Strand", "attribute_Strand2"] as $attribute) {
                 if (! empty($instance->{$attribute})) {
-                    $instance->{$attribute} = ColumnLimits::fitValue("strands", "name", $instance->{$attribute});
+                    $instance->{$attribute} = ColumnLimits::fitValue("strands", "name", trim($instance->{$attribute}));
                 }
             }
             foreach (["attribute_Season", "attribute_Season2"] as $attribute) {
                 if (! empty($instance->{$attribute})) {
-                    $instance->{$attribute} = ColumnLimits::fitValue("seasons", "name", $instance->{$attribute});
+                    $instance->{$attribute} = ColumnLimits::fitValue("seasons", "name", trim($instance->{$attribute}));
                 }
             }
         }
@@ -247,12 +248,14 @@ class FetchEventData implements ShouldQueue
             as $strand
         ) {
             if ($strand) {
+                // Only "name" on create: the lookup is case-insensitive in MySQL, so
+                // writing it back would rewrite an existing row's name to whichever
+                // casing Spektrix happened to send last.
                 \App\Models\Strand::withoutGlobalScopes()->updateOrCreate(
                     [
                         "name" => $strand,
                     ],
                     [
-                        "name" => $strand,
                         "enabled" => true,
                     ]
                 );
@@ -272,12 +275,12 @@ class FetchEventData implements ShouldQueue
             as $season
         ) {
             if ($season) {
+                // See updateOrCreateStrands: don't rewrite the name of a matched row.
                 \App\Models\Season::withoutGlobalScopes()->updateOrCreate(
                     [
                         "name" => $season,
                     ],
                     [
-                        "name" => $season,
                         "enabled" => true,
                     ]
                 );
@@ -288,8 +291,8 @@ class FetchEventData implements ShouldQueue
     public function updateOrCreateInstances($instances)
     {
         // Resolve strand/season names → ids once for pivot syncing.
-        $strandIds = \App\Models\Strand::withoutGlobalScopes()->pluck("id", "name");
-        $seasonIds = \App\Models\Season::withoutGlobalScopes()->pluck("id", "name");
+        $strandIds = $this->nameLookup(\App\Models\Strand::class);
+        $seasonIds = $this->nameLookup(\App\Models\Season::class);
 
         foreach ($instances as $instance) {
             $model = \App\Models\Instance::withoutGlobalScopes()->updateOrCreate(
@@ -329,12 +332,16 @@ class FetchEventData implements ShouldQueue
 
             $model->strands()->sync($this->syncMap(
                 [$instance->attribute_Strand ?? null, $instance->attribute_Strand2 ?? null],
-                $strandIds
+                $strandIds,
+                "strand",
+                $instance
             ));
 
             $model->seasons()->sync($this->syncMap(
                 [$instance->attribute_Season ?? null, $instance->attribute_Season2 ?? null],
-                $seasonIds
+                $seasonIds,
+                "season",
+                $instance
             ));
         }
 
@@ -342,15 +349,51 @@ class FetchEventData implements ShouldQueue
     }
 
     /**
-     * Build a belongsToMany sync map [id => ['position' => n]] from an ordered
-     * list of names, resolving each against the given name→id lookup.
+     * Build a name→id lookup for a strand/season style model, keyed the way
+     * MySQL compares the name column when the rows are upserted: case- and
+     * surrounding-whitespace-insensitive. A plain pluck("id", "name") is keyed
+     * case-sensitively, so a Spektrix name differing only in casing from the
+     * stored row matches on upsert (no new row is made) but then fails to
+     * resolve to an id here, and the instance silently loses its strand/season.
+     *
+     * Where existing rows collide under that key the oldest wins — that's the
+     * one editors have been curating in Nova.
      */
-    private function syncMap(array $names, $ids): array
+    private function nameLookup(string $model): array
+    {
+        $ids = [];
+        foreach ($model::withoutGlobalScopes()->orderBy("id")->pluck("id", "name") as $name => $id) {
+            $key = Str::lower(trim($name));
+            if ($key !== "" && ! isset($ids[$key])) {
+                $ids[$key] = $id;
+            }
+        }
+        return $ids;
+    }
+
+    /**
+     * Build a belongsToMany sync map [id => ['position' => n]] from an ordered
+     * list of names, resolving each against the given name→id lookup. Anything
+     * that fails to resolve is logged: the name is the only link between a
+     * Spektrix instance and its strand/season, so a silent miss loses content.
+     */
+    private function syncMap(array $names, array $ids, string $type, $instance): array
     {
         $sync = [];
         foreach ($names as $index => $name) {
-            if ($name && isset($ids[$name])) {
-                $sync[$ids[$name]] = ["position" => $index + 1];
+            $key = $name ? Str::lower(trim($name)) : null;
+
+            if (! $key) {
+                continue;
+            }
+
+            if (isset($ids[$key])) {
+                $sync[$ids[$key]] = ["position" => $index + 1];
+            } else {
+                Log::channel("spektrix")->warning(
+                    "No {$type} matched \"{$name}\" for instance {$instance->id} (" .
+                        ($instance->event->name ?? "unknown event") . ")"
+                );
             }
         }
         return $sync;
