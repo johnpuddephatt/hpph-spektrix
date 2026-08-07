@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-C5ugVSY1.css",
+    "file": "assets/app-tk2pDi3x.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -10,7 +10,7 @@
     "isEntry": true
   },
   "resources/css/spektrix.css": {
-    "file": "assets/spektrix-BlTlZ7uI.css",
+    "file": "assets/spektrix-DNnEcUlo.css",
     "src": "resources/css/spektrix.css",
     "isEntry": true
   },
@@ -55,7 +55,7 @@
     "src": "resources/fonts/BasisGrotesquePro-Regular.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DjG4J2Kq.js",
+    "file": "assets/app-iSv_pliP.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,

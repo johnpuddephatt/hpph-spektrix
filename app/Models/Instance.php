@@ -282,7 +282,12 @@ class Instance extends Model
 
     public function availabilityCacheKey(): string
     {
-        return 'instance_availability_'.$this->id;
+        return static::availabilityCacheKeyFor($this->id);
+    }
+
+    public static function availabilityCacheKeyFor(string $id): string
+    {
+        return 'instance_availability_'.$id;
     }
 
     /**

@@ -9,6 +9,7 @@ import {
 
 import intersect from "@alpinejs/intersect";
 import carousel from "./carousel.js";
+import availabilityBadge from "./availability.js";
 import focus from "@alpinejs/focus";
 
 import Swiper from "swiper";
@@ -24,6 +25,7 @@ function registerAlpineStuff() {
     window.Alpine.plugin(intersect);
     window.Alpine.plugin(focus);
     window.Alpine.data("carousel", carousel);
+    window.Alpine.data("availabilityBadge", availabilityBadge);
 }
 
 if (window.Alpine) {

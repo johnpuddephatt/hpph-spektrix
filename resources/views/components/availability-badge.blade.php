@@ -9,7 +9,11 @@
     :aria-label="instance.availability.seats ?
         `There are ${instance.availability.seats} regular seats and ${instance.availability.accessible_seats} wheelchair seats available for this screening.` :
         `Regular seating for this screening has sold out. There are ${instance.availability.accessible_seats} wheelchair seats available.`"
-    @if ($instance ?? false) x-data='{ instance: { availability: @json($instance->availability) } }' @endif>
+    {{-- Fetched rather than rendered: these pages are full-page cached for an hour,
+         so server-rendered seat numbers would be frozen at render time. Without an
+         :instance the badge reads from the surrounding Alpine scope instead, which
+         is how the booking path uses it — that data is already live. --}}
+    @if ($instance ?? false) x-data="availabilityBadge(@js($instance->id))" @endif>
 
     <span class="pt-0.5 leading-none"
         x-html="instance.availability.seats > 0  ? '<span class=\'rounded-full text-center bg-black mr-1 size-3 -mt-0.5 inline-block text-white font-bold\'>!</span>Last few' : 'Sold out'"></span>
