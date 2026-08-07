@@ -23,8 +23,13 @@ Artisan::command("fetch:all", function () {
     dispatch(new \App\Jobs\FetchMembershipData());
     dispatch(new \App\Jobs\FetchFundData());
     dispatch(new \App\Jobs\FetchShopData());
+    dispatch(new \App\Jobs\FetchCustomerTagData());
     // @todo clear caches.
 })->purpose("Fetches all data from Spektrix");
+
+Artisan::command("fetch:tags", function () {
+    dispatch(new \App\Jobs\FetchCustomerTagData());
+})->purpose("Fetches customer tags and contact statements from Spektrix");
 
 Artisan::command("fetch:memberships", function () {
     dispatch(new \App\Jobs\FetchMembershipData());
@@ -53,3 +58,7 @@ Artisan::command("cache:availability", function () {
 Artisan::command("cache:programme", function () {
     dispatch(new \App\Jobs\CacheProgramme());
 })->purpose("Cache intensive listings queries");
+
+Artisan::command("cache:pages", function () {
+    dispatch(new \App\Jobs\CachePages());
+})->purpose("Warms the full-page response cache for the busiest pages");

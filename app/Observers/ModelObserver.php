@@ -2,67 +2,45 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Cache;
-use Spatie\ResponseCache\Facades\ResponseCache;
+use App\Cache\ContentCache;
 
+/**
+ * Clears cached content when a watched model actually changes.
+ *
+ * Note there is deliberately no saving() hook. Model::save() fires "saving" before
+ * the isDirty() check, so clearing there fired on every updateOrCreate whether or
+ * not anything changed — roughly 700 full cache wipes per hourly import. It also
+ * cleared *before* the write, so a concurrent request could repopulate the cache
+ * with pre-write data. The hooks below cover every case where data really changed.
+ */
 class ModelObserver
 {
-    /**
-     * Handle the Model "created" event.
-     * @return void
-     */
-
     public function clearCache()
     {
-        Cache::flush();
-        ResponseCache::clear();
+        ContentCache::clear();
     }
+
     public function created()
     {
         $this->clearCache();
     }
 
-    /**
-     * Handle the Model "updated" event.
-     * @return void
-     */
     public function updated()
     {
         $this->clearCache();
     }
 
-    /**
-     * Handle the Model "deleted" event.
-     * @return void
-     */
     public function deleted()
     {
         $this->clearCache();
     }
 
-    /**
-     * Handle the Model "restored" event.
-     * @return void
-     */
     public function restored()
     {
         $this->clearCache();
     }
 
-    /**
-     * Handle the Model "force deleted" event.
-     * @return void
-     */
     public function forceDeleted()
-    {
-        $this->clearCache();
-    }
-
-    /**
-     * Handle the Model "saving" event.
-     * @return void
-     */
-    public function saving()
     {
         $this->clearCache();
     }

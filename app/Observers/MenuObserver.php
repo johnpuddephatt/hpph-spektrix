@@ -2,8 +2,7 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Cache;
-use Spatie\ResponseCache\Facades\ResponseCache;
+use App\Cache\ContentCache;
 
 class MenuObserver
 {
@@ -12,8 +11,7 @@ class MenuObserver
      */
     public function forgetMenus()
     {
-        Cache::flush();
-        ResponseCache::clear();
+        ContentCache::clear();
     }
 
     /**
@@ -57,15 +55,6 @@ class MenuObserver
      * @return void
      */
     public function forceDeleted()
-    {
-        $this->forgetMenus();
-    }
-
-    /**
-     * Handle the MenuItem "saving" event.
-     * @return void
-     */
-    public function saving()
     {
         $this->forgetMenus();
     }

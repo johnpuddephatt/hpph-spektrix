@@ -7,6 +7,7 @@ use App\Models\Instance;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Schema;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
@@ -82,11 +83,25 @@ class Programme extends Component
 
     public function render()
     {
-        $strands_with_showings = \App\Models\Strand::whereHas("instances")
-            ->select("name", "slug", "logo_simple", "color")
-            ->get();
-        $instance_columns = Schema::getColumnListing('instances');
-        $accessibilities_with_showings = AccessTag::all()->filter(fn($tag) => $tag->slug == 'audio_description' || (($tag->column && in_array($tag->column, $instance_columns, true)) ? Instance::where($tag->column, true)->exists() : false));
+        // Both lists describe the programme as a whole, not this render — they
+        // change when an import or an editor changes the programme, which already
+        // clears the cache. Recomputing them per interaction cost a correlated
+        // subquery plus one EXISTS per access tag on every click.
+        $strands_with_showings = Cache::rememberForever(
+            "strands_with_showings",
+            fn() => \App\Models\Strand::whereHas("instances")
+                ->select("name", "slug", "logo_simple", "color")
+                ->get()
+        );
+
+        $accessibilities_with_showings = Cache::rememberForever(
+            "accessibilities_with_showings",
+            function () {
+                $instance_columns = Schema::getColumnListing('instances');
+
+                return AccessTag::all()->filter(fn($tag) => $tag->slug == 'audio_description' || (($tag->column && in_array($tag->column, $instance_columns, true)) ? Instance::where($tag->column, true)->exists() : false));
+            }
+        );
         // $past = $this->past;
         return view(
             "livewire.programme",

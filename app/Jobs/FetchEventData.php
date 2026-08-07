@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Cache\ContentCache;
+use App\Jobs\Concerns\DisablesMissingRecords;
 use App\Models\Instance;
 use App\Support\ColumnLimits;
 use Illuminate\Bus\Queueable;
@@ -12,15 +14,13 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Spatie\ResponseCache\Facades\ResponseCache;
 
 class FetchEventData implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -46,27 +46,35 @@ class FetchEventData implements ShouldQueue
      */
     public function handle()
     {
-        Schema::disableForeignKeyConstraints();
+        $events = [];
+        $instances = [];
 
-        $hpph_events = $this->getEvents('HPPH');
-        $both_events = $this->getEvents('Both');
+        // One clear at the end, and only if something actually changed. Previously
+        // every updateOrCreate cleared the whole cache via the observers' saving
+        // hook — roughly 700 full wipes per run.
+        ContentCache::defer(function () use (&$events, &$instances) {
+            Schema::disableForeignKeyConstraints();
 
-        $events = array_merge($hpph_events, $both_events);
-        $instances = $this->getInstances($events);
-        $this->getInstancesVenues($instances);
+            $hpph_events = $this->getEvents('HPPH');
+            $both_events = $this->getEvents('Both');
 
-        // Strand/season names are both the upsert key and the pivot lookup key, so
-        // truncate them once, up front, keeping row creation and pivot syncing consistent.
-        $this->truncateNameAttributes($instances);
+            $events = array_merge($hpph_events, $both_events);
+            $instances = $this->getInstances($events);
+            $this->getInstancesVenues($instances);
 
-        $this->updateOrCreateEvents($events);
-        $this->updateOrCreateSeasons($instances);
-        $this->updateOrCreateStrands($instances);
-        $this->updateOrCreateInstances($instances);
-        Schema::enableForeignKeyConstraints();
+            // Strand/season names are both the upsert key and the pivot lookup key, so
+            // truncate them once, up front, keeping row creation and pivot syncing consistent.
+            $this->truncateNameAttributes($instances);
 
-        ResponseCache::clear();
-        Cache::flush();
+            $this->updateOrCreateEvents($events);
+            $this->updateOrCreateSeasons($instances);
+            $this->updateOrCreateStrands($instances);
+            $this->updateOrCreateInstances($instances);
+
+            Schema::enableForeignKeyConstraints();
+        });
+
+        // After the deferred clear, or the warmed entry would be wiped by it.
         Instance::getInstancesForProgramme(false, null, null, null, true);
 
         Log::channel("spektrix")->info("Imported " . count($events) . " events (" . count($instances) . " instances)");
@@ -238,55 +246,55 @@ class FetchEventData implements ShouldQueue
 
     public function updateOrCreateStrands($instances)
     {
-        \App\Models\Strand::query()->update(["enabled" => false]);
+        $names = $this->presentNames($instances, "attribute_Strand", "attribute_Strand2");
 
-        foreach (
-            array_unique(array_merge(
-                Arr::pluck($instances, "attribute_Strand"),
-                Arr::pluck($instances, "attribute_Strand2")
-            ))
-            as $strand
-        ) {
-            if ($strand) {
-                // Only "name" on create: the lookup is case-insensitive in MySQL, so
-                // writing it back would rewrite an existing row's name to whichever
-                // casing Spektrix happened to send last.
-                \App\Models\Strand::withoutGlobalScopes()->updateOrCreate(
-                    [
-                        "name" => $strand,
-                    ],
-                    [
-                        "enabled" => true,
-                    ]
-                );
-            }
+        foreach ($names as $strand) {
+            // Only "name" on create: the lookup is case-insensitive in MySQL, so
+            // writing it back would rewrite an existing row's name to whichever
+            // casing Spektrix happened to send last.
+            \App\Models\Strand::withoutGlobalScopes()->updateOrCreate(
+                [
+                    "name" => $strand,
+                ],
+                [
+                    "enabled" => true,
+                ]
+            );
         }
+
+        $this->disableMissing(\App\Models\Strand::class, $names, "name");
     }
 
     public function updateOrCreateSeasons($instances)
     {
-        \App\Models\Season::query()->update(["enabled" => false]);
+        $names = $this->presentNames($instances, "attribute_Season", "attribute_Season2");
 
-        foreach (
-            array_unique(array_merge(
-                Arr::pluck($instances, "attribute_Season"),
-                Arr::pluck($instances, "attribute_Season2")
-            ))
-            as $season
-        ) {
-            if ($season) {
-                // See updateOrCreateStrands: don't rewrite the name of a matched row.
-                \App\Models\Season::withoutGlobalScopes()->updateOrCreate(
-                    [
-                        "name" => $season,
-                    ],
-                    [
-                        "enabled" => true,
-                    ]
-                );
-            }
+        foreach ($names as $season) {
+            // See updateOrCreateStrands: don't rewrite the name of a matched row.
+            \App\Models\Season::withoutGlobalScopes()->updateOrCreate(
+                [
+                    "name" => $season,
+                ],
+                [
+                    "enabled" => true,
+                ]
+            );
         }
+
+        $this->disableMissing(\App\Models\Season::class, $names, "name");
     }
+
+    /**
+     * The distinct, non-empty names present across two instance attributes.
+     */
+    protected function presentNames($instances, string $first, string $second): array
+    {
+        return array_values(array_filter(array_unique(array_merge(
+            Arr::pluck($instances, $first),
+            Arr::pluck($instances, $second)
+        ))));
+    }
+
 
     public function updateOrCreateInstances($instances)
     {

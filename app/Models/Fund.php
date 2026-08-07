@@ -39,6 +39,13 @@ class Fund extends Model implements HasMedia
         "default_donation_amount",
     ];
 
+    // Without this, the import's "enabled" => true never matches the stored 1, so
+    // every row counts as dirty on every run — needless writes, and a full cache
+    // clear through the observer.
+    protected $casts = [
+        "enabled" => "boolean",
+    ];
+
     public function registerMediaConversions(?Media $media = null): void
     {
         $this->addMediaConversion("landscape")

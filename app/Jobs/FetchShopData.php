@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Cache\ContentCache;
+use App\Jobs\Concerns\DisablesMissingRecords;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +15,7 @@ use Illuminate\Support\Arr;
 
 class FetchShopData implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -42,19 +44,24 @@ class FetchShopData implements ShouldQueue
 
         $products = json_decode($res->getBody()->__toString());
 
-        \App\Models\Product::query()->update(["enabled" => false]);
+        ContentCache::defer(function () use ($products) {
+            foreach ($products as $product) {
+                \App\Models\Product::withoutGlobalScopes()->updateOrCreate(
+                    ["id" => $product->id],
+                    [
+                        "enabled" => true,
+                        "spektrix_name" => $product->name ?? null,
+                        "price" => $product->price ?? null,
+                        "postage" => $product->postageAndPacking ?? null,
+                        "type" => $product->attribute_HPPHStockType ?? null,
+                    ]
+                );
+            }
 
-        foreach ($products as $product) {
-            \App\Models\Product::withoutGlobalScopes()->updateOrCreate(
-                ["id" => $product->id],
-                [
-                    "enabled" => true,
-                    "spektrix_name" => $product->name ?? null,
-                    "price" => $product->price ?? null,
-                    "postage" => $product->postageAndPacking ?? null,
-                    "type" => $product->attribute_HPPHStockType ?? null,
-                ]
+            $this->disableMissing(
+                \App\Models\Product::class,
+                array_column((array) $products, "id")
             );
-        }
+        });
     }
 }

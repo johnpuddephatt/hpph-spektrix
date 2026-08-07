@@ -263,6 +263,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     "at-symbol"
                 ),
 
+                MenuSection::resource(\App\Nova\SignupForm::class)->icon(
+                    "clipboard-list"
+                ),
+
                 // (new \Outl1ne\PageManager\PageManager())->menu($request),
                 MenuSection::make(__("novaMenuBuilder.sidebarTitle"))
                     ->path("/menus")

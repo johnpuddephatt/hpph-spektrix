@@ -47,6 +47,21 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Event::observe(\App\Observers\ModelObserver::class);
         \App\Models\Post::observe(\App\Observers\ModelObserver::class);
 
+        // These are rendered on the funds, memberships and shop pages but were not
+        // observed. Their imports only ever invalidated because FetchEventData used
+        // to flush unconditionally; now that it clears only on change, they need to
+        // account for themselves.
+        \App\Models\Fund::observe(\App\Observers\ModelObserver::class);
+        \App\Models\Membership::observe(\App\Observers\ModelObserver::class);
+        \App\Models\Product::observe(\App\Observers\ModelObserver::class);
+
+        // Editing a form, or a sync changing the available tags, must clear the
+        // response cache so pages carrying the signup block re-render.
+        \App\Models\SignupForm::observe(\App\Observers\ModelObserver::class);
+        \App\Models\SpektrixTag::observe(\App\Observers\ModelObserver::class);
+        \App\Models\SpektrixTagGroup::observe(\App\Observers\ModelObserver::class);
+        \App\Models\SpektrixStatement::observe(\App\Observers\ModelObserver::class);
+
         \App\Models\AccessTag::observe(\App\Observers\AccessTagsObserver::class);
     }
 }

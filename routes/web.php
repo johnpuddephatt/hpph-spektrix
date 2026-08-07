@@ -37,14 +37,11 @@ Route::middleware(["spektrix"])->group(function () {
     }
 
 
-    // Not response-cached: the form carries a CSRF token and renders flash
-    // messages, neither of which survives being served from cache.
+    // Submission is handled by the Livewire component, which is also what makes
+    // this safe to cache: it holds its own success state rather than relying on a
+    // redirect and a session flash.
     Route::get("signup-test", [\App\Http\Controllers\SignupController::class, 'form'])
-        ->middleware('doNotCacheResponse')
         ->name('signup.form');
-    Route::post("signup-test", [\App\Http\Controllers\SignupController::class, 'submit'])
-        ->middleware('throttle:5,1')
-        ->name('signup.submit');
 
     Route::get("brand", function () {
         return view("brand");

@@ -2,67 +2,44 @@
 
 namespace App\Observers;
 
-use Illuminate\Support\Facades\Cache;
-use Spatie\ResponseCache\Facades\ResponseCache;
+use App\Cache\ContentCache;
 
+/**
+ * Access tags feed several derived caches — accessibilities_with_showings, and
+ * every instance's access_tags — so this clears the lot rather than forgetting
+ * "access_tags" alone. A missed key here is a staff edit that never appears, and
+ * access tags are edited rarely enough that over-clearing costs nothing.
+ *
+ * No saving() hook: see ModelObserver.
+ */
 class AccessTagsObserver
 {
-
     public function clearCache()
     {
-        Cache::forget("access_tags");
-        ResponseCache::clear();
+        ContentCache::clear();
     }
-    /**
-     * Handle the MenuItem "created" event.
-     * @return void
-     */
+
     public function created()
     {
         $this->clearCache();
     }
 
-    /**
-     * Handle the MenuItem "updated" event.
-     * @return void
-     */
     public function updated()
     {
         $this->clearCache();
     }
 
-    /**
-     * Handle the MenuItem "deleted" event.
-     * @return void
-     */
     public function deleted()
     {
         $this->clearCache();
     }
 
-    /**
-     * Handle the MenuItem "restored" event.
-     * @return void
-     */
     public function restored()
     {
         $this->clearCache();
     }
 
-    /**
-     * Handle the MenuItem "force deleted" event.
-     * @return void
-     */
     public function forceDeleted()
-    {
-        $this->clearCache();
-    }
-
-    /**
-     * Handle the MenuItem "saving" event.
-     * @return void
-     */
-    public function saving()
     {
         $this->clearCache();
     }

@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Cache\ContentCache;
+use App\Jobs\Concerns\DisablesMissingRecords;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +15,7 @@ use Illuminate\Support\Arr;
 
 class FetchMembershipData implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -42,18 +44,23 @@ class FetchMembershipData implements ShouldQueue
 
         $memberships = json_decode($res->getBody()->__toString());
 
-        \App\Models\Membership::query()->update(["enabled" => false]);
+        ContentCache::defer(function () use ($memberships) {
+            foreach ($memberships as $membership) {
+                \App\Models\Membership::withoutGlobalScopes()->updateOrCreate(
+                    ["id" => $membership->id],
+                    [
+                        "enabled" => true,
+                        "name" => $membership->name ?? null,
+                        "price" => $membership->price ?? null,
+                        "renewal_price" => $membership->renewal_price ?? null,
+                    ]
+                );
+            }
 
-        foreach ($memberships as $membership) {
-            \App\Models\Membership::withoutGlobalScopes()->updateOrCreate(
-                ["id" => $membership->id],
-                [
-                    "enabled" => true,
-                    "name" => $membership->name ?? null,
-                    "price" => $membership->price ?? null,
-                    "renewal_price" => $membership->renewal_price ?? null,
-                ]
+            $this->disableMissing(
+                \App\Models\Membership::class,
+                array_column((array) $memberships, "id")
             );
-        }
+        });
     }
 }

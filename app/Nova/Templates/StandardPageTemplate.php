@@ -40,6 +40,9 @@ class StandardPageTemplate
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\LinkBannerLayout::class
                     )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\SignupFormLayout::class
+                    )
                     ->button("Add a section")
                     ->drawer(),
             ]),

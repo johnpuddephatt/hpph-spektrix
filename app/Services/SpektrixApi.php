@@ -20,6 +20,13 @@ use Illuminate\Support\Facades\Http;
  */
 class SpektrixApi
 {
+    /**
+     * Spektrix sits behind Cloudflare, which blocks POSTs carrying Guzzle's
+     * default User-Agent with a 403 HTML error page. Any identifiable agent gets
+     * through. Not part of the signature, so it can change freely.
+     */
+    protected const USER_AGENT = 'HPPH-Website/1.0 (+https://hydeparkpicturehouse.co.uk)';
+
     public function __construct(
         protected ?string $user,
         protected ?string $key,
@@ -29,6 +36,23 @@ class SpektrixApi
     public function get(string $path, array $query = []): Response
     {
         return $this->send('GET', $path, null, $query);
+    }
+
+    /**
+     * Unauthenticated "Web mode" read, for anything rendered on a public page.
+     *
+     * This is NOT just an unsigned get() — Spektrix returns different data
+     * depending on whether the request is authenticated. Signing this promotes it
+     * to "Owner mode", which returns every tag group including the ones flagged
+     * web=false: internal segmentation like RFV, Dotdigital sync and staff tags.
+     * Web mode returns only the web=true subset that is safe to show visitors.
+     */
+    public function webGet(string $path, array $query = []): Response
+    {
+        return Http::acceptJson()
+            ->timeout(15)
+            ->withHeaders(['User-Agent' => self::USER_AGENT])
+            ->get($this->url($path, $query));
     }
 
     public function post(string $path, array $body): Response
@@ -96,6 +120,7 @@ class SpektrixApi
 
         return [
             'Date' => $date,
+            'User-Agent' => self::USER_AGENT,
             'Authorization' => 'SpektrixAPI3 '.$this->user.':'.$signature,
         ];
     }

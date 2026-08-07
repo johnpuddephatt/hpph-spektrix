@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Cache\ContentCache;
+use App\Jobs\Concerns\DisablesMissingRecords;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +15,7 @@ use Illuminate\Support\Arr;
 
 class FetchFundData implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -42,20 +44,25 @@ class FetchFundData implements ShouldQueue
 
         $funds = json_decode($res->getBody()->__toString());
 
-        \App\Models\Fund::query()->update(["enabled" => false]);
+        ContentCache::defer(function () use ($funds) {
+            foreach ($funds as $fund) {
+                \App\Models\Fund::withoutGlobalScopes()->updateOrCreate(
+                    ["id" => $fund->id],
+                    [
+                        "enabled" => true,
+                        "name" => $fund->name ?? null,
+                        "description" => $fund->description ?? null,
+                        "code" => $fund->code ?? false,
+                        // "default_donation_amount" =>
+                        //     $fund->defaultDonationAmount ?? null,
+                    ]
+                );
+            }
 
-        foreach ($funds as $fund) {
-            \App\Models\Fund::withoutGlobalScopes()->updateOrCreate(
-                ["id" => $fund->id],
-                [
-                    "enabled" => true,
-                    "name" => $fund->name ?? null,
-                    "description" => $fund->description ?? null,
-                    "code" => $fund->code ?? false,
-                    // "default_donation_amount" =>
-                    //     $fund->defaultDonationAmount ?? null,
-                ]
+            $this->disableMissing(
+                \App\Models\Fund::class,
+                array_column((array) $funds, "id")
             );
-        }
+        });
     }
 }

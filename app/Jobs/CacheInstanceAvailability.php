@@ -4,13 +4,10 @@ namespace App\Jobs;
 
 use App\Models\Instance;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use GuzzleHttp\Client;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
@@ -33,15 +30,20 @@ class CacheInstanceAvailability implements ShouldQueue
      *
      * @return void
      */
+    /**
+     * The only place that fetches availability from Spektrix. Instances read from
+     * the cache and never call out during a render — see
+     * Instance::getAvailabilityAttribute().
+     */
     public function handle()
     {
-        Instance::all()->each(function ($instance) {
-            Cache::put(
-                "instance_availability_" . $instance->id,
-                $instance->availability,
-                299
-            );
+        $count = 0;
+
+        Instance::all()->each(function ($instance) use (&$count) {
+            $instance->refreshAvailability();
+            $count++;
         });
-        Log::channel("spektrix")->info("Cached availability data for " . Instance::count() . " instances.");
+
+        Log::channel('spektrix')->info("Cached availability data for {$count} instances.");
     }
 }

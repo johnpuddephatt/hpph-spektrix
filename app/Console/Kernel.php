@@ -17,12 +17,18 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule
-            ->command("media-library:delete-old-temporary-uploads")
+            ->command('media-library:delete-old-temporary-uploads')
             ->daily();
 
-        $schedule->command("fetch:all")->hourly();
-        $schedule->command("cache:availability")->everyFiveMinutes();
-        $schedule->command("cache:programme")->everyFiveMinutes();
+        $schedule->command('fetch:all')->hourly();
+        // ~50s for a few hundred instances, one Spektrix call each, so guard
+        // against a slow run overlapping the next.
+        $schedule->command('cache:availability')->everyFiveMinutes()->withoutOverlapping();
+        $schedule->command('cache:programme')->everyFiveMinutes();
+
+        // Separate from cache:programme so a slow or failing page warm cannot
+        // delay the query warming the site depends on.
+        $schedule->command('cache:pages')->everyFiveMinutes()->withoutOverlapping();
     }
 
     /**
@@ -32,8 +38,8 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__ . "/Commands");
+        $this->load(__DIR__.'/Commands');
 
-        require base_path("routes/console.php");
+        require base_path('routes/console.php');
     }
 }

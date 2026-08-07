@@ -43,13 +43,28 @@ class Event extends Model implements HasMedia, CachableAttributes
     public $incrementing = false;
     protected $keyType = "string";
 
+    /**
+     * Every boolean and date column the Spektrix import writes needs a cast here.
+     * Without one, writing true against a stored 1 (or a date string against a
+     * stored datetime) never compares equal, so the row is dirty on every hourly
+     * import — needless writes, and a full cache clear via the observer.
+     */
     protected $casts = [
         "enabled" => "boolean",
         "published" => "boolean",
         "long_description" => NovaEditorJsCast::class,
         "reviews" => FlexibleCast::class,
         "why_watch" => "object",
+        "first_instance_date_time" => "datetime",
         "last_instance_date_time" => "datetime",
+        "is_on_sale" => "boolean",
+        "alternative_content" => "boolean",
+        "archive_film" => "boolean",
+        "audio_description" => "boolean",
+        "mubigo" => "boolean",
+        "non_specialist_film" => "boolean",
+        "members_offer_available" => "boolean",
+        "show_in_programme" => "boolean",
     ];
 
     protected static function booted()
