@@ -162,6 +162,38 @@ return [
             'database' => env('REDIS_CACHE_DB', '1'),
         ],
 
+        /*
+         * Separate databases, not just separate key prefixes.
+         *
+         * Laravel's RedisStore::flush() calls flushdb(), which empties the whole
+         * database and ignores prefixes entirely. So anything sharing a database
+         * with the application cache is destroyed by a Cache::flush(), and
+         * anything sharing with the response cache is destroyed by
+         * `artisan responsecache:clear`.
+         *
+         * Availability costs one Spektrix call per instance to rebuild and is
+         * refreshed on its own schedule, so it must survive both. The response
+         * cache gets its own database too, so clearing pages on deploy no longer
+         * takes the application cache with it.
+         *
+         * db 0 is the default connection (queues and Horizon), db 1 the app cache.
+         */
+        'response_cache' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_RESPONSE_CACHE_DB', '2'),
+        ],
+
+        'availability' => [
+            'url' => env('REDIS_URL'),
+            'host' => env('REDIS_HOST', '127.0.0.1'),
+            'password' => env('REDIS_PASSWORD', null),
+            'port' => env('REDIS_PORT', '6379'),
+            'database' => env('REDIS_AVAILABILITY_DB', '3'),
+        ],
+
     ],
 
 ];

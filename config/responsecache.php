@@ -61,7 +61,12 @@ return [
      * requests. This can be the name of any store that is
      * configured in app/config/cache.php
      */
-    'cache_store' => env('RESPONSE_CACHE_DRIVER', 'file'),
+    /*
+     * Its own store, on its own redis database. responsecache:clear flushes the
+     * whole store, so pointing this at the shared 'redis' store meant every
+     * deploy also emptied the application cache and the availability cache.
+     */
+    'cache_store' => env('RESPONSE_CACHE_DRIVER', 'response_cache'),
 
     /*
      * Here you may define replacers that dynamically replace content from the response.
@@ -86,7 +91,6 @@ return [
      */
     // 'hasher' => \Spatie\ResponseCache\Hasher\DefaultHasher::class,
     'hasher' => \App\Cache\Hasher::class,
-
 
     /*
      * This class is responsible for serializing responses.

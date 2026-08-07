@@ -60,17 +60,31 @@ return [
          * This data is expensive — one Spektrix HTTP call per instance — and is
          * refreshed on its own five-minute schedule by cache:availability. It has
          * nothing to do with editorial content, so a content change must not be
-         * able to wipe it: a cold availability cache used to leave the next
-         * visitor's What's On render attempting hundreds of external calls.
+         * able to wipe it: a cold availability cache leaves the next visitor's
+         * What's On render with no seat numbers until the next scheduled refresh.
          *
-         * Keeping it in a separate store makes that structural rather than
-         * something the invalidation code has to remember.
+         * Note the dedicated redis *connection*, not just a prefix. RedisStore
+         * flushes with flushdb(), which empties the whole database and ignores
+         * prefixes — so sharing the 'cache' connection would mean every
+         * Cache::flush() wiped this too.
          */
         'availability' => [
             'driver' => env('AVAILABILITY_CACHE_DRIVER', env('CACHE_DRIVER', 'file')),
             'path' => storage_path('framework/cache/availability'),
-            'connection' => 'cache',
+            'connection' => 'availability',
             'prefix' => 'availability',
+        ],
+
+        /*
+         * Full-page responses. Its own database for the same reason: otherwise
+         * `artisan responsecache:clear` on deploy flushes the entire cache
+         * database, taking the application cache and availability with it.
+         */
+        'response_cache' => [
+            'driver' => env('CACHE_DRIVER', 'file'),
+            'path' => storage_path('framework/cache/responses'),
+            'connection' => 'response_cache',
+            'prefix' => 'responsecache',
         ],
 
         'memcached' => [
