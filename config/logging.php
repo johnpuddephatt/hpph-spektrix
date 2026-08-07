@@ -16,7 +16,7 @@ return [
     |
     */
 
-    "default" => env("LOG_CHANNEL", "stack"),
+    'default' => env('LOG_CHANNEL', 'stack'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    "deprecations" => env("LOG_DEPRECATIONS_CHANNEL", "null"),
+    'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null'),
 
     /*
     |--------------------------------------------------------------------------
@@ -46,77 +46,97 @@ return [
     |
     */
 
-    "channels" => [
-        "stack" => [
-            "driver" => "stack",
-            "channels" => ["single"],
-            "ignore_exceptions" => false,
+    'channels' => [
+        /*
+         * Rotates, unlike the "single" channel this used to point at. Production
+         * sets LOG_CHANNEL=daily explicitly, but local dev falls back to this
+         * stack — where "single" meant a laravel.log that grew without limit
+         * (18MB here before this change).
+         */
+        'stack' => [
+            'driver' => 'stack',
+            'channels' => ['daily'],
+            'ignore_exceptions' => false,
         ],
 
-        "single" => [
-            "driver" => "single",
-            "path" => storage_path("logs/laravel.log"),
-            "level" => env("LOG_LEVEL", "debug"),
+        'single' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/laravel.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
         ],
 
-        "daily" => [
-            "driver" => "daily",
-            "path" => storage_path("logs/laravel.log"),
-            "level" => env("LOG_LEVEL", "debug"),
-            "days" => 14,
+        'daily' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/laravel.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'days' => env('LOG_DAILY_DAYS', 7),
         ],
 
-        "spektrix" => [
-            "driver" => "single",
-            "path" => storage_path("logs/laravel-spektrix.log"),
-            "days" => 7,
+        /*
+         * Import and cache-warming activity, kept separate from the application
+         * log so it can be scanned on its own in Nova.
+         *
+         * "daily", not "single": only createDailyDriver reads the "days" key
+         * (LogManager::createDailyDriver). This channel was previously "single"
+         * with days => 7, which meant no rotation at all and a file that grew
+         * without limit.
+         *
+         * Defaults to info rather than following LOG_LEVEL, because the handful
+         * of per-run summary lines ("Imported N events") are the point of this
+         * channel. Set LOG_SPEKTRIX_LEVEL=warning to keep only the problems.
+         */
+        'spektrix' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/laravel-spektrix.log'),
+            'level' => env('LOG_SPEKTRIX_LEVEL', 'info'),
+            'days' => env('LOG_DAILY_DAYS', 7),
         ],
 
-        "slack" => [
-            "driver" => "slack",
-            "url" => env("LOG_SLACK_WEBHOOK_URL"),
-            "username" => "Laravel Log",
-            "emoji" => ":boom:",
-            "level" => env("LOG_LEVEL", "critical"),
+        'slack' => [
+            'driver' => 'slack',
+            'url' => env('LOG_SLACK_WEBHOOK_URL'),
+            'username' => 'Laravel Log',
+            'emoji' => ':boom:',
+            'level' => env('LOG_LEVEL', 'critical'),
         ],
 
-        "papertrail" => [
-            "driver" => "monolog",
-            "level" => env("LOG_LEVEL", "debug"),
-            "handler" => SyslogUdpHandler::class,
-            "handler_with" => [
-                "host" => env("PAPERTRAIL_URL"),
-                "port" => env("PAPERTRAIL_PORT"),
+        'papertrail' => [
+            'driver' => 'monolog',
+            'level' => env('LOG_LEVEL', 'debug'),
+            'handler' => SyslogUdpHandler::class,
+            'handler_with' => [
+                'host' => env('PAPERTRAIL_URL'),
+                'port' => env('PAPERTRAIL_PORT'),
             ],
         ],
 
-        "stderr" => [
-            "driver" => "monolog",
-            "level" => env("LOG_LEVEL", "debug"),
-            "handler" => StreamHandler::class,
-            "formatter" => env("LOG_STDERR_FORMATTER"),
-            "with" => [
-                "stream" => "php://stderr",
+        'stderr' => [
+            'driver' => 'monolog',
+            'level' => env('LOG_LEVEL', 'debug'),
+            'handler' => StreamHandler::class,
+            'formatter' => env('LOG_STDERR_FORMATTER'),
+            'with' => [
+                'stream' => 'php://stderr',
             ],
         ],
 
-        "syslog" => [
-            "driver" => "syslog",
-            "level" => env("LOG_LEVEL", "debug"),
+        'syslog' => [
+            'driver' => 'syslog',
+            'level' => env('LOG_LEVEL', 'debug'),
         ],
 
-        "errorlog" => [
-            "driver" => "errorlog",
-            "level" => env("LOG_LEVEL", "debug"),
+        'errorlog' => [
+            'driver' => 'errorlog',
+            'level' => env('LOG_LEVEL', 'debug'),
         ],
 
-        "null" => [
-            "driver" => "monolog",
-            "handler" => NullHandler::class,
+        'null' => [
+            'driver' => 'monolog',
+            'handler' => NullHandler::class,
         ],
 
-        "emergency" => [
-            "path" => storage_path("logs/laravel.log"),
+        'emergency' => [
+            'path' => storage_path('logs/laravel.log'),
         ],
     ],
 ];

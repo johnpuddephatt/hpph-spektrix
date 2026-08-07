@@ -6,13 +6,12 @@ use App\Cache\ContentCache;
 use App\Jobs\Concerns\DisablesMissingRecords;
 use App\Models\Instance;
 use App\Support\ColumnLimits;
+use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use GuzzleHttp\Client;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +20,12 @@ use Illuminate\Support\Str;
 class FetchEventData implements ShouldQueue
 {
     use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * Strand/season names from Spektrix that matched no local row, as
+     * [type => [name => count]]. Summarised once at the end of the run.
+     */
+    private array $unmatchedNames = [];
 
     /**
      * Create a new job instance.
@@ -35,7 +40,8 @@ class FetchEventData implements ShouldQueue
     public function fetch($url)
     {
         $client = new Client();
-        $res = $client->request("GET", $url);
+        $res = $client->request('GET', $url);
+
         return json_decode($res->getBody()->__toString(), false);
     }
 
@@ -77,7 +83,11 @@ class FetchEventData implements ShouldQueue
         // After the deferred clear, or the warmed entry would be wiped by it.
         Instance::getInstancesForProgramme(false, null, null, null, true);
 
-        Log::channel("spektrix")->info("Imported " . count($events) . " events (" . count($instances) . " instances)");
+        // One summary line each, rather than one per affected row.
+        $this->reportUnmatchedNames();
+        ColumnLimits::reportTruncations();
+
+        Log::channel('spektrix')->info('Imported '.count($events).' events ('.count($instances).' instances)');
     }
 
     /**
@@ -88,29 +98,29 @@ class FetchEventData implements ShouldQueue
     public function truncateNameAttributes($instances)
     {
         foreach ($instances as $instance) {
-            foreach (["attribute_Strand", "attribute_Strand2"] as $attribute) {
+            foreach (['attribute_Strand', 'attribute_Strand2'] as $attribute) {
                 if (! empty($instance->{$attribute})) {
-                    $instance->{$attribute} = ColumnLimits::fitValue("strands", "name", trim($instance->{$attribute}));
+                    $instance->{$attribute} = ColumnLimits::fitValue('strands', 'name', trim($instance->{$attribute}));
                 }
             }
-            foreach (["attribute_Season", "attribute_Season2"] as $attribute) {
+            foreach (['attribute_Season', 'attribute_Season2'] as $attribute) {
                 if (! empty($instance->{$attribute})) {
-                    $instance->{$attribute} = ColumnLimits::fitValue("seasons", "name", trim($instance->{$attribute}));
+                    $instance->{$attribute} = ColumnLimits::fitValue('seasons', 'name', trim($instance->{$attribute}));
                 }
             }
         }
     }
 
-    public function getEvents($website = "HPPH")
+    public function getEvents($website = 'HPPH')
     {
         return $this->fetch(
-            "https://system.spektrix.com/" .
-                nova_get_setting("spektrix_client_name") .
-                "/api/v3/events?instanceStart_from=" .
+            'https://system.spektrix.com/'.
+                nova_get_setting('spektrix_client_name').
+                '/api/v3/events?instanceStart_from='.
                 \Carbon\Carbon::now()
                 ->subDay()
-                ->format("Y-m-d") .
-                "&attribute_Website=" . $website
+                ->format('Y-m-d').
+                '&attribute_Website='.$website
         );
     }
 
@@ -121,15 +131,16 @@ class FetchEventData implements ShouldQueue
             $instances = array_merge(
                 $instances,
                 $this->fetch(
-                    "https://system.spektrix.com/" .
-                        nova_get_setting("spektrix_client_name") .
-                        "/api/v3/events/{$event->id}/instances?start_from=" .
+                    'https://system.spektrix.com/'.
+                        nova_get_setting('spektrix_client_name').
+                        "/api/v3/events/{$event->id}/instances?start_from=".
                         \Carbon\Carbon::now()
                         ->subDay()
-                        ->format("Y-m-d")
+                        ->format('Y-m-d')
                 )
             );
         }
+
         return $instances;
     }
 
@@ -138,105 +149,94 @@ class FetchEventData implements ShouldQueue
         foreach ($events as $event) {
             // \App\Models\Event::withoutEvents(function () use ($event) {
             \App\Models\Event::withoutGlobalScopes()->updateOrCreate(
-                ["id" => $event->id],
-                ColumnLimits::fit("events", [
-                    "enabled" => true,
-                    "duration" => $event->duration ?? null,
-                    "is_on_sale" => $event->isOnSale ?? false,
-                    "name" => $event->name ? Str::limit($event->name, 200) : null,
-                    "subtitle" => $event->attribute_Subtitle ?? null,
-                    "first_instance_date_time" =>
-                    $event->firstInstanceDateTime ?? null,
-                    "last_instance_date_time" =>
-                    $event->lastInstanceDateTime ?? null,
-                    "audio_description" =>
-                    $event->attribute_AudioDescription ?? false,
-                    "country_of_origin" =>
-                    $event->attribute_CountryOfOrigin ?? null,
-                    "director" => $event->attribute_Director ?? null,
-                    "distributor" => $event->attribute_Distributor ?? null,
-                    "f_rating" => $event->attribute_FRating ?? null,
-                    "language" => $event->attribute_Language ?? null,
-                    "original_language_title" =>
-                    $event->attribute_OriginalLanguageTitle ?? null,
-                    "strobe_light_warning" =>
-                    $event->attribute_StrobeLightWarning ?? null,
-                    "year_of_production" =>
-                    $event->attribute_YearOfProduction ?? null,
-                    "featuring_stars" => implode(
-                        ",",
+                ['id' => $event->id],
+                ColumnLimits::fit('events', [
+                    'enabled' => true,
+                    'duration' => $event->duration ?? null,
+                    'is_on_sale' => $event->isOnSale ?? false,
+                    'name' => $event->name ? Str::limit($event->name, 200) : null,
+                    'subtitle' => $event->attribute_Subtitle ?? null,
+                    'first_instance_date_time' => $event->firstInstanceDateTime ?? null,
+                    'last_instance_date_time' => $event->lastInstanceDateTime ?? null,
+                    'audio_description' => $event->attribute_AudioDescription ?? false,
+                    'country_of_origin' => $event->attribute_CountryOfOrigin ?? null,
+                    'director' => $event->attribute_Director ?? null,
+                    'distributor' => $event->attribute_Distributor ?? null,
+                    'f_rating' => $event->attribute_FRating ?? null,
+                    'language' => $event->attribute_Language ?? null,
+                    'original_language_title' => $event->attribute_OriginalLanguageTitle ?? null,
+                    'strobe_light_warning' => $event->attribute_StrobeLightWarning ?? null,
+                    'year_of_production' => $event->attribute_YearOfProduction ?? null,
+                    'featuring_stars' => implode(
+                        ',',
                         array_filter([
                             $event->attribute_FeaturingStars1 ?? null,
                             $event->attribute_FeaturingStars2 ?? null,
                             $event->attribute_FeaturingStars3 ?? null,
                         ])
                     ),
-                    "genres" => implode(
-                        ",",
+                    'genres' => implode(
+                        ',',
                         array_filter([
                             $event->attribute_Genre1 ?? null,
                             $event->attribute_Genre2 ?? null,
                             $event->attribute_Genre3 ?? null,
                         ])
                     ),
-                    "vibes" => implode(
-                        ",",
+                    'vibes' => implode(
+                        ',',
                         array_filter([
                             $event->attribute_Vibe1 ?? null,
                             $event->attribute_Vibe2 ?? null,
                         ])
                     ),
-                    "content_guidance" => implode(
-                        ",",
+                    'content_guidance' => implode(
+                        ',',
                         array_filter([
                             $event->attribute_ContentGuidance1 ?? null,
                             $event->attribute_ContentGuidance2 ?? null,
                             $event->attribute_ContentGuidance3 ?? null,
                         ])
                     ),
-                    "certificate_age_guidance" =>
-                    $event->attribute_CertificateAgeGuidance ?? null,
-                    "coming_soon" => $event->attribute_ComingSoon ?: null,
+                    'certificate_age_guidance' => $event->attribute_CertificateAgeGuidance ?? null,
+                    'coming_soon' => $event->attribute_ComingSoon ?: null,
 
                     // Unused (checked August 2025)
 
                     // "website" => $event->attribute_Website ?? null,
                     // "description" => $event->description ?? null, // we don't want to use the Spektrix description
-                    "members_offer_available" =>
-                    $event->attribute_MembersOfferAvailable ?? false,
-                    "live_or_film" => $event->attribute_LiveOrFilm ?? null,
-                    "non_specialist_film" =>
-                    $event->attribute_NonSpecialistFilm ?? false,
-                    "mubigo" => $event->attribute_MUBIGO ?? false,
-                    "archive_film" => $event->attribute_ArchiveFilm ?? false,
-                    "alternative_content" =>
-                    $event->attribute_AlternativeContent ?? false,
-                    "instance_dates" => $event->instanceDates ?? null,
+                    'members_offer_available' => $event->attribute_MembersOfferAvailable ?? false,
+                    'live_or_film' => $event->attribute_LiveOrFilm ?? null,
+                    'non_specialist_film' => $event->attribute_NonSpecialistFilm ?? false,
+                    'mubigo' => $event->attribute_MUBIGO ?? false,
+                    'archive_film' => $event->attribute_ArchiveFilm ?? false,
+                    'alternative_content' => $event->attribute_AlternativeContent ?? false,
+                    'instance_dates' => $event->instanceDates ?? null,
 
                 ])
             );
             // });
         }
-        \App\Models\Event::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($events, 'id'))->update(["enabled" => false]);
+        \App\Models\Event::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($events, 'id'))->update(['enabled' => false]);
     }
 
     public function getInstancesVenues($instances)
     {
         foreach ($instances as $instance) {
-            if (!$instance->planId) {
+            if (! $instance->planId) {
                 return null;
             }
             $plan = $this->fetch(
-                "https://system.spektrix.com/" .
-                    nova_get_setting("spektrix_client_name") .
+                'https://system.spektrix.com/'.
+                    nova_get_setting('spektrix_client_name').
                     "/api/v3/plans/{$instance->planId}"
             );
-            if (!$plan) {
+            if (! $plan) {
                 return null;
             }
             $venue = $this->fetch(
-                "https://system.spektrix.com/" .
-                    nova_get_setting("spektrix_client_name") .
+                'https://system.spektrix.com/'.
+                    nova_get_setting('spektrix_client_name').
                     "/api/v3/venues/{$plan->venue->id}"
             );
 
@@ -246,7 +246,7 @@ class FetchEventData implements ShouldQueue
 
     public function updateOrCreateStrands($instances)
     {
-        $names = $this->presentNames($instances, "attribute_Strand", "attribute_Strand2");
+        $names = $this->presentNames($instances, 'attribute_Strand', 'attribute_Strand2');
 
         foreach ($names as $strand) {
             // Only "name" on create: the lookup is case-insensitive in MySQL, so
@@ -254,34 +254,34 @@ class FetchEventData implements ShouldQueue
             // casing Spektrix happened to send last.
             \App\Models\Strand::withoutGlobalScopes()->updateOrCreate(
                 [
-                    "name" => $strand,
+                    'name' => $strand,
                 ],
                 [
-                    "enabled" => true,
+                    'enabled' => true,
                 ]
             );
         }
 
-        $this->disableMissing(\App\Models\Strand::class, $names, "name");
+        $this->disableMissing(\App\Models\Strand::class, $names, 'name');
     }
 
     public function updateOrCreateSeasons($instances)
     {
-        $names = $this->presentNames($instances, "attribute_Season", "attribute_Season2");
+        $names = $this->presentNames($instances, 'attribute_Season', 'attribute_Season2');
 
         foreach ($names as $season) {
             // See updateOrCreateStrands: don't rewrite the name of a matched row.
             \App\Models\Season::withoutGlobalScopes()->updateOrCreate(
                 [
-                    "name" => $season,
+                    'name' => $season,
                 ],
                 [
-                    "enabled" => true,
+                    'enabled' => true,
                 ]
             );
         }
 
-        $this->disableMissing(\App\Models\Season::class, $names, "name");
+        $this->disableMissing(\App\Models\Season::class, $names, 'name');
     }
 
     /**
@@ -295,7 +295,6 @@ class FetchEventData implements ShouldQueue
         ))));
     }
 
-
     public function updateOrCreateInstances($instances)
     {
         // Resolve strand/season names → ids once for pivot syncing.
@@ -304,56 +303,51 @@ class FetchEventData implements ShouldQueue
 
         foreach ($instances as $instance) {
             $model = \App\Models\Instance::withoutGlobalScopes()->updateOrCreate(
-                ["id" => $instance->id],
-                ColumnLimits::fit("instances", [
-                    "enabled" => true,
-                    "is_on_sale" => $instance->isOnSale ?? null,
-                    "event_id" => $instance->event->id ?? null,
-                    "venue" => $instance->venue ?? null,
-                    "start" => $instance->start ?? null,
-                    "start_selling_at_web" =>
-                    $instance->startSellingAtWeb ?? null,
-                    "stop_selling_at_web" =>
-                    $instance->stopSellingAtWeb ?? null,
-                    "cancelled" => $instance->cancelled ?? null,
+                ['id' => $instance->id],
+                ColumnLimits::fit('instances', [
+                    'enabled' => true,
+                    'is_on_sale' => $instance->isOnSale ?? null,
+                    'event_id' => $instance->event->id ?? null,
+                    'venue' => $instance->venue ?? null,
+                    'start' => $instance->start ?? null,
+                    'start_selling_at_web' => $instance->startSellingAtWeb ?? null,
+                    'stop_selling_at_web' => $instance->stopSellingAtWeb ?? null,
+                    'cancelled' => $instance->cancelled ?? null,
 
-                    "special_event" =>
-                    $instance->attribute_CinemaSpecialEvent ?? null,
-                    "analogue" => $instance->attribute_Analogue ?? null,
-                    "door_time" => $instance->attribute_DoorTime ?? null,
-                    "partnership" => $instance->attribute_Partnership ?? null,
-                    "external_ticket_link" => $instance->attribute_ExternalTicketLink ?: null,
+                    'special_event' => $instance->attribute_CinemaSpecialEvent ?? null,
+                    'analogue' => $instance->attribute_Analogue ?? null,
+                    'door_time' => $instance->attribute_DoorTime ?? null,
+                    'partnership' => $instance->attribute_Partnership ?? null,
+                    'external_ticket_link' => $instance->attribute_ExternalTicketLink ?: null,
 
-                    "audio_described" =>
-                    $instance->attribute_AudioDescribed ?? null,
-                    "captioned" => $instance->attribute_Captioned ?? null,
-                    "relaxed" =>
-                    $instance->attribute_RelaxedPerformance ?? null,
-                    "autism_friendly" => $instance->attribute_AutismFriendlyScreening ?? null,
-                    "toddler_friendly" => $instance->attribute_ToddlerFriendlyScreening ?? null,
-                    "signed_bsl" => $instance->attribute_SignedBSL ?? null,
+                    'audio_described' => $instance->attribute_AudioDescribed ?? null,
+                    'captioned' => $instance->attribute_Captioned ?? null,
+                    'relaxed' => $instance->attribute_RelaxedPerformance ?? null,
+                    'autism_friendly' => $instance->attribute_AutismFriendlyScreening ?? null,
+                    'toddler_friendly' => $instance->attribute_ToddlerFriendlyScreening ?? null,
+                    'signed_bsl' => $instance->attribute_SignedBSL ?? null,
 
-                    "free" => $instance->attribute_AffordableTickets === "Free" ? true : false,
-                    "pwyc" => $instance->attribute_AffordableTickets === "Pay What You Can" ? true : false,
+                    'free' => $instance->attribute_AffordableTickets === 'Free' ? true : false,
+                    'pwyc' => $instance->attribute_AffordableTickets === 'Pay What You Can' ? true : false,
                 ])
             );
 
             $model->strands()->sync($this->syncMap(
                 [$instance->attribute_Strand ?? null, $instance->attribute_Strand2 ?? null],
                 $strandIds,
-                "strand",
+                'strand',
                 $instance
             ));
 
             $model->seasons()->sync($this->syncMap(
                 [$instance->attribute_Season ?? null, $instance->attribute_Season2 ?? null],
                 $seasonIds,
-                "season",
+                'season',
                 $instance
             ));
         }
 
-        \App\Models\Instance::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($instances, 'id'))->update(["enabled" => false]);
+        \App\Models\Instance::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($instances, 'id'))->update(['enabled' => false]);
     }
 
     /**
@@ -370,12 +364,13 @@ class FetchEventData implements ShouldQueue
     private function nameLookup(string $model): array
     {
         $ids = [];
-        foreach ($model::withoutGlobalScopes()->orderBy("id")->pluck("id", "name") as $name => $id) {
+        foreach ($model::withoutGlobalScopes()->orderBy('id')->pluck('id', 'name') as $name => $id) {
             $key = Str::lower(trim($name));
-            if ($key !== "" && ! isset($ids[$key])) {
+            if ($key !== '' && ! isset($ids[$key])) {
                 $ids[$key] = $id;
             }
         }
+
         return $ids;
     }
 
@@ -396,14 +391,42 @@ class FetchEventData implements ShouldQueue
             }
 
             if (isset($ids[$key])) {
-                $sync[$ids[$key]] = ["position" => $index + 1];
+                $sync[$ids[$key]] = ['position' => $index + 1];
             } else {
-                Log::channel("spektrix")->warning(
-                    "No {$type} matched \"{$name}\" for instance {$instance->id} (" .
-                        ($instance->event->name ?? "unknown event") . ")"
-                );
+                // Counted, not logged here. The same unmatched names recur across
+                // many instances and on every hourly run, so a line each buried
+                // the log — 348 lines describing 11 distinct names. Summarised
+                // once per run by reportUnmatchedNames().
+                $this->unmatchedNames[$type][$name] =
+                    ($this->unmatchedNames[$type][$name] ?? 0) + 1;
             }
         }
+
         return $sync;
+    }
+
+    /**
+     * One line per type: how many references failed to resolve, and to which
+     * names. The name is the only link between a Spektrix instance and its
+     * strand/season, so a miss silently loses content and is worth surfacing —
+     * just not once per row.
+     */
+    private function reportUnmatchedNames(): void
+    {
+        foreach ($this->unmatchedNames as $type => $names) {
+            arsort($names);
+
+            Log::channel('spektrix')->warning(
+                sprintf(
+                    '%d instance reference(s) matched no %s (%d distinct name(s))',
+                    array_sum($names),
+                    $type,
+                    count($names)
+                ),
+                ['names' => $names]
+            );
+        }
+
+        $this->unmatchedNames = [];
     }
 }

@@ -25,6 +25,17 @@ class ColumnLimits
     private static array $cache = [];
 
     /**
+     * Truncations seen since the last report, as [table.column => [value, ...]].
+     *
+     * Collected rather than logged inline: the same handful of over-long values
+     * arrive on every hourly import, so a line per truncation re-reported the
+     * same few facts forever. Locally that was 47 log lines describing one.
+     *
+     * @var array<string, array<int, string>>
+     */
+    private static array $truncations = [];
+
+    /**
      * The character limit for a column, or null if it has no length-bound type
      * (e.g. text/integer/boolean) or does not exist.
      */
@@ -35,8 +46,8 @@ class ColumnLimits
 
             foreach (Schema::getColumns($table) as $definition) {
                 // $definition["type"] looks like "varchar(50)", "char(2)", "text", "int", ...
-                preg_match('/^(?:var)?char\((\d+)\)/i', $definition["type"] ?? "", $matches);
-                self::$cache[$table][$definition["name"]] = isset($matches[1])
+                preg_match('/^(?:var)?char\((\d+)\)/i', $definition['type'] ?? '', $matches);
+                self::$cache[$table][$definition['name']] = isset($matches[1])
                     ? (int) $matches[1]
                     : null;
             }
@@ -58,12 +69,9 @@ class ColumnLimits
         }
 
         // Str::limit appends the ending (1 char) inside the limit, so cap at $length - 1.
-        $truncated = Str::limit($value, $length - 1, "…");
+        $truncated = Str::limit($value, $length - 1, '…');
 
-        Log::channel("spektrix")->warning(
-            "Truncated {$table}.{$column} to {$length} chars",
-            ["original" => $value]
-        );
+        self::$truncations["{$table}.{$column}"][] = $value;
 
         return $truncated;
     }
@@ -83,5 +91,28 @@ class ColumnLimits
         }
 
         return $attributes;
+    }
+
+    /**
+     * Log one line per affected column summarising the run's truncations, then
+     * reset. Call at the end of an import.
+     */
+    public static function reportTruncations(): void
+    {
+        foreach (self::$truncations as $target => $values) {
+            $distinct = array_values(array_unique($values));
+
+            Log::channel('spektrix')->warning(
+                sprintf(
+                    'Truncated %d value(s) in %s (%d distinct)',
+                    count($values),
+                    $target,
+                    count($distinct)
+                ),
+                ['examples' => array_slice($distinct, 0, 5)]
+            );
+        }
+
+        self::$truncations = [];
     }
 }
