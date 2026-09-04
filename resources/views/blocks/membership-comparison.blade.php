@@ -1,17 +1,23 @@
 @push('webComponents', '#spektrix-memberships')
 
-<div class="bg-black py-20 container px-4 text-white text-center">
-    <div class="mt-8 grid lg:grid-cols-3 gap-16 lg:gap-4">
+<div id="{{ $layout->menuAnchor() }}" class="bg-black py-20 container scroll-mt-24 px-4 text-white text-center">
+
+ 
+    <div class="mt-8 grid lg:grid-cols-3 relative gap-16 lg:gap-8">
+           <video class="hidden lg:block left-0 -top-[4vw] absolute transition duration-1000 w-full  h-[25vw] object-cover object-center" autoplay="true"
+        preload="true" loop="true" muted="true" playsinline="true">
+        <source type="video/mp4" src="{{ Storage::url($layout->video) }}" />
+    </video>
         @foreach ($layout->memberships as $membership)
             @php($membership = $membership->membership)
 
-            <div class="flex flex-col">
-                <div class="relative min-h-[14rem] flex flex-col justify-center">
+            <div class="flex relative flex-col">
+                <div class="rounded pt-[50%] relative p-12 bg-black bg-opacity-25 backdrop-blur-sm border border-gray-medium">
                     @if ($membership->image)
                         <img src="{{ Storage::url($membership->image) }}"
-                            class="w-full inset-0 h-full opacity-60 absolute block object-cover object-center" />
+                            class="lg:hidden w-full inset-0 h-full opacity-60 absolute block object-cover object-center" />
                     @endif
-                    <img src="{{ Storage::url($membership->logo) }}" class="relative w-32 block h-auto mx-auto" />
+                    <img alt="{{  $membership->name }}" src="{{ Storage::url($membership->logo) }}" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 block h-auto mx-auto" />
                 </div>
                 <div class="type-xs-mono text-white relative mt-2 mb-6 max-w-xs mx-auto">
                     {{ $membership->description }}

@@ -54,6 +54,9 @@ class EventServiceProvider extends ServiceProvider
         \App\Models\Fund::observe(\App\Observers\ModelObserver::class);
         \App\Models\Membership::observe(\App\Observers\ModelObserver::class);
         \App\Models\Product::observe(\App\Observers\ModelObserver::class);
+        \App\Models\TicketSubscription::observe(
+            \App\Observers\ModelObserver::class
+        );
 
         // Editing a form, or a sync changing the available tags, must clear the
         // response cache so pages carrying the signup block re-render.

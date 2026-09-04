@@ -198,6 +198,19 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
         return $this->belongsToMany(Instance::class)->withoutGlobalScopes();
     }
 
+    /**
+     * The flex pass sold alongside this season, if there is one.
+     *
+     * Constrained to a pass that can actually be bought, so the template needs
+     * no further guard: the model's own `enabled` scope drops anything the
+     * Spektrix import has retired, and onSale() drops anything outside its
+     * web-channel sale window.
+     */
+    public function ticketSubscription(): MorphOne
+    {
+        return $this->morphOne(TicketSubscription::class, 'subject')->onSale();
+    }
+
     public function posts(): BelongsToMany
     {
         return $this->belongsToMany(Post::class);

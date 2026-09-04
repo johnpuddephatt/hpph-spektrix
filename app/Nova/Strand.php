@@ -152,6 +152,9 @@ class Strand extends Resource
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\LinkBannerLayout::class
                     )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout::class
+                    )
                     ->button("Add a section")
                     ->stacked()
                     ->hideFromIndex(),

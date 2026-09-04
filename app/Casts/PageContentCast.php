@@ -41,6 +41,11 @@ class PageContentCast extends FlexibleCast
         "quote" => \App\Nova\Flexible\Layouts\QuoteLayout::class,
 
 
+        "ticket-subscription-group" =>
+        \App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout::class,
+        "ticket-subscription" =>
+        \App\Nova\Flexible\Layouts\TicketSubscriptionLayout::class,
+
         "merchandise-group" => \App\Nova\Flexible\Layouts\MerchandiseGroupLayout::class,
         "merchandise" => \App\Nova\Flexible\Layouts\MerchandiseLayout::class,
         "signup-form" => \App\Nova\Flexible\Layouts\SignupFormLayout::class,

@@ -4,9 +4,9 @@
         class="{{ $layout->title ? 'grid lg:grid-cols-2 gap-4' : 'mx-auto max-w-xl' }} {{ $layout->is_centered ? 'text-center' : '' }}">
         <div class="">
             @if ($layout->title)
-                <h2 id="{{ $layout->slug ?? Str::slug($layout->title) }}"
-                    class="type-medium {{ $layout->heading_colour }}">
-                    <a href="#{{ $layout->slug ?? Str::slug($layout->title) }}">
+                <h2 id="{{ $layout->menuAnchor() }}"
+                    class="type-medium scroll-mt-24 {{ $layout->heading_colour }}">
+                    <a href="#{{ $layout->menuAnchor() }}">
                         {{ $layout->title }}
                     </a>
                 </h2>

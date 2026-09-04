@@ -1,6 +1,13 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
+    // Not "dark mode" in the usual sense — the site has no OS-driven theme. The
+    // class strategy is borrowed to theme individual sections: blocks placed on a
+    // black background (strand and season pages) get a `dark` wrapper, and their
+    // dark: variants light the text up. Without this, dark: would follow the
+    // visitor's OS setting, which is not what any of it means here.
+    darkMode: "class",
+
     content: [
         "./resources/**/*.blade.php",
         "./resources/**/*.js",

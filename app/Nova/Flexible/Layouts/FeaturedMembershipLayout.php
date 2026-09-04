@@ -9,11 +9,15 @@ use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use App\Nova\Flexible\Layouts\Concerns\AppearsInPageMenu;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
+use App\Nova\Flexible\Layouts\Concerns\HasPageMenuEntry;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
-class FeaturedMembershipLayout extends Layout
+class FeaturedMembershipLayout extends Layout implements HasPageMenuEntry
 {
+    use AppearsInPageMenu;
+
     use CachesOptions;
 
     /**

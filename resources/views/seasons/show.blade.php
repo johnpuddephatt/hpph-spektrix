@@ -67,6 +67,10 @@
         @endif
     </div>
 
+    @include('spektrix-components.ticket-subscription-feature', [
+        'subscription' => $season->ticketSubscription,
+    ])
+
     @if ($entries->count())
         <div class="bg-black text-yellow">
             <div class="container pb-16 pt-24">

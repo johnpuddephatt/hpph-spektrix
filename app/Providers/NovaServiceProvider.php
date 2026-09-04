@@ -240,6 +240,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     MenuGroup::make("", [
                         MenuItem::resource(\App\Nova\Membership::class),
                         MenuItem::resource(\App\Nova\Fund::class),
+                                                MenuItem::resource(\App\Nova\TicketSubscription::class),
+
                     ]),
                 ])->icon("ticket"),
                 MenuSection::resource(\App\Nova\Page::class)->icon(

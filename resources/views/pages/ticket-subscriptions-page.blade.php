@@ -39,12 +39,15 @@
             </div>
         </div>
 
-        <div class="container min-h-screen pb-24 pt-6">
-
-            <iframe
-                src="https://{{ $settings['spektrix_custom_domain'] }}/{{ $settings['spektrix_client_name'] }}/website/TicketSubscriptions?Stylesheet=hpph-spektrix-2.css&resize=true"
-                class="min-h-screen w-full xl:w-[calc(100%-2rem)]" id="SpektrixIFrame" name="SpektrixIFrame"></iframe>
-
+        {{-- Subscriptions are rendered from our own models and sold through the
+             v3 API, rather than through Spektrix's /website/TicketSubscriptions
+             iframe, which can only show a bare name and price. --}}
+        <div class="pb-24 pt-6">
+            @if ($page->content)
+                @foreach ($page->content as $layout)
+                    @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => false])
+                @endforeach
+            @endif
         </div>
 
     </div>

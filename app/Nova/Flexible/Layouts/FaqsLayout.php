@@ -3,13 +3,17 @@
 namespace App\Nova\Flexible\Layouts;
 
 use Advoor\NovaEditorJs\NovaEditorJsField;
+use App\Nova\Flexible\Layouts\Concerns\AppearsInPageMenu;
+use App\Nova\Flexible\Layouts\Concerns\HasPageMenuEntry;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
 use Whitecube\NovaFlexibleContent\Flexible;
 
-class FaqsLayout extends Layout
+class FaqsLayout extends Layout implements HasPageMenuEntry
 {
+    use AppearsInPageMenu;
+
     /**
      * The layout's unique identifier
      *
@@ -23,6 +27,13 @@ class FaqsLayout extends Layout
      * @var string
      */
     protected $title = "Frequently asked questions";
+
+    public function menuLabel(): ?string
+    {
+        // The block's own heading is longer than a menu wants
+        // ("Information & FAQs"), so the menu just says FAQs.
+        return "FAQs";
+    }
 
     public function getFaqsAttribute()
     {

@@ -9,6 +9,8 @@
 
     @include('sections.pageheader')
 
+    @include('sections.page-menu')
+
     @if ($page->content)
         @foreach ($page->content as $layout)
             @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => true])

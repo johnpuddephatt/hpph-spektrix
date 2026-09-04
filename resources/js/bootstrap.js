@@ -10,6 +10,7 @@ import {
 import intersect from "@alpinejs/intersect";
 import carousel from "./carousel.js";
 import availabilityBadge from "./availability.js";
+import ticketSubscription from "./ticket-subscription.js";
 import focus from "@alpinejs/focus";
 
 import Swiper from "swiper";
@@ -26,6 +27,7 @@ function registerAlpineStuff() {
     window.Alpine.plugin(focus);
     window.Alpine.data("carousel", carousel);
     window.Alpine.data("availabilityBadge", availabilityBadge);
+    window.Alpine.data("ticketSubscription", ticketSubscription);
 }
 
 if (window.Alpine) {

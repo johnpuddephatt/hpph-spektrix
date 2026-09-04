@@ -2,6 +2,7 @@
 
 namespace App\Nova\Templates;
 
+use App\Nova\Templates\Concerns\HasPageMenuSetting;
 use Illuminate\Http\Request;
 use Outl1ne\PageManager\Template;
 use Laravel\Nova\Fields\Text;
@@ -11,6 +12,8 @@ use Whitecube\NovaFlexibleContent\Flexible;
 
 class StandardPageTemplate
 {
+    use HasPageMenuSetting;
+
     // Name displayed in CMS
     public function name(): string
     {
@@ -21,6 +24,8 @@ class StandardPageTemplate
     public function fields(Request $request): array
     {
         return [
+            $this->pageMenuField(),
+
             new Panel("Content", [
                 Flexible::make("Content", "content")
                     ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
@@ -43,6 +48,10 @@ class StandardPageTemplate
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\SignupFormLayout::class
                     )
+->addLayout(
+                        \App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout::class
+                    )
+                    
                     ->button("Add a section")
                     ->drawer(),
             ]),

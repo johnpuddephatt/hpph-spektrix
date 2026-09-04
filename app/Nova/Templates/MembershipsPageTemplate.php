@@ -2,6 +2,7 @@
 
 namespace App\Nova\Templates;
 
+use App\Nova\Templates\Concerns\HasPageMenuSetting;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Advoor\NovaEditorJs\NovaEditorJsField;
@@ -12,6 +13,8 @@ use Whitecube\NovaFlexibleContent\Flexible;
 
 class MembershipsPageTemplate
 {
+    use HasPageMenuSetting;
+
     // Name displayed in CMS
     public function name(): string
     {
@@ -22,6 +25,8 @@ class MembershipsPageTemplate
     public function fields(Request $request): array
     {
         return [
+            $this->pageMenuField(),
+
             new Panel("Page content", [
                 Flexible::make("", "content")
                     ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)

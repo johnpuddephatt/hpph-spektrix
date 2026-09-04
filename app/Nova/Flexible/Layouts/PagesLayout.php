@@ -33,6 +33,7 @@ class PagesLayout extends Layout
                 ->addLayout(\App\Nova\Flexible\Layouts\PageLayout::class)
                 ->addLayout(\App\Nova\Flexible\Layouts\LinkLayout::class)
                 ->button("Add page")
+                ->fullWidth()
                 ->limit(2),
         ];
     }
