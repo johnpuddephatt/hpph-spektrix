@@ -1,7 +1,7 @@
 <div id="{{ $layout->menuAnchor() }}" class="scroll-mt-24 bg-black-light py-20 lg:py-36      px-4 relative overflow-x-hidden">
 
     <div class="grid bg-black rounded items-center lg:grid-cols-3 overflow-hidden">
-   <img class="p-4 aspect-square object-contain" src="{{  $layout->membership->image }}"/>
+   <img class="p-4 aspect-square object-contain" src="{{  Storage::url($layout->membership->image) }}"/>
 
    <div class="lg:col-span-2 py-8 px-8">
     <h2 class="type-medium lg:type-large relative text-white mb-2">
