@@ -4,7 +4,7 @@
 
  
     <div class="mt-8 grid lg:grid-cols-3 relative gap-16 lg:gap-8">
-           <video class="hidden lg:block left-0 -top-28 absolute transition duration-1000 w-full  h-[25vw] object-cover object-center" autoplay="true"
+           <video class="hidden lg:block left-0 -top-28 absolute transition duration-1000 w-full  h-[31vw] object-cover object-center" autoplay="true"
         preload="true" loop="true" muted="true" playsinline="true">
         <source type="video/mp4" src="{{ Storage::url($layout->video) }}" />
     </video>
