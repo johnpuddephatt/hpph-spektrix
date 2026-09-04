@@ -4,7 +4,7 @@
 
  
     <div class="mt-8 grid lg:grid-cols-3 relative gap-16 lg:gap-8">
-           <video class="hidden lg:block left-0 -top-[4vw] absolute transition duration-1000 w-full  h-[25vw] object-cover object-center" autoplay="true"
+           <video class="hidden lg:block left-0 -top-28 absolute transition duration-1000 w-full  h-[25vw] object-cover object-center" autoplay="true"
         preload="true" loop="true" muted="true" playsinline="true">
         <source type="video/mp4" src="{{ Storage::url($layout->video) }}" />
     </video>
@@ -15,7 +15,7 @@
                 <div class="rounded pt-[50%] relative p-12 bg-black bg-opacity-25 backdrop-blur-sm border border-gray-medium">
                     @if ($membership->image)
                         <img src="{{ Storage::url($membership->image) }}"
-                            class="lg:hidden w-full inset-0 h-full opacity-60 absolute block object-cover object-center" />
+                            class=" w-full inset-0 h-full opacity-60 absolute block object-cover object-center" />
                     @endif
                     <img alt="{{  $membership->name }}" src="{{ Storage::url($membership->logo) }}" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 block h-auto mx-auto" />
                 </div>
