@@ -40,6 +40,7 @@ class MembershipsPageTemplate
                     ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
                     ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
                     ->addLayout(\App\Nova\Flexible\Layouts\BannerLayout::class)
+                    ->addLayout(\App\Nova\Flexible\Layouts\JournalPostLayout::class)
                     ->drawer()
                     ->button("Add new section"),
             ]),
