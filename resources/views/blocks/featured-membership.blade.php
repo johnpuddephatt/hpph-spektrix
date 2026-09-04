@@ -25,8 +25,8 @@
     membership-id="{{ $layout->membership->id }}">    
         <button class="type-regular w-full bg-yellow rounded text-center py-4 text-black hover:bg-opacity-90 transition"
         data-submit-membership>Add to basket</button>
-        <div class="" data-success-container style="display: none;">
-            <div class="type-regular max-w-sm text-black leading-tight py-2 px-6 bg-yellow-dark text-center">
+        <div class="-mt-12 relative" data-success-container style="display: none;">
+            <div class="type-regular max-w-lg rounded text-black leading-tight py-4 px-6 bg-yellow-dark text-center">
                 Added to basket</div>
                 <p class="type-small text-white mt-4">Want your free membership to continue until your 26th birthday? After
                     you’ve processed your order, visit your account page and provide us with your date of birth.</p>
