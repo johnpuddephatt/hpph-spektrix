@@ -24,7 +24,7 @@
         <h3 class="type-regular lg:type-medium mb-4">{{ $subscription->name }}</h3>
 
         @if ($subscription->description)
-            <p class="type-regular !font-normal">{{ $subscription->description }}</p>
+            <p class="type-regular max-w-xl !font-normal">{{ $subscription->description }}</p>
         @endif
     </div>
 
