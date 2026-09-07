@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 // \Livewire\Livewire::routes();
 
+// Outside the spektrix middleware group: the sitemap is built from local models
+// only, so it should still serve if the Spektrix settings are missing.
+Route::get("sitemap.xml", \App\Http\Controllers\SitemapController::class)->name(
+    "sitemap"
+);
+
 Route::middleware(["spektrix"])->group(function () {
     // Route::get("/", function () {
     //     return "<div style='background-color: #f2d13c; height: 100vh; display: flex; align-items: center; justify-content: center'><p style='font-family: Arial; font-size: 1.5em; font-weight: bold'>Coming soon.</p></div>";

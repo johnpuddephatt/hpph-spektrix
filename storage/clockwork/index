@@ -1143,3 +1143,6 @@
 1788522423-6698-135344656,1788522423.6666,GET,/storage/BekFArJ6np8w4eeRAHuyeeHg7Qkg1Z3brCNesoHx.jpg,App\Http\Controllers\PageController@show,404,37.112951278687,request
 1788522423-6706-887460555,1788522423.6659,GET,/storage/IsaM18fdxR68q6uMk84YL0hyL7UsIQhxlaMPetuW.jpg,App\Http\Controllers\PageController@show,404,39.882898330688,request
 1788522423-7289-1953066851,1788522423.7257,GET,/storage/110/responsive-images/decierta1___wide_1500_627.jpg,App\Http\Controllers\PageController@show,404,32.297134399414,request
+1788817575-6505-2040013495,1788817575.6079,GET,/sitemap.xml,App\Http\Controllers\SitemapController,200,172.06192016602,request
+1788817603-8522-141126560,1788817603.8263,GET,/sitemap.xml,App\Http\Controllers\SitemapController,200,193.04203987122,request
+1788817604-0722-985416831,1788817604.0603,GET,/sitemap.xml,App\Http\Controllers\SitemapController,200,27.347087860107,request
