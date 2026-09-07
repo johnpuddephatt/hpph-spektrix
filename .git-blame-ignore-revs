@@ -1,0 +1,6 @@
+# Commits listed here are skipped by `git blame`.
+# Enable locally with:
+#   git config blame.ignoreRevsFile .git-blame-ignore-revs
+
+# Format all PHP with Pint (laravel preset) — mechanical, no behaviour changes
+6f2a9ac5d84d3e11c6084af36489f2286bf0b7fb
