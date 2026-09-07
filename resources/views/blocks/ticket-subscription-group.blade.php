@@ -33,7 +33,7 @@
         <div class="container space-y-16 py-16 lg:py-24 {{ $dark ? 'bg-black-light' : null }}">
 
             @if ($layout->introduction)
-                <p class="type-regular max-w-2xl !font-normal dark:text-white">{{ $layout->introduction }}</p>
+                <p class="type-regular max-w-xl !font-normal dark:text-white">{{ $layout->introduction }}</p>
             @endif
 
             @foreach ($layout->subscriptions as $subscription)
