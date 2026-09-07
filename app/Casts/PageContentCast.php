@@ -49,6 +49,12 @@ class PageContentCast extends FlexibleCast
         "merchandise-group" => \App\Nova\Flexible\Layouts\MerchandiseGroupLayout::class,
         "merchandise" => \App\Nova\Flexible\Layouts\MerchandiseLayout::class,
         "signup-form" => \App\Nova\Flexible\Layouts\SignupFormLayout::class,
+
+        // Strand and season page bodies. See App\Models\Concerns\HasProgrammePageContent.
+        "programme-introduction" =>
+        \App\Nova\Flexible\Layouts\ProgrammeIntroductionLayout::class,
+        "programme-slider" =>
+        \App\Nova\Flexible\Layouts\ProgrammeSliderLayout::class,
         // "feature" => \App\Nova\Flexible\Layouts\FeatureLayout::class,
         // "single-faq" => \App\Nova\Flexible\Layouts\SingleFaqLayout::class,
         // "child-page" => \App\Nova\Flexible\Layouts\ChildPageLayout::class,

@@ -19,7 +19,6 @@ use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Tag;
-use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Panel;
 use Trin4ik\NovaSwitcher\NovaSwitcher;
 use Whitecube\NovaFlexibleContent\Flexible;
@@ -141,13 +140,24 @@ class Season extends Resource
                 ->hideFromIndex()
                 ->maxLength(250)
                 ->enforceMaxlength(),
-            Trix::make("Additional description")
-                ->hideFromIndex(),
-            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should be black on a transparent background and in PNG format. Individual logos should be approximately 300-400px wide. Multiple logos can be artworked in a grid of two or three columns and can be 600 - 800px wide.')->hideFromIndex(),
             Tag::make("Posts")->displayAsList()->hideFromIndex(),
 
             new Panel("Content", [
                 Flexible::make("Content", "content")
+                    ->help(
+                        "A new page starts with its introduction, flex pass and what’s on " .
+                            "slider. The page is built from exactly what is listed here, so " .
+                            "removing one of those removes it from the page too."
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\ProgrammeIntroductionLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\ProgrammeSliderLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout::class
+                    )
                     ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\JournalPostLayout::class

@@ -18,6 +18,7 @@ use Astrotomic\CachableAttributes\CachesAttributes;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Casts\PageContentCast;
+use App\Models\Concerns\HasProgrammePageContent;
 use Spatie\EloquentSortable\Sortable;
 use Spatie\EloquentSortable\SortableTrait;
 use Spatie\Image\Enums\CropPosition;
@@ -31,6 +32,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
     use CachesAttributes;
     use SoftDeletes;
     use SortableTrait;
+    use HasProgrammePageContent;
 
     public $timestamps = false;
 

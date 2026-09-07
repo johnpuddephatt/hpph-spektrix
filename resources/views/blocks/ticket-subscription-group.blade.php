@@ -1,8 +1,10 @@
 {{--
-    Several ticket subscriptions (flex passes) chosen by an editor in Nova.
+    Ticket subscriptions (flex passes) on a page.
 
-    $layout->subscriptions is already filtered to the ones on sale, so the view
-    only has to lay them out.
+    $layout->subscriptions is already filtered to the ones on sale, and is
+    either what an editor picked by hand or — when they picked nothing — the
+    passes assigned to this strand or season, so the view only has to lay
+    them out.
 
     Passes stack rather than sit in a grid: each one is a two-column panel, and
     the client expects only ever a handful on sale at a time.
@@ -28,7 +30,7 @@
             </div>
         @endif
 
-        <div class="container space-y-16 py-12">
+        <div class="container space-y-16 py-16 lg:py-24">
 
             @if ($layout->introduction)
                 <p class="type-regular max-w-2xl !font-normal dark:text-white">{{ $layout->introduction }}</p>

@@ -19,7 +19,6 @@ use Laravel\Nova\Fields\FormData;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Tag;
-use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Panel;
 use Whitecube\NovaFlexibleContent\Flexible;
 
@@ -129,9 +128,6 @@ class Strand extends Resource
                 ->hideFromIndex()
                 ->maxLength(250)
                 ->enforceMaxlength(),
-            Trix::make("Additional description")
-                ->hideFromIndex(),
-            Image::make("Funders logo", "funders_logo")->disableDownload()->help('Logos should have a transparent background and be in PNG format. Individual logos should be approximately 300-400px wide. Multiple logos can be artworked on a canvas 800px wide.')->hideFromIndex(),
             Boolean::make("Show on event card")->hideFromIndex(),
             Boolean::make("Show on instance card")->hideFromIndex(),
             Boolean::make("Show in booking path")->hideFromIndex(),
@@ -139,6 +135,17 @@ class Strand extends Resource
 
             new Panel("Content", [
                 Flexible::make("Content", "content")
+                    ->help(
+                        "A new page starts with its introduction, flex pass and what’s on " .
+                            "slider. The page is built from exactly what is listed here, so " .
+                            "removing one of those removes it from the page too."
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\ProgrammeIntroductionLayout::class
+                    )
+                    ->addLayout(
+                        \App\Nova\Flexible\Layouts\ProgrammeSliderLayout::class
+                    )
                     ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
                     ->addLayout(
                         \App\Nova\Flexible\Layouts\JournalPostLayout::class

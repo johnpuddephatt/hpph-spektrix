@@ -54,48 +54,10 @@
 
     </div>
 
-    <div id="event-content" class="bg-yellow pb-24 pt-8 text-center lg:pb-16 lg:pt-12">
-        <div class="type-xs-mono pb-12 lg:pb-8">{{ $season->name }}</div>
-        <div class="type-regular lg:type-medium container max-w-4xl text-center">{{ $season->description }}</div>
-        @if ($season->additional_description)
-            <div class="prose container mt-6 max-w-3xl text-center">{!! $season->additional_description !!}</div>
-        @endif
-        @if ($season->funders_logo)
-            <img onload="this.style.width = this.clientWidth/2 + 'px'; this.classList.add('max-w-sm'); this.classList.remove('opacity-0')"
-                src="{{ Storage::url($season->funders_logo) }}" alt=""
-                class="mx-auto mt-8 h-auto w-auto px-4 opacity-0">
-        @endif
+    <div id="event-content" class="bg-black">
+        @foreach ($season->contentBlocks() as $layout)
+            @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => true])
+        @endforeach
     </div>
-
-    @include('spektrix-components.ticket-subscription-feature', [
-        'subscription' => $season->ticketSubscription,
-    ])
-
-    @if ($entries->count())
-        <div class="bg-black text-yellow">
-            <div class="container pb-16 pt-24">
-                <p class="type-xs-mono container mb-2 text-center text-white">What’s on
-                </p>
-                <h2 class="type-regular lg:type-medium container mb-12 text-center">
-                    {{ $season->name }}
-                </h2>
-
-                <x-instance-slider :type="$season->display_type" :entries="$entries" color="#f2d13c" :layout="match ($entries->count()) {
-                    1 => 'extra-wide',
-                    2 => 'wide',
-                    default => 'default',
-                }"
-                    :show_strand="false" />
-            </div>
-        </div>
-    @endif
-
-    @if ($season->content)
-        <div class="bg-black">
-            @foreach ($season->content as $layout)
-                @include('blocks.' . $layout->name(), ['layout' => $layout, 'dark' => true])
-            @endforeach
-        </div>
-    @endif
 
 @endsection
