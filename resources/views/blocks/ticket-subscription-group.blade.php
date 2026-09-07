@@ -30,7 +30,7 @@
             </div>
         @endif
 
-        <div class="container space-y-16 py-16 lg:py-24">
+        <div class="container space-y-16 py-16 lg:py-24 {{ $dark ? 'bg-black-light' : null }}">
 
             @if ($layout->introduction)
                 <p class="type-regular max-w-2xl !font-normal dark:text-white">{{ $layout->introduction }}</p>
