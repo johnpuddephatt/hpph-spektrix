@@ -2,6 +2,8 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use App\Models\TicketSubscription;
+
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -35,8 +37,9 @@ class TicketSubscriptionGroupLayout extends Layout
     {
         return [
             Heading::make(
-                'On a strand or season page, leave the list below empty to show whichever '.
-                    'passes are set to appear on it (their <em>Shown on</em> field). Add passes '.
+                'Leave the list below empty and this shows the passes that belong here: on a '.
+                    'strand or season, whichever pass is set to appear on it (its <em>Shown '.
+                    'on</em> field); anywhere else, every pass currently on sale. Add passes '.
                     'below to choose them by hand instead.'
             )->asHtml(),
             Text::make('Title')->help('Optional heading shown above the subscriptions.'),
@@ -58,10 +61,11 @@ class TicketSubscriptionGroupLayout extends Layout
     /**
      * The subscriptions that are actually buyable, in editor order.
      *
-     * An empty list is not "show nothing" but "show what this page has been
-     * given": the passes whose subject is this strand or season. That is what
-     * a strand or season page shows unless an editor picks passes by hand, and
-     * on a page with no subject at all it simply stays empty.
+     * An empty list is not "show nothing" but "show the passes that belong
+     * here". On a strand or season that means the pass assigned to it, and
+     * none if it has not been given one. Anywhere else there is nothing to
+     * narrow by, so it means every pass on sale — which is what makes the
+     * ticket subscriptions page list them all without an editor doing anything.
      *
      * Gives the view a plain collection of models to loop, so it needs no
      * knowledge of the nested layout fields or of the sale window.
@@ -79,10 +83,10 @@ class TicketSubscriptionGroupLayout extends Layout
 
         $subject = $this->model;
 
-        if (! $subject || ! method_exists($subject, 'ticketSubscription')) {
-            return collect();
+        if ($subject && method_exists($subject, 'ticketSubscription')) {
+            return collect([$subject->ticketSubscription])->filter()->values();
         }
 
-        return collect([$subject->ticketSubscription])->filter()->values();
+        return TicketSubscription::onSale()->orderBy('name')->get();
     }
 }

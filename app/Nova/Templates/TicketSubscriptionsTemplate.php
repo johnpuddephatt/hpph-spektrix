@@ -2,9 +2,11 @@
 
 namespace App\Nova\Templates;
 
+use App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
 use Whitecube\NovaFlexibleContent\Flexible;
+use Whitecube\NovaFlexibleContent\Layouts\Collection;
 
 class TicketSubscriptionsTemplate
 {
@@ -30,9 +32,22 @@ class TicketSubscriptionsTemplate
         ];
     }
 
-    // Resolve data for serialization
+    /**
+     * A page with no content of its own lists every pass on sale, so the page
+     * is useful the moment it is created and keeps up with Spektrix on its own.
+     * Adding any content here takes that over, exactly as it does elsewhere.
+     */
     public function resolve($page)
     {
-        return $page->content;
+        $content = $page->content;
+
+        if ($content instanceof Collection && $content->isNotEmpty()) {
+            return $content;
+        }
+
+        // An empty group resolves to every pass on sale; see the layout.
+        return new Collection([
+            (new TicketSubscriptionGroupLayout(null, null, []))->setModel($page),
+        ]);
     }
 }
