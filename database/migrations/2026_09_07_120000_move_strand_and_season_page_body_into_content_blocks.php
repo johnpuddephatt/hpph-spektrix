@@ -1,5 +1,6 @@
 <?php
 
+use App\Cache\ContentCache;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -52,6 +53,8 @@ return new class extends Migration
                 ));
             }
         }
+
+        ContentCache::clear();
     }
 
     public function down(): void
@@ -65,6 +68,8 @@ return new class extends Migration
                 $this->write($table, $row->id, $this->withoutLeadingDefaults($blocks));
             }
         }
+
+        ContentCache::clear();
     }
 
     /**

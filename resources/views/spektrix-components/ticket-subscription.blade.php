@@ -37,8 +37,11 @@
             @if ($subscription->benefits)
                 <ul>
                     @foreach ($subscription->benefits as $benefit)
-                        <li class="type-xs-mono border-b border-sand-dark py-3 dark:border-gray-dark">
-                            {{ $benefit }}
+                        {{-- Same tick bullet as the key features on the jobs page. --}}
+                        <li
+                            class="type-xs-mono flex items-center gap-2 border-b border-sand-dark py-3 dark:border-gray-dark">
+                            @svg('tick', 'h-6 w-6 shrink-0 rounded-full bg-yellow p-1 text-black')
+                            <span>{{ $benefit }}</span>
                         </li>
                     @endforeach
                 </ul>
