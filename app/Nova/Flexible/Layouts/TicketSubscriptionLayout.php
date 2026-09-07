@@ -2,6 +2,7 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use App\Models\TicketSubscription;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Laravel\Nova\Fields\Select;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
@@ -36,7 +37,7 @@ class TicketSubscriptionLayout extends Layout
                 ->options(
                     static::cachedOptions(
                         'ticket_subscriptions',
-                        fn () => \App\Models\TicketSubscription::pluck('name', 'id')
+                        fn () => TicketSubscription::pluck('name', 'id')
                     )
                 )
                 ->searchable()
@@ -55,7 +56,7 @@ class TicketSubscriptionLayout extends Layout
      */
     public function getSubscriptionAttribute()
     {
-        $subscription = \App\Models\TicketSubscription::find($this->ticket_subscription_id);
+        $subscription = TicketSubscription::find($this->ticket_subscription_id);
 
         return $subscription && $subscription->isOnSale() ? $subscription : null;
     }

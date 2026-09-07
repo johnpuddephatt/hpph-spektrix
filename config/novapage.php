@@ -1,5 +1,10 @@
 <?php
 
+use Whitecube\NovaPage\Pages\OptionResource;
+use Whitecube\NovaPage\Pages\PageResource;
+use Whitecube\NovaPage\Sources\Database;
+use Whitecube\NovaPage\Sources\StaticPage;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -10,11 +15,11 @@ return [
     | Note that translation keys can be used instead of plain text.
     |
     */
-    "labels" => [
-        "pages" => "Pages",
-        "page" => "Page",
-        "options" => "Options",
-        "option" => "Option",
+    'labels' => [
+        'pages' => 'Pages',
+        'page' => 'Page',
+        'options' => 'Options',
+        'option' => 'Option',
     ],
 
     /*
@@ -25,7 +30,7 @@ return [
     | Set the displayable label of the resource.
     |
     */
-    "resource_label" => "nova-pages",
+    'resource_label' => 'nova-pages',
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +40,7 @@ return [
     | Set the displayable singular label of the resource.
     |
     */
-    "resource_singular_label" => "nova-page",
+    'resource_singular_label' => 'nova-page',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +50,7 @@ return [
     | How should we format (for display only) dates in the page resource views?
     |
     */
-    "date_format" => "DD/MM/YYYY · HH:mm",
+    'date_format' => 'DD/MM/YYYY · HH:mm',
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +61,7 @@ return [
     | long as it extends Whitecube\NovaPage\Pages\OptionResource.
     |
     */
-    "default_option_resource" =>
-        \Whitecube\NovaPage\Pages\OptionResource::class,
+    'default_option_resource' => OptionResource::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +72,7 @@ return [
     | long as it extends Whitecube\NovaPage\Pages\PageResource.
     |
     */
-    "default_page_resource" => \Whitecube\NovaPage\Pages\PageResource::class,
+    'default_page_resource' => PageResource::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +84,7 @@ return [
     | implements the Whitecube\NovaPage\Sources\SourceInterface.
     |
     */
-    "default_source" => \Whitecube\NovaPage\Sources\Database::class,
+    'default_source' => Database::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -92,17 +96,17 @@ return [
     | provided when instanciated. This means you can add your own source's
     | configuration here too.
     |
-    | Path configurations can contain the following variables: 
+    | Path configurations can contain the following variables:
     | {type}, {key}, {locale}
     |
     */
-    "sources" => [
-        "filesystem" => [
-            "path" => resource_path("lang/{type}/{key}.json"),
+    'sources' => [
+        'filesystem' => [
+            'path' => resource_path('lang/{type}/{key}.json'),
         ],
-        "database" => [
-            "table_name" => "static_pages",
-            "model" => \Whitecube\NovaPage\Sources\StaticPage::class,
+        'database' => [
+            'table_name' => 'static_pages',
+            'model' => StaticPage::class,
         ],
     ],
 ];

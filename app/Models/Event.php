@@ -2,46 +2,45 @@
 
 namespace App\Models;
 
+use Advoor\NovaEditorJs\NovaEditorJsCast;
+use Astrotomic\CachableAttributes\CachableAttributes;
+use Astrotomic\CachableAttributes\CachesAttributes;
+use Carbon\Carbon;
+use Carbon\CarbonInterval;
+use Cohensive\OEmbed\Facades\OEmbed;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Astrotomic\CachableAttributes\CachableAttributes;
-use Astrotomic\CachableAttributes\CachesAttributes;
-use Advoor\NovaEditorJs\NovaEditorJsCast;
-use Carbon\Carbon;
 use Whitecube\NovaFlexibleContent\Value\FlexibleCast;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Cohensive\OEmbed\Facades\OEmbed;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Spatie\Image\Enums\CropPosition;
-use Spatie\Image\Enums\Fit;
 
-class Event extends Model implements HasMedia, CachableAttributes
+class Event extends Model implements CachableAttributes, HasMedia
 {
-    use HasFactory;
-    use Sluggable;
-    use InteractsWithMedia;
     use CachesAttributes;
+    use HasFactory;
+    use InteractsWithMedia;
     use LogsActivity;
+    use Sluggable;
     use SoftDeletes;
 
     public $timestamps = false;
+
     public $incrementing = false;
-    protected $keyType = "string";
+
+    protected $keyType = 'string';
 
     /**
      * Every boolean and date column the Spektrix import writes needs a cast here.
@@ -50,27 +49,27 @@ class Event extends Model implements HasMedia, CachableAttributes
      * import — needless writes, and a full cache clear via the observer.
      */
     protected $casts = [
-        "enabled" => "boolean",
-        "published" => "boolean",
-        "long_description" => NovaEditorJsCast::class,
-        "reviews" => FlexibleCast::class,
-        "why_watch" => "object",
-        "first_instance_date_time" => "datetime",
-        "last_instance_date_time" => "datetime",
-        "is_on_sale" => "boolean",
-        "alternative_content" => "boolean",
-        "archive_film" => "boolean",
-        "audio_description" => "boolean",
-        "mubigo" => "boolean",
-        "non_specialist_film" => "boolean",
-        "members_offer_available" => "boolean",
-        "show_in_programme" => "boolean",
+        'enabled' => 'boolean',
+        'published' => 'boolean',
+        'long_description' => NovaEditorJsCast::class,
+        'reviews' => FlexibleCast::class,
+        'why_watch' => 'object',
+        'first_instance_date_time' => 'datetime',
+        'last_instance_date_time' => 'datetime',
+        'is_on_sale' => 'boolean',
+        'alternative_content' => 'boolean',
+        'archive_film' => 'boolean',
+        'audio_description' => 'boolean',
+        'mubigo' => 'boolean',
+        'non_specialist_film' => 'boolean',
+        'members_offer_available' => 'boolean',
+        'show_in_programme' => 'boolean',
     ];
 
     protected static function booted()
     {
-        static::addGlobalScope("published", function (Builder $builder) {
-            $builder->where("published", true);
+        static::addGlobalScope('published', function (Builder $builder) {
+            $builder->where('published', true);
         });
 
         // static::addGlobalScope("enabled", function (Builder $builder) {
@@ -79,76 +78,76 @@ class Event extends Model implements HasMedia, CachableAttributes
     }
 
     protected $fillable = [
-        "published",
-        "enabled",
-        "id",
-        "description",
-        "long_description",
-        "reviews",
-        "why_watch",
-        "duration",
-        "is_on_sale",
-        "name",
-        "subtitle",
-        "instance_dates",
-        "first_instance_date_time",
-        "last_instance_date_time",
-        "alternative_content",
-        "archive_film",
-        "audio_description",
-        "mubigo",
-        "non_specialist_film",
-        "country_of_origin",
-        "director",
-        "distributor",
-        "f_rating",
-        "language",
-        "original_language_title",
-        "strobe_light_warning",
-        "content_guidance",
-        "year_of_production",
-        "featuring_stars",
-        "genres",
-        "vibes",
-        "members_offer_available",
-        "certificate_age_guidance",
-        "trailer",
-        "coming_soon",
-        "external_booking_link",
-        "related_event_id",
-        "show_in_programme"
+        'published',
+        'enabled',
+        'id',
+        'description',
+        'long_description',
+        'reviews',
+        'why_watch',
+        'duration',
+        'is_on_sale',
+        'name',
+        'subtitle',
+        'instance_dates',
+        'first_instance_date_time',
+        'last_instance_date_time',
+        'alternative_content',
+        'archive_film',
+        'audio_description',
+        'mubigo',
+        'non_specialist_film',
+        'country_of_origin',
+        'director',
+        'distributor',
+        'f_rating',
+        'language',
+        'original_language_title',
+        'strobe_light_warning',
+        'content_guidance',
+        'year_of_production',
+        'featuring_stars',
+        'genres',
+        'vibes',
+        'members_offer_available',
+        'certificate_age_guidance',
+        'trailer',
+        'coming_soon',
+        'external_booking_link',
+        'related_event_id',
+        'show_in_programme',
     ];
 
     protected $appends = [
-        "date_range",
-        "has_captioned",
-        "has_signed_bsl",
-        "has_relaxed",
-        "has_autism_friendly",
-        "has_toddler_friendly",
-        "genres_and_vibes",
+        'date_range',
+        'has_captioned',
+        'has_signed_bsl',
+        'has_relaxed',
+        'has_autism_friendly',
+        'has_toddler_friendly',
+        'genres_and_vibes',
     ];
 
     protected $cachableAttributes = [
-        "has_captioned",
-        "has_signed_bsl",
-        "has_relaxed",
-        "has_autism_friendly",
-        "has_toddler_friendly"
+        'has_captioned',
+        'has_signed_bsl',
+        'has_relaxed',
+        'has_autism_friendly',
+        'has_toddler_friendly',
     ];
 
     public function scopeUnpublished($query)
     {
         return $query
-            ->withoutGlobalScope("published")
-            ->where("published", false);
+            ->withoutGlobalScope('published')
+            ->where('published', false);
     }
 
     public function scopeHasFutureOrRecentInstances(Builder $query)
     {
         return $query->where(
-            "last_instance_date_time",
-            ">",
+            'last_instance_date_time',
+            '>',
             Carbon::now()->subDays(30)
         )->orWhereNotNull('coming_soon');
     }
@@ -156,26 +155,26 @@ class Event extends Model implements HasMedia, CachableAttributes
     public function scopeHasFutureInstances(Builder $query)
     {
         return $query->where(
-            "last_instance_date_time",
-            ">",
+            'last_instance_date_time',
+            '>',
             Carbon::now()->subMinutes(60)
         )->orWhereNotNull('coming_soon');
     }
 
     public function scopeAudioDescribed($query)
     {
-        return $query->where("audio_description", true);
+        return $query->where('audio_description', true);
     }
 
     public function scopeShownInProgramme($query)
     {
-        return $query->where("show_in_programme", true);
+        return $query->where('show_in_programme', true);
     }
 
     public static function getEventsForSlider($type, $name, $exclude = [])
     {
         return Event::shownInProgramme()->whereHas('allFutureInstances', function (Builder $query) use ($name, $type) {
-            $query->whereHas($type . 's', function (Builder $q) use ($name) {
+            $query->whereHas($type.'s', function (Builder $q) use ($name) {
                 $q->where('name', $name);
             });
         })
@@ -184,74 +183,73 @@ class Event extends Model implements HasMedia, CachableAttributes
 
             ->sortBy([
                 'coming_soon',
-                fn($a, $b) => $a->allFutureInstances()->orderBy('start')->first()->start->timestamp - $b->allFutureInstances()->orderBy('start')->first()->start->timestamp,
+                fn ($a, $b) => $a->allFutureInstances()->orderBy('start')->first()->start->timestamp - $b->allFutureInstances()->orderBy('start')->first()->start->timestamp,
             ]);
     }
 
-
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(["name"]);
+        return LogOptions::defaults()->logOnly(['name']);
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion("thumb")
+        $this->addMediaConversion('thumb')
             ->width(1920)
             ->height(1080)
             ->fit(Fit::Crop, 1920, 1080)
             ->extractVideoFrameAtSecond(0);
         // ->performOnCollections("video");
 
-        $this->addMediaConversion("square")
+        $this->addMediaConversion('square')
             ->quality(80)
             ->width(800)
             ->height(800)
             ->sharpen(10)
             ->fit(Fit::Crop, 800, 800)
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
 
-        $this->addMediaConversion("wide")
+        $this->addMediaConversion('wide')
             ->quality(80)
             ->fit(Fit::Crop, 2000, 1200)
             ->sharpen(10)
-            ->format("webp")
+            ->format('webp')
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection("video")->singleFile();
-        $this->addMediaCollection("main")->singleFile();
-        $this->addMediaCollection("gallery");
+        $this->addMediaCollection('video')->singleFile();
+        $this->addMediaCollection('main')->singleFile();
+        $this->addMediaCollection('gallery');
     }
 
     public function featuredImage(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "main"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'main'
         );
     }
 
     public function featuredVideo(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "video"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'video'
         );
     }
 
     public function gallery(): MorphMany
     {
-        return $this->morphMany(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "gallery"
+        return $this->morphMany(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'gallery'
         );
     }
 
@@ -264,7 +262,7 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function related_event(): BelongsTo
     {
-        return $this->belongsTo(Event::class, "related_event_id");
+        return $this->belongsTo(Event::class, 'related_event_id');
     }
 
     public function posts(): BelongsToMany
@@ -274,17 +272,16 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function instances(): HasMany
     {
-        return $this->hasMany(Instance::class)->withoutGlobalScope("has_event");
+        return $this->hasMany(Instance::class)->withoutGlobalScope('has_event');
     }
 
     public function pastAndFutureInstances(): HasMany
     {
         return $this->hasMany(Instance::class)->withoutGlobalScopes([
-            "has_event",
-            "has_future_instances",
+            'has_event',
+            'has_future_instances',
         ]);
     }
-
 
     public function allInstances(): HasMany
     {
@@ -298,22 +295,20 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     /**
      * Return the sluggable configuration array for this model.
-     *
-     * @return array
      */
     public function sluggable(): array
     {
         return [
-            "slug" => [
-                "source" => "name",
+            'slug' => [
+                'source' => 'name',
             ],
         ];
     }
 
     public function getHasCaptionedAttribute(): bool
     {
-        return $this->remember("has_captioned", 3600, function (): bool {
-            return !!$this->instances()
+        return $this->remember('has_captioned', 3600, function (): bool {
+            return (bool) $this->instances()
                 ->captioned()
                 ->count();
         });
@@ -321,8 +316,8 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getHasSignedBslAttribute(): bool
     {
-        return $this->remember("has_signed_bsl", 3600, function (): bool {
-            return !!$this->instances()
+        return $this->remember('has_signed_bsl', 3600, function (): bool {
+            return (bool) $this->instances()
                 ->signedBsl()
                 ->count();
         });
@@ -330,8 +325,8 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getHasRelaxedAttribute(): bool
     {
-        return $this->remember("has_relaxed", 3600, function (): bool {
-            return !!$this->instances()
+        return $this->remember('has_relaxed', 3600, function (): bool {
+            return (bool) $this->instances()
                 ->relaxed()
                 ->count();
         });
@@ -339,8 +334,8 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getHasAutismFriendlyAttribute(): bool
     {
-        return $this->remember("has_autism_friendly", 3600, function (): bool {
-            return !!$this->instances()
+        return $this->remember('has_autism_friendly', 3600, function (): bool {
+            return (bool) $this->instances()
                 ->autismFriendly()
                 ->count();
         });
@@ -348,8 +343,8 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getHasToddlerFriendlyAttribute(): bool
     {
-        return $this->remember("has_toddler_friendly", 3600, function (): bool {
-            return !!$this->instances()
+        return $this->remember('has_toddler_friendly', 3600, function (): bool {
+            return (bool) $this->instances()
                 ->toddlerFriendly()
                 ->count();
         });
@@ -367,18 +362,18 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getTrailerEmbedAttribute(): array
     {
-        return $this->remember("trailer", 3600, function (): array {
+        return $this->remember('trailer', 3600, function (): array {
             if ($this->trailer) {
                 $trailerEmbed = OEmbed::get($this->trailer);
                 if ($trailerEmbed) {
                     return [
-                        "html" => $trailerEmbed->html([
-                            "class" => "absolute inset-0 w-full h-full",
-                            "autoplay" => 1,
+                        'html' => $trailerEmbed->html([
+                            'class' => 'absolute inset-0 w-full h-full',
+                            'autoplay' => 1,
                         ]),
-                        "ratio" => isset($trailerEmbed->data()["height"])
-                            ? ($trailerEmbed->data()["height"] /
-                                $trailerEmbed->data()["width"]) *
+                        'ratio' => isset($trailerEmbed->data()['height'])
+                            ? ($trailerEmbed->data()['height'] /
+                                $trailerEmbed->data()['width']) *
                             100
                             : 56.25,
                     ];
@@ -403,63 +398,63 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getSpektrixApiLinkAttribute(): string
     {
-        return 'https://system.spektrix.com/' . nova_get_setting('spektrix_client_name') .  '/api/v3/events/' . $this->id;
+        return 'https://system.spektrix.com/'.nova_get_setting('spektrix_client_name').'/api/v3/events/'.$this->id;
     }
 
     public function getStrandAttribute($value)
     {
-        return $this->remember("strand", 3600, function () {
+        return $this->remember('strand', 3600, function () {
             return $this->strands->first();
         });
     }
 
     public function getStrandsAttribute($value)
     {
-        return $this->remember("strands", 3600, function () {
+        return $this->remember('strands', 3600, function () {
             return $this->allFutureInstances
-                ->pluck("strands")
+                ->pluck('strands')
                 ->flatten()
                 ->filter()
-                ->unique("id")
+                ->unique('id')
                 ->values();
         });
     }
 
     public function getSeasonAttribute($value)
     {
-        return $this->remember("season", 3600, function () {
+        return $this->remember('season', 3600, function () {
             return $this->seasons->first();
         });
     }
 
     public function getSeasonsAttribute($value)
     {
-        return $this->remember("seasons", 3600, function () {
+        return $this->remember('seasons', 3600, function () {
             return $this->allFutureInstances
-                ->pluck("seasons")
+                ->pluck('seasons')
                 ->flatten()
                 ->filter()
-                ->unique("id")
+                ->unique('id')
                 ->values();
         });
     }
 
     public function getDateRangeAttribute()
     {
-        return $this->remember("dateRange", 3600, function () {
+        return $this->remember('dateRange', 3600, function () {
             if ($this->coming_soon) {
-                return 'Coming soon • ' . $this->coming_soon;
+                return 'Coming soon • '.$this->coming_soon;
             } elseif ($this->instances->count() == 0) {
-                return "";
+                return '';
             } else {
-                $dates = $this->instances->pluck("start_date")->unique();
+                $dates = $this->instances->pluck('start_date')->unique();
 
                 if ($dates->count() == 1) {
 
-                    return $dates->first() .
-                        " &middot; " . $this->instances->pluck('start_time')->implode(' &amp; ');
+                    return $dates->first().
+                        ' &middot; '.$this->instances->pluck('start_time')->implode(' &amp; ');
                 } else {
-                    return $dates->first() . " – " . $dates->last();
+                    return $dates->first().' – '.$dates->last();
                 }
             }
         });
@@ -467,7 +462,7 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getUrlAttribute()
     {
-        return route("event.show", ["event" => $this->slug]);
+        return route('event.show', ['event' => $this->slug]);
     }
 
     // public function getVenueAttribute()
@@ -487,15 +482,16 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getFormatAttribute()
     {
-        return $this->remember("format", 3600, function () {
-            if (!$this->instances->count()) {
+        return $this->remember('format', 3600, function () {
+            if (! $this->instances->count()) {
                 return null;
             }
+
             return $this->instances
-                ->pluck("analogue")
+                ->pluck('analogue')
                 ->unique()
                 ->count() > 1
-                ? "Showing in multiple formats"
+                ? 'Showing in multiple formats'
                 : ($this->instances->first()->analogue ?:
                     null);
         });
@@ -503,43 +499,42 @@ class Event extends Model implements HasMedia, CachableAttributes
 
     public function getLanguageAttribute($value): array
     {
-        return $value ? explode(",", $value) : [];
+        return $value ? explode(',', $value) : [];
     }
 
     public function getGenresAndVibesAttribute(): array
     {
-        $genres = $this->genres ? explode(",", $this->genres) : [];
-        $vibes = $this->vibes ? explode(",", $this->vibes) : [];
+        $genres = $this->genres ? explode(',', $this->genres) : [];
+        $vibes = $this->vibes ? explode(',', $this->vibes) : [];
 
         return array_merge($genres, $vibes);
     }
 
     public function getFeaturingStarsAttribute($value): array
     {
-        return $value ? explode(",", $value) : [];
+        return $value ? explode(',', $value) : [];
     }
 
     public function getCountryOfOriginAttribute($value): array
     {
-        return $value ? explode(",", $value) : [];
+        return $value ? explode(',', $value) : [];
     }
 
     public function getContentGuidanceAttribute($value): array
     {
-        return $value ? explode(",", $value) : [];
+        return $value ? explode(',', $value) : [];
     }
 
     public function getDurationAttribute($value): string
     {
         return Str::of(
-            \Carbon\CarbonInterval::seconds($value * 60)
+            CarbonInterval::seconds($value * 60)
                 ->cascade()
                 ->forHumans()
         )
-            ->replace(" hour", "hr")
-            ->replace(" minute", "min");
+            ->replace(' hour', 'hr')
+            ->replace(' minute', 'min');
     }
-
 
     // public function todayInstances()
     // {

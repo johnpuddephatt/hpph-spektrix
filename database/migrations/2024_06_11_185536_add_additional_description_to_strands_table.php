@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('strands', function (Blueprint $table) {
-            $table->text("additional_description")->nullable();
-            $table->string("funders_logo")->nullable();
+            $table->text('additional_description')->nullable();
+            $table->string('funders_logo')->nullable();
         });
     }
 

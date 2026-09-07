@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Programme;
 
-use Livewire\Attributes\Url;
+use App\Models\Event;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -10,12 +10,11 @@ class Alphabetical extends Component
 {
     use WithPagination;
 
-
-    public  $type = "alphabetical";
+    public $type = 'alphabetical';
 
     public function paginationView()
     {
-        return "vendor.livewire.tailwind";
+        return 'vendor.livewire.tailwind';
     }
 
     public function gotoPage($page)
@@ -33,16 +32,16 @@ class Alphabetical extends Component
     public function render()
     {
 
-        $events = \App\Models\Event::shownInProgramme()
-            ->orderBy("name")
-            ->with("featuredImage", "instances.strands");
+        $events = Event::shownInProgramme()
+            ->orderBy('name')
+            ->with('featuredImage', 'instances.strands');
 
         if ($this->type !== 'past') {
             $events = $events->hasFutureInstances();
         }
 
-
         $events = $events->paginate(156);
-        return view("livewire.programme.alphabetical", compact('events'));
+
+        return view('livewire.programme.alphabetical', compact('events'));
     }
 }

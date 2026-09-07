@@ -2,64 +2,62 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\Activitylog\LogOptions;
-use Spatie\Tags\HasTags;
 use Advoor\NovaEditorJs\NovaEditorJsCast;
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Image\Enums\CropPosition;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Image\Enums\Fit;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Spatie\Tags\HasTags;
 
-class Post extends Model implements HasMedia, CachableAttributes
+class Post extends Model implements CachableAttributes, HasMedia
 {
     use CachesAttributes;
-
     use HasFactory;
+    use HasTags;
     use InteractsWithMedia;
     use LogsActivity;
-    use HasTags;
     use Sluggable;
     use SoftDeletes;
 
-    protected $dateOutputFormat = "d M Y";
+    protected $dateOutputFormat = 'd M Y';
 
     protected $fillable = [
-        "title",
-        "introduction",
-        "featured",
-        "published",
-        "content",
-        "slug",
-        "subtitle",
+        'title',
+        'introduction',
+        'featured',
+        'published',
+        'content',
+        'slug',
+        'subtitle',
     ];
 
     protected $casts = [
-        "created_at" => "date",
-        "featured" => "boolean",
-        "published" => "boolean",
-        "content" => NovaEditorJsCast::class,
+        'created_at' => 'date',
+        'featured' => 'boolean',
+        'published' => 'boolean',
+        'content' => NovaEditorJsCast::class,
     ];
 
-    protected $appends = ["url", "date"];
-    protected $with = ["featuredImage"];
+    protected $appends = ['url', 'date'];
+
+    protected $with = ['featuredImage'];
 
     protected static function booted()
     {
-        static::addGlobalScope("published", function (Builder $builder) {
-            $builder->where("published", true);
+        static::addGlobalScope('published', function (Builder $builder) {
+            $builder->where('published', true);
         });
 
         static::saving(function ($post) {
@@ -73,50 +71,50 @@ class Post extends Model implements HasMedia, CachableAttributes
     public function sluggable(): array
     {
         return [
-            "slug" => [
-                "source" => "title",
+            'slug' => [
+                'source' => 'title',
             ],
         ];
     }
 
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logOnly(["title"]);
+        return LogOptions::defaults()->logOnly(['title']);
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection("main")->singleFile();
+        $this->addMediaCollection('main')->singleFile();
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion("wide")
+        $this->addMediaConversion('wide')
             ->quality(80)
             ->sharpen(10)
             ->width(1500)
             ->height(627)
             ->fit(Fit::Crop, 1500, 627)
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
 
-        $this->addMediaConversion("landscape")
+        $this->addMediaConversion('landscape')
             ->quality(80)
             ->sharpen(10)
             ->width(1200)
             ->height(800)
             ->fit(Fit::Crop, 1200, 800)
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
 
-        $this->addMediaConversion("square")
+        $this->addMediaConversion('square')
             ->quality(80)
             ->sharpen(10)
             ->width(800)
             ->height(800)
             ->fit(Fit::Crop, 800, 800)
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
     }
 
     public function getDateAttribute()
@@ -128,22 +126,22 @@ class Post extends Model implements HasMedia, CachableAttributes
 
     public function getUrlAttribute()
     {
-        return route("post.show", ["post" => $this->slug]);
+        return route('post.show', ['post' => $this->slug]);
     }
 
     public function relatedPosts($number)
     {
         $related = Post::withAnyTags($this->tags)
             ->latest()
-            ->whereNot("id", $this->id)
+            ->whereNot('id', $this->id)
             ->take($number)
             ->get();
         if ($related->count() < $number) {
             return $related->merge(
                 Post::latest()
                     ->whereNotIn(
-                        "id",
-                        $related->pluck("id")->toArray() + [$this->id]
+                        'id',
+                        $related->pluck('id')->toArray() + [$this->id]
                     )
                     ->take($number - $related->count())
                     ->get()
@@ -155,37 +153,37 @@ class Post extends Model implements HasMedia, CachableAttributes
 
     public function getTagsTranslatedAttribute()
     {
-        return $this->remember("tags_translated", 3600, function () {
+        return $this->remember('tags_translated', 3600, function () {
             return $this->tagsTranslated()->get();
         });
     }
 
     public function featuredImage(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "main"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'main'
         );
     }
 
     public function events(): BelongsToMany
     {
-        return $this->belongsToMany(\App\Models\Event::class);
+        return $this->belongsToMany(Event::class);
     }
 
     public function strands(): BelongsToMany
     {
-        return $this->belongsToMany(\App\Models\Strand::class);
+        return $this->belongsToMany(Strand::class);
     }
 
     public function seasons(): BelongsToMany
     {
-        return $this->belongsToMany(\App\Models\Season::class);
+        return $this->belongsToMany(Season::class);
     }
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Nova\Flexible\Layouts;
 
 use Laravel\Nova\Fields\Boolean;
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class HomeStrandsLayout extends Layout
 {
@@ -15,14 +15,14 @@ class HomeStrandsLayout extends Layout
      *
      * @var string
      */
-    protected $name = "home-strands";
+    protected $name = 'home-strands';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Home Strands";
+    protected $title = 'Home Strands';
 
     /**
      * Get the fields displayed by the layout.
@@ -32,9 +32,9 @@ class HomeStrandsLayout extends Layout
     public function fields()
     {
         return [
-            Text::make("Title", "title"),
-            Text::make("Subtitle", "subtitle"),
-            Boolean::make("Randomise order", "randomize"),
+            Text::make('Title', 'title'),
+            Text::make('Subtitle', 'subtitle'),
+            Boolean::make('Randomise order', 'randomize'),
         ];
     }
 }

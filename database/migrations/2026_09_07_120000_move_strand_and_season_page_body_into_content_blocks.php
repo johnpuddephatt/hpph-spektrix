@@ -98,7 +98,7 @@ return new class extends Migration
             'key' => Str::random(16),
             'attributes' => $layout === 'programme-introduction' && $introAttributes !== []
                 ? $introAttributes
-                : new stdClass(),
+                : new stdClass,
         ], $this->defaults);
     }
 

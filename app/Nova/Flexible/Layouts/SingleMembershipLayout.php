@@ -2,14 +2,10 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Advoor\NovaEditorJs\NovaEditorJsCast;
-use Advoor\NovaEditorJs\NovaEditorJsField;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\File;
-use Laravel\Nova\Fields\Heading;
+use App\Models\Membership;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class SingleMembershipLayout extends Layout
@@ -21,7 +17,7 @@ class SingleMembershipLayout extends Layout
      *
      * @var string
      */
-    protected $name = "single-membership";
+    protected $name = 'single-membership';
 
     protected $casts = [];
 
@@ -30,10 +26,9 @@ class SingleMembershipLayout extends Layout
      *
      * @var string
      */
-    protected $title = "Single membership";
+    protected $title = 'Single membership';
 
     public $collapsedPreviewAttribute = 'title';
-
 
     /**
      * Get the fields displayed by the layout.
@@ -43,10 +38,10 @@ class SingleMembershipLayout extends Layout
     public function fields()
     {
         return [
-            Text::make("Title"),
-            Text::make("Subtitle"),
-            Select::make("Membership", "membership_id")
-                ->options(static::cachedOptions("memberships", fn() => \App\Models\Membership::pluck("name", "id")))
+            Text::make('Title'),
+            Text::make('Subtitle'),
+            Select::make('Membership', 'membership_id')
+                ->options(static::cachedOptions('memberships', fn () => Membership::pluck('name', 'id')))
                 ->searchable()
                 ->displayUsingLabels(),
         ];
@@ -54,6 +49,6 @@ class SingleMembershipLayout extends Layout
 
     public function getMembershipAttribute()
     {
-        return \App\Models\Membership::find($this->membership_id);
+        return Membership::find($this->membership_id);
     }
 }

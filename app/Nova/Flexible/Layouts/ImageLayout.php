@@ -2,11 +2,12 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Image;
+use App\Nova\Actions\SaveAndResizeFullwidthImage;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Text;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class ImageLayout extends Layout
 {
@@ -15,14 +16,14 @@ class ImageLayout extends Layout
      *
      * @var string
      */
-    protected $name = "image";
+    protected $name = 'image';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Image";
+    protected $title = 'Image';
 
     /**
      * Get the fields displayed by the layout.
@@ -33,12 +34,12 @@ class ImageLayout extends Layout
     {
         return [
             Boolean::make('Short height', 'short_height'),
-            Image::make("Image", "image")
+            Image::make('Image', 'image')
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
-                ->store(new \App\Nova\Actions\SaveAndResizeFullwidthImage()),
-            Text::make("Caption", "caption"),
+                ->store(new SaveAndResizeFullwidthImage),
+            Text::make('Caption', 'caption'),
         ];
     }
 }

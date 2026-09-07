@@ -1,5 +1,8 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
 
+namespace App\Nova\Flexible\Layouts;
+
+use App\Models\User;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
@@ -11,18 +14,18 @@ class TeamLayout extends Layout
      *
      * @var string
      */
-    protected $name = "team";
+    protected $name = 'team';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Team";
+    protected $title = 'Team';
 
     public function getTeamAttribute()
     {
-        return \App\Models\User::where("show_in_directory", true)
+        return User::where('show_in_directory', true)
             ->get()
             ->shuffle();
     }
@@ -34,6 +37,6 @@ class TeamLayout extends Layout
      */
     public function fields()
     {
-        return [Text::make("Title"), Textarea::make("Subtitle")];
+        return [Text::make('Title'), Textarea::make('Subtitle')];
     }
 }

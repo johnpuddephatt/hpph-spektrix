@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('strands', function (Blueprint $table) {
-            $table->string('display_type')->default('instances');;
+            $table->string('display_type')->default('instances');
         });
     }
 

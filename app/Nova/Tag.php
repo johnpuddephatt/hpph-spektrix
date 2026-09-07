@@ -1,23 +1,24 @@
 <?php
+
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Laravel\Nova\Fields\Text;
 use Spatie\Tags\Tag as TagModel;
-use Illuminate\Support\Str;
 
 class Tag extends Resource
 {
     public static $model = TagModel::class;
 
-    public static $title = "name";
+    public static $title = 'name';
 
-    public static $search = ["name"];
+    public static $search = ['name'];
 
     public function fields(Request $request)
     {
         return [
-            Text::make("Name")
+            Text::make('Name')
                 ->sortable()
                 ->fillUsing(function (
                     $request,

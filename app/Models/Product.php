@@ -2,74 +2,74 @@
 
 namespace App\Models;
 
+use App\Casts\PageContentCast;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
-
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\Image\Enums\CropPosition;
-use Spatie\Image\Enums\Fit;
 
 class Product extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
-    use SoftDeletes;
     use Sluggable;
+    use SoftDeletes;
 
     public $incrementing = false;
-    protected $keyType = "string";
+
+    protected $keyType = 'string';
 
     protected static function booted()
     {
-        static::addGlobalScope("enabled", function (Builder $builder) {
-            $builder->where("enabled", true);
+        static::addGlobalScope('enabled', function (Builder $builder) {
+            $builder->where('enabled', true);
         });
 
-        static::addGlobalScope("published", function (Builder $builder) {
-            $builder->where("published", true);
+        static::addGlobalScope('published', function (Builder $builder) {
+            $builder->where('published', true);
         });
     }
 
     protected $casts = [
-        "content" => \App\Casts\PageContentCast::class,
+        'content' => PageContentCast::class,
         // Without this, the import's "enabled" => true never matches the stored 1,
         // so every row counts as dirty on every run — needless writes, and a full
         // cache clear through the observer.
-        "enabled" => "boolean",
+        'enabled' => 'boolean',
     ];
 
     protected $fillable = [
-        "enabled",
-        "published",
-        "slug",
-        "id",
-        "name",
-        "spektrix_name",
-        "description",
-        "price",
-        "postage",
-        "type",
-        "content",
+        'enabled',
+        'published',
+        'slug',
+        'id',
+        'name',
+        'spektrix_name',
+        'description',
+        'price',
+        'postage',
+        'type',
+        'content',
     ];
 
     public function sluggable(): array
     {
         return [
-            "slug" => [
-                "source" => "name",
+            'slug' => [
+                'source' => 'name',
             ],
         ];
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion("landscape")
+        $this->addMediaConversion('landscape')
             ->quality(80)
             // ->width(1920)
             // ->height(1080)
@@ -77,29 +77,29 @@ class Product extends Model implements HasMedia
             ->fit(Fit::Crop, 1200, 800)
 
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
 
-        $this->addMediaConversion("square")
+        $this->addMediaConversion('square')
             ->quality(80)
             ->width(1600)
             ->height(1200)
             ->sharpen(10)
             ->fit(Fit::Crop, 1600, 1600)
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection("main")->singleFile(); // used on page hero
+        $this->addMediaCollection('main')->singleFile(); // used on page hero
     }
 
     public function featuredImage(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "main"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'main'
         );
     }
 
@@ -110,16 +110,16 @@ class Product extends Model implements HasMedia
 
     public function getUrlAttribute()
     {
-        return route("product.show", ["product" => $this->slug]);
+        return route('product.show', ['product' => $this->slug]);
     }
 
     public function getPriceAttribute($value)
     {
-        return "£" . number_format($value, 2);
+        return '£'.number_format($value, 2);
     }
 
     public function getPostageAttribute($value)
     {
-        return "£" . number_format($value, 2);
+        return '£'.number_format($value, 2);
     }
 }

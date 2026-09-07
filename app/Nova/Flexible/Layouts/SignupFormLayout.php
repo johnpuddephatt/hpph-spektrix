@@ -2,6 +2,7 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use App\Models\SignupForm;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Laravel\Nova\Fields\Select;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
@@ -36,7 +37,7 @@ class SignupFormLayout extends Layout
                 ->options(
                     static::cachedOptions(
                         'signup_forms',
-                        fn () => \App\Models\SignupForm::pluck('name', 'id')
+                        fn () => SignupForm::pluck('name', 'id')
                     )
                 )
                 ->searchable()
@@ -48,6 +49,6 @@ class SignupFormLayout extends Layout
 
     public function getFormAttribute()
     {
-        return \App\Models\SignupForm::find($this->signup_form_id);
+        return SignupForm::find($this->signup_form_id);
     }
 }

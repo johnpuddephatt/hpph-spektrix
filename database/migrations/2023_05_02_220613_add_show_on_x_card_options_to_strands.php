@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,9 +13,9 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table("strands", function (Blueprint $table) {
-            $table->boolean("show_on_instance_card")->default(true);
-            $table->boolean("show_on_event_card")->default(false);
+        Schema::table('strands', function (Blueprint $table) {
+            $table->boolean('show_on_instance_card')->default(true);
+            $table->boolean('show_on_event_card')->default(false);
         });
     }
 
@@ -25,7 +26,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table("strands", function (Blueprint $table) {
+        Schema::table('strands', function (Blueprint $table) {
             //
         });
     }

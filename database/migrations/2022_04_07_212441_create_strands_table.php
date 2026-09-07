@@ -13,22 +13,22 @@ class CreateStrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create("strands", function (Blueprint $table) {
+        Schema::create('strands', function (Blueprint $table) {
             $table->id();
             $table->softDeletes();
-            $table->string("name", 50)->unique();
+            $table->string('name', 50)->unique();
             $table
-                ->string("slug")
+                ->string('slug')
                 ->unique()
                 ->nullable();
-            $table->boolean("published")->default(false);
-            $table->boolean("enabled")->default(false);
-            $table->string("short_description")->nullable();
-            $table->string("description")->nullable();
-            $table->string("color")->nullable();
-            $table->text("content")->nullable();
-            $table->text("logo")->nullable();
-            $table->text("logo_simple")->nullable();
+            $table->boolean('published')->default(false);
+            $table->boolean('enabled')->default(false);
+            $table->string('short_description')->nullable();
+            $table->string('description')->nullable();
+            $table->string('color')->nullable();
+            $table->text('content')->nullable();
+            $table->text('logo')->nullable();
+            $table->text('logo_simple')->nullable();
         });
     }
 
@@ -39,6 +39,6 @@ class CreateStrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("strands");
+        Schema::dropIfExists('strands');
     }
 }

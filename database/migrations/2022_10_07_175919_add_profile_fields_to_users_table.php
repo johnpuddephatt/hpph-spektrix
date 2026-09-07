@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,13 +13,13 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table("users", function (Blueprint $table) {
-            $table->string("slug");
-            $table->boolean("show_in_directory")->default(false);
-            $table->boolean("enable_login")->default(false);
-            $table->string("role_title")->nullable();
-            $table->text("role_description")->nullable();
-            $table->json("extras")->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('slug');
+            $table->boolean('show_in_directory')->default(false);
+            $table->boolean('enable_login')->default(false);
+            $table->string('role_title')->nullable();
+            $table->text('role_description')->nullable();
+            $table->json('extras')->nullable();
         });
     }
 
@@ -29,7 +30,7 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::table("user", function (Blueprint $table) {
+        Schema::table('user', function (Blueprint $table) {
             //
         });
     }

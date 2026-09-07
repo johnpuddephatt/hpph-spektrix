@@ -2,10 +2,10 @@
 
 namespace App\Cache;
 
-use Spatie\ResponseCache\Hasher\RequestHasher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Spatie\ResponseCache\CacheProfiles\CacheProfile;
+use Spatie\ResponseCache\Hasher\RequestHasher;
 
 class Hasher implements RequestHasher
 {
@@ -19,7 +19,7 @@ class Hasher implements RequestHasher
     {
         $cacheNameSuffix = $this->getCacheNameSuffix($request);
 
-        return 'responsecache-' . hash(
+        return 'responsecache-'.hash(
             'xxh128',
             "{$request->getHost()}-{$this->getNormalizedRequestUri($request)}-{$request->getMethod()}/$cacheNameSuffix"
         );
@@ -30,16 +30,16 @@ class Hasher implements RequestHasher
 
         if ($queryParams = $request->query()) {
             $queryParams = collect($request->query())
-                ->reject(fn($value, $key) => Str::startsWith($key, 'utm_'))
-                ->reject(fn($value, $key) => Str::startsWith($key, 'dm_'))
+                ->reject(fn ($value, $key) => Str::startsWith($key, 'utm_'))
+                ->reject(fn ($value, $key) => Str::startsWith($key, 'dm_'))
                 ->toArray();
-            if (!empty($queryParams)) {
+            if (! empty($queryParams)) {
                 $queryString = http_build_query($queryParams);
-                $queryString = '?' . $queryString;
+                $queryString = '?'.$queryString;
             }
         }
 
-        return $request->getBaseUrl() . $request->getPathInfo() . ($queryString ?? '');
+        return $request->getBaseUrl().$request->getPathInfo().($queryString ?? '');
     }
 
     protected function getCacheNameSuffix(Request $request)

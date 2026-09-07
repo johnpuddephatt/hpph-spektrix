@@ -2,13 +2,17 @@
 
 namespace App\Nova\Templates;
 
+use App\Nova\Flexible\Layouts\BannerLayout;
+use App\Nova\Flexible\Layouts\FaqsLayout;
+use App\Nova\Flexible\Layouts\FeaturedMembershipLayout;
+use App\Nova\Flexible\Layouts\ImageLayout;
+use App\Nova\Flexible\Layouts\JournalPostLayout;
+use App\Nova\Flexible\Layouts\MembershipComparisonLayout;
+use App\Nova\Flexible\Layouts\PagesLayout;
+use App\Nova\Flexible\Layouts\TextLayout;
 use App\Nova\Templates\Concerns\HasPageMenuSetting;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
-use Advoor\NovaEditorJs\NovaEditorJsField;
 use Laravel\Nova\Panel;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Laravel\Nova\Fields\MultiSelect;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class MembershipsPageTemplate
@@ -18,7 +22,7 @@ class MembershipsPageTemplate
     // Name displayed in CMS
     public function name(): string
     {
-        return "Memberships page";
+        return 'Memberships page';
     }
 
     // Fields displayed in CMS
@@ -27,22 +31,22 @@ class MembershipsPageTemplate
         return [
             $this->pageMenuField(),
 
-            new Panel("Page content", [
-                Flexible::make("", "content")
-                    ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
+            new Panel('Page content', [
+                Flexible::make('', 'content')
+                    ->addLayout(TextLayout::class)
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\MembershipComparisonLayout::class
+                        MembershipComparisonLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\FeaturedMembershipLayout::class
+                        FeaturedMembershipLayout::class
                     )
-                    ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\BannerLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\JournalPostLayout::class)
+                    ->addLayout(ImageLayout::class)
+                    ->addLayout(FaqsLayout::class)
+                    ->addLayout(PagesLayout::class)
+                    ->addLayout(BannerLayout::class)
+                    ->addLayout(JournalPostLayout::class)
                     ->drawer()
-                    ->button("Add new section"),
+                    ->button('Add new section'),
             ]),
         ];
     }

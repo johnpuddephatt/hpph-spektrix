@@ -2,23 +2,21 @@
 
 namespace App\Nova;
 
+use App\Models\Event;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image as InterventionImage;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BooleanGroup;
 use Laravel\Nova\Fields\Date;
-use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Whitecube\NovaFlexibleContent\Flexible;
-use Laravel\Nova\Fields\Repeater;
-use Laravel\Nova\Fields\FormData;
-use Laravel\Nova\Fields\Heading;
-use Laravel\Nova\Fields\Markdown;
-use Laravel\Nova\Fields\Select;
-use Outl1ne\MultiselectField\Multiselect;
-use Intervention\Image\Laravel\Facades\Image as InterventionImage;
 
 class Email extends Resource
 {
@@ -48,7 +46,6 @@ class Email extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -68,17 +65,17 @@ class Email extends Resource
                 // ])
                 ->addLayout('Email Events Section', 'email_events_section', [
                     Text::make('Title')->fullWidth(),
-                    Select::make("Layout")->fullWidth()->options(["rows" => "Rows", 1 => "1", 2 => "2", 3 => "3"])->default("rows"),
+                    Select::make('Layout')->fullWidth()->options(['rows' => 'Rows', 1 => '1', 2 => '2', 3 => '3'])->default('rows'),
                     Select::make('Display screening times', 'display_times')->options([
                         'default' => 'Default (display all showing times)',
                         'range' => 'Date range only',
-                        'collapsed' => 'Collapsed'
+                        'collapsed' => 'Collapsed',
                     ]),
                     Boolean::make('Include all dates', 'include_all_dates')->help('If enabled, all future screenings dates will be shown in this block. The default is to only show the next 7 days'),
                     Flexible::make('Events', 'events')
                         ->stacked()->addLayout('Event', 'event', [
                             Select::make('Event')->fullWidth()->stacked()->searchable()->options(
-                                \App\Models\Event::all()->pluck('name', 'id')
+                                Event::all()->pluck('name', 'id')
                             )->displayUsingLabels(),
                             Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth(),
                             Boolean::make('Each time on a new line?', 'show_times_on_separate_rows')->fullWidth(),
@@ -87,28 +84,28 @@ class Email extends Resource
                 ])
                 ->addLayout('Email Pick Section', 'email_pick_section', [
                     Select::make('Pick')->fullWidth()->stacked()->searchable()->options(
-                        \App\Models\Post::all()->sortByDesc('created_at')->mapWithKeys(function ($post) {
+                        Post::all()->sortByDesc('created_at')->mapWithKeys(function ($post) {
                             return [
-                                $post->id => $post->title . ' (' . ($post->date ?? $post->created_at?->format('Y-m-d')) . ')'
+                                $post->id => $post->title.' ('.($post->date ?? $post->created_at?->format('Y-m-d')).')',
                             ];
                         })
                     )->displayUsingLabels(),
-                    Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
+                    Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth(),
                 ])->hideFromDetail()
                 ->addLayout('Email Blog Section', 'email_blog_section', [
                     Select::make('Post')->fullWidth()->stacked()->searchable()->options(
-                        \App\Models\Post::all()->sortByDesc('created_at')->mapWithKeys(function ($post) {
+                        Post::all()->sortByDesc('created_at')->mapWithKeys(function ($post) {
                             return [
-                                $post->id => $post->title . ' (' . ($post->date ?? $post->created_at?->format('Y-m-d')) . ')'
+                                $post->id => $post->title.' ('.($post->date ?? $post->created_at?->format('Y-m-d')).')',
                             ];
                         })
                     )->displayUsingLabels(),
-                    Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth()
+                    Text::make('Replacement description')->help('Setting a value here will override the default description')->stacked()->fullWidth(),
                 ])
                 ->fullWidth()->hideFromDetail()
 
                 ->addLayout('Email Banner Section', 'email_banner_section', [
-                    Select::make("Background")->options([
+                    Select::make('Background')->options([
                         '#000000' => 'Black',
                         '#f8f7ef' => 'Light Grey',
                         '#e6e4dd' => 'Grey',
@@ -124,9 +121,10 @@ class Email extends Resource
                         ->store(function (Request $request, $model) {
                             $resized = InterventionImage::read($request->image)->scaleDown(width: 800);
                             Storage::disk('digitalocean')->put($request->image->hashName(), (string) $resized->encode());
+
                             return $request->image->hashName();
                         })->stacked()->fullWidth(),
-                    Text::make('URL')->stacked()->fullWidth()
+                    Text::make('URL')->stacked()->fullWidth(),
                 ])
                 ->hideFromDetail(),
             BooleanGroup::make('Settings')->options([
@@ -139,9 +137,7 @@ class Email extends Resource
                 "<div style='height: 150px;'></div>"
             )->asHtml()->onlyOnForms(),
 
-
-            Heading::make($this->id ? '<iframe src="' . route('email.show', ['email' => $this->id]) . '"  width="100%" height="16000px"  frameborder="0" scrolling="yes"></iframe>' : '')->asHtml()->onlyOnDetail(),
-
+            Heading::make($this->id ? '<iframe src="'.route('email.show', ['email' => $this->id]).'"  width="100%" height="16000px"  frameborder="0" scrolling="yes"></iframe>' : '')->asHtml()->onlyOnDetail(),
 
             // Text::make('Custom Link', function () {
             //     if ($this->id) {
@@ -149,15 +145,12 @@ class Email extends Resource
             //     }
             // })->asHtml()->onlyOnDetail()->stacked()->fullWidth(),
 
-
-
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -168,7 +161,6 @@ class Email extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -179,7 +171,6 @@ class Email extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -190,7 +181,6 @@ class Email extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

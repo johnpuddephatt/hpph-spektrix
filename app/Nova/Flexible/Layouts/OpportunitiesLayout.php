@@ -2,6 +2,7 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use App\Models\Opportunity;
 use Laravel\Nova\Fields\Heading;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
@@ -12,14 +13,14 @@ class OpportunitiesLayout extends Layout
      *
      * @var string
      */
-    protected $name = "opportunities";
+    protected $name = 'opportunities';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Opportunities";
+    protected $title = 'Opportunities';
 
     /**
      * Get the fields displayed by the layout.
@@ -29,12 +30,12 @@ class OpportunitiesLayout extends Layout
     public function fields()
     {
         return [
-            Heading::make("There are no settings for this block")->asHtml(),
+            Heading::make('There are no settings for this block')->asHtml(),
         ];
     }
 
     public function getOpportunitiesAttribute()
     {
-        return \App\Models\Opportunity::latest()->get();
+        return Opportunity::latest()->get();
     }
 }

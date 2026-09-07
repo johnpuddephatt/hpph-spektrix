@@ -2,13 +2,11 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Advoor\NovaEditorJs\NovaEditorJsField;
 use App\Nova\Flexible\Layouts\Concerns\AppearsInPageMenu;
 use App\Nova\Flexible\Layouts\Concerns\HasPageMenuEntry;
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Image;
 use Whitecube\NovaFlexibleContent\Flexible;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class FaqsLayout extends Layout implements HasPageMenuEntry
 {
@@ -19,26 +17,26 @@ class FaqsLayout extends Layout implements HasPageMenuEntry
      *
      * @var string
      */
-    protected $name = "faqs";
+    protected $name = 'faqs';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Frequently asked questions";
+    protected $title = 'Frequently asked questions';
 
     public function menuLabel(): ?string
     {
         // The block's own heading is longer than a menu wants
         // ("Information & FAQs"), so the menu just says FAQs.
-        return "FAQs";
+        return 'FAQs';
     }
 
     public function getFaqsAttribute()
     {
-        return $this->flexible("faqs", [
-            "single-faq" => \App\Nova\Flexible\Layouts\SingleFaqLayout::class,
+        return $this->flexible('faqs', [
+            'single-faq' => SingleFaqLayout::class,
         ]);
     }
 
@@ -50,14 +48,14 @@ class FaqsLayout extends Layout implements HasPageMenuEntry
     public function fields()
     {
         return [
-            Text::make("Title", "title")
-                ->default("Information & FAQs")
+            Text::make('Title', 'title')
+                ->default('Information & FAQs')
                 ->hideFromIndex(),
 
-            Flexible::make("FAQs", "faqs")
-                ->addLayout(\App\Nova\Flexible\Layouts\SingleFaqLayout::class)
+            Flexible::make('FAQs', 'faqs')
+                ->addLayout(SingleFaqLayout::class)
 
-                ->button("Add a question"),
+                ->button('Add a question'),
         ];
     }
 }

@@ -2,53 +2,49 @@
 
 namespace App\Models;
 
+use App\Casts\PageContentCast;
+use App\Models\Concerns\HasProgrammePageContent;
+use Astrotomic\CachableAttributes\CachableAttributes;
+use Astrotomic\CachableAttributes\CachesAttributes;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 
-use Astrotomic\CachableAttributes\CachableAttributes;
-use Astrotomic\CachableAttributes\CachesAttributes;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Casts\PageContentCast;
-use App\Models\Concerns\HasProgrammePageContent;
-use Spatie\EloquentSortable\Sortable;
-use Spatie\EloquentSortable\SortableTrait;
-use Spatie\Image\Enums\CropPosition;
-use Spatie\Image\Enums\Fit;
-
-class Season extends Model implements HasMedia, CachableAttributes, Sortable
+class Season extends Model implements CachableAttributes, HasMedia, Sortable
 {
-    use HasFactory;
-    use Sluggable;
-    use InteractsWithMedia;
     use CachesAttributes;
+    use HasFactory;
+    use HasProgrammePageContent;
+    use InteractsWithMedia;
+    use Sluggable;
     use SoftDeletes;
     use SortableTrait;
-    use HasProgrammePageContent;
 
     public $timestamps = false;
 
     protected $fillable = [
-        "name",
-        "slug",
+        'name',
+        'slug',
         'hpph_presents',
-        "short_description",
-        "description",
-        "logo",
-        "content",
-        "enabled",
-        "force_enabled_until",
-        "published",
-        "additional_description",
-        "funders_logo",
+        'short_description',
+        'description',
+        'logo',
+        'content',
+        'enabled',
+        'force_enabled_until',
+        'published',
+        'additional_description',
+        'funders_logo',
         'display_type',
         'sort_order',
         'show_in_programme',
@@ -57,13 +53,13 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
     ];
 
     protected $casts = [
-        "content" => PageContentCast::class,
-        "enabled" => "boolean",
-        "published" => "boolean",
-        "hpph_presents" => "boolean",
-        "force_enabled_until" => "datetime",
-        "show_in_programme" => "boolean",
-        "show_header" => "boolean",
+        'content' => PageContentCast::class,
+        'enabled' => 'boolean',
+        'published' => 'boolean',
+        'hpph_presents' => 'boolean',
+        'force_enabled_until' => 'datetime',
+        'show_in_programme' => 'boolean',
+        'show_header' => 'boolean',
     ];
 
     public $sortable = [
@@ -79,8 +75,8 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
     public function sluggable(): array
     {
         return [
-            "slug" => [
-                "source" => "name",
+            'slug' => [
+                'source' => 'name',
             ],
         ];
     }
@@ -98,83 +94,83 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
 
     protected static function booted()
     {
-        static::addGlobalScope("published", function (Builder $builder) {
-            $builder->where("published", true);
+        static::addGlobalScope('published', function (Builder $builder) {
+            $builder->where('published', true);
         });
 
-        static::addGlobalScope("enabled", function (Builder $builder) {
+        static::addGlobalScope('enabled', function (Builder $builder) {
             $builder->where(function (Builder $query) {
                 $query
-                    ->where("enabled", true)
-                    ->orWhere("force_enabled_until", ">=", now());
+                    ->where('enabled', true)
+                    ->orWhere('force_enabled_until', '>=', now());
             });
         });
 
-        static::addGlobalScope("order", function (Builder $builder) {
-            $builder->orderBy("sort_order", "desc");
+        static::addGlobalScope('order', function (Builder $builder) {
+            $builder->orderBy('sort_order', 'desc');
         });
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion("landscape")
+        $this->addMediaConversion('landscape')
             ->quality(80)
             ->fit(Fit::Crop, 2000, 1200)
             ->sharpen(10)
-            ->format("jpg")
+            ->format('jpg')
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
 
-        $this->addMediaConversion("thumb")
+        $this->addMediaConversion('thumb')
             ->width(800)
             ->height(600)
             ->extractVideoFrameAtSecond(1)
-            ->performOnCollections("video");
+            ->performOnCollections('video');
 
-        $this->addMediaConversion("wide")
+        $this->addMediaConversion('wide')
             ->quality(80)
             ->fit(Fit::Crop, 1500, 627)
             ->sharpen(10)
-            ->format("jpg")
+            ->format('jpg')
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection("video")->singleFile();
-        $this->addMediaCollection("main")->singleFile();
+        $this->addMediaCollection('video')->singleFile();
+        $this->addMediaCollection('main')->singleFile();
     }
 
     public function featuredImage(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "main"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'main'
         );
     }
 
     public function featuredVideo(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "video"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'video'
         );
     }
 
     public function getDateRangeAttribute()
     {
         $dates = $this->belongsToMany(Instance::class)->orderBy('start')
-            ->pluck("start");
+            ->pluck('start');
 
         if ($dates->isEmpty()) {
             return 'Coming soon';
         } elseif ($dates->count() == 1) {
-            return $dates->first()->format("d M Y");
+            return $dates->first()->format('d M Y');
         } else {
-            return $dates->first()->format("d M Y") . ' - ' . $dates->last()->format("d M Y");
+            return $dates->first()->format('d M Y').' - '.$dates->last()->format('d M Y');
         }
         // return $instances;
         // return [];
@@ -183,7 +179,7 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
     public function instances(): BelongsToMany
     {
         return $this->belongsToMany(Instance::class)->whereHas(
-            "event",
+            'event',
             function ($event) {
                 return $event->shownInProgramme();
             }
@@ -225,11 +221,11 @@ class Season extends Model implements HasMedia, CachableAttributes, Sortable
 
     public function scopeShowInProgramme(Builder $query)
     {
-        return $query->where("show_in_programme", true);
+        return $query->where('show_in_programme', true);
     }
 
     public function getUrlAttribute()
     {
-        return route("season.show", $this->slug);
+        return route('season.show', $this->slug);
     }
 }

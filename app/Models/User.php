@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
+use App\Casts\PageContentCast;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Spatie\Image\Enums\CropPosition;
-use Spatie\Image\Enums\Fit;
 
 class User extends Authenticatable implements HasMedia
 {
@@ -26,54 +24,54 @@ class User extends Authenticatable implements HasMedia
      * @var array<int, string>
      */
     protected $fillable = [
-        "name",
-        "email",
-        "password",
-        "show_in_directory",
-        "enable_login",
-        "role_title",
-        "role_description",
-        "content",
+        'name',
+        'email',
+        'password',
+        'show_in_directory',
+        'enable_login',
+        'role_title',
+        'role_description',
+        'content',
     ];
 
     public function sluggable(): array
     {
         return [
-            "slug" => [
-                "source" => "name",
+            'slug' => [
+                'source' => 'name',
             ],
         ];
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion("portrait")
+        $this->addMediaConversion('portrait')
             ->quality(80)
             ->width(1600)
             ->height(1200)
             ->sharpen(10)
             ->fit(Fit::Crop, 1200, 1600)
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection("main")->singleFile();
+        $this->addMediaCollection('main')->singleFile();
     }
 
     public function featuredImage(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "main"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'main'
         );
     }
 
     public function getUrlAttribute()
     {
-        return route("user.show", ["user" => $this->slug]);
+        return route('user.show', ['user' => $this->slug]);
     }
 
     /**
@@ -81,7 +79,7 @@ class User extends Authenticatable implements HasMedia
      *
      * @var array<int, string>
      */
-    protected $hidden = ["password", "remember_token"];
+    protected $hidden = ['password', 'remember_token'];
 
     /**
      * The attributes that should be cast.
@@ -89,7 +87,7 @@ class User extends Authenticatable implements HasMedia
      * @var array<string, string>
      */
     protected $casts = [
-        "email_verified_at" => "datetime",
-        "content" => \App\Casts\PageContentCast::class,
+        'email_verified_at' => 'datetime',
+        'content' => PageContentCast::class,
     ];
 }

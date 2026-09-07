@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Log;
  */
 class FetchCustomerTagData implements ShouldQueue
 {
-    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
+    use DisablesMissingRecords, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function handle(SpektrixApi $spektrix)
     {
@@ -105,5 +105,4 @@ class FetchCustomerTagData implements ShouldQueue
 
         $this->disableMissing(SpektrixStatement::class, $seen);
     }
-
 }

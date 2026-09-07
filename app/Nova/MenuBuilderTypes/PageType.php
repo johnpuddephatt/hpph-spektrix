@@ -2,8 +2,9 @@
 
 namespace App\Nova\MenuBuilderTypes;
 
-use Outl1ne\MenuBuilder\MenuItemTypes\MenuItemSelectType;
+use App\Models\Page;
 use Laravel\Nova\Fields\Select;
+use Outl1ne\MenuBuilder\MenuItemTypes\MenuItemSelectType;
 
 class PageType extends MenuItemSelectType
 {
@@ -11,16 +12,15 @@ class PageType extends MenuItemSelectType
      * Get menu link name shown in CMS when selecting link type.
      * ie ('Product Link' or 'Image Link').
      *
-     * @return string
      **/
     public static function getName(): string
     {
-        return "Page";
+        return 'Page';
     }
 
     public static function getIdentifier(): string
     {
-        return "page";
+        return 'page';
     }
 
     /**
@@ -29,27 +29,25 @@ class PageType extends MenuItemSelectType
      * Should be a map of [key => value, ...], where key is a unique identifier
      * and value is the displayed string.
      *
-     * @return array
      **/
     public static function getOptions($locale): array
     {
-        return \App\Models\Page::orderPagesByUrl()
+        return Page::orderPagesByUrl()
             ->get()
-            ->pluck("name", "id")
+            ->pluck('name', 'id')
             ->toArray();
     }
 
     /**
      * Get the subtitle value shown in CMS menu items list.
      *
-     * @param null $value
-     * @param array|null $data The data from item fields.
-     * @param $locale
+     * @param  null  $value
+     * @param  array|null  $data  The data from item fields.
      * @return string
      */
     public static function getDisplayValue($value, ?array $data, $locale)
     {
-        return "Page: " . \App\Models\Page::find($value)?->name;
+        return 'Page: '.Page::find($value)?->name;
     }
 
     /**
@@ -61,25 +59,24 @@ class PageType extends MenuItemSelectType
      * and nova_get_menus() helpers or when you call formatForAPI()
      * on the Menu model.
      *
-     * @param null $value The key from options list that was selected.
-     * @param array|null $data The data from item fields.
-     * @param $locale
+     * @param  null  $value  The key from options list that was selected.
+     * @param  array|null  $data  The data from item fields.
      * @return any
      */
     public static function getValue($value, ?array $data, $locale)
     {
-        return \App\Models\Page::find($value)?->URL;
+        return Page::find($value)?->URL;
     }
 
     public static function getFields(): array
     {
         return [
-                // Select::make("Value")->options(
-                //     \App\Models\Page::all()
-                //         ->pluck("title", "id")
-                //         ->toArray()
-                // ),
-            ];
+            // Select::make("Value")->options(
+            //     \App\Models\Page::all()
+            //         ->pluck("title", "id")
+            //         ->toArray()
+            // ),
+        ];
     }
 
     /**
@@ -87,12 +84,11 @@ class PageType extends MenuItemSelectType
      *
      * @return array A key-value map of attributes and rules.
      */
-
     public static function getRules(): array
     {
         return [
-                // "value" => "required",
-            ];
+            // "value" => "required",
+        ];
     }
 
     public static function getData($data = null)

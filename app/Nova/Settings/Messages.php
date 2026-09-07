@@ -8,58 +8,58 @@ use Laravel\Nova\Panel;
 
 class Messages
 {
-    public $page = "Messages";
+    public $page = 'Messages';
 
     public function fields(): array
     {
         return [
-            Trix::make("No scheduled screenings")->help(
-                "Displayed on the film page when there are no scheduled screenings."
+            Trix::make('No scheduled screenings')->help(
+                'Displayed on the film page when there are no scheduled screenings.'
             ),
 
-            Text::make("Film page booking button", "showtimes_link")->help(
-                "Opens the booking path on the film page"
+            Text::make('Film page booking button', 'showtimes_link')->help(
+                'Opens the booking path on the film page'
             ),
 
-            Text::make("Access key", "access_key")->help(
-                "Displayed above the accessibility key in the booking path"
+            Text::make('Access key', 'access_key')->help(
+                'Displayed above the accessibility key in the booking path'
             ),
 
             Text::make(
-                "Content guidance unavailable",
-                "content_guidance_unavailable"
-            )->help("Displayed when content guidance is not available"),
+                'Content guidance unavailable',
+                'content_guidance_unavailable'
+            )->help('Displayed when content guidance is not available'),
 
             Text::make(
-                "Strobe light warning unavailable",
-                "strobe_light_warning_unavailable"
-            )->help("Displayed when strobe light warning is not available"),
+                'Strobe light warning unavailable',
+                'strobe_light_warning_unavailable'
+            )->help('Displayed when strobe light warning is not available'),
 
             Text::make(
-                "Screenings coming soon",
-                "screenings_coming_soon"
-            )->help("Displayed when an event has no future or past instances"),
-            Text::make("Screenings ended", "screenings_ended")->help(
-                "Displayed when an event has past instances but no future instances"
+                'Screenings coming soon',
+                'screenings_coming_soon'
+            )->help('Displayed when an event has no future or past instances'),
+            Text::make('Screenings ended', 'screenings_ended')->help(
+                'Displayed when an event has past instances but no future instances'
             ),
 
-            Text::make("15-25 membership count", "15_25_membership_count")->help(
-                "Displayed on the membership card"
+            Text::make('15-25 membership count', '15_25_membership_count')->help(
+                'Displayed on the membership card'
             ),
 
-            Panel::make("Booking path", [
+            Panel::make('Booking path', [
                 Text::make(
-                    "Memberships heading",
-                    "members_basket_heading"
-                )->help("Displayed next to the booking path"),
-                Trix::make("Memberships text", "members_basket_text")->help(
-                    "Displayed next to the booking path"
+                    'Memberships heading',
+                    'members_basket_heading'
+                )->help('Displayed next to the booking path'),
+                Trix::make('Memberships text', 'members_basket_text')->help(
+                    'Displayed next to the booking path'
                 ),
                 Text::make(
-                    "Booking warning heading",
-                    "booking_warning_heading"
+                    'Booking warning heading',
+                    'booking_warning_heading'
                 )->help(
-                    "Heading of the warning shown when a selected screening has an access tag with a booking warning"
+                    'Heading of the warning shown when a selected screening has an access tag with a booking warning'
                 ),
             ]),
 

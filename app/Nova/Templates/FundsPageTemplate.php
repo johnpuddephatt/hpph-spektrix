@@ -2,12 +2,18 @@
 
 namespace App\Nova\Templates;
 
+use App\Nova\Flexible\Layouts\FundGroupLayout;
+use App\Nova\Flexible\Layouts\ImageLayout;
+use App\Nova\Flexible\Layouts\ImagePairLayout;
+use App\Nova\Flexible\Layouts\JournalPostLayout;
+use App\Nova\Flexible\Layouts\LinkBannerLayout;
+use App\Nova\Flexible\Layouts\PagesLayout;
+use App\Nova\Flexible\Layouts\QuoteLayout;
+use App\Nova\Flexible\Layouts\SingleMembershipLayout;
+use App\Nova\Flexible\Layouts\TeamLayout;
+use App\Nova\Flexible\Layouts\TextLayout;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
-use Advoor\NovaEditorJs\NovaEditorJsField;
 use Laravel\Nova\Panel;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Laravel\Nova\Fields\MultiSelect;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class FundsPageTemplate
@@ -15,38 +21,37 @@ class FundsPageTemplate
     // Name displayed in CMS
     public function name(): string
     {
-        return "Funds page";
+        return 'Funds page';
     }
 
     // Fields displayed in CMS
     public function fields(Request $request): array
     {
         return [
-            new Panel("Page content", [
-                Flexible::make("Content", "content")
+            new Panel('Page content', [
+                Flexible::make('Content', 'content')
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\FundGroupLayout::class
+                        FundGroupLayout::class
                     )
-                    ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
+                    ->addLayout(TextLayout::class)
+                    ->addLayout(ImageLayout::class)
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\ImagePairLayout::class
-                    )
-                    ->addLayout(
-                        \App\Nova\Flexible\Layouts\JournalPostLayout::class
+                        ImagePairLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\SingleMembershipLayout::class
+                        JournalPostLayout::class
                     )
-                    ->addLayout(\App\Nova\Flexible\Layouts\TeamLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\QuoteLayout::class)
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\LinkBannerLayout::class
+                        SingleMembershipLayout::class
+                    )
+                    ->addLayout(TeamLayout::class)
+                    ->addLayout(PagesLayout::class)
+                    ->addLayout(QuoteLayout::class)
+                    ->addLayout(
+                        LinkBannerLayout::class
                     )
 
-
-                    ->button("Add new block")
+                    ->button('Add new block')
                     ->drawer(),
             ]),
         ];

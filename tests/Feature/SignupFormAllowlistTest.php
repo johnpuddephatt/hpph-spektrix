@@ -109,9 +109,7 @@ class SignupFormAllowlistTest extends TestCase
     {
         $spy = new class($captured) extends SubscribeCustomer
         {
-            public function __construct(public &$captured)
-            {
-            }
+            public function __construct(public &$captured) {}
 
             public function __invoke(
                 string $email,

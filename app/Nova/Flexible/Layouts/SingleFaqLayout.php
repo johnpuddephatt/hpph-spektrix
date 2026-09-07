@@ -4,10 +4,8 @@ namespace App\Nova\Flexible\Layouts;
 
 use Advoor\NovaEditorJs\NovaEditorJsCast;
 use Advoor\NovaEditorJs\NovaEditorJsField;
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Image;
-use Whitecube\NovaFlexibleContent\Flexible;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class SingleFaqLayout extends Layout
 {
@@ -16,20 +14,19 @@ class SingleFaqLayout extends Layout
      *
      * @var string
      */
-    protected $name = "single-faq";
+    protected $name = 'single-faq';
 
     public $collapsedPreviewAttribute = 'question';
-
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Accordion";
+    protected $title = 'Accordion';
 
     protected $casts = [
-        "answer" => NovaEditorJsCast::class,
+        'answer' => NovaEditorJsCast::class,
     ];
 
     /**
@@ -39,6 +36,6 @@ class SingleFaqLayout extends Layout
      */
     public function fields()
     {
-        return [Text::make("Question")->fullWidth(), NovaEditorJsField::make("Answer")->fullWidth()];
+        return [Text::make('Question')->fullWidth(), NovaEditorJsField::make('Answer')->fullWidth()];
     }
 }

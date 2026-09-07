@@ -30,7 +30,7 @@ use Illuminate\Support\Str;
  */
 class FetchTicketSubscriptionData implements ShouldQueue
 {
-    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
+    use DisablesMissingRecords, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public function handle(SpektrixApi $spektrix)
     {

@@ -1,5 +1,10 @@
 <?php
 
+use App\Cache\Hasher;
+use Spatie\ResponseCache\CacheProfiles\CacheAllSuccessfulGetRequests;
+use Spatie\ResponseCache\Replacers\CsrfTokenReplacer;
+use Spatie\ResponseCache\Serializers\DefaultSerializer;
+
 return [
     /*
      * Determine if the response cache middleware should be enabled.
@@ -13,7 +18,7 @@ return [
      *  You can provide your own class given that it implements the
      *  CacheProfile interface.
      */
-    'cache_profile' => Spatie\ResponseCache\CacheProfiles\CacheAllSuccessfulGetRequests::class,
+    'cache_profile' => CacheAllSuccessfulGetRequests::class,
 
     /*
      *  Optionally, you can specify a header that will force a cache bypass.
@@ -73,7 +78,7 @@ return [
      * Each replacer must implement the Replacer interface.
      */
     'replacers' => [
-        \Spatie\ResponseCache\Replacers\CsrfTokenReplacer::class,
+        CsrfTokenReplacer::class,
     ],
 
     /*
@@ -90,10 +95,10 @@ return [
      * is used to look up a cached response.
      */
     // 'hasher' => \Spatie\ResponseCache\Hasher\DefaultHasher::class,
-    'hasher' => \App\Cache\Hasher::class,
+    'hasher' => Hasher::class,
 
     /*
      * This class is responsible for serializing responses.
      */
-    'serializer' => \Spatie\ResponseCache\Serializers\DefaultSerializer::class,
+    'serializer' => DefaultSerializer::class,
 ];

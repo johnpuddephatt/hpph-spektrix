@@ -29,24 +29,23 @@ class Opportunity extends Resource
      *
      * @var string
      */
-    public static $title = "title";
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = ["id"];
+    public static $search = ['id'];
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScope("published");
+        return $query->withoutGlobalScope('published');
     }
 
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -56,109 +55,108 @@ class Opportunity extends Resource
                 ->sortable()
                 ->hide(),
 
-            Images::make("Main image", "main"),
+            Images::make('Main image', 'main'),
 
-            Text::make("Title")
+            Text::make('Title')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "class" => "text-xl p-4 h-auto",
-                        "maxlength" => 40,
+                    'extraAttributes' => [
+                        'class' => 'text-xl p-4 h-auto',
+                        'maxlength' => 40,
                     ],
                 ])
-                ->rules("required", "max:40"),
-            Boolean::make("Published"),
-            Textarea::make("Summary")
+                ->rules('required', 'max:40'),
+            Boolean::make('Published'),
+            Textarea::make('Summary')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 300,
-                        "rows" => 2,
-                        "class" => "md:w-3/4",
+                    'extraAttributes' => [
+                        'maxlength' => 300,
+                        'rows' => 2,
+                        'class' => 'md:w-3/4',
                     ],
                 ])
                 ->hideFromIndex()
-                ->rules("max:300", "required"),
-            File::make("Application form", "application_form")->path(
-                "application-forms"
+                ->rules('max:300', 'required'),
+            File::make('Application form', 'application_form')->path(
+                'application-forms'
             ),
-            Heading::make("Specifics")->withMeta(["class" => "bg-gray-50"]),
-            Select::make("Type")
+            Heading::make('Specifics')->withMeta(['class' => 'bg-gray-50']),
+            Select::make('Type')
                 ->options([
-                    "Full-time" => "Full-time",
-                    "Part-time" => "Part-time",
-                    "Voluntary" => "Voluntary",
-                    "Other" => "Other",
+                    'Full-time' => 'Full-time',
+                    'Part-time' => 'Part-time',
+                    'Voluntary' => 'Voluntary',
+                    'Other' => 'Other',
                 ])
-                ->default("Full-time"),
-            Text::make("Hours")
+                ->default('Full-time'),
+            Text::make('Hours')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 40,
+                    'extraAttributes' => [
+                        'maxlength' => 40,
                     ],
                 ])
-                ->rules("max:40"),
-            Text::make("Application deadline")
+                ->rules('max:40'),
+            Text::make('Application deadline')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 40,
+                    'extraAttributes' => [
+                        'maxlength' => 40,
                     ],
                 ])
-                ->rules("max:40"),
-            Text::make("Salary")
+                ->rules('max:40'),
+            Text::make('Salary')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 40,
+                    'extraAttributes' => [
+                        'maxlength' => 40,
                     ],
                 ])
-                ->rules("max:40"),
-            Text::make("Responsible to")
+                ->rules('max:40'),
+            Text::make('Responsible to')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 40,
-                    ],
-                ])
-                ->hideFromIndex()
-                ->rules("max:40"),
-            Text::make("Probation period")
-                ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 40,
+                    'extraAttributes' => [
+                        'maxlength' => 40,
                     ],
                 ])
                 ->hideFromIndex()
-                ->rules("max:40"),
-            Text::make("Notice period")
+                ->rules('max:40'),
+            Text::make('Probation period')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 40,
+                    'extraAttributes' => [
+                        'maxlength' => 40,
                     ],
                 ])
                 ->hideFromIndex()
-                ->rules("max:40"),
-            Text::make("Holidays")
+                ->rules('max:40'),
+            Text::make('Notice period')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "maxlength" => 40,
+                    'extraAttributes' => [
+                        'maxlength' => 40,
                     ],
                 ])
                 ->hideFromIndex()
-                ->rules("max:40"),
-            Heading::make("Description"),
-            NovaEditorJsField::make("Content")
-                ->rules("required")
+                ->rules('max:40'),
+            Text::make('Holidays')
+                ->withMeta([
+                    'extraAttributes' => [
+                        'maxlength' => 40,
+                    ],
+                ])
+                ->hideFromIndex()
+                ->rules('max:40'),
+            Heading::make('Description'),
+            NovaEditorJsField::make('Content')
+                ->rules('required')
                 ->hideFromIndex()
                 ->default(
                     // json_decode(
                     '{"time":1662912835013,"blocks":[{"id":"wkNAusAbIu","type":"header","data":{"text":"Job description","level":3}},{"id":"aqRrufPa83","type":"paragraph","data":{"text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}},{"id":"E22DgdztPU","type":"header","data":{"text":"Key responsibilities","level":3}},{"id":"sVHbrN7mYs","type":"list","data":{"style":"unordered","items":["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua","Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat","Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur","Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"]}},{"id":"JU_XYPyydP","type":"header","data":{"text":"How to apply","level":3}},{"id":"6o9pcCUka4","type":"paragraph","data":{"text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}}],"version":"2.25.0"}'
-                    //)
+                    // )
                 ),
-            URL::make("URL", fn() => $this->url)->displayUsing(fn() => "Visit"),
+            URL::make('URL', fn () => $this->url)->displayUsing(fn () => 'Visit'),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -169,7 +167,6 @@ class Opportunity extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -180,7 +177,6 @@ class Opportunity extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -191,7 +187,6 @@ class Opportunity extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

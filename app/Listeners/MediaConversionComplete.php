@@ -10,7 +10,7 @@ class MediaConversionComplete
 {
     public function handle()
     {
-        Log::info("Media conversion complete event");
+        Log::info('Media conversion complete event');
         Cache::clear();
         ResponseCache::clear();
     }

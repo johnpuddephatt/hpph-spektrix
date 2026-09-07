@@ -2,40 +2,33 @@
 
 namespace App\Models;
 
+use App\Casts\PageContentCast;
+use App\Models\Concerns\HasProgrammePageContent;
+use Astrotomic\CachableAttributes\CachableAttributes;
+use Astrotomic\CachableAttributes\CachesAttributes;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\EloquentSortable\Sortable;
+use Spatie\EloquentSortable\SortableTrait;
+use Spatie\Image\Enums\Fit;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-use Astrotomic\CachableAttributes\CachableAttributes;
-use Astrotomic\CachableAttributes\CachesAttributes;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Advoor\NovaEditorJs\NovaEditorJsCast;
-use App\Casts\PageContentCast;
-use App\Models\Concerns\HasProgrammePageContent;
-use Spatie\EloquentSortable\Sortable;
-use Spatie\EloquentSortable\SortableTrait;
-use Spatie\Image\Enums\CropPosition;
-use Spatie\Image\Enums\Fit;
-
-class Strand extends Model implements HasMedia, CachableAttributes, Sortable
+class Strand extends Model implements CachableAttributes, HasMedia, Sortable
 {
-    use HasFactory;
-    use Sluggable;
-    use InteractsWithMedia;
     use CachesAttributes;
+    use HasFactory;
+    use HasProgrammePageContent;
+    use InteractsWithMedia;
+    use Sluggable;
     use SoftDeletes;
     use SortableTrait;
-    use HasProgrammePageContent;
-
 
     public $timestamps = false;
 
@@ -45,41 +38,41 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
     ];
 
     protected $fillable = [
-        "name",
-        "slug",
-        "short_description",
-        "description",
-        "color",
-        "logo",
-        "logo_simple",
-        "content",
-        "enabled",
-        "published",
-        "show_on_event_card",
-        "show_on_instance_card",
-        "show_in_booking_path",
-        "additional_description",
-        "funders_logo",
+        'name',
+        'slug',
+        'short_description',
+        'description',
+        'color',
+        'logo',
+        'logo_simple',
+        'content',
+        'enabled',
+        'published',
+        'show_on_event_card',
+        'show_on_instance_card',
+        'show_in_booking_path',
+        'additional_description',
+        'funders_logo',
         'display_type',
         'sort_order',
-        'show_in_programme'
+        'show_in_programme',
     ];
 
     protected $casts = [
-        "content" => PageContentCast::class,
-        "enabled" => "boolean",
-        "published" => "boolean",
-        "show_on_event_card" => "boolean",
-        "show_on_instance_card" => "boolean",
-        "show_in_booking_path" => "boolean",
-        "show_in_programme" => "boolean",
+        'content' => PageContentCast::class,
+        'enabled' => 'boolean',
+        'published' => 'boolean',
+        'show_on_event_card' => 'boolean',
+        'show_on_instance_card' => 'boolean',
+        'show_in_booking_path' => 'boolean',
+        'show_in_programme' => 'boolean',
     ];
 
     public function sluggable(): array
     {
         return [
-            "slug" => [
-                "source" => "name",
+            'slug' => [
+                'source' => 'name',
             ],
         ];
     }
@@ -97,8 +90,8 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
 
     protected static function booted()
     {
-        static::addGlobalScope("published", function (Builder $builder) {
-            $builder->where("published", true);
+        static::addGlobalScope('published', function (Builder $builder) {
+            $builder->where('published', true);
         });
 
         static::addGlobalScope('order', function (Builder $builder) {
@@ -112,57 +105,57 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion("landscape")
+        $this->addMediaConversion('landscape')
             ->quality(80)
             ->fit(Fit::Crop, 2000, 1200)
             ->sharpen(10)
-            ->format("jpg")
+            ->format('jpg')
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
 
-        $this->addMediaConversion("thumb")
+        $this->addMediaConversion('thumb')
             ->width(800)
             ->height(600)
             ->extractVideoFrameAtSecond(1)
-            ->performOnCollections("video");
+            ->performOnCollections('video');
 
-        $this->addMediaConversion("wide")
+        $this->addMediaConversion('wide')
             ->quality(80)
             ->fit(Fit::Crop, 1500, 627)
             ->sharpen(10)
-            ->format("jpg")
+            ->format('jpg')
             ->withResponsiveImages()
-            ->performOnCollections("main");
+            ->performOnCollections('main');
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection("video")->singleFile();
-        $this->addMediaCollection("main")->singleFile();
+        $this->addMediaCollection('video')->singleFile();
+        $this->addMediaCollection('main')->singleFile();
     }
 
     public function featuredImage(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "main"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'main'
         );
     }
 
     public function featuredVideo(): MorphOne
     {
-        return $this->morphOne(Media::class, "model")->where(
-            "collection_name",
-            "=",
-            "video"
+        return $this->morphOne(Media::class, 'model')->where(
+            'collection_name',
+            '=',
+            'video'
         );
     }
 
     public function instances(): BelongsToMany
     {
         return $this->belongsToMany(Instance::class)->whereHas(
-            "event",
+            'event',
             function ($event) {
                 return $event->shownInProgramme();
             }
@@ -172,7 +165,7 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
     public function allFutureInstances(): BelongsToMany
     {
         return $this->belongsToMany(Instance::class)->withoutGlobalScope('not_coming_soon')->whereHas(
-            "event",
+            'event',
             function ($event) {
                 return $event->shownInProgramme();
             }
@@ -214,11 +207,11 @@ class Strand extends Model implements HasMedia, CachableAttributes, Sortable
 
     public function scopeShowInProgramme(Builder $query)
     {
-        return $query->where("show_in_programme", true);
+        return $query->where('show_in_programme', true);
     }
 
     public function getUrlAttribute()
     {
-        return route("strand.show", $this->slug);
+        return route('strand.show', $this->slug);
     }
 }

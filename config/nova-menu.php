@@ -1,5 +1,12 @@
 <?php
 
+use App\Nova\MenuBuilderTypes\PageType;
+use Outl1ne\MenuBuilder\MenuItemTypes\MenuItemStaticURLType;
+use Outl1ne\MenuBuilder\MenuItemTypes\MenuItemTextType;
+use Outl1ne\MenuBuilder\Models\Menu;
+use Outl1ne\MenuBuilder\Models\MenuItem;
+use Outl1ne\MenuBuilder\Nova\Resources\MenuResource;
+
 return [
     /*
     |------------------|
@@ -13,8 +20,8 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    "menus_table_name" => "nova_menu_menus",
-    "menu_items_table_name" => "nova_menu_menu_items",
+    'menus_table_name' => 'nova_menu_menus',
+    'menu_items_table_name' => 'nova_menu_menu_items',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +33,7 @@ return [
     |
     */
 
-    "locales" => ["en_US" => "English"],
+    'locales' => ['en_US' => 'English'],
 
     /*
     |--------------------------------------------------------------------------
@@ -41,24 +48,24 @@ return [
     |
     */
 
-    "menus" => [
-        "primary" => [
-            "name" => "Primary",
-            "unique" => true,
-            "max_depth" => 1,
-            "menu_item_types" => [],
+    'menus' => [
+        'primary' => [
+            'name' => 'Primary',
+            'unique' => true,
+            'max_depth' => 1,
+            'menu_item_types' => [],
         ],
-        "secondary" => [
-            "name" => "Secondary",
-            "unique" => true,
-            "max_depth" => 1,
-            "menu_item_types" => [],
+        'secondary' => [
+            'name' => 'Secondary',
+            'unique' => true,
+            'max_depth' => 1,
+            'menu_item_types' => [],
         ],
-        "tertiary" => [
-            "name" => "Tertiary",
-            "unique" => true,
-            "max_depth" => 1,
-            "menu_item_types" => [],
+        'tertiary' => [
+            'name' => 'Tertiary',
+            'unique' => true,
+            'max_depth' => 1,
+            'menu_item_types' => [],
         ],
     ],
 
@@ -71,10 +78,10 @@ return [
     |
     */
 
-    "menu_item_types" => [
-        \App\Nova\MenuBuilderTypes\PageType::class,
-        \Outl1ne\MenuBuilder\MenuItemTypes\MenuItemTextType::class,
-        \Outl1ne\MenuBuilder\MenuItemTypes\MenuItemStaticURLType::class,
+    'menu_item_types' => [
+        PageType::class,
+        MenuItemTextType::class,
+        MenuItemStaticURLType::class,
     ],
 
     /*
@@ -82,9 +89,9 @@ return [
     | Optional configuration options |
     |--------------------------------|
     */
-    "show_duplicate" => true,
+    'show_duplicate' => true,
 
-    "collapsed_as_default" => true,
+    'collapsed_as_default' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +102,7 @@ return [
     |
     */
 
-    "resource" => Outl1ne\MenuBuilder\Nova\Resources\MenuResource::class,
+    'resource' => MenuResource::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -106,7 +113,7 @@ return [
     |
     */
 
-    "menu_model" => Outl1ne\MenuBuilder\Models\Menu::class,
+    'menu_model' => Menu::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -117,7 +124,7 @@ return [
     |
     */
 
-    "menu_item_model" => Outl1ne\MenuBuilder\Models\MenuItem::class,
+    'menu_item_model' => MenuItem::class,
 
     /*
     |--------------------------------------------------------------------------
@@ -128,5 +135,5 @@ return [
     |
     */
 
-    "auto_load_migrations" => true,
+    'auto_load_migrations' => true,
 ];

@@ -2,17 +2,16 @@
 
 namespace App\Livewire;
 
-use Illuminate\Database\Eloquent\Builder;
-use Livewire\Component;
+use App\Models\Product;
 use Livewire\Attributes\On;
-use Carbon\Carbon;
+use Livewire\Component;
 
 class Shop extends Component
 {
     public $selected_type = null;
 
     protected $queryString = [
-        "selected_type" => ["except" => "", "as" => "type"],
+        'selected_type' => ['except' => '', 'as' => 'type'],
     ];
 
     #[On('updateType')]
@@ -23,16 +22,16 @@ class Shop extends Component
 
     public function render()
     {
-        $products = \App\Models\Product::query();
+        $products = Product::query();
 
         if ($this->selected_type) {
-            $products = $products->where("type", $this->selected_type);
+            $products = $products->where('type', $this->selected_type);
         }
 
         $products = $products->get();
 
-        $types = \App\Models\Product::pluck("type")->unique();
+        $types = Product::pluck('type')->unique();
 
-        return view("livewire.shop", compact("products", "types"));
+        return view('livewire.shop', compact('products', 'types'));
     }
 }

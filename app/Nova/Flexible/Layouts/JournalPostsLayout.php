@@ -2,33 +2,34 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use App\Models\Post;
+use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use Astrotomic\CachableAttributes\CachableAttributes;
 use Astrotomic\CachableAttributes\CachesAttributes;
-use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Number;
 use Outl1ne\MultiselectField\Multiselect;
+use Spatie\Tags\Tag;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class JournalPostsLayout extends Layout implements CachableAttributes
 {
+    use CachesAttributes;
     use CachesOptions;
 
-    use CachesAttributes;
     /**
      * The layout's unique identifier
      *
      * @var string
      */
-    protected $name = "journal-posts";
+    protected $name = 'journal-posts';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Journal posts";
+    protected $title = 'Journal posts';
 
     /**
      * Get the fields displayed by the layout.
@@ -38,28 +39,28 @@ class JournalPostsLayout extends Layout implements CachableAttributes
     public function fields()
     {
         return [
-            Number::make("Number of posts"),
+            Number::make('Number of posts'),
             Boolean::make(
-                "Don’t include posts already shown on page",
-                "omit_posts_already_shown"
+                'Don’t include posts already shown on page',
+                'omit_posts_already_shown'
             ),
-            Multiselect::make("Tags to include")
+            Multiselect::make('Tags to include')
                 ->saveAsJSON()
                 ->options(
-                    static::cachedOptions("tags", function () {
-                        $tags = \Spatie\Tags\Tag::pluck("name")->toArray();
+                    static::cachedOptions('tags', function () {
+                        $tags = Tag::pluck('name')->toArray();
 
                         return array_combine($tags, $tags);
                     })
                 )
-                ->help("Posts with any of the selected tags will be shown."),
+                ->help('Posts with any of the selected tags will be shown.'),
         ];
     }
 
     public function getPostsAttribute()
     {
-        return $this->remember("posts", 0, function () {
-            $query = \App\Models\Post::latest()->take(
+        return $this->remember('posts', 0, function () {
+            $query = Post::latest()->take(
                 $this->number_of_posts ?? 3
             );
 
@@ -67,10 +68,11 @@ class JournalPostsLayout extends Layout implements CachableAttributes
                 $query = $query->withAnyTags($this->tags_to_include);
             }
 
-            if ($this->omit_posts_already_shown && isset($GLOBALS["omit"])) {
-                $query->whereNotIn("id", $GLOBALS["omit"]);
+            if ($this->omit_posts_already_shown && isset($GLOBALS['omit'])) {
+                $query->whereNotIn('id', $GLOBALS['omit']);
             }
-            return $query->with("featuredImage")->get();
+
+            return $query->with('featuredImage')->get();
         });
     }
 }

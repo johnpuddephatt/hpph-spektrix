@@ -2,13 +2,13 @@
 
 namespace App\Nova;
 
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class Fund extends Resource
 {
@@ -24,46 +24,44 @@ class Fund extends Resource
      *
      * @var string
      */
-    public static $title = "name";
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = ["name"];
+    public static $search = ['name'];
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScope("enabled");
+        return $query->withoutGlobalScope('enabled');
     }
 
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
     {
         return [
             ID::make()->hide(),
-            Text::make("Name"),
-            Boolean::make("Synced", "enabled")
+            Text::make('Name'),
+            Boolean::make('Synced', 'enabled')
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
-            Textarea::make("Description")->readonly(),
-            Text::make("Default Donation Amount", "default_donation_amount")
+            Textarea::make('Description')->readonly(),
+            Text::make('Default Donation Amount', 'default_donation_amount')
                 ->help('This is the default donation amount for this fund. This is used to pre-fill the donation amount on the donation form. It will also be enforced as the minimum donation amount.'),
-            Images::make("Image", "main"),
+            Images::make('Image', 'main'),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -74,7 +72,6 @@ class Fund extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -85,7 +82,6 @@ class Fund extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -96,7 +92,6 @@ class Fund extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

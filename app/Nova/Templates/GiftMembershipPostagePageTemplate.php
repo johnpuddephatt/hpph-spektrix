@@ -3,11 +3,7 @@
 namespace App\Nova\Templates;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Text;
-use Advoor\NovaEditorJs\NovaEditorJsField;
 use Laravel\Nova\Panel;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Laravel\Nova\Fields\MultiSelect;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class GiftMembershipPostagePageTemplate
@@ -15,7 +11,7 @@ class GiftMembershipPostagePageTemplate
     // Name displayed in CMS
     public function name(): string
     {
-        return "Gift membership page (testing postage)";
+        return 'Gift membership page (testing postage)';
     }
 
     // Fields displayed in CMS

@@ -2,33 +2,33 @@
 
 namespace App\Livewire;
 
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 
 class NewSearch extends Component
 {
-    public $search = "";
+    public $search = '';
 
     public function render()
     {
-        return view("livewire.new-search", [
-            "results" =>
-            is_string($this->search) && strlen($this->search) > 2
-                ? \App\Models\Event::shownInProgramme()
-                ->hasFutureOrRecentInstances()
-                ->where(function (Builder $query) {
-                    $query->where("name", "like", "%" . $this->search . "%")
-                        ->orWhere("subtitle", "like", "%" . $this->search . "%")
-                        ->orWhere("director", "like", "%" . $this->search . "%")
-                        ->orWhereHas('instances.strands', function (Builder $query) {
-                            $query->where('name', 'like', "%" . $this->search . "%");
-                        })
-                        ->orWhereHas('instances.seasons', function (Builder $query) {
-                            $query->where('name', 'like', "%" . $this->search . "%");
-                        });
-                })
-                ->with("featuredImage")
-                ->get()
+        return view('livewire.new-search', [
+            'results' => is_string($this->search) && strlen($this->search) > 2
+                ? Event::shownInProgramme()
+                    ->hasFutureOrRecentInstances()
+                    ->where(function (Builder $query) {
+                        $query->where('name', 'like', '%'.$this->search.'%')
+                            ->orWhere('subtitle', 'like', '%'.$this->search.'%')
+                            ->orWhere('director', 'like', '%'.$this->search.'%')
+                            ->orWhereHas('instances.strands', function (Builder $query) {
+                                $query->where('name', 'like', '%'.$this->search.'%');
+                            })
+                            ->orWhereHas('instances.seasons', function (Builder $query) {
+                                $query->where('name', 'like', '%'.$this->search.'%');
+                            });
+                    })
+                    ->with('featuredImage')
+                    ->get()
                 : [],
         ]);
     }

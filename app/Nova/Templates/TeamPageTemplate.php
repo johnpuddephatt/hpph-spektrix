@@ -2,18 +2,15 @@
 
 namespace App\Nova\Templates;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Outl1ne\PageManager\Template;
-use Laravel\Nova\Fields\Text;
-use Advoor\NovaEditorJs\NovaEditorJsField;
-use Laravel\Nova\Panel;
 
 class TeamPageTemplate
 {
     // Name displayed in CMS
     public function name(): string
     {
-        return "Team page";
+        return 'Team page';
     }
 
     // Fields displayed in CMS
@@ -26,8 +23,8 @@ class TeamPageTemplate
     public function resolve($page)
     {
         return array_merge((array) $page->content, [
-            "users" => \App\Models\User::where(
-                "show_in_directory",
+            'users' => User::where(
+                'show_in_directory',
                 true
             )->get(),
         ]);

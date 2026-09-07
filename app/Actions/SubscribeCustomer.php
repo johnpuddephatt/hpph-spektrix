@@ -30,9 +30,7 @@ use Illuminate\Support\Facades\Log;
  */
 class SubscribeCustomer
 {
-    public function __construct(protected SpektrixApi $spektrix)
-    {
-    }
+    public function __construct(protected SpektrixApi $spektrix) {}
 
     public function __invoke(
         string $email,

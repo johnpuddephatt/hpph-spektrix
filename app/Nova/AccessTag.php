@@ -13,12 +13,8 @@ class AccessTag extends Resource
 {
     /**
      * The model the resource corresponds to.
-     *
-     * @var string
      */
     public static string $model = AccessTagModel::class;
-
-
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -34,7 +30,7 @@ class AccessTag extends Resource
      */
     public static $search = [
         'label',
-        'abbreviation'
+        'abbreviation',
     ];
 
     /**

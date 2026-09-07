@@ -9,7 +9,7 @@ class AccountPageTemplate
     // Name displayed in CMS
     public function name(): string
     {
-        return "Account page";
+        return 'Account page';
     }
 
     // Fields displayed in CMS

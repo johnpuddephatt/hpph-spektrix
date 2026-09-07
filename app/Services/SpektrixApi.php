@@ -30,8 +30,7 @@ class SpektrixApi
     public function __construct(
         protected ?string $user,
         protected ?string $key,
-    ) {
-    }
+    ) {}
 
     public function get(string $path, array $query = []): Response
     {

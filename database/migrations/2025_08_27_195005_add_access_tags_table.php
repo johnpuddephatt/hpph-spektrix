@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create("access_tags", function (Blueprint $table) {
+        Schema::create('access_tags', function (Blueprint $table) {
             $table->id();
             $table->string('label');
             $table->string('abbreviation')->unique();

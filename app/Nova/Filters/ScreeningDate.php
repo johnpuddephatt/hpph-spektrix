@@ -11,15 +11,15 @@ use Laravel\Nova\Http\Requests\NovaRequest;
  */
 class ScreeningDate extends Filter
 {
-    public $component = "select-filter";
+    public $component = 'select-filter';
 
-    public $name = "Date";
+    public $name = 'Date';
 
     public function apply(NovaRequest $request, $query, $value)
     {
         return match ($value) {
-            "upcoming" => $query->where("start", ">", now()->subHour()),
-            "past" => $query->where("start", "<=", now()->subHour()),
+            'upcoming' => $query->where('start', '>', now()->subHour()),
+            'past' => $query->where('start', '<=', now()->subHour()),
             default => $query,
         };
     }
@@ -27,14 +27,14 @@ class ScreeningDate extends Filter
     public function options(NovaRequest $request)
     {
         return [
-            "Upcoming" => "upcoming",
-            "Past" => "past",
-            "All" => "all",
+            'Upcoming' => 'upcoming',
+            'Past' => 'past',
+            'All' => 'all',
         ];
     }
 
     public function default()
     {
-        return "upcoming";
+        return 'upcoming';
     }
 }

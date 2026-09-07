@@ -12,7 +12,7 @@ return [
     |
     */
 
-    "default" => env("FILESYSTEM_DRIVER", "digitalocean"),
+    'default' => env('FILESYSTEM_DRIVER', 'digitalocean'),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,43 +27,43 @@ return [
     |
     */
 
-    "disks" => [
-        "local" => [
-            "driver" => "local",
-            "root" => storage_path("app"),
+    'disks' => [
+        'local' => [
+            'driver' => 'local',
+            'root' => storage_path('app'),
         ],
 
-        "public" => [
-            "driver" => "local",
-            "root" => storage_path("app/public"),
-            "url" => env("APP_URL") . "/storage",
-            "visibility" => "public",
+        'public' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
         ],
 
-        "s3" => [
-            "driver" => "s3",
-            "key" => env("AWS_ACCESS_KEY_ID"),
-            "secret" => env("AWS_SECRET_ACCESS_KEY"),
-            "region" => env("AWS_DEFAULT_REGION"),
-            "bucket" => env("AWS_BUCKET"),
-            "url" => env("AWS_URL"),
-            "endpoint" => env("AWS_ENDPOINT"),
-            "use_path_style_endpoint" => env(
-                "AWS_USE_PATH_STYLE_ENDPOINT",
+        's3' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env(
+                'AWS_USE_PATH_STYLE_ENDPOINT',
                 false
             ),
         ],
 
-        "digitalocean" => [
-            "driver" => "s3",
-            "key" => env("DIGITALOCEAN_SPACES_KEY"),
-            "secret" => env("DIGITALOCEAN_SPACES_SECRET"),
-            "endpoint" => env("DIGITALOCEAN_SPACES_ENDPOINT"),
-            "region" => env("DIGITALOCEAN_SPACES_REGION"),
-            "bucket" => env("DIGITALOCEAN_SPACES_BUCKET"),
-            "url" => env("DIGITALOCEAN_SPACES_URL"),
-            "visibility" => "public",
-            "disable_asserts" => true,
+        'digitalocean' => [
+            'driver' => 's3',
+            'key' => env('DIGITALOCEAN_SPACES_KEY'),
+            'secret' => env('DIGITALOCEAN_SPACES_SECRET'),
+            'endpoint' => env('DIGITALOCEAN_SPACES_ENDPOINT'),
+            'region' => env('DIGITALOCEAN_SPACES_REGION'),
+            'bucket' => env('DIGITALOCEAN_SPACES_BUCKET'),
+            'url' => env('DIGITALOCEAN_SPACES_URL'),
+            'visibility' => 'public',
+            'disable_asserts' => true,
         ],
     ],
 
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    "links" => [
-        public_path("storage") => storage_path("app/public"),
+    'links' => [
+        public_path('storage') => storage_path('app/public'),
     ],
 ];

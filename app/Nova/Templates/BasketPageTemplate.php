@@ -9,7 +9,7 @@ class BasketPageTemplate
     // Name displayed in CMS
     public function name(): string
     {
-        return "Basket page";
+        return 'Basket page';
     }
 
     // Fields displayed in CMS

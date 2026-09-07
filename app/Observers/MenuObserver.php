@@ -16,6 +16,7 @@ class MenuObserver
 
     /**
      * Handle the MenuItem "created" event.
+     *
      * @return void
      */
     public function created()
@@ -25,6 +26,7 @@ class MenuObserver
 
     /**
      * Handle the MenuItem "updated" event.
+     *
      * @return void
      */
     public function updated()
@@ -34,6 +36,7 @@ class MenuObserver
 
     /**
      * Handle the MenuItem "deleted" event.
+     *
      * @return void
      */
     public function deleted()
@@ -43,6 +46,7 @@ class MenuObserver
 
     /**
      * Handle the MenuItem "restored" event.
+     *
      * @return void
      */
     public function restored()
@@ -52,6 +56,7 @@ class MenuObserver
 
     /**
      * Handle the MenuItem "force deleted" event.
+     *
      * @return void
      */
     public function forceDeleted()

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('instances', function (Blueprint $table) {
-            $table->boolean("autism_friendly")->default(false)->after('captioned'); // attribute_AutismFriendlyScreening
+            $table->boolean('autism_friendly')->default(false)->after('captioned'); // attribute_AutismFriendlyScreening
         });
     }
 

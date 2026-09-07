@@ -2,19 +2,21 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Http\Requests\NovaRequest;
+use App\Nova\Flexible\Layouts\ImageLayout;
+use App\Nova\Flexible\Layouts\ImagePairLayout;
+use App\Nova\Flexible\Layouts\TextLayout;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Laravel\Nova\Panel;
-use Outl1ne\NovaSimpleRepeatable\SimpleRepeatable;
-use Whitecube\NovaFlexibleContent\Flexible;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\Fields\Slug;
-use Illuminate\Validation\Rule;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Panel;
+use Whitecube\NovaFlexibleContent\Flexible;
 
 class Product extends Resource
 {
@@ -30,16 +32,16 @@ class Product extends Resource
      *
      * @var string
      */
-    public static $title = "name";
+    public static $title = 'name';
 
     public static function label()
     {
-        return "Shop";
+        return 'Shop';
     }
 
     public static function singularLabel()
     {
-        return "Product";
+        return 'Product';
     }
 
     /**
@@ -47,54 +49,53 @@ class Product extends Resource
      *
      * @var array
      */
-    public static $search = ["name"];
+    public static $search = ['name'];
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScopes(["enabled", "published"]);
+        return $query->withoutGlobalScopes(['enabled', 'published']);
     }
 
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
     {
         return [
             ID::make()->hide(),
-            Text::make("Name"),
-            Text::make("Spektrix name")->readOnly(),
-            Slug::make("Slug")
-                ->from("Name")
+            Text::make('Name'),
+            Text::make('Spektrix name')->readOnly(),
+            Slug::make('Slug')
+                ->from('Name')
                 ->hideFromIndex()
-                ->rules([Rule::requiredIf(fn() => $request->published)]),
-            Text::make("Price")->readOnly(),
-            Text::make("Type")->readOnly(),
-            Text::make("Postage")->readOnly(),
-            Boolean::make("Synced", "enabled")
+                ->rules([Rule::requiredIf(fn () => $request->published)]),
+            Text::make('Price')->readOnly(),
+            Text::make('Type')->readOnly(),
+            Text::make('Postage')->readOnly(),
+            Boolean::make('Synced', 'enabled')
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
-            Boolean::make("Published")->showOnPreview(),
-            Textarea::make("Description"),
-            Images::make("Image", "main"),
-            Panel::make("Content", [
-                Flexible::make("", "content")
-                    ->addLayout("Product details", "product-details", [
-                        KeyValue::make("", "details")
-                            ->keyLabel("Detail")
-                            ->valueLabel("Value")
-                            ->actionText("Add detail"),
+            Boolean::make('Published')->showOnPreview(),
+            Textarea::make('Description'),
+            Images::make('Image', 'main'),
+            Panel::make('Content', [
+                Flexible::make('', 'content')
+                    ->addLayout('Product details', 'product-details', [
+                        KeyValue::make('', 'details')
+                            ->keyLabel('Detail')
+                            ->valueLabel('Value')
+                            ->actionText('Add detail'),
                     ])
-                    ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
+                    ->addLayout(TextLayout::class)
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\ImagePairLayout::class
+                        ImagePairLayout::class
                     )
-                    ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
+                    ->addLayout(ImageLayout::class)
                     ->hideFromIndex()
-                    ->button("Add section"),
+                    ->button('Add section'),
             ]),
         ];
     }
@@ -102,7 +103,6 @@ class Product extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -113,7 +113,6 @@ class Product extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -124,7 +123,6 @@ class Product extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -135,7 +133,6 @@ class Product extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

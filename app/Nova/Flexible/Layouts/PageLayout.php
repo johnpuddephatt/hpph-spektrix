@@ -1,10 +1,10 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
 
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Select;
+namespace App\Nova\Flexible\Layouts;
+
+use App\Models\Page;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
+use Laravel\Nova\Fields\Select;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class PageLayout extends Layout
@@ -16,14 +16,14 @@ class PageLayout extends Layout
      *
      * @var string
      */
-    protected $name = "page";
+    protected $name = 'page';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Page";
+    protected $title = 'Page';
 
     /**
      * Get the fields displayed by the layout.
@@ -33,14 +33,14 @@ class PageLayout extends Layout
     public function fields()
     {
         return [
-            Select::make("Page", "page_id")
-                ->options(static::cachedOptions("pages", fn() => \App\Models\Page::pluck("name", "id") ?? []))
+            Select::make('Page', 'page_id')
+                ->options(static::cachedOptions('pages', fn () => Page::pluck('name', 'id') ?? []))
                 ->searchable(),
         ];
     }
 
     public function getPageAttribute()
     {
-        return \App\Models\Page::find($this->page_id);
+        return Page::find($this->page_id);
     }
 }

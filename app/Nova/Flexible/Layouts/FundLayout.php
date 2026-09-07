@@ -2,11 +2,10 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Laravel\Nova\Fields\Select;
+use App\Models\Fund;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
+use Laravel\Nova\Fields\Select;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Laravel\Nova\Fields\Text;
-use Whitecube\NovaFlexibleContent\Flexible;
 
 class FundLayout extends Layout
 {
@@ -17,14 +16,14 @@ class FundLayout extends Layout
      *
      * @var string
      */
-    protected $name = "fund";
+    protected $name = 'fund';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Fund layout";
+    protected $title = 'Fund layout';
 
     /**
      * Get the fields displayed by the layout.
@@ -34,14 +33,14 @@ class FundLayout extends Layout
     public function fields()
     {
         return [
-            Select::make("", "fund_name")
-                ->options(static::cachedOptions("funds", fn() => \App\Models\Fund::pluck("name", "id")))
+            Select::make('', 'fund_name')
+                ->options(static::cachedOptions('funds', fn () => Fund::pluck('name', 'id')))
                 ->searchable(),
         ];
     }
 
     public function getFundAttribute()
     {
-        return \App\Models\Fund::find($this->fund_name);
+        return Fund::find($this->fund_name);
     }
 }

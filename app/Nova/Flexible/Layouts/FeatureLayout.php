@@ -2,10 +2,11 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use App\Nova\Actions\SaveAndResizeFeatureImage;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Image;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class FeatureLayout extends Layout
@@ -15,17 +16,16 @@ class FeatureLayout extends Layout
      *
      * @var string
      */
-    protected $name = "feature";
+    protected $name = 'feature';
 
     public $collapsedPreviewAttribute = 'title';
-
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Feature";
+    protected $title = 'Feature';
 
     /**
      * Get the fields displayed by the layout.
@@ -35,13 +35,13 @@ class FeatureLayout extends Layout
     public function fields()
     {
         return [
-            Image::make("Image", "image")
+            Image::make('Image', 'image')
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
-                ->store(new \App\Nova\Actions\SaveAndResizeFeatureImage()),
-            Text::make("Title", "title"),
-            Textarea::make("Description", "description"),
+                ->store(new SaveAndResizeFeatureImage),
+            Text::make('Title', 'title'),
+            Textarea::make('Description', 'description'),
         ];
     }
 }

@@ -4,18 +4,17 @@ namespace App\Jobs;
 
 use App\Cache\ContentCache;
 use App\Jobs\Concerns\DisablesMissingRecords;
+use App\Models\Membership;
+use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use GuzzleHttp\Client;
-use Illuminate\Support\Arr;
 
 class FetchMembershipData implements ShouldQueue
 {
-    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
+    use DisablesMissingRecords, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -34,32 +33,32 @@ class FetchMembershipData implements ShouldQueue
      */
     public function handle()
     {
-        $client = new Client();
+        $client = new Client;
         $res = $client->request(
-            "GET",
-            "https://system.spektrix.com/" .
-                nova_get_setting("spektrix_client_name") .
-                "/api/v3/memberships"
+            'GET',
+            'https://system.spektrix.com/'.
+                nova_get_setting('spektrix_client_name').
+                '/api/v3/memberships'
         );
 
         $memberships = json_decode($res->getBody()->__toString());
 
         ContentCache::defer(function () use ($memberships) {
             foreach ($memberships as $membership) {
-                \App\Models\Membership::withoutGlobalScopes()->updateOrCreate(
-                    ["id" => $membership->id],
+                Membership::withoutGlobalScopes()->updateOrCreate(
+                    ['id' => $membership->id],
                     [
-                        "enabled" => true,
-                        "name" => $membership->name ?? null,
-                        "price" => $membership->price ?? null,
-                        "renewal_price" => $membership->renewal_price ?? null,
+                        'enabled' => true,
+                        'name' => $membership->name ?? null,
+                        'price' => $membership->price ?? null,
+                        'renewal_price' => $membership->renewal_price ?? null,
                     ]
                 );
             }
 
             $this->disableMissing(
-                \App\Models\Membership::class,
-                array_column((array) $memberships, "id")
+                Membership::class,
+                array_column((array) $memberships, 'id')
             );
         });
     }

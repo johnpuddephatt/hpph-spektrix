@@ -2,14 +2,12 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Laravel\Nova\Fields\Text;
-use Advoor\NovaEditorJs\NovaEditorJsField;
 use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Spatie\MediaLibrary\HasMedia;
-
 use Whitecube\NovaFlexibleContent\Concerns\HasMediaLibrary;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class HighlightLayout extends Layout implements HasMedia
 {
@@ -20,17 +18,16 @@ class HighlightLayout extends Layout implements HasMedia
      *
      * @var string
      */
-    protected $name = "highlight";
+    protected $name = 'highlight';
 
     public $collapsedPreviewAttribute = 'title';
-
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Highlight Layout";
+    protected $title = 'Highlight Layout';
 
     /**
      * Get the fields displayed by the layout.
@@ -40,9 +37,9 @@ class HighlightLayout extends Layout implements HasMedia
     public function fields()
     {
         return [
-            Images::make("Banner"),
-            Text::make("Title"),
-            Textarea::make("Description")->rows(2),
+            Images::make('Banner'),
+            Text::make('Title'),
+            Textarea::make('Description')->rows(2),
         ];
     }
 }

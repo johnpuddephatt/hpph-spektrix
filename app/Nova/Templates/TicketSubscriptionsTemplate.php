@@ -2,6 +2,8 @@
 
 namespace App\Nova\Templates;
 
+use App\Nova\Flexible\Layouts\FaqsLayout;
+use App\Nova\Flexible\Layouts\TextLayout;
 use App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
@@ -23,10 +25,10 @@ class TicketSubscriptionsTemplate
             new Panel('Page content', [
                 Flexible::make('Content', 'content')
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout::class
+                        TicketSubscriptionGroupLayout::class
                     )
-                    ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
+                    ->addLayout(TextLayout::class)
+                    ->addLayout(FaqsLayout::class)
                     ->button('Add content'),
             ]),
         ];

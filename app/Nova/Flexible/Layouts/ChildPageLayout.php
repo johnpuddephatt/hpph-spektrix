@@ -1,10 +1,10 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
 
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Image;
-use Laravel\Nova\Fields\Select;
+namespace App\Nova\Flexible\Layouts;
+
+use App\Models\Page;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
+use Laravel\Nova\Fields\Select;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class ChildPageLayout extends Layout
@@ -16,14 +16,14 @@ class ChildPageLayout extends Layout
      *
      * @var string
      */
-    protected $name = "child-page";
+    protected $name = 'child-page';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Child page";
+    protected $title = 'Child page';
 
     /**
      * Get the fields displayed by the layout.
@@ -33,12 +33,12 @@ class ChildPageLayout extends Layout
     public function fields()
     {
         return [
-            Select::make("Page", "page_id")->options(
+            Select::make('Page', 'page_id')->options(
                 static::cachedOptions(
-                    "children:" . request()->resourceId,
-                    fn() => \App\Models\Page::find(request()->resourceId)
+                    'children:'.request()->resourceId,
+                    fn () => Page::find(request()->resourceId)
                         ?->children()
-                        ->pluck("name", "id") ?? []
+                        ->pluck('name', 'id') ?? []
                 )
             ),
         ];
@@ -46,6 +46,6 @@ class ChildPageLayout extends Layout
 
     public function getPageAttribute()
     {
-        return \App\Models\Page::find($this->page_id);
+        return Page::find($this->page_id);
     }
 }

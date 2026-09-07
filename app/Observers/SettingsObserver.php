@@ -8,15 +8,16 @@ use Spatie\ResponseCache\Facades\ResponseCache;
 
 class SettingsObserver
 {
-
     public function clearCache()
     {
-        Cache::forget("settings");
+        Cache::forget('settings');
         Artisan::call('route:cache');
         ResponseCache::clear();
     }
+
     /**
      * Handle the MenuItem "created" event.
+     *
      * @return void
      */
     public function created()
@@ -26,6 +27,7 @@ class SettingsObserver
 
     /**
      * Handle the MenuItem "updated" event.
+     *
      * @return void
      */
     public function updated()
@@ -35,6 +37,7 @@ class SettingsObserver
 
     /**
      * Handle the MenuItem "deleted" event.
+     *
      * @return void
      */
     public function deleted()
@@ -44,6 +47,7 @@ class SettingsObserver
 
     /**
      * Handle the MenuItem "restored" event.
+     *
      * @return void
      */
     public function restored()
@@ -53,6 +57,7 @@ class SettingsObserver
 
     /**
      * Handle the MenuItem "force deleted" event.
+     *
      * @return void
      */
     public function forceDeleted()
@@ -62,6 +67,7 @@ class SettingsObserver
 
     /**
      * Handle the MenuItem "saving" event.
+     *
      * @return void
      */
     public function saving()

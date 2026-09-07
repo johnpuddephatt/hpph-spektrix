@@ -21,28 +21,28 @@ trait ShowsScreeningDates
     protected static function withScreeningAggregates($query)
     {
         return $query
-            ->withMin("allInstances as first_screening", "start")
-            ->withMax("allInstances as latest_screening", "start")
-            ->withCount("allInstances as screenings_count");
+            ->withMin('allInstances as first_screening', 'start')
+            ->withMax('allInstances as latest_screening', 'start')
+            ->withCount('allInstances as screenings_count');
     }
 
     protected function screeningDateFields(): array
     {
         return [
-            Text::make("Dates", function ($model) {
-                if (!$model->first_screening) {
-                    return "—";
+            Text::make('Dates', function ($model) {
+                if (! $model->first_screening) {
+                    return '—';
                 }
 
                 $first = Carbon::parse($model->first_screening);
                 $last = Carbon::parse($model->latest_screening);
 
                 return $first->isSameDay($last)
-                    ? $first->format("j M Y")
-                    : $first->format("j M Y") . " – " . $last->format("j M Y");
+                    ? $first->format('j M Y')
+                    : $first->format('j M Y').' – '.$last->format('j M Y');
             })->onlyOnIndex(),
 
-            Number::make("Screenings", "screenings_count")->onlyOnIndex(),
+            Number::make('Screenings', 'screenings_count')->onlyOnIndex(),
         ];
     }
 }

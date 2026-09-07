@@ -3,10 +3,10 @@
 namespace App\Nova\Flexible\Layouts;
 
 use Advoor\NovaEditorJs\NovaEditorJsCast;
+use Advoor\NovaEditorJs\NovaEditorJsField;
 use App\Nova\Flexible\Layouts\Concerns\AppearsInPageMenu;
 use App\Nova\Flexible\Layouts\Concerns\HasPageMenuEntry;
 use Illuminate\Support\Str;
-use Advoor\NovaEditorJs\NovaEditorJsField;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Select;
@@ -23,13 +23,12 @@ class TextLayout extends Layout implements HasPageMenuEntry
      *
      * @var string
      */
-    protected $name = "text";
+    protected $name = 'text';
 
     public $collapsedPreviewAttribute = 'title';
 
-
     protected $casts = [
-        "section_content" => NovaEditorJsCast::class,
+        'section_content' => NovaEditorJsCast::class,
     ];
 
     /**
@@ -37,19 +36,19 @@ class TextLayout extends Layout implements HasPageMenuEntry
      *
      * @var string
      */
-    protected $title = "Text";
+    protected $title = 'Text';
 
     public function menuLabel(): ?string
     {
         // The menu entry links to this section's heading, so an untitled
         // section has nothing to anchor to and isn't listed.
-        if (!$title = $this->getAttribute("title")) {
+        if (! $title = $this->getAttribute('title')) {
             return null;
         }
 
         // Section headings on the history pages read "Chapter one: the
         // beginning" — the menu has always shown the part before the colon.
-        return (string) Str::of($title)->before(":");
+        return (string) Str::of($title)->before(':');
     }
 
     /**
@@ -60,32 +59,32 @@ class TextLayout extends Layout implements HasPageMenuEntry
     public function fields()
     {
         return [
-            Text::make("Title"),
-            Text::make("Subtitle"),
-            Slug::make("Slug")->from("Title")->hideFromIndex()->help('Be careful changing this if you have linked to this section as it will change the anchor link'),
+            Text::make('Title'),
+            Text::make('Subtitle'),
+            Slug::make('Slug')->from('Title')->hideFromIndex()->help('Be careful changing this if you have linked to this section as it will change the anchor link'),
             NovaEditorJsField::make(
-                "Content",
-                "section_content"
+                'Content',
+                'section_content'
             )->hideFromDetail(),
-            Heading::make("Settings"),
-            Select::make("Background colour")
+            Heading::make('Settings'),
+            Select::make('Background colour')
                 ->options([
-                    "bg-white" => "White",
-                    "bg-sand" => "Grey",
-                    "bg-yellow" => "Yellow",
-                    "bg-black" => "Black",
+                    'bg-white' => 'White',
+                    'bg-sand' => 'Grey',
+                    'bg-yellow' => 'Yellow',
+                    'bg-black' => 'Black',
                 ])
                 ->displayUsingLabels(),
 
-            Select::make("Heading colour")
+            Select::make('Heading colour')
                 ->options([
-                    "text-white" => "White",
-                    "text-sand-dark" => "Grey",
-                    "text-yellow" => "Yellow",
-                    "text-black" => "Black",
+                    'text-white' => 'White',
+                    'text-sand-dark' => 'Grey',
+                    'text-yellow' => 'Yellow',
+                    'text-black' => 'Black',
                 ])
                 ->displayUsingLabels(),
-            Boolean::make("Center?", "is_centered"),
+            Boolean::make('Center?', 'is_centered'),
         ];
     }
 }

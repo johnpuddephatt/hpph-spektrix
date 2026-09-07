@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Email;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Blade;
 use Spatie\Mjml\Mjml;
 
 class EmailController extends Controller

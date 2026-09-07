@@ -2,11 +2,19 @@
 
 namespace App\Nova\Templates;
 
+use App\Nova\Flexible\Layouts\ImageLayout;
+use App\Nova\Flexible\Layouts\ImagePairLayout;
+use App\Nova\Flexible\Layouts\JournalPostLayout;
+use App\Nova\Flexible\Layouts\LinkBannerLayout;
+use App\Nova\Flexible\Layouts\PagesLayout;
+use App\Nova\Flexible\Layouts\QuoteLayout;
+use App\Nova\Flexible\Layouts\SignupFormLayout;
+use App\Nova\Flexible\Layouts\SingleMembershipLayout;
+use App\Nova\Flexible\Layouts\TeamLayout;
+use App\Nova\Flexible\Layouts\TextLayout;
+use App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout;
 use App\Nova\Templates\Concerns\HasPageMenuSetting;
 use Illuminate\Http\Request;
-use Outl1ne\PageManager\Template;
-use Laravel\Nova\Fields\Text;
-use Advoor\NovaEditorJs\NovaEditorJsField;
 use Laravel\Nova\Panel;
 use Whitecube\NovaFlexibleContent\Flexible;
 
@@ -17,7 +25,7 @@ class StandardPageTemplate
     // Name displayed in CMS
     public function name(): string
     {
-        return "Standard page";
+        return 'Standard page';
     }
 
     // Fields displayed in CMS
@@ -26,33 +34,33 @@ class StandardPageTemplate
         return [
             $this->pageMenuField(),
 
-            new Panel("Content", [
-                Flexible::make("Content", "content")
-                    ->addLayout(\App\Nova\Flexible\Layouts\TextLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\ImageLayout::class)
+            new Panel('Content', [
+                Flexible::make('Content', 'content')
+                    ->addLayout(TextLayout::class)
+                    ->addLayout(ImageLayout::class)
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\ImagePairLayout::class
-                    )
-                    ->addLayout(
-                        \App\Nova\Flexible\Layouts\JournalPostLayout::class
+                        ImagePairLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\SingleMembershipLayout::class
-                    )
-                    ->addLayout(\App\Nova\Flexible\Layouts\TeamLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\QuoteLayout::class)
-                    ->addLayout(
-                        \App\Nova\Flexible\Layouts\LinkBannerLayout::class
+                        JournalPostLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\SignupFormLayout::class
+                        SingleMembershipLayout::class
                     )
-->addLayout(
-                        \App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout::class
+                    ->addLayout(TeamLayout::class)
+                    ->addLayout(PagesLayout::class)
+                    ->addLayout(QuoteLayout::class)
+                    ->addLayout(
+                        LinkBannerLayout::class
                     )
-                    
-                    ->button("Add a section")
+                    ->addLayout(
+                        SignupFormLayout::class
+                    )
+                    ->addLayout(
+                        TicketSubscriptionGroupLayout::class
+                    )
+
+                    ->button('Add a section')
                     ->drawer(),
             ]),
         ];

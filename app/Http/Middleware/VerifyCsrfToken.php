@@ -11,5 +11,5 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array<int, string>
      */
-    protected $except = ["livewire/message/search"];
+    protected $except = ['livewire/message/search'];
 }

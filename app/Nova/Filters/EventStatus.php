@@ -22,22 +22,22 @@ use Laravel\Nova\Http\Requests\NovaRequest;
  */
 class EventStatus extends Filter
 {
-    public $component = "select-filter";
+    public $component = 'select-filter';
 
-    public $name = "Status";
+    public $name = 'Status';
 
     public function apply(NovaRequest $request, $query, $value)
     {
         return match ($value) {
-            "current" => $query->where("enabled", true),
-            "finished" => $query
-                ->where("enabled", false)
-                ->where("last_instance_date_time", "<", now()),
-            "withdrawn" => $query
-                ->where("enabled", false)
-                ->where(fn(Builder $q) => $q
-                    ->where("last_instance_date_time", ">=", now())
-                    ->orWhereNull("last_instance_date_time")),
+            'current' => $query->where('enabled', true),
+            'finished' => $query
+                ->where('enabled', false)
+                ->where('last_instance_date_time', '<', now()),
+            'withdrawn' => $query
+                ->where('enabled', false)
+                ->where(fn (Builder $q) => $q
+                    ->where('last_instance_date_time', '>=', now())
+                    ->orWhereNull('last_instance_date_time')),
             default => $query,
         };
     }
@@ -45,10 +45,10 @@ class EventStatus extends Filter
     public function options(NovaRequest $request)
     {
         return [
-            "Current and upcoming" => "current",
-            "Finished" => "finished",
-            "Withdrawn from Spektrix" => "withdrawn",
-            "Everything" => "all",
+            'Current and upcoming' => 'current',
+            'Finished' => 'finished',
+            'Withdrawn from Spektrix' => 'withdrawn',
+            'Everything' => 'all',
         ];
     }
 
@@ -57,6 +57,6 @@ class EventStatus extends Filter
      */
     public function default()
     {
-        return "current";
+        return 'current';
     }
 }

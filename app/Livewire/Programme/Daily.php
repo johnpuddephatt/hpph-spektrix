@@ -2,20 +2,18 @@
 
 namespace App\Livewire\Programme;
 
-use Illuminate\Database\Eloquent\Builder;
-use Livewire\Component;
+use App\Models\Instance;
 use Carbon\Carbon;
-use Illuminate\Support\Str;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Daily extends Component
 {
     use WithPagination;
 
-
     public function paginationView()
     {
-        return "vendor.livewire.tailwind";
+        return 'vendor.livewire.tailwind';
     }
 
     public function gotoPage($page)
@@ -25,32 +23,38 @@ class Daily extends Component
     }
 
     public $options;
+
     public $dark = false;
+
     public $show_header = true;
+
     public $show_load_more = false;
+
     public $page = 1;
 
     public $strand = null;
+
     public $accessibility = null;
+
     public $date = null;
 
     public $filtered = false;
 
     public $past = false;
 
-    protected $queryString = ["accessibility", "strand", "date", "past" => ["except" => false]];
+    protected $queryString = ['accessibility', 'strand', 'date', 'past' => ['except' => false]];
 
     protected $listeners = [
-        "updateStrand2" => "setStrand",
-        "updateAccessibility2" => "setAccessibility",
-        "updateDate2" => "setDate",
+        'updateStrand2' => 'setStrand',
+        'updateAccessibility2' => 'setAccessibility',
+        'updateDate2' => 'setDate',
     ];
 
     public function clearFilters()
     {
-        $this->reset("strand");
-        $this->reset("accessibility");
-        $this->reset("date");
+        $this->reset('strand');
+        $this->reset('accessibility');
+        $this->reset('date');
     }
 
     public function setStrand($slug)
@@ -80,8 +84,8 @@ class Daily extends Component
 
     public function render()
     {
-        return view("livewire.programme.daily", [
-            "instances" => \App\Models\Instance::getInstancesForProgramme(
+        return view('livewire.programme.daily', [
+            'instances' => Instance::getInstancesForProgramme(
                 $this->past,
                 $this->strand,
                 $this->accessibility,

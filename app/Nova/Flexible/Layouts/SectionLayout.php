@@ -2,14 +2,14 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Image;
-use Advoor\NovaEditorJs\NovaEditorJsField;
+use App\Nova\Actions\SaveAndResizeBannerImage;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Text;
 use Spatie\MediaLibrary\HasMedia;
 use Whitecube\NovaFlexibleContent\Concerns\HasMediaLibrary;
 use Whitecube\NovaFlexibleContent\Flexible;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class SectionLayout extends Layout implements HasMedia
 {
@@ -20,23 +20,22 @@ class SectionLayout extends Layout implements HasMedia
      *
      * @var string
      */
-    protected $name = "section";
+    protected $name = 'section';
 
     public $collapsedPreviewAttribute = 'title';
-
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Section";
+    protected $title = 'Section';
 
     public function getSectionedContentAttribute()
     {
-        return $this->flexible("sectioned_content", [
-            "simple-text" => \App\Nova\Flexible\Layouts\SimpleTextLayout::class,
-            "single-faq" => \App\Nova\Flexible\Layouts\SingleFaqLayout::class,
+        return $this->flexible('sectioned_content', [
+            'simple-text' => SimpleTextLayout::class,
+            'single-faq' => SingleFaqLayout::class,
         ]);
     }
 
@@ -48,17 +47,17 @@ class SectionLayout extends Layout implements HasMedia
     public function fields()
     {
         return [
-            Image::make("Image", "banner")
+            Image::make('Image', 'banner')
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
-                ->store(new \App\Nova\Actions\SaveAndResizeBannerImage()),
-            Text::make("Title"),
-            Flexible::make("Content", "sectioned_content")
+                ->store(new SaveAndResizeBannerImage),
+            Text::make('Title'),
+            Flexible::make('Content', 'sectioned_content')
                 ->stacked()
                 ->fullWidth()
-                ->addLayout(\App\Nova\Flexible\Layouts\SimpleTextLayout::class)
-                ->addLayout(\App\Nova\Flexible\Layouts\SingleFaqLayout::class),
+                ->addLayout(SimpleTextLayout::class)
+                ->addLayout(SingleFaqLayout::class),
         ];
     }
 }

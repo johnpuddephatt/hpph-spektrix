@@ -2,9 +2,10 @@
 
 namespace App\Nova\Actions;
 
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Encoders\JpegEncoder;
 use Intervention\Image\Laravel\Facades\Image as InterventionImage;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class SaveAndResizeSquareImage
 {
@@ -25,7 +26,7 @@ class SaveAndResizeSquareImage
             InterventionImage::read($request->file($attribute))
                 ->cover(1024, 1024)
                 ->encode(
-                    new \Intervention\Image\Encoders\JpegEncoder(quality: 75),
+                    new JpegEncoder(quality: 75),
                 )
         );
 

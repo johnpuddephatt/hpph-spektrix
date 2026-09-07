@@ -12,14 +12,14 @@ class StatementTextLayout extends Layout
      *
      * @var string
      */
-    protected $name = "statement_text";
+    protected $name = 'statement_text';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Statement text";
+    protected $title = 'Statement text';
 
     /**
      * Get the fields displayed by the layout.
@@ -28,6 +28,6 @@ class StatementTextLayout extends Layout
      */
     public function fields()
     {
-        return [Textarea::make("Title")];
+        return [Textarea::make('Title')];
     }
 }

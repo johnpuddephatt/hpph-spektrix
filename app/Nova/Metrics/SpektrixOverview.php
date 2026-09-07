@@ -2,54 +2,57 @@
 
 namespace App\Nova\Metrics;
 
+use App\Models\Event;
+use App\Models\Fund;
+use App\Models\Instance;
+use App\Models\Membership;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Metrics\MetricTableRow;
 use Laravel\Nova\Metrics\Table;
-use Laravel\Nova\Menu\MenuItem;
 
 class SpektrixOverview extends Table
 {
     /**
      * Calculate the value of the metric.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return mixed
      */
     public function calculate(NovaRequest $request)
     {
         return [
             MetricTableRow::make()
-                ->icon("information-circle")
-                ->iconClass("text-sky-500")
-                ->title(\App\Models\Event::count() . " events")
+                ->icon('information-circle')
+                ->iconClass('text-sky-500')
+                ->title(Event::count().' events')
                 ->actions(function () {
                     return [
                         MenuItem::resource(\App\Nova\Event::class)->name(
-                            "Go to events"
+                            'Go to events'
                         ),
                     ];
                 })
-                ->subtitle(\App\Models\Instance::count() . " instances"),
+                ->subtitle(Instance::count().' instances'),
 
             MetricTableRow::make()
-                ->icon("information-circle")
-                ->iconClass("text-sky-500")
-                ->title(\App\Models\Membership::count() . " memberships")
+                ->icon('information-circle')
+                ->iconClass('text-sky-500')
+                ->title(Membership::count().' memberships')
                 ->actions(function () {
                     return [
                         MenuItem::resource(\App\Nova\Membership::class)->name(
-                            "Go to memberships"
+                            'Go to memberships'
                         ),
                     ];
                 }),
             MetricTableRow::make()
-                ->icon("information-circle")
-                ->iconClass("text-sky-500")
-                ->title(\App\Models\Fund::count() . " funds")
+                ->icon('information-circle')
+                ->iconClass('text-sky-500')
+                ->title(Fund::count().' funds')
                 ->actions(function () {
                     return [
                         MenuItem::resource(\App\Nova\Fund::class)->name(
-                            "Go to funds"
+                            'Go to funds'
                         ),
                     ];
                 }),

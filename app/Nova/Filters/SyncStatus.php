@@ -13,9 +13,9 @@ use Laravel\Nova\Http\Requests\NovaRequest;
  */
 class SyncStatus extends Filter
 {
-    public $component = "select-filter";
+    public $component = 'select-filter';
 
-    public $name = "Spektrix sync";
+    public $name = 'Spektrix sync';
 
     /**
      * @param  bool  $forceable  Whether the model has a `force_enabled_until`
@@ -27,25 +27,24 @@ class SyncStatus extends Filter
      */
     public function __construct(
         protected bool $forceable = false,
-        protected string $defaultValue = "synced"
-    ) {
-    }
+        protected string $defaultValue = 'synced'
+    ) {}
 
     public function apply(NovaRequest $request, $query, $value)
     {
         return match ($value) {
-            "synced" => $query->where(fn(Builder $q) => $this->synced($q)),
-            "unsynced" => $query->whereNot(fn(Builder $q) => $this->synced($q)),
+            'synced' => $query->where(fn (Builder $q) => $this->synced($q)),
+            'unsynced' => $query->whereNot(fn (Builder $q) => $this->synced($q)),
             default => $query,
         };
     }
 
     protected function synced(Builder $query): Builder
     {
-        $query->where("enabled", true);
+        $query->where('enabled', true);
 
         if ($this->forceable) {
-            $query->orWhere("force_enabled_until", ">=", now());
+            $query->orWhere('force_enabled_until', '>=', now());
         }
 
         return $query;
@@ -54,9 +53,9 @@ class SyncStatus extends Filter
     public function options(NovaRequest $request)
     {
         return [
-            "In the latest import" => "synced",
-            "Missing from the latest import" => "unsynced",
-            "Everything" => "all",
+            'In the latest import' => 'synced',
+            'Missing from the latest import' => 'unsynced',
+            'Everything' => 'all',
         ];
     }
 

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -120,7 +121,7 @@ class Instance extends Model
      * collection instead, memoised for the request so a listing costs one lookup
      * rather than one per row.
      */
-    protected static ?\Illuminate\Support\Collection $accessTags = null;
+    protected static ?Collection $accessTags = null;
 
     public function getAccessTagsAttribute()
     {
@@ -129,7 +130,7 @@ class Instance extends Model
             ->values();
     }
 
-    protected static function allAccessTags(): \Illuminate\Support\Collection
+    protected static function allAccessTags(): Collection
     {
         return static::$accessTags ??= Cache::rememberForever(
             'access_tags',
@@ -369,7 +370,7 @@ class Instance extends Model
         $cacheKey = 'instances_for_programme_'.$past.'_'.$strand.'_'.$accessibility.'_'.$date;
 
         $queryBuilder = function () use ($past, $strand, $accessibility, $date) {
-            $instances = \App\Models\Instance::whereHas('event', function ($event) {
+            $instances = Instance::whereHas('event', function ($event) {
                 return $event->shownInProgramme();
             })
                 ->with(

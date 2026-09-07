@@ -1,6 +1,7 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
 
-use Laravel\Nova\Fields\Select;
+namespace App\Nova\Flexible\Layouts;
+
 use Whitecube\NovaFlexibleContent\Flexible;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
@@ -11,14 +12,14 @@ class PagesLayout extends Layout
      *
      * @var string
      */
-    protected $name = "pages";
+    protected $name = 'pages';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Pages";
+    protected $title = 'Pages';
 
     /**
      * Get the fields displayed by the layout.
@@ -28,11 +29,11 @@ class PagesLayout extends Layout
     public function fields()
     {
         return [
-            Flexible::make("Child pages", "child_pages")
-                ->addLayout(\App\Nova\Flexible\Layouts\ChildPageLayout::class)
-                ->addLayout(\App\Nova\Flexible\Layouts\PageLayout::class)
-                ->addLayout(\App\Nova\Flexible\Layouts\LinkLayout::class)
-                ->button("Add page")
+            Flexible::make('Child pages', 'child_pages')
+                ->addLayout(ChildPageLayout::class)
+                ->addLayout(PageLayout::class)
+                ->addLayout(LinkLayout::class)
+                ->button('Add page')
                 ->fullWidth()
                 ->limit(2),
         ];
@@ -40,10 +41,10 @@ class PagesLayout extends Layout
 
     public function getChildPagesAttribute()
     {
-        return $this->flexible("child_pages", [
-            "child-page" => \App\Nova\Flexible\Layouts\ChildPageLayout::class,
-            "page" => \App\Nova\Flexible\Layouts\PageLayout::class,
-            "link" => \App\Nova\Flexible\Layouts\LinkLayout::class,
+        return $this->flexible('child_pages', [
+            'child-page' => ChildPageLayout::class,
+            'page' => PageLayout::class,
+            'link' => LinkLayout::class,
         ]);
     }
 }

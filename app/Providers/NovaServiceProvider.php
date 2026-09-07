@@ -2,23 +2,43 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Gate;
-use Laravel\Nova\Cards\Help;
-use Laravel\Nova\Nova;
-use Laravel\Nova\NovaApplicationServiceProvider;
+use App\Nova\AccessTag;
 use App\Nova\Dashboards\Main;
-use Spatie\MediaLibrary\Conversions\Conversion;
-use Spatie\Image\Manipulations;
+use App\Nova\Email;
+use App\Nova\Event;
+use App\Nova\Fund;
+use App\Nova\Membership;
+use App\Nova\Opportunity;
+use App\Nova\Page;
+use App\Nova\Post;
+use App\Nova\Product;
+use App\Nova\Season;
+use App\Nova\Settings\Alert;
+use App\Nova\Settings\Banner;
+use App\Nova\Settings\Contact;
+use App\Nova\Settings\Emails;
+use App\Nova\Settings\Messages;
+use App\Nova\Settings\Newsletter;
+use App\Nova\Settings\Redirects;
+use App\Nova\Settings\System;
+use App\Nova\SignupForm;
+use App\Nova\Strand;
+use App\Nova\Tag;
+use App\Nova\TicketSubscription;
+use App\Nova\User;
 use Illuminate\Http\Request;
-use Advoor\NovaEditorJs\NovaEditorJs;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Vite;
-use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Text;
+use Laravel\Nova\LogViewer\LogViewer;
 use Laravel\Nova\Menu\Menu;
 use Laravel\Nova\Menu\MenuGroup;
 use Laravel\Nova\Menu\MenuItem;
 use Laravel\Nova\Menu\MenuSection;
+use Laravel\Nova\Nova;
+use Laravel\Nova\NovaApplicationServiceProvider;
+use Outl1ne\MenuBuilder\MenuBuilder;
+use Outl1ne\NovaSettings\NovaSettings;
+use Spatie\BackupTool\BackupTool;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -32,18 +52,18 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         parent::boot();
 
         $settings = [
-            new \App\Nova\Settings\Redirects(),
-            new \App\Nova\Settings\Alert(),
-            new \App\Nova\Settings\Banner(),
-            new \App\Nova\Settings\Contact(),
-            new \App\Nova\Settings\Messages(),
-            new \App\Nova\Settings\Emails(),
-            new \App\Nova\Settings\System(),
-            new \App\Nova\Settings\Newsletter(),
+            new Redirects,
+            new Alert,
+            new Banner,
+            new Contact,
+            new Messages,
+            new Emails,
+            new System,
+            new Newsletter,
         ];
 
         foreach ($settings as $setting) {
-            \Outl1ne\NovaSettings\NovaSettings::addSettingsFields(
+            NovaSettings::addSettingsFields(
                 $setting->fields() ?? [],
                 $setting->casts() ?? [],
                 $setting->page ?? null
@@ -52,9 +72,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         Nova::serving(function () {
             Nova::script(
-                "editorjs-plugins",
+                'editorjs-plugins',
                 // Vite::asset("resources/js/editorjs-plugins.js")
-                public_path("editorjs-plugins.js")
+                public_path('editorjs-plugins.js')
             );
         });
 
@@ -223,68 +243,68 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         Nova::mainMenu(function (Request $request, Menu $menu) {
             return [
-                MenuSection::dashboard(\App\Nova\Dashboards\Main::class)->icon(
-                    "eye"
+                MenuSection::dashboard(Main::class)->icon(
+                    'eye'
                 ),
-                MenuSection::make("Box office", [
-                    MenuItem::resource(\App\Nova\Event::class)->withBadgeIf(
-                        \App\Models\Event::unpublished()->count() . " new",
-                        "info",
-                        fn() => \App\Models\Event::unpublished()->count() > 0
+                MenuSection::make('Box office', [
+                    MenuItem::resource(Event::class)->withBadgeIf(
+                        \App\Models\Event::unpublished()->count().' new',
+                        'info',
+                        fn () => \App\Models\Event::unpublished()->count() > 0
                     ),
-                    MenuItem::resource(\App\Nova\Strand::class),
-                    MenuItem::resource(\App\Nova\Season::class),
-                    MenuItem::resource(\App\Nova\AccessTag::class),
-                    MenuGroup::make("Programme", []),
+                    MenuItem::resource(Strand::class),
+                    MenuItem::resource(Season::class),
+                    MenuItem::resource(AccessTag::class),
+                    MenuGroup::make('Programme', []),
 
-                    MenuGroup::make("", [
-                        MenuItem::resource(\App\Nova\Membership::class),
-                        MenuItem::resource(\App\Nova\Fund::class),
-                                                MenuItem::resource(\App\Nova\TicketSubscription::class),
+                    MenuGroup::make('', [
+                        MenuItem::resource(Membership::class),
+                        MenuItem::resource(Fund::class),
+                        MenuItem::resource(TicketSubscription::class),
 
                     ]),
-                ])->icon("ticket"),
-                MenuSection::resource(\App\Nova\Page::class)->icon(
-                    "document-text"
+                ])->icon('ticket'),
+                MenuSection::resource(Page::class)->icon(
+                    'document-text'
                 ),
 
-                MenuSection::make("Journal", [
-                    MenuItem::resource(\App\Nova\Post::class),
-                    MenuItem::resource(\App\Nova\Tag::class),
-                ])->icon("pencil"),
+                MenuSection::make('Journal', [
+                    MenuItem::resource(Post::class),
+                    MenuItem::resource(Tag::class),
+                ])->icon('pencil'),
 
                 // MenuSection::resource(\App\Nova\Post::class)->icon("pencil"),
 
-                MenuSection::resource(\App\Nova\Product::class)->icon("gift"),
+                MenuSection::resource(Product::class)->icon('gift'),
 
-                MenuSection::resource(\App\Nova\Opportunity::class)->icon(
-                    "briefcase"
+                MenuSection::resource(Opportunity::class)->icon(
+                    'briefcase'
                 ),
 
-                MenuSection::resource(\App\Nova\Email::class)->icon(
-                    "at-symbol"
+                MenuSection::resource(Email::class)->icon(
+                    'at-symbol'
                 ),
 
-                MenuSection::resource(\App\Nova\SignupForm::class)->icon(
-                    "clipboard-list"
+                MenuSection::resource(SignupForm::class)->icon(
+                    'clipboard-list'
                 ),
 
                 // (new \Outl1ne\PageManager\PageManager())->menu($request),
-                MenuSection::make(__("novaMenuBuilder.sidebarTitle"))
-                    ->path("/menus")
-                    ->icon("collection"),
+                MenuSection::make(__('novaMenuBuilder.sidebarTitle'))
+                    ->path('/menus')
+                    ->icon('collection'),
 
-                (new \Outl1ne\NovaSettings\NovaSettings())
+                (new NovaSettings)
                     ->menu($request)
-                    ->icon("cog"),
+                    ->icon('cog'),
 
-                MenuSection::resource(\App\Nova\User::class)->icon(
-                    "user-group"
+                MenuSection::resource(User::class)->icon(
+                    'user-group'
                 ),
 
-                (new \Spatie\BackupTool\BackupTool())->menu($request),
+                (new BackupTool)->menu($request),
 
-                MenuSection::make("Logs")->path("/logs"),
+                MenuSection::make('Logs')->path('/logs'),
             ];
         });
     }
@@ -311,7 +331,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function gate()
     {
-        Gate::define("viewNova", function ($user) {
+        Gate::define('viewNova', function ($user) {
             return $user->enable_login;
         });
     }
@@ -323,7 +343,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function dashboards()
     {
-        return [new Main()];
+        return [new Main];
     }
 
     /**
@@ -334,10 +354,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            \Outl1ne\MenuBuilder\MenuBuilder::make(),
-            new \Outl1ne\NovaSettings\NovaSettings(),
-            new \Spatie\BackupTool\BackupTool(),
-            \Laravel\Nova\LogViewer\LogViewer::make(),
+            MenuBuilder::make(),
+            new NovaSettings,
+            new BackupTool,
+            LogViewer::make(),
         ];
     }
 

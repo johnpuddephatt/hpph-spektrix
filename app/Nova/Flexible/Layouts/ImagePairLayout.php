@@ -2,11 +2,12 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use App\Nova\Actions\SaveAndResizeSquareImage;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Nova\Fields\Boolean;
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Image;
+use Laravel\Nova\Fields\Text;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class ImagePairLayout extends Layout
 {
@@ -15,14 +16,14 @@ class ImagePairLayout extends Layout
      *
      * @var string
      */
-    protected $name = "image-pair";
+    protected $name = 'image-pair';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Image pair";
+    protected $title = 'Image pair';
 
     /**
      * Get the fields displayed by the layout.
@@ -33,19 +34,19 @@ class ImagePairLayout extends Layout
     {
         return [
             Boolean::make('Short height', 'short_height'),
-            Image::make("Image", "image")
+            Image::make('Image', 'image')
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
-                ->store(new \App\Nova\Actions\SaveAndResizeSquareImage()),
-            Text::make("Caption", "caption"),
+                ->store(new SaveAndResizeSquareImage),
+            Text::make('Caption', 'caption'),
 
-            Image::make("Image", "image_2")
+            Image::make('Image', 'image_2')
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
-                ->store(new \App\Nova\Actions\SaveAndResizeSquareImage()),
-            Text::make("Caption", "caption_2"),
+                ->store(new SaveAndResizeSquareImage),
+            Text::make('Caption', 'caption_2'),
         ];
     }
 }

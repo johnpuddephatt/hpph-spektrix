@@ -2,7 +2,7 @@
 
 namespace App\Nova\Settings;
 
-use Laravel\Nova\Fields\Boolean;
+use App\Models\Page;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
@@ -12,37 +12,37 @@ use Trin4ik\NovaSwitcher\NovaSwitcher;
 
 class System
 {
-    public $page = "System";
+    public $page = 'System';
 
     public function fields(): array
     {
         return [
-            Text::make("Google analytics"),
-            Text::make("Spektrix custom domain"),
-            Text::make("Spektrix client name"),
+            Text::make('Google analytics'),
+            Text::make('Spektrix custom domain'),
+            Text::make('Spektrix client name'),
 
-            Panel::make("Team link", [
-                Select::make("Team page", "team_page")->options(
-                    \App\Models\Page::pluck("name", "id")
+            Panel::make('Team link', [
+                Select::make('Team page', 'team_page')->options(
+                    Page::pluck('name', 'id')
                 ),
-                Text::make("Hash", "team_page_hash")->help(
-                    "Optional hash to scroll to on the team page. E.g. #team"
+                Text::make('Hash', 'team_page_hash')->help(
+                    'Optional hash to scroll to on the team page. E.g. #team'
                 ),
             ]),
-            Panel::make("Content warnings", [
+            Panel::make('Content warnings', [
                 Values::make(
-                    "Content warnings to always display",
-                    "content_warnings_to_not_hide"
-                )->help("Content warnings to always display on the event page"),
+                    'Content warnings to always display',
+                    'content_warnings_to_not_hide'
+                )->help('Content warnings to always display on the event page'),
             ]),
-            Panel::make("Programme", [
-                Select::make("Default view", "default_programme_view")->options(
+            Panel::make('Programme', [
+                Select::make('Default view', 'default_programme_view')->options(
                     [
-                        "schedule" => "Schedule",
-                        "alphabetical" => "Alphabetical (A-Z)",
+                        'schedule' => 'Schedule',
+                        'alphabetical' => 'Alphabetical (A-Z)',
                     ]
                 ),
-                NovaSwitcher::make("Display availabilty badge", "display_availability_badge"),
+                NovaSwitcher::make('Display availabilty badge', 'display_availability_badge'),
                 Number::make('Availability threshold', 'availability_threshold')
                     ->help('Set the availability below which to show the "Last few" badge. Enter 0.1 for 10%, 0.2 for 20%, etc.')->step(0.01),
                 Text::make('F-Rating info link', 'f_rating_info')->help('Link to F-Rating info page displayed on the event page'),
@@ -53,7 +53,7 @@ class System
     public function casts(): array
     {
         return [
-            "content_warnings_to_not_hide" => "array",
+            'content_warnings_to_not_hide' => 'array',
         ];
     }
 }

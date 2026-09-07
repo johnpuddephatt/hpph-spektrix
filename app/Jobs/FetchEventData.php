@@ -4,8 +4,12 @@ namespace App\Jobs;
 
 use App\Cache\ContentCache;
 use App\Jobs\Concerns\DisablesMissingRecords;
+use App\Models\Event;
 use App\Models\Instance;
+use App\Models\Season;
+use App\Models\Strand;
 use App\Support\ColumnLimits;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -19,7 +23,7 @@ use Illuminate\Support\Str;
 
 class FetchEventData implements ShouldQueue
 {
-    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
+    use DisablesMissingRecords, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Strand/season names from Spektrix that matched no local row, as
@@ -39,7 +43,7 @@ class FetchEventData implements ShouldQueue
 
     public function fetch($url)
     {
-        $client = new Client();
+        $client = new Client;
         $res = $client->request('GET', $url);
 
         return json_decode($res->getBody()->__toString(), false);
@@ -117,9 +121,9 @@ class FetchEventData implements ShouldQueue
             'https://system.spektrix.com/'.
                 nova_get_setting('spektrix_client_name').
                 '/api/v3/events?instanceStart_from='.
-                \Carbon\Carbon::now()
-                ->subDay()
-                ->format('Y-m-d').
+                Carbon::now()
+                    ->subDay()
+                    ->format('Y-m-d').
                 '&attribute_Website='.$website
         );
     }
@@ -134,9 +138,9 @@ class FetchEventData implements ShouldQueue
                     'https://system.spektrix.com/'.
                         nova_get_setting('spektrix_client_name').
                         "/api/v3/events/{$event->id}/instances?start_from=".
-                        \Carbon\Carbon::now()
-                        ->subDay()
-                        ->format('Y-m-d')
+                        Carbon::now()
+                            ->subDay()
+                            ->format('Y-m-d')
                 )
             );
         }
@@ -148,7 +152,7 @@ class FetchEventData implements ShouldQueue
     {
         foreach ($events as $event) {
             // \App\Models\Event::withoutEvents(function () use ($event) {
-            \App\Models\Event::withoutGlobalScopes()->updateOrCreate(
+            Event::withoutGlobalScopes()->updateOrCreate(
                 ['id' => $event->id],
                 ColumnLimits::fit('events', [
                     'enabled' => true,
@@ -217,7 +221,7 @@ class FetchEventData implements ShouldQueue
             );
             // });
         }
-        \App\Models\Event::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($events, 'id'))->update(['enabled' => false]);
+        Event::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($events, 'id'))->update(['enabled' => false]);
     }
 
     public function getInstancesVenues($instances)
@@ -252,7 +256,7 @@ class FetchEventData implements ShouldQueue
             // Only "name" on create: the lookup is case-insensitive in MySQL, so
             // writing it back would rewrite an existing row's name to whichever
             // casing Spektrix happened to send last.
-            \App\Models\Strand::withoutGlobalScopes()->updateOrCreate(
+            Strand::withoutGlobalScopes()->updateOrCreate(
                 [
                     'name' => $strand,
                 ],
@@ -262,7 +266,7 @@ class FetchEventData implements ShouldQueue
             );
         }
 
-        $this->disableMissing(\App\Models\Strand::class, $names, 'name');
+        $this->disableMissing(Strand::class, $names, 'name');
     }
 
     public function updateOrCreateSeasons($instances)
@@ -271,7 +275,7 @@ class FetchEventData implements ShouldQueue
 
         foreach ($names as $season) {
             // See updateOrCreateStrands: don't rewrite the name of a matched row.
-            \App\Models\Season::withoutGlobalScopes()->updateOrCreate(
+            Season::withoutGlobalScopes()->updateOrCreate(
                 [
                     'name' => $season,
                 ],
@@ -281,7 +285,7 @@ class FetchEventData implements ShouldQueue
             );
         }
 
-        $this->disableMissing(\App\Models\Season::class, $names, 'name');
+        $this->disableMissing(Season::class, $names, 'name');
     }
 
     /**
@@ -298,11 +302,11 @@ class FetchEventData implements ShouldQueue
     public function updateOrCreateInstances($instances)
     {
         // Resolve strand/season names → ids once for pivot syncing.
-        $strandIds = $this->nameLookup(\App\Models\Strand::class);
-        $seasonIds = $this->nameLookup(\App\Models\Season::class);
+        $strandIds = $this->nameLookup(Strand::class);
+        $seasonIds = $this->nameLookup(Season::class);
 
         foreach ($instances as $instance) {
-            $model = \App\Models\Instance::withoutGlobalScopes()->updateOrCreate(
+            $model = Instance::withoutGlobalScopes()->updateOrCreate(
                 ['id' => $instance->id],
                 ColumnLimits::fit('instances', [
                     'enabled' => true,
@@ -347,7 +351,7 @@ class FetchEventData implements ShouldQueue
             ));
         }
 
-        \App\Models\Instance::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($instances, 'id'))->update(['enabled' => false]);
+        Instance::withoutGlobalScopes()->whereNotIn('id', Arr::pluck($instances, 'id'))->update(['enabled' => false]);
     }
 
     /**

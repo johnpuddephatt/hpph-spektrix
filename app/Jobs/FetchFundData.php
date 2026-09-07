@@ -4,18 +4,17 @@ namespace App\Jobs;
 
 use App\Cache\ContentCache;
 use App\Jobs\Concerns\DisablesMissingRecords;
+use App\Models\Fund;
+use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use GuzzleHttp\Client;
-use Illuminate\Support\Arr;
 
 class FetchFundData implements ShouldQueue
 {
-    use Dispatchable, DisablesMissingRecords, InteractsWithQueue, Queueable, SerializesModels;
+    use DisablesMissingRecords, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -34,25 +33,25 @@ class FetchFundData implements ShouldQueue
      */
     public function handle()
     {
-        $client = new Client();
+        $client = new Client;
         $res = $client->request(
-            "GET",
-            "https://system.spektrix.com/" .
-                nova_get_setting("spektrix_client_name") .
-                "/api/v3/funds"
+            'GET',
+            'https://system.spektrix.com/'.
+                nova_get_setting('spektrix_client_name').
+                '/api/v3/funds'
         );
 
         $funds = json_decode($res->getBody()->__toString());
 
         ContentCache::defer(function () use ($funds) {
             foreach ($funds as $fund) {
-                \App\Models\Fund::withoutGlobalScopes()->updateOrCreate(
-                    ["id" => $fund->id],
+                Fund::withoutGlobalScopes()->updateOrCreate(
+                    ['id' => $fund->id],
                     [
-                        "enabled" => true,
-                        "name" => $fund->name ?? null,
-                        "description" => $fund->description ?? null,
-                        "code" => $fund->code ?? false,
+                        'enabled' => true,
+                        'name' => $fund->name ?? null,
+                        'description' => $fund->description ?? null,
+                        'code' => $fund->code ?? false,
                         // "default_donation_amount" =>
                         //     $fund->defaultDonationAmount ?? null,
                     ]
@@ -60,8 +59,8 @@ class FetchFundData implements ShouldQueue
             }
 
             $this->disableMissing(
-                \App\Models\Fund::class,
-                array_column((array) $funds, "id")
+                Fund::class,
+                array_column((array) $funds, 'id')
             );
         });
     }

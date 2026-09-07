@@ -1,13 +1,10 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
 
-use Advoor\NovaEditorJs\NovaEditorJsCast;
-use Advoor\NovaEditorJs\NovaEditorJsField;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Heading;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
-use Whitecube\NovaFlexibleContent\Flexible;
+namespace App\Nova\Flexible\Layouts;
+
+use App\Models\Membership;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
+use Laravel\Nova\Fields\Select;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class MembershipLayout extends Layout
@@ -19,14 +16,14 @@ class MembershipLayout extends Layout
      *
      * @var string
      */
-    protected $name = "membership";
+    protected $name = 'membership';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Membership";
+    protected $title = 'Membership';
 
     /**
      * Get the fields displayed by the layout.
@@ -36,14 +33,14 @@ class MembershipLayout extends Layout
     public function fields()
     {
         return [
-            Select::make("Membership", "membership_name")
-                ->options(static::cachedOptions("memberships", fn() => \App\Models\Membership::pluck("name", "id")))
+            Select::make('Membership', 'membership_name')
+                ->options(static::cachedOptions('memberships', fn () => Membership::pluck('name', 'id')))
                 ->searchable(),
         ];
     }
 
     public function getMembershipAttribute($value)
     {
-        return \App\Models\Membership::find($this->membership_name);
+        return Membership::find($this->membership_name);
     }
 }

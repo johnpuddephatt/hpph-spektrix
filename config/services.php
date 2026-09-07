@@ -13,26 +13,26 @@ return [
     |
     */
 
-    "mailgun" => [
-        "domain" => env("MAILGUN_DOMAIN"),
-        "secret" => env("MAILGUN_SECRET"),
-        "endpoint" => env("MAILGUN_ENDPOINT", "api.mailgun.net"),
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
+        'endpoint' => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
-    "postmark" => [
-        "token" => env("POSTMARK_TOKEN"),
+    'postmark' => [
+        'token' => env('POSTMARK_TOKEN'),
     ],
 
-    "ses" => [
-        "key" => env("AWS_ACCESS_KEY_ID"),
-        "secret" => env("AWS_SECRET_ACCESS_KEY"),
-        "region" => env("AWS_DEFAULT_REGION", "us-east-1"),
+    'ses' => [
+        'key' => env('AWS_ACCESS_KEY_ID'),
+        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
     // Credentials for signed Spektrix API writes. The client name itself is a
     // Nova setting, not an env var — see App\Services\SpektrixApi.
-    "spektrix" => [
-        "user" => env("SPEKTRIX_API_USER"),
-        "key" => env("SPEKTRIX_API_KEY"),
+    'spektrix' => [
+        'user' => env('SPEKTRIX_API_USER'),
+        'key' => env('SPEKTRIX_API_KEY'),
     ],
 ];

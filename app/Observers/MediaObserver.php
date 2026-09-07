@@ -2,58 +2,55 @@
 
 namespace App\Observers;
 
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Jobs\ConvertEventVideo;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
 class MediaObserver
 {
     /**
      * Handle the Media "created" event.
+     *
      * @return void
      */
     public function created(Media $media)
     {
-        if ($media->collection_name == "video") {
+        if ($media->collection_name == 'video') {
             ConvertEventVideo::dispatch($media);
         }
     }
 
     /**
      * Handle the Media "updated" event.
+     *
      * @return void
      */
-    public function updated(Media $media)
-    {
-    }
+    public function updated(Media $media) {}
 
     /**
      * Handle the Media "deleted" event.
+     *
      * @return void
      */
-    public function deleted()
-    {
-    }
+    public function deleted() {}
 
     /**
      * Handle the Media "restored" event.
+     *
      * @return void
      */
-    public function restored()
-    {
-    }
+    public function restored() {}
 
     /**
      * Handle the Media "force deleted" event.
+     *
      * @return void
      */
-    public function forceDeleted()
-    {
-    }
+    public function forceDeleted() {}
 
     /**
      * Handle the Media "saving" event.
+     *
      * @return void
      */
-    public function saving()
-    {
-    }
+    public function saving() {}
 }

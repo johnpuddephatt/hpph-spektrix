@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,19 +13,19 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::table("instances", function (Blueprint $table) {
+        Schema::table('instances', function (Blueprint $table) {
             $table
-                ->string("start")
+                ->string('start')
                 ->nullable()
                 ->default(null)
                 ->change();
             $table
-                ->string("start_selling_at_web")
+                ->string('start_selling_at_web')
                 ->nullable()
                 ->default(null)
                 ->change();
             $table
-                ->string("stop_selling_at_web")
+                ->string('stop_selling_at_web')
                 ->nullable()
                 ->default(null)
                 ->change();

@@ -3,13 +3,12 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Trix;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Panel;
 use NormanHuth\Values\Values;
 
@@ -27,44 +26,43 @@ class Membership extends Resource
      *
      * @var string
      */
-    public static $title = "name";
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = ["id", "name"];
+    public static $search = ['id', 'name'];
 
     public static function indexQuery(NovaRequest $request, $query)
     {
-        return $query->withoutGlobalScope("enabled");
+        return $query->withoutGlobalScope('enabled');
     }
 
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
     {
         return [
             ID::make()->hide(),
-            Text::make("Name")->readonly(),
-            Text::make("Price")->readonly(),
-            Text::make("Renewal price")->readonly(),
+            Text::make('Name')->readonly(),
+            Text::make('Price')->readonly(),
+            Text::make('Renewal price')->readonly(),
 
-            Panel::make("Details", [
-                Image::make("Logo")
-                    ->acceptedTypes(".svg")
+            Panel::make('Details', [
+                Image::make('Logo')
+                    ->acceptedTypes('.svg')
                     ->disableDownload(),
-                Image::make("Image")->disableDownload(),
-                Textarea::make("Description"),
-                Values::make("Benefits")->valueLabel("Benefit"),
-                Boolean::make("Show when booking", "show_by_booking_path"),
+                Image::make('Image')->disableDownload(),
+                Textarea::make('Description'),
+                Values::make('Benefits')->valueLabel('Benefit'),
+                Boolean::make('Show when booking', 'show_by_booking_path'),
             ]),
-            Boolean::make("Synced", "enabled")
+            Boolean::make('Synced', 'enabled')
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
@@ -74,7 +72,6 @@ class Membership extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -85,7 +82,6 @@ class Membership extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
@@ -96,7 +92,6 @@ class Membership extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -107,7 +102,6 @@ class Membership extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

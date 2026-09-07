@@ -13,20 +13,20 @@ class CreateSeasonsTable extends Migration
      */
     public function up()
     {
-        Schema::create("seasons", function (Blueprint $table) {
+        Schema::create('seasons', function (Blueprint $table) {
             $table->id();
             $table->softDeletes();
-            $table->string("name", 50)->unique();
+            $table->string('name', 50)->unique();
             $table
-                ->string("slug")
+                ->string('slug')
                 ->unique()
                 ->nullable();
-            $table->boolean("published")->default(false);
-            $table->boolean("enabled")->default(false);
-            $table->string("short_description")->nullable();
-            $table->string("description")->nullable();
-            $table->text("content")->nullable();
-            $table->text("logo")->nullable();
+            $table->boolean('published')->default(false);
+            $table->boolean('enabled')->default(false);
+            $table->string('short_description')->nullable();
+            $table->string('description')->nullable();
+            $table->text('content')->nullable();
+            $table->text('logo')->nullable();
         });
     }
 
@@ -37,6 +37,6 @@ class CreateSeasonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("seasons");
+        Schema::dropIfExists('seasons');
     }
 }

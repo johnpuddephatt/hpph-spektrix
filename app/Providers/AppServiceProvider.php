@@ -3,16 +3,12 @@
 namespace App\Providers;
 
 use App\Models\AccessTag;
+use App\Models\Page;
+use App\Models\Season;
+use App\Models\Strand;
 use App\Services\SpektrixApi;
-use Carbon\Carbon;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\View;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,9 +21,9 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(
             SpektrixApi::class,
-            fn() => new SpektrixApi(
-                config("services.spektrix.user"),
-                config("services.spektrix.key")
+            fn () => new SpektrixApi(
+                config('services.spektrix.user'),
+                config('services.spektrix.key')
             )
         );
     }
@@ -40,116 +36,112 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-
-        View::composer("*", function ($view) {
+        View::composer('*', function ($view) {
             $view->with(
-                "settings",
-                \Cache::rememberForever("settings", function () {
+                'settings',
+                \Cache::rememberForever('settings', function () {
                     return nova_get_settings();
                 })
             );
         });
 
-        $access_tags = \Cache::rememberForever("access_tags", function () {
+        $access_tags = \Cache::rememberForever('access_tags', function () {
             return AccessTag::all();
         });
 
-        View::share("access_tags", $access_tags);
+        View::share('access_tags', $access_tags);
 
         // Passed to the booking path as data, so a malformed slug can't break
         // (or inject into) the Alpine expressions that drive the warning modal.
         View::share(
-            "booking_warning_tags",
+            'booking_warning_tags',
             $access_tags
                 ->filter(
-                    fn($tag) => $tag->column && filled($tag->booking_warning)
+                    fn ($tag) => $tag->column && filled($tag->booking_warning)
                 )
                 ->map->toBookingWarningArray()
                 ->values()
         );
 
-
-        View::composer(["components.strand.menu", 'blocks.home-strands'], function ($view) {
+        View::composer(['components.strand.menu', 'blocks.home-strands'], function ($view) {
             $view->with(
-                "strands",
-                \Cache::rememberForever("strands", function () {
-                    return \App\Models\Strand::select(
-                        "id",
-                        "name",
-                        "slug",
-                        "short_description",
-                        "color",
-                        "logo"
+                'strands',
+                \Cache::rememberForever('strands', function () {
+                    return Strand::select(
+                        'id',
+                        'name',
+                        'slug',
+                        'short_description',
+                        'color',
+                        'logo'
                     )
                         ->showInProgramme()
-                        ->with("featuredImage")
+                        ->with('featuredImage')
                         ->get();
                 })
             );
         });
         View::composer(
-            ["sections.navigation", 'blocks.home-seasons'],
+            ['sections.navigation', 'blocks.home-seasons'],
             function ($view) {
 
                 $view->with(
-                    "seasons",
-                    \Cache::rememberForever("seasons", function () {
-                        return \App\Models\Season::select(
-                            "id",
-                            "name",
-                            "slug",
-                            "short_description",
+                    'seasons',
+                    \Cache::rememberForever('seasons', function () {
+                        return Season::select(
+                            'id',
+                            'name',
+                            'slug',
+                            'short_description',
                         )->showInProgramme()->get();
                     })
                 );
             }
         );
 
-
-        View::composer("sections.header", function ($view) {
+        View::composer('sections.header', function ($view) {
             $view->with(
-                "programme_page_url",
-                \Cache::rememberForever("programme_page_url", function () {
-                    return \App\Models\Page::getTemplateUrl("programme-page");
+                'programme_page_url',
+                \Cache::rememberForever('programme_page_url', function () {
+                    return Page::getTemplateUrl('programme-page');
                 })
             );
         });
 
-        View::composer(["sections.navigation"], function ($view) {
+        View::composer(['sections.navigation'], function ($view) {
             $view->with(
-                "primary_menu",
-                \Cache::rememberForever("primaryMenu", function () {
-                    return nova_get_menu_by_slug("primary")
-                        ? nova_get_menu_by_slug("primary")["menuItems"]
+                'primary_menu',
+                \Cache::rememberForever('primaryMenu', function () {
+                    return nova_get_menu_by_slug('primary')
+                        ? nova_get_menu_by_slug('primary')['menuItems']
                         : [];
                 })
             );
             $view->with(
-                "secondary_menu",
-                \Cache::rememberForever("secondaryMenu", function () {
-                    return nova_get_menu_by_slug("secondary")
-                        ? nova_get_menu_by_slug("secondary")["menuItems"]
+                'secondary_menu',
+                \Cache::rememberForever('secondaryMenu', function () {
+                    return nova_get_menu_by_slug('secondary')
+                        ? nova_get_menu_by_slug('secondary')['menuItems']
                         : [];
                 })
             );
 
-
             $view->with(
-                "tertiary_menu",
-                \Cache::rememberForever("tertiaryMenu", function () {
-                    return nova_get_menu_by_slug("tertiary")
-                        ? nova_get_menu_by_slug("tertiary")["menuItems"]
+                'tertiary_menu',
+                \Cache::rememberForever('tertiaryMenu', function () {
+                    return nova_get_menu_by_slug('tertiary')
+                        ? nova_get_menu_by_slug('tertiary')['menuItems']
                         : [];
                 })
             );
         });
 
-        \Blade::directive("icon", function ($arguments) {
+        \Blade::directive('icon', function ($arguments) {
             // Funky madness to accept multiple arguments into the directive
-            list($path, $class) = array_pad(
-                explode(",", trim($arguments, "() ")),
+            [$path, $class] = array_pad(
+                explode(',', trim($arguments, '() ')),
                 2,
-                ""
+                ''
             );
 
             $path = trim($path, "' ");

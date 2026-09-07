@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,17 +13,19 @@ class PostsIndex extends Component
     use WithPagination;
 
     public $selected_tag;
+
     public $featured_post;
-    public $search = "";
+
+    public $search = '';
 
     protected $queryString = [
-        "selected_tag" => ["except" => "", "as" => "tag"],
-        "search" => ["except" => "", "as" => "q"],
+        'selected_tag' => ['except' => '', 'as' => 'tag'],
+        'search' => ['except' => '', 'as' => 'q'],
     ];
 
     public function paginationView()
     {
-        return "vendor.livewire.tailwind";
+        return 'vendor.livewire.tailwind';
     }
 
     public function setTag($tag = null)
@@ -32,7 +36,7 @@ class PostsIndex extends Component
     public function updatingSelectedTag()
     {
         $this->resetPage();
-        $this->dispatch("scrollToTop");
+        $this->dispatch('scrollToTop');
     }
 
     public function updatingSearch()
@@ -42,7 +46,7 @@ class PostsIndex extends Component
 
     public function render()
     {
-        $posts = \App\Models\Post::with("featuredImage");
+        $posts = Post::with('featuredImage');
 
         if ($this->selected_tag) {
             $posts->withAnyTags([$this->selected_tag]);
@@ -52,16 +56,16 @@ class PostsIndex extends Component
             $term = trim($this->search);
             $posts->where(function (Builder $query) use ($term) {
                 $query
-                    ->where("title", "like", "%" . $term . "%")
-                    ->orWhere("subtitle", "like", "%" . $term . "%");
+                    ->where('title', 'like', '%'.$term.'%')
+                    ->orWhere('subtitle', 'like', '%'.$term.'%');
             });
         }
 
-        return view("livewire.posts-index", [
-            "tags" => \App\Models\Tag::withCount("posts")
+        return view('livewire.posts-index', [
+            'tags' => Tag::withCount('posts')
                 ->get()
-                ->where("posts_count"),
-            "posts" => $posts->latest()->paginate(12),
+                ->where('posts_count'),
+            'posts' => $posts->latest()->paginate(12),
         ]);
     }
 }

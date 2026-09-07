@@ -2,10 +2,11 @@
 
 namespace App\Nova\Flexible\Layouts;
 
+use App\Nova\Actions\SaveAndResizeBannerImage;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Image;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class QuoteLayout extends Layout
@@ -15,17 +16,16 @@ class QuoteLayout extends Layout
      *
      * @var string
      */
-    protected $name = "quote";
+    protected $name = 'quote';
 
     public $collapsedPreviewAttribute = 'name';
-
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Quote";
+    protected $title = 'Quote';
 
     /**
      * Get the fields displayed by the layout.
@@ -35,17 +35,17 @@ class QuoteLayout extends Layout
     public function fields()
     {
         return [
-            Textarea::make("Quote", "quote")
+            Textarea::make('Quote', 'quote')
                 ->rows(3)
                 ->maxLength(130)
                 ->enforceMaxlength(),
-            Text::make("Member name", "name")->hideFromIndex(),
-            Text::make("Member role/description", "role")->hideFromIndex(),
-            Image::make("Image")
+            Text::make('Member name', 'name')->hideFromIndex(),
+            Text::make('Member role/description', 'role')->hideFromIndex(),
+            Image::make('Image')
                 ->preview(function ($value, $disk) {
                     return $value ? Storage::disk($disk)->url($value) : null;
                 })
-                ->store(new \App\Nova\Actions\SaveAndResizeBannerImage()),
+                ->store(new SaveAndResizeBannerImage),
         ];
     }
 }

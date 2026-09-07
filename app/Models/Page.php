@@ -23,8 +23,8 @@ use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
 class Page extends Model implements HasMedia
 {
     use HasFactory;
-    use InteractsWithMedia;
     use HasFlexible;
+    use InteractsWithMedia;
     use LogsActivity;
     use Sluggable;
     use SoftDeletes;
@@ -131,12 +131,12 @@ class Page extends Model implements HasMedia
 
     public function parent()
     {
-        return $this->belongsTo(\App\Models\Page::class, 'parent_id');
+        return $this->belongsTo(Page::class, 'parent_id');
     }
 
     public function children()
     {
-        return $this->hasMany(\App\Models\Page::class, 'parent_id');
+        return $this->hasMany(Page::class, 'parent_id');
     }
 
     public function indented_name()
@@ -156,7 +156,7 @@ class Page extends Model implements HasMedia
     {
         $ids_ordered = implode(
             ',',
-            \App\Models\Page::withoutGlobalScopes()->select('id', 'name', 'parent_id', 'slug')->get()
+            Page::withoutGlobalScopes()->select('id', 'name', 'parent_id', 'slug')->get()
                 ->sortBy('URL')
                 ->pluck('id')
                 ->toArray()
@@ -173,7 +173,7 @@ class Page extends Model implements HasMedia
     {
         return Arr::map(
             $show_all ? config('page-templates') : array_filter(config('page-templates'), function ($item, $key) {
-                return ! $item['unique'] || ! \App\Models\Page::where('template', $key)->count();
+                return ! $item['unique'] || ! Page::where('template', $key)->count();
             }, ARRAY_FILTER_USE_BOTH),
             function ($value) {
                 return (new $value['class'])->name();
@@ -192,7 +192,7 @@ class Page extends Model implements HasMedia
     public static function getTemplateUrl($template)
     {
         return static::$templateUrls[$template] ??=
-            \App\Models\Page::firstWhere('template', $template)?->url;
+            Page::firstWhere('template', $template)?->url;
     }
 
     /**

@@ -2,27 +2,17 @@
 
 namespace App\Nova\Templates;
 
-use App\Nova\Event;
+use App\Nova\Flexible\Layouts\HomeCarouselLayout;
+use App\Nova\Flexible\Layouts\HomeHeroLayout;
+// use Whitecube\NovaFlexibleContent\Flexible;
+
+use App\Nova\Flexible\Layouts\HomeInstancesLayout;
+use App\Nova\Flexible\Layouts\HomeSeasonsLayout;
+use App\Nova\Flexible\Layouts\HomeStrandsLayout;
+use App\Nova\Flexible\Layouts\JournalPostLayout;
+use App\Nova\Flexible\Layouts\JournalPostsLayout;
 use Illuminate\Http\Request;
 use Laravel\Nova\Panel;
-
-use Illuminate\Support\Facades\Cache;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Number;
-use Outl1ne\MultiselectField\Multiselect;
-// use Whitecube\NovaFlexibleContent\Flexible;
-use Trin4ik\NovaSwitcher\NovaSwitcher;
-use Alexwenzel\DependencyContainer\DependencyContainer;
-
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\FormData;
-
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Illuminate\Support\Facades\DB;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\URL;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class HomePageTemplate
@@ -30,36 +20,36 @@ class HomePageTemplate
     // Name displayed in CMS
     public function name(): string
     {
-        return "Home page";
+        return 'Home page';
     }
 
     // Fields displayed in CMS
     public function fields(Request $request): array
     {
         return [
-            new Panel("Content", [
-                Flexible::make("Content", "content")
+            new Panel('Content', [
+                Flexible::make('Content', 'content')
                     ->drawer()
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\HomeHeroLayout::class
+                        HomeHeroLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\HomeCarouselLayout::class
+                        HomeCarouselLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\HomeInstancesLayout::class
+                        HomeInstancesLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\JournalPostLayout::class
+                        JournalPostLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\JournalPostsLayout::class
+                        JournalPostsLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\HomeStrandsLayout::class
+                        HomeStrandsLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\HomeSeasonsLayout::class
+                        HomeSeasonsLayout::class
                     ),
             ]),
         ];
@@ -72,7 +62,7 @@ class HomePageTemplate
     }
 
     // Optional suffix to the route (ie {blogPostName})
-    public function pathSuffix(): string|null
+    public function pathSuffix(): ?string
     {
         return null;
     }

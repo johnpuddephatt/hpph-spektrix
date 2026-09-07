@@ -3,7 +3,6 @@
 namespace App\Nova\Flexible\Layouts;
 
 use App\Models\TicketSubscription;
-
 use Laravel\Nova\Fields\Heading;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
@@ -45,7 +44,7 @@ class TicketSubscriptionGroupLayout extends Layout
             Text::make('Title')->help('Optional heading shown above the subscriptions.'),
             Textarea::make('Introduction')->rows(3),
             Flexible::make('Ticket subscriptions', 'ticket_subscriptions')
-                ->addLayout(\App\Nova\Flexible\Layouts\TicketSubscriptionLayout::class)
+                ->addLayout(TicketSubscriptionLayout::class)
                 ->fullWidth()
                 ->button('Add ticket subscription'),
         ];
@@ -54,7 +53,7 @@ class TicketSubscriptionGroupLayout extends Layout
     public function getTicketSubscriptionsAttribute()
     {
         return $this->flexible('ticket_subscriptions', [
-            'ticket-subscription' => \App\Nova\Flexible\Layouts\TicketSubscriptionLayout::class,
+            'ticket-subscription' => TicketSubscriptionLayout::class,
         ]);
     }
 

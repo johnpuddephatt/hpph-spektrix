@@ -2,10 +2,8 @@
 
 namespace App\Exceptions;
 
-use App\Models\Page;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -25,9 +23,9 @@ class Handler extends ExceptionHandler
      * @var array<int, string>
      */
     protected $dontFlash = [
-        "current_password",
-        "password",
-        "password_confirmation",
+        'current_password',
+        'password',
+        'password_confirmation',
     ];
 
     /**

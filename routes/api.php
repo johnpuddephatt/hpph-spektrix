@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\EventInstancesController;
+use App\Http\Controllers\InstanceAvailabilityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +22,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('doNotCacheResponse')->get(
     'event/{event}/instances',
-    \App\Http\Controllers\EventInstancesController::class
+    EventInstancesController::class
 )->name('event.instances');
 
 // Availability changes every few minutes; the pages showing it are cached for an
 // hour. The badge fetches from here so the numbers are live regardless.
 Route::middleware('doNotCacheResponse')->get(
     'instances/availability',
-    \App\Http\Controllers\InstanceAvailabilityController::class
+    InstanceAvailabilityController::class
 )->name('instances.availability');

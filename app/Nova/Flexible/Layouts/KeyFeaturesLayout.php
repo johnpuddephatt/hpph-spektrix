@@ -1,11 +1,10 @@
-<?php namespace App\Nova\Flexible\Layouts;
+<?php
 
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Textarea;
-use Laravel\Nova\Fields\Image;
-use Whitecube\NovaFlexibleContent\Layouts\Layout;
+namespace App\Nova\Flexible\Layouts;
+
 use Whitecube\NovaFlexibleContent\Flexible;
-use Whitecube\NovaFlexibleContent\Concerns\HasFlexible;
+use Whitecube\NovaFlexibleContent\Layouts\Layout;
+
 class KeyFeaturesLayout extends Layout
 {
     /**
@@ -13,14 +12,14 @@ class KeyFeaturesLayout extends Layout
      *
      * @var string
      */
-    protected $name = "key-features";
+    protected $name = 'key-features';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Key features";
+    protected $title = 'Key features';
 
     /**
      * Get the fields displayed by the layout.
@@ -30,17 +29,17 @@ class KeyFeaturesLayout extends Layout
     public function fields()
     {
         return [
-            Flexible::make("Features")
-                ->addLayout(\App\Nova\Flexible\Layouts\FeatureLayout::class)
+            Flexible::make('Features')
+                ->addLayout(FeatureLayout::class)
                 ->limit(3)
-                ->button("Add feature"),
+                ->button('Add feature'),
         ];
     }
 
     public function getFeaturesAttribute()
     {
-        return $this->flexible("features", [
-            "feature" => \App\Nova\Flexible\Layouts\FeatureLayout::class,
+        return $this->flexible('features', [
+            'feature' => FeatureLayout::class,
         ]);
     }
 }

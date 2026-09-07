@@ -22,7 +22,6 @@ class VitePublish extends Command
      */
     protected $description = 'Publishes assets to CDN';
 
-
     /**
      * Execute the console command.
      *
@@ -35,15 +34,15 @@ class VitePublish extends Command
         $buildFiles = File::allFiles(public_path('/build'));
 
         foreach ($buildFiles as $asset) {
-            $this->info('Uploading asset to: build/' . $asset->getRelativePathname());
+            $this->info('Uploading asset to: build/'.$asset->getRelativePathname());
             // if the file is called spektrix.*.css, skip it
             if (preg_match('/spektrix.*\.css/', $asset->getRelativePathname())) {
-                Storage::disk('digitalocean')->put('build/' . 'spektrix.css', $asset->getContents());
+                Storage::disk('digitalocean')->put('build/'.'spektrix.css', $asset->getContents());
             }
             if (preg_match('/fonts.*\.css/', $asset->getRelativePathname())) {
-                Storage::disk('digitalocean')->put('build/' . 'fonts.css', $asset->getContents());
+                Storage::disk('digitalocean')->put('build/'.'fonts.css', $asset->getContents());
             } else {
-                Storage::disk('digitalocean')->put('build/' . $asset->getRelativePathname(), $asset->getContents());
+                Storage::disk('digitalocean')->put('build/'.$asset->getRelativePathname(), $asset->getContents());
             }
         }
 

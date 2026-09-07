@@ -2,34 +2,44 @@
 
 namespace App\Nova;
 
-use Illuminate\Http\Request;
-use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Fields\HasMany;
-use Laravel\Nova\Fields\Textarea;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
 use App\Nova\Concerns\ShowsScreeningDates;
 use App\Nova\Filters\SyncStatus;
-use Outl1ne\NovaSortable\Traits\HasSortableRows;
-use Laravel\Nova\Fields\Color;
+use App\Nova\Flexible\Layouts\FaqsLayout;
+use App\Nova\Flexible\Layouts\JournalPostLayout;
+use App\Nova\Flexible\Layouts\LinkBannerLayout;
+use App\Nova\Flexible\Layouts\MerchandiseGroupLayout;
+use App\Nova\Flexible\Layouts\PagesLayout;
+use App\Nova\Flexible\Layouts\ProgrammeIntroductionLayout;
+use App\Nova\Flexible\Layouts\ProgrammeSliderLayout;
+use App\Nova\Flexible\Layouts\QuoteLayout;
+use App\Nova\Flexible\Layouts\SingleMembershipLayout;
+use App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Media;
+use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\Color;
 use Laravel\Nova\Fields\FormData;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Tag;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Panel;
+use Outl1ne\NovaSortable\Traits\HasSortableRows;
 use Whitecube\NovaFlexibleContent\Flexible;
 
 class Strand extends Resource
 {
-    use ShowsScreeningDates;
     use HasSortableRows {
         indexQuery as indexSortableQuery;
     }
+    use ShowsScreeningDates;
 
-    public static $group = "Programme";
+    public static $group = 'Programme';
 
     /**
      * The model the resource corresponds to.
@@ -43,14 +53,14 @@ class Strand extends Resource
      *
      * @var string
      */
-    public static $title = "name";
+    public static $title = 'name';
 
     /**
      * The columns that should be searched.
      *
      * @var array
      */
-    public static $search = ["name"];
+    public static $search = ['name'];
 
     /**
      * Drag order, not date order: this list is short enough to curate by hand
@@ -63,7 +73,7 @@ class Strand extends Resource
         return static::indexSortableQuery(
             $request,
             static::withScreeningAggregates(
-                $query->withoutGlobalScopes(["published", "order"])
+                $query->withoutGlobalScopes(['published', 'order'])
             )
         );
     }
@@ -71,109 +81,107 @@ class Strand extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
     {
         return [
             ID::make()->hide(),
-            Text::make("Name")
+            Text::make('Name')
                 ->withMeta([
-                    "extraAttributes" => [
-                        "class" => "text-xl p-4 h-auto",
-                        "maxlength" => 50,
+                    'extraAttributes' => [
+                        'class' => 'text-xl p-4 h-auto',
+                        'maxlength' => 50,
                     ],
                 ])
                 ->help(
-                    "Only change the capitalisation. The name is what links this strand to Spektrix, " .
-                        "so any other edit will stop screenings being attached to it."
+                    'Only change the capitalisation. The name is what links this strand to Spektrix, '.
+                        'so any other edit will stop screenings being attached to it.'
                 ),
 
             ...$this->screeningDateFields(),
 
-            Boolean::make("Published"),
-            Boolean::make("Programme?", "show_in_programme")
+            Boolean::make('Published'),
+            Boolean::make('Programme?', 'show_in_programme')
                 ->showOnPreview()
                 ->filterable(),
-            Boolean::make("Synced", "enabled")
+            Boolean::make('Synced', 'enabled')
                 ->readonly()
                 ->showOnPreview()
                 ->filterable(),
-            Select::make("Display type", "display_type")->options([
-                "instances" => "Instances (default)",
-                "events" => "Events",
+            Select::make('Display type', 'display_type')->options([
+                'instances' => 'Instances (default)',
+                'events' => 'Events',
             ])->default('instances')->displayUsingLabels()->hideFromIndex(),
-            Color::make("Color"),
-            Image::make("Logo")
-                ->acceptedTypes(".svg")
+            Color::make('Color'),
+            Image::make('Logo')
+                ->acceptedTypes('.svg')
                 ->disableDownload()
                 ->hideFromIndex(),
-            Image::make("Simplified logo", "logo_simple")
-                ->acceptedTypes(".svg")
+            Image::make('Simplified logo', 'logo_simple')
+                ->acceptedTypes('.svg')
                 ->disableDownload()
                 ->hideFromIndex(),
-            Media::make("Video")
-                ->conversionOnForm("thumb")
-                ->conversionOnDetailView("thumb")
+            Media::make('Video')
+                ->conversionOnForm('thumb')
+                ->conversionOnDetailView('thumb')
                 ->hideFromIndex(),
-            Images::make("Main image", "main")->hideFromIndex(),
-            Textarea::make("Short description")
+            Images::make('Main image', 'main')->hideFromIndex(),
+            Textarea::make('Short description')
                 ->rows(2)
                 ->hideFromIndex()
                 ->maxLength(120)
                 ->enforceMaxlength(),
-            Textarea::make("Description")
+            Textarea::make('Description')
                 ->rows(3)
                 ->hideFromIndex()
                 ->maxLength(250)
                 ->enforceMaxlength(),
-            Boolean::make("Show on event card")->hideFromIndex(),
-            Boolean::make("Show on instance card")->hideFromIndex(),
-            Boolean::make("Show in booking path")->hideFromIndex(),
-            Tag::make("Posts")->displayAsList()->hideFromIndex(),
+            Boolean::make('Show on event card')->hideFromIndex(),
+            Boolean::make('Show on instance card')->hideFromIndex(),
+            Boolean::make('Show in booking path')->hideFromIndex(),
+            Tag::make('Posts')->displayAsList()->hideFromIndex(),
 
-            new Panel("Content", [
-                Flexible::make("Content", "content")
+            new Panel('Content', [
+                Flexible::make('Content', 'content')
                     ->help(
-                        "A new page starts with its introduction, flex pass and what’s on " .
-                            "slider. The page is built from exactly what is listed here, so " .
-                            "removing one of those removes it from the page too."
+                        'A new page starts with its introduction, flex pass and what’s on '.
+                            'slider. The page is built from exactly what is listed here, so '.
+                            'removing one of those removes it from the page too.'
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\ProgrammeIntroductionLayout::class
+                        ProgrammeIntroductionLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\ProgrammeSliderLayout::class
+                        ProgrammeSliderLayout::class
                     )
-                    ->addLayout(\App\Nova\Flexible\Layouts\FaqsLayout::class)
+                    ->addLayout(FaqsLayout::class)
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\JournalPostLayout::class
+                        JournalPostLayout::class
                     )
-                    ->addLayout(\App\Nova\Flexible\Layouts\QuoteLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\PagesLayout::class)
-                    ->addLayout(\App\Nova\Flexible\Layouts\MerchandiseGroupLayout::class)
+                    ->addLayout(QuoteLayout::class)
+                    ->addLayout(PagesLayout::class)
+                    ->addLayout(MerchandiseGroupLayout::class)
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\SingleMembershipLayout::class
-                    )
-                    ->addLayout(
-                        \App\Nova\Flexible\Layouts\LinkBannerLayout::class
+                        SingleMembershipLayout::class
                     )
                     ->addLayout(
-                        \App\Nova\Flexible\Layouts\TicketSubscriptionGroupLayout::class
+                        LinkBannerLayout::class
                     )
-                    ->button("Add a section")
+                    ->addLayout(
+                        TicketSubscriptionGroupLayout::class
+                    )
+                    ->button('Add a section')
                     ->stacked()
                     ->hideFromIndex(),
             ]),
-            HasMany::make("Screenings", "instances", "\App\Nova\Instance"),
+            HasMany::make('Screenings', 'instances', "\App\Nova\Instance"),
         ];
     }
 
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -184,18 +192,16 @@ class Strand extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
     {
-        return [new SyncStatus()];
+        return [new SyncStatus];
     }
 
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -206,7 +212,6 @@ class Strand extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)
@@ -219,7 +224,7 @@ class Strand extends Resource
         NovaRequest $request,
         FormData $formData
     ) {
-        if ($formData["content->members_voices->enable"] ?? false) {
+        if ($formData['content->members_voices->enable'] ?? false) {
             $field->show();
         }
     }

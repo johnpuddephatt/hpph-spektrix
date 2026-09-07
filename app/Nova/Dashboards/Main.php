@@ -2,18 +2,16 @@
 
 namespace App\Nova\Dashboards;
 
-use Laravel\Nova\Cards\Help;
+use App\Nova\Metrics\ActivityOverview;
 use App\Nova\Metrics\ImportHistory;
 use App\Nova\Metrics\SpektrixOverview;
-use App\Nova\Metrics\ActivityOverview;
-use Illuminate\Http\Request;
 use Laravel\Nova\Dashboards\Main as Dashboard;
 
 class Main extends Dashboard
 {
     public function name()
     {
-        return "Overview";
+        return 'Overview';
     }
 
     /**
@@ -24,9 +22,9 @@ class Main extends Dashboard
     public function cards()
     {
         return [
-            new SpektrixOverview(),
-            new ImportHistory(),
-            (new ActivityOverview())->width("2/3")->fixedHeight(),
+            new SpektrixOverview,
+            new ImportHistory,
+            (new ActivityOverview)->width('2/3')->fixedHeight(),
         ];
     }
 }

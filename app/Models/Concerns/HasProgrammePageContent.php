@@ -60,7 +60,7 @@ trait HasProgrammePageContent
                 ->map(fn ($layout) => [
                     'layout' => $this->makeLayout($layout)->name(),
                     'key' => Str::random(16),
-                    'attributes' => new \stdClass(),
+                    'attributes' => new \stdClass,
                 ])
                 ->all()
         );

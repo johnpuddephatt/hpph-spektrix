@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,15 +13,15 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create("funds", function (Blueprint $table) {
+        Schema::create('funds', function (Blueprint $table) {
             $table->softDeletes();
-            $table->string("id")->primary(); // id
+            $table->string('id')->primary(); // id
             $table->timestamps();
-            $table->boolean("enabled")->default(false);
-            $table->string("name");
-            $table->text("description")->nullable();
-            $table->string("code")->nullable();
-            $table->string("default_donation_amount")->nullable();
+            $table->boolean('enabled')->default(false);
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->string('code')->nullable();
+            $table->string('default_donation_amount')->nullable();
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists("funds");
+        Schema::dropIfExists('funds');
     }
 };

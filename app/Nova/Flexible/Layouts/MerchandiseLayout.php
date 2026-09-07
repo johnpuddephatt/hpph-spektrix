@@ -2,11 +2,10 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Laravel\Nova\Fields\Select;
+use App\Models\Product;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
+use Laravel\Nova\Fields\Select;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
-use Laravel\Nova\Fields\Text;
-use Whitecube\NovaFlexibleContent\Flexible;
 
 class MerchandiseLayout extends Layout
 {
@@ -17,14 +16,14 @@ class MerchandiseLayout extends Layout
      *
      * @var string
      */
-    protected $name = "merchandise";
+    protected $name = 'merchandise';
 
     /**
      * The displayed title
      *
      * @var string
      */
-    protected $title = "Merchandise layout";
+    protected $title = 'Merchandise layout';
 
     /**
      * Get the fields displayed by the layout.
@@ -34,14 +33,14 @@ class MerchandiseLayout extends Layout
     public function fields()
     {
         return [
-            Select::make("", "merchandise_name")
-                ->options(static::cachedOptions("products", fn() => \App\Models\Product::withoutGlobalScope('published')->get()->pluck("name", "id")))
+            Select::make('', 'merchandise_name')
+                ->options(static::cachedOptions('products', fn () => Product::withoutGlobalScope('published')->get()->pluck('name', 'id')))
                 ->searchable(),
         ];
     }
 
     public function getMerchandiseAttribute()
     {
-        return \App\Models\Product::withoutGlobalScope('published')->find($this->merchandise_name);
+        return Product::withoutGlobalScope('published')->find($this->merchandise_name);
     }
 }

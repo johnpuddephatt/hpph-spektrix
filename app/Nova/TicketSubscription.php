@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Nova\Filters\SyncStatus;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\DateTime;
@@ -49,7 +50,6 @@ class TicketSubscription extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function fields(NovaRequest $request)
@@ -112,7 +112,7 @@ class TicketSubscription extends Resource
     /**
      * Rows come from Spektrix, so they cannot be hand-created.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  NovaRequest  $request
      * @return bool
      */
     public static function authorizedToCreate(Request $request)
@@ -128,7 +128,6 @@ class TicketSubscription extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function cards(NovaRequest $request)
@@ -139,18 +138,16 @@ class TicketSubscription extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function filters(NovaRequest $request)
     {
-        return [new \App\Nova\Filters\SyncStatus()];
+        return [new SyncStatus];
     }
 
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function lenses(NovaRequest $request)
@@ -161,7 +158,6 @@ class TicketSubscription extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
      * @return array
      */
     public function actions(NovaRequest $request)

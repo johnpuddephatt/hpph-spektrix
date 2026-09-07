@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,25 +13,25 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create("pages", function (Blueprint $table) {
+        Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->softDeletes();
             $table->timestamps();
-            $table->string("name");
-            $table->string("slug");
-            $table->boolean("published")->default(false);
-            $table->string("subtitle", 30)->nullable();
-            $table->string("introduction", 200)->nullable();
-            $table->string("template");
-            $table->json("content")->nullable();
+            $table->string('name');
+            $table->string('slug');
+            $table->boolean('published')->default(false);
+            $table->string('subtitle', 30)->nullable();
+            $table->string('introduction', 200)->nullable();
+            $table->string('template');
+            $table->json('content')->nullable();
             $table
-                ->bigInteger("parent_id")
+                ->bigInteger('parent_id')
                 ->unsigned()
                 ->nullable();
             $table
-                ->foreign("parent_id")
-                ->references("id")
-                ->on("pages");
+                ->foreign('parent_id')
+                ->references('id')
+                ->on('pages');
         });
     }
 
@@ -41,6 +42,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists("page");
+        Schema::dropIfExists('page');
     }
 };

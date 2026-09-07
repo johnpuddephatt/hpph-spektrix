@@ -2,22 +2,18 @@
 
 namespace App\Nova\Flexible\Layouts;
 
-use Advoor\NovaEditorJs\NovaEditorJsCast;
-use Advoor\NovaEditorJs\NovaEditorJsField;
-use Laravel\Nova\Fields\Boolean;
-use Laravel\Nova\Fields\File;
-use Laravel\Nova\Fields\Heading;
-use Laravel\Nova\Fields\Select;
-use Laravel\Nova\Fields\Text;
+use App\Models\Membership;
 use App\Nova\Flexible\Layouts\Concerns\AppearsInPageMenu;
 use App\Nova\Flexible\Layouts\Concerns\CachesOptions;
 use App\Nova\Flexible\Layouts\Concerns\HasPageMenuEntry;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
 use Whitecube\NovaFlexibleContent\Layouts\Layout;
 
 class FeaturedMembershipLayout extends Layout implements HasPageMenuEntry
 {
     use AppearsInPageMenu;
-
     use CachesOptions;
 
     /**
@@ -25,10 +21,9 @@ class FeaturedMembershipLayout extends Layout implements HasPageMenuEntry
      *
      * @var string
      */
-    protected $name = "featured-membership";
+    protected $name = 'featured-membership';
 
     public $collapsedPreviewAttribute = 'title';
-
 
     protected $casts = [];
 
@@ -37,7 +32,7 @@ class FeaturedMembershipLayout extends Layout implements HasPageMenuEntry
      *
      * @var string
      */
-    protected $title = "Featured membership";
+    protected $title = 'Featured membership';
 
     /**
      * Get the fields displayed by the layout.
@@ -47,11 +42,11 @@ class FeaturedMembershipLayout extends Layout implements HasPageMenuEntry
     public function fields()
     {
         return [
-            File::make("Video")->acceptedTypes("video/*"),
-            Text::make("Title"),
-            Text::make("Subtitle"),
-            Select::make("Membership", "membership_id")
-                ->options(static::cachedOptions("memberships", fn() => \App\Models\Membership::pluck("name", "id")))
+            File::make('Video')->acceptedTypes('video/*'),
+            Text::make('Title'),
+            Text::make('Subtitle'),
+            Select::make('Membership', 'membership_id')
+                ->options(static::cachedOptions('memberships', fn () => Membership::pluck('name', 'id')))
                 ->searchable()
                 ->displayUsingLabels(),
         ];
@@ -59,6 +54,6 @@ class FeaturedMembershipLayout extends Layout implements HasPageMenuEntry
 
     public function getMembershipAttribute()
     {
-        return \App\Models\Membership::find($this->membership_id);
+        return Membership::find($this->membership_id);
     }
 }
