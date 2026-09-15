@@ -6,6 +6,7 @@ use App\Nova\Flexible\Layouts\BannerLayout;
 use App\Nova\Flexible\Layouts\FaqsLayout;
 use App\Nova\Flexible\Layouts\FeaturedMembershipLayout;
 use App\Nova\Flexible\Layouts\ImageLayout;
+use App\Nova\Flexible\Layouts\ImagePairLayout;
 use App\Nova\Flexible\Layouts\JournalPostLayout;
 use App\Nova\Flexible\Layouts\MembershipComparisonLayout;
 use App\Nova\Flexible\Layouts\PagesLayout;
@@ -41,6 +42,7 @@ class MembershipsPageTemplate
                         FeaturedMembershipLayout::class
                     )
                     ->addLayout(ImageLayout::class)
+                    ->addLayout(ImagePairLayout::class)
                     ->addLayout(FaqsLayout::class)
                     ->addLayout(PagesLayout::class)
                     ->addLayout(BannerLayout::class)
