@@ -93,6 +93,12 @@ class FeaturedMembershipLayout extends Layout implements HasPageMenuEntry
                 'last' => $instances->last()->start,
             ])
             ->sortBy('first')
+            ->each(function ($film) {
+                $film->label = $film->started ? 'Now' : 'Next';
+                $film->dates = $film->started
+                    ? 'Until '.$film->last->format('D jS M')
+                    : 'From '.$film->first->format('D jS M');
+            })
             ->values();
     }
 }
