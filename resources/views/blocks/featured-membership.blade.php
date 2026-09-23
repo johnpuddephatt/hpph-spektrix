@@ -13,7 +13,9 @@
 
             <ul class="max-w-lg divide-y divide-black-light text-white">
                 @foreach ($layout->membership->benefits as $benefit)
-                <li class="type-xs-mono py-3 lg:py-4">
+                <li class="type-xs-mono flex items-center gap-2 py-3 lg:py-4">
+@svg('tick', 'h-6 w-6 p-1 mr-2 rounded-full bg-yellow text-black inline-block')
+
                     {{ $benefit }}
                 </li>
                 @endforeach
