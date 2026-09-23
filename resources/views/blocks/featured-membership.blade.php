@@ -43,7 +43,7 @@
         </div>
 
         @if ($layout->films_of_the_week->isNotEmpty())
-        <div class="mb-12 max-w-sm mx-auto   text-white lg:col-span-2">
+        <div class="mb-12 lg:mb-0 max-w-sm mx-auto   text-white lg:col-span-2">
 
             <div class="bg-black-light pt-4 rounded">
                 <h3 class="px-4 type-xs-mono mb-2 text-white">Upcoming 15–25 Film of the Week</h3>
