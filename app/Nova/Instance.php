@@ -111,6 +111,7 @@ class Instance extends Resource
             Boolean::make('BSL', 'signed_bsl'),
             Boolean::make('Autism-friendly', 'autism_friendly'),
             Boolean::make('Toddler-friendly', 'toddler_friendly'),
+            Boolean::make('15–25 FOTW', 'fotw_15_25'),
 
             Text::make('Special', 'special_event'),
 

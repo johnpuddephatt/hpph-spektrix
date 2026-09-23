@@ -1,44 +1,70 @@
-<div id="{{ $layout->menuAnchor() }}" class="scroll-mt-24 bg-black-light py-20 lg:py-36      px-4 relative overflow-x-hidden">
+<div id="{{ $layout->menuAnchor() }}" class="relative scroll-mt-24 overflow-x-hidden bg-black-light px-4 py-20 lg:py-36">
 
-    <div class="grid bg-black rounded items-center lg:grid-cols-3 overflow-hidden">
-   <img class="p-4 aspect-square object-contain" src="{{  Storage::url($layout->membership->image) }}"/>
+    <div class="grid items-center overflow-hidden rounded gap-8 p-4 bg-black lg:grid-cols-7">
+        <img class="aspect-square lg:col-span-2 object-contain" src="{{ Storage::url($layout->membership->image) }}" />
 
-   <div class="lg:col-span-2 py-8 px-8">
-    <h2 class="type-medium lg:type-large relative text-white mb-2">
-        {{ $layout->title }}
-    </h2>
-    <p class="type-small relative mb-12 text-white">
-        {{ $layout->subtitle }}
-    </p>
-    
-   <ul class="text-white divide-y divide-black-light max-w-lg">
-                    @foreach ($layout->membership->benefits as $benefit)
-                        <li
-                            class="py-3 type-xs-mono lg:py-4">
-                            {{ $benefit }}
-                        </li>
+        <div class="px-8 py-8 lg:col-span-3">
+            <h2 class="type-medium lg:type-large relative mb-2 text-white">
+                {{ $layout->title }}
+            </h2>
+            <p class="type-small relative mb-12 text-white">
+                {{ $layout->subtitle }}
+            </p>
+
+            <ul class="max-w-lg divide-y divide-black-light text-white">
+                @foreach ($layout->membership->benefits as $benefit)
+                <li class="type-xs-mono py-3 lg:py-4">
+                    {{ $benefit }}
+                </li>
+                @endforeach
+            </ul>
+
+
+
+
+            <spektrix-memberships class="relative mt-12 block max-w-lg pb-2"
+                client-name="{{ $settings['spektrix_client_name'] }}"
+                custom-domain="{{ $settings['spektrix_custom_domain'] }}"
+                membership-id="{{ $layout->membership->id }}">
+                <button
+                    class="type-regular w-full rounded bg-yellow py-4 text-center text-black transition hover:bg-opacity-90"
+                    data-submit-membership>Add to basket</button>
+                <div class="relative -mt-14" data-success-container style="display: none;">
+                    <div
+                        class="type-regular max-w-lg rounded bg-yellow-dark px-6 py-4 text-center leading-tight text-black">
+                        Added to basket</div>
+                    <p class="type-small mt-4 text-white">Want your free membership to continue until your 26th
+                        birthday? After
+                        you’ve processed your order, visit your account page and provide us with your date of birth.</p>
+                </div>
+                <div class="absolute left-0 right-0 top-full bg-yellow-dark px-6 py-2 text-center font-bold leading-tight text-black"
+                    data-fail-container style="display: none;">Something went wrong.</div>
+            </spektrix-memberships>
+        </div>
+
+        @if ($layout->films_of_the_week->isNotEmpty())
+        <div class="mb-12 max-w-sm mx-auto   text-white lg:col-span-2">
+
+            <div class="bg-black-light pt-4 rounded">
+                <h3 class="px-4 type-xs-mono mb-2 text-white">Upcoming 15–25 Film of the Week</h3>
+                <ul class="divide-y divide-gray-dark border-t border-gray-dark">
+                    @foreach ($layout->films_of_the_week as $film)
+                    <li class="flex px-4 items-baseline gap-4 py-3 lg:py-4">
+                        <span
+                            class="type-xs-mono w-12 shrink-0 text-yellow">{{ $film->started ? 'Now' : 'Next' }}</span>
+                        <a href="{{ $film->event->url }}" class="type-small transition hover:text-yellow">
+                            {{ $film->event->name }}
+                        </a>
+                        <span class="type-xs-mono ml-auto whitespace-nowrap text-gray-medium">
+                            {{ $film->started ? 'until ' . $film->last->format('jS M') : 'from ' . $film->first->format('jS M') }}
+                        </span>
+                    </li>
                     @endforeach
                 </ul>
-
-    <spektrix-memberships class="relative block mt-12 max-w-lg pb-2"
-    client-name="{{ $settings['spektrix_client_name'] }}" custom-domain="{{ $settings['spektrix_custom_domain'] }}"
-    membership-id="{{ $layout->membership->id }}">    
-        <button class="type-regular w-full bg-yellow rounded text-center py-4 text-black hover:bg-opacity-90 transition"
-        data-submit-membership>Add to basket</button>
-        <div class="-mt-14 relative" data-success-container style="display: none;">
-            <div class="type-regular max-w-lg rounded text-black leading-tight py-4 px-6 bg-yellow-dark text-center">
-                Added to basket</div>
-                <p class="type-small text-white mt-4">Want your free membership to continue until your 26th birthday? After
-                    you’ve processed your order, visit your account page and provide us with your date of birth.</p>
-                </div>
-                <div class="absolute text-black font-bold top-full left-0 right-0 leading-tight py-2 px-6 bg-yellow-dark text-center"
-                data-fail-container style="display: none;">Something went wrong.</div>
-            </spektrix-memberships>
-            
+            </div>
         </div>
-    
-
-</div>
+        @endif
+    </div>
 </div>
 
 <x-marquee class="!bg-sand" />

@@ -92,6 +92,7 @@ class Instance extends Model
 
         'free',
         'pwyc',
+        'fotw_15_25',
     ];
 
     protected $casts = [
@@ -110,6 +111,7 @@ class Instance extends Model
         'toddler_friendly' => 'boolean',
         'free' => 'boolean',
         'pwyc' => 'boolean',
+        'fotw_15_25' => 'boolean',
     ];
 
     protected $appends = ['start_date', 'start_time', 'url', 'short_id', 'format', 'availability', 'access_tags', 'audio_description'];

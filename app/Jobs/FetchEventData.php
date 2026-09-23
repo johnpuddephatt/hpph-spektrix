@@ -333,6 +333,7 @@ class FetchEventData implements ShouldQueue
 
                     'free' => $instance->attribute_AffordableTickets === 'Free' ? true : false,
                     'pwyc' => $instance->attribute_AffordableTickets === 'Pay What You Can' ? true : false,
+                    'fotw_15_25' => $instance->attribute_1525FOTW ?? false,
                 ])
             );
 
