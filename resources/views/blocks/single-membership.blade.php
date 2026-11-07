@@ -1,7 +1,10 @@
 <div id="{{ Str::slug($layout->title) }}" class="relative overflow-x-hidden bg-black px-4 py-20 text-center lg:py-36">
 
-    <img src="{{ Storage::url($layout->membership->logo) }}"
-        class="absolute left-1/2 top-1/2 mx-auto w-40 -translate-x-1/2 -translate-y-1/2 transform"></inline-svg>
+  @if($layout->membership->logo)  <img src="{{ Storage::url($layout->membership->logo) }}" 
+        class="absolute left-1/2 top-1/2 mx-auto w-40 -translate-x-1/2 -translate-y-1/2 transform"/>
+    @endif
+
+
     <h2 class="type-regular lg:type-medium relative mb-2 text-white">
         {{ $layout->title }}
     </h2>
