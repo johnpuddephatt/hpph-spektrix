@@ -52,6 +52,8 @@ class Membership extends Resource
             Text::make('Name')->readonly(),
             Text::make('Price')->readonly(),
             Text::make('Renewal price')->readonly(),
+            Text::make('Price period')
+                ->help('Shown after the price on the site, e.g. "year" gives "£35 / year". Leave blank to show the price alone.'),
 
             Panel::make('Details', [
                 Image::make('Logo')

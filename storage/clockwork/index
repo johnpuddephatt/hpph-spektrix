@@ -565,3 +565,7 @@
 1794482446-0483-1363697415,1794482445.9724,GET,/strands/bring-your-own-baby,App\Http\Controllers\StrandController@show,200,191.11490249634,request
 1794482446-2635-456691383,1794482446.2188,GET,/storage/70/responsive-images/41-COLOUR%402x___landscape_1400_840.jpg,App\Http\Controllers\PageController@show,404,137.04395294189,request
 1794482446-2634-616534004,1794482446.2159,GET,/storage/84/responsive-images/IMG_5298___landscape_1400_840.jpg,App\Http\Controllers\PageController@show,404,139.88184928894,request
+1794482782-9530-1476347105,1794482782.8419,GET,/nova-api/nova-notifications,Laravel\Nova\Http\Controllers\NotificationIndexController,200,266.22200012207,request
+1794482858-4269-1132551892,1794482858.3522,GET,/strands/bring-your-own-baby,App\Http\Controllers\StrandController@show,200,238.39592933655,request
+1794482858-7673-2085092002,1794482858.7166,GET,/strands/bring-your-own-baby,App\Http\Controllers\StrandController@show,200,161.09800338745,request
+1794483204-6123-1434899703,1794483204.5068,GET,/strands/bring-your-own-baby,App\Http\Controllers\StrandController@show,200,317.30985641479,request

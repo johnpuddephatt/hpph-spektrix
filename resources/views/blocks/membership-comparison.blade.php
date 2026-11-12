@@ -23,8 +23,8 @@
                     {{ $membership->description }}
                 </div>
                 <div class="bg-yellow text-center py-6 text-black">
-                    <span class="type-medium">{{ $membership->price }}</span><span
-                        class="type-regular !font-normal">&nbsp;/&nbsp;year</span>
+                    <span class="type-medium">{{ $membership->price }}</span>@if ($membership->price_period_label)<span
+                        class="type-regular !font-normal">&nbsp;{{ $membership->price_period_label }}</span>@endif
                 </div>
                 <ul class="flex-grow bg-sand">
                     @foreach ($membership->benefits as $benefit)

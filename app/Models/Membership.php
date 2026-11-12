@@ -32,6 +32,7 @@ class Membership extends Model
         'long_description',
         'price',
         'renewal_price',
+        'price_period',
         'image',
         'logo',
     ];
@@ -62,5 +63,20 @@ class Membership extends Model
     public function getPriceAttribute($value)
     {
         return $value > 0 ? "£{$value}" : 'Free';
+    }
+
+    /**
+     * What goes after the price, e.g. "/ year" or "/ 6 months". Null when the
+     * editor has left the period blank, or when the membership is free — "Free
+     * / year" reads oddly.
+     */
+    public function getPricePeriodLabelAttribute(): ?string
+    {
+        $period = trim((string) $this->price_period);
+
+        // Non-breaking spaces so "/ 6 months" never wraps away from the price.
+        return $period !== '' && $this->price !== 'Free'
+            ? str_replace(' ', "\u{00A0}", "/ {$period}")
+            : null;
     }
 }

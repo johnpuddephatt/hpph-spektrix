@@ -10,7 +10,7 @@
     the description, benefits and image are added by an editor under Memberships.
 --}}
 
-<div id="{{ Str::slug($layout->title ?: $membership->name) }}" @class(['container my-12 lg:my-16', 'dark' => $dark])>
+<div id="{{ Str::slug($layout->title ?: $membership->name) }}" @class(['container py-12 lg:py-16 @if ($dark) bg-black-light @endif ', 'dark' => $dark])>
     <div class="md:grid md:grid-cols-2 md:gap-12 lg:gap-16">
 
         <div class="dark:text-white">
@@ -54,7 +54,7 @@
 
                     <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
                         <span class="type-regular">
-                            {{ $membership->price }}@if ($membership->price !== 'Free')<span class="!font-normal">&nbsp;/&nbsp;year</span>@endif
+                            {{ $membership->price }}@if ($membership->price_period_label)<span class="!font-normal">&nbsp;{{ $membership->price_period_label }}</span>@endif
                         </span>
 
                         {{-- text-black is explicit: the column sets dark:text-white,
