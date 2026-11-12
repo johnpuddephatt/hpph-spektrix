@@ -10,7 +10,12 @@
     the description, benefits and image are added by an editor under Memberships.
 --}}
 
-<div id="{{ Str::slug($layout->title ?: $membership->name) }}" @class(['container py-12 lg:py-16 @if ($dark) bg-black-light @endif ', 'dark' => $dark])>
+{{-- The id is what a direct link to this section points at; the heading below
+     links to it, so an editor can click the heading to get the URL. --}}
+<div id="{{ Str::slug($layout->title ?: $membership->name) }}" @class([
+    'container scroll-mt-24 py-12 lg:py-16',
+    'dark bg-black-light' => $dark,
+])>
     <div class="md:grid md:grid-cols-2 md:gap-12 lg:gap-16">
 
         <div class="dark:text-white">
@@ -18,7 +23,11 @@
                 {{ $layout->subtitle ?: 'Become a member' }}
             </p>
 
-            <h2 class="type-regular lg:type-medium mb-4">{{ $layout->title ?: $membership->name }}</h2>
+            {{-- Same self-link as headings in the text block. --}}
+            <h2 class="type-regular lg:type-medium mb-4">
+                <a
+                    href="#{{ Str::slug($layout->title ?: $membership->name) }}">{{ $layout->title ?: $membership->name }}</a>
+            </h2>
 
             @if ($membership->description)
                 <p class="type-regular max-w-xl !font-normal">{{ $membership->description }}</p>
@@ -37,7 +46,13 @@
                         @foreach ($membership->benefits as $benefit)
                             <li
                                 class="type-xs-mono flex items-center gap-2 border-b border-sand-dark py-3 dark:border-gray-dark">
-                                @svg('tick', 'h-6 w-6 shrink-0 rounded-full bg-yellow p-1 text-black')
+                                {{-- Takes the page's accent in a dark context, like the
+                                     add to basket button; @svg can't take a style, hence
+                                     the wrapper. --}}
+                                <span class="shrink-0 rounded-full bg-yellow p-1 text-black"
+                                    @if ($dark) style="background-color: @yield('color')" @endif>
+                                    @svg('tick', 'h-4 w-4')
+                                </span>
                                 <span>{{ $benefit }}</span>
                             </li>
                         @endforeach
@@ -54,22 +69,40 @@
 
                     <div class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
                         <span class="type-regular">
-                            {{ $membership->price }}@if ($membership->price_period_label)<span class="!font-normal">&nbsp;{{ $membership->price_period_label }}</span>@endif
+                            {{ $membership->price }}@if ($membership->price_period_label)
+                                <span class="!font-normal">&nbsp;{{ $membership->price_period_label }}</span>
+                            @endif
                         </span>
 
-                        {{-- text-black is explicit: the column sets dark:text-white,
-                             which the button would otherwise inherit onto yellow. --}}
-                        <button type="button" data-submit-membership
-                            class="type-regular shrink-0 rounded bg-yellow py-2 pl-4 pr-3 text-black transition hover:opacity-90"
-                            @if ($dark) style="background-color: @yield('color')" @endif>
-                            Add to basket
-                            @svg('arrow-right', 'inline-block h-4 w-4 ml-1')
-                        </button>
+                        <div class="flex flex-wrap items-center gap-2">
+                            {{-- Secondary to add to basket: an outline rather than a
+                                 fill, as the gift button in the membership comparison
+                                 block is. The ring is inset so it is the same height
+                                 as the filled button beside it. "Give as a gift"
+                                 rather than "gift this membership", since some of
+                                 these (the Baby Bundle) aren't sold as memberships. --}}
+                            @if (\App\Models\Page::getTemplateUrl('gift-membership-page'))
+                                <a href="{{ \App\Models\Page::getTemplateUrl('gift-membership-page') . '?selected=' . $membership->id }}"
+                                    class="type-regular rounded px-4 py-2 ring-1 ring-inset ring-black transition hover:bg-black/5 dark:ring-white dark:hover:bg-white/10">
+                                    Give as a gift
+                                </a>
+                            @endif
+
+                            {{-- text-black is explicit: the column sets dark:text-white,
+                                 which the button would otherwise inherit onto yellow. --}}
+                            <button type="button" data-submit-membership
+                                class="type-regular rounded bg-yellow py-2 pl-4 pr-3 text-black transition hover:opacity-90"
+                                @if ($dark) style="background-color: @yield('color')" @endif>
+                                Add to basket
+                                @svg('arrow-right', 'inline-block h-4 w-4 ml-1')
+                            </button>
+                        </div>
 
                         <div class="type-xs-mono shrink-0" data-success-container style="display: none;">
                             Added to basket.
                             @if (\App\Models\Page::getTemplateUrl('basket-page'))
-                                <a class="underline" href="{{ \App\Models\Page::getTemplateUrl('basket-page') }}">Go to basket</a>
+                                <a class="underline" href="{{ \App\Models\Page::getTemplateUrl('basket-page') }}">Go to
+                                    basket</a>
                             @endif
                         </div>
                     </div>
@@ -79,11 +112,6 @@
                     </p>
                 </spektrix-memberships>
             </div>
-
-            @if (\App\Models\Page::getTemplateUrl('gift-membership-page'))
-                <a href="{{ \App\Models\Page::getTemplateUrl('gift-membership-page') . '?selected=' . $membership->id }}"
-                    class="type-xs-mono mt-4 inline-block underline">Gift this membership</a>
-            @endif
         </div>
     </div>
 </div>
